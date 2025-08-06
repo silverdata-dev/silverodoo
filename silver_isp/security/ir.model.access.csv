@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_isp_node,access.isp.node,model_isp_node,base.group_user,1,1,1,1
+access_isp_core,access.isp.core,model_isp_core,base.group_user,1,1,1,1
+access_isp_radius,access.isp.radius,model_isp_radius,base.group_user,1,1,1,1
+access_isp_device_networks,access.isp.device.networks,model_isp_device_networks,base.group_user,1,1,1,1
+access_isp_kex_algorithms,access.isp.kex.algorithms,model_isp_kex_algorithms,base.group_user,1,1,1,1
+access_isp_vlan,access.isp.vlan,model_isp_vlan,base.group_user,1,1,1,1
+access_addres_list_channel_line,access.addres.list.channel.line,model_addres_list_channel_line,base.group_user,1,1,1,1
+access_isp_ip_address_line,access.isp.ip.address.line,model_isp_ip_address_line,base.group_user,1,1,1,1
+access_isp_ip_address,access.isp.ip.address,model_isp_ip_address,base.group_user,1,1,1,1
+access_isp_core_port_line,access.isp.core.port.line,model_isp_core_port_line,base.group_user,1,1,1,1
+access_product_brand,access.product.brand,model_product_brand,base.group_user,1,1,1,1
