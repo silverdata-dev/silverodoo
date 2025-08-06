@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- isp.olt.card -->
+        <record id="action_isp_olt_card" model="ir.actions.act_window">
+            <field name="name">Tarjetas OLT</field>
+            <field name="res_model">isp.olt.card</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_isp_olt_card" name="Tarjetas OLT" parent="menu_silver_isp_root" action="action_isp_olt_card" sequence="40"/>
+
+        <record id="view_isp_olt_card_tree" model="ir.ui.view">
+            <field name="name">isp.olt.card.tree</field>
+            <field name="model">isp.olt.card</field>
+            <field name="arch" type="xml">
+                <tree string="Tarjetas OLT ISP" default_order="name desc">
+                    <field name="name"/>
+                    <field name="num_card"/>
+                    <field name="port_card"/>
+                    <field name="olt_id"/>
+                    <field name="type_access_net"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_isp_olt_card_form" model="ir.ui.view">
+            <field name="name">isp.olt.card.form</field>
+            <field name="model">isp.olt.card</field>
+            <field name="arch" type="xml">
+                <form string="Tarjeta OLT ISP">
+                    <header>
+                        <button name="create_olt_card_port" string="Crear Puertos OLT" type="object"/>
+                    </header>
+                    <sheet string="Tarjeta OLT ISP">
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="action" name="%(action_isp_placeholder)d" icon="fa-arrows-v">
+                                <field string="Puertos OLT" name="olt_card_port_count" widget="statinfo"/>
+                            </button>
+                            <button class="oe_stat_button" type="action" name="%(action_isp_placeholder)d" icon="fa-link">
+                                <field string="Contratos" name="contracts_card_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1><field name="name" readonly="1"/></h1>
+                        </div>
+                        <group name="card_olt">
+                            <group>
+                                <field name="num_card"/>
+                                <field name="port_card"/>
+                            </group>
+                            <group>
+                                <field name="olt_id"/>
+                            </group>
+                        </group>
+                        <group name="ip_address" string="Direccionamiento IP">
+                            <group>
+                                <field name="type_access_net"/>
+                            </group>
+                            <group>
+                                <field name="dhcp_custom_server" invisible="type_access_net != 'dhcp_leases'"/>
+                            </group>
+                        </group>
+                        <notebook colspan="4">
+                            <page name="ip_address" string="Direcciones IP" invisible="type_access_net != 'dhcp' and type_access_net != 'dhcp_leases'">
+                                <group>
+                                    <field name="ip_address_line_ids" nolabel="1"/>
+                                </group>
+                                <group>
+                                    <field name="ip_address_ids" nolabel="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

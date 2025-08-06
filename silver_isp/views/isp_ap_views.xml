@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- isp.ap -->
+        <record id="action_isp_ap" model="ir.actions.act_window">
+            <field name="name">Equipos AP</field>
+            <field name="res_model">isp.ap</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_isp_ap" name="Equipos AP" parent="menu_silver_isp_root" action="action_isp_ap" sequence="80"/>
+
+        <record id="view_isp_ap_tree" model="ir.ui.view">
+            <field name="name">isp.ap.tree</field>
+            <field name="model">isp.ap</field>
+            <field name="arch" type="xml">
+                <tree string="Equipos AP ISP" default_order="name desc">
+                    <field name="name"/>
+                    <field name="hostname_ap"/>
+                    <field name="brand_ap_id"/>
+                    <field name="model_ap"/>
+                    <field name="capacity_usage_ap"/>
+                    <field name="ip_ap"/>
+                    <field name="port_ap"/>
+                    <field name="user_ap"/>
+                    <field name="description_brand" invisible="1"/>
+                    <field name="state" widget="badge" decoration-danger="state == 'down'" decoration-success="state == 'active'"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_isp_ap_form" model="ir.ui.view">
+            <field name="name">isp.ap.form</field>
+            <field name="model">isp.ap</field>
+            <field name="arch" type="xml">
+                <form string="Equipo AP ISP">
+                    <sheet string="Equipo AP ISP">
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_connect_ap" type="object" class="oe_stat_button" icon="fa-signal" string="Probar Conexion" invisible="description_brand != 'mk'"/>
+                            <button class="oe_stat_button" type="action" name="%(action_isp_placeholder)d" icon="fa-arrows-v">
+                                <field string="Contratos" name="capacity_usage_ap" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <widget name="web_ribbon" title="Active" invisible="state == 'down' or description_brand != 'mk'"/>
+                        <widget name="web_ribbon" title="Down" bg_color="bg-danger" invisible="state == 'active' or description_brand != 'mk'"/>
+                        <field name="state" invisible="1"/>
+                        <div class="oe_title">
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group name="ap">
+                            <group>
+                                <field name="hostname_ap"/>
+                                <field name="software_version"/>
+                                <field name="node_ids" widget="many2many_tags" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="brand_ap_id"/>
+                                <field name="model_ap"/>
+                                <field name="description_brand" invisible="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- isp.box -->
+        <record id="action_isp_box" model="ir.actions.act_window">
+            <field name="name">Cajas NAP</field>
+            <field name="res_model">isp.box</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_isp_box" name="Cajas NAP" parent="menu_silver_isp_root" action="action_isp_box" sequence="70"/>
+
+        <record id="view_isp_box_tree" model="ir.ui.view">
+            <field name="name">isp.box.tree</field>
+            <field name="model">isp.box</field>
+            <field name="arch" type="xml">
+                <tree string="Cajas NAP ISP" default_order="name desc">
+                    <field name="name"/>
+                    <field name="capacity_nap"/>
+                    <field name="capacity_usage_nap"/>
+                    <field name="country_id"/>
+                    <field name="state_id"/>
+                    <field name="street"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_isp_box_form" model="ir.ui.view">
+            <field name="name">isp.box.form</field>
+            <field name="model">isp.box</field>
+            <field name="arch" type="xml">
+                <form string="Caja Nap ISP">
+                    <sheet string="Caja NAP ISP">
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="action" name="%(action_isp_placeholder)d" icon="fa-arrows-v">
+                                <field string="Contratos" name="capacity_usage_nap" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1><field name="name" placeholder="Nombre Caja NAP"/></h1>
+                        </div>
+                        <group>
+                            <group string="Datos">
+                                <field name="port_splitter_secondary"/>
+                                <field name="splitter_id" readonly="1"/>
+                                <field name="node_id" invisible="1"/>
+                            </group>
+                            <group string="Capacidad NAP">
+                                <field name="capacity_nap"/>
+                                <field name="capacity_usage_nap"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

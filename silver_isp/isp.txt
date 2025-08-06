@@ -1,0 +1,2167 @@
+model:isp.node
+
+<tree string="Nodos ISP" default_order="name desc">
+  <field name="code" modifiers="{&quot;required&quot;: true}"/>
+<field name="name" modifiers="{&quot;required&quot;: true}"/>
+<field name="country_id" can_create="false" can_write="false" modifiers="{}"/>
+<field name="state_id" can_create="true" can_write="true" modifiers="{}"/>
+<field name="street" modifiers="{}"/>
+  </tree>
+  
+  <form string="Nodo ISP">
+<header>
+            <button name="create_core" string="Crear Equipo Core" type="object" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>     
+                <button name="action_create_ticket_node" string="Crear Ticket" icon="fa-ticket" type="object" class="oe_highlight"/>
+            
+            <button name="create_olt" string="Crear Equipo Olt" type="object"/>
+            <!--button name="action_create_website_support_ticket" string="Crear Ticket"  icon="fa-ticket" type="object" class="oe_highlight"/-->
+          </header>
+<sheet string="Nodo ISP">
+<div class="oe_button_box" name="button_box"> 
+              <button class="oe_stat_button" type="action" name="704" icon="fa-arrows-v">
+                <field string="Equipos Core" name="core_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+                </button>   
+                <button class="oe_stat_button" type="action" name="786" icon="fa-ticket">
+                    <field string="Tickets " name="support_ticket_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+                </button> 
+
+
+                <button class="oe_stat_button" type="action" name="787" icon="fa-arrows-v">
+                    <field string="Movimientos" name="stock_picking_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+                </button>
+                
+            
+<!-- <button class="oe_stat_button" type="action" name="821"  icon="fa-arrows-v"> -->
+<button class="oe_stat_button" type="object" name="action_search_view_olts" icon="fa-arrows-v">
+                <field string="Equipos Olt" name="olt_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+                </button>
+                </div>
+                <div class="oe_title">
+<h1>
+<field name="name" placeholder="Nombre del Nodo" modifiers="{&quot;required&quot;: true}"/>
+ - <field name="code" placeholder="Codigo del Nodo" modifiers="{&quot;required&quot;: true}"/>
+</h1>
+</div>
+<notebook name="networks_isp">
+<page name="geolocaloze" string="Datos Ubicacion">
+<group>
+<group>
+<field name="country_id" can_create="false" can_write="false" modifiers="{}"/>
+<field name="state_id" can_create="true" can_write="true" modifiers="{}"/>
+<field name="zip" modifiers="{}"/>
+                <field name="journal_id" can_create="false" can_write="false" modifiers="{}"/>
+            
+                <field name="account_analytic_id" can_create="true" can_write="true" modifiers="{}"/>
+                <field name="account_cost_analytic_id" can_create="true" can_write="true" modifiers="{}"/>
+                
+            
+</group>
+<group>
+<field name="phone" modifiers="{}"/>
+<field name="street" modifiers="{}"/>
+<field name="street2" modifiers="{}"/>
+</group>
+</group>
+<group>
+<group string="Geolocalizacion">
+                                <label for="date_localization" string="Geolocalizacion"/>
+                                <div name="geolocalize">
+                                    <span>Lat : </span>
+                                    <field name="node_latitude" nolabel="1" class="oe_inline" modifiers="{}"/>
+                                    <span>, Long: </span>
+                                    <field name="node_longitude" nolabel="1" class="oe_inline" modifiers="{}"/>
+                                    <br/>
+                                    <span attrs="{'invisible': [('date_localization', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;date_localization&quot;, &quot;=&quot;, false]]}">Actualizado el: </span>
+                                    <field name="date_localization" nolabel="1" class="oe_inline" modifiers="{}"/>
+                                </div>
+                <field name="distance" modifiers="{}"/>
+            
+                            </group>
+</group>
+</page>
+</notebook>
+  </sheet>
+  <div class="o_attachment_preview"/>
+<div class="oe_chatter">
+<field name="message_follower_ids" modifiers="{}"/>
+<field name="activity_ids" modifiers="{}"/>
+<field name="message_ids" modifiers="{}"/>
+</div>
+</form>
+
+
+  "Nombre de campo","Etiqueta de campo","Modelo","Tipo de campo","Tipo","Indexado","Almacenado","Sólo lectura","Modelo relacionado"
+"__last_update","Last Modified on","Equipo Core","Fecha y hora","Campo base","","","True",""
+"access_token","Security Token","Equipo Core","Carácter","Campo base","","True","",""
+"access_url","Portal Access URL","Equipo Core","Carácter","Campo base","","","True",""
+"access_warning","Access warning","Equipo Core","texto","Campo base","","","True",""
+"active","Active","Equipo Core","booleano","Campo base","","True","",""
+"activity_calendar_event_id","Next Activity Calendar Event","Equipo Core","many2one","Campo base","","","True","calendar.event"
+"activity_date_deadline","Next Activity Deadline","Equipo Core","fecha","Campo base","","","True",""
+"activity_exception_decoration","Activity Exception Decoration","Equipo Core","Selección","Campo base","","","True",""
+"activity_exception_icon","Icon","Equipo Core","Carácter","Campo base","","","True",""
+"activity_ids","Activities","Equipo Core","one2many","Campo base","","True","","mail.activity"
+"activity_state","Activity State","Equipo Core","Selección","Campo base","","","True",""
+"activity_summary","Next Activity Summary","Equipo Core","Carácter","Campo base","","","",""
+"activity_type_icon","Activity Type Icon","Equipo Core","Carácter","Campo base","","","True",""
+"activity_type_id","Next Activity Type","Equipo Core","many2one","Campo base","","","","mail.activity.type"
+"activity_user_id","Responsible User","Equipo Core","many2one","Campo base","","","","res.users"
+"ap_count","Conteo Equipo AP","Equipo Core","entero","Campo base","","","True",""
+"brand_core_id","Marca","Equipo Core","many2one","Campo base","True","True","","product.brand"
+"brand_description","Descripcion","Equipo Core","texto","Campo base","","","True",""
+"company_id","Company","Equipo Core","many2one","Campo base","","True","True","res.company"
+"contracts_cores_count","Conteo Cores","Equipo Core","entero","Campo base","","","True",""
+"create_date","Created on","Equipo Core","Fecha y hora","Campo base","","True","True",""
+"create_uid","Created by","Equipo Core","many2one","Campo base","","True","True","res.users"
+"custom_channel_ids","Canales","Equipo Core","one2many","Campo base","","True","","addres.list.channel.line"
+"custom_list_active","Activos","Equipo Core","Carácter","Campo base","","True","",""
+"custom_list_cuttoff","Cortados","Equipo Core","Carácter","Campo base","","True","",""
+"custom_list_layoff","Suspendidos","Equipo Core","Carácter","Campo base","","True","",""
+"cutoff_reconnection_ipaddress","IP Address","Equipo Core","booleano","Campo base","","True","",""
+"cutoff_reconnection_piloto","Name Contrato","Equipo Core","booleano","Campo base","","True","",""
+"cvlan","cvlan","Equipo Core","Carácter","Campo base","","True","",""
+"dhcp_custom_server","DHCP Leases","Equipo Core","Carácter","Campo base","","True","",""
+"display_name","Display Name","Equipo Core","Carácter","Campo base","","","True",""
+"gateway","Gateway","Equipo Core","many2one","Campo base","","True","","isp.ip.address"
+"has_message","Has Message","Equipo Core","booleano","Campo base","","","True",""
+"hostname_core","Hostname","Equipo Core","Carácter","Campo base","","True","",""
+"id","ID","Equipo Core","entero","Campo base","","True","True",""
+"interface","Interface","Equipo Core","Carácter","Campo base","","True","",""
+"ip_address_ids","Direcciones IP","Equipo Core","one2many","Campo base","","True","","isp.ip.address"
+"ip_address_line_ids","Direcciones IP","Equipo Core","one2many","Campo base","","True","","isp.ip.address.line"
+"ip_core","IP de Conexion","Equipo Core","Carácter","Campo base","","True","",""
+"is_action_button","Ejecutado desde el Boton","Equipo Core","booleano","Campo base","","True","",""
+"is_active_vlans","Activar Vlans Core","Equipo Core","booleano","Campo base","","True","",""
+"is_change_mac","Mostrar MAC","Equipo Core","booleano","Campo base","","True","",""
+"is_custom_address_list","Custom Address Lists","Equipo Core","booleano","Campo base","","True","",""
+"is_custom_address_list_channel","Custom Addrs Lst por Canal","Equipo Core","booleano","Campo base","","True","",""
+"is_cutoff_reconnection","Corte/Reconexion Servicio","Equipo Core","booleano","Campo base","","True","",""
+"is_desactive_core","Desactivar Core","Equipo Core","booleano","Campo base","","True","",""
+"is_desactive_olt","Desactivar OLT","Equipo Core","booleano","Campo base","","True","",""
+"is_device_network","Equipos de infraestructura de red","Equipo Core","booleano","Campo base","","True","",""
+"is_extract_ip_arp","Extraer IP ARP","Equipo Core","booleano","Campo base","","True","",""
+"is_extract_ip_lease","Extraer IP Lease","Equipo Core","booleano","Campo base","","True","",""
+"is_extract_mac_core","Asignar MAC para CALLER ID","Equipo Core","booleano","Campo base","","True","",""
+"is_fiber","Fibra Optica","Equipo Core","booleano","Campo base","","True","",""
+"is_fttb_queue","FTTB","Equipo Core","booleano","Campo base","","True","",""
+"is_generate","Generado?","Equipo Core","booleano","Campo base","","True","",""
+"is_gestion_queue_parent","Gestión de Cola Padre","Equipo Core","booleano","Campo base","","True","",""
+"is_isp_radius","Activar Radius ","Equipo Core","booleano","Campo base","","True","",""
+"is_key_pppoe","Clave PPPoE ","Equipo Core","booleano","Campo base","","True","",""
+"is_local_address_pppoe","Local Address PPPoE ","Equipo Core","booleano","Campo base","","True","",""
+"is_mangle","Mangle","Equipo Core","booleano","Campo base","","True","",""
+"is_mikrotik_radius","Mikrotik Radius ","Equipo Core","booleano","Campo base","","True","",""
+"is_multiple_vlans","Habilitar multiples Vlans","Equipo Core","booleano","Campo base","","True","",""
+"is_pppoe_profile","Profile PPPoE ","Equipo Core","booleano","Campo base","","True","",""
+"is_pppoe_wifi","PPPoE Medio Inalambrico","Equipo Core","booleano","Campo base","","True","",""
+"is_product_address_list","Custom Product Address Lists","Equipo Core","booleano","Campo base","","True","",""
+"is_product_pppoe_profile","Custom Product PPPoE Profile","Equipo Core","booleano","Campo base","","True","",""
+"is_queue_tree","Queue Tree","Equipo Core","booleano","Campo base","","True","",""
+"is_reconnection_ip_address_list","Reconexión IP+Address-List","Equipo Core","booleano","Campo base","","True","",""
+"is_simple_queue","Simple Queues","Equipo Core","booleano","Campo base","","True","",""
+"is_type_core_access","Acceso","Equipo Core","booleano","Campo base","","True","",""
+"is_type_core_bandwidth","Ancho de banda","Equipo Core","booleano","Campo base","","True","",""
+"is_unique_vlans","Vlans unica","Equipo Core","booleano","Campo base","","True","",""
+"is_used_dynamic_pool","Usar Pool Dinamico","Equipo Core","booleano","Campo base","","True","",""
+"is_wifi","Medio Inalambrico","Equipo Core","booleano","Campo base","","True","",""
+"isp_core_port_line_ids","Lineas Puerto Slot]","Equipo Core","one2many","Campo base","","True","","isp.core.port.line"
+"isp_vlans_ids","Vlans","Equipo Core","many2many","Campo base","","True","","isp.vlan"
+"kex_algorithms_ids","Kex Algorithms","Equipo Core","many2many","Campo base","","True","","isp.kex.algorithms"
+"key_pppoe","Password","Equipo Core","Carácter","Campo base","","True","",""
+"message_attachment_count","Attachment Count","Equipo Core","entero","Campo base","","","True",""
+"message_follower_ids","Followers","Equipo Core","one2many","Campo base","","True","","mail.followers"
+"message_has_error","Message Delivery error","Equipo Core","booleano","Campo base","","","True",""
+"message_has_error_counter","Number of errors","Equipo Core","entero","Campo base","","","True",""
+"message_has_sms_error","SMS Delivery error","Equipo Core","booleano","Campo base","","","True",""
+"message_ids","Messages","Equipo Core","one2many","Campo base","","True","","mail.message"
+"message_is_follower","Is Follower","Equipo Core","booleano","Campo base","","","True",""
+"message_main_attachment_id","Main Attachment","Equipo Core","many2one","Campo base","True","True","","ir.attachment"
+"message_needaction","Action Needed","Equipo Core","booleano","Campo base","","","True",""
+"message_needaction_counter","Number of Actions","Equipo Core","entero","Campo base","","","True",""
+"message_partner_ids","Followers (Partners)","Equipo Core","many2many","Campo base","","","True","res.partner"
+"message_unread","Unread Messages","Equipo Core","booleano","Campo base","","","True",""
+"message_unread_counter","Unread Messages Counter","Equipo Core","entero","Campo base","","","True",""
+"model_core","Modelo","Equipo Core","Carácter","Campo base","","True","",""
+"my_activity_date_deadline","My Activity Deadline","Equipo Core","fecha","Campo base","","","True",""
+"name","Código","Equipo Core","Carácter","Campo base","","True","",""
+"networks_device_id","Networks Device","Equipo Core","many2many","Campo base","","True","","isp.device.networks"
+"node_id","Nodo","Equipo Core","many2one","Campo base","","True","","isp.node"
+"node_ids","Nodos","Equipo Core","many2many","Campo base","","True","","isp.node"
+"olt_count","Conteo Equipo OLT","Equipo Core","entero","Campo base","","","True",""
+"password_core","Password","Equipo Core","Carácter","Campo base","","True","",""
+"password_nass","Password Nass","Equipo Core","Carácter","Campo base","","True","",""
+"pooOnlyCore","Pool de IPs Único","Equipo Core","booleano","Campo base","","True","",""
+"poolip","Poolip","Equipo Core","Carácter","Campo base","","True","",""
+"port_card","Puerto por Tarjeta","Equipo Core","entero","Campo base","","True","",""
+"port_coa","Puerto COA","Equipo Core","Carácter","Campo base","","True","",""
+"port_core","Puerto de Conexion","Equipo Core","Carácter","Campo base","","True","",""
+"radius_count","Conteo Servidor Radius","Equipo Core","entero","Campo base","","","True",""
+"radius_id","Radius","Equipo Core","many2one","Campo base","","True","","isp.radius"
+"slot","Tarjeta Slot","Equipo Core","entero","Campo base","","True","",""
+"software_version","Version Software","Equipo Core","Carácter","Campo base","","True","",""
+"state","Estado","Equipo Core","Selección","Campo base","","True","",""
+"svlan","svlan","Equipo Core","Carácter","Campo base","","True","",""
+"type_access_net","Tipo","Equipo Core","Selección","Campo base","","True","",""
+"type_connection","Tipo de Conexión","Equipo Core","Selección","Campo base","","True","",""
+"type_manager_address_list","Tipos de Control","Equipo Core","Selección","Campo base","","True","",""
+"user_core","Usuario","Equipo Core","Carácter","Campo base","","True","",""
+"user_nass","Usuario Nass","Equipo Core","Carácter","Campo base","","True","",""
+"user_profile_radius","User PROFILE","Equipo Core","Carácter","Campo base","","True","",""
+"website_message_ids","Website Messages","Equipo Core","one2many","Campo base","","True","","mail.message"
+"write_date","Last Updated on","Equipo Core","Fecha y hora","Campo base","","True","True",""
+"write_uid","Last Updated by","Equipo Core","many2one","Campo base","","True","True","res.users"
+
+
+
+model=isp.core
+
+<tree string="Equipos Core ISP" default_order="name desc">
+<field name="name" modifiers="{}"/>
+<field name="hostname_core" modifiers="{}"/>
+<field name="brand_core_id" can_create="false" can_write="false" modifiers="{}"/>
+<field name="model_core" modifiers="{}"/>
+<field name="ip_core" modifiers="{}"/>
+<field name="port_core" modifiers="{}"/>
+<field name="user_core" modifiers="{}"/>
+<field name="state" widget="badge" decoration-danger="state == 'down'" decoration-success="state == 'active'" modifiers="{}"/>
+  </tree>
+  
+  <form string="Equipo Core ISP">
+<header>
+        <!-- <button name="create_olt" string="Crear Equipo OLT" type="object"/> -->
+        <button name="create_ap" string="Crear Equipo AP" type="object"/>
+<button name="create_radius" string="Crear Radius" type="object" attrs="{'invisible': [('is_isp_radius','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_isp_radius&quot;, &quot;=&quot;, false]]}"/>  
+      </header>
+<sheet string="Equipo Core ISP">
+<div class="oe_button_box" name="button_box"> 
+              <button class="oe_stat_button" type="action" name="700" icon="fa-arrows-v">
+                <field string="Equipos OLT" name="olt_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+              </button>
+<button class="oe_stat_button" type="action" name="702" attrs="{'invisible': [('is_isp_radius','=',False)]}" icon="fa-arrows-v" modifiers="{&quot;invisible&quot;: [[&quot;is_isp_radius&quot;, &quot;=&quot;, false]]}">
+<field string="Radius" name="radius_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+</button>
+              <button class="oe_stat_button" type="action" name="689" icon="fa-arrows-v">
+                <field string="Equipos AP" name="ap_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+              </button>
+            
+<button name="action_create_nas" type="object" class="oe_stat_button" icon="fa-signal" string="Agregar Nas" attrs="{'invisible': [('is_isp_radius','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_isp_radius&quot;, &quot;=&quot;, false]]}"/>
+<button name="action_remove_nas" type="object" class="oe_stat_button" icon="fa-signal" string="Eliminar Nas" attrs="{'invisible': [('is_isp_radius','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_isp_radius&quot;, &quot;=&quot;, false]]}"/>
+<button name="action_connect_core" type="object" class="oe_stat_button" icon="fa-signal" string="Probar Conexion"/>
+<button class="oe_stat_button" type="action" name="899" icon="fa-link">
+<field string="Contratos" name="contracts_cores_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+</button>
+</div>
+<widget name="web_ribbon" title="Active" attrs="{'invisible': [('state','=','down')]}" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;=&quot;, &quot;down&quot;]]}"/>
+<widget name="web_ribbon" title="Down" bg_color="bg-danger" attrs="{'invisible': [('state','=','active')]}" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;=&quot;, &quot;active&quot;]]}"/>
+                    <field name="state" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+            <div class="oe_title">
+<h1>
+<field name="name" readonly="1" modifiers="{&quot;readonly&quot;: true}"/>
+</h1>
+</div>
+<group name="core">
+<group>
+<field name="hostname_core" modifiers="{}"/>
+<field name="software_version" modifiers="{}"/>
+<field name="node_id" can_create="true" can_write="true" modifiers="{}"/>
+<field name="node_ids" widget="many2many_tags" can_create="true" can_write="true" modifiers="{}"/>
+</group>
+<group>
+<field name="brand_core_id" on_change="1" can_create="false" can_write="false" modifiers="{}"/>
+<!-- <field name="database" attrs="{'invisible': [('is_radius','=',False)]}"/>
+<field name="is_radius" invisible="1"/> -->
+<field name="model_core" modifiers="{}"/>
+<field name="is_isp_radius" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+<field name="radius_id" attrs="{'invisible': [('is_isp_radius','=',False)]}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;is_isp_radius&quot;, &quot;=&quot;, false]]}"/>
+<field name="networks_device_id" attrs="{'invisible': [('is_device_network','=',False)]}" options="{'no_create': True, 'no_create_edit':True}" widget="many2many_tags" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;is_device_network&quot;, &quot;=&quot;, false]]}"/>
+<field name="company_id" invisible="1" can_create="false" can_write="false" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="user_nass" attrs="{'invisible': [('is_isp_radius','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_isp_radius&quot;, &quot;=&quot;, false]]}"/>
+<field name="password_nass" password="True" attrs="{'invisible': [('is_isp_radius','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_isp_radius&quot;, &quot;=&quot;, false]]}"/>
+<field name="port_coa" attrs="{'invisible': [('is_isp_radius','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_isp_radius&quot;, &quot;=&quot;, false]]}"/>
+</group>
+</group>
+<group name="core_conexion" string="Datos Conexion">
+<group>
+<field name="ip_core" modifiers="{}"/>
+<field name="port_core" modifiers="{}"/>
+<field name="type_connection" attrs="{'invisible': [('brand_description','!=','hua')]}" modifiers="{&quot;invisible&quot;: [[&quot;brand_description&quot;, &quot;!=&quot;, &quot;hua&quot;]]}"/>
+<field name="kex_algorithms_ids" attrs="{'invisible': [('brand_description','!=','hua')]}" widget="many2many_tags" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;brand_description&quot;, &quot;!=&quot;, &quot;hua&quot;]]}"/>
+</group>
+<group>
+<field name="user_core" modifiers="{}"/>
+<field name="password_core" password="True" modifiers="{}"/>
+<button class="oe_inline oe_link " name="action_send_password" string=" &#8658;Enviar Contrase&#241;a" type="object"/>
+                    </group>
+</group>
+<group name="type_access_net" string="Direccionamiento IP">
+<group>
+<field name="type_access_net" modifiers="{}"/>
+</group>
+
+<group attrs="{'invisible': [('type_access_net','!=','dhcp_leases')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_access_net&quot;, &quot;!=&quot;, &quot;dhcp_leases&quot;]]}">
+<field name="dhcp_custom_server" modifiers="{}"/>
+<field name="interface" modifiers="{}"/>
+<field name="is_multiple_vlans" widget="boolean_toggle" modifiers="{}"/>
+</group>
+</group>
+<group name="core_vlans" string="Vlans">
+<group>
+<field name="is_active_vlans" widget="boolean_toggle" modifiers="{}"/>
+<field name="cvlan" attrs="{'invisible': [('is_active_vlans','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_active_vlans&quot;, &quot;=&quot;, false]]}"/>
+<field name="svlan" attrs="{'invisible': [('is_active_vlans','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_active_vlans&quot;, &quot;=&quot;, false]]}"/>
+<field name="brand_description" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="isp_vlans_ids" widget="many2many_tags" can_create="true" can_write="true" modifiers="{}"/>
+
+</group>
+
+<group>
+<field name="is_device_network" widget="boolean_toggle" modifiers="{}"/>
+</group>
+</group>
+
+<notebook colspan="4">
+  <page name="config" string="Configuraciones Generales">
+<group name="config_mac">
+<group string="MAC"> 
+<field name="is_extract_mac_core" widget="boolean_toggle" modifiers="{}"/>
+</group>
+<group string="Gestion de Eliminaci&#243;n">
+<field name="cutoff_reconnection_ipaddress" widget="boolean_toggle" on_change="1" modifiers="{}"/>
+<field name="cutoff_reconnection_piloto" widget="boolean_toggle" on_change="1" modifiers="{}"/>
+</group>
+
+</group>
+  
+<group>
+<group string="Tipo de Core"> 
+<field name="pooOnlyCore" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_type_core_access" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_type_core_bandwidth" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_fiber" widget="boolean_toggle" attrs="{'invisible': [('is_type_core_bandwidth','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_type_core_bandwidth&quot;, &quot;=&quot;, false]]}"/>
+<field name="is_wifi" widget="boolean_toggle" attrs="{'invisible': [('is_type_core_bandwidth','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_type_core_bandwidth&quot;, &quot;=&quot;, false]]}"/>
+<field name="is_fttb_queue" widget="boolean_toggle" attrs="{'invisible': [('is_type_core_bandwidth','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_type_core_bandwidth&quot;, &quot;=&quot;, false]]}"/>
+<field name="is_change_mac" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_extract_ip_lease" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_extract_ip_arp" widget="boolean_toggle" modifiers="{}"/>
+</group>
+<group string="Radius"> 
+<field name="is_isp_radius" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_mikrotik_radius" widget="boolean_toggle" modifiers="{}"/>
+<field name="user_profile_radius" modifiers="{}"/>
+</group>
+<group string="Simple Queues" attrs="{'invisible': [('is_type_core_bandwidth','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_type_core_bandwidth&quot;, &quot;=&quot;, false]]}"> 
+<field name="is_simple_queue" widget="boolean_toggle" on_change="1" modifiers="{}"/>
+<field name="is_gestion_queue_parent" widget="boolean_toggle" modifiers="{}"/>
+<!-- <field name="is_fiber" widget="boolean_toggle" attrs="{'invisible': [('is_simple_queue','=',False)]}"/>
+<field name="is_wifi" widget="boolean_toggle" attrs="{'invisible': [('is_simple_queue','=',False)]}"/> -->
+</group>
+<group string="Queue Tree y Mangle" attrs="{'invisible': [('is_type_core_bandwidth','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_type_core_bandwidth&quot;, &quot;=&quot;, false]]}"> 
+<field name="is_queue_tree" widget="boolean_toggle" modifiers="{}"/>
+<!-- <field name="number_list_partner" attrs="{'invisible': [('is_queue_tree','=',False)]}"/> -->
+<field name="is_mangle" widget="boolean_toggle" modifiers="{}"/>
+</group>
+
+</group>
+<group string="Address List">
+<group> 
+<field name="type_manager_address_list" modifiers="{}"/>
+<field name="is_cutoff_reconnection" widget="boolean_toggle" on_change="1" modifiers="{}"/>
+<field name="is_reconnection_ip_address_list" widget="boolean_toggle" modifiers="{}"/>
+</group>
+<group> 
+<field name="is_custom_address_list_channel" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_custom_address_list" widget="boolean_toggle" on_change="1" modifiers="{}"/>
+<field name="custom_list_active" attrs="{'invisible': [('is_custom_address_list','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_custom_address_list&quot;, &quot;=&quot;, false]]}"/>
+<field name="custom_list_cuttoff" attrs="{'invisible': [('is_custom_address_list','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_custom_address_list&quot;, &quot;=&quot;, false]]}"/>
+<field name="custom_list_layoff" attrs="{'invisible': [('is_custom_address_list','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_custom_address_list&quot;, &quot;=&quot;, false]]}"/>
+<field name="is_product_address_list" widget="boolean_toggle" modifiers="{}"/>
+</group>
+</group>
+<group string="PPPoE">
+<group> 
+<field name="is_pppoe_wifi" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_key_pppoe" widget="boolean_toggle" modifiers="{}"/>
+<field name="key_pppoe" attrs="{'invisible': [('is_key_pppoe','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_key_pppoe&quot;, &quot;=&quot;, false]]}"/>
+<field name="is_used_dynamic_pool" widget="boolean_toggle" modifiers="{}"/>
+
+</group>
+<group> 
+<field name="is_local_address_pppoe" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_pppoe_profile" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_product_pppoe_profile" widget="boolean_toggle" attrs="{'invisible': [('is_type_core_bandwidth','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_type_core_bandwidth&quot;, &quot;=&quot;, false]]}"/>
+</group>
+</group>
+<group string="Address List por canal" attrs="{'invisible': [('is_custom_address_list_channel','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_custom_address_list_channel&quot;, &quot;=&quot;, false]]}">
+<field name="custom_channel_ids" nolabel="1" modifiers="{}">
+            </field>
+</group>
+<group string="OLT-CORE">
+<field name="is_unique_vlans" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_desactive_core" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_desactive_olt" widget="boolean_toggle" modifiers="{}"/>
+</group>
+</page>
+                  <page name="ip_address" string="Direcciones IP" attrs="{'invisible': [('type_access_net','not in',['dhcp','dhcp_leases','dhcp_leases_vlan'])]}" modifiers="{&quot;invisible&quot;: [[&quot;type_access_net&quot;, &quot;not in&quot;, [&quot;dhcp&quot;, &quot;dhcp_leases&quot;, &quot;dhcp_leases_vlan&quot;]]]}">
+                  <group>
+            <field name="ip_address_line_ids" nolabel="1" modifiers="{}">
+                </field>
+</group>
+                    <group>
+                      <group>
+                        <!--field name="is_generate" invisible="1"/>
+                        <label for="poolip" string="Poolip"/-->
+                        <div>
+                          <span>
+                            <!--field name="poolip"  attrs="{'readonly': [('is_generate','=',True)]}"/>
+                            <button class="oe_link" name="action_generate_ip_address" string="&#8658; Generar" type="object"/-->
+                          </span>
+                        </div> 
+                      </group>
+                      <group>
+                        <!--field name="gateway" options="{'no_create': True, 'no_create_edit':True}"/-->
+                      </group>
+                    </group>
+                    <group>
+                        <field name="ip_address_ids" nolabel="1" modifiers="{}">
+                          </field>
+                    </group>
+                    
+                  </page>
+  <page name="config_port_slot" string="Configuracion Interface GPON" attrs="{'invisible': [('brand_description','!=', 'hua')]}" modifiers="{&quot;invisible&quot;: [[&quot;brand_description&quot;, &quot;!=&quot;, &quot;hua&quot;]]}">
+<group>
+<div class="oe_button_box" name="button_box">
+<button name="action_calculate_gpon" type="object" class="oe_stat_button" icon="fa-spinner" string="Calcular GigabitEthernet"/>
+</div>
+</group>
+<group string="Datos T&#233;cnicos">
+<group>
+<field name="slot" modifiers="{}"/>
+<field name="port_card" modifiers="{}"/>
+</group>
+</group>
+<group>
+<field name="isp_core_port_line_ids" nolabel="1" modifiers="{}">
+</field>
+</group>
+  </page>
+                </notebook>
+</sheet>
+  <div class="o_attachment_preview"/>
+<div class="oe_chatter">
+<field name="message_follower_ids" modifiers="{}"/>
+<field name="activity_ids" modifiers="{}"/>
+<field name="message_ids" modifiers="{}"/>
+</div>
+</form>
+
+"Nombre de campo","Etiqueta de campo","Modelo","Tipo de campo","Tipo","Indexado","Almacenado","Sólo lectura","Modelo relacionado"
+"__last_update","Last Modified on","Equipo Core","Fecha y hora","Campo base","","","True",""
+"access_token","Security Token","Equipo Core","Carácter","Campo base","","True","",""
+"access_url","Portal Access URL","Equipo Core","Carácter","Campo base","","","True",""
+"access_warning","Access warning","Equipo Core","texto","Campo base","","","True",""
+"active","Active","Equipo Core","booleano","Campo base","","True","",""
+"activity_calendar_event_id","Next Activity Calendar Event","Equipo Core","many2one","Campo base","","","True","calendar.event"
+"activity_date_deadline","Next Activity Deadline","Equipo Core","fecha","Campo base","","","True",""
+"activity_exception_decoration","Activity Exception Decoration","Equipo Core","Selección","Campo base","","","True",""
+"activity_exception_icon","Icon","Equipo Core","Carácter","Campo base","","","True",""
+"activity_ids","Activities","Equipo Core","one2many","Campo base","","True","","mail.activity"
+"activity_state","Activity State","Equipo Core","Selección","Campo base","","","True",""
+"activity_summary","Next Activity Summary","Equipo Core","Carácter","Campo base","","","",""
+"activity_type_icon","Activity Type Icon","Equipo Core","Carácter","Campo base","","","True",""
+"activity_type_id","Next Activity Type","Equipo Core","many2one","Campo base","","","","mail.activity.type"
+"activity_user_id","Responsible User","Equipo Core","many2one","Campo base","","","","res.users"
+"ap_count","Conteo Equipo AP","Equipo Core","entero","Campo base","","","True",""
+"brand_core_id","Marca","Equipo Core","many2one","Campo base","True","True","","product.brand"
+"brand_description","Descripcion","Equipo Core","texto","Campo base","","","True",""
+"company_id","Company","Equipo Core","many2one","Campo base","","True","True","res.company"
+"contracts_cores_count","Conteo Cores","Equipo Core","entero","Campo base","","","True",""
+"create_date","Created on","Equipo Core","Fecha y hora","Campo base","","True","True",""
+"create_uid","Created by","Equipo Core","many2one","Campo base","","True","True","res.users"
+"custom_channel_ids","Canales","Equipo Core","one2many","Campo base","","True","","addres.list.channel.line"
+"custom_list_active","Activos","Equipo Core","Carácter","Campo base","","True","",""
+"custom_list_cuttoff","Cortados","Equipo Core","Carácter","Campo base","","True","",""
+"custom_list_layoff","Suspendidos","Equipo Core","Carácter","Campo base","","True","",""
+"cutoff_reconnection_ipaddress","IP Address","Equipo Core","booleano","Campo base","","True","",""
+"cutoff_reconnection_piloto","Name Contrato","Equipo Core","booleano","Campo base","","True","",""
+"cvlan","cvlan","Equipo Core","Carácter","Campo base","","True","",""
+"dhcp_custom_server","DHCP Leases","Equipo Core","Carácter","Campo base","","True","",""
+"display_name","Display Name","Equipo Core","Carácter","Campo base","","","True",""
+"gateway","Gateway","Equipo Core","many2one","Campo base","","True","","isp.ip.address"
+"has_message","Has Message","Equipo Core","booleano","Campo base","","","True",""
+"hostname_core","Hostname","Equipo Core","Carácter","Campo base","","True","",""
+"id","ID","Equipo Core","entero","Campo base","","True","True",""
+"interface","Interface","Equipo Core","Carácter","Campo base","","True","",""
+"ip_address_ids","Direcciones IP","Equipo Core","one2many","Campo base","","True","","isp.ip.address"
+"ip_address_line_ids","Direcciones IP","Equipo Core","one2many","Campo base","","True","","isp.ip.address.line"
+"ip_core","IP de Conexion","Equipo Core","Carácter","Campo base","","True","",""
+"is_action_button","Ejecutado desde el Boton","Equipo Core","booleano","Campo base","","True","",""
+"is_active_vlans","Activar Vlans Core","Equipo Core","booleano","Campo base","","True","",""
+"is_change_mac","Mostrar MAC","Equipo Core","booleano","Campo base","","True","",""
+"is_custom_address_list","Custom Address Lists","Equipo Core","booleano","Campo base","","True","",""
+"is_custom_address_list_channel","Custom Addrs Lst por Canal","Equipo Core","booleano","Campo base","","True","",""
+"is_cutoff_reconnection","Corte/Reconexion Servicio","Equipo Core","booleano","Campo base","","True","",""
+"is_desactive_core","Desactivar Core","Equipo Core","booleano","Campo base","","True","",""
+"is_desactive_olt","Desactivar OLT","Equipo Core","booleano","Campo base","","True","",""
+"is_device_network","Equipos de infraestructura de red","Equipo Core","booleano","Campo base","","True","",""
+"is_extract_ip_arp","Extraer IP ARP","Equipo Core","booleano","Campo base","","True","",""
+"is_extract_ip_lease","Extraer IP Lease","Equipo Core","booleano","Campo base","","True","",""
+"is_extract_mac_core","Asignar MAC para CALLER ID","Equipo Core","booleano","Campo base","","True","",""
+"is_fiber","Fibra Optica","Equipo Core","booleano","Campo base","","True","",""
+"is_fttb_queue","FTTB","Equipo Core","booleano","Campo base","","True","",""
+"is_generate","Generado?","Equipo Core","booleano","Campo base","","True","",""
+"is_gestion_queue_parent","Gestión de Cola Padre","Equipo Core","booleano","Campo base","","True","",""
+"is_isp_radius","Activar Radius ","Equipo Core","booleano","Campo base","","True","",""
+"is_key_pppoe","Clave PPPoE ","Equipo Core","booleano","Campo base","","True","",""
+"is_local_address_pppoe","Local Address PPPoE ","Equipo Core","booleano","Campo base","","True","",""
+"is_mangle","Mangle","Equipo Core","booleano","Campo base","","True","",""
+"is_mikrotik_radius","Mikrotik Radius ","Equipo Core","booleano","Campo base","","True","",""
+"is_multiple_vlans","Habilitar multiples Vlans","Equipo Core","booleano","Campo base","","True","",""
+"is_pppoe_profile","Profile PPPoE ","Equipo Core","booleano","Campo base","","True","",""
+"is_pppoe_wifi","PPPoE Medio Inalambrico","Equipo Core","booleano","Campo base","","True","",""
+"is_product_address_list","Custom Product Address Lists","Equipo Core","booleano","Campo base","","True","",""
+"is_product_pppoe_profile","Custom Product PPPoE Profile","Equipo Core","booleano","Campo base","","True","",""
+"is_queue_tree","Queue Tree","Equipo Core","booleano","Campo base","","True","",""
+"is_reconnection_ip_address_list","Reconexión IP+Address-List","Equipo Core","booleano","Campo base","","True","",""
+"is_simple_queue","Simple Queues","Equipo Core","booleano","Campo base","","True","",""
+"is_type_core_access","Acceso","Equipo Core","booleano","Campo base","","True","",""
+"is_type_core_bandwidth","Ancho de banda","Equipo Core","booleano","Campo base","","True","",""
+"is_unique_vlans","Vlans unica","Equipo Core","booleano","Campo base","","True","",""
+"is_used_dynamic_pool","Usar Pool Dinamico","Equipo Core","booleano","Campo base","","True","",""
+"is_wifi","Medio Inalambrico","Equipo Core","booleano","Campo base","","True","",""
+"isp_core_port_line_ids","Lineas Puerto Slot]","Equipo Core","one2many","Campo base","","True","","isp.core.port.line"
+"isp_vlans_ids","Vlans","Equipo Core","many2many","Campo base","","True","","isp.vlan"
+"kex_algorithms_ids","Kex Algorithms","Equipo Core","many2many","Campo base","","True","","isp.kex.algorithms"
+"key_pppoe","Password","Equipo Core","Carácter","Campo base","","True","",""
+"message_attachment_count","Attachment Count","Equipo Core","entero","Campo base","","","True",""
+"message_follower_ids","Followers","Equipo Core","one2many","Campo base","","True","","mail.followers"
+"message_has_error","Message Delivery error","Equipo Core","booleano","Campo base","","","True",""
+"message_has_error_counter","Number of errors","Equipo Core","entero","Campo base","","","True",""
+"message_has_sms_error","SMS Delivery error","Equipo Core","booleano","Campo base","","","True",""
+"message_ids","Messages","Equipo Core","one2many","Campo base","","True","","mail.message"
+"message_is_follower","Is Follower","Equipo Core","booleano","Campo base","","","True",""
+"message_main_attachment_id","Main Attachment","Equipo Core","many2one","Campo base","True","True","","ir.attachment"
+"message_needaction","Action Needed","Equipo Core","booleano","Campo base","","","True",""
+"message_needaction_counter","Number of Actions","Equipo Core","entero","Campo base","","","True",""
+"message_partner_ids","Followers (Partners)","Equipo Core","many2many","Campo base","","","True","res.partner"
+"message_unread","Unread Messages","Equipo Core","booleano","Campo base","","","True",""
+"message_unread_counter","Unread Messages Counter","Equipo Core","entero","Campo base","","","True",""
+"model_core","Modelo","Equipo Core","Carácter","Campo base","","True","",""
+"my_activity_date_deadline","My Activity Deadline","Equipo Core","fecha","Campo base","","","True",""
+"name","Código","Equipo Core","Carácter","Campo base","","True","",""
+"networks_device_id","Networks Device","Equipo Core","many2many","Campo base","","True","","isp.device.networks"
+"node_id","Nodo","Equipo Core","many2one","Campo base","","True","","isp.node"
+"node_ids","Nodos","Equipo Core","many2many","Campo base","","True","","isp.node"
+"olt_count","Conteo Equipo OLT","Equipo Core","entero","Campo base","","","True",""
+"password_core","Password","Equipo Core","Carácter","Campo base","","True","",""
+"password_nass","Password Nass","Equipo Core","Carácter","Campo base","","True","",""
+"pooOnlyCore","Pool de IPs Único","Equipo Core","booleano","Campo base","","True","",""
+"poolip","Poolip","Equipo Core","Carácter","Campo base","","True","",""
+"port_card","Puerto por Tarjeta","Equipo Core","entero","Campo base","","True","",""
+"port_coa","Puerto COA","Equipo Core","Carácter","Campo base","","True","",""
+"port_core","Puerto de Conexion","Equipo Core","Carácter","Campo base","","True","",""
+"radius_count","Conteo Servidor Radius","Equipo Core","entero","Campo base","","","True",""
+"radius_id","Radius","Equipo Core","many2one","Campo base","","True","","isp.radius"
+"slot","Tarjeta Slot","Equipo Core","entero","Campo base","","True","",""
+"software_version","Version Software","Equipo Core","Carácter","Campo base","","True","",""
+"state","Estado","Equipo Core","Selección","Campo base","","True","",""
+"svlan","svlan","Equipo Core","Carácter","Campo base","","True","",""
+"type_access_net","Tipo","Equipo Core","Selección","Campo base","","True","",""
+"type_connection","Tipo de Conexión","Equipo Core","Selección","Campo base","","True","",""
+"type_manager_address_list","Tipos de Control","Equipo Core","Selección","Campo base","","True","",""
+"user_core","Usuario","Equipo Core","Carácter","Campo base","","True","",""
+"user_nass","Usuario Nass","Equipo Core","Carácter","Campo base","","True","",""
+"user_profile_radius","User PROFILE","Equipo Core","Carácter","Campo base","","True","",""
+"website_message_ids","Website Messages","Equipo Core","one2many","Campo base","","True","","mail.message"
+"write_date","Last Updated on","Equipo Core","Fecha y hora","Campo base","","True","True",""
+"write_uid","Last Updated by","Equipo Core","many2one","Campo base","","True","True","res.users"
+
+
+model: isp.otl
+
+<tree string="Equipos OLT ISP" default_order="name desc">
+<field name="name" modifiers="{&quot;required&quot;: true}"/>
+<field name="brand_olt_id" can_create="false" can_write="false" modifiers="{}"/>
+<field name="model_olt" modifiers="{}"/>
+<field name="ip_olt" modifiers="{}"/>
+<field name="port_olt" modifiers="{}"/>
+<field name="user_olt" modifiers="{}"/>
+<field name="state" widget="badge" decoration-danger="state == 'down'" decoration-success="state == 'active'" modifiers="{}"/>
+  </tree>
+
+  <form string="Equipo OLT ISP">
+<header>
+        <button name="create_olt_card" string="Crear Tarjeta OLT" type="object"/>
+      </header>
+<sheet string="Equipo OLT ISP">
+<div class="oe_button_box" name="button_box">
+              <button class="oe_stat_button" type="action" name="698" icon="fa-arrows-v">
+                <field string="Tarjetas OLT" name="olt_card_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+              </button>
+
+<button name="action_connect_olt" type="object" class="oe_stat_button" icon="fa-signal" string="Probar Conexion"/>
+<button name="action_create_profile_olt" type="object" class="oe_stat_button" icon="fa-arrows-v" string="Crear Perfiles"/>
+<button class="oe_stat_button" type="action" name="898" icon="fa-link">
+<field string="Contratos" name="contracts_olt_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+</button>
+</div>
+            <widget name="web_ribbon" title="Active" attrs="{'invisible': [('state','=','down')]}" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;=&quot;, &quot;down&quot;]]}"/>
+<widget name="web_ribbon" title="Down" bg_color="bg-danger" attrs="{'invisible': [('state','=','active')]}" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;=&quot;, &quot;active&quot;]]}"/>
+                    <field name="state" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+<div class="oe_title">
+<h1>
+<field name="name" readonly="1" modifiers="{&quot;readonly&quot;: true, &quot;required&quot;: true}"/>
+</h1>
+</div>
+<group name="olt">
+<group>
+<field name="hostname_olt" modifiers="{}"/>
+<field name="software_version" modifiers="{}"/>
+<field name="is_core_baudcom" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="core_ids" widget="many2many_tags" attrs="{'invisible': [('is_core_baudcom','!=',False)]}" on_change="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;is_core_baudcom&quot;, &quot;!=&quot;, false]]}"/>
+<field name="bridge_core_id" invisible="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: true}"/>
+                <field name="is_vsol_marca" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                <field name="is_brand_zte" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+
+<field name="core_id" on_change="1" can_create="true" can_write="true" modifiers="{}"/>
+<field name="node_id" can_create="true" can_write="true" modifiers="{}"/>
+</group>
+<group>
+<field name="brand_olt_id" on_change="1" can_create="false" can_write="false" modifiers="{}"/>
+<field name="model_olt" modifiers="{}"/>
+<field name="num_slot_olt" modifiers="{}"/>
+</group>
+</group>
+<group name="core_conexion" string="Datos Conexion">
+<group>
+<field name="ip_olt" modifiers="{}"/>
+<field name="port_olt" modifiers="{}"/>
+<field name="type_connection" modifiers="{}"/>
+<field name="kex_algorithms_ids" widget="many2many_tags" can_create="true" can_write="true" modifiers="{}"/>
+</group>
+<group>
+<field name="is_multi_user_olt" widget="boolean_toggle" modifiers="{}"/>
+<field name="user_olt" attrs="{'invisible': [('is_multi_user_olt','=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_multi_user_olt&quot;, &quot;=&quot;, true]]}"/>
+<field name="password_olt" password="True" modifiers="{}"/>
+<button class="oe_inline oe_link " name="action_send_password" string=" &#8658;Enviar Contrase&#241;a" type="object"/>
+                        <field name="secret_olt" modifiers="{}"/>
+</group>
+</group>
+<notebook colspan="4">
+  <page name="config" string="Configuraciones Generales">
+  <group string="Tipo de Conexion">
+<group id="config1">
+
+<field name="is_pppoe" widget="boolean_toggle" on_change="1" modifiers="{}"/>
+<field name="is_ipoe" widget="boolean_toggle" on_change="1" modifiers="{}"/>
+<field name="is_mgn_service_port" widget="boolean_toggle" modifiers="{}"/>
+<field name="ges_gemport" attrs="{'invisible': [('is_mgn_service_port','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_mgn_service_port&quot;, &quot;=&quot;, false]]}"/>
+<field name="g_name_service" attrs="{'invisible': [('is_mgn_service_port','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_mgn_service_port&quot;, &quot;=&quot;, false]]}"/>
+<field name="is_custom_tcont" widget="boolean_toggle" modifiers="{}"/>
+<field name="tcont" attrs="{'invisible': [('is_custom_tcont','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_custom_tcont&quot;, &quot;=&quot;, false]]}"/>
+<field name="is_custom_gempor" widget="boolean_toggle" modifiers="{}"/>
+<field name="gemport" attrs="{'invisible': [('is_custom_gempor','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_custom_gempor&quot;, &quot;=&quot;, false]]}"/>
+
+<field name="is_line_nap" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_gestion_pppoe" widget="boolean_toggle" modifiers="{}"/>
+</group>
+<group id="config2">
+ <field name="is_extract_mac_onu" widget="boolean_toggle" modifiers="{}"/>
+ <field name="is_control_mac_learn" widget="boolean_toggle" modifiers="{}"/>
+ <field name="is_activation_bridge" widget="boolean_toggle" modifiers="{}"/>
+
+<field name="is_cutoff_reconnection" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_disable_onu" widget="boolean_toggle" attrs="{'invisible': [('is_cutoff_reconnection','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_cutoff_reconnection&quot;, &quot;=&quot;, false]]}"/>
+<field name="is_shutdown_interface" widget="boolean_toggle" attrs="{'invisible': [('is_cutoff_reconnection','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_cutoff_reconnection&quot;, &quot;=&quot;, false]]}"/>
+<field name="is_cutoff_port" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_reduce_script" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_redirect_srvport" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_active_wan_onu" widget="boolean_toggle" modifiers="{}"/>
+</group>
+</group>
+<group>
+<group id="config3">
+
+<field name="ont_srvprofile" modifiers="{}"/>
+<field name="ont_srvprofile_value" attrs="{'invisible': [('ont_srvprofile','=','idp')]}" modifiers="{&quot;invisible&quot;: [[&quot;ont_srvprofile&quot;, &quot;=&quot;, &quot;idp&quot;]]}"/>
+<field name="ont_lineprofile" modifiers="{}"/>
+<field name="ont_lineprofile_value" attrs="{'invisible': [('ont_lineprofile','!=','idu')]}" modifiers="{&quot;invisible&quot;: [[&quot;ont_lineprofile&quot;, &quot;!=&quot;, &quot;idu&quot;]]}"/>
+<field name="send_srvprofile" widget="boolean_toggle" modifiers="{}"/>
+<field name="port_vlan" widget="boolean_toggle" attrs="{'invisible': [('is_vsol_marca','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_vsol_marca&quot;, &quot;=&quot;, false]]}"/>
+<field name="wan_maximum" widget="boolean_toggle" attrs="{'invisible': [('is_vsol_marca','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_vsol_marca&quot;, &quot;=&quot;, false]]}"/>
+<field name="name_service" attrs="{'invisible': [('is_vsol_marca','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_vsol_marca&quot;, &quot;=&quot;, false]]}"/>
+</group>
+<group id="config4">
+<field name="type_access_net" modifiers="{&quot;required&quot;: true}"/>
+<field name="dhcp_custom_server" attrs="{'invisible': [('type_access_net','!=','dhcp_leases')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_access_net&quot;, &quot;!=&quot;, &quot;dhcp_leases&quot;]]}"/>
+
+<field name="traffic_table" modifiers="{}"/>
+<field name="is_control_traffic_profile" widget="boolean_toggle" attrs="{'invisible': [('is_brand_zte','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_brand_zte&quot;, &quot;=&quot;, false]]}"/>
+<field name="is_not_user_encap_ipoe" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_uplink_port_vlan" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_product_vlan" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_custom_pon_vlan" widget="boolean_toggle" modifiers="{}"/>
+<field name="service_port_internet" attrs="{'invisible': [('is_vsol_marca','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_vsol_marca&quot;, &quot;=&quot;, false]]}"/>
+</group>
+</group>
+<group string="Ancho de Banda" attrs="{'invisible': [('description','!=','vsol')]}" modifiers="{&quot;invisible&quot;: [[&quot;description&quot;, &quot;!=&quot;, &quot;vsol&quot;]]}">
+<field name="description" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="is_control_bandwidth" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_control_upstream" widget="boolean_toggle" attrs="{'invisible': [('is_control_bandwidth','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_control_bandwidth&quot;, &quot;=&quot;, false]]}"/>
+</group>
+<group string="VSOL Profiles">
+<group>
+<field name="profile_onu_generic" modifiers="{}"/>
+<field name="profile_dba_gestion" modifiers="{}"/>
+<field name="profile_dba_internet" modifiers="{}"/>
+</group>
+<group>
+<field name="dhcp_client" widget="boolean_toggle" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+<field name="is_serial_onu_hex" widget="boolean_toggle" on_change="1" modifiers="{}"/>
+<field name="is_serial_onu_ascii" widget="boolean_toggle" on_change="1" modifiers="{}"/>
+</group>
+</group>
+<group>
+<group>
+<field name="is_virtual" widget="boolean_toggle" modifiers="{}"/>
+</group>
+<group>
+<field name="core_brand_description" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="isp_core_port_line_id" options="{'no_create': True,  'no_open': True}" attrs="{'invisible': [('core_brand_description','!=','hua')]}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;core_brand_description&quot;, &quot;!=&quot;, &quot;hua&quot;]]}"/>
+</group>
+</group>
+<group name="olt_tr">
+<group string="TR-069">
+<field name="is_active_tr" widget="boolean_toggle" modifiers="{}"/>
+</group>
+<group string="DNS" attrs="{'invisible': [('is_v2_brand_zte','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_v2_brand_zte&quot;, &quot;=&quot;, false]]}">
+<field name="is_v2_brand_zte" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="primary_dns" modifiers="{}"/>
+<field name="secondary_dns" modifiers="{}"/>
+</group>
+</group>
+<group>
+<group string="Configuracion OLT">
+<field name="is_write_olt" widget="boolean_toggle" modifiers="{}"/>
+</group>
+<group string="Configuracion ONT" attrs="{'invisible': [('description','!=','zte')]}" modifiers="{&quot;invisible&quot;: [[&quot;description&quot;, &quot;!=&quot;, &quot;zte&quot;]]}">
+<field name="is_enable_remote_access_onu" widget="boolean_toggle" modifiers="{}"/>
+</group>
+</group>
+  </page>
+                <page name="config_olt" string="Gestion OLT" attrs="{'invisible': [('is_vsol_marca','!=',True)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_vsol_marca&quot;, &quot;!=&quot;, true]]}">
+<div class="oe_button_box" position="inside">
+<button name="action_create_traffict_limit" type="object" class="oe_stat_button" icon="fa-arrows-v" string="Crear Traffict_limit"/>
+</div>
+<group>
+<field name="line_olt_product" nolabel="1" modifiers="{}">
+</field>
+</group>
+</page>
+
+  <page string="Direcciones IP" attrs="{'invisible': ['|', ('type_access_net','!=','dhcp'), ('type_access_net','=','dhcp_leases')]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;type_access_net&quot;, &quot;!=&quot;, &quot;dhcp&quot;], [&quot;type_access_net&quot;, &quot;=&quot;, &quot;dhcp_leases&quot;]]}">
+            <group>
+            <field name="ip_address_line_ids" nolabel="1" modifiers="{}">
+                </field>
+</group>
+              <group>
+                <group>
+                  <!--field name="is_generate" invisible="1"/>
+                  <label for="poolip" string="Poolip"/-->
+                  <div>
+                    <span>
+                      <!--field name="poolip"  attrs="{'readonly': [('is_generate','=',True)]}"/>
+                      <button class="oe_link" name="action_generate_ip_address" string="&#8658; Generar" type="object"/-->
+                    </span>
+                  </div>
+                </group>
+                <group>
+                  <!--field name="gateway" options="{'no_create': True, 'no_create_edit':True}"/-->
+                </group>
+              </group>
+              <group>
+                  <field name="ip_address_ids" nolabel="1" modifiers="{}">
+                    </field>
+              </group>
+            </page>
+            <page name="users_olt" string="Usuarios Equipo OLT" attrs="{'invisible': [('is_multi_user_olt','=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_multi_user_olt&quot;, &quot;=&quot;, false]]}">
+            <field name="users_olt_ids" modifiers="{}">
+                    </field>
+            </page>
+<page name="dhcp_cli" string="Network Router" attrs="{'invisible': [('dhcp_client', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;dhcp_client&quot;, &quot;=&quot;, false]]}">
+<group string="Enrutador de RED">
+<group id="net_ro_1">
+<field name="pri_onu_standar" modifiers="{}"/>
+<field name="pri_onu_bridge" modifiers="{}"/>
+</group>
+</group>
+</page>
+<page name="gestion_pppoe" string="Gesti&#243;n WAN ONU" attrs="{'invisible': [('is_gestion_pppoe', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_gestion_pppoe&quot;, &quot;=&quot;, false]]}">
+<group name="pppoe_1">
+<group>
+<field name="connection_wan" modifiers="{}"/>
+<!-- <field name="protocol_mode"/> -->
+<field name="protocol_type" modifiers="{}"/>
+<field name="wan_mode" modifiers="{}"/>
+<field name="service_type" modifiers="{}"/>
+<field name="acquisition_mode" modifiers="{}"/>
+</group>
+<group>
+<field name="vlan_id" modifiers="{}"/>
+<field name="mtu" modifiers="{}"/>
+<field name="is_enable_nat" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_disabled_dhcp_pv4" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_control_admin" widget="boolean_toggle" modifiers="{}"/>
+<field name="admin_user" attrs="{'invisible': [('is_control_admin', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_control_admin&quot;, &quot;=&quot;, false]]}"/>
+<field name="password_user" attrs="{'invisible': [('is_control_admin', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_control_admin&quot;, &quot;=&quot;, false]]}"/>
+</group>
+</group>
+<group string="Binding Option">
+<div>
+<strong>LAN1 </strong> <field name="lan1" modifiers="{}"/>
+<strong>LAN2 </strong> <field name="lan2" modifiers="{}"/>
+<strong>LAN3 </strong> <field name="lan3" modifiers="{}"/>
+<strong>LAN4 </strong> <field name="lan4" modifiers="{}"/>
+</div> <br/>
+<div>
+<strong>SSID1 </strong> <field name="ssid1" modifiers="{}"/>
+<strong>SSID2 </strong> <field name="ssid2" modifiers="{}"/>
+<strong>SSID3 </strong> <field name="ssid3" modifiers="{}"/>
+<strong>SSID4 </strong> <field name="ssid4" modifiers="{}"/>
+<strong>SSID5 </strong> <field name="ssid5" modifiers="{}"/>
+<strong>SSID6 </strong> <field name="ssid6" modifiers="{}"/>
+<strong>SSID7 </strong> <field name="ssid7" modifiers="{}"/>
+<strong>SSID8 </strong> <field name="ssid8" modifiers="{}"/>
+
+</div>
+</group>
+</page>
+<page name="isp_tr_069" string="Configuracion TR-069" attrs="{'invisible': [('is_active_tr', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_active_tr&quot;, &quot;=&quot;, false]]}">
+<group>
+<group>
+<field name="isp_tr_069_id" can_create="true" can_write="true" modifiers="{}"/>
+<field name="vlan_mgn_tr069" modifiers="{}"/>
+</group>
+
+<field name="ip_address_line_tr69_ids" context="{'default_is_tr_069': True}" nolabel="1" modifiers="{}">
+</field>
+<field name="ip_address_tr69_ids" context="{'default_is_tr_069': True}" nolabel="1" modifiers="{}">
+</field>
+</group>
+
+</page>
+</notebook>
+</sheet>
+  <div class="o_attachment_preview"/>
+<div class="oe_chatter">
+<field name="message_follower_ids" modifiers="{}"/>
+<field name="activity_ids" modifiers="{}"/>
+<field name="message_ids" modifiers="{}"/>
+</div>
+</form>
+
+"Nombre de campo","Etiqueta de campo","Modelo","Tipo de campo","Tipo","Indexado","Almacenado","Sólo lectura","Modelo relacionado"
+"__last_update","Last Modified on","Equipo OLT","Fecha y hora","Campo base","","","True",""
+"access_token","Security Token","Equipo OLT","Carácter","Campo base","","True","",""
+"access_url","Portal Access URL","Equipo OLT","Carácter","Campo base","","","True",""
+"access_warning","Access warning","Equipo OLT","texto","Campo base","","","True",""
+"acquisition_mode","IP Acquisition Mode","Equipo OLT","Selección","Campo base","","True","",""
+"active","Active","Equipo OLT","booleano","Campo base","","True","",""
+"activity_calendar_event_id","Next Activity Calendar Event","Equipo OLT","many2one","Campo base","","","True","calendar.event"
+"activity_date_deadline","Next Activity Deadline","Equipo OLT","fecha","Campo base","","","True",""
+"activity_exception_decoration","Activity Exception Decoration","Equipo OLT","Selección","Campo base","","","True",""
+"activity_exception_icon","Icon","Equipo OLT","Carácter","Campo base","","","True",""
+"activity_ids","Activities","Equipo OLT","one2many","Campo base","","True","","mail.activity"
+"activity_state","Activity State","Equipo OLT","Selección","Campo base","","","True",""
+"activity_summary","Next Activity Summary","Equipo OLT","Carácter","Campo base","","","",""
+"activity_type_icon","Activity Type Icon","Equipo OLT","Carácter","Campo base","","","True",""
+"activity_type_id","Next Activity Type","Equipo OLT","many2one","Campo base","","","","mail.activity.type"
+"activity_user_id","Responsible User","Equipo OLT","many2one","Campo base","","","","res.users"
+"admin_user","Admin User","Equipo OLT","Carácter","Campo base","","True","",""
+"brand_olt_id","Marca","Equipo OLT","many2one","Campo base","True","True","","product.brand"
+"bridge_core_id","Equipo Core","Equipo OLT","many2one","Campo base","","True","","isp.core"
+"company_id","Company","Equipo OLT","many2one","Campo base","","True","True","res.company"
+"connection_wan","Modo de conexión WAN","Equipo OLT","Selección","Campo base","","True","",""
+"contracts_olt_count","Conteo Olts","Equipo OLT","entero","Campo base","","","True",""
+"core_brand_description","Descripcion","Equipo OLT","texto","Campo base","","","True",""
+"core_id","Equipo Core","Equipo OLT","many2one","Campo base","","True","","isp.core"
+"core_ids","Equipos Core","Equipo OLT","many2many","Campo base","","True","","isp.core"
+"create_date","Created on","Equipo OLT","Fecha y hora","Campo base","","True","True",""
+"create_uid","Created by","Equipo OLT","many2one","Campo base","","True","True","res.users"
+"description","Descripción","Equipo OLT","texto","Campo base","","","True",""
+"dhcp_client","Profiles VSOL","Equipo OLT","booleano","Campo base","","True","",""
+"dhcp_custom_server","DHCP Leases","Equipo OLT","Carácter","Campo base","","True","",""
+"display_name","Display Name","Equipo OLT","Carácter","Campo base","","","True",""
+"g_name_service","Name Service","Equipo OLT","Carácter","Campo base","","True","",""
+"gateway","Gateway","Equipo OLT","many2one","Campo base","","True","","isp.ip.address"
+"gemport","Gemport","Equipo OLT","Carácter","Campo base","","True","",""
+"ges_gemport","gemport","Equipo OLT","Carácter","Campo base","","True","",""
+"has_message","Has Message","Equipo OLT","booleano","Campo base","","","True",""
+"hostname_olt","Hostname","Equipo OLT","Carácter","Campo base","","True","",""
+"id","ID","Equipo OLT","entero","Campo base","","True","True",""
+"ip_address_ids","Direcciones IP","Equipo OLT","one2many","Campo base","","True","","isp.ip.address"
+"ip_address_line_ids","Direcciones IP","Equipo OLT","one2many","Campo base","","True","","isp.ip.address.line"
+"ip_address_line_tr69_ids","Direcciones IP","Equipo OLT","one2many","Campo base","","True","","isp.ip.address.line"
+"ip_address_tr69_ids","Direcciones IP","Equipo OLT","one2many","Campo base","","True","","isp.ip.address"
+"ip_olt","IP de Conexion","Equipo OLT","Carácter","Campo base","","True","",""
+"is_activation_bridge","Activacion Bridge","Equipo OLT","booleano","Campo base","","True","",""
+"is_active_tr","Activar TR-069","Equipo OLT","booleano","Campo base","","True","",""
+"is_active_wan_onu","Activar WAN ONU","Equipo OLT","booleano","Campo base","","True","",""
+"is_brand_zte","Es Marca ZTE?","Equipo OLT","booleano","Campo base","","","True",""
+"is_control_admin","Admin Control","Equipo OLT","booleano","Campo base","","True","",""
+"is_control_bandwidth","Controlar Ancho de Banda","Equipo OLT","booleano","Campo base","","True","",""
+"is_control_mac_learn","Extraer MAC Learn","Equipo OLT","booleano","Campo base","","True","",""
+"is_control_traffic_profile","Control por Traffic Profile","Equipo OLT","booleano","Campo base","","True","",""
+"is_control_upstream","Controlar Upstream","Equipo OLT","booleano","Campo base","","True","",""
+"is_core_baudcom","Es Baudcom?","Equipo OLT","booleano","Campo base","","","True",""
+"is_custom_gempor","Custom Gemport","Equipo OLT","booleano","Campo base","","True","",""
+"is_custom_pon_vlan","Gestion PON por Vlan","Equipo OLT","booleano","Campo base","","True","",""
+"is_custom_tcont","Custom Tcont","Equipo OLT","booleano","Campo base","","True","",""
+"is_cutoff_port","Corte Por Puerto","Equipo OLT","booleano","Campo base","","True","",""
+"is_cutoff_reconnection","Corte/Reconexion Servicio","Equipo OLT","booleano","Campo base","","True","",""
+"is_disable_onu","Deshabilitar ONU","Equipo OLT","booleano","Campo base","","True","",""
+"is_disabled_dhcp_pv4","Deshabilitar Dhcp IPv6","Equipo OLT","booleano","Campo base","","True","",""
+"is_enable_nat","Enable NAT","Equipo OLT","booleano","Campo base","","True","",""
+"is_enable_remote_access_onu","Habilitar Acceso Remoto ONU","Equipo OLT","booleano","Campo base","","True","",""
+"is_extract_mac_onu","Extraer MAC ONU","Equipo OLT","booleano","Campo base","","True","",""
+"is_generate","Generado?","Equipo OLT","booleano","Campo base","","True","",""
+"is_gestion_pppoe","Gestión WAN ONU","Equipo OLT","booleano","Campo base","","True","",""
+"is_ipoe","IPoE","Equipo OLT","booleano","Campo base","","True","",""
+"is_line_nap","Gestion Vlan NAP","Equipo OLT","booleano","Campo base","","True","",""
+"is_mgn_service_port","Puerto/IP para Gestion","Equipo OLT","booleano","Campo base","","True","",""
+"is_multi_user_olt","Multiples Usuarios","Equipo OLT","booleano","Campo base","","True","",""
+"is_not_user_encap_ipoe","Disable Encapsulamiento IPOE/PPPOE","Equipo OLT","booleano","Campo base","","True","",""
+"is_pppoe","PPPoE","Equipo OLT","booleano","Campo base","","True","",""
+"is_product_vlan","Vlans-Profiles por Producto","Equipo OLT","booleano","Campo base","","True","",""
+"is_redirect_srvport","Redireccionamiento ServicePort","Equipo OLT","booleano","Campo base","","True","",""
+"is_reduce_script","Script Reducido","Equipo OLT","booleano","Campo base","","True","",""
+"is_serial_onu_ascii","Serial Onu ASCII","Equipo OLT","booleano","Campo base","","True","",""
+"is_serial_onu_hex","Serial Onu Hexadecimal","Equipo OLT","booleano","Campo base","","True","",""
+"is_shutdown_interface","Shutdown Interface","Equipo OLT","booleano","Campo base","","True","",""
+"is_uplink_port_vlan","Uplink Port VLAN","Equipo OLT","booleano","Campo base","","True","",""
+"is_v2_brand_zte","Es Version 2 Zte?","Equipo OLT","booleano","Campo base","","","True",""
+"is_virtual","Virtual","Equipo OLT","booleano","Campo base","","True","",""
+"is_vsol_marca","Es VSOL Marca?","Equipo OLT","booleano","Campo base","","","True",""
+"is_write_olt","Guardar Configuracion Olt","Equipo OLT","booleano","Campo base","","True","",""
+"isp_core_port_line_id","Interface Core","Equipo OLT","many2one","Campo base","","True","","isp.core.port.line"
+"isp_tr_069_id","Servidor TR-069","Equipo OLT","many2one","Campo base","","True","","isp.tr.069"
+"kex_algorithms_ids","Kex Algorithms","Equipo OLT","many2many","Campo base","","True","","isp.kex.algorithms"
+"lan1","Lan1","Equipo OLT","booleano","Campo base","","True","",""
+"lan2","Lan2","Equipo OLT","booleano","Campo base","","True","",""
+"lan3","Lan3","Equipo OLT","booleano","Campo base","","True","",""
+"lan4","Lan4","Equipo OLT","booleano","Campo base","","True","",""
+"line_network_router","Network Router","Equipo OLT","Carácter","Campo base","","True","",""
+"line_olt_product","line product","Equipo OLT","one2many","Campo base","","True","","olt.line.product"
+"message_attachment_count","Attachment Count","Equipo OLT","entero","Campo base","","","True",""
+"message_follower_ids","Followers","Equipo OLT","one2many","Campo base","","True","","mail.followers"
+"message_has_error","Message Delivery error","Equipo OLT","booleano","Campo base","","","True",""
+"message_has_error_counter","Number of errors","Equipo OLT","entero","Campo base","","","True",""
+"message_has_sms_error","SMS Delivery error","Equipo OLT","booleano","Campo base","","","True",""
+"message_ids","Messages","Equipo OLT","one2many","Campo base","","True","","mail.message"
+"message_is_follower","Is Follower","Equipo OLT","booleano","Campo base","","","True",""
+"message_main_attachment_id","Main Attachment","Equipo OLT","many2one","Campo base","True","True","","ir.attachment"
+"message_needaction","Action Needed","Equipo OLT","booleano","Campo base","","","True",""
+"message_needaction_counter","Number of Actions","Equipo OLT","entero","Campo base","","","True",""
+"message_partner_ids","Followers (Partners)","Equipo OLT","many2many","Campo base","","","True","res.partner"
+"message_unread","Unread Messages","Equipo OLT","booleano","Campo base","","","True",""
+"message_unread_counter","Unread Messages Counter","Equipo OLT","entero","Campo base","","","True",""
+"model_olt","Modelo","Equipo OLT","Carácter","Campo base","","True","",""
+"mtu","MTU","Equipo OLT","Carácter","Campo base","","True","",""
+"my_activity_date_deadline","My Activity Deadline","Equipo OLT","fecha","Campo base","","","True",""
+"name","Hostname","Equipo OLT","Carácter","Campo base","","True","",""
+"name_service","Name Server","Equipo OLT","Carácter","Campo base","","True","",""
+"node_id","Nodo","Equipo OLT","many2one","Campo base","","True","","isp.node"
+"node_related_id","Nodo","Equipo OLT","many2one","Campo base","","","True","isp.node"
+"num_slot_olt","Numero de Slots","Equipo OLT","entero","Campo base","","True","",""
+"olt_card_count","Conteo Slot OLT","Equipo OLT","entero","Campo base","","","True",""
+"ont_lineprofile","Ont Lineprofile","Equipo OLT","Selección","Campo base","","True","",""
+"ont_lineprofile_value","Valor ont_lineprofile","Equipo OLT","Carácter","Campo base","","True","",""
+"ont_srvprofile","Ont Srvprofile","Equipo OLT","Selección","Campo base","","True","",""
+"ont_srvprofile_value","Valor ont_srvprofile","Equipo OLT","Carácter","Campo base","","True","",""
+"password_olt","Password","Equipo OLT","Carácter","Campo base","","True","",""
+"password_user","Password User","Equipo OLT","Carácter","Campo base","","True","",""
+"poolip","Poolip","Equipo OLT","Carácter","Campo base","","True","",""
+"port_olt","Puerto de Conexion","Equipo OLT","entero","Campo base","","True","",""
+"port_vlan","Port Vlan","Equipo OLT","booleano","Campo base","","True","",""
+"pri_onu_bridge","PRI ONU Bridge:","Equipo OLT","Carácter","Campo base","","True","",""
+"pri_onu_standar","PRI ONU Standar:","Equipo OLT","Carácter","Campo base","","True","",""
+"primary_dns","DNS Primario","Equipo OLT","Carácter","Campo base","","True","",""
+"profile_dba_gestion","Profile DBA de Gestion","Equipo OLT","Carácter","Campo base","","True","",""
+"profile_dba_internet","Profile DBA de Internet","Equipo OLT","Carácter","Campo base","","True","",""
+"profile_onu_generic","Profile ONU Generico","Equipo OLT","Carácter","Campo base","","True","",""
+"protocol_type","Protocolo Type","Equipo OLT","Selección","Campo base","","True","",""
+"secondary_dns","DNS Secundario","Equipo OLT","Carácter","Campo base","","True","",""
+"secret_olt","Secret","Equipo OLT","Carácter","Campo base","","True","",""
+"send_srvprofile","Send Srvprofile","Equipo OLT","booleano","Campo base","","True","",""
+"service_port_internet","Service Port-Internet","Equipo OLT","Carácter","Campo base","","True","",""
+"service_type","Service Type","Equipo OLT","Selección","Campo base","","True","",""
+"software_version","Version Software","Equipo OLT","Carácter","Campo base","","True","",""
+"ssid1","SSID1","Equipo OLT","booleano","Campo base","","True","",""
+"ssid2","SSID2","Equipo OLT","booleano","Campo base","","True","",""
+"ssid3","SSID3","Equipo OLT","booleano","Campo base","","True","",""
+"ssid4","SSID4","Equipo OLT","booleano","Campo base","","True","",""
+"ssid5","SSID5","Equipo OLT","booleano","Campo base","","True","",""
+"ssid6","SSID6","Equipo OLT","booleano","Campo base","","True","",""
+"ssid7","SSID7","Equipo OLT","booleano","Campo base","","True","",""
+"ssid8","SSID8","Equipo OLT","booleano","Campo base","","True","",""
+"state","Estado","Equipo OLT","Selección","Campo base","","True","",""
+"tcont","Tcont","Equipo OLT","Carácter","Campo base","","True","",""
+"traffic_table","Traffic-Table(command)","Equipo OLT","Selección","Campo base","","True","",""
+"type_access_net","Tipo Acceso","Equipo OLT","Selección","Campo base","","True","",""
+"type_connection","Tipo de Conexión","Equipo OLT","Selección","Campo base","","True","",""
+"user_olt","Usuario","Equipo OLT","Carácter","Campo base","","True","",""
+"users_olt_ids","Usuarios Equipo OLT","Equipo OLT","one2many","Campo base","","True","","isp.olt.users"
+"vlan_id","VLAN ID","Equipo OLT","Carácter","Campo base","","True","",""
+"vlan_mgn_tr069","Vlan Mgn_TR69","Equipo OLT","entero","Campo base","","True","",""
+"wan_maximum","WAN Maxima","Equipo OLT","booleano","Campo base","","True","",""
+"wan_mode","WAN Mode","Equipo OLT","Selección","Campo base","","True","",""
+"website_message_ids","Website Messages","Equipo OLT","one2many","Campo base","","True","","mail.message"
+"write_date","Last Updated on","Equipo OLT","Fecha y hora","Campo base","","True","True",""
+"write_uid","Last Updated by","Equipo OLT","many2one","Campo base","","True","True","res.users"
+
+
+
+model:isp.otl.card
+
+×
+<tree string="Tarjetas OLT ISP" default_order="name desc">
+<field name="name" modifiers="{}"/>
+<field name="num_card" modifiers="{}"/>
+<field name="port_card" modifiers="{}"/>
+<field name="olt_id" can_create="true" can_write="true" modifiers="{}"/>
+<field name="type_access_net" modifiers="{}"/>
+<field name="poolip" modifiers="{}"/>
+<field name="gateway" can_create="true" can_write="true" modifiers="{}"/>
+</tree>
+
+<form string="Tarjeta OLT ISP">
+<header>
+<button name="create_olt_card_port" string="Crear Puertos OLT" type="object"/>
+</header>
+<sheet string="Tarjeta OLT ISP">
+<div class="oe_button_box" name="button_box">
+<button class="oe_stat_button" type="action" name="696" icon="fa-arrows-v">
+<field string="Puertos OLT" name="olt_card_port_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+</button>
+<button class="oe_stat_button" type="action" name="897" icon="fa-link">
+<field string="Contratos" name="contracts_card_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+</button>
+</div>
+<div class="oe_title">
+<h1>
+<field name="name" readonly="1" modifiers="{&quot;readonly&quot;: true}"/>
+</h1>
+</div>
+<group name="card_olt">
+<group>
+<field name="num_card" modifiers="{}"/>
+<field name="port_card" modifiers="{}"/>
+</group>
+<group>
+<field name="olt_id" can_create="true" can_write="true" modifiers="{}"/>
+</group>
+</group>
+<group name="ip_address" string="Direccionamiento IP">
+<group>
+<field name="type_access_net" modifiers="{}"/>
+</group>
+
+<group>
+<field name="dhcp_custom_server" attrs="{'invisible': [('type_access_net','!=','dhcp_leases')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_access_net&quot;, &quot;!=&quot;, &quot;dhcp_leases&quot;]]}"/>
+</group>
+</group>
+<!-- <notebook colspan="4"  attrs="{'invisible':
+[('type_access_net','!=','dhcp')]}"> -->
+<notebook colspan="4">
+<!-- <page string="Direcciones IP"> -->
+<page name="ip_address" string="Direcciones IP" attrs="{'invisible': ['|', ('type_access_net','!=','dhcp'), ('type_access_net','=','dhcp_leases')]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;type_access_net&quot;, &quot;!=&quot;, &quot;dhcp&quot;], [&quot;type_access_net&quot;, &quot;=&quot;, &quot;dhcp_leases&quot;]]}">
+
+<group>
+<field name="ip_address_line_ids" nolabel="1" modifiers="{}">
+</field>
+</group>
+
+
+<group>
+<field name="ip_address_ids" nolabel="1" modifiers="{}">
+</field>
+</group>
+
+</page>
+
+
+</notebook>
+</sheet>
+<div class="o_attachment_preview"/>
+<div class="oe_chatter">
+<field name="message_follower_ids" modifiers="{}"/>
+<field name="activity_ids" modifiers="{}"/>
+<field name="message_ids" modifiers="{}"/>
+</div>
+</form>
+
+"Nombre de campo","Etiqueta de campo","Modelo","Tipo de campo","Tipo","Indexado","Almacenado","Sólo lectura","Modelo relacionado"
+"__last_update","Last Modified on","Tarjeta de Equipo OLT","Fecha y hora","Campo base","","","True",""
+"access_token","Security Token","Tarjeta de Equipo OLT","Carácter","Campo base","","True","",""
+"access_url","Portal Access URL","Tarjeta de Equipo OLT","Carácter","Campo base","","","True",""
+"access_warning","Access warning","Tarjeta de Equipo OLT","texto","Campo base","","","True",""
+"active","Active","Tarjeta de Equipo OLT","booleano","Campo base","","True","",""
+"activity_calendar_event_id","Next Activity Calendar Event","Tarjeta de Equipo OLT","many2one","Campo base","","","True","calendar.event"
+"activity_date_deadline","Next Activity Deadline","Tarjeta de Equipo OLT","fecha","Campo base","","","True",""
+"activity_exception_decoration","Activity Exception Decoration","Tarjeta de Equipo OLT","Selección","Campo base","","","True",""
+"activity_exception_icon","Icon","Tarjeta de Equipo OLT","Carácter","Campo base","","","True",""
+"activity_ids","Activities","Tarjeta de Equipo OLT","one2many","Campo base","","True","","mail.activity"
+"activity_state","Activity State","Tarjeta de Equipo OLT","Selección","Campo base","","","True",""
+"activity_summary","Next Activity Summary","Tarjeta de Equipo OLT","Carácter","Campo base","","","",""
+"activity_type_icon","Activity Type Icon","Tarjeta de Equipo OLT","Carácter","Campo base","","","True",""
+"activity_type_id","Next Activity Type","Tarjeta de Equipo OLT","many2one","Campo base","","","","mail.activity.type"
+"activity_user_id","Responsible User","Tarjeta de Equipo OLT","many2one","Campo base","","","","res.users"
+"contracts_card_count","Conteo Tarjetas Olt","Tarjeta de Equipo OLT","entero","Campo base","","","True",""
+"create_date","Created on","Tarjeta de Equipo OLT","Fecha y hora","Campo base","","True","True",""
+"create_uid","Created by","Tarjeta de Equipo OLT","many2one","Campo base","","True","True","res.users"
+"dhcp_custom_server","DHCP Leases","Tarjeta de Equipo OLT","Carácter","Campo base","","True","",""
+"display_name","Display Name","Tarjeta de Equipo OLT","Carácter","Campo base","","","True",""
+"gateway","Gateway","Tarjeta de Equipo OLT","many2one","Campo base","","True","","isp.ip.address"
+"has_message","Has Message","Tarjeta de Equipo OLT","booleano","Campo base","","","True",""
+"id","ID","Tarjeta de Equipo OLT","entero","Campo base","","True","True",""
+"ip_address_ids","Direcciones IP","Tarjeta de Equipo OLT","one2many","Campo base","","True","","isp.ip.address"
+"ip_address_line_ids","Direcciones IP","Tarjeta de Equipo OLT","one2many","Campo base","","True","","isp.ip.address.line"
+"is_generate","Generado?","Tarjeta de Equipo OLT","booleano","Campo base","","True","",""
+"message_attachment_count","Attachment Count","Tarjeta de Equipo OLT","entero","Campo base","","","True",""
+"message_follower_ids","Followers","Tarjeta de Equipo OLT","one2many","Campo base","","True","","mail.followers"
+"message_has_error","Message Delivery error","Tarjeta de Equipo OLT","booleano","Campo base","","","True",""
+"message_has_error_counter","Number of errors","Tarjeta de Equipo OLT","entero","Campo base","","","True",""
+"message_has_sms_error","SMS Delivery error","Tarjeta de Equipo OLT","booleano","Campo base","","","True",""
+"message_ids","Messages","Tarjeta de Equipo OLT","one2many","Campo base","","True","","mail.message"
+"message_is_follower","Is Follower","Tarjeta de Equipo OLT","booleano","Campo base","","","True",""
+"message_main_attachment_id","Main Attachment","Tarjeta de Equipo OLT","many2one","Campo base","True","True","","ir.attachment"
+"message_needaction","Action Needed","Tarjeta de Equipo OLT","booleano","Campo base","","","True",""
+"message_needaction_counter","Number of Actions","Tarjeta de Equipo OLT","entero","Campo base","","","True",""
+"message_partner_ids","Followers (Partners)","Tarjeta de Equipo OLT","many2many","Campo base","","","True","res.partner"
+"message_unread","Unread Messages","Tarjeta de Equipo OLT","booleano","Campo base","","","True",""
+"message_unread_counter","Unread Messages Counter","Tarjeta de Equipo OLT","entero","Campo base","","","True",""
+"my_activity_date_deadline","My Activity Deadline","Tarjeta de Equipo OLT","fecha","Campo base","","","True",""
+"name","Nombre Tarjeta","Tarjeta de Equipo OLT","Carácter","Campo base","","True","",""
+"num_card","Numero Slot","Tarjeta de Equipo OLT","entero","Campo base","","True","",""
+"olt_card_port_count","Conteo Slot OLT","Tarjeta de Equipo OLT","entero","Campo base","","","True",""
+"olt_id","OLT","Tarjeta de Equipo OLT","many2one","Campo base","","True","","isp.olt"
+"poolip","Poolip","Tarjeta de Equipo OLT","Carácter","Campo base","","True","",""
+"port_card","Cantidad Puertos","Tarjeta de Equipo OLT","Selección","Campo base","","True","",""
+"type_access_net","Tipo","Tarjeta de Equipo OLT","Selección","Campo base","","True","",""
+"website_message_ids","Website Messages","Tarjeta de Equipo OLT","one2many","Campo base","","True","","mail.message"
+"write_date","Last Updated on","Tarjeta de Equipo OLT","Fecha y hora","Campo base","","True","True",""
+"write_uid","Last Updated by","Tarjeta de Equipo OLT","many2one","Campo base","","True","True","res.users"
+
+
+
+model: isp.olt.card.port
+
+<tree string="Puertos OLT ISP" default_order="name desc">
+<field name="name" modifiers="{}"/>
+<field name="num_port" modifiers="{}"/>
+<field name="olt_card_id" can_create="true" can_write="true" modifiers="{}"/>
+<field name="type_access_net" modifiers="{}"/>
+<field name="poolip" modifiers="{}"/>
+<field name="gateway" can_create="true" can_write="true" modifiers="{}"/>
+</tree>
+
+<form string="Puerto OLT ISP">
+<header>
+<button name="create_splitter_primary" string="Crear Splitter Primario" type="object"/>
+<button name="create_splitter_secondary" string="Crear Splitter Secundario" type="object"/>
+            <button name="active_contracts" type="object" class="oe_stat_button" string="Activar Contratos"/>
+
+</header>
+<sheet string="Puerto OLT ISP">
+<div class="oe_button_box" name="button_box">
+<button class="oe_stat_button" type="action" name="691" icon="fa-arrows-v">
+<field string="Splitter Primario" name="splitter1_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+</button>
+<button class="oe_stat_button" type="action" name="692" icon="fa-arrows-v">
+<field string="Splitter Secundario" name="splitter2_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+</button>
+<button class="oe_stat_button" type="action" name="896" icon="fa-link">
+<field string="Contratos" name="contracts_port_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+</button>
+</div>
+<div class="oe_title">
+<h1>
+<field name="name" readonly="1" modifiers="{&quot;readonly&quot;: true}"/>
+</h1>
+</div>
+<group name="port_olt">
+<group>
+<field name="num_port" modifiers="{}"/>
+</group>
+<group>
+<field name="olt_card_id" can_create="true" can_write="true" modifiers="{}"/>
+</group>
+</group>
+<group>
+<group name="capacity_port" string="Capacidad del Puerto">
+<field name="capacity_port_pon" modifiers="{}"/>
+<field name="capacity_usage_port_pon" modifiers="{&quot;readonly&quot;: true}"/>
+</group>
+<group name="vlan_port" string="Vlan Administrativa">
+<field name="s_vlan" modifiers="{}"/>
+<field name="c_vlan" modifiers="{}"/>
+<field name="is_management_vlan" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_extra_serviceport" widget="boolean_toggle" modifiers="{}"/>
+<field name="mgs_vlan" attrs="{'invisible': [('is_management_vlan','=',False),('is_extra_serviceport','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_management_vlan&quot;, &quot;=&quot;, false], [&quot;is_extra_serviceport&quot;, &quot;=&quot;, false]]}"/>
+<field name="mgc_vlan" attrs="{'invisible': [('is_management_vlan','=',False),('is_extra_serviceport','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_management_vlan&quot;, &quot;=&quot;, false], [&quot;is_extra_serviceport&quot;, &quot;=&quot;, false]]}"/>
+</group>
+
+
+</group>
+
+<group>
+<group name="srv_profile" string="ONT Srvprofile">
+<field name="is_srvprofile" widget="boolean_toggle" modifiers="{}"/>
+<field name="ont_srvprofile" attrs="{'invisible': [('is_srvprofile','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_srvprofile&quot;, &quot;=&quot;, false]]}"/>
+</group>
+<group name="ont_profile" string="ONT Lineprofile">
+<field name="is_line_profile" widget="boolean_toggle" modifiers="{}"/>
+<field name="ont_lineprofile" attrs="{'invisible': [('is_line_profile','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_line_profile&quot;, &quot;=&quot;, false]]}"/>
+</group>
+</group>
+
+<group name="ip_address" string="Direccionamiento IP">
+<group>
+<field name="type_access_net" modifiers="{}"/>
+</group>
+
+<group>
+<field name="dhcp_custom_server" attrs="{'invisible': [('type_access_net','!=','dhcp_leases')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_access_net&quot;, &quot;!=&quot;, &quot;dhcp_leases&quot;]]}"/>
+<field name="interface" attrs="{'invisible': [('type_access_net','!=','dhcp_leases')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_access_net&quot;, &quot;!=&quot;, &quot;dhcp_leases&quot;]]}"/>
+</group>
+</group>
+<group name="port_net_ro_1" string="Network Router">
+<group>
+<field name="dhcp_client" widget="boolean_toggle" modifiers="{}"/>
+<field name="pri_onu_standar" attrs="{'invisible': [('dhcp_client', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;dhcp_client&quot;, &quot;=&quot;, false]]}"/>
+<field name="pri_onu_bridge" attrs="{'invisible': [('dhcp_client', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;dhcp_client&quot;, &quot;=&quot;, false]]}"/>
+</group>
+<group string="Custom PPPoE Profile" name="port_custom_profile">
+                            <field name="is_custom_pppoe_profile" widget="boolean_toggle" modifiers="{}"/>
+                            <field name="name_custom_pppoe_profile" attrs="{'invisible':[('is_custom_pppoe_profile', '!=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_custom_pppoe_profile&quot;, &quot;!=&quot;, true]]}"/>
+                        </group>
+</group>
+<group name="port_radius" string="Radius">
+<group>
+<field name="realm_name" modifiers="{}"/>
+</group>
+<group>
+<field name="is_reverse_onuid" widget="boolean_toggle" modifiers="{}"/>
+<field name="number_reverse" attrs="{'invisible':[('is_reverse_onuid', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_reverse_onuid&quot;, &quot;=&quot;, false]]}"/>
+</group>
+</group>
+<notebook colspan="4">
+<page string="Direcciones IP" attrs="{'invisible': [('type_access_net','not in',['dhcp','dhcp_leases'])]}" modifiers="{&quot;invisible&quot;: [[&quot;type_access_net&quot;, &quot;not in&quot;, [&quot;dhcp&quot;, &quot;dhcp_leases&quot;]]]}">
+<group>
+<field name="ip_address_line_ids" nolabel="1" modifiers="{}">
+</field>
+</group>
+
+<group>
+<group>
+<!--field
+name="is_generate" invisible="1"/>
+                  <label for="poolip" string="Poolip"/-->
+<div>
+<span>
+<!--field
+name="poolip"  attrs="{'readonly':
+[('is_generate','=',True)]}"/>
+                      <button class="oe_link" name="action_generate_ip_address" string="&#8658; Generar" type="object"/-->
+</span>
+</div>
+</group>
+<group>
+<!--field
+name="gateway" options="{'no_create': True,
+'no_create_edit':True}"/-->
+</group>
+</group>
+<group>
+<field name="ip_address_ids" nolabel="1" modifiers="{}">
+</field>
+</group>
+
+</page>
+</notebook>
+
+</sheet>
+<div class="o_attachment_preview"/>
+<div class="oe_chatter">
+<field name="message_follower_ids" modifiers="{}"/>
+<field name="activity_ids" modifiers="{}"/>
+<field name="message_ids" modifiers="{}"/>
+</div>
+</form>
+
+"Nombre de campo","Etiqueta de campo","Modelo","Tipo de campo","Tipo","Indexado","Almacenado","Sólo lectura","Modelo relacionado"
+"__last_update","Last Modified on","Puerto de Tarjeta OLT","Fecha y hora","Campo base","","","True",""
+"access_token","Security Token","Puerto de Tarjeta OLT","Carácter","Campo base","","True","",""
+"access_url","Portal Access URL","Puerto de Tarjeta OLT","Carácter","Campo base","","","True",""
+"access_warning","Access warning","Puerto de Tarjeta OLT","texto","Campo base","","","True",""
+"active","Active","Puerto de Tarjeta OLT","booleano","Campo base","","True","",""
+"activity_calendar_event_id","Next Activity Calendar Event","Puerto de Tarjeta OLT","many2one","Campo base","","","True","calendar.event"
+"activity_date_deadline","Next Activity Deadline","Puerto de Tarjeta OLT","fecha","Campo base","","","True",""
+"activity_exception_decoration","Activity Exception Decoration","Puerto de Tarjeta OLT","Selección","Campo base","","","True",""
+"activity_exception_icon","Icon","Puerto de Tarjeta OLT","Carácter","Campo base","","","True",""
+"activity_ids","Activities","Puerto de Tarjeta OLT","one2many","Campo base","","True","","mail.activity"
+"activity_state","Activity State","Puerto de Tarjeta OLT","Selección","Campo base","","","True",""
+"activity_summary","Next Activity Summary","Puerto de Tarjeta OLT","Carácter","Campo base","","","",""
+"activity_type_icon","Activity Type Icon","Puerto de Tarjeta OLT","Carácter","Campo base","","","True",""
+"activity_type_id","Next Activity Type","Puerto de Tarjeta OLT","many2one","Campo base","","","","mail.activity.type"
+"activity_user_id","Responsible User","Puerto de Tarjeta OLT","many2one","Campo base","","","","res.users"
+"c_vlan","c-vlan","Puerto de Tarjeta OLT","entero","Campo base","","True","",""
+"capacity_port_pon","Total PON","Puerto de Tarjeta OLT","Selección","Campo base","","True","",""
+"capacity_usage_port_pon","Usada PON","Puerto de Tarjeta OLT","entero","Campo base","","True","True",""
+"contracts_port_count","Conteo Puerto Olt","Puerto de Tarjeta OLT","entero","Campo base","","","True",""
+"create_date","Created on","Puerto de Tarjeta OLT","Fecha y hora","Campo base","","True","True",""
+"create_uid","Created by","Puerto de Tarjeta OLT","many2one","Campo base","","True","True","res.users"
+"dhcp_client","Profiles VSOL","Puerto de Tarjeta OLT","booleano","Campo base","","True","",""
+"dhcp_custom_server","DHCP Leases","Puerto de Tarjeta OLT","Carácter","Campo base","","True","",""
+"display_name","Display Name","Puerto de Tarjeta OLT","Carácter","Campo base","","","True",""
+"gateway","Gateway","Puerto de Tarjeta OLT","many2one","Campo base","","True","","isp.ip.address"
+"has_message","Has Message","Puerto de Tarjeta OLT","booleano","Campo base","","","True",""
+"id","ID","Puerto de Tarjeta OLT","entero","Campo base","","True","True",""
+"interface","Interface","Puerto de Tarjeta OLT","Carácter","Campo base","","True","",""
+"ip_address_ids","Direcciones IP","Puerto de Tarjeta OLT","one2many","Campo base","","True","","isp.ip.address"
+"ip_address_line_ids","Direcciones IP","Puerto de Tarjeta OLT","one2many","Campo base","","True","","isp.ip.address.line"
+"is_custom_pppoe_profile","Custom PPPoE Profile","Puerto de Tarjeta OLT","booleano","Campo base","","True","",""
+"is_extra_serviceport","Serviport Extra","Puerto de Tarjeta OLT","booleano","Campo base","","True","",""
+"is_generate","Generado?","Puerto de Tarjeta OLT","booleano","Campo base","","True","",""
+"is_line_profile","ONT Lineprofile","Puerto de Tarjeta OLT","booleano","Campo base","","True","",""
+"is_management_vlan","Vlan de Gestion","Puerto de Tarjeta OLT","booleano","Campo base","","True","",""
+"is_reverse_onuid","Reservar ONU IDs","Puerto de Tarjeta OLT","booleano","Campo base","","True","",""
+"is_srvprofile","ONT Srvprofile","Puerto de Tarjeta OLT","booleano","Campo base","","True","",""
+"message_attachment_count","Attachment Count","Puerto de Tarjeta OLT","entero","Campo base","","","True",""
+"message_follower_ids","Followers","Puerto de Tarjeta OLT","one2many","Campo base","","True","","mail.followers"
+"message_has_error","Message Delivery error","Puerto de Tarjeta OLT","booleano","Campo base","","","True",""
+"message_has_error_counter","Number of errors","Puerto de Tarjeta OLT","entero","Campo base","","","True",""
+"message_has_sms_error","SMS Delivery error","Puerto de Tarjeta OLT","booleano","Campo base","","","True",""
+"message_ids","Messages","Puerto de Tarjeta OLT","one2many","Campo base","","True","","mail.message"
+"message_is_follower","Is Follower","Puerto de Tarjeta OLT","booleano","Campo base","","","True",""
+"message_main_attachment_id","Main Attachment","Puerto de Tarjeta OLT","many2one","Campo base","True","True","","ir.attachment"
+"message_needaction","Action Needed","Puerto de Tarjeta OLT","booleano","Campo base","","","True",""
+"message_needaction_counter","Number of Actions","Puerto de Tarjeta OLT","entero","Campo base","","","True",""
+"message_partner_ids","Followers (Partners)","Puerto de Tarjeta OLT","many2many","Campo base","","","True","res.partner"
+"message_unread","Unread Messages","Puerto de Tarjeta OLT","booleano","Campo base","","","True",""
+"message_unread_counter","Unread Messages Counter","Puerto de Tarjeta OLT","entero","Campo base","","","True",""
+"mgc_vlan","gc-vlan","Puerto de Tarjeta OLT","entero","Campo base","","True","",""
+"mgs_vlan","gs-vlan","Puerto de Tarjeta OLT","entero","Campo base","","True","",""
+"my_activity_date_deadline","My Activity Deadline","Puerto de Tarjeta OLT","fecha","Campo base","","","True",""
+"name","Puerto","Puerto de Tarjeta OLT","Carácter","Campo base","","True","",""
+"name_custom_pppoe_profile","Name Custom PPPoE Profile","Puerto de Tarjeta OLT","Carácter","Campo base","","True","",""
+"num_port","Numero Puerto","Puerto de Tarjeta OLT","entero","Campo base","","True","",""
+"number_reverse","Numero","Puerto de Tarjeta OLT","entero","Campo base","","True","",""
+"olt_card_id","Tarjeta OLT","Puerto de Tarjeta OLT","many2one","Campo base","","True","","isp.olt.card"
+"ont_lineprofile","ont-lineprofile","Puerto de Tarjeta OLT","Carácter","Campo base","","True","",""
+"ont_srvprofile","ont-srvprofile","Puerto de Tarjeta OLT","Carácter","Campo base","","True","",""
+"onu_ids2","One serie","Puerto de Tarjeta OLT","one2many","Campo base","","True","","isp.onu.line"
+"poolip","Poolip","Puerto de Tarjeta OLT","Carácter","Campo base","","True","",""
+"pri_onu_bridge","PRI ONU Bridge:","Puerto de Tarjeta OLT","Carácter","Campo base","","True","",""
+"pri_onu_standar","PRI ONU Standar:","Puerto de Tarjeta OLT","Carácter","Campo base","","True","",""
+"realm_name","REALM","Puerto de Tarjeta OLT","Carácter","Campo base","","True","",""
+"s_vlan","s-vlan","Puerto de Tarjeta OLT","entero","Campo base","","True","",""
+"splitter1_count","Conteo Splitter 1","Puerto de Tarjeta OLT","entero","Campo base","","","True",""
+"splitter2_count","Conteo Splitter 2","Puerto de Tarjeta OLT","entero","Campo base","","","True",""
+"type_access_net","Tipo","Puerto de Tarjeta OLT","Selección","Campo base","","True","",""
+"website_message_ids","Website Messages","Puerto de Tarjeta OLT","one2many","Campo base","","True","","mail.message"
+"write_date","Last Updated on","Puerto de Tarjeta OLT","Fecha y hora","Campo base","","True","True",""
+"write_uid","Last Updated by","Puerto de Tarjeta OLT","many2one","Campo base","","True","True","res.users"
+
+
+
+model: isp.splitter
+
+<tree string="Splitter" default_order="name desc">
+<field name="name" modifiers="{}"/>
+<field name="name_sppliter" modifiers="{}"/>
+<field name="capacity_splitter" modifiers="{}"/>
+<field name="port_splitter" modifiers="{}"/>
+<field name="type_splitter" modifiers="{}"/>
+<field name="splitter_id" can_create="true" can_write="true" modifiers="{}"/>
+<field name="olt_card_port_id" can_create="true" can_write="true" modifiers="{}"/>
+</tree>
+
+
+<form string="Splitter">
+<header>
+<button name="create_box" string="Crear Caja NAP" type="object"/>
+</header>
+<sheet string="Splitter">
+<div class="oe_button_box" name="button_box">
+<button class="oe_stat_button" type="action" name="685" icon="fa-arrows-v">
+<field string="Cajas NAP" name="box_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+</button>
+<button class="oe_stat_button" type="action" name="882" icon="fa-link" attrs="{'invisible': [('type_splitter','!=','2')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_splitter&quot;, &quot;!=&quot;, &quot;2&quot;]]}">
+<field string="Contratos" name="contracts_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+</button>
+</div>
+<div class="oe_title">
+<h1>
+<field name="name" readonly="1" modifiers="{&quot;readonly&quot;: true}"/>
+</h1>
+</div>
+<group>
+<group>
+<field name="name_sppliter" attrs="{'invisible': [('type_splitter','!=','2')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_splitter&quot;, &quot;!=&quot;, &quot;2&quot;]]}"/>
+<field name="capacity_splitter" modifiers="{}"/>
+<field name="port_splitter" attrs="{'invisible': [('type_splitter','=','1')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_splitter&quot;, &quot;=&quot;, &quot;1&quot;]]}"/>
+</group>
+<group>
+<field name="type_splitter" readonly="1" modifiers="{&quot;readonly&quot;: true}"/>
+<field name="splitter_id" attrs="{'invisible': [('type_splitter','=','1')]}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;type_splitter&quot;, &quot;=&quot;, &quot;1&quot;]]}"/>
+<field name="olt_card_port_id" readonly="1" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: true}"/>
+</group>
+</group>
+<group string="Geolocalizacion">
+<label for="date_localization" string="Geolocalizacion"/>
+<div name="geolocalize">
+<span>Lat : </span>
+<field name="sppliter_latitude" nolabel="1" class="oe_inline" modifiers="{}"/>
+<span>, Long: </span>
+<field name="sppliter_longitude" nolabel="1" class="oe_inline" modifiers="{}"/>
+<br/>
+<span attrs="{'invisible': [('date_localization', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;date_localization&quot;, &quot;=&quot;, false]]}">Actualizado el: </span>
+<field name="date_localization" nolabel="1" class="oe_inline" modifiers="{}"/>
+</div>
+</group>
+</sheet>
+<div class="oe_chatter">
+<field name="message_follower_ids" widget="mail_followers" modifiers="{}"/>
+<field name="activity_ids" widget="mail_activity" modifiers="{}"/>
+<field name="message_ids" widget="mail_thread" modifiers="{}"/>
+</div>
+</form>
+
+"Nombre de campo","Etiqueta de campo","Modelo","Tipo de campo","Tipo","Indexado","Almacenado","Sólo lectura","Modelo relacionado"
+"__last_update","Last Modified on","Splitter de Conexion","Fecha y hora","Campo base","","","True",""
+"access_token","Security Token","Splitter de Conexion","Carácter","Campo base","","True","",""
+"access_url","Portal Access URL","Splitter de Conexion","Carácter","Campo base","","","True",""
+"access_warning","Access warning","Splitter de Conexion","texto","Campo base","","","True",""
+"active","Active","Splitter de Conexion","booleano","Campo base","","True","",""
+"activity_calendar_event_id","Next Activity Calendar Event","Splitter de Conexion","many2one","Campo base","","","True","calendar.event"
+"activity_date_deadline","Next Activity Deadline","Splitter de Conexion","fecha","Campo base","","","True",""
+"activity_exception_decoration","Activity Exception Decoration","Splitter de Conexion","Selección","Campo base","","","True",""
+"activity_exception_icon","Icon","Splitter de Conexion","Carácter","Campo base","","","True",""
+"activity_ids","Activities","Splitter de Conexion","one2many","Campo base","","True","","mail.activity"
+"activity_state","Activity State","Splitter de Conexion","Selección","Campo base","","","True",""
+"activity_summary","Next Activity Summary","Splitter de Conexion","Carácter","Campo base","","","",""
+"activity_type_icon","Activity Type Icon","Splitter de Conexion","Carácter","Campo base","","","True",""
+"activity_type_id","Next Activity Type","Splitter de Conexion","many2one","Campo base","","","","mail.activity.type"
+"activity_user_id","Responsible User","Splitter de Conexion","many2one","Campo base","","","","res.users"
+"box_count","Conteo Cajas","Splitter de Conexion","entero","Campo base","","","True",""
+"capacity_splitter","Capacidad","Splitter de Conexion","Selección","Campo base","","True","",""
+"contracts_count","Conteo Cajas","Splitter de Conexion","entero","Campo base","","","True",""
+"create_date","Created on","Splitter de Conexion","Fecha y hora","Campo base","","True","True",""
+"create_uid","Created by","Splitter de Conexion","many2one","Campo base","","True","True","res.users"
+"date_localization","Actualizado el:","Splitter de Conexion","fecha","Campo base","","True","",""
+"display_name","Display Name","Splitter de Conexion","Carácter","Campo base","","","True",""
+"has_message","Has Message","Splitter de Conexion","booleano","Campo base","","","True",""
+"id","ID","Splitter de Conexion","entero","Campo base","","True","True",""
+"message_attachment_count","Attachment Count","Splitter de Conexion","entero","Campo base","","","True",""
+"message_follower_ids","Followers","Splitter de Conexion","one2many","Campo base","","True","","mail.followers"
+"message_has_error","Message Delivery error","Splitter de Conexion","booleano","Campo base","","","True",""
+"message_has_error_counter","Number of errors","Splitter de Conexion","entero","Campo base","","","True",""
+"message_has_sms_error","SMS Delivery error","Splitter de Conexion","booleano","Campo base","","","True",""
+"message_ids","Messages","Splitter de Conexion","one2many","Campo base","","True","","mail.message"
+"message_is_follower","Is Follower","Splitter de Conexion","booleano","Campo base","","","True",""
+"message_main_attachment_id","Main Attachment","Splitter de Conexion","many2one","Campo base","True","True","","ir.attachment"
+"message_needaction","Action Needed","Splitter de Conexion","booleano","Campo base","","","True",""
+"message_needaction_counter","Number of Actions","Splitter de Conexion","entero","Campo base","","","True",""
+"message_partner_ids","Followers (Partners)","Splitter de Conexion","many2many","Campo base","","","True","res.partner"
+"message_unread","Unread Messages","Splitter de Conexion","booleano","Campo base","","","True",""
+"message_unread_counter","Unread Messages Counter","Splitter de Conexion","entero","Campo base","","","True",""
+"my_activity_date_deadline","My Activity Deadline","Splitter de Conexion","fecha","Campo base","","","True",""
+"name","Splitter","Splitter de Conexion","Carácter","Campo base","","True","",""
+"name_sppliter","Nombre","Splitter de Conexion","Carácter","Campo base","","True","",""
+"olt_card_port_id","Puerto Tarjeta OLT","Splitter de Conexion","many2one","Campo base","","True","","isp.olt.card.port"
+"port_splitter","Puerto Splitter Primario","Splitter de Conexion","Carácter","Campo base","","True","",""
+"splitter_id","Spliter Principal","Splitter de Conexion","many2one","Campo base","","True","","isp.splitter"
+"sppliter_latitude","Customer Latitude","Splitter de Conexion","número flotante","Campo base","","True","",""
+"sppliter_longitude","Customer Longitude","Splitter de Conexion","número flotante","Campo base","","True","",""
+"type_splitter","Tipo","Splitter de Conexion","Selección","Campo base","","True","",""
+"website_message_ids","Website Messages","Splitter de Conexion","one2many","Campo base","","True","","mail.message"
+"write_date","Last Updated on","Splitter de Conexion","Fecha y hora","Campo base","","True","True",""
+"write_uid","Last Updated by","Splitter de Conexion","many2one","Campo base","","True","True","res.users"
+
+
+model: isp.box
+
+<tree string="Cajas NAP ISP" default_order="name desc">
+<field name="name" modifiers="{}"/>
+<field name="capacity_nap" modifiers="{}"/>
+        <field name="capacity_usage_nap" modifiers="{&quot;readonly&quot;: true}"/>
+<field name="country_id" can_create="false" can_write="false" modifiers="{}"/>
+<field name="state_id" can_create="true" can_write="true" modifiers="{}"/>
+<field name="street" modifiers="{}"/>
+  </tree>
+
+  <form string="Caja Nap ISP">
+<sheet string="Caja NAP ISP">
+<div class="oe_button_box" name="button_box">
+              <button class="oe_stat_button" type="action" name="683" icon="fa-arrows-v">
+                <field string="Contratos" name="capacity_usage_nap" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+              </button>
+            </div>
+                <div class="oe_title">
+<h1>
+<field name="name" placeholder="Nombre Caja NAP" modifiers="{}"/>
+</h1>
+</div>
+<group>
+                <group string="Datos">
+                    <field name="port_splitter_secondary" modifiers="{}"/>
+                    <field name="splitter_id" readonly="1" on_change="1" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: true}"/>
+<field name="node_id" invisible="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                </group>
+                <group string="Capacidad NAP">
+                    <field name="capacity_nap" modifiers="{}"/>
+                    <field name="capacity_usage_nap" modifiers="{&quot;readonly&quot;: true}"/>
+                </group>
+            </group>
+
+<group string="Datos Ubicacion">
+<group>
+<field name="country_id" can_create="false" can_write="false" modifiers="{}"/>
+<field name="state_id" can_create="true" can_write="true" modifiers="{}"/>
+<field name="zip" modifiers="{}"/>
+</group>
+<group>
+<field name="street" modifiers="{}"/>
+<field name="street2" modifiers="{}"/>
+</group>
+</group>
+<group>
+<group string="Geolocalizacion">
+                                <label for="date_localization" string="Geolocalizacion"/>
+                                <div>
+                                    <span>Lat : </span>
+                                    <field name="node_latitude" nolabel="1" class="oe_inline" modifiers="{}"/>
+                                    <span>, Long: </span>
+                                    <field name="node_longitude" nolabel="1" class="oe_inline" modifiers="{}"/>
+                                    <br/>
+                                    <span attrs="{'invisible': [('date_localization', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;date_localization&quot;, &quot;=&quot;, false]]}">Actualizado el: </span>
+                                    <field name="date_localization" nolabel="1" class="oe_inline" modifiers="{}"/>
+                                </div>
+                    </group>
+<group name="vlan_port" string="Vlan Administrativa" attrs="{'invisible': [('is_line_nap','=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_line_nap&quot;, &quot;=&quot;, false]]}">
+<field name="s_vlan" modifiers="{}"/>
+<field name="c_vlan" modifiers="{}"/>
+</group>
+</group>
+
+<group name="ip_address" string="Direccionamiento IP">
+<group>
+<field name="type_access_net" modifiers="{}"/>
+<field name="is_line_nap" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+</group>
+<group>
+<field name="dhcp_custom_server" attrs="{'invisible': [('type_access_net','!=','dhcp_leases')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_access_net&quot;, &quot;!=&quot;, &quot;dhcp_leases&quot;]]}"/>
+</group>
+</group>
+<group name="box_net_ro_1" string="Network Router">
+<group>
+<field name="dhcp_client" widget="boolean_toggle" modifiers="{}"/>
+<field name="pri_onu_standar" attrs="{'invisible': [('dhcp_client', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;dhcp_client&quot;, &quot;=&quot;, false]]}"/>
+<field name="pri_onu_bridge" attrs="{'invisible': [('dhcp_client', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;dhcp_client&quot;, &quot;=&quot;, false]]}"/>
+</group>
+<group>
+</group>
+</group>
+
+<notebook>
+<page string="Series Onu">
+<group>
+<field name="onu_ids_isp" nolabel="1" modifiers="{}">
+</field>
+</group>
+</page>
+</notebook>
+  </sheet>
+  <div class="o_attachment_preview"/>
+<div class="oe_chatter">
+<field name="message_follower_ids" modifiers="{}"/>
+<field name="activity_ids" modifiers="{}"/>
+<field name="message_ids" modifiers="{}"/>
+</div>
+</form>
+
+"Nombre de campo","Etiqueta de campo","Modelo","Tipo de campo","Tipo","Indexado","Almacenado","Sólo lectura","Modelo relacionado"
+"__last_update","Last Modified on","Caja de Conexion","Fecha y hora","Campo base","","","True",""
+"access_token","Security Token","Caja de Conexion","Carácter","Campo base","","True","",""
+"access_url","Portal Access URL","Caja de Conexion","Carácter","Campo base","","","True",""
+"access_warning","Access warning","Caja de Conexion","texto","Campo base","","","True",""
+"active","Active","Caja de Conexion","booleano","Campo base","","True","",""
+"activity_calendar_event_id","Next Activity Calendar Event","Caja de Conexion","many2one","Campo base","","","True","calendar.event"
+"activity_date_deadline","Next Activity Deadline","Caja de Conexion","fecha","Campo base","","","True",""
+"activity_exception_decoration","Activity Exception Decoration","Caja de Conexion","Selección","Campo base","","","True",""
+"activity_exception_icon","Icon","Caja de Conexion","Carácter","Campo base","","","True",""
+"activity_ids","Activities","Caja de Conexion","one2many","Campo base","","True","","mail.activity"
+"activity_state","Activity State","Caja de Conexion","Selección","Campo base","","","True",""
+"activity_summary","Next Activity Summary","Caja de Conexion","Carácter","Campo base","","","",""
+"activity_type_icon","Activity Type Icon","Caja de Conexion","Carácter","Campo base","","","True",""
+"activity_type_id","Next Activity Type","Caja de Conexion","many2one","Campo base","","","","mail.activity.type"
+"activity_user_id","Responsible User","Caja de Conexion","many2one","Campo base","","","","res.users"
+"c_vlan","c-vlan","Caja de Conexion","entero","Campo base","","True","",""
+"capacity_nap","Total NAP","Caja de Conexion","Selección","Campo base","","True","",""
+"capacity_usage_nap","Usada NAP","Caja de Conexion","entero","Campo base","","","True",""
+"country_id","Pais","Caja de Conexion","many2one","Campo base","","True","","res.country"
+"create_date","Created on","Caja de Conexion","Fecha y hora","Campo base","","True","True",""
+"create_uid","Created by","Caja de Conexion","many2one","Campo base","","True","True","res.users"
+"customer_box_count","Conteo Clientes","Caja de Conexion","entero","Campo base","","","True",""
+"date_localization","Actualizado el:","Caja de Conexion","fecha","Campo base","","True","",""
+"dhcp_client","Profiles VSOL","Caja de Conexion","booleano","Campo base","","True","",""
+"dhcp_custom_server","DHCP Leases","Caja de Conexion","Carácter","Campo base","","True","",""
+"display_name","Display Name","Caja de Conexion","Carácter","Campo base","","","True",""
+"has_message","Has Message","Caja de Conexion","booleano","Campo base","","","True",""
+"id","ID","Caja de Conexion","entero","Campo base","","True","True",""
+"is_line_nap","Gestion Vlan NAP","Caja de Conexion","booleano","Campo base","","","True",""
+"is_management_vlan","Vlan de Gestion","Caja de Conexion","booleano","Campo base","","True","",""
+"line_network_router","Network Router","Caja de Conexion","Carácter","Campo base","","True","",""
+"message_attachment_count","Attachment Count","Caja de Conexion","entero","Campo base","","","True",""
+"message_follower_ids","Followers","Caja de Conexion","one2many","Campo base","","True","","mail.followers"
+"message_has_error","Message Delivery error","Caja de Conexion","booleano","Campo base","","","True",""
+"message_has_error_counter","Number of errors","Caja de Conexion","entero","Campo base","","","True",""
+"message_has_sms_error","SMS Delivery error","Caja de Conexion","booleano","Campo base","","","True",""
+"message_ids","Messages","Caja de Conexion","one2many","Campo base","","True","","mail.message"
+"message_is_follower","Is Follower","Caja de Conexion","booleano","Campo base","","","True",""
+"message_main_attachment_id","Main Attachment","Caja de Conexion","many2one","Campo base","True","True","","ir.attachment"
+"message_needaction","Action Needed","Caja de Conexion","booleano","Campo base","","","True",""
+"message_needaction_counter","Number of Actions","Caja de Conexion","entero","Campo base","","","True",""
+"message_partner_ids","Followers (Partners)","Caja de Conexion","many2many","Campo base","","","True","res.partner"
+"message_unread","Unread Messages","Caja de Conexion","booleano","Campo base","","","True",""
+"message_unread_counter","Unread Messages Counter","Caja de Conexion","entero","Campo base","","","True",""
+"mgc_vlan","gc-vlan","Caja de Conexion","entero","Campo base","","True","",""
+"mgs_vlan","gs-vlan","Caja de Conexion","entero","Campo base","","True","",""
+"my_activity_date_deadline","My Activity Deadline","Caja de Conexion","fecha","Campo base","","","True",""
+"name","Nombre","Caja de Conexion","Carácter","Campo base","","True","",""
+"node_id","Nodo","Caja de Conexion","many2one","Campo base","","True","True","isp.node"
+"node_latitude","Customer Latitude","Caja de Conexion","número flotante","Campo base","","True","",""
+"node_longitude","Customer Longitude","Caja de Conexion","número flotante","Campo base","","True","",""
+"onu_ids_isp","One serie","Caja de Conexion","one2many","Campo base","","True","","isp.onu.line"
+"port_splitter_secondary","Puerto Splitter Secundario","Caja de Conexion","entero","Campo base","","True","",""
+"pri_onu_bridge","PRI ONU Bridge:","Caja de Conexion","Carácter","Campo base","","True","",""
+"pri_onu_standar","PRI ONU Standar:","Caja de Conexion","Carácter","Campo base","","True","",""
+"s_vlan","s-vlan","Caja de Conexion","entero","Campo base","","True","",""
+"splitter_id","Spliter Secundario","Caja de Conexion","many2one","Campo base","","True","","isp.splitter"
+"state_id","Provincia","Caja de Conexion","many2one","Campo base","","True","","res.country.state"
+"street","Direccion","Caja de Conexion","Carácter","Campo base","","True","",""
+"street2","'-","Caja de Conexion","Carácter","Campo base","","True","",""
+"type_access_net","Tipo","Caja de Conexion","Selección","Campo base","","True","",""
+"website_message_ids","Website Messages","Caja de Conexion","one2many","Campo base","","True","","mail.message"
+"write_date","Last Updated on","Caja de Conexion","Fecha y hora","Campo base","","True","True",""
+"write_uid","Last Updated by","Caja de Conexion","many2one","Campo base","","True","True","res.users"
+"zip","Cod.Postal","Caja de Conexion","Carácter","Campo base","","True","",""
+
+
+model: isp.ap
+
+<tree string="Equipos AP ISP" default_order="name desc">
+<field name="name" modifiers="{}"/>
+<field name="hostname_ap" modifiers="{}"/>
+<field name="brand_ap_id" on_change="1" can_create="false" can_write="false" modifiers="{}"/>
+<field name="model_ap" modifiers="{}"/>
+<field name="capacity_usage_ap" modifiers="{&quot;readonly&quot;: true}"/>
+<field name="ip_ap" modifiers="{}"/>
+<field name="port_ap" modifiers="{}"/>
+<field name="user_ap" modifiers="{}"/>
+<field name="description_brand" invisible="1" modifiers="{&quot;readonly&quot;: true, &quot;column_invisible&quot;: true}"/>
+<field name="state" widget="badge" decoration-danger="state == 'down'" decoration-success="state == 'active'" attrs="{'invisible': [('description_brand','!=','mk')]}" modifiers="{&quot;invisible&quot;: [[&quot;description_brand&quot;, &quot;!=&quot;, &quot;mk&quot;]]}"/>
+  </tree>
+
+  <form string="Equipo AP ISP">
+<!-- <header>
+<button name="action_create_massive_pool_ips" string="Crear Pool IPs" type="object"/>
+</header> -->
+<sheet string="Equipo AP ISP">
+<div class="oe_button_box" name="button_box">
+
+<button name="action_connect_ap" type="object" class="oe_stat_button" icon="fa-signal" string="Probar Conexion" attrs="{'invisible': [('description_brand','!=','mk')]}" modifiers="{&quot;invisible&quot;: [[&quot;description_brand&quot;, &quot;!=&quot;, &quot;mk&quot;]]}"/>
+<button class="oe_stat_button" type="action" name="687" icon="fa-arrows-v">
+                <field string="Contratos" name="capacity_usage_ap" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+              </button>
+           </div>
+<widget name="web_ribbon" title="Active" attrs="{'invisible': ['|',('state','=','down'),('description_brand','!=','mk')]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;state&quot;, &quot;=&quot;, &quot;down&quot;], [&quot;description_brand&quot;, &quot;!=&quot;, &quot;mk&quot;]]}"/>
+<widget name="web_ribbon" title="Down" bg_color="bg-danger" attrs="{'invisible': ['|',('state','=','active'),('description_brand','!=','mk')]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;state&quot;, &quot;=&quot;, &quot;active&quot;], [&quot;description_brand&quot;, &quot;!=&quot;, &quot;mk&quot;]]}"/>
+                    <field name="state" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+            <div class="oe_title">
+<h1>
+<field name="name" modifiers="{}"/>
+</h1>
+</div>
+<group name="ap">
+<group>
+<field name="hostname_ap" modifiers="{}"/>
+<field name="software_version" modifiers="{}"/>
+<field name="node_ids" widget="many2many_tags" invisible="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+</group>
+<group>
+<field name="brand_ap_id" on_change="1" can_create="false" can_write="false" modifiers="{}"/>
+<field name="model_ap" modifiers="{}"/>
+<field name="description_brand" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+</group>
+</group>
+<group name="core_conexion" string="Datos Conexion">
+<group>
+<field name="ip_ap" modifiers="{}"/>
+<field name="port_ap" modifiers="{}"/>
+</group>
+<group>
+<field name="user_ap" modifiers="{}"/>
+<field name="password_ap" password="True" modifiers="{}"/>
+</group>
+</group>
+<group>
+<group name="ip_address" string="Direccionamiento IP">
+<field name="type_access_net" modifiers="{&quot;required&quot;: true}"/>
+<field name="dhcp_custom_server" attrs="{'invisible': [('type_access_net','!=','dhcp_leases')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_access_net&quot;, &quot;!=&quot;, &quot;dhcp_leases&quot;]]}"/>
+<field name="interface" attrs="{'invisible': [('type_access_net','!=','dhcp_leases')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_access_net&quot;, &quot;!=&quot;, &quot;dhcp_leases&quot;]]}"/>
+<field name="is_dhcp_static" attrs="{'invisible': [('type_access_net','!=','ip_fija')]}" widget="boolean_toggle" modifiers="{&quot;invisible&quot;: [[&quot;type_access_net&quot;, &quot;!=&quot;, &quot;ip_fija&quot;]]}"/>
+</group>
+<group name="capacity" string="Capacidad Usada AP">
+<field name="capacity_usage_ap" modifiers="{&quot;readonly&quot;: true}"/>
+<field name="is_mgn_mac_onu" widget="boolean_toggle" modifiers="{}"/>
+</group>
+</group>
+<notebook colspan="4">
+<page string="Direcciones IP" attrs="{'invisible': [('type_access_net','not in',['dhcp','dhcp_leases'])]}" modifiers="{&quot;invisible&quot;: [[&quot;type_access_net&quot;, &quot;not in&quot;, [&quot;dhcp&quot;, &quot;dhcp_leases&quot;]]]}">
+    <group>
+            <field name="device_pool_ip_ids" nolabel="1" modifiers="{}">
+                </field>
+</group>
+              <group invisible="1" modifiers="{&quot;invisible&quot;: true}">
+                <field name="ip_address_line_ids" nolabel="1" modifiers="{}">
+</field>
+              </group>
+              <group invisible="1" modifiers="{&quot;invisible&quot;: true}">
+                <field name="ip_address_ids" nolabel="1" modifiers="{}">
+                     </field>
+              </group>
+            </page>
+            <page string="Datos Ubicacion">
+            <group string="Datos Ubicacion">
+<group>
+<field name="country_id" can_create="false" can_write="false" modifiers="{}"/>
+<field name="state_id" can_create="true" can_write="true" modifiers="{}"/>
+<field name="zip" modifiers="{}"/>
+</group>
+<group>
+<field name="street" modifiers="{}"/>
+<field name="street2" modifiers="{}"/>
+</group>
+</group>
+<group>
+<group string="Geolocalizacion">
+                                <label for="date_localization" string="Geolocalizacion"/>
+                                <div>
+                                    <span>Lat : </span>
+                                    <field name="ap_latitude" nolabel="1" class="oe_inline" modifiers="{}"/>
+                                    <span>, Long: </span>
+                                    <field name="ap_longitude" nolabel="1" class="oe_inline" modifiers="{}"/>
+                                    <br/>
+                                    <span attrs="{'invisible': [('date_localization', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;date_localization&quot;, &quot;=&quot;, false]]}">Actualizado el: </span>
+                                    <field name="date_localization" nolabel="1" class="oe_inline" modifiers="{}"/>
+                                </div>
+                    </group>
+</group>
+            </page>
+        </notebook>
+</sheet>
+  <div class="o_attachment_preview"/>
+<div class="oe_chatter">
+<field name="message_follower_ids" modifiers="{}"/>
+<field name="activity_ids" modifiers="{}"/>
+<field name="message_ids" modifiers="{}"/>
+</div>
+</form>
+
+"Nombre de campo","Etiqueta de campo","Modelo","Tipo de campo","Tipo","Indexado","Almacenado","Sólo lectura","Modelo relacionado"
+"__last_update","Last Modified on","Punto de acceso inalámbrico","Fecha y hora","Campo base","","","True",""
+"access_token","Security Token","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+"access_url","Portal Access URL","Punto de acceso inalámbrico","Carácter","Campo base","","","True",""
+"access_warning","Access warning","Punto de acceso inalámbrico","texto","Campo base","","","True",""
+"active","Active","Punto de acceso inalámbrico","booleano","Campo base","","True","",""
+"activity_calendar_event_id","Next Activity Calendar Event","Punto de acceso inalámbrico","many2one","Campo base","","","True","calendar.event"
+"activity_date_deadline","Next Activity Deadline","Punto de acceso inalámbrico","fecha","Campo base","","","True",""
+"activity_exception_decoration","Activity Exception Decoration","Punto de acceso inalámbrico","Selección","Campo base","","","True",""
+"activity_exception_icon","Icon","Punto de acceso inalámbrico","Carácter","Campo base","","","True",""
+"activity_ids","Activities","Punto de acceso inalámbrico","one2many","Campo base","","True","","mail.activity"
+"activity_state","Activity State","Punto de acceso inalámbrico","Selección","Campo base","","","True",""
+"activity_summary","Next Activity Summary","Punto de acceso inalámbrico","Carácter","Campo base","","","",""
+"activity_type_icon","Activity Type Icon","Punto de acceso inalámbrico","Carácter","Campo base","","","True",""
+"activity_type_id","Next Activity Type","Punto de acceso inalámbrico","many2one","Campo base","","","","mail.activity.type"
+"activity_user_id","Responsible User","Punto de acceso inalámbrico","many2one","Campo base","","","","res.users"
+"ap_latitude","Latitude","Punto de acceso inalámbrico","número flotante","Campo base","","True","",""
+"ap_longitude","Longitude","Punto de acceso inalámbrico","número flotante","Campo base","","True","",""
+"brand_ap_id","Marca","Punto de acceso inalámbrico","many2one","Campo base","True","True","","product.brand"
+"capacity_usage_ap","Usada AP","Punto de acceso inalámbrico","entero","Campo base","","","True",""
+"core_id","Equipo Core","Punto de acceso inalámbrico","many2one","Campo base","","True","","isp.core"
+"country_id","Pais","Punto de acceso inalámbrico","many2one","Campo base","","True","","res.country"
+"create_date","Created on","Punto de acceso inalámbrico","Fecha y hora","Campo base","","True","True",""
+"create_uid","Created by","Punto de acceso inalámbrico","many2one","Campo base","","True","True","res.users"
+"date_localization","Actualizado el:","Punto de acceso inalámbrico","fecha","Campo base","","True","",""
+"description_brand","Descripcion","Punto de acceso inalámbrico","texto","Campo base","","","True",""
+"device_pool_ip_ids","Device Pool Ip","Punto de acceso inalámbrico","one2many","Campo base","","True","","device.pool.ip"
+"dhcp_custom_server","DHCP Leases","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+"display_name","Display Name","Punto de acceso inalámbrico","Carácter","Campo base","","","True",""
+"gateway","Gateway","Punto de acceso inalámbrico","many2one","Campo base","","True","","isp.ip.address"
+"has_message","Has Message","Punto de acceso inalámbrico","booleano","Campo base","","","True",""
+"hostname_ap","Hostname","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+"id","ID","Punto de acceso inalámbrico","entero","Campo base","","True","True",""
+"interface","Interface","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+"ip_address_ids","Direcciones IP","Punto de acceso inalámbrico","one2many","Campo base","","True","","isp.ip.address"
+"ip_address_line_ids","Direcciones IP","Punto de acceso inalámbrico","one2many","Campo base","","True","","isp.ip.address.line"
+"ip_ap","IP de Conexion","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+"is_dhcp_static","Habilitar Dhcp Static","Punto de acceso inalámbrico","booleano","Campo base","","True","",""
+"is_generate","Generado?","Punto de acceso inalámbrico","booleano","Campo base","","True","",""
+"is_mgn_mac_onu","Gestion MAC ONU","Punto de acceso inalámbrico","booleano","Campo base","","True","",""
+"message_attachment_count","Attachment Count","Punto de acceso inalámbrico","entero","Campo base","","","True",""
+"message_follower_ids","Followers","Punto de acceso inalámbrico","one2many","Campo base","","True","","mail.followers"
+"message_has_error","Message Delivery error","Punto de acceso inalámbrico","booleano","Campo base","","","True",""
+"message_has_error_counter","Number of errors","Punto de acceso inalámbrico","entero","Campo base","","","True",""
+"message_has_sms_error","SMS Delivery error","Punto de acceso inalámbrico","booleano","Campo base","","","True",""
+"message_ids","Messages","Punto de acceso inalámbrico","one2many","Campo base","","True","","mail.message"
+"message_is_follower","Is Follower","Punto de acceso inalámbrico","booleano","Campo base","","","True",""
+"message_main_attachment_id","Main Attachment","Punto de acceso inalámbrico","many2one","Campo base","True","True","","ir.attachment"
+"message_needaction","Action Needed","Punto de acceso inalámbrico","booleano","Campo base","","","True",""
+"message_needaction_counter","Number of Actions","Punto de acceso inalámbrico","entero","Campo base","","","True",""
+"message_partner_ids","Followers (Partners)","Punto de acceso inalámbrico","many2many","Campo base","","","True","res.partner"
+"message_unread","Unread Messages","Punto de acceso inalámbrico","booleano","Campo base","","","True",""
+"message_unread_counter","Unread Messages Counter","Punto de acceso inalámbrico","entero","Campo base","","","True",""
+"model_ap","Modelo","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+"my_activity_date_deadline","My Activity Deadline","Punto de acceso inalámbrico","fecha","Campo base","","","True",""
+"name","AP","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+"node_id","Nodo","Punto de acceso inalámbrico","many2one","Campo base","","True","True","isp.node"
+"node_ids","Nodos","Punto de acceso inalámbrico","many2many","Campo base","","","True","isp.node"
+"password_ap","Password","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+"poolip","Poolip","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+"port_ap","Puerto de Conexion","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+"software_version","Version Software","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+"state","Estado","Punto de acceso inalámbrico","Selección","Campo base","","True","",""
+"state_id","Provincia","Punto de acceso inalámbrico","many2one","Campo base","","True","","res.country.state"
+"street","Direccion","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+"street2","'-","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+"type_access_net","Tipo Acceso","Punto de acceso inalámbrico","Selección","Campo base","","True","",""
+"user_ap","Usuario","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+"website_message_ids","Website Messages","Punto de acceso inalámbrico","one2many","Campo base","","True","","mail.message"
+"write_date","Last Updated on","Punto de acceso inalámbrico","Fecha y hora","Campo base","","True","True",""
+"write_uid","Last Updated by","Punto de acceso inalámbrico","many2one","Campo base","","True","True","res.users"
+"zip","Cod.Postal","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+
+
+model: isp.radius
+
+<tree string="Servidor Radius">
+<field name="name" string="Hostname" modifiers="{&quot;required&quot;: true}"/>
+<field name="ip_core_radius" modifiers="{}"/>
+                <field name="port_core_radius" modifiers="{}"/>
+                <field name="user_core_radius" modifiers="{}"/>
+<field name="state" widget="badge" decoration-danger="state == 'down'" decoration-success="state == 'active'" modifiers="{}"/>
+
+</tree>
+
+<form string="Radius">
+
+
+<sheet string="Servidores Radius">
+<div class="oe_button_box" name="button_box">
+
+
+
+            <button name="action_connect_radius" type="object" class="oe_stat_button" icon="fa-signal" string="Probar Conexion"/>
+<button name="action_view_table" type="object" class="oe_stat_button" icon="fa-signal" string="Obtener Tabla"/>
+            </div>
+
+<widget name="web_ribbon" title="Active" attrs="{'invisible': [('state','=','down')]}" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;=&quot;, &quot;down&quot;]]}"/>
+<widget name="web_ribbon" title="Down" bg_color="bg-danger" attrs="{'invisible': [('state','=','active')]}" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;=&quot;, &quot;active&quot;]]}"/>
+<field name="state" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+
+<div class="oe_title">
+
+<h1>
+<field name="name" readonly="1" modifiers="{&quot;readonly&quot;: true, &quot;required&quot;: true}"/>
+</h1>
+</div>
+<group name="radius" string="Base Radius">
+<group>
+<field name="ip_core_radius" modifiers="{}"/>
+<field name="port_core_radius" modifiers="{}"/>
+<field name="user_core_radius" modifiers="{}"/>
+</group>
+<group>
+<field name="password_core_radius" password="True" modifiers="{}"/>
+<field name="database" attrs="{'invisible': [('type_radius','=','mk_radius')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_radius&quot;, &quot;=&quot;, &quot;mk_radius&quot;]]}"/>
+<field name="core_id" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: true}"/>
+<field name="type_radius" modifiers="{}"/>
+</group>
+
+</group>
+<group string="Servidor Radius" attrs="{'invisible': [('type_radius','=','mk_radius')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_radius&quot;, &quot;=&quot;, &quot;mk_radius&quot;]]}">
+<group>
+<field name="ip_server" modifiers="{}"/>
+<field name="port_server" modifiers="{}"/>
+<field name="port_coa" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+
+</group>
+<group>
+<field name="username_server" modifiers="{}"/>
+<field name="password_server" password="True" modifiers="{}"/>
+</group>
+</group>
+<group string="IPV6">
+<field name="is_ipv6" widget="boolean_toggle" modifiers="{}"/>
+</group>
+<group>
+<group string="Direccionamiento IP" attrs="{'invisible': [('type_radius','!=','mk_radius')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_radius&quot;, &quot;!=&quot;, &quot;mk_radius&quot;]]}">
+<field name="type_access_net" modifiers="{}"/>
+</group>
+</group>
+
+<notebook colspan="4">
+
+<page name="isp_radius_ids" string="Radius Atributos" attrs="{'invisible': [('type_radius','=','mk_radius')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_radius&quot;, &quot;=&quot;, &quot;mk_radius&quot;]]}">
+<group>
+<field name="isp_radius_ids" nolabel="1" modifiers="{}">
+</field>
+</group>
+</page>
+<page name="isp_gestion_radius" string="Gestion Radius" attrs="{'invisible': [('type_radius','=','mk_radius')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_radius&quot;, &quot;=&quot;, &quot;mk_radius&quot;]]}">
+<group>
+<group>
+<field name="type_table" modifiers="{}"/>
+<field name="is_cutoff" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_realm_port" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_user_profile" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_extract_ip_rd" widget="boolean_toggle" modifiers="{}"/>
+</group>
+</group>
+</page>
+<page name="isp_mikrotik_radius_ids" string="MK Radius Atrib" attrs="{'invisible': [('type_radius','!=','mk_radius')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_radius&quot;, &quot;!=&quot;, &quot;mk_radius&quot;]]}">
+<group string="Metodo de conexi&#243;n">
+<field name="is_pppoe" widget="boolean_toggle" modifiers="{}"/>
+<field name="is_ipoe" widget="boolean_toggle" modifiers="{}"/>
+<field name="radius_domain" widget="boolean_toggle" modifiers="{}"/>
+<field name="domain_text" attrs="{'invisible': [('radius_domain','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;radius_domain&quot;, &quot;=&quot;, false]]}"/>
+<field name="general_key" widget="boolean_toggle" modifiers="{}"/>
+<field name="general_key_text" attrs="{'invisible': [('general_key','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;general_key&quot;, &quot;=&quot;, false]]}"/>
+</group>
+<group>
+<group string="Perfiles">
+<field name="profile_active" modifiers="{}"/>
+<field name="profile_cut" modifiers="{}"/>
+<field name="profile_suspended" modifiers="{}"/>
+</group>
+<group string="Usuario">
+<field name="code_mac" widget="radio" modifiers="{}"/>
+</group>
+</group>
+<group>
+<group string="Control de Velocidad">
+<field name="default_control" widget="boolean_toggle" modifiers="{}"/>
+<field name="perfil_control" widget="boolean_toggle" modifiers="{}"/>
+</group>
+</group>
+</page>
+<page name="ip_address" string="Direcciones IP" attrs="{'invisible': ['|',('type_access_net','not in',['dhcp','dhcp_leases','dhcp_leases_vlan']),('type_radius','!=','mk_radius')]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;type_access_net&quot;, &quot;not in&quot;, [&quot;dhcp&quot;, &quot;dhcp_leases&quot;, &quot;dhcp_leases_vlan&quot;]], [&quot;type_radius&quot;, &quot;!=&quot;, &quot;mk_radius&quot;]]}">
+
+<field name="ip_address_line_ids" nolabel="1" modifiers="{}">
+</field>
+<group>
+<div>
+<span>
+</span>
+</div>
+</group>
+<group>
+</group>
+<group>
+<field name="ip_address_ids" nolabel="1" modifiers="{}">
+</field>
+</group>
+
+</page>
+                </notebook>
+
+</sheet>
+  <div class="oe_chatter">
+<field name="message_follower_ids" widget="mail_followers" modifiers="{}"/>
+<field name="activity_ids" widget="mail_activity" modifiers="{}"/>
+<field name="message_ids" widget="mail_thread" modifiers="{}"/>
+</div>
+</form>
+
+"Nombre de campo","Etiqueta de campo","Modelo","Tipo de campo","Tipo","Indexado","Almacenado","Sólo lectura","Modelo relacionado"
+"__last_update","Last Modified on","isp.radius","Fecha y hora","Campo base","","","True",""
+"access_token","Security Token","isp.radius","Carácter","Campo base","","True","",""
+"access_url","Portal Access URL","isp.radius","Carácter","Campo base","","","True",""
+"access_warning","Access warning","isp.radius","texto","Campo base","","","True",""
+"activity_calendar_event_id","Next Activity Calendar Event","isp.radius","many2one","Campo base","","","True","calendar.event"
+"activity_date_deadline","Next Activity Deadline","isp.radius","fecha","Campo base","","","True",""
+"activity_exception_decoration","Activity Exception Decoration","isp.radius","Selección","Campo base","","","True",""
+"activity_exception_icon","Icon","isp.radius","Carácter","Campo base","","","True",""
+"activity_ids","Activities","isp.radius","one2many","Campo base","","True","","mail.activity"
+"activity_state","Activity State","isp.radius","Selección","Campo base","","","True",""
+"activity_summary","Next Activity Summary","isp.radius","Carácter","Campo base","","","",""
+"activity_type_icon","Activity Type Icon","isp.radius","Carácter","Campo base","","","True",""
+"activity_type_id","Next Activity Type","isp.radius","many2one","Campo base","","","","mail.activity.type"
+"activity_user_id","Responsible User","isp.radius","many2one","Campo base","","","","res.users"
+"code_mac","Código","isp.radius","Selección","Campo base","","True","",""
+"core_id","Equipo Core","isp.radius","many2one","Campo base","","True","True","isp.core"
+"create_date","Created on","isp.radius","Fecha y hora","Campo base","","True","True",""
+"create_uid","Created by","isp.radius","many2one","Campo base","","True","True","res.users"
+"database","Base de datos","isp.radius","Carácter","Campo base","","True","",""
+"default_control","Control por defecto","isp.radius","booleano","Campo base","","True","",""
+"display_name","Display Name","isp.radius","Carácter","Campo base","","","True",""
+"domain_text","Dominio","isp.radius","Carácter","Campo base","","True","",""
+"general_key","Clave General","isp.radius","booleano","Campo base","","True","",""
+"general_key_text","Clave General","isp.radius","Carácter","Campo base","","True","",""
+"has_message","Has Message","isp.radius","booleano","Campo base","","","True",""
+"id","ID","isp.radius","entero","Campo base","","True","True",""
+"ip_address_ids","Direcciones IP","isp.radius","one2many","Campo base","","True","","isp.ip.address"
+"ip_address_line_ids","Direcciones IP","isp.radius","one2many","Campo base","","True","","isp.ip.address.line"
+"ip_core_radius","IP de Conexion","isp.radius","Carácter","Campo base","","True","",""
+"ip_server","IP","isp.radius","Carácter","Campo base","","True","",""
+"is_cutoff","Corte","isp.radius","booleano","Campo base","","True","",""
+"is_extract_ip_rd","Extraer Mac","isp.radius","booleano","Campo base","","True","",""
+"is_ipoe","IPoE","isp.radius","booleano","Campo base","","True","",""
+"is_ipv6","Corte IPV6","isp.radius","booleano","Campo base","","True","",""
+"is_pppoe","PPPoE","isp.radius","booleano","Campo base","","True","",""
+"is_realm_port","Activar REALM","isp.radius","booleano","Campo base","","True","",""
+"is_user_profile","Activar User PROFILE","isp.radius","booleano","Campo base","","True","",""
+"isp_radius_ids","Atributos Radius Line","isp.radius","one2many","Campo base","","True","","isp.radius.line"
+"message_attachment_count","Attachment Count","isp.radius","entero","Campo base","","","True",""
+"message_follower_ids","Followers","isp.radius","one2many","Campo base","","True","","mail.followers"
+"message_has_error","Message Delivery error","isp.radius","booleano","Campo base","","","True",""
+"message_has_error_counter","Number of errors","isp.radius","entero","Campo base","","","True",""
+"message_has_sms_error","SMS Delivery error","isp.radius","booleano","Campo base","","","True",""
+"message_ids","Messages","isp.radius","one2many","Campo base","","True","","mail.message"
+"message_is_follower","Is Follower","isp.radius","booleano","Campo base","","","True",""
+"message_main_attachment_id","Main Attachment","isp.radius","many2one","Campo base","True","True","","ir.attachment"
+"message_needaction","Action Needed","isp.radius","booleano","Campo base","","","True",""
+"message_needaction_counter","Number of Actions","isp.radius","entero","Campo base","","","True",""
+"message_partner_ids","Followers (Partners)","isp.radius","many2many","Campo base","","","True","res.partner"
+"message_unread","Unread Messages","isp.radius","booleano","Campo base","","","True",""
+"message_unread_counter","Unread Messages Counter","isp.radius","entero","Campo base","","","True",""
+"my_activity_date_deadline","My Activity Deadline","isp.radius","fecha","Campo base","","","True",""
+"name","Hostname","isp.radius","Carácter","Campo base","","True","",""
+"password_core_radius","Password","isp.radius","Carácter","Campo base","","True","",""
+"password_server","Contraseña","isp.radius","Carácter","Campo base","","True","",""
+"perfil_control","Control por perfiles","isp.radius","booleano","Campo base","","True","",""
+"port_coa","Puerto COA","isp.radius","Carácter","Campo base","","True","",""
+"port_core_radius","Puerto de Conexion","isp.radius","Carácter","Campo base","","True","",""
+"port_server","Puerto","isp.radius","Carácter","Campo base","","True","",""
+"profile_active","Activos","isp.radius","Carácter","Campo base","","True","",""
+"profile_cut","Cortados","isp.radius","Carácter","Campo base","","True","",""
+"profile_suspended","Suspendidos","isp.radius","Carácter","Campo base","","True","",""
+"radius_domain","Dominio","isp.radius","booleano","Campo base","","True","",""
+"state","Estado","isp.radius","Selección","Campo base","","True","",""
+"type_access_net","Tipo","isp.radius","Selección","Campo base","","True","",""
+"type_radius","Tipo Radius","isp.radius","Selección","Campo base","","True","",""
+"type_table","Tabla","isp.radius","Selección","Campo base","","True","",""
+"user_core_radius","Usuario","isp.radius","Carácter","Campo base","","True","",""
+"username_server","Usuario","isp.radius","Carácter","Campo base","","True","",""
+"website_message_ids","Website Messages","isp.radius","one2many","Campo base","","True","","mail.message"
+"write_date","Last Updated on","isp.radius","Fecha y hora","Campo base","","True","True",""
+"write_uid","Last Updated by","isp.radius","many2one","Campo base","","True","True","res.users"
+
+
+model: isp.radius.table
+
+<tree string="Tabla Radius">
+<field name="name" modifiers="{}"/>
+<field name="value" modifiers="{}"/>
+
+</tree>
+<form string="Columnas Radius">
+<sheet string="Servidores Radius">
+<div class="oe_button_box" name="button_box">
+
+            </div>
+
+<group name="radius">
+<group>
+<field name="name" readonly="1" modifiers="{&quot;readonly&quot;: true}"/>
+</group>
+
+</group>
+
+
+<notebook colspan="4">
+
+<page name="isp_radius_columns" string="Radius Columnas">
+<group>
+<field name="isp_radius_columns" nolabel="1" readonly="1" modifiers="{&quot;readonly&quot;: true}">
+</field>
+</group>
+</page>
+
+                </notebook>
+
+</sheet>
+  <!-- <div class="oe_chatter">
+<field name="message_follower_ids" widget="mail_followers"/>
+<field name="activity_ids" widget="mail_activity"/>
+<field name="message_ids" widget="mail_thread"/>
+</div> -->
+</form>
+
+"Nombre de campo","Etiqueta de campo","Modelo","Tipo de campo","Tipo","Indexado","Almacenado","Sólo lectura","Modelo relacionado"
+"__last_update","Last Modified on","isp.radius.table","Fecha y hora","Campo base","","","True",""
+"create_date","Created on","isp.radius.table","Fecha y hora","Campo base","","True","True",""
+"create_uid","Created by","isp.radius.table","many2one","Campo base","","True","True","res.users"
+"display_name","Display Name","isp.radius.table","Carácter","Campo base","","","True",""
+"id","ID","isp.radius.table","entero","Campo base","","True","True",""
+"isp_radius_columns","Columnas Radius","isp.radius.table","one2many","Campo base","","True","","isp.radius.columns"
+"name","Name","isp.radius.table","Carácter","Campo base","","True","",""
+"value","Valor","isp.radius.table","Carácter","Campo base","","True","",""
+"write_date","Last Updated on","isp.radius.table","Fecha y hora","Campo base","","True","True",""
+"write_uid","Last Updated by","isp.radius.table","many2one","Campo base","","True","True","res.users"
+
+
+model: isp.radius.attributes
+
+<tree string="Atributos Radius">
+<field name="name" modifiers="{}"/>
+<field name="description" modifiers="{}"/>
+
+</tree>
+
+<form><sheet string="isp.radius.attributes"><group col="4"><field name="name" modifiers="{}"/><field name="description" modifiers="{}"/><separator/></group></sheet></form>
+
+"Nombre de campo","Etiqueta de campo","Modelo","Tipo de campo","Tipo","Indexado","Almacenado","Sólo lectura","Modelo relacionado"
+"__last_update","Last Modified on","isp.radius.attributes","Fecha y hora","Campo base","","","True",""
+"create_date","Created on","isp.radius.attributes","Fecha y hora","Campo base","","True","True",""
+"create_uid","Created by","isp.radius.attributes","many2one","Campo base","","True","True","res.users"
+"description","Descripcion","isp.radius.attributes","Carácter","Campo base","","True","",""
+"display_name","Display Name","isp.radius.attributes","Carácter","Campo base","","","True",""
+"id","ID","isp.radius.attributes","entero","Campo base","","True","True",""
+"name","Nombre","isp.radius.attributes","Carácter","Campo base","","True","",""
+"write_date","Last Updated on","isp.radius.attributes","Fecha y hora","Campo base","","True","True",""
+"write_uid","Last Updated by","isp.radius.attributes","many2one","Campo base","","True","True","res.users"
+
+
+model: isp.onu.vendors
+
+<tree string="ONU Vendors" create="true" editable="top">
+<field name="name" modifiers="{}"/>
+<field name="hex_id" modifiers="{}"/>
+<field name="brand_id" can_create="false" can_write="false" modifiers="{}"/>
+  </tree>
+
+  "Nombre de campo","Etiqueta de campo","Modelo","Tipo de campo","Tipo","Indexado","Almacenado","Sólo lectura","Modelo relacionado"
+"__last_update","Last Modified on","isp.onu.vendors","Fecha y hora","Campo base","","","True",""
+"brand_id","Vendor Name","isp.onu.vendors","many2one","Campo base","","True","","product.brand"
+"create_date","Created on","isp.onu.vendors","Fecha y hora","Campo base","","True","True",""
+"create_uid","Created by","isp.onu.vendors","many2one","Campo base","","True","True","res.users"
+"display_name","Display Name","isp.onu.vendors","Carácter","Campo base","","","True",""
+"hex_id","HEX ID","isp.onu.vendors","Carácter","Campo base","","True","",""
+"id","ID","isp.onu.vendors","entero","Campo base","","True","True",""
+"name","ID","isp.onu.vendors","Carácter","Campo base","","True","",""
+"write_date","Last Updated on","isp.onu.vendors","Fecha y hora","Campo base","","True","True",""
+"write_uid","Last Updated by","isp.onu.vendors","many2one","Campo base","","True","True","res.users"
+
+

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Tree View -->
+        <record id="view_isp_router_tree" model="ir.ui.view">
+            <field name="name">isp.router.tree</field>
+            <field name="model">isp.router</field>
+            <field name="arch" type="xml">
+                <tree string="Routers">
+                    <field name="name"/>
+                    <field name="hostname"/>
+                    <field name="vendor"/>
+                    <field name="is_active"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_isp_router_form" model="ir.ui.view">
+            <field name="name">isp.router.form</field>
+            <field name="model">isp.router</field>
+            <field name="arch" type="xml">
+                <form string="Router">
+                    <header>
+                        <button name="button_test_connection" type="object" string="Test Connection" class="oe_highlight"/>
+                        <button name="button_get_system_info" type="object" string="Get System Info"/>
+                        <button name="button_view_interfaces" type="object" string="View Interfaces"/>
+                        <button name="button_view_routes" type="object" string="View Routes"/>
+                        <button name="button_view_ppp_active" type="object" string="View PPP Active"/>
+                        <button name="button_view_firewall_rules" type="object" string="View Firewall Rules"/>
+                        <button name="button_view_queues" type="object" string="View Queues"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="hostname"/>
+                                <field name="username"/>
+                                <field name="password" password="True"/>
+                            </group>
+                            <group>
+                                <field name="api_port"/>
+                                <field name="vendor"/>
+                                <field name="is_active"/>
+                                <field name="state"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="System Information">
+                                <group>
+                                    <field name="model"/>
+                                    <field name="firmware_version"/>
+                                    <field name="serial_number"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_isp_router" model="ir.actions.act_window">
+            <field name="name">Routers</field>
+            <field name="res_model">isp.router</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

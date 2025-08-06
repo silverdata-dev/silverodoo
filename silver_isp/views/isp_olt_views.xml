@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- isp.olt -->
+        <record id="action_isp_olt" model="ir.actions.act_window">
+            <field name="name">Equipos OLT</field>
+            <field name="res_model">isp.olt</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_isp_olt" name="Equipos OLT" parent="menu_silver_isp_root" action="action_isp_olt" sequence="30"/>
+
+        <record id="view_isp_olt_tree" model="ir.ui.view">
+            <field name="name">isp.olt.tree</field>
+            <field name="model">isp.olt</field>
+            <field name="arch" type="xml">
+                <tree string="Equipos OLT ISP" default_order="name desc">
+                    <field name="name"/>
+                    <field name="brand_olt_id"/>
+                    <field name="model_olt"/>
+                    <field name="ip_olt"/>
+                    <field name="port_olt"/>
+                    <field name="user_olt"/>
+                    <field name="state" widget="badge" decoration-danger="state == 'down'" decoration-success="state == 'active'"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_isp_olt_form" model="ir.ui.view">
+            <field name="name">isp.olt.form</field>
+            <field name="model">isp.olt</field>
+            <field name="arch" type="xml">
+                <form string="Equipo OLT ISP">
+                    <header>
+                        <button name="create_olt_card" string="Crear Tarjeta OLT" type="object"/>
+                    </header>
+                    <sheet string="Equipo OLT ISP">
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="action" name="%(action_isp_placeholder)d" icon="fa-arrows-v">
+                                <field string="Tarjetas OLT" name="olt_card_count" widget="statinfo"/>
+                            </button>
+                            <button name="action_connect_olt" type="object" class="oe_stat_button" icon="fa-signal" string="Probar Conexion"/>
+                            <button name="action_create_profile_olt" type="object" class="oe_stat_button" icon="fa-arrows-v" string="Crear Perfiles"/>
+                            <button class="oe_stat_button" type="action" name="%(action_isp_placeholder)d" icon="fa-link">
+                                <field string="Contratos" name="contracts_olt_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <widget name="web_ribbon" title="Active" invisible="state == 'down'"/>
+                        <widget name="web_ribbon" title="Down" bg_color="bg-danger" invisible="state == 'active'"/>
+                        <field name="state" invisible="1"/>
+                        <div class="oe_title">
+                            <h1><field name="name" readonly="1"/></h1>
+                        </div>
+                        <group name="olt">
+                            <group>
+                                <field name="hostname_olt"/>
+                                <field name="software_version"/>
+                                <field name="is_core_baudcom" invisible="1"/>
+                                <field name="core_ids" widget="many2many_tags" invisible="is_core_baudcom != False"/>
+                                <field name="bridge_core_id" invisible="1"/>
+                                <field name="is_vsol_marca" invisible="1"/>
+                                <field name="is_brand_zte" invisible="1"/>
+                                <field name="core_id"/>
+                                <field name="node_id"/>
+                            </group>
+                            <group>
+                                <field name="brand_olt_id"/>
+                                <field name="model_olt"/>
+                                <field name="num_slot_olt"/>
+                            </group>
+                        </group>
+                        <group name="core_conexion" string="Datos Conexion">
+                            <group>
+                                <field name="ip_olt"/>
+                                <field name="port_olt"/>
+                                <field name="type_connection"/>
+                                <field name="kex_algorithms_ids" widget="many2many_tags"/>
+                            </group>
+                            <group>
+                                <field name="is_multi_user_olt" widget="boolean_toggle"/>
+                                <field name="user_olt" invisible="is_multi_user_olt == True"/>
+                                <field name="password_olt" password="True"/>
+                                <button class="oe_inline oe_link " name="action_send_password" string=" →Enviar Contraseña" type="object"/>
+                                <field name="secret_olt"/>
+                            </group>
+                        </group>
+                        <notebook colspan="4">
+                            <page name="config" string="Configuraciones Generales">
+                                <!-- Content for this page -->
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

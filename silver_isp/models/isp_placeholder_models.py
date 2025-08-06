@@ -1,9 +1,10 @@
 from odoo import models, fields
 
-class IspRadius(models.Model):
-    _name = 'isp.radius'
-    _description = 'Placeholder for ISP Radius'
+class ProductBrand(models.Model):
+    _name = 'product.brand'
+    #_inherit = 'product.brand'
     name = fields.Char('Name')
+    description = fields.Text('Description')
 
 class IspDeviceNetworks(models.Model):
     _name = 'isp.device.networks'
@@ -31,12 +32,24 @@ class IspIpAddressLine(models.Model):
     _description = 'Placeholder for ISP IP Address Line'
     name = fields.Char('Name')
     core_id = fields.Many2one('isp.core', string='Core')
+    olt_id = fields.Many2one('isp.olt', string='OLT')
+    card_id = fields.Many2one('isp.olt.card', string='Card')
+    port_id = fields.Many2one('isp.olt.card.port', string='Port')
+    radius_id = fields.Many2one('isp.radius', string='Radius')
+    is_tr_069 = fields.Boolean('Is TR-069')
+
 
 class IspIpAddress(models.Model):
     _name = 'isp.ip.address'
     _description = 'Placeholder for ISP IP Address'
     name = fields.Char('Name')
     core_id = fields.Many2one('isp.core', string='Core')
+    olt_id = fields.Many2one('isp.olt', string='OLT')
+    card_id = fields.Many2one('isp.olt.card', string='Card')
+    port_id = fields.Many2one('isp.olt.card.port', string='Port')
+    radius_id = fields.Many2one('isp.radius', string='Radius')
+    is_tr_069 = fields.Boolean('Is TR-069')
+
 
 class IspCorePortLine(models.Model):
     _name = 'isp.core.port.line'
@@ -44,8 +57,38 @@ class IspCorePortLine(models.Model):
     name = fields.Char('Name')
     core_id = fields.Many2one('isp.core', string='Core')
 
-class ProductBrand(models.Model):
-    _name = 'product.brand'
-    _description = 'Placeholder for Product Brand'
+class OltLineProduct(models.Model):
+    _name = 'olt.line.product'
+    _description = 'OLT Line Product'
+    name = fields.Char('Name')
+    olt_id = fields.Many2one('isp.olt', string='OLT')
+
+class IspOltUsers(models.Model):
+    _name = 'isp.olt.users'
+    _description = 'ISP OLT Users'
+    name = fields.Char('Name')
+    olt_id = fields.Many2one('isp.olt', string='OLT')
+
+class IspTr069(models.Model):
+    _name = 'isp.tr.069'
+    _description = 'ISP TR-069 Server'
     name = fields.Char('Name')
     description = fields.Text('Description')
+
+class IspOnuLine(models.Model):
+    _name = 'isp.onu.line'
+    _description = 'ISP ONU Line'
+    name = fields.Char('Name')
+    box_id = fields.Many2one('isp.box', string='Box')
+
+class DevicePoolIp(models.Model):
+    _name = 'device.pool.ip'
+    _description = 'Device Pool IP'
+    name = fields.Char('Name')
+    ap_id = fields.Many2one('isp.ap', string='AP')
+
+class IspRadiusLine(models.Model):
+    _name = 'isp.radius.line'
+    _description = 'ISP Radius Line'
+    name = fields.Char('Name')
+    radius_id = fields.Many2one('isp.radius', string='Radius')

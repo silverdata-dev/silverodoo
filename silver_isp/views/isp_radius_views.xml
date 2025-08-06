@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- isp.radius -->
+        <record id="action_isp_radius" model="ir.actions.act_window">
+            <field name="name">Servidores Radius</field>
+            <field name="res_model">isp.radius</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_isp_radius" name="Servidores Radius" parent="menu_silver_isp_root" action="action_isp_radius" sequence="90"/>
+
+        <record id="view_isp_radius_tree" model="ir.ui.view">
+            <field name="name">isp.radius.tree</field>
+            <field name="model">isp.radius</field>
+            <field name="arch" type="xml">
+                <tree string="Servidor Radius">
+                    <field name="name" string="Hostname"/>
+                    <field name="ip_core_radius"/>
+                    <field name="port_core_radius"/>
+                    <field name="user_core_radius"/>
+                    <field name="state" widget="badge" decoration-danger="state == 'down'" decoration-success="state == 'active'"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_isp_radius_form" model="ir.ui.view">
+            <field name="name">isp.radius.form</field>
+            <field name="model">isp.radius</field>
+            <field name="arch" type="xml">
+                <form string="Radius">
+                    <sheet string="Servidores Radius">
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_connect_radius" type="object" class="oe_stat_button" icon="fa-signal" string="Probar Conexion"/>
+                            <button name="action_view_table" type="object" class="oe_stat_button" icon="fa-signal" string="Obtener Tabla"/>
+                        </div>
+                        <widget name="web_ribbon" title="Active" invisible="state == 'down'"/>
+                        <widget name="web_ribbon" title="Down" bg_color="bg-danger" invisible="state == 'active'"/>
+                        <field name="state" invisible="1"/>
+                        <div class="oe_title">
+                            <h1><field name="name" readonly="1"/></h1>
+                        </div>
+                        <group name="radius" string="Base Radius">
+                            <group>
+                                <field name="ip_core_radius"/>
+                                <field name="port_core_radius"/>
+                                <field name="user_core_radius"/>
+                            </group>
+                            <group>
+                                <field name="password_core_radius" password="True"/>
+                                <field name="database" invisible="type_radius == 'mk_radius'"/>
+                                <field name="core_id" readonly="1"/>
+                                <field name="type_radius"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
