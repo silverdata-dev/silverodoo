@@ -46,6 +46,15 @@ class IspRouterPppActiveWizard(models.Model):
 
     line_ids = fields.One2many('isp.router.ppp.active.wizard.line', 'wizard_id', string='Active Connections')
     router_id = fields.Many2one('isp.router')
+    ppp_speed_chart = fields.Text(string="PPP Speed Chart", readonly=True)
+
+    def get_speed_data(self):
+        # This is a placeholder. In a real implementation, you would fetch data from the router.
+        # For now, we'll just return some random data.
+        import random
+        upload = [(i, random.randint(100, 500)) for i in range(20)]
+        download = [(i, random.randint(500, 1500)) for i in range(20)]
+        return {'upload': upload, 'download': download}
 
 class IspRouterPppActiveWizardLine(models.Model):
     _name = 'isp.router.ppp.active.wizard.line'

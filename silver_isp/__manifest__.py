@@ -4,6 +4,11 @@
     'description': """
         Este módulo proporciona las herramientas necesarias para gestionar la infraestructura de red de un ISP,
         incluyendo nodos, equipos core, OLTs, y más.
+            'eeassets': {
+        'web.assets_backend': [
+            'silver_isp/static/src/js/ppp_speed_chart.js',
+        ],
+    },
     """,
     'author': "Silverdale",
     'website': "https://www.silverdale.com",
@@ -25,6 +30,7 @@
         'views/isp_radius_views.xml',
         'views/isp_views.xml',
     ],
+
     'installable': True,
     'application': True,
 }

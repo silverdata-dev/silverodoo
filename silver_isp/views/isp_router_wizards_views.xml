@@ -128,7 +128,7 @@
                                 </field>
                             </page>
                             <page string="Realtime Speed">
-                                <div id="ppp_speed_chart" style="width:100%; height:400px;"/>
+                                <field name="ppp_speed_chart" widget="ppp_speed_chart"/>
                             </page>
                         </notebook>
                     </sheet>
