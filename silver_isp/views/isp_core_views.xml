@@ -8,7 +8,6 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="menu_isp_core" name="Equipos Core" parent="menu_silver_isp_root" action="action_isp_core" sequence="20"/>
 
         <!-- Vistas para isp.core -->
         <record id="view_isp_core_tree" model="ir.ui.view">

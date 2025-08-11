@@ -8,7 +8,6 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="menu_isp_node" name="Nodos" parent="menu_silver_isp_root" action="action_isp_node" sequence="10"/>
 
         <!-- Vistas para isp.node -->
         <record id="view_isp_node_tree" model="ir.ui.view">
@@ -60,7 +59,7 @@
                                 <group>
                                     <group>
                                         <field name="country_id"/>
-                                        <field name="state_id"/>
+                                        <field name="state_id" domain="[('country_id','=', country_id)]"/>
                                         <field name="zip"/>
                                         <field name="journal_id"/>
                                         <field name="account_analytic_id"/>

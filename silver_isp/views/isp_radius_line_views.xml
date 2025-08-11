@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- isp.radius.line -->
+        <record id="action_isp_radius_line" model="ir.actions.act_window">
+            <field name="name">Líneas de Radius ISP</field>
+            <field name="res_model">isp.radius.line</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_isp_radius_line_tree" model="ir.ui.view">
+            <field name="name">isp.radius.line.tree</field>
+            <field name="model">isp.radius.line</field>
+            <field name="arch" type="xml">
+                <tree string="Líneas de Radius ISP">
+                    <field name="name"/>
+                    <field name="radius_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_isp_radius_line_form" model="ir.ui.view">
+            <field name="name">isp.radius.line.form</field>
+            <field name="model">isp.radius.line</field>
+            <field name="arch" type="xml">
+                <form string="Línea de Radius ISP">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="radius_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

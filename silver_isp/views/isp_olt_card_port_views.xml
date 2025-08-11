@@ -7,7 +7,6 @@
             <field name="res_model">isp.olt.card.port</field>
             <field name="view_mode">tree,form</field>
         </record>
-        <menuitem id="menu_isp_olt_card_port" name="Puertos OLT" parent="menu_silver_isp_root" action="action_isp_olt_card_port" sequence="50"/>
 
         <record id="view_isp_olt_card_port_tree" model="ir.ui.view">
             <field name="name">isp.olt.card.port.tree</field>

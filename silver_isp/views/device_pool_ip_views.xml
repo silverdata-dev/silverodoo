@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- device.pool.ip -->
+        <record id="action_device_pool_ip" model="ir.actions.act_window">
+            <field name="name">Pools de IP de Dispositivos</field>
+            <field name="res_model">device.pool.ip</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_device_pool_ip_tree" model="ir.ui.view">
+            <field name="name">device.pool.ip.tree</field>
+            <field name="model">device.pool.ip</field>
+            <field name="arch" type="xml">
+                <tree string="Pools de IP de Dispositivos">
+                    <field name="name"/>
+                    <field name="ap_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_device_pool_ip_form" model="ir.ui.view">
+            <field name="name">device.pool.ip.form</field>
+            <field name="model">device.pool.ip</field>
+            <field name="arch" type="xml">
+                <form string="Pool de IP de Dispositivo">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="ap_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields
+from odoo import models, fields, api
 
 class IspRouterInterfaceWizard(models.Model):
     _name = 'isp.router.interface.wizard'
@@ -40,12 +40,32 @@ class IspRouterRouteWizardLine(models.Model):
     comment = fields.Char(string='Comment')
     wizard_id = fields.Many2one('isp.router.route.wizard')
 
+
 class IspRouterPppActiveWizard(models.Model):
     _name = 'isp.router.ppp.active.wizard'
-    _description = 'ISP Router PPP Active Connections Wizard'
+    _description = 'ISP Router PPP Active Wizard'
 
+    name = fields.Char(string='Name')
+    router_id = fields.Many2one('isp.router', string='Router', required=True)
     line_ids = fields.One2many('isp.router.ppp.active.wizard.line', 'wizard_id', string='Active Connections')
-    router_id = fields.Many2one('isp.router')
+
+    #line_ids = fields.One2many('isp.router.ppp.active.wizard.line', 'wizard_id', string='Active Connections')
+    #router_id = fields.Many2one('isp.router')
+    ppp_speed_chart = fields.Text(string="PPP Speed Chart", readonly=True)
+
+    @api.model
+    def get_speed_data(self, wizard_id):
+        # This is a placeholder for the actual data fetching logic.
+        # You should replace this with your logic to get the speed data.
+        import random
+        return [random.randint(1, 100)]
+
+    def action_get_active_connections(self):
+        # ... (existing code)
+        pass
+
+class IspRouterPppActiveLine(models.TransientModel):
+    _name = 'isp.router.ppp.active.line'
     ppp_speed_chart = fields.Text(string="PPP Speed Chart", readonly=True)
 
     def get_speed_data(self):

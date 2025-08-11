@@ -580,8 +580,8 @@ model: isp.otl
 
 <tree string="Equipos OLT ISP" default_order="name desc">
 <field name="name" modifiers="{&quot;required&quot;: true}"/>
-<field name="brand_olt_id" can_create="false" can_write="false" modifiers="{}"/>
-<field name="model_olt" modifiers="{}"/>
+<field name="brand_id" can_create="false" can_write="false" modifiers="{}"/>
+<field name="model" modifiers="{}"/>
 <field name="ip_olt" modifiers="{}"/>
 <field name="port_olt" modifiers="{}"/>
 <field name="user_olt" modifiers="{}"/>
@@ -626,8 +626,8 @@ model: isp.otl
 <field name="node_id" can_create="true" can_write="true" modifiers="{}"/>
 </group>
 <group>
-<field name="brand_olt_id" on_change="1" can_create="false" can_write="false" modifiers="{}"/>
-<field name="model_olt" modifiers="{}"/>
+<field name="brand_id" on_change="1" can_create="false" can_write="false" modifiers="{}"/>
+<field name="model" modifiers="{}"/>
 <field name="num_slot_olt" modifiers="{}"/>
 </group>
 </group>
@@ -877,7 +877,7 @@ model: isp.otl
 "activity_type_id","Next Activity Type","Equipo OLT","many2one","Campo base","","","","mail.activity.type"
 "activity_user_id","Responsible User","Equipo OLT","many2one","Campo base","","","","res.users"
 "admin_user","Admin User","Equipo OLT","Carácter","Campo base","","True","",""
-"brand_olt_id","Marca","Equipo OLT","many2one","Campo base","True","True","","product.brand"
+"brand_id","Marca","Equipo OLT","many2one","Campo base","True","True","","product.brand"
 "bridge_core_id","Equipo Core","Equipo OLT","many2one","Campo base","","True","","isp.core"
 "company_id","Company","Equipo OLT","many2one","Campo base","","True","True","res.company"
 "connection_wan","Modo de conexión WAN","Equipo OLT","Selección","Campo base","","True","",""
@@ -964,7 +964,7 @@ model: isp.otl
 "message_partner_ids","Followers (Partners)","Equipo OLT","many2many","Campo base","","","True","res.partner"
 "message_unread","Unread Messages","Equipo OLT","booleano","Campo base","","","True",""
 "message_unread_counter","Unread Messages Counter","Equipo OLT","entero","Campo base","","","True",""
-"model_olt","Modelo","Equipo OLT","Carácter","Campo base","","True","",""
+"model","Modelo","Equipo OLT","Carácter","Campo base","","True","",""
 "mtu","MTU","Equipo OLT","Carácter","Campo base","","True","",""
 "my_activity_date_deadline","My Activity Deadline","Equipo OLT","fecha","Campo base","","","True",""
 "name","Hostname","Equipo OLT","Carácter","Campo base","","True","",""

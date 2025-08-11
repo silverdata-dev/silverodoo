@@ -1,91 +1,99 @@
+/** @odoo-module **/
 
-odoo.define('silver_isp.ppp_speed_chart', function (require) {
-'use strict';
+import { registry } from "@web/core/registry";
+import { useService } from "@web/core/utils/hooks";
+const { Component, onWillStart, onMounted, onWillUnmount, useRef } = owl;
+import { loadJS } from "@web/core/assets";
 
-var AbstractField = require('web.AbstractField');
-var field_registry = require('web.field_registry');
-var Highcharts = require('highcharts');
+class PPPSpeedChart extends Component {
+    setup() {
+        this.orm = useService("orm");
+        this.chartRef = useRef("chart");
+        this.chart = null;
+//        this.data = [];
+        this.interval = null;
 
-var PppSpeedChart = AbstractField.extend({
-    template: 'PppSpeedChart',
-
-    start: function () {
-        var self = this;
-        this._super.apply(this, arguments);
-
-        // Initial chart rendering
-        self._render_chart();
-
-        // Fetch data every 5 seconds
-        setInterval(function () {
-            self._get_speed_data().then(function (data) {
-                self.chart.series[0].setData(data.upload);
-                self.chart.series[1].setData(data.download);
-            });
-        }, 5000);
-    },
-
-    _render_chart: function () {
-        var self = this;
-        this._get_speed_data().then(function (data) {
-            self.chart = Highcharts.chart(self.el, {
-                chart: {
-                    type: 'spline',
-                    animation: Highcharts.svg, // don't animate in old IE
-                    marginRight: 10,
-                },
-                title: {
-                    text: 'Live PPP Speed'
-                },
-                xAxis: {
-                    type: 'datetime',
-                    tickPixelInterval: 150
-                },
-                yAxis: {
-                    title: {
-                        text: 'Speed'
-                    },
-                    plotLines: [{
-                        value: 0,
-                        width: 1,
-                        color: '#808080'
-                    }]
-                },
-                tooltip: {
-                    formatter: function () {
-                        return '<b>' + this.series.name + '</b><br/>' +
-                            Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
-                            Highcharts.numberFormat(this.y, 2) + ' kbps';
-                    }
-                },
-                legend: {
-                    enabled: true
-                },
-                exporting: {
-                    enabled: false
-                },
-                series: [{
-                    name: 'Upload',
-                    data: data.upload
-                }, {
-                    name: 'Download',
-                    data: data.download
-                }]
-            });
+        onWillStart(async () => {
+            await loadJS("https://cdn.jsdelivr.net/npm/chart.js");
         });
-    },
 
-    _get_speed_data: function () {
-        var self = this;
-        return this._rpc({
-            model: 'isp.router.ppp.active.wizard',
-            method: 'get_speed_data',
-            args: [self.record.data.id],
+        onMounted(() => {
+            this.renderChart();
+            this.interval = setInterval(this.updateData.bind(this), 5000);
+        });
+
+        onWillUnmount(() => {
+            clearInterval(this.interval);
+            if (this.chart) {
+                this.chart.destroy();
+            }
         });
     }
-});
 
-field_registry.add('ppp_speed_chart', PppSpeedChart);
+    async updateData() {
+        const wizardId = this.props.record.resId;
+        const result = await this.orm.call(
+            "isp.router.ppp.active.wizard",
+            "get_speed_data",
+            [wizardId]
+        );
 
-return PppSpeedChart;
+        if (this.chart) {
+            // Add new data point
+            this.chart.data.labels.push(new Date().toLocaleTimeString());
+            this.chart.data.datasets[0].data.push(result[0]);
+
+            // Optional: Limit the number of data points shown
+            const maxDataPoints = 20;
+            if (this.chart.data.labels.length > maxDataPoints) {
+                this.chart.data.labels.shift();
+                this.chart.data.datasets[0].data.shift();
+            }
+
+            this.chart.update();
+        }
+    }
+
+    renderChart() {
+        const ctx = this.chartRef.el.getContext('2d');
+        this.chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Speed',
+                    data: [],
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1,
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value, index, values) {
+                                let max = Math.max(...values.map(v => v.value));
+                                if (max > 1000000) {
+                                    return (value / 1000000).toFixed(1) + 'M';
+                                } else if (max > 1000) {
+                                    return (value / 1000).toFixed(1) + 'k';
+                                }
+                                return value;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+}
+
+PPPSpeedChart.template = "silver_isp.PPPSpeedChart";
+
+registry.category("fields").add("ppp_speed_chart", {
+    component: PPPSpeedChart,
 });

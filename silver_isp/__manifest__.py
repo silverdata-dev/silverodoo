@@ -1,19 +1,15 @@
 {
-    'name': "Silver ISP",
+    'name': "Infrastructura",
     'summary': "Módulo para la gestión de proveedores de servicios de Internet (ISP)",
     'description': """
         Este módulo proporciona las herramientas necesarias para gestionar la infraestructura de red de un ISP,
         incluyendo nodos, equipos core, OLTs, y más.
-            'eeassets': {
-        'web.assets_backend': [
-            'silver_isp/static/src/js/ppp_speed_chart.js',
-        ],
-    },
+       
     """,
     'author': "Silverdale",
     'website': "https://www.silverdale.com",
     'category': 'Industries',
-    'version': '17.0.1.0.0',
+    'version': '17.0.2.1',
     'depends': ['base', 'mail', 'stock', 'product', 'account'],
     'data': [
         'security/ir.model.access.csv',
@@ -28,9 +24,30 @@
         'views/isp_box_views.xml',
         'views/isp_ap_views.xml',
         'views/isp_radius_views.xml',
+        'views/product_brand_views.xml',
+        'views/isp_device_networks_views.xml',
+        'views/isp_kex_algorithms_views.xml',
+        'views/isp_vlan_views.xml',
+        'views/addres_list_channel_line_views.xml',
+        'views/isp_ip_address_line_views.xml',
+        'views/isp_ip_address_views.xml',
+        'views/isp_core_port_line_views.xml',
+        'views/olt_line_product_views.xml',
+        'views/isp_olt_users_views.xml',
+        'views/isp_tr_069_views.xml',
+        'views/isp_onu_line_views.xml',
+        'views/device_pool_ip_views.xml',
+        'views/isp_radius_line_views.xml',
         'views/isp_views.xml',
+        "views/isp_menus.xml",
     ],
-
+    'assets': {
+        'web.assets_backend': [
+            'silver_isp/static/src/js/raphael.min.js',
+            'silver_isp/static/src/js/ppp_speed_chart.js',
+            'silver_isp/static/src/xml/ppp_speed_chart.xml',
+        ],
+    },
     'installable': True,
     'application': True,
 }

@@ -4,8 +4,10 @@ class IspBox(models.Model):
     _name = 'isp.box'
     _description = 'Caja de Conexion'
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherits = {'isp.asset': 'asset_id'}
 
-    name = fields.Char(string='Nombre')
+    asset_id = fields.Many2one('isp.asset', required=True, ondelete="cascade")
+
     port_splitter_secondary = fields.Integer(string='Puerto Splitter Secundario')
     splitter_id = fields.Many2one('isp.splitter', string='Spliter Secundario')
     node_id = fields.Many2one('isp.node', string='Nodo', readonly=True)

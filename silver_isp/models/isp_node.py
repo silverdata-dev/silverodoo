@@ -5,9 +5,11 @@ class IspNode(models.Model):
     _description = 'Nodo ISP'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    name = fields.Char(string='Nombre del Nodo', required=True)
-    code = fields.Char(string='Código del Nodo', required=True)
-    
+    _inherits = {'isp.asset': 'asset_id'}
+
+    asset_id = fields.Many2one('isp.asset', required=True, ondelete="cascade")
+
+
     street = fields.Char(string='Calle')
     street2 = fields.Char(string='Calle 2')
     zip = fields.Char(string='Código Postal')
@@ -29,6 +31,7 @@ class IspNode(models.Model):
     stock_picking_count = fields.Integer(string='Movimientos', compute='_compute_counts')
     olt_count = fields.Integer(string='Equipos OLT', compute='_compute_counts')
 
+
     def _compute_counts(self):
         for record in self:
             # Logica para contar los equipos, tickets, etc.
@@ -45,9 +48,32 @@ class IspNode(models.Model):
         # Lógica para crear un ticket
         pass
 
+
+
     def create_olt(self):
-        # Lógica para crear un equipo OLT
-        pass
+        """
+        Crea un nuevo registro de OLT y lo asocia con el nodo actual.
+        """
+        self.ensure_one()  # Asegura que el método se ejecute en un único registro
+
+        # Crea el nuevo registro isp.olt
+        new_olt = self.env['isp.olt'].create({
+            'name': f"OLT for {self.name}",
+            'node_id': self.id,
+
+            # Puedes añadir más campos aquí, como 'serial_number', 'model', etc.
+        })
+
+        # Opcionalmente, puedes devolver una acción de ventana para abrir el formulario del OLT recién creado
+        return {
+            'name': 'OLT Creado',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.olt',
+            'view_mode': 'form',
+            'res_id': new_olt.id,
+            'target': 'current',
+        }
+
 
     def action_search_view_olts(self):
         # Lógica para buscar y mostrar OLTs

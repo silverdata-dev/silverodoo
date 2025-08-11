@@ -10,10 +10,5 @@
             <field name="domain">[('id', '=', -1)]</field> <!-- No mostrar registros -->
         </record>
 
-        <menuitem id="menu_silver_isp_root" name="Silver ISP" sequence="10"/>
-
-        <menuitem id="menu_isp_infrastructure" name="Infrastructure" parent="menu_silver_isp_root" sequence="10"/>
-        <menuitem id="menu_isp_router" name="Routers" parent="menu_isp_infrastructure" action="action_isp_router" sequence="10"/>
-
     </data>
 </odoo>

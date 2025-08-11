@@ -7,7 +7,6 @@
             <field name="res_model">isp.ap</field>
             <field name="view_mode">tree,form</field>
         </record>
-        <menuitem id="menu_isp_ap" name="Equipos AP" parent="menu_silver_isp_root" action="action_isp_ap" sequence="80"/>
 
         <record id="view_isp_ap_tree" model="ir.ui.view">
             <field name="name">isp.ap.tree</field>

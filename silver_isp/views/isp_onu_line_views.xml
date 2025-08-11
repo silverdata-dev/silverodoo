@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- isp.onu.line -->
+        <record id="action_isp_onu_line" model="ir.actions.act_window">
+            <field name="name">Líneas de ONU ISP</field>
+            <field name="res_model">isp.onu.line</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_isp_onu_line_tree" model="ir.ui.view">
+            <field name="name">isp.onu.line.tree</field>
+            <field name="model">isp.onu.line</field>
+            <field name="arch" type="xml">
+                <tree string="Líneas de ONU ISP">
+                    <field name="name"/>
+                    <field name="box_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_isp_onu_line_form" model="ir.ui.view">
+            <field name="name">isp.onu.line.form</field>
+            <field name="model">isp.onu.line</field>
+            <field name="arch" type="xml">
+                <form string="Línea de ONU ISP">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="box_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

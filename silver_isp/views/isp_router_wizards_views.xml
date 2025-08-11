@@ -46,7 +46,6 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="menu_isp_router_interface_wizard" name="Router Interfaces" parent="menu_isp_infrastructure" action="action_isp_router_interface_wizard" sequence="20"/>
 
         <!-- IspRouterRouteWizard -->
         <record id="view_isp_router_route_wizard_tree" model="ir.ui.view">
@@ -93,7 +92,12 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="menu_isp_router_route_wizard" name="Router Routes" parent="menu_isp_infrastructure" action="action_isp_router_route_wizard" sequence="30"/>
+
+            <record id="action_ppp" model="ir.actions.act_window">
+            <field name="name">PPP</field>
+            <field name="res_model">isp.router.ppp.active.wizard</field>
+            <field name="view_mode">tree,form</field>
+        </record>
 
         <!-- IspRouterPppActiveWizard -->
         <record id="view_isp_router_ppp_active_wizard_tree" model="ir.ui.view">
@@ -128,7 +132,7 @@
                                 </field>
                             </page>
                             <page string="Realtime Speed">
-                                <field name="ppp_speed_chart" widget="ppp_speed_chart"/>
+                                <field name="name" widget="ppp_speed_chart"/>
                             </page>
                         </notebook>
                     </sheet>
@@ -142,7 +146,6 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="menu_isp_router_ppp_active_wizard" name="PPP Active Connections" parent="menu_isp_infrastructure" action="action_isp_router_ppp_active_wizard" sequence="40"/>
 
         <!-- IspRouterFirewallWizard -->
         <record id="view_isp_router_firewall_wizard_tree" model="ir.ui.view">
@@ -190,7 +193,6 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="menu_isp_router_firewall_wizard" name="Firewall Rules" parent="menu_isp_infrastructure" action="action_isp_router_firewall_wizard" sequence="50"/>
 
         <!-- IspRouterQueueWizard -->
         <record id="view_isp_router_queue_wizard_tree" model="ir.ui.view">
@@ -236,7 +238,5 @@
             <field name="res_model">isp.router.queue.wizard</field>
             <field name="view_mode">tree,form</field>
         </record>
-
-        <menuitem id="menu_isp_router_queue_wizard" name="Router Queues" parent="menu_isp_infrastructure" action="action_isp_router_queue_wizard" sequence="60"/>
     </data>
 </odoo>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- isp.device.networks -->
+        <record id="action_isp_device_networks" model="ir.actions.act_window">
+            <field name="name">Redes de Dispositivos ISP</field>
+            <field name="res_model">isp.device.networks</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_isp_device_networks_tree" model="ir.ui.view">
+            <field name="name">isp.device.networks.tree</field>
+            <field name="model">isp.device.networks</field>
+            <field name="arch" type="xml">
+                <tree string="Redes de Dispositivos ISP">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_isp_device_networks_form" model="ir.ui.view">
+            <field name="name">isp.device.networks.form</field>
+            <field name="model">isp.device.networks</field>
+            <field name="arch" type="xml">
+                <form string="Red de Dispositivos ISP">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -4,9 +4,12 @@ class IspOlt(models.Model):
     _name = 'isp.olt'
     _description = 'Equipo OLT'
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherits = {'isp.asset': 'asset_id'}
 
-    name = fields.Char(string='Hostname', required=True)
-    hostname_olt = fields.Char(string='Hostname')
+    asset_id = fields.Many2one('isp.asset', required=True, ondelete='cascade')
+
+    hostname_olt = fields.Char(string='Hostname', compute='_compute_hostname', store=True, readonly=True)
+
     software_version = fields.Char(string='Version Software')
     is_core_baudcom = fields.Boolean(string='Es Baudcom?')
     core_ids = fields.Many2many('isp.core', string='Equipos Core')
@@ -15,12 +18,10 @@ class IspOlt(models.Model):
     is_brand_zte = fields.Boolean(string='Es Marca ZTE?')
     core_id = fields.Many2one('isp.core', string='Equipo Core')
     node_id = fields.Many2one('isp.node', string='Nodo')
-    brand_olt_id = fields.Many2one('product.brand', string='Marca')
-    model_olt = fields.Char(string='Modelo')
     num_slot_olt = fields.Integer(string='Numero de Slots')
     ip_olt = fields.Char(string='IP de Conexion')
     port_olt = fields.Integer(string='Puerto de Conexion')
-    type_connection = fields.Selection([], string='Tipo de Conexión')
+    type_connection = fields.Selection([("ssh","SSH"), ("telnet", "Telnet")], string='Tipo de Conexión')
     kex_algorithms_ids = fields.Many2many('isp.kex.algorithms', string='Kex Algorithms')
     is_multi_user_olt = fields.Boolean(string='Multiples Usuarios')
     user_olt = fields.Char(string='Usuario')
@@ -47,17 +48,17 @@ class IspOlt(models.Model):
     is_reduce_script = fields.Boolean(string='Script Reducido')
     is_redirect_srvport = fields.Boolean(string='Redireccionamiento ServicePort')
     is_active_wan_onu = fields.Boolean(string='Activar WAN ONU')
-    ont_srvprofile = fields.Selection([], string='Ont Srvprofile')
+    ont_srvprofile = fields.Selection([('name', 'Name'),('id', 'ID'), ('port','ID por puerto')], string='Ont Srvprofile')
     ont_srvprofile_value = fields.Char(string='Valor ont_srvprofile')
-    ont_lineprofile = fields.Selection([], string='Ont Lineprofile')
+    ont_lineprofile = fields.Selection([('name', 'Name'),('id', 'ID'), ('unique','ID unico')], string='Ont Lineprofile')
     ont_lineprofile_value = fields.Char(string='Valor ont_lineprofile')
     send_srvprofile = fields.Boolean(string='Send Srvprofile')
     port_vlan = fields.Boolean(string='Port Vlan')
     wan_maximum = fields.Boolean(string='WAN Maxima')
     name_service = fields.Char(string='Name Server')
-    type_access_net = fields.Selection([], string='Tipo Acceso', required=True)
+    type_access_net = fields.Selection([('inactive', 'Inactivo'), ('dhcp', 'DHCP Leases'), ('manual', 'IP Asignada manualmente'), ('system', 'IP Asignada por el sistema')],  default='inactive', string='Tipo Acceso', required=True)
     dhcp_custom_server = fields.Char(string='DHCP Leases')
-    traffic_table = fields.Selection([], string='Traffic-Table(command)')
+    traffic_table = fields.Selection([('name', 'Name'), ('index', 'Index')], string='Traffic-Table(command)')
     is_control_traffic_profile = fields.Boolean(string='Control por Traffic Profile')
     is_not_user_encap_ipoe = fields.Boolean(string='Disable Encapsulamiento IPOE/PPPOE')
     is_uplink_port_vlan = fields.Boolean(string='Uplink Port VLAN')
@@ -88,11 +89,11 @@ class IspOlt(models.Model):
     users_olt_ids = fields.One2many('isp.olt.users', 'olt_id', string='Usuarios Equipo OLT')
     pri_onu_standar = fields.Char(string='PRI ONU Standar:')
     pri_onu_bridge = fields.Char(string='PRI ONU Bridge:')
-    connection_wan = fields.Selection([], string='Modo de conexión WAN')
-    protocol_type = fields.Selection([], string='Protocolo Type')
-    wan_mode = fields.Selection([], string='WAN Mode')
-    service_type = fields.Selection([], string='Service Type')
-    acquisition_mode = fields.Selection([], string='IP Acquisition Mode')
+    connection_wan = fields.Selection([('pppoe', 'PPPoE'), ('dhcp','DHCP'), ('static', 'IP estática')], string='Modo de conexión WAN')
+    protocol_type = fields.Selection([('ipv4', 'IPv4')], string='Protocolo Type')
+    wan_mode = fields.Selection([('router', 'Router'), ('bridge', 'Bridge')], string='WAN Mode')
+    service_type = fields.Selection([('void', 'VOID'), ('internet', 'INTERNET')], string='Service Type')
+    acquisition_mode = fields.Selection([('pppoe', 'PPPoE'), ('dhcp','DHCP'), ('static', 'IP estática')], string='IP Acquisition Mode')
     vlan_id = fields.Char(string='VLAN ID')
     mtu = fields.Char(string='MTU')
     is_enable_nat = fields.Boolean(string='Enable NAT')
@@ -119,6 +120,21 @@ class IspOlt(models.Model):
     state = fields.Selection([('down', 'Down'), ('active', 'Active')], string='Estado', default='down')
     olt_card_count = fields.Integer(string='Conteo Slot OLT', compute='_compute_olt_card_count')
     contracts_olt_count = fields.Integer(string='Conteo Olts', compute='_compute_contracts_olt_count')
+
+
+
+    def _compute_hostname(self):
+        for olt in self:
+            if olt.node_id:
+                # Contamos los OLTs existentes para este nodo
+                # Esto es la clave para el incremental por nodo
+                olt_count = self.env['isp.olt'].search_count([('node_id', '=', olt.node_id.id)])
+
+                # Construimos el código.
+                # Si el campo 'code' del nodo es 'u', y ya tiene 2 OLTs, el nuevo será 'u/2'
+                olt.code = f"{olt.node_id.code}/{olt.node_id.node}{olt_count}"
+            else:
+                olt.code = False
 
     def _compute_olt_card_count(self):
         self.olt_card_count = 0

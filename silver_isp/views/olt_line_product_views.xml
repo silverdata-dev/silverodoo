@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- olt.line.product -->
+        <record id="action_olt_line_product" model="ir.actions.act_window">
+            <field name="name">Productos de Línea OLT</field>
+            <field name="res_model">olt.line.product</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_olt_line_product_tree" model="ir.ui.view">
+            <field name="name">olt.line.product.tree</field>
+            <field name="model">olt.line.product</field>
+            <field name="arch" type="xml">
+                <tree string="Productos de Línea OLT">
+                    <field name="name"/>
+                    <field name="olt_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_olt_line_product_form" model="ir.ui.view">
+            <field name="name">olt.line.product.form</field>
+            <field name="model">olt.line.product</field>
+            <field name="arch" type="xml">
+                <form string="Producto de Línea OLT">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="olt_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,4 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_isp_asset,access.isp.asset,model_isp_asset,base.group_user,1,1,1,1
 access_isp_node,access.isp.node,model_isp_node,base.group_user,1,1,1,1
 access_isp_core,access.isp.core,model_isp_core,base.group_user,1,1,1,1
 access_isp_radius,access.isp.radius,model_isp_radius,base.group_user,1,1,1,1

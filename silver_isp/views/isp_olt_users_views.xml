@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- isp.olt.users -->
+        <record id="action_isp_olt_users" model="ir.actions.act_window">
+            <field name="name">Usuarios de OLT ISP</field>
+            <field name="res_model">isp.olt.users</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_isp_olt_users_tree" model="ir.ui.view">
+            <field name="name">isp.olt.users.tree</field>
+            <field name="model">isp.olt.users</field>
+            <field name="arch" type="xml">
+                <tree string="Usuarios de OLT ISP">
+                    <field name="name"/>
+                    <field name="olt_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_isp_olt_users_form" model="ir.ui.view">
+            <field name="name">isp.olt.users.form</field>
+            <field name="model">isp.olt.users</field>
+            <field name="arch" type="xml">
+                <form string="Usuario de OLT ISP">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="olt_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
