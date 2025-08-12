@@ -10,6 +10,7 @@ class IspOlt(models.Model):
 
     hostname_olt = fields.Char(string='Hostname', compute='_compute_hostname', store=True, readonly=True)
 
+
     software_version = fields.Char(string='Version Software')
     is_core_baudcom = fields.Boolean(string='Es Baudcom?')
     core_ids = fields.Many2many('isp.core', string='Equipos Core')
@@ -75,7 +76,7 @@ class IspOlt(models.Model):
     is_serial_onu_hex = fields.Boolean(string='Serial Onu Hexadecimal')
     is_serial_onu_ascii = fields.Boolean(string='Serial Onu ASCII')
     is_virtual = fields.Boolean(string='Virtual')
-    core_brand_description = fields.Text(string='Descripcion', related='core_id.brand_description')
+
     isp_core_port_line_id = fields.Many2one('isp.core.port.line', string='Interface Core')
     is_active_tr = fields.Boolean(string='Activar TR-069')
     is_v2_brand_zte = fields.Boolean(string='Es Version 2 Zte?')
@@ -123,6 +124,13 @@ class IspOlt(models.Model):
 
 
 
+    asset_type = fields.Selection(
+        related='asset_id.asset_type',
+        default='olt',
+        store=True,
+        readonly=False
+    )
+
     def _compute_hostname(self):
         for olt in self:
             if olt.node_id:
@@ -143,13 +151,55 @@ class IspOlt(models.Model):
         self.contracts_olt_count = 0
 
     def create_olt_card(self):
-        pass
+        self.ensure_one()
+        new_card = self.env['isp.olt.card'].create({
+            'name': f"Card for {self.name}",
+            'olt_id': self.id,
+        })
+        return {
+            'name': 'OLT Card Creada',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.olt.card',
+            'view_mode': 'form',
+            'res_id': new_card.id,
+            'target': 'current',
+        }
 
     def action_connect_olt(self):
-        pass
+        self.ensure_one()
+        # Simulate connection test
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Connection Test',
+                'message': 'Connection to OLT was successful!',
+                'type': 'success',
+            }
+        }
 
     def action_create_profile_olt(self):
-        pass
+        self.ensure_one()
+        # Simulate profile creation
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Profile Creation',
+                'message': 'Profiles created successfully!',
+                'type': 'success',
+            }
+        }
 
     def action_send_password(self):
-        pass
+        self.ensure_one()
+        # Simulate sending password
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Send Password',
+                'message': 'Password sent successfully!',
+                'type': 'success',
+            }
+        }

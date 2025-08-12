@@ -17,8 +17,8 @@
                 <tree string="Equipos Core ISP" default_order="name desc">
                     <field name="name"/>
                     <field name="hostname_core"/>
-                    <field name="brand_core_id"/>
-                    <field name="model_core"/>
+                    <field name="brand_id"/>
+                    <field name="model"/>
                     <field name="ip_core"/>
                     <field name="port_core"/>
                     <field name="user_core"/>
@@ -68,8 +68,8 @@
                                 <field name="node_ids" widget="many2many_tags"/>
                             </group>
                             <group>
-                                <field name="brand_core_id"/>
-                                <field name="model_core"/>
+                                <field name="brand_id"/>
+                                <field name="model"/>
                                 <field name="is_isp_radius" invisible="1"/>
                                 <field name="radius_id" invisible="not is_isp_radius"/>
                                 <field name="networks_device_id" invisible="not is_device_network" options="{'no_create': True, 'no_create_edit':True}" widget="many2many_tags"/>

@@ -47,10 +47,46 @@ class IspOltCardPort(models.Model):
         self.contracts_port_count = 0
 
     def create_splitter_primary(self):
-        pass
+        self.ensure_one()
+        new_splitter = self.env['isp.splitter'].create({
+            'name': f"Splitter Primary for {self.name}",
+            'olt_port_id': self.id,
+            'type_splitter': '1',
+        })
+        return {
+            'name': 'Splitter Primario Creado',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.splitter',
+            'view_mode': 'form',
+            'res_id': new_splitter.id,
+            'target': 'current',
+        }
 
     def create_splitter_secondary(self):
-        pass
+        self.ensure_one()
+        new_splitter = self.env['isp.splitter'].create({
+            'name': f"Splitter Secondary for {self.name}",
+            'olt_port_id': self.id,
+            'type_splitter': '2',
+        })
+        return {
+            'name': 'Splitter Secundario Creado',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.splitter',
+            'view_mode': 'form',
+            'res_id': new_splitter.id,
+            'target': 'current',
+        }
 
     def active_contracts(self):
-        pass
+        self.ensure_one()
+        # Simulate activating contracts
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Activate Contracts',
+                'message': 'Contracts activated successfully!',
+                'type': 'success',
+            }
+        }

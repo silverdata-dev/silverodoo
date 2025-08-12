@@ -10,16 +10,8 @@ class IspNode(models.Model):
     asset_id = fields.Many2one('isp.asset', required=True, ondelete="cascade")
 
 
-    street = fields.Char(string='Calle')
-    street2 = fields.Char(string='Calle 2')
-    zip = fields.Char(string='Código Postal')
-    state_id = fields.Many2one('res.country.state', string='Estado')
-    country_id = fields.Many2one('res.country', string='País')
     phone = fields.Char(string='Teléfono')
 
-    node_latitude = fields.Float(string='Latitud', digits=(16, 7))
-    node_longitude = fields.Float(string='Longitud', digits=(16, 7))
-    date_localization = fields.Date(string='Fecha de Geolocalización')
     distance = fields.Float(string='Distancia')
 
     journal_id = fields.Many2one('account.journal', string='Diario')
@@ -32,6 +24,14 @@ class IspNode(models.Model):
     olt_count = fields.Integer(string='Equipos OLT', compute='_compute_counts')
 
 
+
+    asset_type = fields.Selection(
+        related='asset_id.asset_type',
+        default='node',
+        store=True,
+        readonly=False
+    )
+
     def _compute_counts(self):
         for record in self:
             # Logica para contar los equipos, tickets, etc.
@@ -41,14 +41,35 @@ class IspNode(models.Model):
             record.olt_count = 0
 
     def create_core(self):
-        # Lógica para crear un equipo core
-        pass
+        self.ensure_one()
+        new_core = self.env['isp.core'].create({
+            'name': f"Core for {self.name}",
+            'node_id': self.id,
+        })
+        return {
+            'name': 'Core Creado',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.core',
+            'view_mode': 'form',
+            'res_id': new_core.id,
+            'target': 'current',
+        }
 
     def action_create_ticket_node(self):
-        # Lógica para crear un ticket
-        pass
-
-
+        self.ensure_one()
+        # Asumiendo que el modelo helpdesk.ticket existe y tiene un campo 'name' y 'node_id'
+        new_ticket = self.env['helpdesk.ticket'].create({
+            'name': f"Ticket for {self.name}",
+            'node_id': self.id,
+        })
+        return {
+            'name': 'Ticket Creado',
+            'type': 'ir.actions.act_window',
+            'res_model': 'helpdesk.ticket',
+            'view_mode': 'form',
+            'res_id': new_ticket.id,
+            'target': 'current',
+        }
 
     def create_olt(self):
         """
@@ -76,5 +97,12 @@ class IspNode(models.Model):
 
 
     def action_search_view_olts(self):
-        # Lógica para buscar y mostrar OLTs
-        pass
+        self.ensure_one()
+        return {
+            'name': 'OLTs',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.olt',
+            'view_mode': 'tree,form',
+            'domain': [('node_id', '=', self.id)],
+            'target': 'current',
+        }

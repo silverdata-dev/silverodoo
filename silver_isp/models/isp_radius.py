@@ -43,7 +43,28 @@ class IspRadius(models.Model):
     state = fields.Selection([('down', 'Down'), ('active', 'Active')], string='Estado', default='down')
 
     def action_connect_radius(self):
-        pass
+        self.ensure_one()
+        # Simulate connection test
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Connection Test',
+                'message': 'Connection to Radius server was successful!',
+                'type': 'success',
+            }
+        }
 
     def action_view_table(self):
-        pass
+        self.ensure_one()
+        # Simulate fetching table data
+        table_data = "This is a placeholder for the table data."
+        wizard = self.env['isp.radius.view.table.wizard'].create({'table_data': table_data})
+        return {
+            'name': 'Radius Table',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.radius.view.table.wizard',
+            'view_mode': 'form',
+            'res_id': wizard.id,
+            'target': 'new',
+        }

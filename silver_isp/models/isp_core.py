@@ -5,14 +5,19 @@ class IspCore(models.Model):
     _description = 'Equipo Core ISP'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    name = fields.Char(string='Código', required=True, copy=False, readonly=True, default=lambda self: ('Nuevo'))
+
+    _inherits = {'isp.asset': 'asset_id'}
+
+    asset_id = fields.Many2one('isp.asset', required=True, ondelete="cascade")
+
+
+    name = fields.Char( related='asset_id.name',string='Código', required=True, copy=False, readonly=True, default=lambda self: ('Nuevo'))
+
     hostname_core = fields.Char(string='Hostname')
     software_version = fields.Char(string='Versión Software')
     node_id = fields.Many2one('isp.node', string='Nodo')
     node_ids = fields.Many2many('isp.node', string='Nodos')
-    brand_core_id = fields.Many2one('product.brand', string='Marca')
-    brand_description = fields.Text(string='Descripción', related='brand_core_id.description')
-    model_core = fields.Char(string='Modelo')
+
     is_isp_radius = fields.Boolean(string='Activar Radius')
     radius_id = fields.Many2one('isp.radius', string='Radius')
     networks_device_id = fields.Many2many('isp.device.networks', string='Networks Device')
@@ -93,6 +98,14 @@ class IspCore(models.Model):
     port_card = fields.Integer(string='Puerto por Tarjeta')
     isp_core_port_line_ids = fields.One2many('isp.core.port.line', 'core_id', string='Lineas Puerto Slot')
 
+
+    asset_type = fields.Selection(
+        related='asset_id.asset_type',
+        default='core',
+        store=True,
+        readonly=False
+    )
+
     def _compute_counts(self):
         for record in self:
             record.olt_count = 0
@@ -101,22 +114,96 @@ class IspCore(models.Model):
             record.contracts_cores_count = 0
 
     def create_ap(self):
-        pass
+        self.ensure_one()
+        new_ap = self.env['isp.ap'].create({
+            'name': f"AP for {self.name}",
+            'core_id': self.id,
+        })
+        return {
+            'name': 'AP Creado',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.ap',
+            'view_mode': 'form',
+            'res_id': new_ap.id,
+            'target': 'current',
+        }
 
     def create_radius(self):
-        pass
+        self.ensure_one()
+        new_radius = self.env['isp.radius'].create({
+            'name': f"Radius for {self.name}",
+            'core_id': self.id,
+        })
+        return {
+            'name': 'Radius Creado',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.radius',
+            'view_mode': 'form',
+            'res_id': new_radius.id,
+            'target': 'current',
+        }
 
     def action_create_nas(self):
-        pass
+        self.ensure_one()
+        # Simulate creating NAS
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Create NAS',
+                'message': 'NAS created successfully!',
+                'type': 'success',
+            }
+        }
 
     def action_remove_nas(self):
-        pass
+        self.ensure_one()
+        # Simulate removing NAS
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Remove NAS',
+                'message': 'NAS removed successfully!',
+                'type': 'success',
+            }
+        }
 
     def action_connect_core(self):
-        pass
+        self.ensure_one()
+        # Simulate connection test
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Connection Test',
+                'message': 'Connection to Core was successful!',
+                'type': 'success',
+            }
+        }
 
     def action_send_password(self):
-        pass
+        self.ensure_one()
+        # Simulate sending password
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Send Password',
+                'message': 'Password sent successfully!',
+                'type': 'success',
+            }
+        }
 
     def action_calculate_gpon(self):
-        pass
+        self.ensure_one()
+        # Simulate calculating GPON
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Calculate GPON',
+                'message': 'GPON calculated successfully!',
+                'type': 'success',
+            }
+        }

@@ -12,6 +12,8 @@
     'version': '17.0.2.1',
     'depends': ['base', 'mail', 'stock', 'product', 'account'],
     'data': [
+        'views/isp_views.xml',
+
         'security/ir.model.access.csv',
         'views/isp_node_views.xml',
         'views/isp_core_views.xml',
@@ -24,6 +26,9 @@
         'views/isp_box_views.xml',
         'views/isp_ap_views.xml',
         'views/isp_radius_views.xml',
+        'views/isp_radius_wizards_views.xml',
+        'views/isp_splice_closure_views.xml',
+        'views/isp_cable_views.xml',
         'views/product_brand_views.xml',
         'views/isp_device_networks_views.xml',
         'views/isp_kex_algorithms_views.xml',
@@ -38,7 +43,6 @@
         'views/isp_onu_line_views.xml',
         'views/device_pool_ip_views.xml',
         'views/isp_radius_line_views.xml',
-        'views/isp_views.xml',
         "views/isp_menus.xml",
     ],
     'assets': {
@@ -46,6 +50,7 @@
             'silver_isp/static/src/js/raphael.min.js',
             'silver_isp/static/src/js/ppp_speed_chart.js',
             'silver_isp/static/src/xml/ppp_speed_chart.xml',
+                'silver_isp/static/src/css/general.css',
         ],
     },
     'installable': True,

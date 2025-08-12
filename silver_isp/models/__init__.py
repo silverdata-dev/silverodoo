@@ -9,6 +9,9 @@ from . import isp_router
 from . import isp_box
 from . import isp_ap
 from . import isp_radius
+from . import isp_radius_wizards
 from . import isp_contract
 from . import isp_placeholder_models
 from . import isp_router_wizards
+from . import isp_splice_closure
+from . import isp_cable

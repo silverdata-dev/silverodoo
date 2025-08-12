@@ -23,4 +23,19 @@ class IspOltCard(models.Model):
         self.contracts_card_count = 0
 
     def create_olt_card_port(self):
-        pass
+        self.ensure_one()
+        ports_to_create = []
+        for i in range(self.num_ports):
+            ports_to_create.append({
+                'name': f"{self.name}/port/{i+1}",
+                'olt_card_id': self.id,
+            })
+        self.env['isp.olt.card.port'].create(ports_to_create)
+        return {
+            'name': 'Puertos de Tarjeta OLT',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.olt.card.port',
+            'view_mode': 'tree,form',
+            'domain': [('olt_card_id', '=', self.id)],
+            'target': 'current',
+        }

@@ -75,8 +75,8 @@
                                     <group string="Geolocalizacion">
                                         <label for="date_localization" string="Geolocalizacion"/>
                                         <div name="geolocalize">
-                                            <span>Lat : </span><field name="node_latitude" nolabel="1" class="oe_inline"/>
-                                            <span>, Long: </span><field name="node_longitude" nolabel="1" class="oe_inline"/>
+                                            <span>Lat : </span><field name="gps_lat" nolabel="1" class="oe_inline"/>
+                                            <span>, Long: </span><field name="gps_lon" nolabel="1" class="oe_inline"/>
                                             <br/>
                                             <span invisible="not date_localization">Actualizado el: </span>
                                             <field name="date_localization" nolabel="1" class="oe_inline"/>

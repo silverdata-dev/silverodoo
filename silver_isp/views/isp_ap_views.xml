@@ -15,8 +15,8 @@
                 <tree string="Equipos AP ISP" default_order="name desc">
                     <field name="name"/>
                     <field name="hostname_ap"/>
-                    <field name="brand_ap_id"/>
-                    <field name="model_ap"/>
+                    <field name="brand_id"/>
+                    <field name="model"/>
                     <field name="capacity_usage_ap"/>
                     <field name="ip_ap"/>
                     <field name="port_ap"/>
@@ -52,8 +52,8 @@
                                 <field name="node_ids" widget="many2many_tags" invisible="1"/>
                             </group>
                             <group>
-                                <field name="brand_ap_id"/>
-                                <field name="model_ap"/>
+                                <field name="brand_id"/>
+                                <field name="model"/>
                                 <field name="description_brand" invisible="1"/>
                             </group>
                         </group>

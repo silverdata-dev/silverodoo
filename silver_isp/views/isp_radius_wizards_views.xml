@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="isp_radius_view_table_wizard_form" model="ir.ui.view">
+            <field name="name">isp.radius.view.table.wizard.form</field>
+            <field name="model">isp.radius.view.table.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Table Data">
+                    <field name="table_data"/>
+                    <footer>
+                        <button string="Close" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

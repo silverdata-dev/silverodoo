@@ -35,3 +35,5 @@ access_isp_router_firewall_wizard,access.isp.router.firewall.wizard,model_isp_ro
 access_isp_router_firewall_wizard_line,access.isp.router.firewall.wizard.line,model_isp_router_firewall_wizard_line,base.group_user,1,1,1,1
 access_isp_router_queue_wizard,access.isp.router.queue.wizard,model_isp_router_queue_wizard,base.group_user,1,1,1,1
 access_isp_router_queue_wizard_line,access.isp.router.queue.wizard.line,model_isp_router_queue_wizard_line,base.group_user,1,1,1,1
+access_isp_splice_closure,isp.splice.closure,model_isp_splice_closure,base.group_user,1,1,1,1
+access_isp_cable,isp.cable,model_isp_cable,base.group_user,1,1,1,1

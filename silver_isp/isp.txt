@@ -67,9 +67,9 @@ model:isp.node
                                 <label for="date_localization" string="Geolocalizacion"/>
                                 <div name="geolocalize">
                                     <span>Lat : </span>
-                                    <field name="node_latitude" nolabel="1" class="oe_inline" modifiers="{}"/>
+                                    <field name="gps_lat" nolabel="1" class="oe_inline" modifiers="{}"/>
                                     <span>, Long: </span>
-                                    <field name="node_longitude" nolabel="1" class="oe_inline" modifiers="{}"/>
+                                    <field name="gps_lon" nolabel="1" class="oe_inline" modifiers="{}"/>
                                     <br/>
                                     <span attrs="{'invisible': [('date_localization', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;date_localization&quot;, &quot;=&quot;, false]]}">Actualizado el: </span>
                                     <field name="date_localization" nolabel="1" class="oe_inline" modifiers="{}"/>
@@ -107,7 +107,7 @@ model:isp.node
 "activity_type_id","Next Activity Type","Equipo Core","many2one","Campo base","","","","mail.activity.type"
 "activity_user_id","Responsible User","Equipo Core","many2one","Campo base","","","","res.users"
 "ap_count","Conteo Equipo AP","Equipo Core","entero","Campo base","","","True",""
-"brand_core_id","Marca","Equipo Core","many2one","Campo base","True","True","","product.brand"
+"brand_id","Marca","Equipo Core","many2one","Campo base","True","True","","product.brand"
 "brand_description","Descripcion","Equipo Core","texto","Campo base","","","True",""
 "company_id","Company","Equipo Core","many2one","Campo base","","True","True","res.company"
 "contracts_cores_count","Conteo Cores","Equipo Core","entero","Campo base","","","True",""
@@ -181,7 +181,7 @@ model:isp.node
 "message_partner_ids","Followers (Partners)","Equipo Core","many2many","Campo base","","","True","res.partner"
 "message_unread","Unread Messages","Equipo Core","booleano","Campo base","","","True",""
 "message_unread_counter","Unread Messages Counter","Equipo Core","entero","Campo base","","","True",""
-"model_core","Modelo","Equipo Core","Carácter","Campo base","","True","",""
+"model","Modelo","Equipo Core","Carácter","Campo base","","True","",""
 "my_activity_date_deadline","My Activity Deadline","Equipo Core","fecha","Campo base","","","True",""
 "name","Código","Equipo Core","Carácter","Campo base","","True","",""
 "networks_device_id","Networks Device","Equipo Core","many2many","Campo base","","True","","isp.device.networks"
@@ -218,8 +218,8 @@ model=isp.core
 <tree string="Equipos Core ISP" default_order="name desc">
 <field name="name" modifiers="{}"/>
 <field name="hostname_core" modifiers="{}"/>
-<field name="brand_core_id" can_create="false" can_write="false" modifiers="{}"/>
-<field name="model_core" modifiers="{}"/>
+<field name="brand_id" can_create="false" can_write="false" modifiers="{}"/>
+<field name="model" modifiers="{}"/>
 <field name="ip_core" modifiers="{}"/>
 <field name="port_core" modifiers="{}"/>
 <field name="user_core" modifiers="{}"/>
@@ -267,10 +267,10 @@ model=isp.core
 <field name="node_ids" widget="many2many_tags" can_create="true" can_write="true" modifiers="{}"/>
 </group>
 <group>
-<field name="brand_core_id" on_change="1" can_create="false" can_write="false" modifiers="{}"/>
+<field name="brand_id" on_change="1" can_create="false" can_write="false" modifiers="{}"/>
 <!-- <field name="database" attrs="{'invisible': [('is_radius','=',False)]}"/>
 <field name="is_radius" invisible="1"/> -->
-<field name="model_core" modifiers="{}"/>
+<field name="model" modifiers="{}"/>
 <field name="is_isp_radius" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
 <field name="radius_id" attrs="{'invisible': [('is_isp_radius','=',False)]}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;is_isp_radius&quot;, &quot;=&quot;, false]]}"/>
 <field name="networks_device_id" attrs="{'invisible': [('is_device_network','=',False)]}" options="{'no_create': True, 'no_create_edit':True}" widget="many2many_tags" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;is_device_network&quot;, &quot;=&quot;, false]]}"/>
@@ -471,7 +471,7 @@ model=isp.core
 "activity_type_id","Next Activity Type","Equipo Core","many2one","Campo base","","","","mail.activity.type"
 "activity_user_id","Responsible User","Equipo Core","many2one","Campo base","","","","res.users"
 "ap_count","Conteo Equipo AP","Equipo Core","entero","Campo base","","","True",""
-"brand_core_id","Marca","Equipo Core","many2one","Campo base","True","True","","product.brand"
+"brand_id","Marca","Equipo Core","many2one","Campo base","True","True","","product.brand"
 "brand_description","Descripcion","Equipo Core","texto","Campo base","","","True",""
 "company_id","Company","Equipo Core","many2one","Campo base","","True","True","res.company"
 "contracts_cores_count","Conteo Cores","Equipo Core","entero","Campo base","","","True",""
@@ -545,7 +545,7 @@ model=isp.core
 "message_partner_ids","Followers (Partners)","Equipo Core","many2many","Campo base","","","True","res.partner"
 "message_unread","Unread Messages","Equipo Core","booleano","Campo base","","","True",""
 "message_unread_counter","Unread Messages Counter","Equipo Core","entero","Campo base","","","True",""
-"model_core","Modelo","Equipo Core","Carácter","Campo base","","True","",""
+"model","Modelo","Equipo Core","Carácter","Campo base","","True","",""
 "my_activity_date_deadline","My Activity Deadline","Equipo Core","fecha","Campo base","","","True",""
 "name","Código","Equipo Core","Carácter","Campo base","","True","",""
 "networks_device_id","Networks Device","Equipo Core","many2many","Campo base","","True","","isp.device.networks"
@@ -725,8 +725,8 @@ model: isp.otl
 <field name="is_virtual" widget="boolean_toggle" modifiers="{}"/>
 </group>
 <group>
-<field name="core_brand_description" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
-<field name="isp_core_port_line_id" options="{'no_create': True,  'no_open': True}" attrs="{'invisible': [('core_brand_description','!=','hua')]}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;core_brand_description&quot;, &quot;!=&quot;, &quot;hua&quot;]]}"/>
+<field name="brand_description" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="isp_core_port_line_id" options="{'no_create': True,  'no_open': True}" attrs="{'invisible': [('brand_description','!=','hua')]}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;brand_description&quot;, &quot;!=&quot;, &quot;hua&quot;]]}"/>
 </group>
 </group>
 <group name="olt_tr">
@@ -882,7 +882,7 @@ model: isp.otl
 "company_id","Company","Equipo OLT","many2one","Campo base","","True","True","res.company"
 "connection_wan","Modo de conexión WAN","Equipo OLT","Selección","Campo base","","True","",""
 "contracts_olt_count","Conteo Olts","Equipo OLT","entero","Campo base","","","True",""
-"core_brand_description","Descripcion","Equipo OLT","texto","Campo base","","","True",""
+"brand_description","Descripcion","Equipo OLT","texto","Campo base","","","True",""
 "core_id","Equipo Core","Equipo OLT","many2one","Campo base","","True","","isp.core"
 "core_ids","Equipos Core","Equipo OLT","many2many","Campo base","","True","","isp.core"
 "create_date","Created on","Equipo OLT","Fecha y hora","Campo base","","True","True",""
@@ -1421,9 +1421,9 @@ model: isp.splitter
 <label for="date_localization" string="Geolocalizacion"/>
 <div name="geolocalize">
 <span>Lat : </span>
-<field name="sppliter_latitude" nolabel="1" class="oe_inline" modifiers="{}"/>
+<field name="gps_lat" nolabel="1" class="oe_inline" modifiers="{}"/>
 <span>, Long: </span>
-<field name="sppliter_longitude" nolabel="1" class="oe_inline" modifiers="{}"/>
+<field name="gps_lon" nolabel="1" class="oe_inline" modifiers="{}"/>
 <br/>
 <span attrs="{'invisible': [('date_localization', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;date_localization&quot;, &quot;=&quot;, false]]}">Actualizado el: </span>
 <field name="date_localization" nolabel="1" class="oe_inline" modifiers="{}"/>
@@ -1481,8 +1481,8 @@ model: isp.splitter
 "olt_card_port_id","Puerto Tarjeta OLT","Splitter de Conexion","many2one","Campo base","","True","","isp.olt.card.port"
 "port_splitter","Puerto Splitter Primario","Splitter de Conexion","Carácter","Campo base","","True","",""
 "splitter_id","Spliter Principal","Splitter de Conexion","many2one","Campo base","","True","","isp.splitter"
-"sppliter_latitude","Customer Latitude","Splitter de Conexion","número flotante","Campo base","","True","",""
-"sppliter_longitude","Customer Longitude","Splitter de Conexion","número flotante","Campo base","","True","",""
+"gps_lat","Customer Latitude","Splitter de Conexion","número flotante","Campo base","","True","",""
+"gps_lon","Customer Longitude","Splitter de Conexion","número flotante","Campo base","","True","",""
 "type_splitter","Tipo","Splitter de Conexion","Selección","Campo base","","True","",""
 "website_message_ids","Website Messages","Splitter de Conexion","one2many","Campo base","","True","","mail.message"
 "write_date","Last Updated on","Splitter de Conexion","Fecha y hora","Campo base","","True","True",""
@@ -1540,9 +1540,9 @@ model: isp.box
                                 <label for="date_localization" string="Geolocalizacion"/>
                                 <div>
                                     <span>Lat : </span>
-                                    <field name="node_latitude" nolabel="1" class="oe_inline" modifiers="{}"/>
+                                    <field name="gps_lat" nolabel="1" class="oe_inline" modifiers="{}"/>
                                     <span>, Long: </span>
-                                    <field name="node_longitude" nolabel="1" class="oe_inline" modifiers="{}"/>
+                                    <field name="gps_lon" nolabel="1" class="oe_inline" modifiers="{}"/>
                                     <br/>
                                     <span attrs="{'invisible': [('date_localization', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;date_localization&quot;, &quot;=&quot;, false]]}">Actualizado el: </span>
                                     <field name="date_localization" nolabel="1" class="oe_inline" modifiers="{}"/>
@@ -1640,8 +1640,8 @@ model: isp.box
 "my_activity_date_deadline","My Activity Deadline","Caja de Conexion","fecha","Campo base","","","True",""
 "name","Nombre","Caja de Conexion","Carácter","Campo base","","True","",""
 "node_id","Nodo","Caja de Conexion","many2one","Campo base","","True","True","isp.node"
-"node_latitude","Customer Latitude","Caja de Conexion","número flotante","Campo base","","True","",""
-"node_longitude","Customer Longitude","Caja de Conexion","número flotante","Campo base","","True","",""
+"gps_lat","Customer Latitude","Caja de Conexion","número flotante","Campo base","","True","",""
+"gps_lon","Customer Longitude","Caja de Conexion","número flotante","Campo base","","True","",""
 "onu_ids_isp","One serie","Caja de Conexion","one2many","Campo base","","True","","isp.onu.line"
 "port_splitter_secondary","Puerto Splitter Secundario","Caja de Conexion","entero","Campo base","","True","",""
 "pri_onu_bridge","PRI ONU Bridge:","Caja de Conexion","Carácter","Campo base","","True","",""
@@ -1663,8 +1663,8 @@ model: isp.ap
 <tree string="Equipos AP ISP" default_order="name desc">
 <field name="name" modifiers="{}"/>
 <field name="hostname_ap" modifiers="{}"/>
-<field name="brand_ap_id" on_change="1" can_create="false" can_write="false" modifiers="{}"/>
-<field name="model_ap" modifiers="{}"/>
+<field name="brand_id" on_change="1" can_create="false" can_write="false" modifiers="{}"/>
+<field name="model" modifiers="{}"/>
 <field name="capacity_usage_ap" modifiers="{&quot;readonly&quot;: true}"/>
 <field name="ip_ap" modifiers="{}"/>
 <field name="port_ap" modifiers="{}"/>
@@ -1700,8 +1700,8 @@ model: isp.ap
 <field name="node_ids" widget="many2many_tags" invisible="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
 </group>
 <group>
-<field name="brand_ap_id" on_change="1" can_create="false" can_write="false" modifiers="{}"/>
-<field name="model_ap" modifiers="{}"/>
+<field name="brand_id" on_change="1" can_create="false" can_write="false" modifiers="{}"/>
+<field name="model" modifiers="{}"/>
 <field name="description_brand" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
 </group>
 </group>
@@ -1759,9 +1759,9 @@ model: isp.ap
                                 <label for="date_localization" string="Geolocalizacion"/>
                                 <div>
                                     <span>Lat : </span>
-                                    <field name="ap_latitude" nolabel="1" class="oe_inline" modifiers="{}"/>
+                                    <field name="gps_lat" nolabel="1" class="oe_inline" modifiers="{}"/>
                                     <span>, Long: </span>
-                                    <field name="ap_longitude" nolabel="1" class="oe_inline" modifiers="{}"/>
+                                    <field name="gps_lon" nolabel="1" class="oe_inline" modifiers="{}"/>
                                     <br/>
                                     <span attrs="{'invisible': [('date_localization', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;date_localization&quot;, &quot;=&quot;, false]]}">Actualizado el: </span>
                                     <field name="date_localization" nolabel="1" class="oe_inline" modifiers="{}"/>
@@ -1795,9 +1795,9 @@ model: isp.ap
 "activity_type_icon","Activity Type Icon","Punto de acceso inalámbrico","Carácter","Campo base","","","True",""
 "activity_type_id","Next Activity Type","Punto de acceso inalámbrico","many2one","Campo base","","","","mail.activity.type"
 "activity_user_id","Responsible User","Punto de acceso inalámbrico","many2one","Campo base","","","","res.users"
-"ap_latitude","Latitude","Punto de acceso inalámbrico","número flotante","Campo base","","True","",""
-"ap_longitude","Longitude","Punto de acceso inalámbrico","número flotante","Campo base","","True","",""
-"brand_ap_id","Marca","Punto de acceso inalámbrico","many2one","Campo base","True","True","","product.brand"
+"gps_lat","Latitude","Punto de acceso inalámbrico","número flotante","Campo base","","True","",""
+"gps_lon","Longitude","Punto de acceso inalámbrico","número flotante","Campo base","","True","",""
+"brand_id","Marca","Punto de acceso inalámbrico","many2one","Campo base","True","True","","product.brand"
 "capacity_usage_ap","Usada AP","Punto de acceso inalámbrico","entero","Campo base","","","True",""
 "core_id","Equipo Core","Punto de acceso inalámbrico","many2one","Campo base","","True","","isp.core"
 "country_id","Pais","Punto de acceso inalámbrico","many2one","Campo base","","True","","res.country"
@@ -1832,7 +1832,7 @@ model: isp.ap
 "message_partner_ids","Followers (Partners)","Punto de acceso inalámbrico","many2many","Campo base","","","True","res.partner"
 "message_unread","Unread Messages","Punto de acceso inalámbrico","booleano","Campo base","","","True",""
 "message_unread_counter","Unread Messages Counter","Punto de acceso inalámbrico","entero","Campo base","","","True",""
-"model_ap","Modelo","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+"model","Modelo","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
 "my_activity_date_deadline","My Activity Deadline","Punto de acceso inalámbrico","fecha","Campo base","","","True",""
 "name","AP","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
 "node_id","Nodo","Punto de acceso inalámbrico","many2one","Campo base","","True","True","isp.node"

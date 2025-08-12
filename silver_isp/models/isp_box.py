@@ -13,13 +13,7 @@ class IspBox(models.Model):
     node_id = fields.Many2one('isp.node', string='Nodo', readonly=True)
     capacity_nap = fields.Selection([], string='Total NAP')
     capacity_usage_nap = fields.Integer(string='Usada NAP', readonly=True)
-    country_id = fields.Many2one('res.country', string='Pais')
-    state_id = fields.Many2one('res.country.state', string='Provincia')
-    zip = fields.Char(string='Cod.Postal')
-    street = fields.Char(string='Direccion')
-    street2 = fields.Char(string='-')
-    node_latitude = fields.Float(string='Customer Latitude', digits=(16, 7))
-    node_longitude = fields.Float(string='Customer Longitude', digits=(16, 7))
+
     date_localization = fields.Date(string='Actualizado el:')
     s_vlan = fields.Integer(string='s-vlan')
     c_vlan = fields.Integer(string='c-vlan')
@@ -30,3 +24,10 @@ class IspBox(models.Model):
     pri_onu_standar = fields.Char(string='PRI ONU Standar:')
     pri_onu_bridge = fields.Char(string='PRI ONU Bridge:')
     onu_ids_isp = fields.One2many('isp.onu.line', 'box_id', string='One serie')
+
+    asset_type = fields.Selection(
+        related='asset_id.asset_type',
+        default='cto',
+        store=True,
+        readonly=False
+    )

@@ -7,16 +7,36 @@ class IspAsset(models.Model):
     _rec_name = 'name'
 
 
-    name = fields.Char(required=True)
-    code = fields.Char(string="Código interno", required=True, index=True)
-    asset_type = fields.Selection([('olt','OLT'),('splitter','Splitter'),('cto','CTO'),('onu','ONU'),('other','Other')], default='other')
+    name = fields.Char(string="Nombre")
+    code = fields.Char(string="Código interno", index=True)
+    asset_type = fields.Selection([
+        ('olt', 'OLT'),
+        ('splitter', 'Splitter'),
+        ('cto', 'CTO'),
+        ('core', 'Core'),
+        ('node', 'Nodo'),
+        ('onu', 'ONU'),
+        ('splice_closure', 'Splice Closure'),
+        ('cable', 'Cable'),
+        ('other', 'Other')
+    ], default='other')
 
-    location = fields.Char(string="Ubicación")
-    gps_lat = fields.Float(string="Latitud")
-    gps_lon = fields.Float(string="Longitud")
+
+
+    street = fields.Char(string='Calle')
+    street2 = fields.Char(string='Calle 2')
+    zip = fields.Char(string='Código Postal')
+    state_id = fields.Many2one('res.country.state', string='Estado')
+    country_id = fields.Many2one('res.country', string='País')
+
+    gps_lat = fields.Float(string="Latitud", digits=(16, 7))
+    gps_lon = fields.Float(string="Longitud", digits=(16, 7))
+    date_localization = fields.Date(string='Fecha de Geolocalización')
+    date_install = fields.Date(string='Fecha de Instalación')
+
     brand_id = fields.Many2one('product.brand', string='Marca')
+    brand_description = fields.Text(string='Descripción de Marca', related='brand_id.description')
     model = fields.Char(string='Modelo')
-    state = fields.Selection([('new','New'),('deployed','Deployed'),('maintenance','Maintenance'),('retired','Retired')], default='new')
-    install_date = fields.Date()
+    astate = fields.Selection([('new','New'),('deployed','Deployed'),('maintenance','Maintenance'),('retired','Retired')], default='new')
     notes = fields.Text()
 

@@ -39,12 +39,15 @@
         <menuitem id="menu_isp_aps" name="AP" parent="menu_isp_infrastructure" sequence="70"/>
             <menuitem id="menu_isp_ap" name="Equipos AP" parent="menu_isp_aps" action="action_isp_ap" sequence="80"/>
 
-        <menuitem id="menu_isp_radiuss" name="AP" parent="menu_isp_infrastructure" sequence="80"/>
+        <menuitem id="menu_isp_radiuss" name="Radius" parent="menu_isp_infrastructure" sequence="80"/>
             <menuitem id="menu_isp_radius" name="Servidores Radius" parent="menu_isp_radiuss" action="action_isp_radius" sequence="90"/>
 
+        <menuitem id="menu_isp_mangas" name="Mangas" parent="menu_isp_infrastructure" sequence="90"/>
+        <menuitem id="menu_isp_splice_closure" name="Splice Closures" parent="menu_isp_mangas" action="action_isp_splice_closure" sequence="60"/>
 
+        <menuitem id="menu_isp_cabless" name="Cables" parent="menu_isp_infrastructure" sequence="120"/>
 
-
+        <menuitem id="menu_isp_cable" name="Cables" parent="menu_isp_cabless" action="action_isp_cable" sequence="70"/>
 
     </data>
 </odoo>

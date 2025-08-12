@@ -45,9 +45,10 @@
                         </div>
                         <widget name="web_ribbon" title="Active" invisible="state == 'down'"/>
                         <widget name="web_ribbon" title="Down" bg_color="bg-danger" invisible="state == 'active'"/>
-                        <field name="state" invisible="1"/>
+                        <field name="state"/>
                         <div class="oe_title">
-                            <h1><field name="name" readonly="1"/></h1>
+                            <h1><label for="name" string="Nombre"/>
+                                <field name="name"/></h1>
                         </div>
                         <group name="olt">
                             <group>
@@ -161,8 +162,8 @@
 <field name="is_virtual" widget="boolean_toggle" modifiers="{}"/>
 </group>
 <group>
-<field name="core_brand_description" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
-<field name="isp_core_port_line_id" options="{'no_create': True,  'no_open': True}" invisible="core_brand_description != 'hua'" can_create="true" can_write="true"/>
+<field name="brand_description" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="isp_core_port_line_id" options="{'no_create': True,  'no_open': True}" invisible="brand_description != 'hua'" can_create="true" can_write="true"/>
 </group>
 </group>
 <group name="olt_tr">
