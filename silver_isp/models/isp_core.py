@@ -6,15 +6,17 @@ class IspCore(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
 
-    _inherits = {'isp.asset': 'asset_id'}
+    _inherits = {'isp.asset': 'asset_id',
+                 'isp.netdev':'netdev_id'}
 
     asset_id = fields.Many2one('isp.asset', required=True, ondelete="cascade")
+    netdev_id = fields.Many2one('isp.netdev', required=True, ondelete="cascade")
 
 
-    name = fields.Char( related='asset_id.name',string='Código', required=True, copy=False, readonly=True, default=lambda self: ('Nuevo'))
+    name = fields.Char(related='asset_id.name', string='Código', required=True, copy=False, default=lambda self: ('Nuevo'))
 
     hostname_core = fields.Char(string='Hostname')
-    software_version = fields.Char(string='Versión Software')
+
     node_id = fields.Many2one('isp.node', string='Nodo')
     node_ids = fields.Many2many('isp.node', string='Nodos')
 
@@ -26,16 +28,11 @@ class IspCore(models.Model):
     password_nass = fields.Char(string='Password Nass')
     port_coa = fields.Char(string='Puerto COA')
     
-    ip_core = fields.Char(string='IP de Conexión')
-    port_core = fields.Char(string='Puerto de Conexión')
-    type_connection = fields.Selection([], string='Tipo de Conexión')
-    kex_algorithms_ids = fields.Many2many('isp.kex.algorithms', string='Kex Algorithms')
-    user_core = fields.Char(string='Usuario')
-    password_core = fields.Char(string='Password')
 
-    type_access_net = fields.Selection([], string='Tipo')
-    dhcp_custom_server = fields.Char(string='DHCP Leases')
-    interface = fields.Char(string='Interface')
+    kex_algorithms_ids = fields.Many2many('isp.kex.algorithms', string='Kex Algorithms')
+
+
+
     is_multiple_vlans = fields.Boolean(string='Habilitar multiples Vlans')
 
     is_active_vlans = fields.Boolean(string='Activar Vlans Core')
@@ -43,8 +40,6 @@ class IspCore(models.Model):
     svlan = fields.Char(string='SVLAN')
     isp_vlans_ids = fields.Many2many('isp.vlan', string='Vlans')
     is_device_network = fields.Boolean(string='Equipos de infraestructura de red')
-
-    state = fields.Selection([('down', 'Down'), ('active', 'Active')], string='Estado', default='down')
 
     olt_count = fields.Integer(string='Conteo Equipo OLT', compute='_compute_counts')
     radius_count = fields.Integer(string='Conteo Servidor Radius', compute='_compute_counts')
@@ -90,10 +85,7 @@ class IspCore(models.Model):
     is_unique_vlans = fields.Boolean(string='Vlans única')
     is_desactive_core = fields.Boolean(string='Desactivar Core')
     is_desactive_olt = fields.Boolean(string='Desactivar OLT')
-    
-    ip_address_line_ids = fields.One2many('isp.ip.address.line', 'core_id', string='Direcciones IP')
-    ip_address_ids = fields.One2many('isp.ip.address', 'core_id', string='Direcciones IP')
-    
+
     slot = fields.Integer(string='Tarjeta Slot')
     port_card = fields.Integer(string='Puerto por Tarjeta')
     isp_core_port_line_ids = fields.One2many('isp.core.port.line', 'core_id', string='Lineas Puerto Slot')
@@ -106,17 +98,46 @@ class IspCore(models.Model):
         readonly=False
     )
 
+    @api.model
+    def create(self, vals):
+        if vals.get('node_id'):
+            node = self.env['isp.node'].browse(vals['node_id'])
+            if node.exists() and node.code:
+                core_count = self.search_count([('node_id', '=', node.id)])
+                vals['name'] = f"{node.code}/CR{core_count + 1}"
+        return super(IspCore, self).create(vals)
+
+
+    def write(self, vals):
+        print(("corewrite", vals))
+        for i, record in enumerate(self):
+            if vals.get('node_id'):
+                node = self.env['isp.node'].browse(vals['node_id'])
+            else:
+                node = record.node_id
+
+            if node.exists() and node.code:
+                # This logic handles single and multiple record updates.
+                # For multiple updates, it iterates and assigns a unique incremental name to each.
+                base_count = self.search_count([('node_id', '=', node.id)])
+                record.asset_id.name = f"{node.code}/CR{base_count + i + 1}"
+            print(("cocrewr2", record.asset_id.name))
+        return super(IspCore, self).write(vals)
+
+    #@api.depends('olt', 'radius', 'ap_count', 'cor')
     def _compute_counts(self):
+        print(("_compute_counts", self))
         for record in self:
-            record.olt_count = 0
-            record.radius_count = 0
-            record.ap_count = 0
-            record.contracts_cores_count = 0
+            record.olt_count = self.env['isp.olt'].search_count([('core_id', '=', record.id)])
+            record.radius_count = self.env['isp.radius'].search_count([('core_id', '=', record.id)])
+            record.ap_count = self.env['isp.ap'].search_count([('node_ids', 'in', record.node_ids.ids)])
+            record.contracts_cores_count = self.env['isp.contract'].search_count([('core_id', '=', record.id)])
+
 
     def create_ap(self):
         self.ensure_one()
         new_ap = self.env['isp.ap'].create({
-            'name': f"AP for {self.name}",
+           #   'name': f"AP for {self.name}",
             'core_id': self.id,
         })
         return {

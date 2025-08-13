@@ -9,7 +9,10 @@ class IspOltCard(models.Model):
     num_card = fields.Integer(string='Numero Slot')
     port_card = fields.Selection([], string='Cantidad Puertos')
     olt_id = fields.Many2one('isp.olt', string='OLT')
-    type_access_net = fields.Selection([], string='Tipo')
+    type_access_net = fields.Selection(
+        [('inactive', 'Inactivo'), ('dhcp', 'DHCP Leases'), ('manual', 'IP Asignada manualmente'),
+         ('system', 'IP Asignada por el sistema')], default='inactive', string='Tipo Acceso', required=True)
+
     dhcp_custom_server = fields.Char(string='DHCP Leases')
     ip_address_line_ids = fields.One2many('isp.ip.address.line', 'card_id', string='Direcciones IP')
     ip_address_ids = fields.One2many('isp.ip.address', 'card_id', string='Direcciones IP')
@@ -17,10 +20,12 @@ class IspOltCard(models.Model):
     contracts_card_count = fields.Integer(string='Conteo Tarjetas Olt', compute='_compute_contracts_card_count')
 
     def _compute_olt_card_port_count(self):
-        self.olt_card_port_count = 0
+        for record in self:
+            record.olt_card_port_count = self.env['isp.olt.card.port'].search_count([('olt_card_id', '=', record.id)])
 
     def _compute_contracts_card_count(self):
-        self.contracts_card_count = 0
+        for record in self:
+            record.contracts_card_count = self.env['isp.contract'].search_count([('olt_card_id', '=', record.id)])
 
     def create_olt_card_port(self):
         self.ensure_one()

@@ -20,7 +20,10 @@ class IspOltCardPort(models.Model):
     ont_srvprofile = fields.Char(string='ont-srvprofile')
     is_line_profile = fields.Boolean(string='ONT Lineprofile')
     ont_lineprofile = fields.Char(string='ont-lineprofile')
-    type_access_net = fields.Selection([], string='Tipo')
+    type_access_net = fields.Selection(
+        [('inactive', 'Inactivo'), ('dhcp', 'DHCP Leases'), ('manual', 'IP Asignada manualmente'),
+         ('system', 'IP Asignada por el sistema')], default='inactive', string='Tipo Acceso', required=True)
+
     dhcp_custom_server = fields.Char(string='DHCP Leases')
     interface = fields.Char(string='Interface')
     dhcp_client = fields.Boolean(string='Profiles VSOL')
@@ -38,13 +41,16 @@ class IspOltCardPort(models.Model):
     contracts_port_count = fields.Integer(string='Conteo Puerto Olt', compute='_compute_contracts_port_count')
 
     def _compute_splitter1_count(self):
-        self.splitter1_count = 0
+        for record in self:
+            record.splitter1_count = self.env['isp.splitter'].search_count([('olt_port_id', '=', record.id), ('type_splitter', '=', '1')])
 
     def _compute_splitter2_count(self):
-        self.splitter2_count = 0
+        for record in self:
+            record.splitter2_count = self.env['isp.splitter'].search_count([('olt_port_id', '=', record.id), ('type_splitter', '=', '2')])
 
     def _compute_contracts_port_count(self):
-        self.contracts_port_count = 0
+        for record in self:
+            record.contracts_port_count = self.env['isp.contract'].search_count([('olt_port_id', '=', record.id)])
 
     def create_splitter_primary(self):
         self.ensure_one()

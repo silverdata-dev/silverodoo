@@ -16,8 +16,9 @@ class IspAsset(models.Model):
         ('core', 'Core'),
         ('node', 'Nodo'),
         ('onu', 'ONU'),
-        ('splice_closure', 'Splice Closure'),
+        ('manga', 'Manga'),
         ('cable', 'Cable'),
+        ('ap', 'AP'),
         ('other', 'Other')
     ], default='other')
 
@@ -39,4 +40,3 @@ class IspAsset(models.Model):
     model = fields.Char(string='Modelo')
     astate = fields.Selection([('new','New'),('deployed','Deployed'),('maintenance','Maintenance'),('retired','Retired')], default='new')
     notes = fields.Text()
-

@@ -5,6 +5,15 @@ class IspRadius(models.Model):
     _description = 'Servidor Radius'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
+
+
+    _inherits = {
+                 'isp.netdev':'netdev_id'}
+
+
+    netdev_id = fields.Many2one('isp.netdev', required=True, ondelete="cascade")
+
+
     name = fields.Char(string='Hostname', required=True)
     ip_core_radius = fields.Char(string='IP Core Radius')
     port_core_radius = fields.Char(string='Puerto Core Radius')
@@ -13,13 +22,9 @@ class IspRadius(models.Model):
     database = fields.Char(string='Database')
     core_id = fields.Many2one('isp.core', string='Equipo Core', readonly=True)
     type_radius = fields.Selection([], string='Tipo Radius')
-    ip_server = fields.Char(string='IP Servidor')
-    port_server = fields.Char(string='Puerto Servidor')
     port_coa = fields.Char(string='Puerto COA')
-    username_server = fields.Char(string='Usuario Servidor')
-    password_server = fields.Char(string='Password Servidor')
     is_ipv6 = fields.Boolean(string='IPV6')
-    type_access_net = fields.Selection([], string='Tipo Acceso')
+
     isp_radius_ids = fields.One2many('isp.radius.line', 'radius_id', string='Radius Atributos')
     type_table = fields.Selection([], string='Tipo Tabla')
     is_cutoff = fields.Boolean(string='Corte')
@@ -38,9 +43,6 @@ class IspRadius(models.Model):
     code_mac = fields.Selection([], string='Codigo MAC')
     default_control = fields.Boolean(string='Control por Defecto')
     perfil_control = fields.Boolean(string='Control por Perfil')
-    ip_address_line_ids = fields.One2many('isp.ip.address.line', 'radius_id', string='Direcciones IP')
-    ip_address_ids = fields.One2many('isp.ip.address', 'radius_id', string='Direcciones IP')
-    state = fields.Selection([('down', 'Down'), ('active', 'Active')], string='Estado', default='down')
 
     def action_connect_radius(self):
         self.ensure_one()

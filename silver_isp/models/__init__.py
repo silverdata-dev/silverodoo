@@ -1,4 +1,5 @@
 from . import isp_asset
+from . import isp_netdev
 from . import isp_node
 from . import isp_core
 from . import isp_olt

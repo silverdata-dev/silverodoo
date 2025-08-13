@@ -19,9 +19,9 @@
                     <field name="hostname_core"/>
                     <field name="brand_id"/>
                     <field name="model"/>
-                    <field name="ip_core"/>
-                    <field name="port_core"/>
-                    <field name="user_core"/>
+                    <field name="ip"/>
+                    <field name="port"/>
+                    <field name="user"/>
                     <field name="state" widget="badge" decoration-danger="state == 'down'" decoration-success="state == 'active'"/>
                 </tree>
             </field>
@@ -56,9 +56,9 @@
                         </div>
                         <widget name="web_ribbon" title="Active" invisible="state == 'down'"/>
                         <widget name="web_ribbon" title="Down" bg_color="bg-danger" invisible="state == 'active'"/>
-                        <field name="state" invisible="1"/>
+                        <field name="state" />
                         <div class="oe_title">
-                            <h1><field name="name" readonly="1"/></h1>
+                            <h1><field name="name" /></h1>
                         </div>
                         <group name="core">
                             <group>
@@ -81,14 +81,14 @@
                         </group>
                         <group name="core_conexion" string="Datos Conexion">
                             <group>
-                                <field name="ip_core"/>
-                                <field name="port_core"/>
+                                <field name="ip"/>
+                                <field name="port"/>
                                 <field name="type_connection" invisible="brand_description != 'hua'"/>
                                 <field name="kex_algorithms_ids" invisible="brand_description != 'hua'" widget="many2many_tags"/>
                             </group>
                             <group>
-                                <field name="user_core"/>
-                                <field name="password_core" password="True"/>
+                                <field name="user"/>
+                                <field name="password" password="True"/>
                                 <button class="oe_inline oe_link " name="action_send_password" string=" →Enviar Contraseña" type="object"/>
                             </group>
                         </group>

@@ -30,10 +30,12 @@ class IspSplitter(models.Model):
     )
 
     def _compute_box_count(self):
-        self.box_count = 0
+        for record in self:
+            record.box_count = self.env['isp.box'].search_count([('splitter_id', '=', record.id)])
 
     def _compute_contracts_count(self):
-        self.contracts_count = 0
+        for record in self:
+            record.contracts_count = self.env['isp.contract'].search_count([('splitter_id', '=', record.id)])
 
     def create_box(self):
         self.ensure_one()

@@ -18,9 +18,10 @@
                     <field name="brand_id"/>
                     <field name="model"/>
                     <field name="capacity_usage_ap"/>
-                    <field name="ip_ap"/>
-                    <field name="port_ap"/>
-                    <field name="user_ap"/>
+                    <field name="core_id"/>
+                    <field name="ip"/>
+                    <field name="port"/>
+                    <field name="user"/>
                     <field name="description_brand" invisible="1"/>
                     <field name="state" widget="badge" decoration-danger="state == 'down'" decoration-success="state == 'active'"/>
                 </tree>

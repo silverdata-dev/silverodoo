@@ -16,9 +16,9 @@
                     <field name="name"/>
                     <field name="brand_id"/>
                     <field name="model"/>
-                    <field name="ip_olt"/>
-                    <field name="port_olt"/>
-                    <field name="user_olt"/>
+                    <field name="ip"/>
+                    <field name="port"/>
+                    <field name="user"/>
                     <field name="state" widget="badge" decoration-danger="state == 'down'" decoration-success="state == 'active'"/>
                 </tree>
             </field>
@@ -70,15 +70,15 @@
                         </group>
                         <group name="core_conexion" string="Datos Conexion">
                             <group>
-                                <field name="ip_olt"/>
-                                <field name="port_olt"/>
+                                <field name="ip"/>
+                                <field name="port"/>
                                 <field name="type_connection"/>
                                 <field name="kex_algorithms_ids" widget="many2many_tags"/>
                             </group>
                             <group>
                                 <field name="is_multi_user_olt" widget="boolean_toggle"/>
-                                <field name="user_olt" invisible="is_multi_user_olt == True"/>
-                                <field name="password_olt" password="True"/>
+                                <field name="user" invisible="is_multi_user_olt == True"/>
+                                <field name="password" password="True"/>
                                 <button class="oe_inline oe_link " name="action_send_password" string=" →Enviar Contraseña" type="object"/>
                                 <field name="secret_olt"/>
                             </group>

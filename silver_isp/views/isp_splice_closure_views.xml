@@ -6,7 +6,7 @@
             <field name="name">isp.splice.closure.form</field>
             <field name="model">isp.splice.closure</field>
             <field name="arch" type="xml">
-                <form string="Splice Closure">
+                <form string="Manga">
                     <sheet>
                         <group>
                             <field name="name"/>
@@ -48,7 +48,7 @@
             <field name="name">isp.splice.closure.tree</field>
             <field name="model">isp.splice.closure</field>
             <field name="arch" type="xml">
-                <tree string="Splice Closures">
+                <tree string="Mangas">
                     <field name="name"/>
                     <field name="code"/>
                     <field name="closure_type"/>
@@ -60,7 +60,7 @@
 
         <!-- Action -->
         <record id="action_isp_splice_closure" model="ir.actions.act_window">
-            <field name="name">Splice Closures</field>
+            <field name="name">Mangas</field>
             <field name="res_model">isp.splice.closure</field>
             <field name="view_mode">tree,form</field>
         </record>

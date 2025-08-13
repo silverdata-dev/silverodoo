@@ -129,7 +129,7 @@ model:isp.node
 "interface","Interface","Equipo Core","Carácter","Campo base","","True","",""
 "ip_address_ids","Direcciones IP","Equipo Core","one2many","Campo base","","True","","isp.ip.address"
 "ip_address_line_ids","Direcciones IP","Equipo Core","one2many","Campo base","","True","","isp.ip.address.line"
-"ip_core","IP de Conexion","Equipo Core","Carácter","Campo base","","True","",""
+"ip","IP de Conexion","Equipo Core","Carácter","Campo base","","True","",""
 "is_action_button","Ejecutado desde el Boton","Equipo Core","booleano","Campo base","","True","",""
 "is_active_vlans","Activar Vlans Core","Equipo Core","booleano","Campo base","","True","",""
 "is_change_mac","Mostrar MAC","Equipo Core","booleano","Campo base","","True","",""
@@ -188,13 +188,13 @@ model:isp.node
 "node_id","Nodo","Equipo Core","many2one","Campo base","","True","","isp.node"
 "node_ids","Nodos","Equipo Core","many2many","Campo base","","True","","isp.node"
 "olt_count","Conteo Equipo OLT","Equipo Core","entero","Campo base","","","True",""
-"password_core","Password","Equipo Core","Carácter","Campo base","","True","",""
-"password_nass","Password Nass","Equipo Core","Carácter","Campo base","","True","",""
+"password","Password","Equipo Core","Carácter","Campo base","","True","",""
+"password","Password Nass","Equipo Core","Carácter","Campo base","","True","",""
 "pooOnlyCore","Pool de IPs Único","Equipo Core","booleano","Campo base","","True","",""
 "poolip","Poolip","Equipo Core","Carácter","Campo base","","True","",""
 "port_card","Puerto por Tarjeta","Equipo Core","entero","Campo base","","True","",""
-"port_coa","Puerto COA","Equipo Core","Carácter","Campo base","","True","",""
-"port_core","Puerto de Conexion","Equipo Core","Carácter","Campo base","","True","",""
+"port","Puerto COA","Equipo Core","Carácter","Campo base","","True","",""
+"port","Puerto de Conexion","Equipo Core","Carácter","Campo base","","True","",""
 "radius_count","Conteo Servidor Radius","Equipo Core","entero","Campo base","","","True",""
 "radius_id","Radius","Equipo Core","many2one","Campo base","","True","","isp.radius"
 "slot","Tarjeta Slot","Equipo Core","entero","Campo base","","True","",""
@@ -204,8 +204,8 @@ model:isp.node
 "type_access_net","Tipo","Equipo Core","Selección","Campo base","","True","",""
 "type_connection","Tipo de Conexión","Equipo Core","Selección","Campo base","","True","",""
 "type_manager_address_list","Tipos de Control","Equipo Core","Selección","Campo base","","True","",""
-"user_core","Usuario","Equipo Core","Carácter","Campo base","","True","",""
-"user_nass","Usuario Nass","Equipo Core","Carácter","Campo base","","True","",""
+"user","Usuario","Equipo Core","Carácter","Campo base","","True","",""
+"user","Usuario Nass","Equipo Core","Carácter","Campo base","","True","",""
 "user_profile_radius","User PROFILE","Equipo Core","Carácter","Campo base","","True","",""
 "website_message_ids","Website Messages","Equipo Core","one2many","Campo base","","True","","mail.message"
 "write_date","Last Updated on","Equipo Core","Fecha y hora","Campo base","","True","True",""
@@ -220,9 +220,9 @@ model=isp.core
 <field name="hostname_core" modifiers="{}"/>
 <field name="brand_id" can_create="false" can_write="false" modifiers="{}"/>
 <field name="model" modifiers="{}"/>
-<field name="ip_core" modifiers="{}"/>
-<field name="port_core" modifiers="{}"/>
-<field name="user_core" modifiers="{}"/>
+<field name="ip" modifiers="{}"/>
+<field name="port" modifiers="{}"/>
+<field name="user" modifiers="{}"/>
 <field name="state" widget="badge" decoration-danger="state == 'down'" decoration-success="state == 'active'" modifiers="{}"/>
   </tree>
   
@@ -275,21 +275,21 @@ model=isp.core
 <field name="radius_id" attrs="{'invisible': [('is_isp_radius','=',False)]}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;is_isp_radius&quot;, &quot;=&quot;, false]]}"/>
 <field name="networks_device_id" attrs="{'invisible': [('is_device_network','=',False)]}" options="{'no_create': True, 'no_create_edit':True}" widget="many2many_tags" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;is_device_network&quot;, &quot;=&quot;, false]]}"/>
 <field name="company_id" invisible="1" can_create="false" can_write="false" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
-<field name="user_nass" attrs="{'invisible': [('is_isp_radius','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_isp_radius&quot;, &quot;=&quot;, false]]}"/>
-<field name="password_nass" password="True" attrs="{'invisible': [('is_isp_radius','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_isp_radius&quot;, &quot;=&quot;, false]]}"/>
-<field name="port_coa" attrs="{'invisible': [('is_isp_radius','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_isp_radius&quot;, &quot;=&quot;, false]]}"/>
+<field name="user" attrs="{'invisible': [('is_isp_radius','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_isp_radius&quot;, &quot;=&quot;, false]]}"/>
+<field name="password" password="True" attrs="{'invisible': [('is_isp_radius','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_isp_radius&quot;, &quot;=&quot;, false]]}"/>
+<field name="port" attrs="{'invisible': [('is_isp_radius','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_isp_radius&quot;, &quot;=&quot;, false]]}"/>
 </group>
 </group>
 <group name="core_conexion" string="Datos Conexion">
 <group>
-<field name="ip_core" modifiers="{}"/>
-<field name="port_core" modifiers="{}"/>
+<field name="ip" modifiers="{}"/>
+<field name="port" modifiers="{}"/>
 <field name="type_connection" attrs="{'invisible': [('brand_description','!=','hua')]}" modifiers="{&quot;invisible&quot;: [[&quot;brand_description&quot;, &quot;!=&quot;, &quot;hua&quot;]]}"/>
 <field name="kex_algorithms_ids" attrs="{'invisible': [('brand_description','!=','hua')]}" widget="many2many_tags" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;brand_description&quot;, &quot;!=&quot;, &quot;hua&quot;]]}"/>
 </group>
 <group>
-<field name="user_core" modifiers="{}"/>
-<field name="password_core" password="True" modifiers="{}"/>
+<field name="user" modifiers="{}"/>
+<field name="password" password="True" modifiers="{}"/>
 <button class="oe_inline oe_link " name="action_send_password" string=" &#8658;Enviar Contrase&#241;a" type="object"/>
                     </group>
 </group>
@@ -493,7 +493,7 @@ model=isp.core
 "interface","Interface","Equipo Core","Carácter","Campo base","","True","",""
 "ip_address_ids","Direcciones IP","Equipo Core","one2many","Campo base","","True","","isp.ip.address"
 "ip_address_line_ids","Direcciones IP","Equipo Core","one2many","Campo base","","True","","isp.ip.address.line"
-"ip_core","IP de Conexion","Equipo Core","Carácter","Campo base","","True","",""
+"ip","IP de Conexion","Equipo Core","Carácter","Campo base","","True","",""
 "is_action_button","Ejecutado desde el Boton","Equipo Core","booleano","Campo base","","True","",""
 "is_active_vlans","Activar Vlans Core","Equipo Core","booleano","Campo base","","True","",""
 "is_change_mac","Mostrar MAC","Equipo Core","booleano","Campo base","","True","",""
@@ -552,13 +552,13 @@ model=isp.core
 "node_id","Nodo","Equipo Core","many2one","Campo base","","True","","isp.node"
 "node_ids","Nodos","Equipo Core","many2many","Campo base","","True","","isp.node"
 "olt_count","Conteo Equipo OLT","Equipo Core","entero","Campo base","","","True",""
-"password_core","Password","Equipo Core","Carácter","Campo base","","True","",""
-"password_nass","Password Nass","Equipo Core","Carácter","Campo base","","True","",""
+"password","Password","Equipo Core","Carácter","Campo base","","True","",""
+"password","Password Nass","Equipo Core","Carácter","Campo base","","True","",""
 "pooOnlyCore","Pool de IPs Único","Equipo Core","booleano","Campo base","","True","",""
 "poolip","Poolip","Equipo Core","Carácter","Campo base","","True","",""
 "port_card","Puerto por Tarjeta","Equipo Core","entero","Campo base","","True","",""
-"port_coa","Puerto COA","Equipo Core","Carácter","Campo base","","True","",""
-"port_core","Puerto de Conexion","Equipo Core","Carácter","Campo base","","True","",""
+"port","Puerto COA","Equipo Core","Carácter","Campo base","","True","",""
+"port","Puerto de Conexion","Equipo Core","Carácter","Campo base","","True","",""
 "radius_count","Conteo Servidor Radius","Equipo Core","entero","Campo base","","","True",""
 "radius_id","Radius","Equipo Core","many2one","Campo base","","True","","isp.radius"
 "slot","Tarjeta Slot","Equipo Core","entero","Campo base","","True","",""
@@ -568,8 +568,8 @@ model=isp.core
 "type_access_net","Tipo","Equipo Core","Selección","Campo base","","True","",""
 "type_connection","Tipo de Conexión","Equipo Core","Selección","Campo base","","True","",""
 "type_manager_address_list","Tipos de Control","Equipo Core","Selección","Campo base","","True","",""
-"user_core","Usuario","Equipo Core","Carácter","Campo base","","True","",""
-"user_nass","Usuario Nass","Equipo Core","Carácter","Campo base","","True","",""
+"user","Usuario","Equipo Core","Carácter","Campo base","","True","",""
+"user","Usuario Nass","Equipo Core","Carácter","Campo base","","True","",""
 "user_profile_radius","User PROFILE","Equipo Core","Carácter","Campo base","","True","",""
 "website_message_ids","Website Messages","Equipo Core","one2many","Campo base","","True","","mail.message"
 "write_date","Last Updated on","Equipo Core","Fecha y hora","Campo base","","True","True",""
@@ -582,9 +582,9 @@ model: isp.otl
 <field name="name" modifiers="{&quot;required&quot;: true}"/>
 <field name="brand_id" can_create="false" can_write="false" modifiers="{}"/>
 <field name="model" modifiers="{}"/>
-<field name="ip_olt" modifiers="{}"/>
-<field name="port_olt" modifiers="{}"/>
-<field name="user_olt" modifiers="{}"/>
+<field name="ip" modifiers="{}"/>
+<field name="port" modifiers="{}"/>
+<field name="user" modifiers="{}"/>
 <field name="state" widget="badge" decoration-danger="state == 'down'" decoration-success="state == 'active'" modifiers="{}"/>
   </tree>
 
@@ -633,15 +633,15 @@ model: isp.otl
 </group>
 <group name="core_conexion" string="Datos Conexion">
 <group>
-<field name="ip_olt" modifiers="{}"/>
-<field name="port_olt" modifiers="{}"/>
+<field name="ip" modifiers="{}"/>
+<field name="port" modifiers="{}"/>
 <field name="type_connection" modifiers="{}"/>
 <field name="kex_algorithms_ids" widget="many2many_tags" can_create="true" can_write="true" modifiers="{}"/>
 </group>
 <group>
 <field name="is_multi_user_olt" widget="boolean_toggle" modifiers="{}"/>
-<field name="user_olt" attrs="{'invisible': [('is_multi_user_olt','=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_multi_user_olt&quot;, &quot;=&quot;, true]]}"/>
-<field name="password_olt" password="True" modifiers="{}"/>
+<field name="user" attrs="{'invisible': [('is_multi_user_olt','=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_multi_user_olt&quot;, &quot;=&quot;, true]]}"/>
+<field name="password" password="True" modifiers="{}"/>
 <button class="oe_inline oe_link " name="action_send_password" string=" &#8658;Enviar Contrase&#241;a" type="object"/>
                         <field name="secret_olt" modifiers="{}"/>
 </group>
@@ -902,7 +902,7 @@ model: isp.otl
 "ip_address_line_ids","Direcciones IP","Equipo OLT","one2many","Campo base","","True","","isp.ip.address.line"
 "ip_address_line_tr69_ids","Direcciones IP","Equipo OLT","one2many","Campo base","","True","","isp.ip.address.line"
 "ip_address_tr69_ids","Direcciones IP","Equipo OLT","one2many","Campo base","","True","","isp.ip.address"
-"ip_olt","IP de Conexion","Equipo OLT","Carácter","Campo base","","True","",""
+"ip","IP de Conexion","Equipo OLT","Carácter","Campo base","","True","",""
 "is_activation_bridge","Activacion Bridge","Equipo OLT","booleano","Campo base","","True","",""
 "is_active_tr","Activar TR-069","Equipo OLT","booleano","Campo base","","True","",""
 "is_active_wan_onu","Activar WAN ONU","Equipo OLT","booleano","Campo base","","True","",""
@@ -977,10 +977,10 @@ model: isp.otl
 "ont_lineprofile_value","Valor ont_lineprofile","Equipo OLT","Carácter","Campo base","","True","",""
 "ont_srvprofile","Ont Srvprofile","Equipo OLT","Selección","Campo base","","True","",""
 "ont_srvprofile_value","Valor ont_srvprofile","Equipo OLT","Carácter","Campo base","","True","",""
-"password_olt","Password","Equipo OLT","Carácter","Campo base","","True","",""
+"password","Password","Equipo OLT","Carácter","Campo base","","True","",""
 "password_user","Password User","Equipo OLT","Carácter","Campo base","","True","",""
 "poolip","Poolip","Equipo OLT","Carácter","Campo base","","True","",""
-"port_olt","Puerto de Conexion","Equipo OLT","entero","Campo base","","True","",""
+"port","Puerto de Conexion","Equipo OLT","entero","Campo base","","True","",""
 "port_vlan","Port Vlan","Equipo OLT","booleano","Campo base","","True","",""
 "pri_onu_bridge","PRI ONU Bridge:","Equipo OLT","Carácter","Campo base","","True","",""
 "pri_onu_standar","PRI ONU Standar:","Equipo OLT","Carácter","Campo base","","True","",""
@@ -1008,7 +1008,7 @@ model: isp.otl
 "traffic_table","Traffic-Table(command)","Equipo OLT","Selección","Campo base","","True","",""
 "type_access_net","Tipo Acceso","Equipo OLT","Selección","Campo base","","True","",""
 "type_connection","Tipo de Conexión","Equipo OLT","Selección","Campo base","","True","",""
-"user_olt","Usuario","Equipo OLT","Carácter","Campo base","","True","",""
+"user","Usuario","Equipo OLT","Carácter","Campo base","","True","",""
 "users_olt_ids","Usuarios Equipo OLT","Equipo OLT","one2many","Campo base","","True","","isp.olt.users"
 "vlan_id","VLAN ID","Equipo OLT","Carácter","Campo base","","True","",""
 "vlan_mgn_tr069","Vlan Mgn_TR69","Equipo OLT","entero","Campo base","","True","",""
@@ -1188,7 +1188,7 @@ model: isp.olt.card.port
 <field name="name" readonly="1" modifiers="{&quot;readonly&quot;: true}"/>
 </h1>
 </div>
-<group name="port_olt">
+<group name="port">
 <group>
 <field name="num_port" modifiers="{}"/>
 </group>
@@ -1666,9 +1666,9 @@ model: isp.ap
 <field name="brand_id" on_change="1" can_create="false" can_write="false" modifiers="{}"/>
 <field name="model" modifiers="{}"/>
 <field name="capacity_usage_ap" modifiers="{&quot;readonly&quot;: true}"/>
-<field name="ip_ap" modifiers="{}"/>
-<field name="port_ap" modifiers="{}"/>
-<field name="user_ap" modifiers="{}"/>
+<field name="ip" modifiers="{}"/>
+<field name="port" modifiers="{}"/>
+<field name="user" modifiers="{}"/>
 <field name="description_brand" invisible="1" modifiers="{&quot;readonly&quot;: true, &quot;column_invisible&quot;: true}"/>
 <field name="state" widget="badge" decoration-danger="state == 'down'" decoration-success="state == 'active'" attrs="{'invisible': [('description_brand','!=','mk')]}" modifiers="{&quot;invisible&quot;: [[&quot;description_brand&quot;, &quot;!=&quot;, &quot;mk&quot;]]}"/>
   </tree>
@@ -1707,12 +1707,12 @@ model: isp.ap
 </group>
 <group name="core_conexion" string="Datos Conexion">
 <group>
-<field name="ip_ap" modifiers="{}"/>
-<field name="port_ap" modifiers="{}"/>
+<field name="ip" modifiers="{}"/>
+<field name="port" modifiers="{}"/>
 </group>
 <group>
-<field name="user_ap" modifiers="{}"/>
-<field name="password_ap" password="True" modifiers="{}"/>
+<field name="user" modifiers="{}"/>
+<field name="password" password="True" modifiers="{}"/>
 </group>
 </group>
 <group>
@@ -1815,7 +1815,7 @@ model: isp.ap
 "interface","Interface","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
 "ip_address_ids","Direcciones IP","Punto de acceso inalámbrico","one2many","Campo base","","True","","isp.ip.address"
 "ip_address_line_ids","Direcciones IP","Punto de acceso inalámbrico","one2many","Campo base","","True","","isp.ip.address.line"
-"ip_ap","IP de Conexion","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+"ip","IP de Conexion","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
 "is_dhcp_static","Habilitar Dhcp Static","Punto de acceso inalámbrico","booleano","Campo base","","True","",""
 "is_generate","Generado?","Punto de acceso inalámbrico","booleano","Campo base","","True","",""
 "is_mgn_mac_onu","Gestion MAC ONU","Punto de acceso inalámbrico","booleano","Campo base","","True","",""
@@ -1837,16 +1837,16 @@ model: isp.ap
 "name","AP","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
 "node_id","Nodo","Punto de acceso inalámbrico","many2one","Campo base","","True","True","isp.node"
 "node_ids","Nodos","Punto de acceso inalámbrico","many2many","Campo base","","","True","isp.node"
-"password_ap","Password","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+"password","Password","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
 "poolip","Poolip","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
-"port_ap","Puerto de Conexion","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+"port","Puerto de Conexion","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
 "software_version","Version Software","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
 "state","Estado","Punto de acceso inalámbrico","Selección","Campo base","","True","",""
 "state_id","Provincia","Punto de acceso inalámbrico","many2one","Campo base","","True","","res.country.state"
 "street","Direccion","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
 "street2","'-","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
 "type_access_net","Tipo Acceso","Punto de acceso inalámbrico","Selección","Campo base","","True","",""
-"user_ap","Usuario","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
+"user","Usuario","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
 "website_message_ids","Website Messages","Punto de acceso inalámbrico","one2many","Campo base","","True","","mail.message"
 "write_date","Last Updated on","Punto de acceso inalámbrico","Fecha y hora","Campo base","","True","True",""
 "write_uid","Last Updated by","Punto de acceso inalámbrico","many2one","Campo base","","True","True","res.users"
@@ -1902,14 +1902,14 @@ model: isp.radius
 </group>
 <group string="Servidor Radius" attrs="{'invisible': [('type_radius','=','mk_radius')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_radius&quot;, &quot;=&quot;, &quot;mk_radius&quot;]]}">
 <group>
-<field name="ip_server" modifiers="{}"/>
-<field name="port_server" modifiers="{}"/>
-<field name="port_coa" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+<field name="ip" modifiers="{}"/>
+<field name="port" modifiers="{}"/>
+<field name="port" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
 
 </group>
 <group>
-<field name="username_server" modifiers="{}"/>
-<field name="password_server" password="True" modifiers="{}"/>
+<field name="username" modifiers="{}"/>
+<field name="password" password="True" modifiers="{}"/>
 </group>
 </group>
 <group string="IPV6">
@@ -2024,7 +2024,7 @@ model: isp.radius
 "ip_address_ids","Direcciones IP","isp.radius","one2many","Campo base","","True","","isp.ip.address"
 "ip_address_line_ids","Direcciones IP","isp.radius","one2many","Campo base","","True","","isp.ip.address.line"
 "ip_core_radius","IP de Conexion","isp.radius","Carácter","Campo base","","True","",""
-"ip_server","IP","isp.radius","Carácter","Campo base","","True","",""
+"ip","IP","isp.radius","Carácter","Campo base","","True","",""
 "is_cutoff","Corte","isp.radius","booleano","Campo base","","True","",""
 "is_extract_ip_rd","Extraer Mac","isp.radius","booleano","Campo base","","True","",""
 "is_ipoe","IPoE","isp.radius","booleano","Campo base","","True","",""
@@ -2049,11 +2049,11 @@ model: isp.radius
 "my_activity_date_deadline","My Activity Deadline","isp.radius","fecha","Campo base","","","True",""
 "name","Hostname","isp.radius","Carácter","Campo base","","True","",""
 "password_core_radius","Password","isp.radius","Carácter","Campo base","","True","",""
-"password_server","Contraseña","isp.radius","Carácter","Campo base","","True","",""
+"password","Contraseña","isp.radius","Carácter","Campo base","","True","",""
 "perfil_control","Control por perfiles","isp.radius","booleano","Campo base","","True","",""
-"port_coa","Puerto COA","isp.radius","Carácter","Campo base","","True","",""
+"port","Puerto COA","isp.radius","Carácter","Campo base","","True","",""
 "port_core_radius","Puerto de Conexion","isp.radius","Carácter","Campo base","","True","",""
-"port_server","Puerto","isp.radius","Carácter","Campo base","","True","",""
+"port","Puerto","isp.radius","Carácter","Campo base","","True","",""
 "profile_active","Activos","isp.radius","Carácter","Campo base","","True","",""
 "profile_cut","Cortados","isp.radius","Carácter","Campo base","","True","",""
 "profile_suspended","Suspendidos","isp.radius","Carácter","Campo base","","True","",""
@@ -2063,7 +2063,7 @@ model: isp.radius
 "type_radius","Tipo Radius","isp.radius","Selección","Campo base","","True","",""
 "type_table","Tabla","isp.radius","Selección","Campo base","","True","",""
 "user_core_radius","Usuario","isp.radius","Carácter","Campo base","","True","",""
-"username_server","Usuario","isp.radius","Carácter","Campo base","","True","",""
+"username","Usuario","isp.radius","Carácter","Campo base","","True","",""
 "website_message_ids","Website Messages","isp.radius","one2many","Campo base","","True","","mail.message"
 "write_date","Last Updated on","isp.radius","Fecha y hora","Campo base","","True","True",""
 "write_uid","Last Updated by","isp.radius","many2one","Campo base","","True","True","res.users"

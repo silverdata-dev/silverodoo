@@ -4,14 +4,20 @@ class IspOlt(models.Model):
     _name = 'isp.olt'
     _description = 'Equipo OLT'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _inherits = {'isp.asset': 'asset_id'}
 
-    asset_id = fields.Many2one('isp.asset', required=True, ondelete='cascade')
+
+    _inherits = {'isp.asset': 'asset_id',
+                 'isp.netdev':'netdev_id'}
+
+    asset_id = fields.Many2one('isp.asset', required=True, ondelete="cascade")
+    netdev_id = fields.Many2one('isp.netdev', required=True, ondelete="cascade")
+
+
 
     hostname_olt = fields.Char(string='Hostname', compute='_compute_hostname', store=True, readonly=True)
 
 
-    software_version = fields.Char(string='Version Software')
+
     is_core_baudcom = fields.Boolean(string='Es Baudcom?')
     core_ids = fields.Many2many('isp.core', string='Equipos Core')
     bridge_core_id = fields.Many2one('isp.core', string='Equipo Core')
@@ -20,13 +26,12 @@ class IspOlt(models.Model):
     core_id = fields.Many2one('isp.core', string='Equipo Core')
     node_id = fields.Many2one('isp.node', string='Nodo')
     num_slot_olt = fields.Integer(string='Numero de Slots')
-    ip_olt = fields.Char(string='IP de Conexion')
-    port_olt = fields.Integer(string='Puerto de Conexion')
-    type_connection = fields.Selection([("ssh","SSH"), ("telnet", "Telnet")], string='Tipo de Conexión')
+
+
+
     kex_algorithms_ids = fields.Many2many('isp.kex.algorithms', string='Kex Algorithms')
     is_multi_user_olt = fields.Boolean(string='Multiples Usuarios')
-    user_olt = fields.Char(string='Usuario')
-    password_olt = fields.Char(string='Password')
+
     secret_olt = fields.Char(string='Secret')
     is_pppoe = fields.Boolean(string='PPPoE')
     is_ipoe = fields.Boolean(string='IPoE')
@@ -57,7 +62,6 @@ class IspOlt(models.Model):
     port_vlan = fields.Boolean(string='Port Vlan')
     wan_maximum = fields.Boolean(string='WAN Maxima')
     name_service = fields.Char(string='Name Server')
-    type_access_net = fields.Selection([('inactive', 'Inactivo'), ('dhcp', 'DHCP Leases'), ('manual', 'IP Asignada manualmente'), ('system', 'IP Asignada por el sistema')],  default='inactive', string='Tipo Acceso', required=True)
     dhcp_custom_server = fields.Char(string='DHCP Leases')
     traffic_table = fields.Selection([('name', 'Name'), ('index', 'Index')], string='Traffic-Table(command)')
     is_control_traffic_profile = fields.Boolean(string='Control por Traffic Profile')
@@ -145,10 +149,12 @@ class IspOlt(models.Model):
                 olt.code = False
 
     def _compute_olt_card_count(self):
-        self.olt_card_count = 0
+        for record in self:
+            record.olt_card_count = self.env['isp.olt.card'].search_count([('olt_id', '=', record.id)])
 
     def _compute_contracts_olt_count(self):
-        self.contracts_olt_count = 0
+        for record in self:
+            record.contracts_olt_count = self.env['isp.contract'].search_count([('olt_id', '=', record.id)])
 
     def create_olt_card(self):
         self.ensure_one()

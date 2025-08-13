@@ -34,11 +34,14 @@ class IspNode(models.Model):
 
     def _compute_counts(self):
         for record in self:
-            # Logica para contar los equipos, tickets, etc.
-            record.core_count = 0
-            record.support_ticket_count = 0
-            record.stock_picking_count = 0
-            record.olt_count = 0
+            record.core_count = self.env['isp.core'].search_count([('node_id', '=', record.id)])
+            # Assuming 'helpdesk.ticket' has a 'node_id' field.
+            record.support_ticket_count = self.env['helpdesk.ticket'].search_count([('node_id', '=', record.id)])
+            # Assuming 'stock.picking' can be related to a node.
+            # This might need adjustment depending on the actual data model.
+            # For now, I'll assume a many2one field 'node_id' exists on stock.picking for demonstration.
+            record.stock_picking_count = self.env['stock.picking'].search_count([('node_id', '=', record.id)])
+            record.olt_count = self.env['isp.olt'].search_count([('node_id', '=', record.id)])
 
     def create_core(self):
         self.ensure_one()
