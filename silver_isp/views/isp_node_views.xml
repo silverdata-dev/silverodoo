@@ -33,9 +33,8 @@
                         <button name="create_core" string="Crear Equipo Core" type="object" invisible="1"/>     
                         <!--button name="action_create_ticket_node" string="Crear Ticket" icon="fa-ticket" type="object" class="oe_highlight"/-->
                         <button name="create_olt" string="Crear Equipo Olt" type="object"/>
-                    </header>
-                    <sheet string="Nodo ISP">
-                        <div class="oe_button_box" name="button_box"> 
+
+                         <div class="botones-right" name="button_box"> 
                             <button class="oe_stat_button" type="object" name="action_view_cores" icon="fa-arrows-v">
                                 <field string="Equipos Core" name="core_count" widget="statinfo"/>
                             </button>   
@@ -49,6 +48,10 @@
                                 <field string="Equipos Olt" name="olt_count" widget="statinfo"/>
                             </button>
                         </div>
+                        
+                    </header>
+                    <sheet string="Nodo ISP">
+                       
                         <div class="oe_title">
                             <h1>
                                 <field name="name" placeholder="Nombre del Nodo"/> - <field name="code" placeholder="Codigo del Nodo"/>
