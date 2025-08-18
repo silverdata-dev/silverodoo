@@ -1,13 +1,13 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class IspOltCardPort(models.Model):
     _name = 'isp.olt.card.port'
     _description = 'Puerto de Tarjeta OLT'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    name = fields.Char(string='Puerto')
+    name = fields.Char(string='Puerto', readonly=True, copy=False, default='New')
     num_port = fields.Integer(string='Numero Puerto')
-    olt_card_id = fields.Many2one('isp.olt.card', string='Tarjeta OLT')
+    olt_card_id = fields.Many2one('isp.olt.card', string='Tarjeta OLT', required=True, ondelete='cascade')
     capacity_port_pon = fields.Selection([], string='Total PON')
     capacity_usage_port_pon = fields.Integer(string='Usada PON', readonly=True)
     s_vlan = fields.Integer(string='s-vlan')
@@ -55,8 +55,11 @@ class IspOltCardPort(models.Model):
     def create_splitter_primary(self):
         self.ensure_one()
         new_splitter = self.env['isp.splitter'].create({
-            'name': f"Splitter Primary for {self.name}",
-            'olt_port_id': self.id,
+
+#            'name': f"Splitter Primary for {self.name}",
+#            'olt_port_id': self.id,
+
+            'olt_card_port_id': self.id,
             'type_splitter': '1',
         })
         return {
@@ -71,8 +74,11 @@ class IspOltCardPort(models.Model):
     def create_splitter_secondary(self):
         self.ensure_one()
         new_splitter = self.env['isp.splitter'].create({
-            'name': f"Splitter Secondary for {self.name}",
-            'olt_port_id': self.id,
+
+#            'name': f"Splitter Secondary for {self.name}",
+#            'olt_port_id': self.id,
+
+            'olt_card_port_id': self.id,
             'type_splitter': '2',
         })
         return {
@@ -95,4 +101,40 @@ class IspOltCardPort(models.Model):
                 'message': 'Contracts activated successfully!',
                 'type': 'success',
             }
+        }
+
+    def action_view_splitter1(self):
+        self.ensure_one()
+        return {
+            'name': 'Splitter Primario',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.splitter',
+            'view_mode': 'tree,form',
+            'domain': [('olt_card_port_id', '=', self.id), ('type_splitter', '=', '1')],
+            'context': {'default_olt_card_port_id': self.id, 'default_type_splitter': '1'},
+            'target': 'current',
+        }
+
+    def action_view_splitter2(self):
+        self.ensure_one()
+        return {
+            'name': 'Splitter Secundario',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.splitter',
+            'view_mode': 'tree,form',
+            'domain': [('olt_card_port_id', '=', self.id), ('type_splitter', '=', '2')],
+            'context': {'default_olt_card_port_id': self.id, 'default_type_splitter': '2'},
+            'target': 'current',
+        }
+
+    def action_view_contracts(self):
+        self.ensure_one()
+        return {
+            'name': 'Contratos',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.contract',
+            'view_mode': 'tree,form',
+            'domain': [('olt_card_port_id', '=', self.id)],
+            'context': {'default_olt_card_port_id': self.id},
+            'target': 'current',
         }

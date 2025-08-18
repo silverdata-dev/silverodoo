@@ -38,19 +38,19 @@
                     </header>
                     <sheet string="Equipo Core ISP">
                         <div class="oe_button_box" name="button_box"> 
-                            <button class="oe_stat_button" type="action" name="%(action_isp_placeholder)d" icon="fa-arrows-v">
+                            <button class="oe_stat_button" type="object" name="action_view_olts" icon="fa-arrows-v">
                                 <field string="Equipos OLT" name="olt_count" widget="statinfo"/>
                             </button>
-                            <button class="oe_stat_button" type="action" name="%(action_isp_placeholder)d" invisible="not is_isp_radius" icon="fa-arrows-v">
+                            <button class="oe_stat_button" type="object" name="action_view_radius" invisible="not is_isp_radius" icon="fa-arrows-v">
                                 <field string="Radius" name="radius_count" widget="statinfo"/>
                             </button>
-                            <button class="oe_stat_button" type="action" name="%(action_isp_placeholder)d" icon="fa-arrows-v">
+                            <button class="oe_stat_button" type="object" name="action_view_aps" icon="fa-arrows-v">
                                 <field string="Equipos AP" name="ap_count" widget="statinfo"/>
                             </button>
                             <button name="action_create_nas" type="object" class="oe_stat_button" icon="fa-signal" string="Agregar Nas" invisible="not is_isp_radius"/>
                             <button name="action_remove_nas" type="object" class="oe_stat_button" icon="fa-signal" string="Eliminar Nas" invisible="not is_isp_radius"/>
                             <button name="action_connect_core" type="object" class="oe_stat_button" icon="fa-signal" string="Probar Conexion"/>
-                            <button class="oe_stat_button" type="action" name="%(action_isp_placeholder)d" icon="fa-link">
+                            <button class="oe_stat_button" type="object" name="action_view_contracts" icon="fa-link">
                                 <field string="Contratos" name="contracts_cores_count" widget="statinfo"/>
                             </button>
                         </div>

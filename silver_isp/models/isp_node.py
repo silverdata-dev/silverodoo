@@ -19,8 +19,8 @@ class IspNode(models.Model):
     account_cost_analytic_id = fields.Many2one('account.analytic.account', string='Cuenta Analítica de Costos')
 
     core_count = fields.Integer(string='Equipos Core', compute='_compute_counts')
-    support_ticket_count = fields.Integer(string='Tickets', compute='_compute_counts')
-    stock_picking_count = fields.Integer(string='Movimientos', compute='_compute_counts')
+  #aa  support_ticket_count = fields.Integer(string='Tickets', compute='_compute_counts')
+  #aa  stock_picking_count = fields.Integer(string='Movimientos', compute='_compute_counts')
     olt_count = fields.Integer(string='Equipos OLT', compute='_compute_counts')
 
 
@@ -36,17 +36,17 @@ class IspNode(models.Model):
         for record in self:
             record.core_count = self.env['isp.core'].search_count([('node_id', '=', record.id)])
             # Assuming 'helpdesk.ticket' has a 'node_id' field.
-            record.support_ticket_count = self.env['helpdesk.ticket'].search_count([('node_id', '=', record.id)])
+         #aa   record.support_ticket_count = self.env['helpdesk.ticket'].search_count([('node_id', '=', record.id)])
             # Assuming 'stock.picking' can be related to a node.
             # This might need adjustment depending on the actual data model.
             # For now, I'll assume a many2one field 'node_id' exists on stock.picking for demonstration.
-            record.stock_picking_count = self.env['stock.picking'].search_count([('node_id', '=', record.id)])
+         #aa   record.stock_picking_count = self.env['stock.picking'].search_count([('node_id', '=', record.id)])
             record.olt_count = self.env['isp.olt'].search_count([('node_id', '=', record.id)])
 
     def create_core(self):
         self.ensure_one()
         new_core = self.env['isp.core'].create({
-            'name': f"Core for {self.name}",
+            #'name': f"Core for {self.name}",
             'node_id': self.id,
         })
         return {
@@ -82,7 +82,7 @@ class IspNode(models.Model):
 
         # Crea el nuevo registro isp.olt
         new_olt = self.env['isp.olt'].create({
-            'name': f"OLT for {self.name}",
+#            'name': f"OLT for {self.name}",
             'node_id': self.id,
 
             # Puedes añadir más campos aquí, como 'serial_number', 'model', etc.
@@ -107,5 +107,29 @@ class IspNode(models.Model):
             'res_model': 'isp.olt',
             'view_mode': 'tree,form',
             'domain': [('node_id', '=', self.id)],
+            'target': 'current',
+        }
+
+    def action_view_cores(self):
+        self.ensure_one()
+        return {
+            'name': 'Cores',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.core',
+            'view_mode': 'tree,form',
+            'domain': [('node_id', '=', self.id)],
+            'context': {'default_node_id': self.id},
+            'target': 'current',
+        }
+
+    def action_view_support_tickets(self):
+        self.ensure_one()
+        return {
+            'name': 'Tickets',
+            'type': 'ir.actions.act_window',
+            'res_model': 'helpdesk.ticket',
+            'view_mode': 'tree,form',
+            'domain': [('node_id', '=', self.id)],
+            'context': {'default_node_id': self.id},
             'target': 'current',
         }

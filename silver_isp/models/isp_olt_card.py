@@ -1,14 +1,14 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class IspOltCard(models.Model):
     _name = 'isp.olt.card'
     _description = 'Tarjeta de Equipo OLT'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    name = fields.Char(string='Nombre Tarjeta')
+    name = fields.Char(string='Nombre Tarjeta', readonly=True, copy=False, default='New')
     num_card = fields.Integer(string='Numero Slot')
-    port_card = fields.Selection([], string='Cantidad Puertos')
-    olt_id = fields.Many2one('isp.olt', string='OLT')
+    port_card = fields.Selection([('1','1'),('2','2'),('4','4'),('8','8'),('16','16')], string='Cantidad Puertos')
+    olt_id = fields.Many2one('isp.olt', string='OLT', required=True, ondelete='cascade')
     type_access_net = fields.Selection(
         [('inactive', 'Inactivo'), ('dhcp', 'DHCP Leases'), ('manual', 'IP Asignada manualmente'),
          ('system', 'IP Asignada por el sistema')], default='inactive', string='Tipo Acceso', required=True)
@@ -18,6 +18,26 @@ class IspOltCard(models.Model):
     ip_address_ids = fields.One2many('isp.ip.address', 'card_id', string='Direcciones IP')
     olt_card_port_count = fields.Integer(string='Conteo Slot OLT', compute='_compute_olt_card_port_count')
     contracts_card_count = fields.Integer(string='Conteo Tarjetas Olt', compute='_compute_contracts_card_count')
+
+    @api.model
+    def create(self, vals):
+        if vals.get('olt_id'):
+            olt = self.env['isp.olt'].browse(vals['olt_id'])
+            if olt.exists():
+                card_count = self.search_count([('olt_id', '=', olt.id)])
+                vals['name'] = f"{olt.name}/CARD{card_count + 1}"
+        return super(IspOltCard, self).create(vals)
+
+    def write(self, vals):
+        # If the olt_id is being changed, we need to rename the card
+        if 'olt_id' in vals:
+            new_olt = self.env['isp.olt'].browse(vals['olt_id'])
+            if new_olt.exists():
+                for record in self:
+                    # We need to count the cards in the new OLT to get the next number
+                    card_count = self.search_count([('olt_id', '=', new_olt.id)])
+                    record.name = f"{new_olt.name}/CARD{card_count + 1}"
+        return super(IspOltCard, self).write(vals)
 
     def _compute_olt_card_port_count(self):
         for record in self:
@@ -30,7 +50,7 @@ class IspOltCard(models.Model):
     def create_olt_card_port(self):
         self.ensure_one()
         ports_to_create = []
-        for i in range(self.num_ports):
+        for i in range(int(self.port_card)):
             ports_to_create.append({
                 'name': f"{self.name}/port/{i+1}",
                 'olt_card_id': self.id,
@@ -42,5 +62,29 @@ class IspOltCard(models.Model):
             'res_model': 'isp.olt.card.port',
             'view_mode': 'tree,form',
             'domain': [('olt_card_id', '=', self.id)],
+            'target': 'current',
+        }
+
+    def action_view_olt_card_ports(self):
+        self.ensure_one()
+        return {
+            'name': 'Puertos OLT',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.olt.card.port',
+            'view_mode': 'tree,form',
+            'domain': [('olt_card_id', '=', self.id)],
+            'context': {'default_olt_card_id': self.id},
+            'target': 'current',
+        }
+
+    def action_view_contracts(self):
+        self.ensure_one()
+        return {
+            'name': 'Contratos',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.contract',
+            'view_mode': 'tree,form',
+            'domain': [('olt_card_id', '=', self.id)],
+            'context': {'default_olt_card_id': self.id},
             'target': 'current',
         }

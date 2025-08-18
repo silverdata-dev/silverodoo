@@ -2,13 +2,5 @@
 <odoo>
     <data>
 
-        <!-- Acciones Ficticias -->
-        <record id="action_isp_placeholder" model="ir.actions.act_window">
-            <field name="name">Acción de marcador de posición</field>
-            <field name="res_model">isp.core</field>
-            <field name="view_mode">tree,form</field>
-            <field name="domain">[('id', '=', -1)]</field> <!-- No mostrar registros -->
-        </record>
-
     </data>
 </odoo>

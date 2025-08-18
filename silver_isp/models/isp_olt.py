@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class IspOlt(models.Model):
     _name = 'isp.olt'
@@ -135,6 +135,41 @@ class IspOlt(models.Model):
         readonly=False
     )
 
+
+
+    @api.model
+    def create(self, vals):
+        print(("createee", vals))
+        if vals.get('node_id'):
+            node = self.env['isp.node'].browse(vals['node_id'])
+            print(("createee0", node, node.name, node.asset_id, node.asset_id.name))
+            if node.exists() and node.name:
+                olt_count = self.search_count([('node_id', '=', node.id)])
+                vals['name'] = f"{node.name}/OLT{olt_count + 1}"
+                print(("createe2e", vals))
+        print(("createee3", vals))
+        return super(IspOlt, self).create(vals)
+
+
+    def write(self, vals):
+        print(("apwrite", vals))
+
+        for i, record in enumerate(self):
+            if vals.get('node_id'):
+                node = self.env['isp.node'].browse(vals['node_id'])
+            else:
+                node = record.node_id
+
+            if node.exists() and node.name:
+                olt_count = self.search_count([('node_id', '=', node.id)])
+                record.asset_id.name = f"{node.name}/OLT{olt_count + 1}"
+
+
+            # If node_id is set to False, the name is not changed.
+        return super(IspOlt, self).write(vals)
+
+
+
     def _compute_hostname(self):
         for olt in self:
             if olt.node_id:
@@ -159,7 +194,7 @@ class IspOlt(models.Model):
     def create_olt_card(self):
         self.ensure_one()
         new_card = self.env['isp.olt.card'].create({
-            'name': f"Card for {self.name}",
+#            'name': f"Card for {self.name}",
             'olt_id': self.id,
         })
         return {
@@ -208,4 +243,28 @@ class IspOlt(models.Model):
                 'message': 'Password sent successfully!',
                 'type': 'success',
             }
+        }
+
+    def action_view_olt_cards(self):
+        self.ensure_one()
+        return {
+            'name': 'Tarjetas OLT',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.olt.card',
+            'view_mode': 'tree,form',
+            'domain': [('olt_id', '=', self.id)],
+            'context': {'default_olt_id': self.id},
+            'target': 'current',
+        }
+
+    def action_view_contracts(self):
+        self.ensure_one()
+        return {
+            'name': 'Contratos',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.contract',
+            'view_mode': 'tree,form',
+            'domain': [('olt_id', '=', self.id)],
+            'context': {'default_olt_id': self.id},
+            'target': 'current',
         }

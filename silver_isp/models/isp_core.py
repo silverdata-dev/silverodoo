@@ -152,7 +152,7 @@ class IspCore(models.Model):
     def create_radius(self):
         self.ensure_one()
         new_radius = self.env['isp.radius'].create({
-            'name': f"Radius for {self.name}",
+            #'name': f"Radius for {self.name}",
             'core_id': self.id,
         })
         return {
@@ -227,4 +227,52 @@ class IspCore(models.Model):
                 'message': 'GPON calculated successfully!',
                 'type': 'success',
             }
+        }
+
+    def action_view_olts(self):
+        self.ensure_one()
+        return {
+            'name': 'Equipos OLT',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.olt',
+            'view_mode': 'tree,form',
+            'domain': [('core_id', '=', self.id)],
+            'context': {'default_core_id': self.id},
+            'target': 'current',
+        }
+
+    def action_view_radius(self):
+        self.ensure_one()
+        return {
+            'name': 'Radius',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.radius',
+            'view_mode': 'tree,form',
+            'domain': [('core_id', '=', self.id)],
+            'context': {'default_core_id': self.id},
+            'target': 'current',
+        }
+
+    def action_view_aps(self):
+        self.ensure_one()
+        return {
+            'name': 'Equipos AP',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.ap',
+            'view_mode': 'tree,form',
+            'domain': [('core_id', '=', self.id)],
+            'context': {'default_core_id': self.id},
+            'target': 'current',
+        }
+
+    def action_view_contracts(self):
+        self.ensure_one()
+        return {
+            'name': 'Contratos',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.contract',
+            'view_mode': 'tree,form',
+            'domain': [('core_id', '=', self.id)],
+            'context': {'default_core_id': self.id},
+            'target': 'current',
         }

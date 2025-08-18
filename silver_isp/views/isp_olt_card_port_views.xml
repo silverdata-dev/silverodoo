@@ -33,13 +33,13 @@
                     </header>
                     <sheet string="Puerto OLT ISP">
                         <div class="oe_button_box" name="button_box">
-                            <button class="oe_stat_button" type="action" name="%(action_isp_placeholder)d" icon="fa-arrows-v">
+                            <button class="oe_stat_button" type="object" name="action_view_splitter1" icon="fa-arrows-v">
                                 <field string="Splitter Primario" name="splitter1_count" widget="statinfo"/>
                             </button>
-                            <button class="oe_stat_button" type="action" name="%(action_isp_placeholder)d" icon="fa-arrows-v">
+                            <button class="oe_stat_button" type="object" name="action_view_splitter2" icon="fa-arrows-v">
                                 <field string="Splitter Secundario" name="splitter2_count" widget="statinfo"/>
                             </button>
-                            <button class="oe_stat_button" type="action" name="%(action_isp_placeholder)d" icon="fa-link">
+                            <button class="oe_stat_button" type="object" name="action_view_contracts" icon="fa-link">
                                 <field string="Contratos" name="contracts_port_count" widget="statinfo"/>
                             </button>
                         </div>

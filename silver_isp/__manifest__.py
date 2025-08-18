@@ -43,14 +43,23 @@
         'views/isp_onu_line_views.xml',
         'views/device_pool_ip_views.xml',
         'views/isp_radius_line_views.xml',
+        "views/isp_map_views.xml",
         "views/isp_menus.xml",
     ],
     'assets': {
         'web.assets_backend': [
             'silver_isp/static/src/js/raphael.min.js',
             'silver_isp/static/src/js/ppp_speed_chart.js',
+            'silver_isp/static/src/css/general.css',
+            # Map View Assets
+            'silver_isp/static/src/css/map_view.css',
+            'silver_isp/static/src/js/map_view.js',
+            'silver_isp/static/src/js/node_map_widget.js',
+#        ],
+#        'web.assets_qweb': [
             'silver_isp/static/src/xml/ppp_speed_chart.xml',
-                'silver_isp/static/src/css/general.css',
+            'silver_isp/static/src/xml/map_view.xml',
+            'silver_isp/static/src/xml/node_map_widget.xml',
         ],
     },
     'installable': True,

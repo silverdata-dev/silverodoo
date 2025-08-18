@@ -31,7 +31,8 @@
             <menuitem id="menu_isp_olt_card_port" name="Puertos OLT" parent="menu_isp_oltss" action="action_isp_olt_card_port" sequence="50"/>
 
         <menuitem id="menu_isp_splitters" name="OLT" parent="menu_isp_infrastructure" sequence="50"/>
-                <menuitem id="menu_isp_splitter" name="Splitters" parent="menu_isp_splitters" action="action_isp_splitter" sequence="60"/>
+                <menuitem id="menu_isp_splitter" name="Splitters" parent="menu_isp_splitters" action="action_isp_splitter" sequence="30"/>
+        <menuitem id="menu_isp_splice_closure" name="Mangas" parent="menu_isp_splitters" action="action_isp_splitter" sequence="60"/>
 
         <menuitem id="menu_isp_cajas" name="Cajas" parent="menu_isp_infrastructure" sequence="60"/>
              <menuitem id="menu_isp_box" name="Cajas NAP" parent="menu_isp_cajas" action="action_isp_box" sequence="70"/>
@@ -42,12 +43,20 @@
         <menuitem id="menu_isp_radiuss" name="Radius" parent="menu_isp_infrastructure" sequence="80"/>
             <menuitem id="menu_isp_radius" name="Servidores Radius" parent="menu_isp_radiuss" action="action_isp_radius" sequence="90"/>
 
-        <menuitem id="menu_isp_mangas" name="Mangas" parent="menu_isp_infrastructure" sequence="90"/>
-        <menuitem id="menu_isp_splice_closure" name="Splice Closures" parent="menu_isp_mangas" action="action_isp_splice_closure" sequence="60"/>
+
 
         <menuitem id="menu_isp_cabless" name="Cables" parent="menu_isp_infrastructure" sequence="120"/>
 
         <menuitem id="menu_isp_cable" name="Cables" parent="menu_isp_cabless" action="action_isp_cable" sequence="70"/>
+
+
+           <!-- Menu Item -->
+        <menuitem id="menu_isp_asset_map"
+                  name="Mapa"
+                  parent="menu_isp_infrastructure"
+                  action="action_isp_asset_map"
+                  sequence="1"/>
+
 
     </data>
 </odoo>

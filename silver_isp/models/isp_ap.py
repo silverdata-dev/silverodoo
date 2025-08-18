@@ -20,6 +20,7 @@ class IspAp(models.Model):
 
 
     capacity_usage_ap = fields.Integer(string='Usada AP', readonly=True)
+    contract_count = fields.Integer(string="Contratos", compute='_compute_contract_count')
     core_id = fields.Many2one('isp.core', 'Equipo Core')
     is_mgn_mac_onu = fields.Boolean(string='Gestion MAC ONU')
     device_pool_ip_ids = fields.One2many('device.pool.ip', 'ap_id', string='Device Pool Ip')
@@ -77,4 +78,21 @@ class IspAp(models.Model):
                 'message': 'Connection to AP was successful!',
                 'type': 'success',
             }
+        }
+
+    def _compute_contract_count(self):
+        for record in self:
+            # Assuming 'isp.contract' has a 'ap_id' field.
+            record.contract_count = self.env['isp.contract'].search_count([('ap_id', '=', record.id)])
+
+    def action_view_contracts(self):
+        self.ensure_one()
+        return {
+            'name': 'Contratos',
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.contract',
+            'view_mode': 'tree,form',
+            'domain': [('ap_id', '=', self.id)],
+            'context': {'default_ap_id': self.id},
+            'target': 'current',
         }

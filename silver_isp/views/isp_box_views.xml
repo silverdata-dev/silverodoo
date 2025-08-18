@@ -30,8 +30,8 @@
                 <form string="Caja Nap ISP">
                     <sheet string="Caja NAP ISP">
                         <div class="oe_button_box" name="button_box">
-                            <button class="oe_stat_button" type="action" name="%(action_isp_placeholder)d" icon="fa-arrows-v">
-                                <field string="Contratos" name="capacity_usage_nap" widget="statinfo"/>
+                            <button class="oe_stat_button" type="object" name="action_view_contracts" icon="fa-arrows-v">
+                                <field string="Contratos" name="contract_count" widget="statinfo"/>
                             </button>
                         </div>
                         <div class="oe_title">

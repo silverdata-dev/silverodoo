@@ -1378,7 +1378,7 @@ model: isp.splitter
 
 <tree string="Splitter" default_order="name desc">
 <field name="name" modifiers="{}"/>
-<field name="name_sppliter" modifiers="{}"/>
+<field name="name" modifiers="{}"/>
 <field name="capacity_splitter" modifiers="{}"/>
 <field name="port_splitter" modifiers="{}"/>
 <field name="type_splitter" modifiers="{}"/>
@@ -1407,7 +1407,7 @@ model: isp.splitter
 </div>
 <group>
 <group>
-<field name="name_sppliter" attrs="{'invisible': [('type_splitter','!=','2')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_splitter&quot;, &quot;!=&quot;, &quot;2&quot;]]}"/>
+<field name="name" attrs="{'invisible': [('type_splitter','!=','2')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_splitter&quot;, &quot;!=&quot;, &quot;2&quot;]]}"/>
 <field name="capacity_splitter" modifiers="{}"/>
 <field name="port_splitter" attrs="{'invisible': [('type_splitter','=','1')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_splitter&quot;, &quot;=&quot;, &quot;1&quot;]]}"/>
 </group>
@@ -1477,7 +1477,7 @@ model: isp.splitter
 "message_unread_counter","Unread Messages Counter","Splitter de Conexion","entero","Campo base","","","True",""
 "my_activity_date_deadline","My Activity Deadline","Splitter de Conexion","fecha","Campo base","","","True",""
 "name","Splitter","Splitter de Conexion","Carácter","Campo base","","True","",""
-"name_sppliter","Nombre","Splitter de Conexion","Carácter","Campo base","","True","",""
+"name","Nombre","Splitter de Conexion","Carácter","Campo base","","True","",""
 "olt_card_port_id","Puerto Tarjeta OLT","Splitter de Conexion","many2one","Campo base","","True","","isp.olt.card.port"
 "port_splitter","Puerto Splitter Primario","Splitter de Conexion","Carácter","Campo base","","True","",""
 "splitter_id","Spliter Principal","Splitter de Conexion","many2one","Campo base","","True","","isp.splitter"

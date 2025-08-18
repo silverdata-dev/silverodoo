@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class IspRadius(models.Model):
     _name = 'isp.radius'
@@ -14,13 +14,13 @@ class IspRadius(models.Model):
     netdev_id = fields.Many2one('isp.netdev', required=True, ondelete="cascade")
 
 
-    name = fields.Char(string='Hostname', required=True)
+    name = fields.Char(string='Hostname', required=True, readonly=True, copy=False, default='New')
     ip_core_radius = fields.Char(string='IP Core Radius')
     port_core_radius = fields.Char(string='Puerto Core Radius')
     user_core_radius = fields.Char(string='Usuario Core Radius')
     password_core_radius = fields.Char(string='Password Core Radius')
     database = fields.Char(string='Database')
-    core_id = fields.Many2one('isp.core', string='Equipo Core', readonly=True)
+    core_id = fields.Many2one('isp.core', string='Equipo Core', readonly=True, required=True, ondelete='cascade')
     type_radius = fields.Selection([], string='Tipo Radius')
     port_coa = fields.Char(string='Puerto COA')
     is_ipv6 = fields.Boolean(string='IPV6')
@@ -43,6 +43,24 @@ class IspRadius(models.Model):
     code_mac = fields.Selection([], string='Codigo MAC')
     default_control = fields.Boolean(string='Control por Defecto')
     perfil_control = fields.Boolean(string='Control por Perfil')
+
+    @api.model
+    def create(self, vals):
+        if vals.get('core_id'):
+            core = self.env['isp.core'].browse(vals['core_id'])
+            if core.exists():
+                radius_count = self.search_count([('core_id', '=', core.id)])
+                vals['name'] = f"{core.name}/RADIUS{radius_count + 1}"
+        return super(IspRadius, self).create(vals)
+
+    def write(self, vals):
+        if 'core_id' in vals:
+            new_core = self.env['isp.core'].browse(vals['core_id'])
+            if new_core.exists():
+                for record in self:
+                    radius_count = self.search_count([('core_id', '=', new_core.id)])
+                    record.name = f"{new_core.name}/RADIUS{radius_count + 1}"
+        return super(IspRadius, self).write(vals)
 
     def action_connect_radius(self):
         self.ensure_one()

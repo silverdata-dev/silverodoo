@@ -32,10 +32,10 @@
                     </header>
                     <sheet string="Tarjeta OLT ISP">
                         <div class="oe_button_box" name="button_box">
-                            <button class="oe_stat_button" type="action" name="%(action_isp_placeholder)d" icon="fa-arrows-v">
+                            <button class="oe_stat_button" type="object" name="action_view_olt_card_ports" icon="fa-arrows-v">
                                 <field string="Puertos OLT" name="olt_card_port_count" widget="statinfo"/>
                             </button>
-                            <button class="oe_stat_button" type="action" name="%(action_isp_placeholder)d" icon="fa-link">
+                            <button class="oe_stat_button" type="object" name="action_view_contracts" icon="fa-link">
                                 <field string="Contratos" name="contracts_card_count" widget="statinfo"/>
                             </button>
                         </div>
