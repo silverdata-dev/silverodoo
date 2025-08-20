@@ -3,13 +3,34 @@
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { loadCSS, loadJS } from "@web/core/assets";
+import { standardFieldProps } from "@web/views/fields/standard_field_props";
 
 import { Component, onMounted, onWillStart, useRef, useState } from "@odoo/owl";
 
 export class AssetMapView extends Component {
     static template = "silver_isp.AssetMapView";
     static props = {
+        
+        ...standardFieldProps,
+        
         nodeId: { type: [Number, String], optional: true },
+
+                action: {
+            optional: true,
+        },
+                        actionId: {
+            optional: true,
+        },
+        className: {
+            optional: true,
+        },
+        name: {
+            optional: true,
+        },
+        record: {
+            optional: true
+        }
+
     };
 
     setup() {

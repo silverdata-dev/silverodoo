@@ -55,11 +55,13 @@
             'silver_isp/static/src/css/map_view.css',
             'silver_isp/static/src/js/map_view.js',
             'silver_isp/static/src/js/node_map_widget.js',
+            'silver_isp/static/src/js/node_network_widget.js',
 #        ],
 #        'web.assets_qweb': [
             'silver_isp/static/src/xml/ppp_speed_chart.xml',
             'silver_isp/static/src/xml/map_view.xml',
             'silver_isp/static/src/xml/node_map_widget.xml',
+            'silver_isp/static/src/xml/node_network_widget.xml',
         ],
     },
     'installable': True,

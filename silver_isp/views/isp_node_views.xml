@@ -41,9 +41,9 @@
                             <!--button class="oe_stat_button" type="object" name="action_view_support_tickets" icon="fa-ticket">
                                 <field string="Tickets" name="support_ticket_count" widget="statinfo"/>
                             </button-->
-                            <button class="oe_stat_button" type="action" name="%(stock.action_picking_tree_all)d" icon="fa-arrows-v">
-                                <!--field string="Movimientos" name="stock_picking_count" widget="statinfo"/-->
-                            </button>
+                            <!--button class="oe_stat_button" type="action" name="%(stock.action_picking_tree_all)d" icon="fa-arrows-v">
+                                <!field string="Movimientos" name="stock_picking_count" widget="statinfo"/>
+                            </button-->
                             <button class="oe_stat_button" type="object" name="action_search_view_olts" icon="fa-arrows-v">
                                 <field string="Equipos Olt" name="olt_count" widget="statinfo"/>
                             </button>
@@ -91,7 +91,10 @@
                             <page name="map_view" string="Mapa">
                                 <field name="id" class="map-field" widget="node_map"/>
                             </page>
-                        </notebook>
+                            <page string="Network Graph" name="network_graph">
+                                <field name="id" class="map-field" widget="node_network"/>
+                            </page>
+                        </notebook> 
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids"/>

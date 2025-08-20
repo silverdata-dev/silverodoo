@@ -136,6 +136,13 @@ class IspOlt(models.Model):
     )
 
 
+    type_access_net = fields.Selection(
+       
+        [('inactive', 'Inactivo'), ('dhcp', 'DHCP Leases'), ('manual', 'IP Asignada manualmente'),
+         ('system', 'IP Asignada por el sistema')], 
+          related='netdev_id.type_access_net',
+         default='inactive', string='Tipo Acceso', required=True)
+
 
     @api.model
     def create(self, vals):

@@ -9,6 +9,11 @@ class IspNode(models.Model):
 
     asset_id = fields.Many2one('isp.asset', required=True, ondelete="cascade")
 
+    code = fields.Char(string="Codigo interno", related='asset_id.code', required=True)
+
+#    _sql_constraints = [
+#        ('unique_code', 'unique (code)', 'This value must be unique!')
+#    ]
 
     phone = fields.Char(string='Teléfono')
 
@@ -31,6 +36,9 @@ class IspNode(models.Model):
         store=True,
         readonly=False
     )
+
+
+
 
     def _compute_counts(self):
         for record in self:
@@ -133,3 +141,12 @@ class IspNode(models.Model):
             'context': {'default_node_id': self.id},
             'target': 'current',
         }
+
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        args = args or []
+        domain = []
+        if name:
+            domain = ['|', ('code', operator, name), ('name', operator, name)]
+        nodes = self.search(domain + args, limit=limit)
+        return nodes.name_get()

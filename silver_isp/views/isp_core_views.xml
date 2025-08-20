@@ -21,7 +21,7 @@
                     <field name="model"/>
                     <field name="ip"/>
                     <field name="port"/>
-                    <field name="user"/>
+                    <field name="username"/>
                     <field name="state" widget="badge" decoration-danger="state == 'down'" decoration-success="state == 'active'"/>
                 </tree>
             </field>
@@ -37,6 +37,15 @@
                         <button name="create_radius" string="Crear Radius" type="object" invisible="not is_isp_radius"/>  
                     </header>
                     <sheet string="Equipo Core ISP">
+                                        <header>
+                        <button name="button_test_connection" type="object" string="Test Connection" class="oe_highlight"/>
+                        <button name="button_get_system_info" type="object" string="Get System Info"/>
+                        <button name="button_view_interfaces" type="object" string="View Interfaces"/>
+                        <button name="button_view_routes" type="object" string="View Routes"/>
+                        <button name="button_view_ppp_active" type="object" string="View PPP Active"/>
+                        <button name="button_view_firewall_rules" type="object" string="View Firewall Rules"/>
+                        <button name="button_view_queues" type="object" string="View Queues"/>
+                    </header>
                         <div class="oe_button_box" name="button_box"> 
                             <button class="oe_stat_button" type="object" name="action_view_olts" icon="fa-arrows-v">
                                 <field string="Equipos OLT" name="olt_count" widget="statinfo"/>
@@ -87,7 +96,7 @@
                                 <field name="kex_algorithms_ids" invisible="brand_description != 'hua'" widget="many2many_tags"/>
                             </group>
                             <group>
-                                <field name="user"/>
+                                <field name="username"/>
                                 <field name="password" password="True"/>
                                 <button class="oe_inline oe_link " name="action_send_password" string=" →Enviar Contraseña" type="object"/>
                             </group>
@@ -188,20 +197,32 @@
                                     <field name="is_desactive_olt" widget="boolean_toggle"/>
                                 </group>
                             </page>
-                            <page name="ip_address" string="Direcciones IP" invisible="type_access_net not in ['dhcp', 'dhcp_leases', 'dhcp_leases_vlan']">
-                                <group>
-                                    <field name="ip_address_line_ids" nolabel="1"/>
-                                </group>
-                                <group>
-                                    <field name="ip_address_ids" nolabel="1"/>
-                                </group>
+                            <page name="ip_address"   string="Direcciones IP" invisible="type_access_net not in ['dhcp', 'dhcp_leases', 'dhcp_leases_vlan']">
+                                
+                                    <field name="ip_address_line_ids" nolabel="1">
+                                        <tree>
+                                            <field name="name"/>
+                                            <field name="gateway"/>
+                                            <field name="network_address"/>
+                                            <field name="broadcast_address"/>
+                                            <button name="action_borrar_pool" string="Borrar Pool" type="object" class="oe_highlight"/>
+                                            <button name="action_remover_gw" string="Remover GW" type="object" class="oe_highlight"/>
+                                            <button name="action_remover_ct" string="Remover CT" type="object" class="oe_highlight"/>
+                                            <button name="action_regular_pool" string="Regular Pool" type="object" class="oe_highlight"/>
+                                            <button name="unlink" string="Borrar" type="object" class="oe_highlight"/>
+                                        </tree>
+                                    </field>
+                                
+                                    <field name="ip_address_ids"   nolabel="1"/>
+                                
                             </page>
+                            
                             <page name="config_port_slot" string="Configuracion Interface GPON" invisible="brand_description != 'hua'">
-                                <group>
+                                
                                     <div class="oe_button_box" name="button_box">
                                         <button name="action_calculate_gpon" type="object" class="oe_stat_button" icon="fa-spinner" string="Calcular GigabitEthernet"/>
                                     </div>
-                                </group>
+                                
                                 <group string="Datos Técnicos">
                                     <group>
                                         <field name="slot"/>

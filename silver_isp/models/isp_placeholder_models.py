@@ -33,12 +33,63 @@ class IspIpAddressLine(models.Model):
     _name = 'isp.ip.address.line'
     _description = 'Placeholder for ISP IP Address Line'
     name = fields.Char('Name')
+    gateway = fields.Char('Gateway')
+    network_address = fields.Char('Network Address')
+    broadcast_address = fields.Char('Broadcast Address')
     core_id = fields.Many2one('isp.core', string='Core')
     olt_id = fields.Many2one('isp.olt', string='OLT')
     card_id = fields.Many2one('isp.olt.card', string='Card')
     port_id = fields.Many2one('isp.olt.card.port', string='Port')
     radius_id = fields.Many2one('isp.radius', string='Radius')
     is_tr_069 = fields.Boolean('Is TR-069')
+
+    def action_borrar_pool(self):
+        # Placeholder for borrar pool action
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Success',
+                'message': 'Acción "Borrar Pool" ejecutada con éxito.',
+                'type': 'success',
+            }
+        }
+
+    def action_remover_gw(self):
+        # Placeholder for remover gw action
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Success',
+                'message': 'Acción "Remover GW" ejecutada con éxito.',
+                'type': 'success',
+            }
+        }
+
+    def action_remover_ct(self):
+        # Placeholder for remover ct action
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Success',
+                'message': 'Acción "Remover CT" ejecutada con éxito.',
+                'type': 'success',
+            }
+        }
+
+    def action_regular_pool(self):
+        # Placeholder for regular pool action
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Success',
+                'message': 'Acción "Regular Pool" ejecutada con éxito.',
+                'type': 'success',
+            }
+        }
 
 
 class IspIpAddress(models.Model):

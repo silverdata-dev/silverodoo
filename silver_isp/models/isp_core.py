@@ -13,7 +13,7 @@ class IspCore(models.Model):
     netdev_id = fields.Many2one('isp.netdev', required=True, ondelete="cascade")
 
 
-    name = fields.Char(related='asset_id.name', string='Código', required=True, copy=False, default=lambda self: ('Nuevo'))
+    name = fields.Char(related='asset_id.name', string='Codigo', required=False, copy=False, default=lambda self: ('Nuevo'))
 
     hostname_core = fields.Char(string='Hostname')
 
@@ -103,7 +103,10 @@ class IspCore(models.Model):
         if vals.get('node_id'):
             node = self.env['isp.node'].browse(vals['node_id'])
             if node.exists() and node.code:
+
                 core_count = self.search_count([('node_id', '=', node.id)])
+
+                vals['parent_id'] = node.asset_id.id
                 vals['name'] = f"{node.code}/CR{core_count + 1}"
         return super(IspCore, self).create(vals)
 
@@ -120,6 +123,13 @@ class IspCore(models.Model):
                 # This logic handles single and multiple record updates.
                 # For multiple updates, it iterates and assigns a unique incremental name to each.
                 base_count = self.search_count([('node_id', '=', node.id)])
+
+                print(("cocrewr1", record.asset_id.id, record.parent_id, vals))
+
+                if (not record.parent_id ) or (record.parent_id.id != node.asset_id.id):
+                    record.parent_id = node.asset_id.id
+                
+                
                 record.asset_id.name = f"{node.code}/CR{base_count + i + 1}"
             print(("cocrewr2", record.asset_id.name))
         return super(IspCore, self).write(vals)
@@ -276,3 +286,24 @@ class IspCore(models.Model):
             'context': {'default_core_id': self.id},
             'target': 'current',
         }
+
+    def button_test_connection(self):
+        print(("netdev", self.netdev_id, self.name))
+        return self.netdev_id.button_test_connection()
+
+
+    def button_get_system_info(self):
+        return self.netdev_id.button_get_system_info(self)
+
+    def button_view_interfaces(self):
+        return self.netdev_id.button_view_interfaces(self)
+
+    def button_view_routes(self):
+        return self.netdev_id.button_view_routes(self)
+
+    def button_view_ppp_active(self):
+        return self.netdev_id.button_view_ppp_active(self)
+    def button_view_firewall_rules(self):
+        return self.netdev_id.button_view_firewall_rules(self)
+    def button_view_queues(self):
+        return self.netdev_id.button_view_queues(self)

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="silver_isp.NodeNetwork" owl="1">
+        <div class="o_node_network_graph" style="height: 500px;" t-ref="graph"/>
+    </t>
+</templates> 
