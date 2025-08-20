@@ -27,6 +27,7 @@ class IspAsset(models.Model):
     ]
 
     parent_id = fields.Many2one('isp.asset', string='Parent')
+    parent_id = fields.Many2one('isp.asset', string='Parent')
     root_id = fields.Many2one('isp.asset', string='Root')
 
     street = fields.Char(string='Calle')

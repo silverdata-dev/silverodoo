@@ -42,9 +42,9 @@ class IspIpAddress(models.Model):
     card_id = fields.Many2one('isp.olt.card', string='OLT Card')
     port_id = fields.Many2one('isp.olt.card.port', string='OLT Card Port')
     radius_id = fields.Many2one('isp.radius', string='Radius Server')
-    
+
     line_ids = fields.One2many('isp.ip.address.line', 'address_id', string='IP Addresses')
-    
+
     total_ips = fields.Integer(compute='_compute_usage_stats', string='Total IPs')
     used_ips = fields.Integer(compute='_compute_usage_stats', string='Used IPs')
     usage_percentage = fields.Float(compute='_compute_usage_stats', string='Usage (%)', group_operator="avg")
@@ -89,7 +89,7 @@ class IspIpAddressLine(models.Model):
         ('used', 'Used'),
         ('reserved', 'Reserved')
     ], string='Status', default='available', required=True)
-    
+
     assigned_to = fields.Reference(selection=[], string='Assigned To')
     description = fields.Text()
 
@@ -106,6 +106,54 @@ class IspIpAddressLine(models.Model):
     is_tr_069 = fields.Boolean(string="Es069")
 
     ip_int = fields.Integer(compute='_compute_ip_int', store=True, help="Technical field for sorting")
+    def action_borrar_pool(self):
+        # Placeholder for borrar pool action
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Success',
+                'message': 'Acción "Borrar Pool" ejecutada con éxito.',
+                'type': 'success',
+            }
+        }
+
+    def action_remover_gw(self):
+        # Placeholder for remover gw action
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Success',
+                'message': 'Acción "Remover GW" ejecutada con éxito.',
+                'type': 'success',
+            }
+        }
+
+    def action_remover_ct(self):
+        # Placeholder for remover ct action
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Success',
+                'message': 'Acción "Remover CT" ejecutada con éxito.',
+                'type': 'success',
+            }
+        }
+
+    def action_regular_pool(self):
+        # Placeholder for regular pool action
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Success',
+                'message': 'Acción "Regular Pool" ejecutada con éxito.',
+                'type': 'success',
+            }
+        }
+
 
     _sql_constraints = [
         ('ip_range_uniq', 'unique (name, address_id)', 'This IP already exists in this range!')
@@ -118,7 +166,7 @@ class IspIpAddressLine(models.Model):
                 record.ip_int = int(ipaddress.ip_address(record.name))
             except ValueError:
                 record.ip_int = 0
-    
+
     def action_borrar_pool(self):
         # Placeholder for borrar pool action
         return {

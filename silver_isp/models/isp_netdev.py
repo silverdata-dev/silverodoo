@@ -22,7 +22,7 @@ class IspNetdev(models.Model):
     ip_address_ids = fields.One2many('isp.ip.address', 'core_id', string='Direcciones IP')
 
 
-    
+
     ip = fields.Char(string='IP de Conexion')
     port = fields.Char(string='Puerto de Conexion')
     username = fields.Char(string='Usuario')
@@ -88,7 +88,7 @@ class IspNetdev(models.Model):
                     routerboard_info = tuple(api.path('/system/routerboard'))[0]
 
                     print(("system_resource", system_resource,"routerboard_info",routerboard_info ))
-                    
+
                     router.write({
                         'model': routerboard_info.get('model'),
                         'firmware_version': system_resource.get('version'),
@@ -108,9 +108,9 @@ class IspNetdev(models.Model):
 
         try:
             interfaces = tuple(api.path('/interface'))
-            wizard = self.env['isp.netdev.interface.wizard'].create({'router_id': self.id})
+            wizard = self.env['isp.router.interface.wizard'].create({'router_id': self.id})
             for interface in interfaces:
-                self.env['isp.netdev.interface.wizard.line'].create({
+                self.env['isp.router.interface.wizard.line'].create({
                     'wizard_id': wizard.id,
                     'name': interface.get('name'),
                     'mac_address': interface.get('mac-address'),
@@ -119,11 +119,11 @@ class IspNetdev(models.Model):
                     'disabled': interface.get('disabled'),
                     'comment': interface.get('comment'),
                 })
-            
+
             return {
                 'name': 'Router Interfaces',
                 'type': 'ir.actions.act_window',
-                'res_model': 'isp.netdev.interface.wizard',
+                'res_model': 'isp.router.interface.wizard',
                 'view_mode': 'form',
                 'res_id': wizard.id,
                 'target': 'new',
@@ -140,9 +140,9 @@ class IspNetdev(models.Model):
 
         try:
             routes = tuple(api.path('/ip/route'))
-            wizard = self.env['isp.netdev.route.wizard'].create({'router_id': self.id})
+            wizard = self.env['isp.router.route.wizard'].create({'router_id': self.id})
             for route in routes:
-                self.env['isp.netdev.route.wizard.line'].create({
+                self.env['isp.router.route.wizard.line'].create({
                     'wizard_id': wizard.id,
                     'dst_address': route.get('dst-address'),
                     'gateway': route.get('gateway'),
@@ -151,11 +151,11 @@ class IspNetdev(models.Model):
                     'static': route.get('static'),
                     'comment': route.get('comment'),
                 })
-            
+
             return {
                 'name': 'Router Routes',
                 'type': 'ir.actions.act_window',
-                'res_model': 'isp.netdev.route.wizard',
+                'res_model': 'isp.router.route.wizard',
                 'view_mode': 'form',
                 'res_id': wizard.id,
                 'target': 'new',
@@ -182,7 +182,7 @@ class IspNetdev(models.Model):
                     'address': ppp.get('address'),
                     'uptime': ppp.get('uptime'),
                 })
-            
+
             return {
                 'name': 'PPP Active Connections',
                 'type': 'ir.actions.act_window',
@@ -215,7 +215,7 @@ class IspNetdev(models.Model):
                     'comment': rule.get('comment'),
                     'disabled': rule.get('disabled'),
                 })
-            
+
             return {
                 'name': 'Firewall Rules',
                 'type': 'ir.actions.act_window',
@@ -247,7 +247,7 @@ class IspNetdev(models.Model):
                     'disabled': queue.get('disabled'),
                     'comment': queue.get('comment'),
                 })
-            
+
             return {
                 'name': 'Queues',
                 'type': 'ir.actions.act_window',

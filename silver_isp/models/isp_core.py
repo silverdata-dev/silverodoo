@@ -29,27 +29,28 @@ class IspCore(models.Model):
     brand_id = fields.Many2one('product.brand', string='Marca', index=True)
     gateway = fields.Many2one('isp.ip.address', string='Gateway')
     radius_id = fields.Many2one('isp.radius', string='Radius')
+    networks_device_id = fields.Many2many('isp.device.networks', string='Networks Device')
     company_id = fields.Many2one('res.company', string='Compañía', default=lambda self: self.env.company)
-    
+
     ip_address_ids = fields.One2many('isp.ip.address', 'core_id', string='Direcciones IP')
     ip_address_line_ids = fields.One2many('isp.ip.address.line', 'core_id', string='Direcciones IP')
     custom_channel_ids = fields.One2many('addres.list.channel.line', 'core_id', string='Canales')
     isp_core_port_line_ids = fields.One2many('isp.core.port.line', 'core_id', string='Líneas Puerto Slot')
-    
+
     kex_algorithms_ids = fields.Many2many('isp.kex.algorithms', string='Kex Algorithms')
     networks_device_id = fields.Many2many('isp.device.networks', string='Equipos de red')
     isp_vlans_ids = fields.Many2many('isp.vlan', string='Vlans')
     pooOnlyCore = fields.Boolean(string='Pool de IPs Único')
-    
+
     node_ids = fields.Many2many('isp.node', string='Nodos') # ¡Ojo con este, podría ser redundante!
-    
+
     # --- Campos de Conectividad y Acceso ---
     user = fields.Char(string='Usuario')
     user_nass = fields.Char(string='Usuario Nass')
     password = fields.Char(string='Password')
     password_nass = fields.Char(string='Password Nass')
     key_pppoe = fields.Char(string='Password PPPoE')
-    
+
     port = fields.Char(string='Puerto de Conexión')
     port_coa = fields.Char(string='Puerto COA')
     ip = fields.Char(string='IP de Conexión')
@@ -57,11 +58,11 @@ class IspCore(models.Model):
     interface = fields.Char(string='Interface')
     cvlan = fields.Char(string='CVLAN')
     svlan = fields.Char(string='SVLAN')
-    
+
     # --- Campos de Estado y Métricas (calculados) ---
     state = fields.Selection([('draft', 'Borrador'), ('active', 'Activo')], string='Estado')
     display_name = fields.Char(string='Display Name', compute='_compute_display_name')
-    
+
     olt_count = fields.Integer(string='Conteo Equipo OLT', compute='_compute_counts')
     radius_count = fields.Integer(string='Conteo Servidor Radius', compute='_compute_counts')
     ap_count = fields.Integer(string='Conteo Equipo AP', compute='_compute_counts')
@@ -79,62 +80,62 @@ class IspCore(models.Model):
     is_local_address_pppoe = fields.Boolean(string='Local Address PPPoE')
     is_product_pppoe_profile = fields.Boolean(string='Custom Product PPPoE Profile')
     is_used_dynamic_pool = fields.Boolean(string='Usar Pool Dinámico')
-    
+
     is_custom_address_list = fields.Boolean(string='Custom Address Lists')
     is_product_address_list = fields.Boolean(string='Custom Product Address Lists')
     is_custom_address_list_channel = fields.Boolean(string='Custom Addrs Lst por Canal')
     is_reconnection_ip_address_list = fields.Boolean(string='Reconexión IP+Address-List')
-    
+
     is_gestion_queue_parent = fields.Boolean(string='Gestión de Cola Padre')
     is_simple_queue = fields.Boolean(string='Simple Queues')
     is_queue_tree = fields.Boolean(string='Queue Tree')
     is_fttb_queue = fields.Boolean(string='FTTB')
     is_mangle = fields.Boolean(string='Mangle')
-    
+
     is_multiple_vlans = fields.Boolean(string='Habilitar múltiples Vlans')
     is_unique_vlans = fields.Boolean(string='Vlans única')
     is_active_vlans = fields.Boolean(string='Activar Vlans Core')
-    
+
     is_type_core_access = fields.Boolean(string='Acceso')
     is_type_core_bandwidth = fields.Boolean(string='Ancho de banda')
-    
+
     is_desactive_core = fields.Boolean(string='Desactivar Core')
     is_desactive_olt = fields.Boolean(string='Desactivar OLT')
     is_cutoff_reconnection = fields.Boolean(string='Corte/Reconexión Servicio')
     cutoff_reconnection_ipaddress = fields.Boolean(string='IP Address')
     cutoff_reconnection_piloto = fields.Boolean(string='Name Contrato')
-    
+
     is_extract_mac_core = fields.Boolean(string='Asignar MAC para CALLER ID')
     is_change_mac = fields.Boolean(string='Mostrar MAC')
     is_extract_ip_lease = fields.Boolean(string='Extraer IP Lease')
     is_extract_ip_arp = fields.Boolean(string='Extraer IP ARP')
     is_generate = fields.Boolean(string='Generado?')
     is_action_button = fields.Boolean(string='Ejecutado desde el Botón')
-    
+
     # --- Campos de Datos Varios ---
     access_token = fields.Char(string='Security Token')
     access_url = fields.Char(string='Portal Access URL', readonly=True)
     access_warning = fields.Text(string='Access warning', readonly=True)
-    
+
     custom_list_active = fields.Char(string='Activos')
     custom_list_cuttoff = fields.Char(string='Cortados')
     custom_list_layoff = fields.Char(string='Suspendidos')
-    
+
     dhcp_custom_server = fields.Char(string='DHCP Leases')
     brand_description = fields.Text(string='Descripción', readonly=True)
     software_version = fields.Char(string='Versión Software')
     poolip = fields.Char(string='Poolip')
     user_profile_radius = fields.Char(string='User PROFILE')
     model = fields.Char(string='Modelo')
-    
+
     slot = fields.Integer(string='Tarjeta Slot')
     port_card = fields.Integer(string='Puerto por Tarjeta')
-    
+
     # --- Campos de Selección ---
     type_access_net = fields.Selection([('wired', 'Cableado'), ('wireless', 'Inalámbrico')], string='Tipo')
     type_connection = fields.Selection([('router', 'Router'), ('switch', 'Switch')], string='Tipo de Conexión')
     type_manager_address_list = fields.Selection([], string='Tipos de Control')
-    
+
     # --- Relacionado al mixin de asset ---
     asset_type = fields.Selection(
         related='asset_id.asset_type',
@@ -178,8 +179,8 @@ class IspCore(models.Model):
 
                 if (not record.parent_id ) or (record.parent_id.id != node.asset_id.id):
                     record.parent_id = node.asset_id.id
-                
-                
+
+
                 record.asset_id.name = f"{node.code}/CR{base_count + i + 1}"
             print(("cocrewr2", record.asset_id.name))
         return super(IspCore, self).write(vals)
