@@ -87,6 +87,7 @@
                         <notebook colspan="4">
                             <page name="config" string="Configuraciones Generales">
                              <group string="Tipo de Conexion">
+
 <group id="config1">
 
 <field name="is_pppoe" widget="boolean_toggle" on_change="1" modifiers="{}"/>
@@ -186,6 +187,20 @@
 </group>
 </group>
                             </page>
+
+                            <page name="ip_addresses" string="Direcciones IP">
+                                <field name="ip_address_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="cidr"/>
+                                        <field name="gateway"/>
+                                        <field name="status"/>
+                                        <field name="assigned_to"/>
+                                        <field name="description"/>
+                                    </tree>
+                                </field>
+                            </page>
+
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">

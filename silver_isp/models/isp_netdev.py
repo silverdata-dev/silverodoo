@@ -5,7 +5,8 @@ class IspNetdev(models.Model):
     _name = 'isp.netdev'
     _description = 'ISP Network Device (Base Model)'
 
-
+    name = fields.Char(string='Name', required=True)
+    active = fields.Boolean(string='Active', default=True)
 
     type_access_net = fields.Selection(
         [('inactive', 'Inactivo'), ('dhcp', 'DHCP Leases'), ('manual', 'IP Asignada manualmente'),
@@ -18,8 +19,8 @@ class IspNetdev(models.Model):
     dhcp_client = fields.Boolean(string='Profiles VSOL')
     software_version = fields.Char(string='Version Software')
 
-    ip_address_line_ids = fields.One2many('isp.ip.address.line', 'core_id', string='Direcciones IP')
-    ip_address_ids = fields.One2many('isp.ip.address', 'core_id', string='Direcciones IP')
+    ip_address_line_ids = fields.One2many('isp.ip.address.line', 'netdev_id', string='Direcciones IP')
+    ip_address_ids = fields.One2many('isp.ip.address', 'netdev_id', string='Direcciones IP')
 
 
 

@@ -3,9 +3,8 @@ from odoo import models, fields, api
 class IspOltCardPort(models.Model):
     _name = 'isp.olt.card.port'
     _description = 'Puerto de Tarjeta OLT'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['isp.netdev', 'mail.thread', 'mail.activity.mixin']
 
-    name = fields.Char(string='Puerto', readonly=True, copy=False, default='New')
     num_port = fields.Integer(string='Numero Puerto')
     olt_card_id = fields.Many2one('isp.olt.card', string='Tarjeta OLT', required=True, ondelete='cascade')
     capacity_port_pon = fields.Selection([], string='Total PON')
@@ -34,8 +33,6 @@ class IspOltCardPort(models.Model):
     realm_name = fields.Char(string='REALM')
     is_reverse_onuid = fields.Boolean(string='Reservar ONU IDs')
     number_reverse = fields.Integer(string='Numero')
-    ip_address_line_ids = fields.One2many('isp.ip.address.line', 'port_id', string='Direcciones IP')
-    ip_address_ids = fields.One2many('isp.ip.address', 'port_id', string='Direcciones IP')
     splitter1_count = fields.Integer(string='Conteo Splitter 1', compute='_compute_splitter1_count')
     splitter2_count = fields.Integer(string='Conteo Splitter 2', compute='_compute_splitter2_count')
     contracts_port_count = fields.Integer(string='Conteo Puerto Olt', compute='_compute_contracts_port_count')

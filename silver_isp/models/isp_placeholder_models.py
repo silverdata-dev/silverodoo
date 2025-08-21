@@ -37,11 +37,7 @@ class IspIpAddress(models.Model):
     name = fields.Char(string='Description', required=True)
     cidr = fields.Char(string='CIDR Notation', required=True, help="e.g., 192.168.0.0/24")
     gateway = fields.Char(string='Gateway')
-    core_id = fields.Many2one('isp.core', string='Core')
-    olt_id = fields.Many2one('isp.olt', string='OLT')
-    card_id = fields.Many2one('isp.olt.card', string='OLT Card')
-    port_id = fields.Many2one('isp.olt.card.port', string='OLT Card Port')
-    radius_id = fields.Many2one('isp.radius', string='Radius Server')
+    netdev_id = fields.Many2one('isp.netdev', string='Network Device')
 
     line_ids = fields.One2many('isp.ip.address.line', 'address_id', string='IP Addresses')
 
@@ -51,9 +47,18 @@ class IspIpAddress(models.Model):
 
     is_tr_069 = fields.Boolean(string="Es069")
 
+    assigned_to = fields.Reference(selection=[], string='Assigned To')
+    description = fields.Text()
+
     _sql_constraints = [
         ('cidr_uniq', 'unique (cidr)', 'This CIDR already exists!')
     ]
+
+    status = fields.Selection([
+        ('available', 'Available'),
+        ('used', 'Used'),
+        ('reserved', 'Reserved')
+    ], string='Status', default='available', required=True)
 
     @api.depends('line_ids.status')
     def _compute_usage_stats(self):
@@ -97,12 +102,7 @@ class IspIpAddressLine(models.Model):
     network_address = fields.Char('Network Address')
     broadcast_address = fields.Char('Broadcast Address')
 
-
-    core_id = fields.Many2one('isp.core', string='Core')
-    olt_id = fields.Many2one('isp.olt', string='OLT')
-    card_id = fields.Many2one('isp.olt.card', string='OLT Card')
-    port_id = fields.Many2one('isp.olt.card.port', string='OLT Card Port')
-    radius_id = fields.Many2one('isp.radius', string='Radius')
+    netdev_id = fields.Many2one('isp.netdev', string='Network Device')
     is_tr_069 = fields.Boolean(string="Es069")
 
     ip_int = fields.Integer(compute='_compute_ip_int', store=True, help="Technical field for sorting")

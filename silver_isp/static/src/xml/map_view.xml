@@ -8,6 +8,10 @@
             </div>
             <div class="o_content">
                 <div class="map-filters">
+                    <div class="coordinate-input-container">
+                        <input type="text" t-ref="coordinateInput" placeholder="Enter coordinates (lat, lon)" class="form-control"/>
+                        <button t-on-click="onLocateCoordinates" class="btn btn-primary ml-2">Locate</button>
+                    </div>
                     <strong>Filter by Asset Type:</strong>
                     <div class="d-inline-block ml-2" t-ref="model_filter_container">
                         <div class="form-check form-check-inline">

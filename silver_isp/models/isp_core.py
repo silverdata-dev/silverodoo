@@ -32,8 +32,6 @@ class IspCore(models.Model):
     networks_device_id = fields.Many2many('isp.device.networks', string='Networks Device')
     company_id = fields.Many2one('res.company', string='Compañía', default=lambda self: self.env.company)
 
-    ip_address_ids = fields.One2many('isp.ip.address', 'core_id', string='Direcciones IP')
-    ip_address_line_ids = fields.One2many('isp.ip.address.line', 'core_id', string='Direcciones IP')
     custom_channel_ids = fields.One2many('addres.list.channel.line', 'core_id', string='Canales')
     isp_core_port_line_ids = fields.One2many('isp.core.port.line', 'core_id', string='Líneas Puerto Slot')
 

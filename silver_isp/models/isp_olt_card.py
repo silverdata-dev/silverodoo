@@ -3,7 +3,7 @@ from odoo import models, fields, api
 class IspOltCard(models.Model):
     _name = 'isp.olt.card'
     _description = 'Tarjeta de Equipo OLT'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['isp.netdev', 'mail.thread', 'mail.activity.mixin']
 
     """name = fields.Char(string='Nombre Tarjeta', readonly=True, copy=False, default='New')
     num_card = fields.Integer(string='Numero Slot')
@@ -20,14 +20,8 @@ class IspOltCard(models.Model):
     contracts_card_count = fields.Integer(string='Conteo Tarjetas Olt', compute='_compute_contracts_card_count')
     """
 
-    name = fields.Char(string='Nombre Tarjeta', required=True)
-    active = fields.Boolean(string='Activo', default=True)
-    
     olt_id = fields.Many2one('isp.olt', string='OLT', required=True)
     gateway = fields.Many2one('isp.ip.address', string='Gateway')
-    
-    ip_address_ids = fields.One2many('isp.ip.address', 'card_id', string='Direcciones IP')
-    ip_address_line_ids = fields.One2many('isp.ip.address.line', 'card_id', string='Direcciones IP')
     
     # --- Campos de Acceso y Configuración ---
     num_card = fields.Integer(string='Número Slot')

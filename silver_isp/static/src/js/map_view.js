@@ -36,12 +36,14 @@ export class AssetMapView extends Component {
     setup() {
         this.rpc = useService("rpc");
         this.orm = useService("orm");
+        this.actionService = useService("action");
 
         this.mapRef = useRef("asset_map");
         this.popupRef = useRef("popup");
         this.popupContentRef = useRef("popup_content");
         this.popupCloserRef = useRef("popup_closer");
         this.filterContainerRef = useRef("model_filter_container");
+        this.coordinateInputRef = useRef("coordinateInput");
 
         this.state = useState({
             allAssets: [],
@@ -111,10 +113,26 @@ export class AssetMapView extends Component {
             if (feature) {
                 const coordinates = feature.getGeometry().getCoordinates();
                 const asset = feature.get("asset");
-                content.innerHTML = `<b>${asset.name}</b><br>Type: ${asset.model}`;
+                if (!asset) {
+                                    this.overlay.setPosition(undefined);
+                const coordinates = ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
+                this.actionService.doAction({
+                    type: "ir.actions.act_window",
+                    res_model: "isp.box",
+                    views: [[false, "form"]],
+                    target: "new",
+                    context: {
+                        default_gps_lat: coordinates[1],
+                        default_gps_lon: coordinates[0],
+                    },
+                });
+                } else {
+                                    content.innerHTML = `<b>${asset.name}</b><br>Type: ${asset.model}`;
                 this.overlay.setPosition(coordinates);
+
+                }
             } else {
-                this.overlay.setPosition(undefined);
+
             }
         });
     }
@@ -196,6 +214,78 @@ export class AssetMapView extends Component {
 
     get allFiltersChecked() {
         return this.state.assetModels.every(model => this.state.selectedModels[model]);
+    }
+
+    onLocateCoordinates() {
+       const coordsString = this.coordinateInputRef.el.value;
+        let coords = [];
+
+        // Regex para encontrar coordenadas en el formato "latitud,longitud"
+        // El patrón busca un número decimal opcionalmente negativo, seguido de una coma,
+        // y otro número decimal opcionalmente negativo.
+        const regex = /-?\d+\.?\d*,\s*-?\d+\.?\d*/;
+        const match = coordsString.match(regex);
+
+        if (match) {
+          // Si se encuentra un patrón de coordenadas en la URL, las extraemos.
+          coords = match[0].split(',').map(c => parseFloat(c.trim()));
+        } else {
+          // Si no hay un patrón de coordenadas, asumimos que el string completo
+          // es el par de coordenadas.
+          coords = coordsString.split(',').map(c => parseFloat(c.trim()));
+        }
+
+
+        if (coords.length === 2 && !isNaN(coords[0]) && !isNaN(coords[1])) {
+            const longitude = coords[1];
+            const latitude = coords[0];
+            const centerCoordinates = ol.proj.fromLonLat([longitude, latitude]);
+
+            // Center map
+            this.map.getView().setCenter(centerCoordinates);
+            this.map.getView().setZoom(18);
+
+            // Add a generic icon
+            const iconFeature = new ol.Feature({
+                geometry: new ol.geom.Point(centerCoordinates),
+            });
+
+            const iconStyle = new ol.style.Style({
+                image: new ol.style.Circle({
+                    radius: 10,
+                    fill: new ol.style.Fill({
+                        color: 'red'
+                    }),
+                    stroke: new ol.style.Stroke({
+                        color: 'white', 
+                        width: 2
+                    })
+                })
+            });
+            iconFeature.setStyle(iconStyle);
+            this.vectorSource.addFeature(iconFeature);
+
+            // Add a circle around the icon
+            const circleFeature = new ol.Feature({
+                geometry: new ol.geom.Circle(centerCoordinates, 100),
+            });
+
+            const circleStyle = new ol.style.Style({
+                fill: new ol.style.Fill({
+                    color: 'rgba(255, 0, 0, 0.1)'
+                }),
+                stroke: new ol.style.Stroke({
+                    color: 'red',
+                    width: 1
+                })
+            });
+            circleFeature.setStyle(circleStyle);
+            this.vectorSource.addFeature(circleFeature);
+
+
+        } else {
+            alert("Invalid coordinate format. Please use 'latitude, longitude'.");
+        }
     }
 }
 

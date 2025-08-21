@@ -54,3 +54,10 @@
     background-color: #f5f5f5;
     border-bottom: 1px solid #ddd;
 }
+
+
+.coordinate-input-container {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* O el espacio que prefieras entre los elementos */
+}
