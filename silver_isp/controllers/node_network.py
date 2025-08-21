@@ -14,6 +14,7 @@ class NodeNetwork(http.Controller):
         edges = []
         nodes = []
 
+
         # Add the main node
         nodes.append({'id': node.id, 'label': node.name, 'group': 'node'})
 

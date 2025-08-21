@@ -1,5 +1,5 @@
-from odoo import models, fields
-
+from odoo import models, fields, api
+import librouteros
 
 class IspNetdev(models.Model):
     _name = 'isp.netdev'
@@ -20,7 +20,6 @@ class IspNetdev(models.Model):
 
     ip_address_line_ids = fields.One2many('isp.ip.address.line', 'core_id', string='Direcciones IP')
     ip_address_ids = fields.One2many('isp.ip.address', 'core_id', string='Direcciones IP')
-
 
 
 
@@ -109,9 +108,9 @@ class IspNetdev(models.Model):
 
         try:
             interfaces = tuple(api.path('/interface'))
-            wizard = self.env['isp.router.interface.wizard'].create({'router_id': self.id})
+            wizard = self.env['isp.netdev.interface.wizard'].create({'router_id': self.id})
             for interface in interfaces:
-                self.env['isp.router.interface.wizard.line'].create({
+                self.env['isp.netdev.interface.wizard.line'].create({
                     'wizard_id': wizard.id,
                     'name': interface.get('name'),
                     'mac_address': interface.get('mac-address'),
@@ -124,7 +123,7 @@ class IspNetdev(models.Model):
             return {
                 'name': 'Router Interfaces',
                 'type': 'ir.actions.act_window',
-                'res_model': 'isp.router.interface.wizard',
+                'res_model': 'isp.netdev.interface.wizard',
                 'view_mode': 'form',
                 'res_id': wizard.id,
                 'target': 'new',
@@ -141,9 +140,9 @@ class IspNetdev(models.Model):
 
         try:
             routes = tuple(api.path('/ip/route'))
-            wizard = self.env['isp.router.route.wizard'].create({'router_id': self.id})
+            wizard = self.env['isp.netdev.route.wizard'].create({'router_id': self.id})
             for route in routes:
-                self.env['isp.router.route.wizard.line'].create({
+                self.env['isp.netdev.route.wizard.line'].create({
                     'wizard_id': wizard.id,
                     'dst_address': route.get('dst-address'),
                     'gateway': route.get('gateway'),
@@ -156,7 +155,7 @@ class IspNetdev(models.Model):
             return {
                 'name': 'Router Routes',
                 'type': 'ir.actions.act_window',
-                'res_model': 'isp.router.route.wizard',
+                'res_model': 'isp.netdev.route.wizard',
                 'view_mode': 'form',
                 'res_id': wizard.id,
                 'target': 'new',
