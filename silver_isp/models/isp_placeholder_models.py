@@ -100,8 +100,8 @@ class IspIpAddressLine(models.Model):
 
     core_id = fields.Many2one('isp.core', string='Core')
     olt_id = fields.Many2one('isp.olt', string='OLT')
-    card_id = fields.Many2one('isp.olt.card', string='OLT Card')
-    port_id = fields.Many2one('isp.olt.card.port', string='OLT Card Port')
+    card_id = fields.Many2one('isp.olt.card', string='Card')
+    port_id = fields.Many2one('isp.olt.card.port', string='Port')
     radius_id = fields.Many2one('isp.radius', string='Radius')
     is_tr_069 = fields.Boolean(string="Es069")
 
@@ -238,7 +238,6 @@ class IspTr069(models.Model):
     _description = 'ISP TR-069 Server'
     name = fields.Char('Name')
     description = fields.Text('Description')
-    url = fields.Text('Url')
 
 class IspOnuLine(models.Model):
     _name = 'isp.onu.line'

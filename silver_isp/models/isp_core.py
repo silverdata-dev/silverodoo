@@ -24,7 +24,7 @@ class IspCore(models.Model):
 # --- Campos Base y Relaciones ---
     name = fields.Char(string='Código', required=True)
     active = fields.Boolean(string='Activo', default=True)
-    
+
     node_id = fields.Many2one('isp.node', string='Nodo')
     brand_id = fields.Many2one('product.brand', string='Marca', index=True)
     gateway = fields.Many2one('isp.ip.address', string='Gateway')

@@ -1,5 +1,5 @@
-from odoo import models, fields, api
-import librouteros
+from odoo import models, fields
+
 
 class IspNetdev(models.Model):
     _name = 'isp.netdev'
@@ -20,6 +20,7 @@ class IspNetdev(models.Model):
 
     ip_address_line_ids = fields.One2many('isp.ip.address.line', 'core_id', string='Direcciones IP')
     ip_address_ids = fields.One2many('isp.ip.address', 'core_id', string='Direcciones IP')
+
 
 
 
