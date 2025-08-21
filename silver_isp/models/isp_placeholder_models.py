@@ -245,6 +245,7 @@ class IspOnuLine(models.Model):
     name = fields.Char('Name')
     box_id = fields.Many2one('isp.box', string='Box')
 
+
 class DevicePoolIp(models.Model):
     _name = 'device.pool.ip'
     _description = 'Device Pool IP'
