@@ -18,7 +18,7 @@
                     <field name="model"/>
                     <field name="ip"/>
                     <field name="port"/>
-                    <field name="user"/>
+                    <field name="username"/>
                     <field name="state" widget="badge" decoration-danger="state == 'down'" decoration-success="state == 'active'"/>
                 </tree>
             </field>
@@ -42,6 +42,7 @@
                             <button class="oe_stat_button" type="object" name="action_view_contracts" icon="fa-link">
                                 <field string="Contratos" name="contracts_olt_count" widget="statinfo"/>
                             </button>
+
                         </div>
                         <widget name="web_ribbon" title="Active" invisible="state == 'down'"/>
                         <widget name="web_ribbon" title="Down" bg_color="bg-danger" invisible="state == 'active'"/>
@@ -77,7 +78,7 @@
                             </group>
                             <group>
                                 <field name="is_multi_user_olt" widget="boolean_toggle"/>
-                                <field name="user" invisible="is_multi_user_olt == True"/>
+                                <field name="username" invisible="is_multi_user_olt == True"/>
                                 <field name="password" password="True"/>
                                 <button class="oe_inline oe_link " name="action_send_password" string=" →Enviar Contraseña" type="object"/>
                                 <field name="secret_olt"/>

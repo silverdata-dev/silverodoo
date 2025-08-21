@@ -4,7 +4,7 @@ from odoo import models, fields, api
 import librouteros
 
 class IspRouter(models.Model):
-    _name = 'isp.router'
+    _name = 'isp.netdev'
     _description = 'ISP Router'
 
     name = fields.Char(string='Router Name', required=True)
@@ -89,9 +89,9 @@ class IspRouter(models.Model):
 
         try:
             interfaces = tuple(api.path('/interface'))
-            wizard = self.env['isp.router.interface.wizard'].create({'router_id': self.id})
+            wizard = self.env['isp.netdev.interface.wizard'].create({'router_id': self.id})
             for interface in interfaces:
-                self.env['isp.router.interface.wizard.line'].create({
+                self.env['isp.netdev.interface.wizard.line'].create({
                     'wizard_id': wizard.id,
                     'name': interface.get('name'),
                     'mac_address': interface.get('mac-address'),
@@ -104,7 +104,7 @@ class IspRouter(models.Model):
             return {
                 'name': 'Router Interfaces',
                 'type': 'ir.actions.act_window',
-                'res_model': 'isp.router.interface.wizard',
+                'res_model': 'isp.netdev.interface.wizard',
                 'view_mode': 'form',
                 'res_id': wizard.id,
                 'target': 'new',
@@ -120,9 +120,9 @@ class IspRouter(models.Model):
 
         try:
             routes = tuple(api.path('/ip/route'))
-            wizard = self.env['isp.router.route.wizard'].create({'router_id': self.id})
+            wizard = self.env['isp.netdev.route.wizard'].create({'router_id': self.id})
             for route in routes:
-                self.env['isp.router.route.wizard.line'].create({
+                self.env['isp.netdev.route.wizard.line'].create({
                     'wizard_id': wizard.id,
                     'dst_address': route.get('dst-address'),
                     'gateway': route.get('gateway'),
@@ -135,7 +135,7 @@ class IspRouter(models.Model):
             return {
                 'name': 'Router Routes',
                 'type': 'ir.actions.act_window',
-                'res_model': 'isp.router.route.wizard',
+                'res_model': 'isp.netdev.route.wizard',
                 'view_mode': 'form',
                 'res_id': wizard.id,
                 'target': 'new',
@@ -151,9 +151,9 @@ class IspRouter(models.Model):
 
         try:
             ppp_active = tuple(api.path('/ppp/active'))
-            wizard = self.env['isp.router.ppp.active.wizard'].create({'router_id': self.id})
+            wizard = self.env['isp.netdev.ppp.active.wizard'].create({'router_id': self.id})
             for ppp in ppp_active:
-                self.env['isp.router.ppp.active.wizard.line'].create({
+                self.env['isp.netdev.ppp.active.wizard.line'].create({
                     'wizard_id': wizard.id,
                     'name': ppp.get('name'),
                     'service': ppp.get('service'),
@@ -165,7 +165,7 @@ class IspRouter(models.Model):
             return {
                 'name': 'PPP Active Connections',
                 'type': 'ir.actions.act_window',
-                'res_model': 'isp.router.ppp.active.wizard',
+                'res_model': 'isp.netdev.ppp.active.wizard',
                 'view_mode': 'form',
                 'res_id': wizard.id,
                 'target': 'new',
@@ -181,9 +181,9 @@ class IspRouter(models.Model):
 
         try:
             firewall_rules = tuple(api.path('/ip/firewall/filter'))
-            wizard = self.env['isp.router.firewall.wizard'].create({'router_id': self.id})
+            wizard = self.env['isp.netdev.firewall.wizard'].create({'router_id': self.id})
             for rule in firewall_rules:
-                self.env['isp.router.firewall.wizard.line'].create({
+                self.env['isp.netdev.firewall.wizard.line'].create({
                     'wizard_id': wizard.id,
                     'chain': rule.get('chain'),
                     'action': rule.get('action'),
@@ -197,7 +197,7 @@ class IspRouter(models.Model):
             return {
                 'name': 'Firewall Rules',
                 'type': 'ir.actions.act_window',
-                'res_model': 'isp.router.firewall.wizard',
+                'res_model': 'isp.netdev.firewall.wizard',
                 'view_mode': 'form',
                 'res_id': wizard.id,
                 'target': 'new',
@@ -213,9 +213,9 @@ class IspRouter(models.Model):
 
         try:
             queues = tuple(api.path('/queue/simple'))
-            wizard = self.env['isp.router.queue.wizard'].create({'router_id': self.id})
+            wizard = self.env['isp.netdev.queue.wizard'].create({'router_id': self.id})
             for queue in queues:
-                self.env['isp.router.queue.wizard.line'].create({
+                self.env['isp.netdev.queue.wizard.line'].create({
                     'wizard_id': wizard.id,
                     'name': queue.get('name'),
                     'target': queue.get('target'),
@@ -228,7 +228,7 @@ class IspRouter(models.Model):
             return {
                 'name': 'Queues',
                 'type': 'ir.actions.act_window',
-                'res_model': 'isp.router.queue.wizard',
+                'res_model': 'isp.netdev.queue.wizard',
                 'view_mode': 'form',
                 'res_id': wizard.id,
                 'target': 'new',

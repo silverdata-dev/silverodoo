@@ -8,7 +8,7 @@ class IspAsset(models.Model):
 
 
     name = fields.Char(string="Nombre")
-    code = fields.Char(string="Código interno", index=True)
+    code = fields.Char(string="Codigo interno")
     asset_type = fields.Selection([
         ('olt', 'OLT'),
         ('splitter', 'Splitter'),
@@ -22,13 +22,21 @@ class IspAsset(models.Model):
         ('other', 'Other')
     ], default='other')
 
+    _sql_constraints = [
+        ('unique_code', 'unique (code)', 'This value must be unique!')
+    ]
 
+    parent_id = fields.Many2one('isp.asset', string='Parent')
+    root_id = fields.Many2one('isp.asset', string='Root')
 
     street = fields.Char(string='Calle')
     street2 = fields.Char(string='Calle 2')
-    zip = fields.Char(string='Código Postal')
+    zip = fields.Char(string='Codigo Postal')
     state_id = fields.Many2one('res.country.state', string='Estado')
     country_id = fields.Many2one('res.country', string='País')
+    place = fields.Char(string='Edificio/Zona')
+    n = fields.Char(string='Número')
+    nn = fields.Char(string='Correlativo')
 
     gps_lat = fields.Float(string="Latitud", digits=(16, 7))
     gps_lon = fields.Float(string="Longitud", digits=(16, 7))

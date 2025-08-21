@@ -11,7 +11,7 @@ class IspSplitter(models.Model):
     asset_id = fields.Many2one('isp.asset', required=True, ondelete="cascade")
 
     name = fields.Char(string='Nombre', readonly=True, copy=False, default='New')
-    capacity_splitter = fields.Selection([], string='Capacidad')
+    capacity_splitter = fields.Selection([("1:1","1:1"), ("1:2","1:2"), ("1:4","1:4"), ("1:8", "1:8"), ("1:16","1:16")], string='Capacidad')
     port_splitter = fields.Char(string='Puerto Splitter Primario')
     type_splitter = fields.Selection([('1', 'Primario'), ('2', 'Secundario')], string='Tipo', required=True)
     splitter_id = fields.Many2one('isp.splitter', string='Spliter Principal')

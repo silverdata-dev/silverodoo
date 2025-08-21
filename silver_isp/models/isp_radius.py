@@ -43,6 +43,7 @@ class IspRadius(models.Model):
     code_mac = fields.Selection([], string='Codigo MAC')
     default_control = fields.Boolean(string='Control por Defecto')
     perfil_control = fields.Boolean(string='Control por Perfil')
+    ip_range_count = fields.Integer(string='IP Ranges', compute='_compute_ip_range_count')
 
     @api.model
     def create(self, vals):
@@ -88,3 +89,7 @@ class IspRadius(models.Model):
             'res_id': wizard.id,
             'target': 'new',
         }
+
+    def _compute_ip_range_count(self):
+        for record in self:
+            record.ip_range_count = self.env['isp.ip.address'].search_count([('radius_id', '=', record.id)])

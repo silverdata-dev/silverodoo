@@ -33,7 +33,7 @@ class PPPSpeedChart extends Component {
     async updateData() {
         const wizardId = this.props.record.resId;
         const result = await this.orm.call(
-            "isp.router.ppp.active.wizard",
+            "isp.netdev.ppp.active.wizard",
             "get_speed_data",
             [wizardId]
         );

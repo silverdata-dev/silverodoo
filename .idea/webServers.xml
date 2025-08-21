@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="0b876042-5666-427b-bb40-96fcc741b2d0" name="198">
+        <fileTransfer rootFolder="/var/lib/odoo/silverodoo" accessType="SFTP" host="10.0.0.198" port="22" sshConfigId="5fce3804-0d25-44e7-87e7-20a774b3c0e1" sshConfig="root@10.0.0.198:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

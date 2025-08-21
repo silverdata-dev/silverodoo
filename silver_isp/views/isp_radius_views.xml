@@ -31,6 +31,7 @@
                         <div class="oe_button_box" name="button_box">
                             <button name="action_connect_radius" type="object" class="oe_stat_button" icon="fa-signal" string="Probar Conexion"/>
                             <button name="action_view_table" type="object" class="oe_stat_button" icon="fa-signal" string="Obtener Tabla"/>
+
                         </div>
                         <widget name="web_ribbon" title="Active" invisible="state == 'down'"/>
                         <widget name="web_ribbon" title="Down" bg_color="bg-danger" invisible="state == 'active'"/>

@@ -12,6 +12,8 @@ class IspAp(models.Model):
     netdev_id = fields.Many2one('isp.netdev', required=True, ondelete="cascade")
 
 
+    
+
     hostname_ap = fields.Char(string='Hostname')
     node_ids = fields.Many2many('isp.node', string='Nodos', readonly=True)
 
@@ -43,6 +45,8 @@ class IspAp(models.Model):
             print(("createee0", core, core.name, core.asset_id, core.asset_id.name))
             if core.exists() and core.name:
 
+                vals['parent_id'] = core.asset_id.id
+
                 vals['name'] = f"{core.name}/{vals.get('hostname_ap', '')}"
                 print(("createe2e", vals))
         print(("createee3", vals))
@@ -61,6 +65,7 @@ class IspAp(models.Model):
             if core.exists() and core.name:
                 hostname = vals.get('hostname_ap', record.hostname_ap)
                 record.asset_id.name = f"{core.name}/{hostname}"
+                record.parent_id = core.asset_id.id
                 print(("cocrewr2", hostname))
 
             # If node_id is set to False, the name is not changed.

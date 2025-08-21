@@ -6,7 +6,7 @@ from . import isp_olt
 from . import isp_olt_card
 from . import isp_olt_card_port
 from . import isp_splitter
-from . import isp_router
+#from . import isp_router
 from . import isp_box
 from . import isp_ap
 from . import isp_radius

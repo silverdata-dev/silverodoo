@@ -28,6 +28,7 @@
                         <group>
                             <field name="name"/>
                             <field name="box_id"/>
+
                         </group>
                     </sheet>
                 </form>

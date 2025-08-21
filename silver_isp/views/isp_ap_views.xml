@@ -21,7 +21,7 @@
                     <field name="core_id"/>
                     <field name="ip"/>
                     <field name="port"/>
-                    <field name="user"/>
+                    <field name="username"/>
                     <field name="description_brand" invisible="1"/>
                     <field name="state" widget="badge" decoration-danger="state == 'down'" decoration-success="state == 'active'"/>
                 </tree>

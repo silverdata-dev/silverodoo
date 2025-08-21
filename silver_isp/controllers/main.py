@@ -14,22 +14,46 @@ class AssetMapController(http.Controller):
     def get_assets(self, node_id=None, **kw):
         # Lista de modelos que heredan de 'isp.asset' y tienen coordenadas
         asset_models = [
-            'isp.node', 'isp.box', 'isp.splice_closure', 
+            'isp.node', 'isp.box', 'isp.splice_closure', 'isp.core',
             'isp.splitter', 'isp.olt', 'isp.ap'
         ]
         
-        all_assets = []
-        center_coords = None
-
+        
+        root_id = None
         # Si se proporciona un node_id, busca sus coordenadas para centrar el mapa
         if node_id:
             try:
                 node = request.env['isp.node'].browse(int(node_id))
                 if node.exists() and node.gps_lat and node.gps_lon:
                     center_coords = {'lat': node.gps_lat, 'lon': node.gps_lon}
+                    root_id = node.asset_id.id
             except (ValueError, TypeError):
                 pass  # Ignorar si el node_id no es válido
+        all_assets = []
+        center_coords = None
 
+        print(("get_assets", node_id, root_id))
+
+        #"""
+        
+
+        domain = [('gps_lat', '!=', 0), ('gps_lon', '!=', 0)]
+        if root_id:
+            domain.extend(['|','|',('parent_id', '=', root_id), ('root_id', '=', root_id), ('id', '=', root_id)])
+
+        assets = request.env["isp.asset"].search(domain)
+            
+        for asset in assets:
+                all_assets.append({
+                    'id': asset.id,
+                    'name': asset.name,
+                    'model': asset.asset_type,
+                    'latitude': asset.gps_lat,
+                    'longitude': asset.gps_lon,
+                })
+
+        print(("asset", node_id, root_id, domain, all_assets))
+        """
         for model_name in asset_models:
             if model_name not in request.env:
                 continue
@@ -51,7 +75,7 @@ class AssetMapController(http.Controller):
                     'latitude': asset.gps_lat,
                     'longitude': asset.gps_lon,
                 })
-                
+                """
         return {
             'assets': all_assets,
             'center_on': center_coords

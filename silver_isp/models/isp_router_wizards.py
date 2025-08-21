@@ -3,14 +3,14 @@
 from odoo import models, fields, api
 
 class IspRouterInterfaceWizard(models.Model):
-    _name = 'isp.router.interface.wizard'
+    _name = 'isp.netdev.interface.wizard'
     _description = 'ISP Router Interface Wizard'
 
-    line_ids = fields.One2many('isp.router.interface.wizard.line', 'wizard_id', string='Interfaces')
-    router_id = fields.Many2one('isp.router')
+    line_ids = fields.One2many('isp.netdev.interface.wizard.line', 'wizard_id', string='Interfaces')
+    router_id = fields.Many2one('isp.netdev')
 
 class IspRouterInterfaceWizardLine(models.Model):
-    _name = 'isp.router.interface.wizard.line'
+    _name = 'isp.netdev.interface.wizard.line'
     _description = 'ISP Router Interface Wizard Line'
 
     name = fields.Char(string='Name')
@@ -19,17 +19,17 @@ class IspRouterInterfaceWizardLine(models.Model):
     running = fields.Boolean(string='Running')
     disabled = fields.Boolean(string='Disabled')
     comment = fields.Char(string='Comment')
-    wizard_id = fields.Many2one('isp.router.interface.wizard')
+    wizard_id = fields.Many2one('isp.netdev.interface.wizard')
 
 class IspRouterRouteWizard(models.Model):
-    _name = 'isp.router.route.wizard'
+    _name = 'isp.netdev.route.wizard'
     _description = 'ISP Router Route Wizard'
 
-    line_ids = fields.One2many('isp.router.route.wizard.line', 'wizard_id', string='Routes')
-    router_id = fields.Many2one('isp.router')
+    line_ids = fields.One2many('isp.netdev.route.wizard.line', 'wizard_id', string='Routes')
+    router_id = fields.Many2one('isp.netdev')
 
 class IspRouterRouteWizardLine(models.Model):
-    _name = 'isp.router.route.wizard.line'
+    _name = 'isp.netdev.route.wizard.line'
     _description = 'ISP Router Route Wizard Line'
 
     dst_address = fields.Char(string='Destination')
@@ -38,19 +38,19 @@ class IspRouterRouteWizardLine(models.Model):
     active = fields.Boolean(string='Active')
     static = fields.Boolean(string='Static')
     comment = fields.Char(string='Comment')
-    wizard_id = fields.Many2one('isp.router.route.wizard')
+    wizard_id = fields.Many2one('isp.netdev.route.wizard')
 
 
 class IspRouterPppActiveWizard(models.Model):
-    _name = 'isp.router.ppp.active.wizard'
+    _name = 'isp.netdev.ppp.active.wizard'
     _description = 'ISP Router PPP Active Wizard'
 
     name = fields.Char(string='Name')
-    router_id = fields.Many2one('isp.router', string='Router', required=True)
-    line_ids = fields.One2many('isp.router.ppp.active.wizard.line', 'wizard_id', string='Active Connections')
+    router_id = fields.Many2one('isp.netdev', string='Router', required=True)
+    line_ids = fields.One2many('isp.netdev.ppp.active.wizard.line', 'wizard_id', string='Active Connections')
 
-    #line_ids = fields.One2many('isp.router.ppp.active.wizard.line', 'wizard_id', string='Active Connections')
-    #router_id = fields.Many2one('isp.router')
+    #line_ids = fields.One2many('isp.netdev.ppp.active.wizard.line', 'wizard_id', string='Active Connections')
+    #router_id = fields.Many2one('isp.netdev')
     ppp_speed_chart = fields.Text(string="PPP Speed Chart", readonly=True)
 
     @api.model
@@ -65,7 +65,7 @@ class IspRouterPppActiveWizard(models.Model):
         pass
 
 class IspRouterPppActiveLine(models.TransientModel):
-    _name = 'isp.router.ppp.active.line'
+    _name = 'isp.netdev.ppp.active.line'
     ppp_speed_chart = fields.Text(string="PPP Speed Chart", readonly=True)
 
     def get_speed_data(self):
@@ -77,7 +77,7 @@ class IspRouterPppActiveLine(models.TransientModel):
         return {'upload': upload, 'download': download}
 
 class IspRouterPppActiveWizardLine(models.Model):
-    _name = 'isp.router.ppp.active.wizard.line'
+    _name = 'isp.netdev.ppp.active.wizard.line'
     _description = 'ISP Router PPP Active Connections Wizard Line'
 
     name = fields.Char(string='Name')
@@ -85,17 +85,17 @@ class IspRouterPppActiveWizardLine(models.Model):
     caller_id = fields.Char(string='Caller ID')
     address = fields.Char(string='IP Address')
     uptime = fields.Char(string='Uptime')
-    wizard_id = fields.Many2one('isp.router.ppp.active.wizard')
+    wizard_id = fields.Many2one('isp.netdev.ppp.active.wizard')
 
 class IspRouterFirewallWizard(models.Model):
-    _name = 'isp.router.firewall.wizard'
+    _name = 'isp.netdev.firewall.wizard'
     _description = 'ISP Router Firewall Rules Wizard'
 
-    line_ids = fields.One2many('isp.router.firewall.wizard.line', 'wizard_id', string='Firewall Rules')
-    router_id = fields.Many2one('isp.router')
+    line_ids = fields.One2many('isp.netdev.firewall.wizard.line', 'wizard_id', string='Firewall Rules')
+    router_id = fields.Many2one('isp.netdev')
 
 class IspRouterFirewallWizardLine(models.Model):
-    _name = 'isp.router.firewall.wizard.line'
+    _name = 'isp.netdev.firewall.wizard.line'
     _description = 'ISP Router Firewall Rules Wizard Line'
 
     chain = fields.Char(string='Chain')
@@ -105,17 +105,17 @@ class IspRouterFirewallWizardLine(models.Model):
     protocol = fields.Char(string='Protocol')
     comment = fields.Char(string='Comment')
     disabled = fields.Boolean(string='Disabled')
-    wizard_id = fields.Many2one('isp.router.firewall.wizard')
+    wizard_id = fields.Many2one('isp.netdev.firewall.wizard')
 
 class IspRouterQueueWizard(models.Model):
-    _name = 'isp.router.queue.wizard'
+    _name = 'isp.netdev.queue.wizard'
     _description = 'ISP Router Queues Wizard'
 
-    line_ids = fields.One2many('isp.router.queue.wizard.line', 'wizard_id', string='Queues')
-    router_id = fields.Many2one('isp.router')
+    line_ids = fields.One2many('isp.netdev.queue.wizard.line', 'wizard_id', string='Queues')
+    router_id = fields.Many2one('isp.netdev')
 
 class IspRouterQueueWizardLine(models.Model):
-    _name = 'isp.router.queue.wizard.line'
+    _name = 'isp.netdev.queue.wizard.line'
     _description = 'ISP Router Queues Wizard Line'
 
     name = fields.Char(string='Name')
@@ -124,4 +124,4 @@ class IspRouterQueueWizardLine(models.Model):
     burst_limit = fields.Char(string='Burst Limit')
     disabled = fields.Boolean(string='Disabled')
     comment = fields.Char(string='Comment')
-    wizard_id = fields.Many2one('isp.router.queue.wizard')
+    wizard_id = fields.Many2one('isp.netdev.queue.wizard')

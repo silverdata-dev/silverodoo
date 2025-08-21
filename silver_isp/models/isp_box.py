@@ -12,16 +12,30 @@ class IspBox(models.Model):
 
     port_splitter_secondary = fields.Integer(string='Puerto Splitter Secundario')
     splitter_id = fields.Many2one('isp.splitter', string='Spliter Secundario')
-    node_id = fields.Many2one('isp.node', string='Nodo', readonly=True)
-    capacity_nap = fields.Selection([], string='Total NAP')
-    capacity_usage_nap = fields.Integer(string='Usada NAP', readonly=True)
+    node_id = fields.Many2one('isp.node', string='Nodo')
+    capacity_nap = fields.Selection([("8","8"), ("16", "16")], string='Total NAP')
+    capacity_usage_nap = fields.Integer(string='Usada NAP')#, readonly=True)
 
 
     s_vlan = fields.Integer(string='s-vlan')
     c_vlan = fields.Integer(string='c-vlan')
 
 
-    is_line_nap = fields.Boolean(string='Gestion Vlan NAP', readonly=True)
+    is_line_nap = fields.Boolean(string='Gestion Vlan NAP')#, readonly=True)
+
+
+    ntrunk = fields.Integer(string='N de trunk')
+    cabletype = fields.Selection([("adss", "Adss"), ("0","0"),("na","N/A")], string='Tipo de cable')
+    cnstrands = fields.Selection([("0", "0"), ("12","12"), ("24","24"), ("96","96"), ("na","N/A")], "Cantidad de hilos")
+    cnbuffer = fields.Selection([("0","0"), ("1","1"), ("4", "4"), ("8","8"),("na","N/A")], "Cantidad buffer")
+    nbuffer = fields.Selection([("0","0"), ("1","1"), ("2","2"), ("3","3"),("4", "4"), ("T","T"),("na","N/A")], "N buffer")
+    ndistro = fields.Char(string='N de distibución')
+    nspliceclosure = fields.Char(string='N de manga')
+    olt = fields.Char(string="OLT")
+    pon = fields.Char(string='Pon')
+    odf = fields.Char(string='Odf')
+    note = fields.Char(string='Notas')
+
 
 
     pri_onu_standar = fields.Char(string='PRI ONU Standar:')
@@ -35,7 +49,7 @@ class IspBox(models.Model):
         readonly=False
     )
     contract_count = fields.Integer(string="Contratos", compute='_compute_contract_count')
-
+ 
 
 
     @api.model

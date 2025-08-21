@@ -28,6 +28,7 @@
                         <group>
                             <field name="name"/>
                             <field name="core_id"/>
+
                         </group>
                     </sheet>
                 </form>

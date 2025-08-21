@@ -3,13 +3,34 @@
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { loadCSS, loadJS } from "@web/core/assets";
+import { standardFieldProps } from "@web/views/fields/standard_field_props";
 
 import { Component, onMounted, onWillStart, useRef, useState } from "@odoo/owl";
 
 export class AssetMapView extends Component {
     static template = "silver_isp.AssetMapView";
     static props = {
+        
+        ...standardFieldProps,
+        
         nodeId: { type: [Number, String], optional: true },
+
+                action: {
+            optional: true,
+        },
+                        actionId: {
+            optional: true,
+        },
+        className: {
+            optional: true,
+        },
+        name: {
+            optional: true,
+        },
+        record: {
+            optional: true
+        }
+
     };
 
     setup() {
@@ -122,6 +143,7 @@ export class AssetMapView extends Component {
         this.state.filteredAssets = [...assets];
         const models = [...new Set(assets.map(asset => asset.model))];
         this.state.assetModels = models;
+        console.log(["assets", assets, models]);
         models.forEach(model => {
             this.state.selectedModels[model] = true;
         });
@@ -132,7 +154,8 @@ export class AssetMapView extends Component {
         this.vectorSource.clear();
         const features = this.state.filteredAssets.map(asset => {
             var model = asset.model.replaceAll(".","_");
-            const iconPath = `/silver_isp/static/src/img/map_icons/${model}.svg`;
+            console.log(["model", model]);
+            const iconPath = `/silver_isp/static/src/img/map_icons/${model}.png`;
             const feature = new ol.Feature({
                 geometry: new ol.geom.Point(ol.proj.fromLonLat([asset.longitude, asset.latitude])),
                 asset: asset,

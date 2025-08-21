@@ -3,23 +3,23 @@
     <data>
         <!-- IspRouterInterfaceWizard -->
         <record id="view_isp_router_interface_wizard_tree" model="ir.ui.view">
-            <field name="name">isp.router.interface.wizard.tree</field>
-            <field name="model">isp.router.interface.wizard</field>
+            <field name="name">isp.netdev.interface.wizard.tree</field>
+            <field name="model">isp.netdev.interface.wizard</field>
             <field name="arch" type="xml">
                 <tree string="Router Interfaces">
-                    <field name="router_id"/>
+
                 </tree>
             </field>
         </record>
 
         <record id="view_isp_router_interface_wizard_form" model="ir.ui.view">
-            <field name="name">isp.router.interface.wizard.form</field>
-            <field name="model">isp.router.interface.wizard</field>
+            <field name="name">isp.netdev.interface.wizard.form</field>
+            <field name="model">isp.netdev.interface.wizard</field>
             <field name="arch" type="xml">
                 <form string="Router Interface">
                     <sheet>
                         <group>
-                            <field name="router_id"/>
+
                         </group>
                         <notebook>
                             <page string="Interfaces">
@@ -42,30 +42,30 @@
 
         <record id="action_isp_router_interface_wizard" model="ir.actions.act_window">
             <field name="name">Router Interfaces</field>
-            <field name="res_model">isp.router.interface.wizard</field>
+            <field name="res_model">isp.netdev.interface.wizard</field>
             <field name="view_mode">tree,form</field>
         </record>
 
 
         <!-- IspRouterRouteWizard -->
         <record id="view_isp_router_route_wizard_tree" model="ir.ui.view">
-            <field name="name">isp.router.route.wizard.tree</field>
-            <field name="model">isp.router.route.wizard</field>
+            <field name="name">isp.netdev.route.wizard.tree</field>
+            <field name="model">isp.netdev.route.wizard</field>
             <field name="arch" type="xml">
                 <tree string="Router Routes">
-                    <field name="router_id"/>
+
                 </tree>
             </field>
         </record>
 
         <record id="view_isp_router_route_wizard_form" model="ir.ui.view">
-            <field name="name">isp.router.route.wizard.form</field>
-            <field name="model">isp.router.route.wizard</field>
+            <field name="name">isp.netdev.route.wizard.form</field>
+            <field name="model">isp.netdev.route.wizard</field>
             <field name="arch" type="xml">
                 <form string="Router Route">
                     <sheet>
                         <group>
-                            <field name="router_id"/>
+
                         </group>
                         <notebook>
                             <page string="Routes">
@@ -88,36 +88,36 @@
 
         <record id="action_isp_router_route_wizard" model="ir.actions.act_window">
             <field name="name">Router Routes</field>
-            <field name="res_model">isp.router.route.wizard</field>
+            <field name="res_model">isp.netdev.route.wizard</field>
             <field name="view_mode">tree,form</field>
         </record>
 
 
             <record id="action_ppp" model="ir.actions.act_window">
             <field name="name">PPP</field>
-            <field name="res_model">isp.router.ppp.active.wizard</field>
+            <field name="res_model">isp.netdev.ppp.active.wizard</field>
             <field name="view_mode">tree,form</field>
         </record>
 
         <!-- IspRouterPppActiveWizard -->
         <record id="view_isp_router_ppp_active_wizard_tree" model="ir.ui.view">
-            <field name="name">isp.router.ppp.active.wizard.tree</field>
-            <field name="model">isp.router.ppp.active.wizard</field>
+            <field name="name">isp.netdev.ppp.active.wizard.tree</field>
+            <field name="model">isp.netdev.ppp.active.wizard</field>
             <field name="arch" type="xml">
                 <tree string="PPP Active Connections">
-                    <field name="router_id"/>
+
                 </tree>
             </field>
         </record>
 
         <record id="view_isp_router_ppp_active_wizard_form" model="ir.ui.view">
-            <field name="name">isp.router.ppp.active.wizard.form</field>
-            <field name="model">isp.router.ppp.active.wizard</field>
+            <field name="name">isp.netdev.ppp.active.wizard.form</field>
+            <field name="model">isp.netdev.ppp.active.wizard</field>
             <field name="arch" type="xml">
                 <form string="PPP Active Connection">
                     <sheet>
                         <group>
-                            <field name="router_id"/>
+
                         </group>
                         <notebook>
                             <page string="Active Connections">
@@ -142,30 +142,30 @@
 
         <record id="action_isp_router_ppp_active_wizard" model="ir.actions.act_window">
             <field name="name">PPP Active Connections</field>
-            <field name="res_model">isp.router.ppp.active.wizard</field>
+            <field name="res_model">isp.netdev.ppp.active.wizard</field>
             <field name="view_mode">tree,form</field>
         </record>
 
 
         <!-- IspRouterFirewallWizard -->
         <record id="view_isp_router_firewall_wizard_tree" model="ir.ui.view">
-            <field name="name">isp.router.firewall.wizard.tree</field>
-            <field name="model">isp.router.firewall.wizard</field>
+            <field name="name">isp.netdev.firewall.wizard.tree</field>
+            <field name="model">isp.netdev.firewall.wizard</field>
             <field name="arch" type="xml">
                 <tree string="Firewall Rules">
-                    <field name="router_id"/>
+
                 </tree>
             </field>
         </record>
 
         <record id="view_isp_router_firewall_wizard_form" model="ir.ui.view">
-            <field name="name">isp.router.firewall.wizard.form</field>
-            <field name="model">isp.router.firewall.wizard</field>
+            <field name="name">isp.netdev.firewall.wizard.form</field>
+            <field name="model">isp.netdev.firewall.wizard</field>
             <field name="arch" type="xml">
                 <form string="Firewall Rule">
                     <sheet>
                         <group>
-                            <field name="router_id"/>
+
                         </group>
                         <notebook>
                             <page string="Firewall Rules">
@@ -189,30 +189,30 @@
 
         <record id="action_isp_router_firewall_wizard" model="ir.actions.act_window">
             <field name="name">Firewall Rules</field>
-            <field name="res_model">isp.router.firewall.wizard</field>
+            <field name="res_model">isp.netdev.firewall.wizard</field>
             <field name="view_mode">tree,form</field>
         </record>
 
 
         <!-- IspRouterQueueWizard -->
         <record id="view_isp_router_queue_wizard_tree" model="ir.ui.view">
-            <field name="name">isp.router.queue.wizard.tree</field>
-            <field name="model">isp.router.queue.wizard</field>
+            <field name="name">isp.netdev.queue.wizard.tree</field>
+            <field name="model">isp.netdev.queue.wizard</field>
             <field name="arch" type="xml">
                 <tree string="Router Queues">
-                    <field name="router_id"/>
+
                 </tree>
             </field>
         </record>
 
         <record id="view_isp_router_queue_wizard_form" model="ir.ui.view">
-            <field name="name">isp.router.queue.wizard.form</field>
-            <field name="model">isp.router.queue.wizard</field>
+            <field name="name">isp.netdev.queue.wizard.form</field>
+            <field name="model">isp.netdev.queue.wizard</field>
             <field name="arch" type="xml">
                 <form string="Router Queue">
                     <sheet>
                         <group>
-                            <field name="router_id"/>
+
                         </group>
                         <notebook>
                             <page string="Queues">
@@ -235,7 +235,7 @@
 
         <record id="action_isp_router_queue_wizard" model="ir.actions.act_window">
             <field name="name">Router Queues</field>
-            <field name="res_model">isp.router.queue.wizard</field>
+            <field name="res_model">isp.netdev.queue.wizard</field>
             <field name="view_mode">tree,form</field>
         </record>
     </data>

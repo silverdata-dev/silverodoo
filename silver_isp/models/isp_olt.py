@@ -14,7 +14,7 @@ class IspOlt(models.Model):
 
 
 
-    hostname_olt = fields.Char(string='Hostname', compute='_compute_hostname', store=True, readonly=True)
+    hostname_olt = fields.Char(string='Hostname', compute='_compute_hostname', store=True, readonly=False)
 
 
 
@@ -125,6 +125,7 @@ class IspOlt(models.Model):
     state = fields.Selection([('down', 'Down'), ('active', 'Active')], string='Estado', default='down')
     olt_card_count = fields.Integer(string='Conteo Slot OLT', compute='_compute_olt_card_count')
     contracts_olt_count = fields.Integer(string='Conteo Olts', compute='_compute_contracts_olt_count')
+    ip_range_count = fields.Integer(string='IP Ranges', compute='_compute_ip_range_count')
 
 
 
@@ -135,6 +136,13 @@ class IspOlt(models.Model):
         readonly=False
     )
 
+
+    type_access_net = fields.Selection(
+       
+        [('inactive', 'Inactivo'), ('dhcp', 'DHCP Leases'), ('manual', 'IP Asignada manualmente'),
+         ('system', 'IP Asignada por el sistema')], 
+          related='netdev_id.type_access_net',
+         default='inactive', string='Tipo Acceso', required=True)
 
 
     @api.model
@@ -190,6 +198,10 @@ class IspOlt(models.Model):
     def _compute_contracts_olt_count(self):
         for record in self:
             record.contracts_olt_count = self.env['isp.contract'].search_count([('olt_id', '=', record.id)])
+
+    def _compute_ip_range_count(self):
+        for record in self:
+            record.ip_range_count = self.env['isp.ip.address'].search_count([('olt_id', '=', record.id)])
 
     def create_olt_card(self):
         self.ensure_one()

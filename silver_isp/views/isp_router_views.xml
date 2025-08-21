@@ -3,9 +3,9 @@
     <data>
 
         <!-- Tree View -->
-        <record id="view_isp_router_tree" model="ir.ui.view">
-            <field name="name">isp.router.tree</field>
-            <field name="model">isp.router</field>
+        <!--record id="view_isp_router_tree" model="ir.ui.view">
+            <field name="name">isp.netdev.tree</field>
+            <field name="model">isp.netdev</field>
             <field name="arch" type="xml">
                 <tree string="Routers">
                     <field name="name"/>
@@ -17,10 +17,10 @@
             </field>
         </record>
 
-        <!-- Form View -->
+
         <record id="view_isp_router_form" model="ir.ui.view">
-            <field name="name">isp.router.form</field>
-            <field name="model">isp.router</field>
+            <field name="name">isp.netdev.form</field>
+            <field name="model">isp.netdev</field>
             <field name="arch" type="xml">
                 <form string="Router">
                     <header>
@@ -61,12 +61,12 @@
             </field>
         </record>
 
-        <!-- Action -->
+     
         <record id="action_isp_router" model="ir.actions.act_window">
             <field name="name">Routers</field>
-            <field name="res_model">isp.router</field>
+            <field name="res_model">isp.netdev</field>
             <field name="view_mode">tree,form</field>
-        </record>
+        </record-->
 
     </data>
 </odoo>
