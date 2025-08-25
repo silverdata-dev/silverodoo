@@ -1,4 +1,6 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
+import librouteros
 
 class IspRadius(models.Model):
     _name = 'isp.radius'
@@ -20,7 +22,7 @@ class IspRadius(models.Model):
     user_core_radius = fields.Char(string='Usuario Core Radius')
     password_core_radius = fields.Char(string='Password Core Radius')
     database = fields.Char(string='Database')
-    core_id = fields.Many2one('isp.core', string='Equipo Core', readonly=True, required=True, ondelete='cascade')
+    core_id = fields.Many2one('isp.core', string='Equipo Core', readonly=False, required=False, ondelete='cascade')
     type_radius = fields.Selection([], string='Tipo Radius')
     port_coa = fields.Char(string='Puerto COA')
     is_ipv6 = fields.Boolean(string='IPV6')
@@ -44,6 +46,94 @@ class IspRadius(models.Model):
     default_control = fields.Boolean(string='Control por Defecto')
     perfil_control = fields.Boolean(string='Control por Perfil')
     ip_range_count = fields.Integer(string='IP Ranges', compute='_compute_ip_range_count')
+    radius_user_count = fields.Integer(string='RADIUS Users', compute='_compute_radius_user_count')
+
+    nas_address = fields.Char(string='NAS Address')
+    nas_secret = fields.Char(string='NAS Secret')
+
+    def _compute_radius_user_count(self):
+        for record in self:
+            record.radius_user_count = self.env['isp.radius.user'].search_count([('radius_id', '=', record.id)])
+
+    def action_view_radius_users(self):
+        self.ensure_one()
+        return {
+            'name': _('RADIUS Users'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.radius.user',
+            'view_mode': 'tree,form',
+            'domain': [('radius_id', '=', self.id)],
+            'context': {'default_radius_id': self.id},
+        }
+
+    def _get_mikrotik_api(self):
+        self.ensure_one()
+        if not self.ip or not self.username or not self.password:
+            raise UserError(_("RADIUS server IP, username, and password are required for MikroTik API connection."))
+        try:
+            api = librouteros.connect(
+                username=self.username,
+                password=self.password,
+                host=self.ip,
+                port=int(self.port),
+                encoding='latin-1'
+            )
+            return api
+        except Exception as e:
+            raise UserError(_("Failed to connect to MikroTik API: %s") % e)
+
+    def action_pull_users_from_mikrotik(self):
+        self.ensure_one()
+        api = self._get_mikrotik_api()
+       # try:
+        if 1:
+            g = api.path('/user-manager/user')
+            print(("gg", g, dir(g)))
+            mikrotik_users = api.path('/user-manager/user')
+            for m_user in mikrotik_users:
+                # Check if user already exists in Odoo
+                odoo_user = self.env['isp.radius.user'].search([
+                    ('radius_id', '=', self.id),
+                    ('username', '=', m_user['name'])
+                ], limit=1)
+
+                user_vals = {
+                    'radius_id': self.id,
+                    'username': m_user['name'],
+                    'password': m_user.get('password', ''), # Passwords are not usually readable via API
+                    'profile': m_user.get('profile', ''),
+                    'comment': m_user.get('comment', ''),
+                    'disabled': m_user.get('disabled', 'no') == 'yes',
+                }
+
+                if odoo_user:
+                    odoo_user.write(user_vals)
+                else:
+                    self.env['isp.radius.user'].create(user_vals)
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': 'Success',
+                    'message': 'Users synchronized from MikroTik.',
+                    'type': 'success',
+                }
+            }
+        #except Exception as e:
+        #    raise UserError(_("Failed to pull users from MikroTik: %s") % e)
+        #finally:
+        #    api.close()
+
+    def button_manage_nas_clients(self):
+        self.ensure_one()
+        return {
+            'name': _('Manage MikroTik NAS Clients'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'isp.radius.nas.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {'default_radius_id': self.id},
+        }
 
     @api.model
     def create(self, vals):
@@ -93,3 +183,33 @@ class IspRadius(models.Model):
     def _compute_ip_range_count(self):
         for record in self:
             record.ip_range_count = self.env['isp.ip.address'].search_count([('radius_id', '=', record.id)])
+
+
+
+    def button_test_connection(self):
+        print(("netdev", self.netdev_id, self.name))
+        return self.netdev_id.button_test_connection()
+
+
+    def button_get_system_info(self):
+        return self.netdev_id.button_get_system_info()
+
+    def button_view_interfaces(self):
+        return self.netdev_id.button_view_interfaces()
+
+    def button_view_routes(self):
+        return self.netdev_id.button_view_routes()
+
+    def button_view_ppp_active(self):
+        return self.netdev_id.button_view_ppp_active()
+    def button_view_firewall_rules(self):
+        return self.netdev_id.button_view_firewall_rules()
+    def button_view_queues(self):
+        return self.netdev_id.button_view_queues()
+
+    def button_add_update_radius_client(self):
+        return self.netdev_id.button_add_update_radius_client()
+
+
+    def button_remove_radius_client(self):
+        return self.netdev_id.button_remove_radius_client()

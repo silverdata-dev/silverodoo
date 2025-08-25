@@ -28,11 +28,25 @@
             <field name="arch" type="xml">
                 <form string="Radius">
                     <sheet string="Servidores Radius">
+                          <header>
+                        <button name="button_test_connection" type="object" string="Test Connection" class="oe_highlight"/>
+                        <button name="button_get_system_info" type="object" string="Get System Info"/>
+                        <button name="button_view_interfaces" type="object" string="View Interfaces"/>
+                        <button name="button_view_routes" type="object" string="View Routes"/>
+                        <button name="button_view_ppp_active" type="object" string="View PPP Active"/>
+                        <button name="button_view_firewall_rules" type="object" string="View Firewall Rules"/>
+                        <button name="button_view_queues" type="object" string="View Queues"/>
+                    </header>
+
                         <div class="oe_button_box" name="button_box">
                             <button name="action_connect_radius" type="object" class="oe_stat_button" icon="fa-signal" string="Probar Conexion"/>
                             <button name="action_view_table" type="object" class="oe_stat_button" icon="fa-signal" string="Obtener Tabla"/>
-
+                            <button name="action_view_radius_users" type="object" class="oe_stat_button" icon="fa-users" string="RADIUS Users">
+                                <field name="radius_user_count" widget="statinfo" string="Users"/>
+                            </button>
+                            <button name="action_pull_users_from_mikrotik" type="object" string="Pull Users from MikroTik" class="oe_highlight"/>
                         </div>
+
                         <widget name="web_ribbon" title="Active" invisible="state == 'down'"/>
                         <widget name="web_ribbon" title="Down" bg_color="bg-danger" invisible="state == 'active'"/>
                         <field name="state" invisible="1"/>
@@ -41,15 +55,30 @@
                         </div>
                         <group name="radius" string="Base Radius">
                             <group>
-                                <field name="ip_core_radius"/>
-                                <field name="port_core_radius"/>
-                                <field name="user_core_radius"/>
+                                <field name="ip"/>
+                                <field name="port"/>
+                                <field name="username"/>
                             </group>
                             <group>
-                                <field name="password_core_radius" password="True"/>
+                                <field name="password" password="True"/>
                                 <field name="database" invisible="type_radius == 'mk_radius'"/>
                                 <field name="core_id" readonly="1"/>
                                 <field name="type_radius"/>
+                            </group>
+                        </group>
+                        <group name="mikrotik_nas_config" string="MikroTik NAS Configuration">
+                            <group>
+                                <field name="nas_address"/>
+                                <field name="nas_secret" password="True"/>
+                                <field name="radius_client_ip"/>
+                                <field name="radius_client_secret" password="True"/>
+                                <field name="radius_client_services" widget="many2many_tags"/>
+                            </group>
+                            <group>
+                                <button name="button_manage_nas_clients" string="Manage NAS Clients" type="object" class="oe_highlight"/>
+                                <button name="button_add_update_radius_client" string="Add/Update Radius Client" type="object" class="oe_highlight"/>
+                                <button name="button_remove_radius_client" string="Remove Radius Client" type="object" class="oe_highlight"/>
+                                <button name="action_open_disconnect_wizard" string="Disconnect Session" type="object" class="oe_highlight"/>
                             </group>
                         </group>
                     </sheet>

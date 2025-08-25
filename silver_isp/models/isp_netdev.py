@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import UserError
 import librouteros
 
 class IspNetdev(models.Model):
@@ -36,6 +37,7 @@ class IspNetdev(models.Model):
         ('mikrotik', 'MikroTik'),
         # Add other vendors here in the future
     ], string='Vendor', default='mikrotik', required=True)
+    model = fields.Char(string='Modelo')
     firmware_version = fields.Char(string='Firmware Version', readonly=False)
     serial_number = fields.Char(string='Serial Number', readonly=False)
 
@@ -44,6 +46,10 @@ class IspNetdev(models.Model):
         ('disconnected', 'Disconnected'),
         ('error', 'Error')], string='Estado', default='down')
 
+    # Fields for Radius Client Configuration
+    radius_client_ip = fields.Char(string='Radius Server IP')
+    radius_client_secret = fields.Char(string='Radius Shared Secret')
+    radius_client_services = fields.Many2many('isp.radius.service', string='Radius Services') # Assuming a model isp.radius.service exists or will be created
 
     @api.model
     def _get_api_connection(self):
@@ -60,8 +66,11 @@ class IspNetdev(models.Model):
                 host=self.ip,
                 username=self.username,
                 password=self.password,
-                port=self.api_port
+                port=self.api_port,
+           #     encoding='utf-8'
+                encoding='latin-1'
             )
+            print(("connected ", api))
             self.write({'state': 'connected'})
             return api
         except (librouteros.exceptions.TrapError, ConnectionRefusedError) as e:
@@ -69,6 +78,93 @@ class IspNetdev(models.Model):
             self.write({'state': 'error'})
             # Consider logging the error e
             return None
+
+    def button_add_update_radius_client(self):
+        self.ensure_one()
+        if not self.ip:  # or not self.radius_client_secret:
+            raise UserError(("Radius Server IP and Shared Secret are required."))
+
+        api = self._get_api_connection()
+        if api:
+            try:
+                # Check if Radius client for this IP already exists
+                r=api.path('/radius')
+                print(("radius", r, dir(r)))
+                existing_client = api.path('/radius').get(address=self.ip)
+                
+                services_str = ",".join(self.radius_client_services.mapped('name')) if self.radius_client_services else ""
+
+                if existing_client:
+                    # Update existing client
+                    api.path('/radius').set(
+                        **{'.id': existing_client[0]['.id'],
+                           'secret': self.radius_client_secret,
+                           'service': services_str,
+                           'authentication': 'yes',
+                           'accounting': 'yes'}
+                    )
+                    message = "Radius client updated successfully!"
+                else:
+                    # Add new client
+                    api.path('/radius').add(
+                        address=self.ip,
+                        secret=self.radius_client_secret,
+                        service=services_str,
+                        authentication='yes',
+                        accounting='yes'
+                    )
+                    message = "Radius client added successfully!"
+                
+                self.write({'state': 'connected'})
+                return {
+                    'type': 'ir.actions.client',
+                    'tag': 'display_notification',
+                    'params': {
+                        'title': 'Success',
+                        'message': message,
+                        'type': 'success',
+                    }
+                }
+            except Exception as e:
+                self.write({'state': 'error'})
+                raise UserError(("Failed to configure Radius client: %s") % e)
+            finally:
+                api.close()
+        else:
+            raise UserError(_("Could not connect to the MikroTik router."))
+
+    def button_remove_radius_client(self):
+        self.ensure_one()
+        if not self.radius_client_ip:
+            raise UserError(_("Radius Server IP is required to remove the client."))
+
+        api = self._get_api_connection()
+        if api:
+            try:
+                existing_client = api.path('/radius').get(address=self.radius_client_ip)
+                if existing_client:
+                    api.path('/radius').remove(id=existing_client[0]['.id'])
+                    message = "Radius client removed successfully!"
+                else:
+                    message = "Radius client not found for this IP."
+                
+                self.write({'state': 'connected'})
+                return {
+                    'type': 'ir.actions.client',
+                    'tag': 'display_notification',
+                    'params': {
+                        'title': 'Success',
+                        'message': message,
+                        'type': 'success',
+                    }
+                }
+            except Exception as e:
+                self.write({'state': 'error'})
+                raise UserError(_("Failed to remove Radius client: %s") % e)
+            finally:
+                api.close()
+        else:
+            raise UserError(_("Could not connect to the MikroTik router."))
 
     @api.model
     def button_test_connection(self):

@@ -43,6 +43,7 @@
         'views/isp_onu_line_views.xml',
         'views/device_pool_ip_views.xml',
         'views/isp_radius_line_views.xml',
+'views/isp_radius_user_views.xml',
         "views/isp_map_views.xml",
         "views/isp_menus.xml",
     ],
