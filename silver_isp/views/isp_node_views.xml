@@ -17,6 +17,7 @@
                 <tree string="Nodos ISP" default_order="name desc">
                     <field name="code"/>
                     <field name="name"/>
+                    <field name="zone_id"/>
                     <field name="country_id"/>
                     <field name="state_id"/>
                     <field name="street"/>
@@ -61,6 +62,7 @@
                             <page name="geolocaloze" string="Datos Ubicacion">
                                 <group>
                                     <group>
+                                        <field name="zone_id" required="True"/>
                                         <field name="country_id"/>
                                         <field name="state_id" domain="[('country_id','=', country_id)]"/>
                                         <field name="zip"/>

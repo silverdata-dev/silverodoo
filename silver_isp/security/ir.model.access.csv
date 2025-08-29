@@ -1,6 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_isp_asset,access.isp.asset,model_isp_asset,base.group_user,1,1,1,1
 access_isp_node,access.isp.node,model_isp_node,base.group_user,1,1,1,1
+access_isp_zone,access.isp.zone,model_isp_zone,base.group_user,1,1,1,1
 access_isp_core,access.isp.core,model_isp_core,base.group_user,1,1,1,1
 access_isp_radius,access.isp.radius,model_isp_radius,base.group_user,1,1,1,1
 access_isp_device_networks,access.isp.device.networks,model_isp_device_networks,base.group_user,1,1,1,1
@@ -15,6 +16,7 @@ access_isp_olt,access.isp.olt,model_isp_olt,base.group_user,1,1,1,1
 access_isp_olt_card,access.isp.olt.card,model_isp_olt_card,base.group_user,1,1,1,1
 access_isp_olt_card_port,access.isp.olt.card.port,model_isp_olt_card_port,base.group_user,1,1,1,1
 access_isp_splitter,access.isp.splitter,model_isp_splitter,base.group_user,1,1,1,1
+access_isp_post,access.isp.post,model_isp_post,base.group_user,1,1,1,1
 access_isp_box,access.isp.box,model_isp_box,base.group_user,1,1,1,1
 access_isp_ap,access.isp.ap,model_isp_ap,base.group_user,1,1,1,1
 access_olt_line_product,access.olt.line.product,model_olt_line_product,base.group_user,1,1,1,1

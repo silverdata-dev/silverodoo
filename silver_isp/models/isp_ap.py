@@ -15,13 +15,13 @@ class IspAp(models.Model):
     
 
     hostname_ap = fields.Char(string='Hostname')
-    node_ids = fields.Many2many('isp.node', string='Nodos', readonly=True)
+    node_ids = fields.Many2many('isp.node', string='Nodos', readonly=False)
 
     description_brand = fields.Text(string='Descripcion', related='brand_id.description')
 
 
 
-    capacity_usage_ap = fields.Integer(string='Usada AP', readonly=True)
+    capacity_usage_ap = fields.Integer(string='Usada AP', readonly=False)
     contract_count = fields.Integer(string="Contratos", compute='_compute_contract_count')
     core_id = fields.Many2one('isp.core', 'Equipo Core')
     is_mgn_mac_onu = fields.Boolean(string='Gestion MAC ONU')
@@ -29,6 +29,13 @@ class IspAp(models.Model):
 
     asset_type = fields.Selection(
         related='asset_id.asset_type',
+        default='ap',
+        store=True,
+        readonly=False
+    )
+
+    netdev_type = fields.Selection(
+        related='netdev_id.netdev_type',
         default='ap',
         store=True,
         readonly=False

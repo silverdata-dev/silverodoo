@@ -3,12 +3,22 @@ from odoo import models, fields, api
 class IspOltCardPort(models.Model):
     _name = 'isp.olt.card.port'
     _description = 'Puerto de Tarjeta OLT'
-    _inherit = ['isp.netdev', 'mail.thread', 'mail.activity.mixin']
+    _inherit = [ 'mail.thread', 'mail.activity.mixin']
+
+    _inherits = { 'isp.netdev': 'netdev_id'}
+
+
+    name = fields.Char(string='Nombre')
+
+    netdev_id = fields.Many2one('isp.netdev', required=True, ondelete="cascade")
+
 
     num_port = fields.Integer(string='Numero Puerto')
-    olt_card_id = fields.Many2one('isp.olt.card', string='Tarjeta OLT', required=True, ondelete='cascade')
-    capacity_port_pon = fields.Selection([], string='Total PON')
-    capacity_usage_port_pon = fields.Integer(string='Usada PON', readonly=True)
+    olt_id = fields.Many2one('isp.olt', string='Equipo OLT', required=False, ondelete='cascade')
+    olt_card_n = fields.Integer(string='Tarjeta', required=0, default=0)
+    olt_card_id = fields.Many2one('isp.olt.card', string='Tarjeta OLT', required=False, ondelete='cascade')
+    capacity_port_pon = fields.Selection([("32","32"), ("64", "64"), ("128", "128"), ("256","256")], string='Total PON')
+    capacity_usage_port_pon = fields.Integer(string='Usada PON', readonly=False)
     s_vlan = fields.Integer(string='s-vlan')
     c_vlan = fields.Integer(string='c-vlan')
     is_management_vlan = fields.Boolean(string='Vlan de Gestion')
@@ -21,7 +31,7 @@ class IspOltCardPort(models.Model):
     ont_lineprofile = fields.Char(string='ont-lineprofile')
     type_access_net = fields.Selection(
         [('inactive', 'Inactivo'), ('dhcp', 'DHCP Leases'), ('manual', 'IP Asignada manualmente'),
-         ('system', 'IP Asignada por el sistema')], default='inactive', string='Tipo Acceso', required=True)
+         ('system', 'IP Asignada por el sistema')], default='inactive', string='Tipo Acceso', required=True, related='netdev_id.type_access_net',)
 
     dhcp_custom_server = fields.Char(string='DHCP Leases')
     interface = fields.Char(string='Interface')
@@ -33,9 +43,17 @@ class IspOltCardPort(models.Model):
     realm_name = fields.Char(string='REALM')
     is_reverse_onuid = fields.Boolean(string='Reservar ONU IDs')
     number_reverse = fields.Integer(string='Numero')
-    splitter1_count = fields.Integer(string='Conteo Splitter 1', compute='_compute_splitter1_count')
-    splitter2_count = fields.Integer(string='Conteo Splitter 2', compute='_compute_splitter2_count')
-    contracts_port_count = fields.Integer(string='Conteo Puerto Olt', compute='_compute_contracts_port_count')
+   # splitter1_count = fields.Integer(string='Conteo Splitter 1', compute='_compute_splitter1_count')
+   # splitter2_count = fields.Integer(string='Conteo Splitter 2', compute='_compute_splitter2_count')
+   # contracts_port_count = fields.Integer(string='Conteo Puerto Olt', compute='_compute_contracts_port_count')
+
+
+    netdev_type = fields.Selection(
+        related='netdev_id.netdev_type',
+        default='port',
+        store=True,
+        readonly=False
+    )
 
     def _compute_splitter1_count(self):
         for record in self:

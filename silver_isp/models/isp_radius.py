@@ -14,6 +14,12 @@ class IspRadius(models.Model):
 
 
     netdev_id = fields.Many2one('isp.netdev', required=True, ondelete="cascade")
+    netdev_type = fields.Selection(
+        related='netdev_id.netdev_type',
+        default='ap',
+        store=True,
+        readonly=False
+    )
 
 
     name = fields.Char(string='Hostname', required=True, readonly=True, copy=False, default='New')

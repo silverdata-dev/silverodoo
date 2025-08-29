@@ -10,10 +10,13 @@ class IspBox(models.Model):
     asset_id = fields.Many2one('isp.asset', required=True, ondelete="cascade")
     netdev_id = fields.Many2one('isp.netdev', required=True, ondelete="cascade")
 
+    name = fields.Char(string="Nombre", related="asset_id.name", readonly=False)
+
+
     port_splitter_secondary = fields.Integer(string='Puerto Splitter Secundario')
     splitter_id = fields.Many2one('isp.splitter', string='Spliter Secundario')
     node_id = fields.Many2one('isp.node', string='Nodo')
-    capacity_nap = fields.Selection([("8","8"), ("16", "16")], string='Total NAP')
+    capacity_nap = fields.Selection([("8","8"), ("16", "16"), ("24", "24"), ("32", "32")], string='Total NAP')
     capacity_usage_nap = fields.Integer(string='Usada NAP')#, readonly=True)
 
 
@@ -48,6 +51,13 @@ class IspBox(models.Model):
         store=True,
         readonly=False
     )
+    netdev_type = fields.Selection(
+        related='netdev_id.netdev_type',
+        default='cto',
+        store=True,
+        readonly=False
+    )
+
     contract_count = fields.Integer(string="Contratos", compute='_compute_contract_count')
  
 

@@ -13,7 +13,7 @@ class IspCore(models.Model):
     netdev_id = fields.Many2one('isp.netdev', required=True, ondelete="cascade")
 
 
-    name = fields.Char(related='asset_id.name', string='Codigo', required=False, copy=False, default=lambda self: ('Nuevo'))
+    name = fields.Char(related='asset_id.name', string='Nombre', required=False, readonly=False)
 
     hostname_core = fields.Char(string='Hostname')
 
@@ -22,7 +22,7 @@ class IspCore(models.Model):
 
 
 # --- Campos Base y Relaciones ---
-    name = fields.Char(string='Código', required=True)
+#    name = fields.Char(string='Código', required=True)
     active = fields.Boolean(string='Activo', default=True)
 
     node_id = fields.Many2one('isp.node', string='Nodo')
@@ -58,7 +58,7 @@ class IspCore(models.Model):
     svlan = fields.Char(string='SVLAN')
 
     # --- Campos de Estado y Métricas (calculados) ---
-    state = fields.Selection([('draft', 'Borrador'), ('active', 'Activo')], string='Estado')
+    state = fields.Selection([('draft', 'Borrador'), ('active', 'Activo'),  ('down', 'Down')], string='Status')
     display_name = fields.Char(string='Display Name', compute='_compute_display_name')
 
     olt_count = fields.Integer(string='Conteo Equipo OLT', compute='_compute_counts')
@@ -112,15 +112,15 @@ class IspCore(models.Model):
 
     # --- Campos de Datos Varios ---
     access_token = fields.Char(string='Security Token')
-    access_url = fields.Char(string='Portal Access URL', readonly=True)
-    access_warning = fields.Text(string='Access warning', readonly=True)
+    access_url = fields.Char(string='Portal Access URL', readonly=False)
+    access_warning = fields.Text(string='Access warning', readonly=False)
 
     custom_list_active = fields.Char(string='Activos')
     custom_list_cuttoff = fields.Char(string='Cortados')
     custom_list_layoff = fields.Char(string='Suspendidos')
 
     dhcp_custom_server = fields.Char(string='DHCP Leases')
-    brand_description = fields.Text(string='Descripción', readonly=True)
+    brand_description = fields.Text(string='Descripción', readonly=False)
     software_version = fields.Char(string='Versión Software')
     poolip = fields.Char(string='Poolip')
     user_profile_radius = fields.Char(string='User PROFILE')
@@ -130,8 +130,8 @@ class IspCore(models.Model):
     port_card = fields.Integer(string='Puerto por Tarjeta')
 
     # --- Campos de Selección ---
-    type_access_net = fields.Selection([('wired', 'Cableado'), ('wireless', 'Inalámbrico')], string='Tipo')
-    type_connection = fields.Selection([('router', 'Router'), ('switch', 'Switch')], string='Tipo de Conexión')
+    type_access_net = fields.Selection([('wired', 'Cableado'), ('wireless', 'Inalámbrico'), ('inactivo', 'Inactivo'), ('dhcp', 'IP Asiganada por el sistema')], string='Tipo')
+    type_connection = fields.Selection([('router', 'Router'), ('switch', 'Switch'), ('ssh', 'ssh'), ('telnet', 'Telnet')], string='Tipo de Conexión')
     type_manager_address_list = fields.Selection([], string='Tipos de Control')
 
     # --- Relacionado al mixin de asset ---
@@ -141,7 +141,12 @@ class IspCore(models.Model):
         store=True,
         readonly=False
     )
-
+    netdev_type = fields.Selection(
+        related='netdev_id.netdev_type',
+        default='core',
+        store=True,
+        readonly=False
+    )
 
     @api.depends('name', 'company_id')
     def _compute_display_name(self):

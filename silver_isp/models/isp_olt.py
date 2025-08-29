@@ -20,7 +20,7 @@ class IspOlt(models.Model):
 
     is_core_baudcom = fields.Boolean(string='Es Baudcom?')
     core_ids = fields.Many2many('isp.core', string='Equipos Core')
-    bridge_core_id = fields.Many2one('isp.core', string='Equipo Core')
+    bridge_core_id = fields.Many2one('isp.core', string='Equipo b Core')
     is_vsol_marca = fields.Boolean(string='Es VSOL Marca?')
     is_brand_zte = fields.Boolean(string='Es Marca ZTE?')
     core_id = fields.Many2one('isp.core', string='Equipo Core')
@@ -126,9 +126,27 @@ class IspOlt(models.Model):
     ip_range_count = fields.Integer(string='IP Ranges', compute='_compute_ip_range_count')
 
 
+    olt_card_port_count = fields.Integer(string='Conteo Puertos', compute='_compute_counts')
+
+
+    port_ids = fields.One2many('isp.olt.card.port', 'olt_id', string='Puertos')
+    card_ids = fields.One2many('isp.olt.card', 'olt_id', string='Tarjetas')
+
+    def _compute_olt_card_port_count(self):
+        for record in self:
+            record.olt_card_port_count = self.env['isp.olt.card.port'].search_count([('olt_id', '=', record.id)])
+
+
 
     asset_type = fields.Selection(
         related='asset_id.asset_type',
+        default='olt',
+        store=True,
+        readonly=False
+    )
+
+    netdev_type = fields.Selection(
+        related='netdev_id.netdev_type',
         default='olt',
         store=True,
         readonly=False
@@ -146,12 +164,12 @@ class IspOlt(models.Model):
     @api.model
     def create(self, vals):
         print(("createee", vals))
-        if vals.get('node_id'):
-            node = self.env['isp.node'].browse(vals['node_id'])
-            print(("createee0", node, node.name, node.asset_id, node.asset_id.name))
-            if node.exists() and node.name:
-                olt_count = self.search_count([('node_id', '=', node.id)])
-                vals['name'] = f"{node.name}/OLT{olt_count + 1}"
+        if vals.get('core_id'):
+            core = self.env['isp.core'].browse(vals['core_id'])
+            print(("createee0", core, core.name, core.asset_id, core.asset_id.name))
+            if core.exists() and core.name and  not vals.get("name"):
+                olt_count = self.search_count([('core_id', '=', core.id)])
+                vals['name'] = f"{core.name}/OLT{olt_count + 1}"
                 print(("createe2e", vals))
         print(("createee3", vals))
         return super(IspOlt, self).create(vals)
@@ -161,14 +179,14 @@ class IspOlt(models.Model):
         print(("apwrite", vals))
 
         for i, record in enumerate(self):
-            if vals.get('node_id'):
-                node = self.env['isp.node'].browse(vals['node_id'])
+            if vals.get('coreid'):
+                core = self.env['isp.core'].browse(vals['core_id'])
             else:
-                node = record.node_id
+                core = record.core_id
 
-            if node.exists() and node.name:
-                olt_count = self.search_count([('node_id', '=', node.id)])
-                record.asset_id.name = f"{node.name}/OLT{olt_count + 1}"
+            if core.exists() and core.name:
+                olt_count = self.search_count([('core_id', '=', core.id)])
+                record.asset_id.name = f"{core.name}/OLT{olt_count + 1}"
 
 
             # If node_id is set to False, the name is not changed.

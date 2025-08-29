@@ -6,12 +6,22 @@ class IspNetdev(models.Model):
     _name = 'isp.netdev'
     _description = 'ISP Network Device (Base Model)'
 
-    name = fields.Char(string='Name', required=True)
+    #name = fields.Char(string='Name', required=True)
     active = fields.Boolean(string='Active', default=True)
+
+    netdev_type = fields.Selection([
+        ('ap', 'AP'),
+        ('core', 'Core'),
+        ('cto', 'CTO'),
+        ('olt', 'OLT'),
+        ('port', 'Port'),
+        ('radius', 'Radius'),
+        ('other', 'Other')
+    ], default='other')
 
     type_access_net = fields.Selection(
         [('inactive', 'Inactivo'), ('dhcp', 'DHCP Leases'), ('manual', 'IP Asignada manualmente'),
-         ('system', 'IP Asignada por el sistema')], default='inactive', string='Tipo Acceso', required=True)
+         ('system', 'IP Asiganada por el sistema')], default='inactive', string='Tipo Acceso', required=True)
 
 
     dhcp_custom_server = fields.Char(string='DHCP Leases')

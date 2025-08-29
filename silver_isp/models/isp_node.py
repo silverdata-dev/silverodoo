@@ -30,6 +30,7 @@ class IspNode(models.Model):
 
 
 
+
     asset_type = fields.Selection(
         related='asset_id.asset_type',
         default='node',

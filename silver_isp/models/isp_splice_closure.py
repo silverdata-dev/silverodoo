@@ -9,6 +9,13 @@ class IspSpliceClosure(models.Model):
 
     asset_id = fields.Many2one('isp.asset', string='Asset', required=True, ondelete="cascade")
 
+    name = fields.Char(string="Nombre", related="asset_id.name", readonly=False)
+
+    node_id = fields.Many2one('isp.node', string='Nodo')
+    zone_id = fields.Many2one('isp.zone', string="Zona", related="asset_id.zone_id", readonly=False)
+    
+
+
     closure_type = fields.Selection([
         ('dome', 'Dome'),
         ('inline', 'Inline'),
@@ -19,7 +26,7 @@ class IspSpliceClosure(models.Model):
 
     asset_type = fields.Selection(
         related='asset_id.asset_type',
-        default='splice_closure',
+        default='manga',
         store=True,
         readonly=False
     )

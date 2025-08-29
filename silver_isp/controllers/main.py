@@ -35,16 +35,29 @@ class AssetMapController(http.Controller):
         print(("get_assets", node_id, root_id))
 
         #"""
-        
 
-        domain = [('gps_lat', '!=', 0), ('gps_lon', '!=', 0)]
+
+
+        domain = ['|', '|', ('line_string_wkt', '!=', ''), ('gps_lat', '!=', 0), ('gps_lon', '!=', 0)]
         if root_id:
             domain.extend(['|','|',('parent_id', '=', root_id), ('root_id', '=', root_id), ('id', '=', root_id)])
 
         assets = request.env["isp.asset"].search(domain)
+
+        count={}
             
         for asset in assets:
-                all_assets.append({
+                count[asset.asset_type] = count.get(asset.asset_type, 0)+1
+                if (asset.line_string_wkt):
+                    all_assets.append({
+                    'id': asset.id,
+                    'name': asset.name,
+                    'model': asset.asset_type,
+                    'line_string_wkt': asset.line_string_wkt,
+                    'color': asset.color,
+                })
+                else:
+                    all_assets.append({
                     'id': asset.id,
                     'name': asset.name,
                     'model': asset.asset_type,
@@ -52,7 +65,7 @@ class AssetMapController(http.Controller):
                     'longitude': asset.gps_lon,
                 })
 
-        print(("asset", node_id, root_id, domain, all_assets))
+        print(("asset", count))
         """
         for model_name in asset_models:
             if model_name not in request.env:

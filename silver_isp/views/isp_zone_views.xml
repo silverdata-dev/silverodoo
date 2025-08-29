@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Accion y Menu para isp.zone -->
+        <record id="action_isp_zone" model="ir.actions.act_window">
+            <field name="name">Zonas ISP</field>
+            <field name="res_model">isp.zone</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- Vistas para isp.zone -->
+        <record id="view_isp_zone_tree" model="ir.ui.view">
+            <field name="name">isp.zone.tree</field>
+            <field name="model">isp.zone</field>
+            <field name="arch" type="xml">
+                <tree string="Zonas" default_order="name desc">
+
+                    <field name="name"/>
+                   <field name="gps_top"/>
+                                <field name="gps_left"/>
+                                <field name="gps_right"/>
+                                <field name="gps_bottom"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_isp_zone_form" model="ir.ui.view">
+            <field name="name">isp.zone.form</field>
+            <field name="model">isp.zone</field>
+            <field name="arch" type="xml">
+                <form string="Zona ISP">
+                    <header>
+
+
+                    </header>
+                    <sheet string="Zona ISP">
+                       
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Nombre de la Zona"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="gps_top"/>
+                                <field name="gps_left"/>
+                                <field name="gps_right"/>
+                                <field name="gps_bottom"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -16,17 +16,9 @@ class IspCable(models.Model):
         ('other', 'Other')
     ], string='Cable Type', default='fiber')
 
-    fiber_count = fields.Integer(string='Fiber Count')
-    length = fields.Float(string='Length (meters)')
+    line_string_wkt = fields.Char(string='Cable', related='asset_id.line_string_wkt', readonly=False)
 
-    # This field will store the sequence of assets that form the cable's route
-    route_asset_ids = fields.Many2many(
-        'isp.asset',
-        'isp_cable_asset_route_rel',
-        'cable_id',
-        'asset_id',
-        string='Route'
-    )
+    color = fields.Char(string="Color", related='asset_id.color',  readonly=False)
 
     asset_type = fields.Selection(
         related='asset_id.asset_type',

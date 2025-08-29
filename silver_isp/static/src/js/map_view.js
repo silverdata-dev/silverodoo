@@ -108,6 +108,8 @@ export class AssetMapView extends Component {
         });
         this.map.addLayer(vectorLayer);
 
+        this.map.on("moveend", () => this._updateFeatureVisibility());
+
         this.map.on("singleclick", (evt) => {
             const feature = this.map.forEachFeatureAtPixel(evt.pixel, (f) => f);
             if (feature) {
@@ -171,24 +173,78 @@ export class AssetMapView extends Component {
     _renderFeatures() {
         this.vectorSource.clear();
         const features = this.state.filteredAssets.map(asset => {
-            var model = asset.model.replaceAll(".","_");
-            console.log(["model", model]);
-            const iconPath = `/silver_isp/static/src/img/map_icons/${model}.png`;
-            const feature = new ol.Feature({
-                geometry: new ol.geom.Point(ol.proj.fromLonLat([asset.longitude, asset.latitude])),
-                asset: asset,
-            });
-            feature.setStyle(new ol.style.Style({
-                image: new ol.style.Icon({
-                    anchor: [0.5, 1],
-                    src: iconPath,
-                    scale: 0.5,
-                    imgSize: [48, 48],
-                }),
-            }));
-            return feature;
-        });
+            let feature;
+            let style;
+            if (asset.model === 'cable' && asset.line_string_wkt) {
+                const wkt = new ol.format.WKT();
+                feature = wkt.readFeature('POLYGON(('+asset.line_string_wkt+'))', {
+                    dataProjection: 'EPSG:4326',
+                    featureProjection: 'EPSG:3857'
+                });
+
+                const color = asset.color; // #RRGGBBAA
+                const a = parseInt(color.slice(1, 3), 16);
+                const r = parseInt(color.slice(3, 5), 16);
+                const g = parseInt(color.slice(5, 7), 16);
+                const b = parseInt(color.slice(7, 9), 16) / 255;
+
+                console.log(['color', color, r, g, b, a])
+
+                style = new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: `rgba(${r}, ${g}, ${b}, ${a})`,
+                        width: 3
+                    })
+                });
+            } else if (asset.longitude && asset.latitude) {
+                feature = new ol.Feature({
+                    geometry: new ol.geom.Point(ol.proj.fromLonLat([asset.longitude, asset.latitude])),
+                });
+                style = this._getFeatureStyle(asset);
+            }
+
+            if (feature) {
+                feature.set('asset', asset);
+                feature.setStyle(style);
+                feature.set('originalStyle', style); // Store original style
+                return feature;
+            }
+            return null;
+        }).filter(Boolean);
+
         this.vectorSource.addFeatures(features);
+        this._updateFeatureVisibility(); // Set initial visibility
+    }
+
+    _getFeatureStyle(asset) {
+        var model = asset.model.replaceAll(".", "_");
+        const iconPath = `/silver_isp/static/src/img/map_icons/${model}.png`;
+        return new ol.style.Style({
+            image: new ol.style.Icon({
+                anchor: [0.5, 1],
+                src: iconPath,
+                scale: 0.3,
+                imgSize: [48, 48],
+            }),
+        });
+    }
+
+    _updateFeatureVisibility() {
+        const zoom = this.map.getView().getZoom();
+        console.log(["update",  this.map.getView().getZoom()]);
+        this.vectorSource.getFeatures().forEach(feature => {
+            const asset = feature.get("asset");
+            if (asset) {
+                let isVisible = true;
+                if (asset.model === 'post') {
+                    isVisible = zoom >= 15;
+                } else if (asset.model === 'cto') {
+                    isVisible = zoom > 13;
+                }
+                
+                feature.setStyle(isVisible ? feature.get('originalStyle') : new ol.style.Style({}));
+            }
+        });
     }
 
     onFilterChange(e) {

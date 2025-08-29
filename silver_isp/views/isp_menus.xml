@@ -4,8 +4,18 @@
 
         <menuitem id="menu_silver_isp_root" name="Infrastructura" sequence="10"/>
 
+
                 <menuitem id="menu_isp_infrastructure" name="Infrastructura"   parent="menu_silver_isp_root" sequence="10"/>
 
+
+
+
+           <!-- Menu Item -->
+        <menuitem id="menu_isp_asset_mapa"
+                  name="Mapa"
+                  parent="menu_isp_infrastructure"
+                  action="action_isp_asset_map"
+                  sequence="1"/>
 
         <!--menuitem id="menu_isp_routers" name="Routers" parent="menu_isp_infrastructure" sequence="110"/>
 
@@ -18,47 +28,50 @@
             <menuitem id="menu_isp_router_queue_wizard" name="Router Queues" parent="menu_isp_routers" action="action_isp_router_queue_wizard" sequence="60"/-->
 
         <menuitem id="menu_isp_nodes" name="Nodos" parent="menu_isp_infrastructure" sequence="20"/>
+               <menuitem id="menu_isp_zone" name="Zonas" parent="menu_isp_nodes" action="action_isp_zone" sequence="1"/>
 
                <menuitem id="menu_isp_node" name="Nodos" parent="menu_isp_nodes" action="action_isp_node" sequence="10"/>
 
+        <!--menuitem id="menu_isp_cajas" name="Cajas" parent="menu_isp_infrastructure" sequence="60"/-->
+             <menuitem id="menu_isp_box" name="Cajas NAP" parent="menu_isp_nodes" action="action_isp_box" sequence="70"/>
 
-        <menuitem id="menu_isp_cores" name="Core" parent="menu_isp_infrastructure" sequence="30"/>
-            <menuitem id="menu_isp_core" name="Equipos Core" parent="menu_isp_cores" action="action_isp_core" sequence="20"/>
 
-        <menuitem id="menu_isp_oltss" name="OLT" parent="menu_isp_infrastructure" sequence="40"/>
+        <menuitem id="menu_isp_oltss" name="Equipos" parent="menu_isp_infrastructure" sequence="40"/>
             <menuitem id="menu_isp_olt" name="Equipos OLT" parent="menu_isp_oltss" action="action_isp_olt" sequence="30"/>
-            <menuitem id="menu_isp_olt_card" name="Tarjetas OLT" parent="menu_isp_oltss" action="action_isp_olt_card" sequence="40"/>
-            <menuitem id="menu_isp_olt_card_port" name="Puertos OLT" parent="menu_isp_oltss" action="action_isp_olt_card_port" sequence="50"/>
+            <!--menuitem id="menu_isp_olt_card" name="Tarjetas OLT" parent="menu_isp_oltss" action="action_isp_olt_card" sequence="40"/>
 
-        <menuitem id="menu_isp_splitters" name="OLT" parent="menu_isp_infrastructure" sequence="50"/>
-                <menuitem id="menu_isp_splitter" name="Splitters" parent="menu_isp_splitters" action="action_isp_splitter" sequence="30"/>
-        <menuitem id="menu_isp_splice_closure" name="Mangas" parent="menu_isp_splitters" action="action_isp_splitter" sequence="60"/>
+            <menuitem id="menu_isp_olt_card_port" name="Puertos OLT" parent="menu_isp_oltss" action="action_isp_olt_card_port" sequence="50"/-->
+        <!--menuitem id="menu_isp_cores" name="Core" parent="menu_isp_infrastructure" sequence="30"/-->
+            <menuitem id="menu_isp_core" name="Equipos Core" parent="menu_isp_oltss" action="action_isp_core" sequence="20"/>
 
-        <menuitem id="menu_isp_cajas" name="Cajas" parent="menu_isp_infrastructure" sequence="60"/>
-             <menuitem id="menu_isp_box" name="Cajas NAP" parent="menu_isp_cajas" action="action_isp_box" sequence="70"/>
 
-        <menuitem id="menu_isp_aps" name="AP" parent="menu_isp_infrastructure" sequence="70"/>
-            <menuitem id="menu_isp_ap" name="Equipos AP" parent="menu_isp_aps" action="action_isp_ap" sequence="80"/>
+
+        <!--menuitem id="menu_isp_aps" name="AP" parent="menu_isp_infrastructure" sequence="70"/-->
+            <menuitem id="menu_isp_ap" name="Equipos AP" parent="menu_isp_oltss" action="action_isp_ap" sequence="80"/>
 
         <menuitem id="menu_isp_radiuss" name="Radius" parent="menu_isp_infrastructure" sequence="80"/>
             <menuitem id="menu_isp_radius" name="Servidores Radius" parent="menu_isp_radiuss" action="action_isp_radius" sequence="90"/>
 
-        <menuitem id="menu_isp_network" name="Red" parent="menu_silver_isp_root" sequence="20"/>
-            <menuitem id="menu_isp_ip_ranges" name="IP Ranges" parent="menu_isp_network" action="isp_ip_address_action" sequence="10"/>
+            <menuitem id="menu_isp_ip_ranges" name="IP Ranges" parent="menu_isp_radiuss" action="isp_ip_address_action" sequence="10"/>
+
+
+        <menuitem id="menu_isp_splitters" name="Pasivos" parent="menu_isp_infrastructure" sequence="150"/>
+                <menuitem id="menu_isp_splitter" name="Splitters" parent="menu_isp_splitters" action="action_isp_splitter" sequence="30"/>
+        <menuitem id="menu_isp_splice_closure" name="Mangas" parent="menu_isp_splitters" action="action_isp_splice_closure" sequence="60"/>
+        <menuitem id="menu_isp_post" name="Postes" parent="menu_isp_splitters" action="action_isp_post" sequence="69"/>
+        <menuitem id="menu_isp_cable" name="Cables" parent="menu_isp_splitters" action="action_isp_cable" sequence="70"/>
 
 
 
-        <menuitem id="menu_isp_cabless" name="Cables" parent="menu_isp_infrastructure" sequence="120"/>
 
-        <menuitem id="menu_isp_cable" name="Cables" parent="menu_isp_cabless" action="action_isp_cable" sequence="70"/>
+            <menuitem id="menu_isp_config" name="Configuración"   parent="menu_silver_isp_root" sequence="210"/>
 
-
-           <!-- Menu Item -->
-        <menuitem id="menu_isp_asset_map"
-                  name="Mapa"
-                  parent="menu_isp_infrastructure"
-                  action="action_isp_asset_map"
+                <menuitem id="menu_isp_asset_map"
+                  name="Marcas"
+                  parent="menu_isp_config"
+                  action="action_product_brand"
                   sequence="1"/>
+
 
 
     </data>

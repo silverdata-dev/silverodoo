@@ -15,7 +15,7 @@
                 <tree string="Puertos OLT ISP" default_order="name desc">
                     <field name="name"/>
                     <field name="num_port"/>
-                    <field name="olt_card_id"/>
+                    <field name="olt_card_n"/>
                     <field name="type_access_net"/>
                 </tree>
             </field>
@@ -29,31 +29,96 @@
                     <header>
                         <button name="create_splitter_primary" string="Crear Splitter Primario" type="object"/>
                         <button name="create_splitter_secondary" string="Crear Splitter Secundario" type="object"/>
-                        <button name="active_contracts" type="object" class="oe_stat_button" string="Activar Contratos"/>
+                        <button name="active_contracts" type="object" class="oe_stat_button"
+                                string="Activar Contratos"/>
                     </header>
                     <sheet string="Puerto OLT ISP">
-                        <div class="oe_button_box" name="button_box">
-                            <button class="oe_stat_button" type="object" name="action_view_splitter1" icon="fa-arrows-v">
+                        <!--div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" name="action_view_splitter1"
+                                    icon="fa-arrows-v">
                                 <field string="Splitter Primario" name="splitter1_count" widget="statinfo"/>
                             </button>
-                            <button class="oe_stat_button" type="object" name="action_view_splitter2" icon="fa-arrows-v">
+                            <button class="oe_stat_button" type="object" name="action_view_splitter2"
+                                    icon="fa-arrows-v">
                                 <field string="Splitter Secundario" name="splitter2_count" widget="statinfo"/>
                             </button>
                             <button class="oe_stat_button" type="object" name="action_view_contracts" icon="fa-link">
                                 <field string="Contratos" name="contracts_port_count" widget="statinfo"/>
                             </button>
-                        </div>
+                        </div-->
                         <div class="oe_title">
-                            <h1><field name="name" readonly="1"/></h1>
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
                         </div>
                         <group name="port">
                             <group>
                                 <field name="num_port"/>
                             </group>
                             <group>
-                                <field name="olt_card_id"/>
+                                <field name="olt_card_n"/>
                             </group>
                         </group>
+
+                        <group>
+                            <group name="capacity_port" string="Capacidad del Puerto">
+                                <field name="capacity_port_pon"/>
+                                <field name="capacity_usage_port_pon" readonly="1"/>
+                            </group>
+                            <group name="vlan_port" string="Vlan Administrativa">
+                                <field name="s_vlan"/>
+                                <field name="c_vlan"/>
+                                <field name="is_management_vlan" widget="boolean_toggle"/>
+                                <field name="is_extra_serviceport" widget="boolean_toggle"/>
+                                <field name="mgs_vlan" invisible="not is_management_vlan and not is_extra_serviceport"/>
+                                <field name="mgc_vlan" invisible="not is_management_vlan and not is_extra_serviceport"/>
+                            </group>
+
+
+                        </group>
+
+                        <group>
+                            <group name="srv_profile" string="ONT Srvprofile">
+                                <field name="is_srvprofile" widget="boolean_toggle"/>
+                                <field name="ont_srvprofile" invisible="not is_srvprofile"/>
+                            </group>
+                            <group name="ont_profile" string="ONT Lineprofile">
+                                <field name="is_line_profile" widget="boolean_toggle"/>
+                                <field name="ont_lineprofile" invisible="not is_line_profile"/>
+                            </group>
+                        </group>
+
+                        <group name="ip_address" string="Direccionamiento IP">
+                            <group>
+                                <field name="type_access_net"/>
+                            </group>
+
+                            <group>
+                                <field name="dhcp_custom_server" invisible="type_access_net != 'dhcp_leases'"/>
+                                <field name="interface" invisible="type_access_net != 'dhcp_leases'"/>
+                            </group>
+                        </group>
+                        <group name="port_net_ro_1" string="Network Router">
+                            <group>
+                                <field name="dhcp_client" widget="boolean_toggle"/>
+                                <field name="pri_onu_standar" invisible="not dhcp_client"/>
+                                <field name="pri_onu_bridge" invisible="not dhcp_client"/>
+                            </group>
+                            <group string="Custom PPPoE Profile" name="port_custom_profile">
+                                <field name="is_custom_pppoe_profile" widget="boolean_toggle"/>
+                                <field name="name_custom_pppoe_profile" invisible="not is_custom_pppoe_profile"/>
+                            </group>
+                        </group>
+                        <group name="port_radius" string="Radius">
+                            <group>
+                                <field name="realm_name"/>
+                            </group>
+                            <group>
+                                <field name="is_reverse_onuid" widget="boolean_toggle"/>
+                                <field name="number_reverse" invisible="not is_reverse_onuid"/>
+                            </group>
+                        </group>
+
                         <notebook colspan="4">
                             <page name="ip_addresses" string="Direcciones IP">
                                 <field name="ip_address_ids">

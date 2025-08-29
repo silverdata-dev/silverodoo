@@ -16,11 +16,13 @@
 
         'security/ir.model.access.csv',
         'views/isp_node_views.xml',
+        'views/isp_zone_views.xml',
         'views/isp_core_views.xml',
         'views/isp_olt_views.xml',
         'views/isp_olt_card_views.xml',
         'views/isp_olt_card_port_views.xml',
         'views/isp_splitter_views.xml',
+        'views/isp_post_views.xml',
         'views/isp_router_views.xml',
         'views/isp_router_wizards_views.xml',
         'views/isp_box_views.xml',

@@ -18,6 +18,7 @@ class IspAsset(models.Model):
         ('onu', 'ONU'),
         ('manga', 'Manga'),
         ('cable', 'Cable'),
+        ('post', 'Poste'),
         ('ap', 'AP'),
         ('other', 'Other')
     ], default='other')
@@ -26,6 +27,7 @@ class IspAsset(models.Model):
         ('unique_code', 'unique (code)', 'This value must be unique!')
     ]
 
+    zone_id = fields.Many2one('isp.zone', string='Zona')
     parent_id = fields.Many2one('isp.asset', string='Parent')
     root_id = fields.Many2one('isp.asset', string='Root')
 
@@ -38,8 +40,8 @@ class IspAsset(models.Model):
     n = fields.Char(string='Número')
     nn = fields.Char(string='Correlativo')
 
-    gps_lat = fields.Float(string="Latitud", digits=(16, 7))
-    gps_lon = fields.Float(string="Longitud", digits=(16, 7))
+    gps_lat = fields.Float(string="Latitud", digits=(16, 7), readonly=False)
+    gps_lon = fields.Float(string="Longitud", digits=(16, 7), readonly=False)
     date_localization = fields.Date(string='Fecha de Geolocalización')
     date_install = fields.Date(string='Fecha de Instalación')
 
@@ -48,3 +50,7 @@ class IspAsset(models.Model):
     model = fields.Char(string='Modelo')
     astate = fields.Selection([('new','New'),('deployed','Deployed'),('maintenance','Maintenance'),('retired','Retired')], default='new')
     notes = fields.Text()
+
+
+    line_string_wkt = fields.Char(string='LineString WKT')
+    color = fields.Char(string="Color")
