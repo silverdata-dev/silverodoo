@@ -86,6 +86,33 @@ class IspRouterPppActiveWizardLine(models.Model):
     address = fields.Char(string='IP Address')
     uptime = fields.Char(string='Uptime')
     wizard_id = fields.Many2one('isp.netdev.ppp.active.wizard')
+    ppp_speed_chart = fields.Text(string="PPP Speed Chart", readonly=True)
+
+    @api.model
+    def get_interface_speed(self, line_id):
+        line = self.browse(line_id)
+        router = line.wizard_id.router_id
+        api = router._get_api_connection()
+        if not api:
+            return {'upload': 0, 'download': 0}
+        try:
+            # The 'name' field of the line should correspond to the interface name on the router
+            interface_name = line.name
+            # Get traffic for the specific interface
+            traffic = api.get_resource('/interface').call('monitor-traffic', {'interface': interface_name, 'once': ''})
+            if traffic:
+                # Assuming the command returns a list with one dictionary
+                tx_speed = traffic[0].get('tx-bits-per-second', 0)
+                rx_speed = traffic[0].get('rx-bits-per-second', 0)
+                return {'upload': tx_speed, 'download': rx_speed}
+        except Exception as e:
+            # Log the error for debugging
+            print(f"Error fetching interface speed: {e}")
+            return {'upload': 0, 'download': 0}
+        finally:
+            if api:
+                api.close()
+        return {'upload': 0, 'download': 0}
 
 class IspRouterFirewallWizard(models.Model):
     _name = 'isp.netdev.firewall.wizard'

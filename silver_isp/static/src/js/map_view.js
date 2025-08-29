@@ -177,7 +177,7 @@ export class AssetMapView extends Component {
             let style;
             if (asset.model === 'cable' && asset.line_string_wkt) {
                 const wkt = new ol.format.WKT();
-                feature = wkt.readFeature('POLYGON(('+asset.line_string_wkt+'))', {
+                feature = wkt.readFeature('LINESTRING('+asset.line_string_wkt+')', {
                     dataProjection: 'EPSG:4326',
                     featureProjection: 'EPSG:3857'
                 });

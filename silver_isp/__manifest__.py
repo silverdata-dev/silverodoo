@@ -53,6 +53,7 @@
         'web.assets_backend': [
             'silver_isp/static/src/js/raphael.min.js',
             'silver_isp/static/src/js/ppp_speed_chart.js',
+            'silver_isp/static/src/js/ppp_line_speed_chart.js',
             'silver_isp/static/src/css/general.css',
             # Map View Assets
             'silver_isp/static/src/css/map_view.css',

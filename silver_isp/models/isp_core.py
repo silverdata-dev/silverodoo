@@ -44,14 +44,15 @@ class IspCore(models.Model):
 
     # --- Campos de Conectividad y Acceso ---
     user = fields.Char(string='Usuario')
+    username = fields.Char(string='Usuario Core', readonly=False)
     user_nass = fields.Char(string='Usuario Nass')
-    password = fields.Char(string='Password')
+    password = fields.Char(string='Password', related="netdev_id.password", readonly=False)
     password_nass = fields.Char(string='Password Nass')
     key_pppoe = fields.Char(string='Password PPPoE')
 
-    port = fields.Char(string='Puerto de Conexión')
+    port = fields.Char(string='Puerto de Conexión', related="netdev_id.port", readonly=False)
     port_coa = fields.Char(string='Puerto COA')
-    ip = fields.Char(string='IP de Conexión')
+    ip = fields.Char(string='IP de Conexión', related="netdev_id.ip", readonly=False)
     hostname_core = fields.Char(string='Hostname')
     interface = fields.Char(string='Interface')
     cvlan = fields.Char(string='CVLAN')

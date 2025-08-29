@@ -110,6 +110,50 @@
             </field>
         </record>
 
+        <record id="view_isp_router_ppp_active_wizard_line_form" model="ir.ui.view">
+            <field name="name">isp.netdev.ppp.active.wizard.line.form</field>
+            <field name="model">isp.netdev.ppp.active.wizard.line</field>
+            <field name="arch" type="xml">
+                <form string="PPP Active Connection Speed">
+                    <sheet>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="service" readonly="1"/>
+                            <field name="caller_id" readonly="1"/>
+                            <field name="address" readonly="1"/>
+                            <field name="uptime" readonly="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Realtime Speed">
+                                <field name="ppp_speed_chart" widget="ppp_line_speed_chart"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_isp_router_ppp_active_wizard_line" model="ir.actions.act_window">
+            <field name="name">PPP Active Connection Speed</field>
+            <field name="res_model">isp.netdev.ppp.active.wizard.line</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="view_isp_router_ppp_active_wizard_line_tree" model="ir.ui.view">
+            <field name="name">isp.netdev.ppp.active.wizard.line.tree</field>
+            <field name="model">isp.netdev.ppp.active.wizard.line</field>
+            <field name="arch" type="xml">
+                <tree string="Active Connections" editable="bottom">
+                    <field name="name"/>
+                    <field name="service"/>
+                    <field name="caller_id"/>
+                    <field name="address"/>
+                    <field name="uptime"/>
+                </tree>
+            </field>
+        </record>
+
         <record id="view_isp_router_ppp_active_wizard_form" model="ir.ui.view">
             <field name="name">isp.netdev.ppp.active.wizard.form</field>
             <field name="model">isp.netdev.ppp.active.wizard</field>
@@ -121,15 +165,7 @@
                         </group>
                         <notebook>
                             <page string="Active Connections">
-                                <field name="line_ids">
-                                    <tree string="Active Connections">
-                                        <field name="name"/>
-                                        <field name="service"/>
-                                        <field name="caller_id"/>
-                                        <field name="address"/>
-                                        <field name="uptime"/>
-                                    </tree>
-                                </field>
+                                <field name="line_ids"/>
                             </page>
                             <page string="Realtime Speed">
                                 <field name="name" widget="ppp_speed_chart"/>

@@ -64,19 +64,21 @@ class IspNetdev(models.Model):
     @api.model
     def _get_api_connection(self):
         self.ensure_one()
+        p = self.port
+        if not p: p = self.api_port
         try:
             self.write({'state': 'connecting'})
             print(("connect", {
                 "host":self.ip,
                 "username":self.username,
                 "password":self.password,
-                "port":self.api_port
+                "port":p
             }))
             api = librouteros.connect(
                 host=self.ip,
                 username=self.username,
                 password=self.password,
-                port=self.api_port,
+                port=p,
            #     encoding='utf-8'
                 encoding='latin-1'
             )
