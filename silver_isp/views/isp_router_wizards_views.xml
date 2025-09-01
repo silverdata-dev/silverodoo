@@ -165,9 +165,18 @@
                         </group>
                         <notebook>
                             <page string="Active Connections">
-                                <field name="line_ids"/>
+                                <field name="line_ids">
+                                    <tree string="Active Connections" create="false" delete="false">
+                                        <field name="name"/>
+                                        <field name="service"/>
+                                        <field name="uptime"/>
+                                        <field name="caller_id"/>
+                                        <field name="address"/>
+                                        <button name="action_open_speed_chart" type="object" icon="fa-area-chart"/>
+                                    </tree>
+                                </field>
                             </page>
-                            <page string="Realtime Speed">
+                            <page string="Realtime Speedd">
                                 <field name="name" widget="ppp_speed_chart"/>
                             </page>
                         </notebook>

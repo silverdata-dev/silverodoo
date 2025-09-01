@@ -39,3 +39,7 @@
     position: absolute;
     right: 0;
 }
+
+div [name=ppp_speed_chart]{
+    width:100% !important;
+}

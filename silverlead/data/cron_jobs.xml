@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- 
+            ======================================================
+            AQUÍ PUEDES CONFIGURAR LA EJECUCIÓN DEL CRON.
+            Cambia interval_number e interval_type según necesites.
+            Valores para interval_type: minutes, hours, days, weeks, months
+            ======================================================
+        -->
+        <record id="ir_cron_import_data_daily" model="ir.cron">
+            <field name="name">Silverlead: Importación Diaria de Datos</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_import_data()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field> <!-- Ejecución diaria -->
+            <field name="numbercall">-1</field> <!-- Ejecutar indefinidamente -->
+            <field name="doall" eval="False"/>
+        </record>
+    </data>
+</odoo>

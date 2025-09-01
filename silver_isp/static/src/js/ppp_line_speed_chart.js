@@ -18,7 +18,7 @@ class PPPLineSpeedChart extends Component {
 
         onMounted(() => {
             this.renderChart();
-            this.interval = setInterval(this.updateData.bind(this), 5000);
+            this.interval = setInterval(this.updateData.bind(this), 1000);
         });
 
         onWillUnmount(() => {
@@ -31,6 +31,7 @@ class PPPLineSpeedChart extends Component {
 
     async updateData() {
         const lineId = this.props.record.resId;
+        console.log(["resId", lineId]);
         const result = await this.orm.call(
             "isp.netdev.ppp.active.wizard.line",
             "get_interface_speed",
