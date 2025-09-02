@@ -1,4 +1,4 @@
-import io
+import io, os
 from datetime import datetime
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
@@ -23,7 +23,9 @@ SUBDIRECTORY_NAME = "2025"
 EXCEL_FILE_NAME = "Agosto.xlsx"
 
 # El archivo JSON de la cuenta de servicio que descargaste.
-SERVICE_ACCOUNT_FILE = 'gen-lang-client-0353566026-e92bd9d19b8c.json'
+
+SERVICE_ACCOUNT_FILE = os.path.abspath(os.path.join(os.path.dirname(__file__),  'gen-lang-client-0353566026-e92bd9d19b8c.json'))
+
 
 # El scope de Drive para solo lectura.
 SCOPES = ["https://www.googleapis.com/auth/drive.readonly"]

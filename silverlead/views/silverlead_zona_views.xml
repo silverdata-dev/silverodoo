@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Tree View -->
+        <record id="silverlead_zona_view_tree" model="ir.ui.view">
+            <field name="name">silverlead.zona.tree</field>
+            <field name="model">silverlead.zona</field>
+            <field name="arch" type="xml">
+                <tree string="Zonas">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="silverlead_zona_view_form" model="ir.ui.view">
+            <field name="name">silverlead.zona.form</field>
+            <field name="model">silverlead.zona</field>
+            <field name="arch" type="xml">
+                <form string="Zona">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_silverlead_zona" model="ir.actions.act_window">
+            <field name="name">Zonas</field>
+            <field name="res_model">silverlead.zona</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu Item -->
+        <menuitem id="menu_silverlead_zona"
+                  name="Zonas"
+                  parent="crm.crm_menu_config"
+                  action="action_silverlead_zona"
+                  sequence="10"/>
+    </data>
+</odoo>

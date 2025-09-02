@@ -1,0 +1,223 @@
+
+# Documentación del Módulo `silver_isp` para Odoo
+
+**Versión:** 1.0
+**Fecha:** 2025-09-02
+
+Este documento detalla la arquitectura, funcionalidad y estrategia del módulo `silver_isp`, diseñado para gestionar operaciones de un Proveedor de Servicios de Internet (ISP) dentro del ecosistema Odoo.
+
+---
+
+## 📌 Documentación Estratégica / para Gerencia
+
+### Visión General del Proyecto
+
+El proyecto `silver_isp` busca integrar la gestión de la infraestructura de red, los activos físicos, los clientes y los servicios de un ISP directamente en Odoo. La visión es crear una plataforma unificada que centralice la información y automatice los procesos clave, desde el despliegue de equipos hasta la gestión de contratos y servicios de cliente.
+
+### Objetivos del Sistema
+
+*   **Centralizar el Inventario de Red:** Mantener un registro único y actualizado de todos los activos de red, como OLTs, ONUs, APs, postes, cajas de empalme, cables y splitters.
+*   **Automatizar el Aprovisionamiento:** Facilitar la configuración y activación de servicios para nuevos clientes, integrándose con equipos de red como routers y servidores RADIUS.
+*   **Mejorar la Visibilidad de la Red:** Ofrecer herramientas de visualización y mapeo de la infraestructura para facilitar la planificación, el mantenimiento y la resolución de problemas.
+*   **Gestionar el Ciclo de Vida del Cliente:** Controlar desde el contrato inicial hasta la gestión de servicios, desconexiones y cambios de plan.
+
+### Problemas Actuales que se Buscan Resolver
+
+*   Falta de un inventario centralizado y fiable de los equipos de red.
+*   Procesos manuales y propensos a errores para el aprovisionamiento de nuevos clientes.
+*   Dificultad para diagnosticar problemas de red por falta de visibilidad de la topología.
+*   Información de clientes y contratos dispersa en múltiples sistemas.
+
+### Beneficios Esperados
+
+*   Reducción del tiempo de aprovisionamiento de servicios.
+*   Mejora en la precisión del inventario de activos de red.
+*   Optimización de las operaciones de campo (instalación y mantenimiento).
+*   Visión 360° del cliente, desde su contrato hasta su configuración técnica.
+*   Automatización de reportes operativos y de gestión.
+
+### Alcance Funcional
+
+#### Módulos de Odoo a Implementar
+Basado en las dependencias y la naturaleza del módulo, se infiere la interacción con los siguientes módulos estándar de Odoo:
+*   **Inventario:** Para la gestión de activos físicos (OLTs, routers, cables).
+*   **Ventas/Contabilidad:** Para la gestión de contratos de clientes (`isp_contract.py`).
+*   **Contactos:** Como base para la gestión de clientes.
+*   **web_map:** Para la visualización de activos en un mapa.
+
+#### Flujos de Negocio Cubiertos
+*   Gestión de la topología de red (Zonas, Nodos, Postes, Cajas).
+*   Gestión de equipos de fibra óptica (OLTs, Tarjetas, Puertos, Splitters).
+*   Gestión de equipos de acceso (APs - Access Points).
+*   Gestión de contratos de servicio de internet.
+*   Integración con servidores RADIUS para autenticación y gestión de servicios (AAA).
+*   Asistentes para la configuración de equipos de red (Routers, NAS RADIUS).
+
+#### Límites Claros (lo que entra y lo que no)
+*   **Entra:** Gestión de la infraestructura física y lógica, gestión de servicios RADIUS y contratos básicos.
+*   **No Entra (presumiblemente):** Facturación detallada y contabilidad avanzada (se apoya en Odoo estándar), portal de cliente autogestionado (requeriría desarrollo adicional), monitoreo de red en tiempo real (el módulo gestiona la configuración, no el estado en vivo).
+
+### Cronograma y Roadmap
+`[COMPLETAR: Definir las fases del proyecto, desde la implementación inicial hasta futuras mejoras. Ejemplo: Fase 1: Inventario de Red. Fase 2: Gestión de Contratos. Fase 3: Automatización RADIUS.]`
+
+### Roles y Responsables
+Basado en el archivo `security/ir.model.access.csv`, se identifican los siguientes roles:
+*   **Usuario de ISP:** Acceso de lectura a la mayoría de los modelos de red.
+*   **Manager de ISP:** Acceso completo (crear, leer, escribir, borrar) a todos los modelos del módulo.
+
+**Equipo del Cliente:**
+`[COMPLETAR: Nombre del Gerente de Proyecto, Usuarios Clave de Red, Responsable de Contratos, etc.]`
+
+**Equipo Implementador:**
+`[COMPLETAR: Nombre del Project Manager, Consultor Funcional, Desarrollador Principal.]`
+
+### Riesgos y Mitigaciones
+*   **Riesgo:** Resistencia al cambio por parte del personal técnico acostumbrado a otros sistemas.
+    *   **Mitigación:** Involucrar a los usuarios clave desde el inicio, realizar capacitaciones prácticas y demostrar los beneficios en la operación diaria.
+*   **Riesgo:** Incompatibilidad con ciertos modelos de hardware de red.
+    *   **Mitigación:** Realizar pruebas de concepto (PoC) con el hardware principal (OLTs, routers) antes del despliegue completo.
+*   **Riesgo:** Problemas en la migración de datos desde sistemas antiguos.
+    *   **Mitigación:** Planificar una estrategia de ETL (Extracción, Transformación y Carga) detallada, validando los datos importados (el script `importar.py` es un indicio de este proceso).
+
+### KPIs del Proyecto
+`[COMPLETAR: Definir métricas medibles. Ejemplos:]`
+*   Reducción del tiempo de activación de un cliente en un 50%.
+*   Disminución de errores de inventario en un 90%.
+*   Tasa de resolución de problemas en primera llamada mejorada en un 30%.
+
+### Presupuesto y Costos
+`[COMPLETAR: Detallar costos de licencias Odoo Enterprise (si aplica), horas de desarrollo para customizaciones, infraestructura de servidores y mantenimiento.]`
+
+---
+## 📌 Documentación Técnica
+
+### Arquitectura del Sistema
+*   **Servidor Odoo:** Aplicación principal que corre el módulo `silver_isp`.
+*   **Base de Datos:** PostgreSQL, como es estándar en Odoo.
+*   **Proxy Inverso:** (Recomendado) Nginx para gestionar las conexiones web y terminar SSL.
+*   **Entorno de Desarrollo:** El proyecto utiliza un entorno virtual de Python (`.venv`), lo que indica una gestión de dependencias aislada.
+
+### Versionado y Dependencias
+*   **Versión de Odoo:** `[COMPLETAR: Especificar la versión de Odoo, ej: 16.0, 17.0. Esta información debería estar en el manifest.]`
+*   **Módulos Dependientes (del `__manifest__.py`):** `base`, `mail`, `product`, `contacts`, `account`, `web_map`. La dependencia de `web_map` confirma la necesidad de vistas geográficas.
+*   **Repositorio Git:** `[COMPLETAR: URL del repositorio Git y estrategia de ramas (ej: main, develop, feature-branches).]`
+
+### Estructura de Módulos Desarrollados (Ampliado)
+
+El módulo `silver_isp` está organizado en componentes lógicos que representan las diferentes capas de la operación de un ISP.
+
+#### 1. Modelos de Infraestructura Física (`models/`)
+Representan la jerarquía de la red física pasiva.
+*   `isp_zone.py`: Define zonas geográficas para agrupar la infraestructura. Es el nivel más alto de la jerarquía.
+*   `isp_node.py`: Representa un nodo o punto de presencia dentro de una zona. Puede ser una central, un armario de calle, etc.
+*   `isp_post.py`: Modela los postes físicos donde se montan los equipos. Se relaciona con un nodo.
+*   `isp_box.py`: Define las cajas de empalme o CTOs que se instalan en los postes.
+*   `isp_asset.py`: Un modelo base (mixin) para dar capacidades de "activo" a otros modelos, como seguimiento de número de serie, ubicación, etc.
+
+#### 2. Modelos de Equipamiento Activo (`models/`)
+Representan los dispositivos electrónicos de la red.
+*   `isp_olt.py`: Modela las **Terminales de Línea Óptica (OLT)**, el equipo central de una red PON.
+*   `isp_olt_card.py`: Modela las tarjetas o placas que se insertan en un chasis de OLT.
+*   `isp_olt_card_port.py`: Modela los puertos físicos en cada tarjeta de la OLT, que es donde finalmente se conecta el cliente.
+*   `isp_ap.py`: Gestiona los **Puntos de Acceso (Access Points)** para servicios inalámbricos.
+*   `isp_router.py`: Almacena la configuración de routers, probablemente para automatizar tareas.
+*   `isp_netdev.py`: Un modelo más genérico para otros dispositivos de red.
+
+#### 3. Modelos de Componentes Pasivos de Red (`models/`)
+Representan los elementos que transportan la señal pero no son activos.
+*   `isp_cable.py`: Define los cables (troncales, de distribución) que interconectan los nodos y cajas.
+*   `isp_core.py`: Modela los hilos de fibra individuales dentro de un cable.
+*   `isp_splitter.py`: Gestiona los divisores ópticos (splitters) que se alojan dentro de las `isp.box` para dividir la señal de un hilo de fibra a múltiples clientes.
+*   `isp_splice_closure.py`: Representa los empalmes de fibra.
+
+#### 4. Modelos de Gestión de Clientes y Servicios (`models/`)
+Son el puente entre la infraestructura y el cliente final.
+*   `isp_contract.py`: El modelo central que representa el servicio contratado por un cliente. Vincula a un cliente (res.partner) con la infraestructura técnica (un puerto de OLT, un splitter, etc.).
+*   `isp_radius.py`, `isp_radius_user.py`: Modelos para la integración con servidores **RADIUS**. `isp_radius` define los servidores NAS, mientras que `isp_radius_user` representa la cuenta del usuario que se usará para la autenticación (ej: PPPoE).
+*   `isp_radius_pyrad.py`: Contiene la lógica de conexión con el servidor RADIUS, probablemente usando la librería `pyrad`.
+
+#### 5. Asistentes y Controladores (`models/*wizards.py`, `controllers/`)
+*   **Wizards:** Guían a los usuarios a través de procesos complejos, como `isp_netdev_radius_client_wizard.py` para añadir un cliente RADIUS o `isp_radius_disconnect_wizard.py` para forzar una desconexión.
+*   **Controllers (`node_network.py`):** Expone un endpoint web en `/network/nodes`. Este endpoint devuelve una estructura de datos en formato JSON con la jerarquía de la red (nodos, postes, cajas). Su propósito es, probablemente, alimentar una visualización de red personalizada en una página web o una aplicación externa.
+
+### Estructura de la Base de Datos (Diagrama ERD)
+
+A continuación se presenta un diagrama Entidad-Relación (ERD) en formato de texto (Mermaid). Este código puede ser pegado en un editor compatible con Mermaid (como el de GitLab, GitHub, o editores online) para generar un diagrama visual de las relaciones clave en la base de datos.
+
+```mermaid
+erDiagram
+    %% Jerarquía Física
+    isp_zone ||--o{ isp_node : "Contiene Nodos"
+    isp_node ||--o{ isp_post : "Contiene Postes"
+    isp_post ||--o{ isp_box : "Contiene Cajas"
+    isp_box ||--o{ isp_splitter : "Contiene Splitters"
+
+    %% Jerarquía de Equipos Activos
+    isp_olt ||--o{ isp_olt_card : "Tiene Tarjetas"
+    isp_olt_card ||--o{ isp_olt_card_port : "Tiene Puertos"
+
+    %% Relación Cliente-Red
+    isp_olt_card_port }|--|| isp_contract : "Conectado a"
+    isp_splitter }o--|| isp_contract : "Derivado a"
+    "res_partner (Cliente)" ||--|{ isp_contract : "Tiene Contratos"
+    isp_contract ||--|| isp_radius_user : "Genera Usuario"
+
+    %% Definición de Entidades Clave
+    isp_olt {
+        int id
+        string name
+        string ip_address
+        string model
+    }
+    isp_olt_card_port {
+        int id
+        string name
+        int card_id FK
+    }
+    isp_contract {
+        int id
+        string name
+        int partner_id FK
+        int olt_port_id FK
+        int splitter_id FK
+    }
+    isp_box {
+        int id
+        string code
+        int post_id FK
+    }
+    isp_radius_user {
+        int id
+        string username
+        string password
+        int contract_id FK
+    }
+```
+
+**Explicación del Diagrama:**
+*   La estructura física es una clara jerarquía: Una `Zona` tiene muchos `Nodos`, un `Nodo` tiene muchos `Postes`, un `Poste` tiene `Cajas`, y una `Caja` tiene `Splitters`.
+*   La estructura de la OLT también es jerárquica: Una `OLT` tiene `Tarjetas`, y cada `Tarjeta` tiene `Puertos`.
+*   El `Contrato` es el modelo central que une todo: Se asocia a un `Cliente` (`res.partner`), se conecta a un `Puerto` de una OLT y/o a un `Splitter`, y genera un `Usuario RADIUS` para la autenticación.
+
+### Integraciones Externas
+*   **Servidores RADIUS:** El módulo está diseñado para interactuar con servidores RADIUS para la autenticación, autorización y contabilidad (AAA) de los usuarios. Los modelos `isp_radius.py` y `isp_radius_pyrad.py` sugieren el uso de la librería `pyrad` para esta comunicación.
+*   **Routers y Equipos de Red (OLTs):** El módulo permite almacenar la configuración de conexión a estos dispositivos, lo que sugiere que podría haber (o está planeado) scripts de automatización para aplicar configuraciones vía SSH o API.
+
+---
+## 📌 Documentación de Futuro / Backlog
+
+### Funcionalidades Pendientes
+`[COMPLETAR: Listar funcionalidades que se acordó implementar en fases futuras.]`
+*   Portal de cliente para consulta de consumo y pago de facturas.
+*   Módulo de ticketing para soporte técnico integrado con los modelos de red.
+*   Monitoreo proactivo de estado de OLTs y APs.
+
+### Mejoras Sugeridas
+*   Implementar una suite de pruebas unitarias (`pytest`) para aumentar la robustez del código.
+*   Desarrollar un dashboard gráfico en Odoo con los principales KPIs de la red (clientes activos, puertos libres, etc.).
+*   Refactorizar los asistentes (wizards) para mejorar la experiencia de usuario.
+
+### Deuda Técnica
+*   **Ausencia de Pruebas Automatizadas:** Es el punto más crítico. La falta de tests dificulta la refactorización y la detección de regresiones. Se debe planificar un sprint para añadir cobertura de pruebas a los modelos más importantes.
+*   **Scripts de Sincronización (`ssync.sh`):** Aunque funcionales, estos scripts pueden ser frágiles. Evaluar el uso de herramientas de despliegue más robustas como Ansible o Docker Compose para la gestión de entornos.
+

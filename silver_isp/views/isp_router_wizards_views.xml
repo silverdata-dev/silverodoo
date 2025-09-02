@@ -114,14 +114,18 @@
             <field name="name">isp.netdev.ppp.active.wizard.line.form</field>
             <field name="model">isp.netdev.ppp.active.wizard.line</field>
             <field name="arch" type="xml">
-                <form string="PPP Active Connection Speed">
+                <form string="PPP Active Connection Speed" readonly="1">
                     <sheet>
                         <group>
+                            <group>
                             <field name="name" readonly="1"/>
                             <field name="service" readonly="1"/>
-                            <field name="caller_id" readonly="1"/>
+                            <field name="caller_id" readonly="1" invisible="1"/>
                             <field name="address" readonly="1"/>
                             <field name="uptime" readonly="1"/>
+                        </group>
+                                <group>
+                                </group>
                         </group>
                         <notebook>
                             <page string="Realtime Speed">
@@ -129,6 +133,9 @@
                             </page>
                         </notebook>
                     </sheet>
+                    <footer>
+                        <button string="OK" class="btn-primary" special="cancel"/>
+                    </footer>
                 </form>
             </field>
         </record>
@@ -176,9 +183,7 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page string="Realtime Speedd">
-                                <field name="name" widget="ppp_speed_chart"/>
-                            </page>
+
                         </notebook>
                     </sheet>
                 </form>
@@ -186,7 +191,7 @@
         </record>
 
         <record id="action_isp_router_ppp_active_wizard" model="ir.actions.act_window">
-            <field name="name">PPP Active Connections</field>
+            <field name="name">PPP Active Connections3</field>
             <field name="res_model">isp.netdev.ppp.active.wizard</field>
             <field name="view_mode">tree,form</field>
         </record>

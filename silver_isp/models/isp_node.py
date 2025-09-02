@@ -9,7 +9,7 @@ class IspNode(models.Model):
 
     asset_id = fields.Many2one('isp.asset', required=True, ondelete="cascade")
 
-    code = fields.Char(string="Codigo interno", related='asset_id.code', required=True)
+    code = fields.Char(string="Codigo interno", related='asset_id.code', required=True, readonly=False)
 
 #    _sql_constraints = [
 #        ('unique_code', 'unique (code)', 'This value must be unique!')

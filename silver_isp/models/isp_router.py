@@ -163,7 +163,7 @@ class IspRouter(models.Model):
                 })
             
             return {
-                'name': 'PPP Active Connections',
+                'name': 'PPP Active Connections2',
                 'type': 'ir.actions.act_window',
                 'res_model': 'isp.netdev.ppp.active.wizard',
                 'view_mode': 'form',

@@ -36,6 +36,7 @@
                         <button name="button_view_ppp_active" type="object" string="View PPP Active"/>
                         <button name="button_view_firewall_rules" type="object" string="View Firewall Rules"/>
                         <button name="button_view_queues" type="object" string="View Queues"/>
+                        <field name="state" widget="statusbar" statusbar_visible="down,active"/>
                     </header>
 
                         <div class="oe_button_box" name="button_box">

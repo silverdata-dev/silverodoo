@@ -85,11 +85,41 @@ class IspRouterPppActiveWizardLine(models.Model):
     caller_id = fields.Char(string='Caller ID')
     address = fields.Char(string='IP Address')
     uptime = fields.Char(string='Uptime')
+    rate_up = fields.Char(string='Upload', readonly=True, default='0 kbps')
+    rate_down = fields.Char(string='Download', readonly=True, default='0 kbps')
+    speed_chart = fields.Text(readonly=True)
     wizard_id = fields.Many2one('isp.netdev.ppp.active.wizard')
     ppp_speed_chart = fields.Text(string="PPP Speed Chart", readonly=True)
 
     def action_open_speed_chart(self):
         self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': self._name,
+            'view_mode': 'form',
+            'res_id': self.id,
+            'target': 'new',
+            'name': 'PPP Active Connection Speed',
+        }
+
+    def _format_speed(self, bits_per_second):
+        if not isinstance(bits_per_second, (int, float)):
+            return "0 bps"
+        if bits_per_second > 1000000:
+            return f"{bits_per_second / 1000000:.2f} Mbps"
+        if bits_per_second > 1000:
+            return f"{bits_per_second / 1000:.2f} kbps"
+        return f"{bits_per_second} bps"
+
+    def update_speed_rates(self):
+        self.ensure_one()
+        speed_data = self.get_interface_speed(self.id)
+        upload_bps = speed_data.get('upload', 0)
+        download_bps = speed_data.get('download', 0)
+        self.write({
+            'rate_up': self._format_speed(upload_bps),
+            'rate_down': self._format_speed(download_bps),
+        })
         return {
             'type': 'ir.actions.act_window',
             'res_model': self._name,
@@ -111,7 +141,10 @@ class IspRouterPppActiveWizardLine(models.Model):
         router = line.wizard_id.router_id
         print(f"Router: {line} {router}")
 
-        api = router._get_api_connection()
+        try:
+            api = router._get_api_connection()
+        except:
+            api = None
         if not api:
             print("Failed to get API connection")
             return {'upload': 0, 'download': 0}
@@ -129,10 +162,13 @@ class IspRouterPppActiveWizardLine(models.Model):
 
             # Now, monitor traffic using the constructed interface name
             traffic_generator = interface_path('monitor-traffic', interface=interface_name_to_find, once=True)
-            
-            traffic = next(traffic_generator, None)
 
-            print(f"Traffic result for '{interface_name_to_find}': {traffic}")
+            try:
+                traffic = next(traffic_generator, None)
+
+                print(f"Traffic result for '{interface_name_to_find}': {traffic}")
+            except:
+                traffic = None
 
             if traffic:
                 tx_speed = traffic.get('tx-bits-per-second', 0)

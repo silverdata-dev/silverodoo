@@ -343,8 +343,30 @@ class IspCore(models.Model):
         }
 
     def button_test_connection(self):
-        print(("netdev", self.netdev_id, self.name))
-        return self.netdev_id.button_test_connection()
+        si = False
+        for core in self:
+            if core.netdev_id:
+                try:
+                    is_successful = core.netdev_id.button_test_connection()
+                    if is_successful:
+                        core.state = 'active'
+                        si=True
+                    else:
+                        core.state = 'down'
+                except Exception:
+                    core.state = 'down'
+            else:
+                core.state = 'down'
+        if si:
+            return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Connection Test',
+                'message': 'Connection to Radius server was successful!',
+                'type': 'success',
+            }
+        }
 
 
     def button_get_system_info(self):

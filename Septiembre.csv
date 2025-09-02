@@ -1,0 +1,98 @@
+Fecha,ID CLIENTE,CLIENTE,MONTO INSTALACIÓN,VENDEDOR,ZONA,INSTALA YA,PAGO EN EFECTIVO,PAGO MOVIL,DIFERENCIA,ACTIVACIÓN ADMINISTRATIVA,INSTALADOR,SUPERVISOR,INSTALADO,ACTIVACIÓN OPERATIVA,NOTAS
+29/08/2025,19634 - CT-16750,Carmen Alicia Gil Figuera,40.00,Jendry Hernandez,Cotiza,SI,,,,,Construcciones,NO,NO,NO,Cliente solicita para mañana
+29/08/2025,19539 - CT-16633,Doribel Maria Jimenes Silva,20.00,Eliana Mendez,Carapita,,,,,,Xor-Carapita,NO,NO,NO,Cliente solicita para mañana
+29/08/2025,19643 - CT-16757,Denny Miloa Murillo Rodriguez,20.00,Marcos (xor),Carapita,SI,,,,,Xor-Carapita,NO,NO,NO,No es cambio y no tiene los 40
+29/08/2025,19201 - CT-16285,Hairi Martinez,20.00,Leiderman Corro,Parque Central,SI,,,,,Servinet360,NO,NO,NO,Cliente solicita para mañana Sabado
+29/08/2025,19655 - CT-16768,Baldomera Medina Arcila,20.00,Carolina,La Paz,SI,,,,,Xor-La Paz,NO,NO,NO,Nap cerca full
+29/08/2025,19656 - CT-16769,Salvador Jose Miranda Rodriguez,20.00,Nelson,Coche,SI,,,,,Fibra2024,NO,NO,NO,Nap cerca full
+29/08/2025,19365 - CT-16675,Ricardo Thomas Lopez Prada,80.00,Kathiusca Duran,Los Chaguaramos,,80.00,,,,Pinto - Roberto,NO,SI,SI,
+29/08/2025,19370 - CT-16673,Eidiusca Enyianny Figueira Huerta,80.00,Leiderman Corro,Los Chaguaramos,,0.00,80.00,,,Pinto - Roberto,NO,SI,SI,
+29/08/2025,19288 - CT-16377,Luz Edilma Perez Giraldo,60.00,Leiderman Corro,Santa Monica,,0.00,60.00,,,Pinto - Roberto,NO,SI,SI,
+29/08/2025,19001 - CT-16327,Gabriela Alejandra Infante Sulbaran,60.00,Leiderman Corro,Santa Monica,,60.00,,,,Pinto - Roberto,NO,SI,SI,
+29/08/2025,19494 - CT-16585,Ewueilmira De Las Neves Goitia Garcia,20.00,Roberto,Cotiza,SI,0.00,,,,Construcciones,NO,SI,SI,
+29/08/2025,19636 - CT-16752,Adriana Estrella Sanchez Machiste,40.00,Leiderman Corro,Cotiza,SI,0.00,40.00,,,Construcciones,NO,SI,SI,
+29/08/2025,19618 - CT-16730,Oswaldo Alandete Florez,20.00,Jendry Hernandez,Carapita,,20.00,,,,Xor-Carapita,NO,SI,SI,
+29/08/2025,19588 - CT-16704,Eduardo Jesus Sanchez Luque,20.00,Getzy Meza,Carapita,,0.00,20.00,,,Xor-Carapita,SI,SI,SI,
+29/08/2025,19369 - CT-16665,Mirian Elena Prado,60.00,Leiderman Corro,Los Chaguaramos,,,,,,Servinet360,NO,SI,SI,
+29/08/2025,19587 - CT-16703,Keida Herrera,60.00,Leiderman Corro,Los Chaguaramos,,0.00,60.00,,,Servinet360,NO,SI,SI,
+29/08/2025,19590 - CT-16705,Evidia Angelica Rosas De Caman,60.00,Leiderman Corro,Los Chaguaramos,,,,,,Servinet360,NO,SI,SI,
+29/08/2025,19620 - CT-16734,Eddali Victoria Caraballo Duarte,20.00,Jendry Hernandez,Parque Central,,20.00,,,,Servinet360,NO,SI,SI,
+29/08/2025,13897 - CT-16697,Vanessa Anakari Calderon Martinez,120.00,Leiderman Corro,Valle Abajo,,0.00,120.00,,,Servinet360,NO,SI,SI,
+29/08/2025,19445 - CT-16540,Mariely Brito Escobar,20.00,Tony,Coche,SI,0.00,20.00,,,Gpon-Coche,SI,SI,SI,
+29/08/2025,19631 - CT-16746,Yargelis Yirailis Escalona Barreto,20.00,Getsy Meza,Coche,SI,0.00,20.00,,,Gpon-Coche,SI,SI,SI,
+29/08/2025,19568 - CT-16677,Mariolis Del Carmen Hernandez Flores,40.00,Tony,Coche,,0.00,40.00,,,Gpon-Coche,NO,SI,SI,
+29/08/2025,19632 - CT-16747,Alicia Nohemi Cumare Chirinos,0.00,Silverdata,Coche,SI,,,,,Gpon-Coche,SI,SI,SI,
+29/08/2025,19633 - CT-16748,Barbara Betzabeth Malatesta Mujica,20.00,Emmanuel Villasmil,Coche,SI,,,,,Gpon-Coche,SI,SI,SI,
+29/08/2025,19644 - CT-16765,Luis Enrique Guerrero Franco,20.00,Carolina,La Paz,SI,,,,,Xor-La Paz,SI,SI,SI,
+29/08/2025,19652 - CT-16766,SALDI C.A.,20.00,Carolina,La Paz,SI,,,,,Xor-La Paz,SI,SI,SI,
+29/08/2025,19641 - CT-16756,Roosvely Del Carmen Hernandez Gonzalez,20.00,Tony,Coche,SI,0.00,20.00,,,Fibra2024,SI,SI,SI,
+29/08/2025,19635 - CT-16751,Frank Rafael Perez Rodriguez,20.00,Getsy Meza,Coche,SI,,,,,Fibra2024,SI,SI,SI,
+,,,,,,15,,,,,,,22,22,
+,,,,,,Total de instala YA,,,,,,,Total de instalados,Total operativos,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+Fecha,ID CLIENTE,CLIENTE,MONTO INSTALACIÓN,VENDEDOR,ZONA,INSTALA YA,PAGO EN EFECTIVO,PAGO MOVIL,DIFERENCIA,ACTIVACIÓN ADMINISTRATIVA,INSTALADOR,SUPERVISOR,INSTALADO,ACTIVACIÓN OPERATIVA,NOTAS
+30/08/2025,19465 - CT-16651,Johnny Walter Ruiz Calle,20.00,Veronica Gonzalez,Cotiza,,,,,,Construcciones,NO,NO,NO,No hay quien reciba a los tecnicos
+30/08/2025,19669 - CT-16786,Josimar Alexandra Machado Contreras                     ,20.00,Kathiusca Duran,Cotiza,SI,,,,,Construcciones,NO,NO,NO,Nap cercana llena
+30/08/2025,19658 - CT-16773,Leris Mitilcia González Alfonzo ,20.00,Argenis,Cotiza,SI,,,,,Construcciones,NO,NO,NO,No atendio al llamado
+30/08/2025,19538 - CT-16632,Adrian Jose Quiroz Parra,40.00,Eliana Mendez,Carapita,SI,,,,,Xor-Carapita,NO,NO,NO,Ya instalo otro servicio
+30/08/2025,19662 - CT-16778,María Alejandra Salinas Morillo,20.00,Tony,Coche,SI,,,,,Gpon-Coche,NO,NO,NO,No Verticalizado
+30/08/2025,19542 - CT-16635,Azly Olmary Rivero Rodriguez,20.00,Jendry Hernandez,La Paz,,,,,,Xor-La Paz,NO,NO,NO,No tiene disponibilidad para Hoy
+30/08/2025,19665 - CT-16782,Jorge Edward Godoy Ramirez,20.00,Leiderman Corro,Coche,SI,,,,,Fibra2024,NO,NO,NO,Nap cercanas llenas
+30/08/2025,19593 - CT-16709,Sandy Robert Hernandez Flores,40.00,Kathiusca Duran,Coche,,,,,,Fibra2024,NO,NO,NO,Cliente no esta en condiciones
+30/08/2025,19589 - CT-16706,Carlos Roberto Pacheco Garcia,20.00,Getsy Meza,Coche,,,,,,Fibra2024,NO,NO,NO,no esta en casa
+30/08/2025,19529 - CT-16621,Domingo Antonio Del Valle Tatta Pares,40.00,Getsy Meza,Coche,,,,,,Fibra2024,NO,NO,NO,necesita permiso del vecino
+30/08/2025,19458 - CT-16683,Dayana Isabel Hernandez Nieto,20.00,Veronica Gonzalez,Cotiza,,,,,,Construcciones,SI,SI,SI,
+30/08/2025,19439 - CT-16680,Elio Javier Herrera Convit,20.00,Veronica Gonzalez,Cotiza,,,,,,Construcciones,SI,SI,SI,
+30/08/2025,19457 - CT-16682,Glenda Perez Melo,20.00,Veronica Gonzalez,Cotiza,,,,,,Construcciones,NO,SI,SI,
+30/08/2025,19634 - CT-16750,Carmen Alicia Gil Figuera,40.00,Jendry Hernandez,Cotiza,,,,,,Construcciones,SI,SI,SI,
+30/08/2025,19619 - CT-16732,Rosa Arteca Cafaro,20.00,Jendry Hernandez,Cotiza,,,,,,Construcciones,SI,SI,SI,
+30/08/2025,19649 - CT-16762,Ninoska Valvanera Sanabria Blanco,20.00,Leiderman Corro,Cotiza,,,,,,Construcciones,SI,SI,SI,
+30/08/2025,19650 - CT-16764,Luisa Nedesca Blanco Hernandez,20.00,Leiderman Corro,Cotiza,,0.00,20.00,,,Construcciones,NO,SI,SI,
+30/08/2025,19602 - CT-16717,Yecenia del Valle Palmarez de Escalona,20.00,Jendry Hernandez,Cotiza,,,,,,Construcciones,SI,SI,SI,
+30/08/2025,4629 - CT-16772,Vianney Yunibeth Nieves Valdez ,40.00,Argenis,Cotiza,SI,0.00,40.00,,,Construcciones,NO,SI,SI,
+30/08/2025,19583 - CT-16702,Jesus Agustin Moreno,40.00,Edgar Gonzalez,Cotiza,,40.00,,,,Construcciones,NO,SI,SI,
+30/08/2025,4629 - CT-16771,Vianney Yunibeth Nieves Valdez ,20.00,Argenis,Cotiza,SI,0.00,20.00,,,Construcciones,NO,SI,SI,
+30/08/2025,19646 - CT-16760,Wendy Pahola Vargas Navarro,40.00,Leiderman Corro,Cotiza,,0.00,40.00,,,Construcciones,NO,SI,SI,
+30/08/2025,19657 - CT-16770,Cristina Coromoto Parra Chirinos,40.00,Argenis,Cotiza,,0.00,40.00,,,Construcciones,NO,SI,SI,
+30/08/2025,19654 - CT-16767,Manuel Johan Hernandez Marconi,40.00,Argenis,Cotiza,,,,,,Construcciones,NO,SI,SI,
+30/08/2025,19515 - CT-16607,Cristian Bird Bracamonte Labrador ,20.00,Argenis,Cotiza,SI,,,,,Construcciones,NO,SI,SI,
+30/08/2025,19661 - CT-16776,Johana Alejandra Deniz González,40.00,Argenis,Cotiza,SI,40.00,,,,Construcciones,NO,SI,SI,
+30/08/2025,19659 - CT-16680,Hilary Waleska Ortega Hung,20.00,Jendry Hernandez,Cotiza,SI,0.00,20.00,,,Construcciones,NO,SI,SI,
+30/08/2025,19629 - CT-16744,Pedro Reinaldo Torres Palacios,40.00,Jendry Hernandez,Cotiza,,0.00,40.00,,,Construcciones,NO,SI,SI,
+30/08/2025,19651 - CT-16763,Selsa Yaney Garnica,40.00,Eliana Mendez,Carapita,,,,,,Xor-Carapita,NO,SI,SI,
+30/08/2025,19569 - CT-16678,Edgar Omar Garcia Hidalgo,40.00,Jhonny Hereipa,Carapita,,,,,,Xor-Carapita,NO,SI,SI,
+30/08/2025,19605 - CT-16719,Kevin Jesus Uribe Pagola,40.00,Jendry Hernandez,Carapita,,,,,,Xor-Carapita,NO,SI,SI,
+30/08/2025,19400 - CT-16489,Ladislao Galeano Leon,20.00,Eliana Mendez,Carapita,,,,,,Xor-Carapita,NO,SI,SI,
+30/08/2025,19660 - CT-16775,Jerald Frank Villanueva Pineda,40.00,Leiderman Corro,Carapita,SI,,,,,Xor-Carapita,NO,SI,SI,
+30/08/2025,19667 - CT-16783,kenecis Jailin Lopez Luque,20.00,Eliana Mendez,Carapita,SI,,,,,Xor-Carapita,NO,SI,SI,
+30/08/2025,19664 - CT-16781,Yohzana Del Valle Rincon Del Vallenilla,20.00,Marcos (xor),Carapita,SI,,,,,Xor-Carapita,NO,SI,SI,
+30/08/2025,19673 - CT-16790,Cervita Crisálida González Centeno,20.00,Jhonny Hereipa,Carapita,SI,,,,,Xor-Carapita,NO,SI,SI,
+30/08/2025,19675 - CT-16792,Yenire Katherine Peña Guadua ,40.00,Eliana Mendez,Carapita,SI,,,,,Xor-Carapita,NO,SI,SI,
+30/08/2025,9391 - CT-16617,Stephen Hunberto Bueno Mejias,20.00,Kathiusca Duran,Parque Central,,0.00,20.00,,,Servinet360,NO,SI,SI,
+30/08/2025,19201 - CT-16285,Hairi Martinez,20.00,Leiderman Corro,Parque Central,,0.00,20.00,,,Servinet360,NO,SI,SI,
+30/08/2025,19647 - CT-16761,Juana Maria Nuñez De Moya,20.00,Leiderman Corro,Parque Central,,,,,,Servinet360,NO,SI,SI,
+30/08/2025,19666 - CT-16784,Carlos Alfonso Avila Nuñez,20.00,Jendry Hernandez,Parque Central,SI,20.00,,,,Servinet360,NO,SI,SI,
+30/08/2025,19637 - CT-16753,Morelis Felicia Pedron Morales,20.00,Tony,Coche,,20.00,,,,Gpon-Coche,NO,SI,SI,
+30/08/2025,19573 - CT-16686,Levis Inocente Subero,20.00,Alex Mendez,Coche,,0.00,20.00,,,Gpon-Coche,NO,SI,SI,
+30/08/2025,19645 - CT-16759,Samuel David Prieto Martinez,20.00,Alex Mendez,Coche,,20.00,,,,Gpon-Coche,SI,SI,SI,
+30/08/2025,19622 - CT-16736,Belkis Blanco Carrillo,20.00,Alex Mendez,Coche,,0.00,20.00,,,Gpon-Coche,SI,SI,SI,
+30/08/2025,15249 - CT-16780,Nataly Virginia Mendez De Salas,20.00,Kathiusca Duran,Coche,SI,0.00,20.00,,,Gpon-Coche,NO,SI,SI,
+30/08/2025,19671 - CT-16788,Wendy Yoselin Navarro Salas ,20.00,Leonardo,Coche,SI,20.00,,,,Gpon-Coche,SI,SI,SI,
+30/08/2025,19672 - CT-16789,Jesús Antonio Cova Hernandez,20.00,Tony,Coche,SI,20.00,,,,Gpon-Coche,SI,SI,SI,
+30/08/2025,19674- CT-16791,Nancy Josefina Rodríguez de Díaz ,40.00,Leonardo,Coche,SI,40.00,,,,Gpon-Coche,SI,SI,SI,
+30/08/2025,19534 - CT-16626,Hecmar Berenice Orta Gutierrez,20.00,Carolina,La Paz,,,,,,Xor-La Paz,NO,SI,SI,
+30/08/2025,19670 - CT-16787,Maria Teresa Jardin De Gouveia,20.00,Kathiusca Duran,La Paz,SI,,,,,Xor-La Paz,NO,SI,SI,
+30/08/2025,19663 - CT-16779,Jesus Alberto Alvarez Guevara ,20.00,Eliana Mendez,La Paz,SI,,,,,Xor-La Paz,NO,SI,SI,
+30/08/2025,19677 - CT-16794,Neila Rosa Machado,20.00,Marcos (xor),La Paz,SI,,,,,Xor-La Paz,NO,SI,SI,
+30/08/2025,19676 - CT-16793,Wilber Wilfredo Salazar Ascanio ,20.00,Carolina,La Paz,SI,,,,,Xor-La Paz,NO,SI,SI,
+30/08/2025,19181 - CT-16777,Jhon Angel Muñoz Artigas,20.00,Alex Mendez,Coche,SI,20.00,,,,Fibra2024,SI,SI,SI,
+30/08/2025,19668 - CT-16785,Yuliet Andreina Maestre Tinoco,40.00,Leonardo,Coche,SI,,,,,Fibra2024,NO,SI,SI,
+,,,,,,26,,,,,,,46,46,
+,,,,,,Total de instala YA,,,,,,,Total de instalados,Total operativos,

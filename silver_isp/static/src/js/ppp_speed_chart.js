@@ -10,6 +10,7 @@ class PPPSpeedChart extends Component {
         this.orm = useService("orm");
         this.chartRef = useRef("chart");
         this.chart = null;
+        this.hola = "uouer";
 //        this.data = [];
         this.interval = null;
 

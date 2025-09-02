@@ -180,12 +180,12 @@ class IspNetdev(models.Model):
 
     @api.model
     def button_test_connection(self):
-        for router in self:
-            api = router._get_api_connection()
-            if api:
-                api.close()
-                # Optionally, add a user notification for success
-        return True
+        self.ensure_one()
+        api = self._get_api_connection()
+        if api:
+            api.close()
+            return True
+        return False
 
     @api.model
     def button_get_system_info(self):
@@ -293,7 +293,7 @@ class IspNetdev(models.Model):
                 })
 
             return {
-                'name': 'PPP Active Connections',
+                'name': 'PPP Active Connections1',
                 'type': 'ir.actions.act_window',
                 'res_model': 'isp.netdev.ppp.active.wizard',
                 'view_mode': 'form',

@@ -28,7 +28,20 @@ class IspRadius(models.Model):
     user_core_radius = fields.Char(string='Usuario Core Radius')
     password_core_radius = fields.Char(string='Password Core Radius')
     database = fields.Char(string='Database')
-    core_id = fields.Many2one('isp.core', string='Equipo Core', readonly=False, required=False, ondelete='cascade')
+    core_id = fields.Many2one('isp.core', string='Core')
+    state = fields.Selection([('down', 'Down'), ('active', 'Activo')], string='Estado', default='down', track_visibility='onchange')
+
+    def button_test_connection(self):
+        for record in self:
+            # TODO: Implement actual RADIUS connection test using pyrad library.
+            # This is a placeholder.
+            import random
+            if random.choice([True, False]):
+                record.state = 'active'
+            else:
+                record.state = 'down'
+        return True
+
     type_radius = fields.Selection([], string='Tipo Radius')
     port_coa = fields.Char(string='Puerto COA')
     is_ipv6 = fields.Boolean(string='IPV6')
@@ -190,12 +203,35 @@ class IspRadius(models.Model):
         for record in self:
             record.ip_range_count = self.env['isp.ip.address'].search_count([('radius_id', '=', record.id)])
 
-
-
     def button_test_connection(self):
-        print(("netdev", self.netdev_id, self.name))
-        return self.netdev_id.button_test_connection()
-
+        si = False
+        print("butontest")
+        for core in self:
+            if core.netdev_id:
+                try:
+                    is_successful = core.netdev_id.button_test_connection()
+                    print(("butontest", is_successful, core.state))
+                    if is_successful:
+                        core.state = 'active'
+                        si = True
+                    else:
+                        core.state = 'down'
+                except Exception:
+                    core.state = 'down'
+            else:
+                print(("butontest", 222))
+                core.state = 'down'
+        if si:
+            print(("butontest", si))
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': 'Connection Test',
+                    'message': 'Connection to Radius server was successful!',
+                    'type': 'success',
+                }
+            }
 
     def button_get_system_info(self):
         return self.netdev_id.button_get_system_info()
