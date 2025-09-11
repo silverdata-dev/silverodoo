@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menú Principal -->
+    <menuitem 
+        id="silverdoc_menu_root"
+        name="Documentación"
+        sequence="10"/>
+
+    <!-- Menú para Módulos de Documentación -->
+    <menuitem 
+        id="silverdoc_module_menu"
+        name="Módulos"
+        parent="silverdoc_menu_root"
+        action="silverdoc_module_action"
+        sequence="20"/>
+
+    <!-- Menú para Temas -->
+    <menuitem 
+        id="silverdoc_topic_menu"
+        name="Temas"
+        parent="silverdoc_menu_root"
+        action="silverdoc_topic_action"
+        sequence="30"/>
+
+    <!-- Menú para Documentos -->
+    <menuitem 
+        id="silverdoc_document_menu"
+        name="Documentos"
+        parent="silverdoc_menu_root"
+        action="silverdoc_document_action"
+        sequence="40"/>
+</odoo>

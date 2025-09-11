@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Payment Promise -->
+        <record id="isp_payment_promise_view_tree" model="ir.ui.view">
+            <field name="name">isp.payment.promise.tree</field>
+            <field name="model">isp.payment.promise</field>
+            <field name="arch" type="xml">
+                <tree decoration-muted="state == 'kept'" decoration-danger="state == 'broken'">
+                    <field name="name"/>
+                    <field name="contract_id"/>
+                    <field name="promise_date"/>
+                    <field name="amount"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="isp_payment_promise_view_form" model="ir.ui.view">
+            <field name="name">isp.payment.promise.form</field>
+            <field name="model">isp.payment.promise</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="contract_id"/>
+                            <field name="invoice_id"/>
+                            <field name="amount"/>
+                            <field name="promise_date"/>
+                            <field name="state"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="isp_payment_promise_action" model="ir.actions.act_window">
+            <field name="name">Promesas de Pago</field>
+            <field name="res_model">isp.payment.promise</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="isp_referred_contact_view_tree" model="ir.ui.view">
+            <field name="name">isp.referred.contact.tree</field>
+            <field name="model">isp.referred.contact</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="state == 'converted'" decoration-muted="state == 'lost'">
+                    <field name="name"/>
+                    <field name="phone"/>
+                    <field name="email"/>
+                    <field name="contract_id"/>
+                    <field name="referred_date"/>
+                    <field name="state"/>
+                    <field name="converted_contract_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="isp_referred_contact_view_form" model="ir.ui.view">
+            <field name="name">isp.referred.contact.form</field>
+            <field name="model">isp.referred.contact</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="contract_id"/>
+                            <field name="referred_date"/>
+                            <field name="state"/>
+                            <field name="converted_contract_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="isp_referred_contact_action" model="ir.actions.act_window">
+            <field name="name">Contactos Referidos</field>
+            <field name="res_model">isp.referred.contact</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

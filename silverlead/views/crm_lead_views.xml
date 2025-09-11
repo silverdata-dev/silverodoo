@@ -6,9 +6,6 @@
             <field name="model">crm.lead</field>
             <field name="inherit_id" ref="crm.crm_lead_view_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='partner_id']" position="after">
-                    <field name="x_id_cliente"/>
-                </xpath>
                 <xpath expr="//group[@name='lead_priority']" position="after">
                     <group string="Información de Instalación">
                         <field name="x_zona_id"/>

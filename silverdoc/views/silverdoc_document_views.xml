@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista de Árbol -->
+    <record id="silverdoc_document_view_tree" model="ir.ui.view">
+        <field name="name">silverdoc.document.tree</field>
+        <field name="model">silverdoc.document</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="topic_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de Formulario -->
+    <record id="silverdoc_document_view_form" model="ir.ui.view">
+        <field name="name">silverdoc.document.form</field>
+        <field name="model">silverdoc.document</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="topic_id"/>
+                    </group>
+                    <notebook>
+                        <page string="Contenido">
+                            <field name="content" widget="html"/>
+                        </page>
+                        <page string="Imágenes Adjuntas">
+                            <field name="image_ids" widget="many2many_binary"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción de Ventana -->
+    <record id="silverdoc_document_action" model="ir.actions.act_window">
+        <field name="name">Documentos</field>
+        <field name="res_model">silverdoc.document</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

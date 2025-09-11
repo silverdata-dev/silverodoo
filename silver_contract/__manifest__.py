@@ -1,0 +1,30 @@
+{
+    'name': 'Silver Contract',
+    'version': '17.0.1.0.0',
+    'summary': 'Módulo de Contratos para ISP',
+    'description': """
+        Gestión de contratos de servicios de Internet, incluyendo clientes,
+        planes, equipos y facturación recurrente.
+    """,
+    'author': 'Gemini',
+    'website': 'https://www.google.com',
+    'category': 'Services/ISP',
+    'depends': ['base', 'silver_isp', 'product'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/isp_contract_views.xml',
+        'views/isp_config_views.xml',
+        'views/isp_discount_plan_views.xml',
+        'views/isp_general_config_views.xml',
+        'views/isp_payment_views.xml',
+        'views/isp_referred_contact_views.xml',
+        'views/isp_network_config_views.xml',
+        'views/isp_monitoring_views.xml',
+        'wizards/isp_ping_wizard_views.xml',
+        'views/isp_config_menus.xml',
+        'views/isp_menus.xml',
+    ],
+    'installable': True,
+    'application': True,
+    'license': 'LGPL-3',
+}

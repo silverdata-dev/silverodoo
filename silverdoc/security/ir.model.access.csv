@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_silverdoc_module,access.silverdoc.module,model_silverdoc_module,base.group_user,1,1,1,1
+access_silverdoc_topic,access.silverdoc.topic,model_silverdoc_topic,base.group_user,1,1,1,1
+access_silverdoc_document,access.silverdoc.document,model_silverdoc_document,base.group_user,1,1,1,1

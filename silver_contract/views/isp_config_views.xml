@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Payment Type -->
+        <record id="isp_payment_type_view_tree" model="ir.ui.view">
+            <field name="name">isp.payment.type.tree</field>
+            <field name="model">isp.payment.type</field>
+            <field name="arch" type="xml">
+                <tree><field name="name"/></tree>
+            </field>
+        </record>
+        <record id="isp_payment_type_view_form" model="ir.ui.view">
+            <field name="name">isp.payment.type.form</field>
+            <field name="model">isp.payment.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="isp_payment_type_action" model="ir.actions.act_window">
+            <field name="name">Formas de Pago</field>
+            <field name="res_model">isp.payment.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Service Type -->
+        <record id="isp_service_type_action" model="ir.actions.act_window">
+            <field name="name">Tipos de Servicio</field>
+            <field name="res_model">isp.service.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Plan Type -->
+        <record id="isp_plan_type_action" model="ir.actions.act_window">
+            <field name="name">Tipos de Plan</field>
+            <field name="res_model">isp.plan.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Contract Term -->
+        <record id="isp_contract_term_action" model="ir.actions.act_window">
+            <field name="name">Períodos de Permanencia</field>
+            <field name="res_model">isp.contract.term</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Cutoff Day -->
+        <record id="isp_cutoff_day_action" model="ir.actions.act_window">
+            <field name="name">Días de Corte</field>
+            <field name="res_model">isp.cutoff.day</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

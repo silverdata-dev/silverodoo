@@ -1,0 +1,743 @@
+contract.contract
+
+<tree string="Contratos" default_order="name desc" decoration-info="state in ['draft']" decoration-muted="state in ['cancel','done']">
+                <field name="name" modifiers="{&quot;readonly&quot;: true}"/>
+                <field name="date_start" optional="hide" modifiers="{&quot;readonly&quot;: true}"/>
+                <field name="partner_id" on_change="1" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]], &quot;required&quot;: true}"/>
+                <field name="address" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]], &quot;required&quot;: true}"/>
+                <field name="payment_type_id" optional="show" on_change="1" can_create="true" can_write="true" modifiers="{}"/>
+                <field name="contract_line_id" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: true}"/>
+                <field name="phone" optional="hide" on_change="1" modifiers="{}"/>
+                <field name="recurring_next_date" modifiers="{}"/>
+                <field name="ip_address" optional="hide" modifiers="{}"/>
+                <field name="service_port" optional="hide" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                <field name="onuid" optional="hide" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                <field name="serial_onu" optional="hide" on_change="1" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                <field name="link_type" optional="hide" on_change="1" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;in&quot;, [&quot;open&quot;, &quot;cancel&quot;]]]}"/>
+                <field name="port_nap" optional="hide" on_change="1" modifiers="{}"/>
+                <field name="cod_customer_nap" optional="hide" modifiers="{}"/>
+            
+                <field name="is_visible_amount_tree" invisible="1" modifiers="{&quot;readonly&quot;: true, &quot;column_invisible&quot;: true}"/>
+                <field name="contract_invoice_amount" attrs="{'invisible': [('is_visible_amount_tree', '=', True)]}" on_change="1" modifiers="{&quot;invisible&quot;: [[&quot;is_visible_amount_tree&quot;, &quot;=&quot;, true]]}"/>
+                <field name="activity_ids" widget="list_activity" on_change="1" modifiers="{}"/>
+                <field name="activity_user_id" optional="hide" string="Asignado a" widget="many2one_avatar_user" can_create="false" can_write="true" modifiers="{}"/>
+                <field name="my_activity_date_deadline" string="Mi fecha l&#237;mite" widget="remaining_days" options="{'allow_order': '1'}" modifiers="{&quot;readonly&quot;: true}"/>
+                <field name="state_service" widget="badge" decoration-danger="state_service in ('disabled','removed')" decoration-warning="state_service == 'removal_list'" decoration-success="state_service == 'active'" decoration-info="state_service in ('suspended', 'inactive')" modifiers="{}"/>             
+                <field name="state_service_ott" widget="badge" decoration-success="state_service_ott == 'active'" decoration-info="state_service_ott == 'inactive'" decoration-danger="state_service_ott == 'disabled'" decoration-warning="state_service_ott == 'suspended'" optional="hide" modifiers="{}"/>
+            
+                <field name="state" widget="badge" decoration-danger="state == 'done'" decoration-warning="state == 'renewal'" decoration-success="state == 'open'" decoration-info="state == 'draft'" modifiers="{}"/>
+                <field name="id" widget="open_tab" modifiers="{&quot;readonly&quot;: true}"/>
+            </tree>
+            
+            <form string="Contrato">
+                <header>
+                     
+                <widget name="signature" string="Firmar" highlight="1" full_name="partner_id" attrs="{'invisible': [('state','not in',['draft','renewal'])]}" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;renewal&quot;]]]}"/>
+                <button name="action_contract_signature" string="Enviar Contrato" type="object" icon="fa-envelope"/>
+                      
+<button name="action_open" string="En Proceso" type="object" states="draft" class="oe_highlight" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;]]]}"/>
+                <button name="action_generate_link" string="Generar Link" class="oe_highlight" type="object"/>
+            
+
+<button name="action_create_sale_order" string="Ventas" type="object" states="draft,open" class="oe_highlight" icon="fa-ticket" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;open&quot;]]]}"/>
+            <button name="action_create_helpdesk_ticket" string="Ticket" type="object" states="draft,open" class="oe_highlight" icon="fa-ticket" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;open&quot;]]]}"/>
+
+<button name="action_create_payment_promises" string="Prom. Pago" type="object" class="oe_highlight" icon="fa-ticket" attrs="{'invisible': ['&amp;', ('state_service', 'in', ['inactive', 'active','suspended', 'removed','cancel']), ('is_apply_active_ct','=',False)]}" modifiers="{&quot;invisible&quot;: [&quot;&amp;&quot;, [&quot;state_service&quot;, &quot;in&quot;, [&quot;inactive&quot;, &quot;active&quot;, &quot;suspended&quot;, &quot;removed&quot;, &quot;cancel&quot;]], [&quot;is_apply_active_ct&quot;, &quot;=&quot;, false]]}"/>
+
+<button name="action_renewal_open" string="Renovar" type="object" states="renewal" class="oe_highlight" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;renewal&quot;]]]}"/>
+
+<button name="719" string="Abonar" icon="fa-money" type="action" states="draft,open" class="oe_highlight" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;open&quot;]]]}"/>
+
+                    <button name="action_cancel" string="Anular" type="object" states="draft" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;]]]}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,open" modifiers="{}"/>
+                </header>
+                <sheet>
+                    <!-- Invisible fields -->
+                    <field name="active" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+                    <field name="state_service" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+                    <field name="type_service_name" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+                    <field name="payment_type_code" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                    <field name="plan_type_code" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                    <field name="is_first_invoice" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+                    <field name="id" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+
+                    <div class="oe_button_box" name="button_box">
+                         <button name="action_open_contract_invoice_form" type="object" icon="fa-dollar" class="oe_stat_button" context="{'default_contract_id': active_id}">
+                            <field string="Monto Vencido" name="contract_invoice_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+                        </button>
+<field name="multi_currency" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<button name="action_open_contract_invoice_form" type="object" icon="fa-money" class="oe_stat_button" context="{'default_contract_id': active_id}" attrs="{'invisible': [('multi_currency', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;multi_currency&quot;, &quot;=&quot;, false]]}">
+<field string="Monto Bolivares." name="contract_invoice_exchange_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+                </button>
+<button name="action_open_currency_form" type="object" icon="fa-exchange" class="oe_stat_button" attrs="{'invisible': [('multi_currency', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;multi_currency&quot;, &quot;=&quot;, false]]}">
+<field string="Tsa. Cambio" name="exchange_rate" widget="statinfo" readonly="1" modifiers="{&quot;readonly&quot;: true}"/>
+</button>
+
+                        <button name="action_show_invoices" type="object" icon="fa-list" class="oe_stat_button">
+                            <field string="Facturas" name="invoice_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+                        </button>
+<button name="action_open_helpdesk_tickets" class="oe_stat_button" type="object" icon="fa-ticket">
+                    <field string="Tickets" name="helpdesk_ticket_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+                </button>
+<button name="action_open_sales_order" class="oe_stat_button" type="object" icon="fa-ticket">
+                    <field string="Ventas" name="sale_order_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+                </button>
+            
+
+<button name="action_open_payment_promises" class="oe_stat_button" type="object" icon="fa-dollar">
+<field string="Prom. Pago" name="payment_promises_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+                </button>
+                   
+                
+
+                <button name="action_open_refer" class="oe_stat_button" type="object" icon="fa-ticket">
+                            <field string="Referidos" name="refer_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+                        </button>
+            
+<button name="736" class="oe_stat_button" type="action" icon="fa-retweet">
+<field string="Reconexiones" name="count_reconnection" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+                </button>
+
+<button class="oe_stat_button" type="object" name="action_open_payment" icon="fa-money">
+<field string="Abonos" name="account_payment_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+</button>
+
+                <button class="oe_stat_button" type="action" name="806" icon="fa-arrows-v">
+                    <field string="Movimientos" name="stock_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+                </button>
+            
+                        <button class="oe_stat_button" type="action" name="661" icon="fa-list">
+                            <field string="Historial Estados" name="state_history_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+                        </button>
+                        <button class="oe_stat_button" type="action" name="662" icon="fa-mail-forward">
+                            <field string="Historial Renovaci&#243;n" name="renewal_history_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+                        </button>
+                        <button class="oe_stat_button" type="action" name="663" icon="fa-th-list" attrs="{'invisible': [('contract_parent_count', '=', 0)]}" modifiers="{&quot;invisible&quot;: [[&quot;contract_parent_count&quot;, &quot;=&quot;, 0]]}">
+                            <field string="Multicoporativo" name="contract_parent_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+                        </button>
+                    
+ <button class="oe_stat_button" type="action" name="837" icon="fa-money">
+<field string="Reg. Depositos" name="web_register_deposit_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+</button>
+<button class="oe_stat_button" type="action" name="836" icon="fa-money">
+<field string="Reg. Depositos" name="web_register_deposit_generic_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+</button>
+<button string="Dep&#243;sitos - " name="toggle_active_deposit" type="object" class="oe_stat_button" icon="fa-archive">
+                        <field name="active_deposit" widget="boolean_toggle" modifiers="{}"/>
+                    </button>
+</div>
+                    <!-- Service status for cts -->
+                    <widget name="web_ribbon" title="Inactivo" bg_color="bg-info" attrs="{'invisible': ['|', ('state_service', '!=', 'inactive'), ('state', 'in', ('cancel'))]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;state_service&quot;, &quot;!=&quot;, &quot;inactive&quot;], [&quot;state&quot;, &quot;in&quot;, &quot;cancel&quot;]]}"/>
+                    <widget name="web_ribbon" title="Activo" attrs="{'invisible': ['|', ('state_service', '!=', 'active'), ('state', 'in', ('cancel'))]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;state_service&quot;, &quot;!=&quot;, &quot;active&quot;], [&quot;state&quot;, &quot;in&quot;, &quot;cancel&quot;]]}"/>
+                    <widget name="web_ribbon" title="Cortado" bg_color="bg-danger" attrs="{'invisible': ['|', ('state_service', '!=', 'disabled'), ('state', 'in', ('cancel'))]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;state_service&quot;, &quot;!=&quot;, &quot;disabled&quot;], [&quot;state&quot;, &quot;in&quot;, &quot;cancel&quot;]]}"/>
+                    <widget name="web_ribbon" title="Suspendido" bg_color="bg-info" attrs="{'invisible': ['|', ('state_service', '!=', 'suspended'), ('state', 'in', ('cancel'))]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;state_service&quot;, &quot;!=&quot;, &quot;suspended&quot;], [&quot;state&quot;, &quot;in&quot;, &quot;cancel&quot;]]}"/>
+                    <widget name="web_ribbon" title="Lista de Retiro" bg_color="bg-warning" attrs="{'invisible': ['|', ('state_service', '!=', 'removal_list'), ('state', 'in', ('cancel'))]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;state_service&quot;, &quot;!=&quot;, &quot;removal_list&quot;], [&quot;state&quot;, &quot;in&quot;, &quot;cancel&quot;]]}"/>
+                    <widget name="web_ribbon" title="Retirado" bg_color="bg-danger" attrs="{'invisible': [('state_service', '!=', 'removed')]}" modifiers="{&quot;invisible&quot;: [[&quot;state_service&quot;, &quot;!=&quot;, &quot;removed&quot;]]}"/>
+                    <widget name="web_ribbon" title="Anulado" bg_color="bg-danger" attrs="{'invisible': [('state_service', '!=', 'cancel')]}" modifiers="{&quot;invisible&quot;: [[&quot;state_service&quot;, &quot;!=&quot;, &quot;cancel&quot;]]}"/>
+                    <field name="contract_type" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" modifiers="{&quot;readonly&quot;: true}"/>
+                        </h1>
+                    </div>
+                    <div class="o_row">
+                        <field name="parent_id" widget="res_partner_many2one" placeholder="Codigo Contrato" attrs="{'invisible': [('plan_type_code', '!=', 'multi_corporate')]}" options="{'no_create': True}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;plan_type_code&quot;, &quot;!=&quot;, &quot;multi_corporate&quot;]]}"/>
+                    </div>
+                    <group name="main1">
+                        <group name="main1_1">
+                            <field name="partner_id" options="{'no_create': True}" on_change="1" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]], &quot;required&quot;: true}"/>
+                            <field name="address" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]], &quot;required&quot;: true}"/>
+                            <field name="phone" on_change="1" modifiers="{}"/>
+<field name="is_apply_active_ct" widget="boolean_toggle" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+
+                        </group>
+                        <group name="main1_2">
+                            <field name="state_service" widget="badge" decoration-danger="state_service in ('disabled','removed')" decoration-warning="state_service == 'removal_list'" decoration-success="state_service == 'active'" decoration-info="state_service in ('suspended', 'inactive')" attrs="{'invisible': [('type_service_name', '!=', 'iptv+')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_service_name&quot;, &quot;!=&quot;, &quot;iptv+&quot;]]}"/>
+                        
+                <field name="state_service_ott" widget="badge" decoration-success="state_service_ott == 'active'" decoration-info="state_service_ott == 'inactive'" decoration-danger="state_service_ott == 'disabled'" decoration-warning="state_service_ott == 'suspended'" attrs="{'invisible':[('type_service_name','not in',['iptv','iptv+'])]}" modifiers="{&quot;invisible&quot;: [[&quot;type_service_name&quot;, &quot;not in&quot;, [&quot;iptv&quot;, &quot;iptv+&quot;]]]}"/>
+            </group>
+                    </group>
+                    <group name="main2">
+                        <group>
+                            <field name="type_service_id" options="{'no_create': True}" widget="selection" required="1" on_change="1" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]], &quot;required&quot;: true}"/>
+                            <field name="plan_type_id" options="{'no_create': True}" widget="selection" required="1" on_change="1" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]], &quot;required&quot;: true}"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'no_create_edit': True, 'color_field': 'color',}" can_create="true" can_write="true" modifiers="{}"/>
+                            <field name="is_extra_value" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+                            <field name="is_extra_value_active" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                        </group>
+                        <group>
+                            
+<field name="contract_cuttoff_date_id" widget="selection" domain="[('plan_type_id','=',plan_type_id)]" required="1" on_change="1" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;in&quot;, [&quot;open&quot;, &quot;cancel&quot;]]], &quot;required&quot;: true}"/>
+<field name="stay_period_id" options="{'no_create': True}" widget="selection" required="1" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]], &quot;required&quot;: true}"/>
+                        </group>
+                    </group>
+                    <notebook name="contract_contract" colspan="4">
+                        <page string="Servicios Recurrentes" name="invoice_info">
+                            <field name="line_ids" attrs="{'readonly': [('state','!=','draft')]}" options="{'no_create': True}" domain="[('is_debit_line','=',False)]" on_change="1" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]]}">
+                                </field>
+                            <group string="Valores Extra">
+                            </group>
+                                <field name="line_debit_ids" readonly="0" context="{'default_is_debit_line': True}" nolabel="1" modifiers="{}">
+                                    </field>
+                                <br/>
+                                <button name="660" string="&#8658; Diferir Valores" type="action" class="oe_link"/>
+                                <button name="action_generate_preinvoices_ext_materials" string="&#8658; Facturar Valores Extras" attrs="{'invisible': [('state', '!=', 'open')]}" type="object" class="oe_link" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;open&quot;]]}"/>
+                            <group name="invoice_fields">
+                                <group name="invoice_fields2">
+                                    <field name="is_recurring_invoicing_type" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+                                    <field name="recurring_invoicing_type" readonly="1" force_save="1" string="Tipo de Consumo" on_change="1" modifiers="{&quot;readonly&quot;: true}"/>
+                                    <field name="payment_type_id" options="{'no_create': True}" widget="selection" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}" on_change="1" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]], &quot;required&quot;: true}"/>
+                                    <field name="is_other_partner_bank" attrs="{'invisible': [('payment_type_code','not in',['credit_card','debit'])], 'readonly': [('state', '!=', 'draft')]}" widget="boolean_toggle" on_change="1" modifiers="{&quot;invisible&quot;: [[&quot;payment_type_code&quot;, &quot;not in&quot;, [&quot;credit_card&quot;, &quot;debit&quot;]]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]]}"/>
+                                    <field name="partner_bank_id" attrs="{'invisible': [('is_other_partner_bank','=',False)], 'required': [('is_other_partner_bank','=',True)], 'readonly': [('state', '!=', 'draft')]}" options="{'no_create': True}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;is_other_partner_bank&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]], &quot;required&quot;: [[&quot;is_other_partner_bank&quot;, &quot;=&quot;, true]]}"/>
+                                    <field name="res_partner_bank_id" attrs="{'invisible': [('payment_type_code','not in',['credit_card','debit'])], 'required': [('payment_type_code','in',['credit_card','debit'])], 'readonly': [('state', '!=', 'draft')]}" domain="['|',('partner_id','=',partner_id),('partner_id','=',partner_bank_id)]" widget="selection" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;payment_type_code&quot;, &quot;not in&quot;, [&quot;credit_card&quot;, &quot;debit&quot;]]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]], &quot;required&quot;: [[&quot;payment_type_code&quot;, &quot;in&quot;, [&quot;credit_card&quot;, &quot;debit&quot;]]]}"/>
+                                    <button name="action_generate_first_invoice" string="&#8658;Generar Primer AC" type="object" class="oe_link" attrs="{'invisible': ['|',('is_first_invoice', '=', True),'&amp;',('is_extra_value_active', '=', True),('is_extra_value', '=', False)], 'readonly': [('state', '!=', 'draft')]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;is_first_invoice&quot;, &quot;=&quot;, true], &quot;&amp;&quot;, [&quot;is_extra_value_active&quot;, &quot;=&quot;, true], [&quot;is_extra_value&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]]}"/>
+                                    <button name="action_generate_first_ext_materials" string="&#8658;Generar AC Extras" type="object" class="oe_link" attrs="{'invisible': ['|',('is_extra_value', '=', True),('is_extra_value_active', '=', False)], 'readonly': [('state', '!=', 'draft')]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;is_extra_value&quot;, &quot;=&quot;, true], [&quot;is_extra_value_active&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]]}"/>
+                                </group>
+                                <group name="invoice_fields1">
+                                    <field name="is_select_journal_invoice" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                    <field name="type_journal_invoice" widget="selection" attrs="{'invisible': [('is_select_journal_invoice', '=', False)]}" on_change="1" modifiers="{&quot;invisible&quot;: [[&quot;is_select_journal_invoice&quot;, &quot;=&quot;, false]]}"/>
+                                    <field name="journal_id" widget="selection" readonly="1" attrs="{'invisible': [('is_select_journal_invoice', '=', False)]}" can_create="false" can_write="false" modifiers="{&quot;invisible&quot;: [[&quot;is_select_journal_invoice&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: true}"/>
+                                    <label for="recurring_invoices" string="Recurrencia"/>
+                                    <div class="o_row">
+                                        <field name="recurring_invoices" widget="boolean_toggle" on_change="1" modifiers="{}"/>
+                                        <field name="recurring_interval" class="oe_inline" nolabel="1" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                        <field name="recurring_rule_type" class="oe_inline" nolabel="1" on_change="1" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    </div>
+                                    <field name="recurring_next_date" readonly="1" force_save="1" string="Fecha Pr&#243;ximo AC" modifiers="{&quot;readonly&quot;: true}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="discounts" string="Descuentos/Promociones">
+                            <group name="discount_main">
+                                <group name="discount_main_1">
+
+                                
+                <field name="contract_discount_id" widget="selection" attrs="{'readonly': [('promotion_active', '=', True)]}" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;promotion_active&quot;, &quot;=&quot;, true]]}"/>
+                <field name="active_payment_anticipated" widget="boolean_toggle" modifiers="{}"/>
+                <field name="contract_discount_ids" invisible="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/> 
+                <button string="=&gt; Asignar Promoci&#243;n " name="action_assing_discount" type="object" class="oe_link" attrs="{'invisible': [('promotion_active', '=', True),('state','=','draft')]}" modifiers="{&quot;invisible&quot;: [[&quot;promotion_active&quot;, &quot;=&quot;, true], [&quot;state&quot;, &quot;=&quot;, &quot;draft&quot;]]}"/>
+                <button name="917" string="Asignar Descuento Manual" attrs="{'invisible': ['|',('promotion_active', '=', False),('state','=','draft')]}" icon="fa-plus-circle" type="action" class="oe_link" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;promotion_active&quot;, &quot;=&quot;, false], [&quot;state&quot;, &quot;=&quot;, &quot;draft&quot;]]}"/>
+                <field name="promotion_active" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                <field name="contract_discount_line_id" readonly="1" attrs="{'invisible': [('promotion_active', '!=', True)]}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;promotion_active&quot;, &quot;!=&quot;, true]], &quot;readonly&quot;: true}"/>
+            </group>
+                                <group name="discount_main_2">
+                                    <field name="is_disabled" widget="boolean_toggle" on_change="1" modifiers="{}"/>
+                                    <field name="disability_percentage" attrs="{'invisible':[('is_disabled', '=', False)]}" on_change="1" modifiers="{&quot;invisible&quot;: [[&quot;is_disabled&quot;, &quot;=&quot;, false]]}"/>
+                                    <field name="is_senior" widget="boolean_toggle" on_change="1" modifiers="{}"/>
+                                </group>
+                            </group>
+
+                            <field name="discount_line_ids" modifiers="{}">
+                                </field>
+                <field name="has_promotion_foreign_currency" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                <field name="foreign_currency_line_ids" attrs="{'invisible': [('has_promotion_foreign_currency', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;has_promotion_foreign_currency&quot;, &quot;=&quot;, false]]}">
+                    </field>
+
+                        </page>
+                <page name="anticipated_payment" string="Pago Ant." attrs="{'invisible':[('active_payment_anticipated','!=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;active_payment_anticipated&quot;, &quot;!=&quot;, true]]}">
+                    <button name="action_post_advance_payment" string="Aplicar pago anticipado posventa" class="oe_highlight" type="object" attrs="{'invisible':[('state', 'not in' , ['open','renewal'])]}" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;open&quot;, &quot;renewal&quot;]]]}"/> <br/><br/><br/>
+                    <field name="anticipated_payment_line_ids" modifiers="{}">
+                        </field>    
+                </page>
+
+
+                        <page name="location" string="Ubicaci&#243;n">
+                            <button name="action_get_location_data" string="Obtener Datos" type="object" class="btn-link"/>
+                            <group name="location_main">
+
+                                <group name="location_main_1">
+                                    <field name="street" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    <field name="street2" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    <field name="address_ref" modifiers="{}"/>
+                                    <field name="extra_ref" widget="boolean_toggle" modifiers="{}"/>
+                                    <field name="floor_level" widget="selection" attrs="{'invisible': [('extra_ref','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;extra_ref&quot;, &quot;=&quot;, false]]}"/>
+                                    <field name="building_material_type" widget="selection" attrs="{'invisible': [('extra_ref','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;extra_ref&quot;, &quot;=&quot;, false]]}"/>
+                                    <field name="ownership_type" widget="selection" attrs="{'invisible': [('extra_ref','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;extra_ref&quot;, &quot;=&quot;, false]]}"/>
+
+
+                                </group>
+                                <group name="location_main_2">
+                                    <field name="country_id" placeholder="Pa&#237;s" class="o_address_country" options="{'no_open': True, 'no_create': True}" can_create="false" can_write="false" modifiers="{}"/>
+                                    <field name="state_id" class="o_address_state" placeholder="Estado" options="{'no_open': True, 'no_quick_create': True}" context="{'country_id': country_id, 'default_country_id': country_id, 'zip': zip}" can_create="true" can_write="true" modifiers="{}"/>
+                                    <field name="city" placeholder="Ciudad" class="o_address_city" modifiers="{}"/>
+<field name="ote_id" can_create="true" can_write="true" modifiers="{}"/>
+
+                                    <field name="zip" placeholder="ZIP" class="o_address_zip" on_change="1" modifiers="{}"/>
+                                </group>
+                            </group>
+                            <group name="geo_location">
+                                <div>
+                                    <span>Lat : </span>
+                                    <field name="contract_latitude" nolabel="1" class="oe_inline" modifiers="{}"/>
+                                    <span>, Long: </span>
+                                    <field name="contract_longitude" nolabel="1" class="oe_inline" modifiers="{}"/>
+                                    <br/>
+                                    <span attrs="{'invisible': [('date_localization', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;date_localization&quot;, &quot;=&quot;, false]]}">Actualizado en: </span>
+                                    <field name="date_localization" nolabel="1" class="oe_inline" modifiers="{}"/>
+                                    <span class="oe_inline">
+                                        <button string="(refresh)" name="geo_localize" class="btn btn-link" type="object"/>
+                                    </span>
+                                </div>
+                            </group>
+                        </page>
+                        <page name="other_info" string="Otra Informaci&#243;n">
+                            <notebook>
+                                <page name="general" string="General">
+                                    <group string="Terminos y condiciones">
+                                            <field name="description_contract" modifiers="{}"/>
+                                            <field name="is_visible_contract_validate" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+                                            <field name="is_user_restricted_access" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                            <field name="is_visible_contract" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                            <field name="restricted_access" widget="boolean_toggle" attrs="{'invisible': [('is_user_restricted_access', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_user_restricted_access&quot;, &quot;=&quot;, false]]}"/>
+                                    </group>
+                                    <group name="other_info_main">
+                                        <group name="other_info_marketing" string="Marketing">
+                                            <field name="origin" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                            <field name="user_id" options="{'no_create': True, 'no_create_edit': True}" on_change="1" can_create="false" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>                      
+                        <field name="partner_contact_assigned_id" can_create="true" can_write="true" modifiers="{}"/>
+                  
+                                        </group>
+                                        <group name="other_info_main_2">
+                                        </group>
+                                    </group>
+<group>
+<field name="holling_id" can_create="true" can_write="true" modifiers="{}"/>
+<field name="cut_off" widget="boolean_toggle" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>  
+                <!-- <widget name="signature" string="Sign" highlight="1"
+                            full_name="partner_id" /> -->
+                <field name="signature" widget="signature" attrs="{'readonly': [('state','in',['open','renewal','done','cancel'])]}" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;in&quot;, [&quot;open&quot;, &quot;renewal&quot;, &quot;done&quot;, &quot;cancel&quot;]]]}"/>       
+
+</group>
+
+                                </page>
+                                <page name="referidos" string="Registros Relacionados">
+                                    <field name="referred_line_ids" mode="tree" modifiers="{}">
+                                        </field>
+                                </page>
+                            </notebook>
+                        </page>
+                        <page name="notify" string="Notificaciones">
+                            <div class="oe_button_box" name="button_box">
+
+                            </div>
+                            <div class="oe_button_box" name="button_box">
+                                <button name="action_register_notification" type="object" class="oe_stat_button" icon="fa-bell" string="N.Bienvenida" attrs="{'invisible': [('state_service','not in',['active'])]}" modifiers="{&quot;invisible&quot;: [[&quot;state_service&quot;, &quot;not in&quot;, [&quot;active&quot;]]]}"/>
+                                <button name="action_amountdue_notification" type="object" class="oe_stat_button" icon="fa-bell" string="N.Deudas" attrs="{'invisible': [('state','not in',['open'])]}" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;open&quot;]]]}"/>
+                                <button name="action_cutoff_notification" type="object" class="oe_stat_button" icon="fa-bell" string="N.Cortado" attrs="{'invisible': [('state_service','not in','disabled')]}" modifiers="{&quot;invisible&quot;: [[&quot;state_service&quot;, &quot;not in&quot;, &quot;disabled&quot;]]}"/>
+                                <button name="action_removal_list_notification" type="object" class="oe_stat_button" icon="fa-bell" string="N.Lista Retiro" attrs="{'invisible': [('state_service','not in','removal_list')]}" modifiers="{&quot;invisible&quot;: [[&quot;state_service&quot;, &quot;not in&quot;, &quot;removal_list&quot;]]}"/>
+        <button class="oe_stat_button" type="action" name="859" icon="fa-whatsapp">
+                    <field string="WhatsApp" name="message_wp_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+               </button>
+            
+                            </div>
+                             <div class="oe_button_box" name="button_box">
+                                <field name="is_portal_user" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+                                <button name="enable_portal_access_contract" type="object" class="oe_stat_button" icon="fa-user-plus" string="Permitir Acceso P." attrs="{'invisible': [('is_portal_user', '=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_portal_user&quot;, &quot;=&quot;, true]]}"/>
+                                <button name="disable_portal_access_contract" type="object" class="oe_stat_button" icon="fa-lock" string="Quitar Acceso P." attrs="{'invisible': [('is_portal_user', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_portal_user&quot;, &quot;=&quot;, false]]}"/>
+                            </div>
+                            <group>
+                                <group>
+                                    <field name="links_payment" readonly="1" modifiers="{&quot;readonly&quot;: true}"/>
+                                    <field name="links_payment_pp" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+                                </group>
+                            </group>
+                        
+                 <group>
+                    <group>
+                        <field name="dont_send_notification_wp" widget="boolean_toggle" modifiers="{}"/>
+                    </group>
+                </group>
+            </page>
+                    
+        <page name="isp_networksp" string="Servicio Internet">
+                    <notebook name="contract_networks" colspan="4">
+                        <page string="Datos Tecnicos" name="isp_networks">
+                            
+        <field name="is_mac_address" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+<field name="is_visible_core" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="is_active_core" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+<field name="is_extract_mac_cores" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="is_fttb_connection" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+<field name="is_change_mac" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="ap_brand_description" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="is_brand_olt_hua" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="is_tr069" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+<field name="olt_brand_description" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                <div class="oe_button_box" name="button_box">  
+                <!-- <button name="action_activate_service" type="object" class="oe_stat_button" icon="fa-circle" string="Activar" states="draft" groups="contract_manager.group_contract_technical"></button>   -->
+<button name="action_activate_service" type="object" class="oe_stat_button" icon="fa-circle" string="Activar" attrs="{'invisible': ['|','|',('is_extract_mac_cores','=',True),('state','!=','draft'),('is_fttb_connection','=',True)]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, &quot;|&quot;, [&quot;is_extract_mac_cores&quot;, &quot;=&quot;, true], [&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;], [&quot;is_fttb_connection&quot;, &quot;=&quot;, true]]}"/>
+<button name="action_create_mac_olt_button" type="object" class="oe_stat_button" icon="fa-circle" string="Asignar MAC" attrs="{'invisible': ['|',('link_type','=','fttb'),('is_extract_mac_onu','=',False)]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;link_type&quot;, &quot;=&quot;, &quot;fttb&quot;], [&quot;is_extract_mac_onu&quot;, &quot;=&quot;, false]]}"/>
+<button name="action_create_mac_mk" type="object" class="oe_stat_button" icon="fa-circle" string="Extraer IP/MAC" attrs="{'invisible': ['|','|','|',('ap_brand_description','!=','mk'),('link_type','!=','wifi'),('is_change_mac','=',False),('state','!=','draft')]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, &quot;|&quot;, &quot;|&quot;, [&quot;ap_brand_description&quot;, &quot;!=&quot;, &quot;mk&quot;], [&quot;link_type&quot;, &quot;!=&quot;, &quot;wifi&quot;], [&quot;is_change_mac&quot;, &quot;=&quot;, false], [&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]]}"/>
+<button name="action_activate_service_core_button" type="object" class="oe_stat_button" icon="fa-circle" string="Activar Core" attrs="{'invisible': ['|',('is_visible_core','=',False),('is_active_core','=', True),('is_extract_mac_cores','=',False),('is_fttb_connection','=',False)]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;is_visible_core&quot;, &quot;=&quot;, false], [&quot;is_active_core&quot;, &quot;=&quot;, true], [&quot;is_extract_mac_cores&quot;, &quot;=&quot;, false], [&quot;is_fttb_connection&quot;, &quot;=&quot;, false]]}"/>
+                <button name="action_cutoff_service_button" type="object" class="oe_stat_button" icon="fa-rss" string="Cortar" states="open" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;open&quot;]]]}"/>
+<button name="action_search_series" type="object" class="oe_stat_button" icon="fa-search-plus" string="Buscar Series " states="draft" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;]]]}"/>
+<button name="action_reconnection_service_button" type="object" class="oe_stat_button" icon="fa-rss" string="Reconectar" states="open" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;open&quot;]]]}"/>
+                <button name="action_layoff_service_button" type="object" class="oe_stat_button" icon="fa-rss" string="Suspender" states="open" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;open&quot;]]]}"/>
+                <button name="action_ping_service" type="object" class="oe_stat_button" icon="fa-rss" string="PING Servicio"/>
+                <button name="action_status_olt" type="object" class="oe_stat_button" icon="fa-rss" string="Status OLT"/>
+                <button name="action_test_speed_service" type="object" class="oe_stat_button" icon="fa-rss" string="Verificar Velocidad"/>
+<button name="action_test_service_port" type="object" class="oe_stat_button" icon="fa-rss" string="Verificar Service-Port" attrs="{'invisible': [('is_brand_olt_hua','=',True)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_brand_olt_hua&quot;, &quot;=&quot;, true]]}"/>
+                <button name="action_remove_service" type="object" class="oe_stat_button" icon="fa-rss" string="Eliminar Servicio"/>
+                <button name="action_connection_ssh_radius" type="object" class="oe_stat_button" icon="fa-rss" string="Desconectar Sesi&#243;n Rd" attrs="{'invisible': [('is_free_rd','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_free_rd&quot;, &quot;=&quot;, false]]}"/>
+<button name="action_extract_onu_card" type="object" class="oe_stat_button" icon="fa-rss" string="Extraer Tarjetas Onu" attrs="{'invisible': [('olt_brand_description','!=','alcatel')]}" modifiers="{&quot;invisible&quot;: [[&quot;olt_brand_description&quot;, &quot;!=&quot;, &quot;alcatel&quot;]]}"/>
+
+</div>
+           <group name="ips_networks_1">                                
+                                <group name="ips_networks_1_1">
+                                    <field name="link_type" on_change="1" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;in&quot;, [&quot;open&quot;, &quot;cancel&quot;]]]}"/>
+                                    <field name="link_communitary" attrs="{'invisible': [('link_type','!=','wifi')],'readonly': [('state', 'not in', ['draft','open','renewal'])]}" widget="boolean_toggle" modifiers="{&quot;invisible&quot;: [[&quot;link_type&quot;, &quot;!=&quot;, &quot;wifi&quot;]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;open&quot;, &quot;renewal&quot;]]]}"/>
+                                </group>
+                                <group name="ips_networks_1_2">
+                                
+                <field name="additional_users_visible" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                <field name="helpdesk_team_id" options="{'no_create': True, 'no_create_edit': True}" on_change="1" can_create="false" can_write="false" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]], &quot;required&quot;: true}"/>
+                <field name="user_ids" invisible="1" readonly="1" can_create="false" can_write="true" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                <field name="assigned_user_id" options="{&quot;always_reload&quot;: True}" attrs="{'invisible': [('additional_users_visible','=',False)]}" can_create="false" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;additional_users_visible&quot;, &quot;=&quot;, false]]}"/>
+                <field name="technical_user_id" options="{&quot;always_reload&quot;: True}" attrs="{'invisible': [('additional_users_visible','=',False)]}" can_create="false" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;additional_users_visible&quot;, &quot;=&quot;, false]]}"/>
+            </group>
+                            </group>          
+                            <group name="ips_networks_2" string="Datos Red Externa Asignada">             
+                                <group attrs="{'invisible': [('link_type','=','lan')]}" modifiers="{&quot;invisible&quot;: [[&quot;link_type&quot;, &quot;=&quot;, &quot;lan&quot;]]}">
+                                    <field name="node_id" readonly="0" on_change="1" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    <field name="box_id" readonly="0" domain="[('node_id','=',node_id)]" attrs="{'invisible': ['|',('link_type','=','idts'),('link_type','!=','fiber'), ('link_type','!=','fttb')]}" on_change="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;link_type&quot;, &quot;=&quot;, &quot;idts&quot;], [&quot;link_type&quot;, &quot;!=&quot;, &quot;fiber&quot;], [&quot;link_type&quot;, &quot;!=&quot;, &quot;fttb&quot;]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    <field name="port_nap" readonly="0" attrs="{'invisible': ['|',('link_type','=','idts'),('link_type','!=','fiber'), ('link_type','!=','fttb')]}" on_change="1" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;link_type&quot;, &quot;=&quot;, &quot;idts&quot;], [&quot;link_type&quot;, &quot;!=&quot;, &quot;fiber&quot;], [&quot;link_type&quot;, &quot;!=&quot;, &quot;fttb&quot;]]}"/>
+                                    <field name="ap_id" readonly="0" attrs="{'invisible': ['|', ('link_type','!=','wifi'), ('link_type','=','idts')]}" domain="['|',('node_ids','in',node_id),('node_id','=',node_id)]" on_change="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;link_type&quot;, &quot;!=&quot;, &quot;wifi&quot;], [&quot;link_type&quot;, &quot;=&quot;, &quot;idts&quot;]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+           <field name="is_channel" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+           <field name="custom_channel_id" attrs="{'invisible': [('is_channel','=',False)]}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;is_channel&quot;, &quot;=&quot;, false]]}"/>
+           
+                                    <field name="cod_customer_nap" modifiers="{}"/>
+                                    <field name="mac_learn" attrs="{'invisible': ['|',('is_control_mac_learn','=',False),('is_bridge','=',False)]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;is_control_mac_learn&quot;, &quot;=&quot;, false], [&quot;is_bridge&quot;, &quot;=&quot;, false]]}"/>
+                                    <field name="pppoe" readonly="1" attrs="{'invisible': [('pppoe', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;pppoe&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: true}"/>
+                                    <field name="password_pppoe" readonly="1" attrs="{'invisible': [('password_pppoe', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;password_pppoe&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: true}"/>
+                                    <field name="core_brand_description" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                    <field name="olt_brand_description" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                    <field name="isp_core_port_line_id" options="{'no_create': True,  'no_open': True}" attrs="{'invisible': [('core_brand_description','!=','hua')]}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;core_brand_description&quot;, &quot;!=&quot;, &quot;hua&quot;]]}"/>
+                                </group>
+                                <group>
+                                    <field name="node_id" attrs="{'readonly': [('state','=','open')],'invisible': [('link_type','!=','lan')]}" on_change="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;link_type&quot;, &quot;!=&quot;, &quot;lan&quot;]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;=&quot;, &quot;open&quot;]]}"/>
+                                    <field name="core_id" readonly="0" on_change="1" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                   <field name="is_unique_vlans" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                    <field name="olt_id" readonly="0" attrs="{'invisible': ['|',('link_type','=','idts'),('link_type','not in',['fiber','fttb'])]}" on_change="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;link_type&quot;, &quot;=&quot;, &quot;idts&quot;], [&quot;link_type&quot;, &quot;not in&quot;, [&quot;fiber&quot;, &quot;fttb&quot;]]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    <field name="isp_core_port_line_id" options="{'no_create': True,  'no_open': True}" attrs="{'invisible': ['|',('core_brand_description','!=','hua'),('link_type','!=','lan')]}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;core_brand_description&quot;, &quot;!=&quot;, &quot;hua&quot;], [&quot;link_type&quot;, &quot;!=&quot;, &quot;lan&quot;]]}"/>
+                                    <field name="olt_card_id" readonly="0" attrs="{'invisible': ['|',('link_type','=','idts'),('link_type','!=','fiber'), ('link_type','!=','fttb')]}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;link_type&quot;, &quot;=&quot;, &quot;idts&quot;], [&quot;link_type&quot;, &quot;!=&quot;, &quot;fiber&quot;], [&quot;link_type&quot;, &quot;!=&quot;, &quot;fttb&quot;]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    <field name="olt_port_id" readonly="0" attrs="{'invisible': ['|',('link_type','=','idts'),('link_type','!=','fiber'), ('link_type','!=','fttb')]}" on_change="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;link_type&quot;, &quot;=&quot;, &quot;idts&quot;], [&quot;link_type&quot;, &quot;!=&quot;, &quot;fiber&quot;], [&quot;link_type&quot;, &quot;!=&quot;, &quot;fttb&quot;]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    <field name="splitter_id" readonly="0" attrs="{'invisible': ['|',('link_type','=','idts'),('link_type','!=','fiber'), ('link_type','!=','fttb')]}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;link_type&quot;, &quot;=&quot;, &quot;idts&quot;], [&quot;link_type&quot;, &quot;!=&quot;, &quot;fiber&quot;], [&quot;link_type&quot;, &quot;!=&quot;, &quot;fttb&quot;]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    <field name="onu_cards" readonly="1" attrs="{'invisible': [('olt_brand_description','!=','alcatel')]}" modifiers="{&quot;invisible&quot;: [[&quot;olt_brand_description&quot;, &quot;!=&quot;, &quot;alcatel&quot;]], &quot;readonly&quot;: true}"/>
+                                    <field name="isp_queue_parent_id" attrs="{'invisible': [('is_gestion_queue_parent', '=',False)]}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;is_gestion_queue_parent&quot;, &quot;=&quot;, false]]}"/>
+                                </group>
+                            </group>
+<group>
+<group string="Datos Logicos Asignados" name="network_corporative" attrs="{'invisible': ['|',('plan_type_code','!=','corporate'),('is_unique_vlans','=',False)]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;plan_type_code&quot;, &quot;!=&quot;, &quot;corporate&quot;], [&quot;is_unique_vlans&quot;, &quot;=&quot;, false]]}">
+<field name="public_ip_unique" modifiers="{}"/>
+<field name="mask_network" modifiers="{}"/> 
+<field name="ip_network" modifiers="{}"/> 
+<field name="gateway_network" modifiers="{}"/>
+</group>
+<group string="Vlans" attrs="{'invisible': ['|',('plan_type_code','!=','corporate'),('is_unique_vlans','=',False)]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;plan_type_code&quot;, &quot;!=&quot;, &quot;corporate&quot;], [&quot;is_unique_vlans&quot;, &quot;=&quot;, false]]}">
+<field name="gs_vlan" modifiers="{}"/>
+<field name="gc_vlan" modifiers="{}"/>
+</group>
+</group>
+          
+                            <group name="ips_networks_3">                                
+                                <group string="Datos Equipos Asignados" attrs="{'invisible': ['|',('link_type','!=','fiber'),('link_type','in',['idts','lan'])]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;link_type&quot;, &quot;!=&quot;, &quot;fiber&quot;], [&quot;link_type&quot;, &quot;in&quot;, [&quot;idts&quot;, &quot;lan&quot;]]]}">
+                                    <field name="serial_onu" readonly="0" on_change="1" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                <field name="model_onu" readonly="0" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    <field name="is_bridge" readonly="0" widget="boolean_toggle" on_change="1" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    <field name="serial_bridge" readonly="0" attrs="{'invisible': [('is_bridge','=',False)]}" on_change="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;is_bridge&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    <field name="model_bridge" readonly="0" attrs="{'invisible': [('is_bridge','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_bridge&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                </group>
+                                <group string="Datos Equipos Asignados" attrs="{'invisible': ['|',('link_type','!=','wifi'),('link_type','=','idts')]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;link_type&quot;, &quot;!=&quot;, &quot;wifi&quot;], [&quot;link_type&quot;, &quot;=&quot;, &quot;idts&quot;]]}">
+                                    <field name="serial_antena" readonly="0" on_change="1" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    <field name="model_antena" readonly="0" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    <field name="is_router_wifi" readonly="0" widget="boolean_toggle" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    <field name="serial_router_wifi" readonly="0" attrs="{'invisible': [('is_router_wifi','=',False)]}" on_change="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;is_router_wifi&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    <field name="model_router_wifi" readonly="0" attrs="{'invisible': [('is_router_wifi','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_router_wifi&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                </group>
+                                <group string="Datos Logicos Asignados" attrs="{'invisible': [('link_type','=','lan')]}" modifiers="{&quot;invisible&quot;: [[&quot;link_type&quot;, &quot;=&quot;, &quot;lan&quot;]]}">
+                                    <field name="onuid" readonly="0" attrs="{'invisible': ['|',('link_type','!=','fiber'),('link_type','=','idts')]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;link_type&quot;, &quot;!=&quot;, &quot;fiber&quot;], [&quot;link_type&quot;, &quot;=&quot;, &quot;idts&quot;]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    <field name="service_port" readonly="0" attrs="{'invisible': ['|',('link_type','!=','fiber'),('link_type','=','idts')]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;link_type&quot;, &quot;!=&quot;, &quot;fiber&quot;], [&quot;link_type&quot;, &quot;=&quot;, &quot;idts&quot;]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                <label for="ip_address_url" string="IP Asignada" attrs="{'invisible': [('is_unique_vlans','=',True)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_unique_vlans&quot;, &quot;=&quot;, true]]}"/>
+        <div attrs="{'invisible': [('is_unique_vlans','=',True)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_unique_vlans&quot;, &quot;=&quot;, true]]}">
+         <span>
+         <field name="type_access_net" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/> 
+                                            <field name="is_radius_ng" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                 <field name="ip_address_url" widget="url" modifiers="{&quot;readonly&quot;: true}"/>
+                                 <field name="ip_address_id" attrs="{'invisible': ['|',('is_ip_public','=',True),('type_access_net','!=','ip_fija')]}" class="oe_inline" on_change="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;is_ip_public&quot;, &quot;=&quot;, true], [&quot;type_access_net&quot;, &quot;!=&quot;, &quot;ip_fija&quot;]], &quot;readonly&quot;: true}"/>
+                                 <field name="new_ip_address_id" attrs="{'invisible': ['|',('is_ip_public','=',True),('type_access_net','!=','ip_fija')]}" class="oe_inline" on_change="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;is_ip_public&quot;, &quot;=&quot;, true], [&quot;type_access_net&quot;, &quot;!=&quot;, &quot;ip_fija&quot;]], &quot;readonly&quot;: true}"/>
+                                            <field name="is_ip_address_pool" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                            <field name="ip_address" attrs="{'invisible': ['|',('is_ip_public','=',True),('type_access_net','!=','ip_fija')]}" class="oe_inline" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;is_ip_public&quot;, &quot;=&quot;, true], [&quot;type_access_net&quot;, &quot;!=&quot;, &quot;ip_fija&quot;]]}"/>
+                                 <button class="oe_inline oe_link " name="action_assign_ip_address" string="&#8658;Asignar IP" type="object" attrs="{'invisible': ['|',('state','not in',['draft']),'|',('is_ip_address_pool','!=',False),('type_access_net','not in',['dhcp','dhcp_leases','dhcp_leases_vlan'])]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;]], &quot;|&quot;, [&quot;is_ip_address_pool&quot;, &quot;!=&quot;, false], [&quot;type_access_net&quot;, &quot;not in&quot;, [&quot;dhcp&quot;, &quot;dhcp_leases&quot;, &quot;dhcp_leases_vlan&quot;]]]}"/>
+         <button class="oe_inline oe_link " name="action_free_ip_address" string="&#8658;Liberar IP" type="object" attrs="{'invisible': ['|',('state','not in',['draft']),'|',('link_type','=',['False','coaxial']),'|',('is_ip_address_pool','=',False),('type_access_net','not in',['dhcp','dhcp_leases','dhcp_leases_vlan'])]}" confirm="Est&#225; seguro de liberar la IP?" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;]], &quot;|&quot;, [&quot;link_type&quot;, &quot;=&quot;, [&quot;False&quot;, &quot;coaxial&quot;]], &quot;|&quot;, [&quot;is_ip_address_pool&quot;, &quot;=&quot;, false], [&quot;type_access_net&quot;, &quot;not in&quot;, [&quot;dhcp&quot;, &quot;dhcp_leases&quot;, &quot;dhcp_leases_vlan&quot;]]]}"/>
+<button class="oe_inline oe_link " name="action_extracts_ip" string="&#8658;Extraer IP ARP" attrs="{'invisible': [('is_extract_ip','=',True)]}" type="object" modifiers="{&quot;invisible&quot;: [[&quot;is_extract_ip&quot;, &quot;=&quot;, true]]}"/>
+<button class="oe_inline oe_link " name="action_extracts_ip_lease" string="&#8658;Extraer IP Lease" attrs="{'invisible': [('is_extract_ip_lease','=',False)]}" type="object" modifiers="{&quot;invisible&quot;: [[&quot;is_extract_ip_lease&quot;, &quot;=&quot;, false]]}"/>
+<button class="oe_inline oe_link " name="action_extract_ip_rd_button" string="&#8658;Extraer IP Radius" attrs="{'invisible': [('is_extract_ip_rd','=',False)]}" type="object" modifiers="{&quot;invisible&quot;: [[&quot;is_extract_ip_rd&quot;, &quot;=&quot;, false]]}"/>
+
+                                 </span>
+        </div> 
+                                 <field name="is_ip_public" readonly="0" widget="boolean_toggle" attrs="{'invisible': ['|',('link_type','=','idts'),('is_unique_vlans','=',True)]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;link_type&quot;, &quot;=&quot;, &quot;idts&quot;], [&quot;is_unique_vlans&quot;, &quot;=&quot;, true]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+<field name="is_free_rd" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="is_brand_all_olt" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="is_brand_olt_vsol" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="is_brand_olt_zte" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="is_assing_ip_rd" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+<field name="is_extract_ip_rd" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="is_extract_ip" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="is_extract_ip_lease" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+<field name="is_state_script" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+<field name="is_activate_onu_port" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+<field name="is_shutdown_onu_port" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+<field name="is_gestion_queue_parent" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+
+                                 <field name="ip_public" readonly="0" nolabel="1" attrs="{'invisible': [('is_ip_public','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_ip_public&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    <field name="is_mgn_service_port" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                    <field name="service_port_mgn" attrs="{'invisible': [('is_mgn_service_port','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_mgn_service_port&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    <field name="ip_address_mgn" attrs="{'invisible': [('is_mgn_service_port','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_mgn_service_port&quot;, &quot;=&quot;, false]]}"/>
+                                    <field name="is_extract_mac_onu" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                    <field name="is_control_mac_learn" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                    <field name="is_extract_mac_core" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                    <field name="is_fttb_connection" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+                                    <field name="is_mgn_mac_onu" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                    <field name="is_change_mac" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                    <field name="is_gestion_wifi" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                    <field name="is_active_tr" widget="boolean_toggle" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                    <field name="is_ip_address_tr_069_pool" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                    <field name="mac_address_onu" attrs="{'invisible': [('is_extract_mac_onu','=',False),('is_extract_mac_core','=',False),('is_mgn_mac_onu','=',False),('is_change_mac','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_extract_mac_onu&quot;, &quot;=&quot;, false], [&quot;is_extract_mac_core&quot;, &quot;=&quot;, false], [&quot;is_mgn_mac_onu&quot;, &quot;=&quot;, false], [&quot;is_change_mac&quot;, &quot;=&quot;, false]]}"/>
+                                    
+                                    <field name="service_port_tr069" readonly="1" attrs="{'invisible': [('is_active_tr','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_active_tr&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: true}"/>
+                                    <label for="ip_address_tr_069_url" string="IP Asignada TR-069" attrs="{'invisible': [('is_active_tr','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_active_tr&quot;, &quot;=&quot;, false]]}"/>
+                                    <span attrs="{'invisible': [('is_active_tr','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_active_tr&quot;, &quot;=&quot;, false]]}">
+                                        <field name="ip_address_tr_069" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+                                        <field name="ip_address_tr_069_url" widget="url" modifiers="{&quot;readonly&quot;: true}"/>
+                                        <field name="new_ip_address_tr69_id" class="oe_inline" invisible="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: true}"/>
+                                        <button class="oe_inline oe_link " name="action_assign_ip_tr_069" string="&#8658;Asignar IP TR-069" type="object" attrs="{'invisible': ['|',('state','not in',['draft','open']),('is_ip_address_tr_069_pool','!=',False)]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;open&quot;]], [&quot;is_ip_address_tr_069_pool&quot;, &quot;!=&quot;, false]]}"/>
+      <button class="oe_inline oe_link " name="button_free_ip_address_tr_069" string="&#8658;Liberar IP TR-069" type="object" attrs="{'invisible': ['|',('state','not in',['draft','open']),('is_ip_address_tr_069_pool','!=',True)]}" confirm="Est&#225; seguro de liberar la IP?" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;open&quot;]], [&quot;is_ip_address_tr_069_pool&quot;, &quot;!=&quot;, true]]}"/>
+                                    </span>
+
+                                    
+                                </group>
+                            </group>
+                <group name="isp_stock" string="Materiales Asignados">
+                </group>
+                <field name="stock_line_ids" readonly="0" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}">
+                    </field> 
+                <group name="isp_stock_material">
+                    <field name="is_material_process" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+                    <field name="material_process" widget="boolean_toggle" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>   
+                </group>
+                <group name="isp_stock_1" string="Equipos Asignados Extras" attrs="{'invisible': [('show_stock_equipment_extra', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;show_stock_equipment_extra&quot;, &quot;=&quot;, false]]}">
+                    <field name="show_stock_equipment_extra" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                    
+                </group>
+                <field name="stock_equipment_line_ids" readonly="0" context="{'default_is_extra_material_line': True, 'default_qty_stock': 1}" attrs="{'invisible': [('show_stock_equipment_extra', '=', False)]}" nolabel="1" modifiers="{&quot;invisible&quot;: [[&quot;show_stock_equipment_extra&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}">
+                    </field>
+            
+                         </page>   
+                         <page name="other_info_internet" string="Fechas Programadas">
+                            <group name="ips_networks_4">
+                                
+                            
+<group name="ips_networks_start" string="Fechas Inicio">    
+                <field name="date_start" force_save="1" modifiers="{&quot;readonly&quot;: true}"/>
+                <field name="date_active" force_save="1" modifiers="{&quot;readonly&quot;: true}"/>
+                <field name="date_reconnection" force_save="1" modifiers="{&quot;readonly&quot;: true}"/>
+                </group>
+                <group name="ips_migration" string="Migraci&#243;n Enlace" attrs="{'invisible': [('link_transfer','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;link_transfer&quot;, &quot;=&quot;, false]]}">
+                    <field name="link_transfer" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                    <field name="link_transfer_date" attrs="{'invisible': [('link_transfer','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;link_transfer&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: true}"/>
+                </group>
+
+                <group name="ips_networks_cut" string="Fechas Corte">    
+<field name="type_cut" modifiers="{&quot;readonly&quot;: true}"/>
+<field name="date_cut" readonly="1" force_save="1" modifiers="{&quot;readonly&quot;: true}"/>
+<field name="last_month" invisible="1" force_save="1" modifiers="{&quot;invisible&quot;: true}"/>
+<field name="day_cut" invisible="1" force_save="1" modifiers="{&quot;invisible&quot;: true}"/>
+<field name="payment_selected_journal" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+</group>
+<group name="ips_networks_renovate" string="Fechas Renovaci&#243;n">    
+                <field name="date_renovation" readonly="1" force_save="1" modifiers="{&quot;readonly&quot;: true}"/>
+<field name="date_end" readonly="1" force_save="1" modifiers="{&quot;readonly&quot;: true}"/>
+                </group> 
+</group> 
+                        </page>
+                        <page name="gestion_wifi" string="Gesti&#243;n Onu">
+                            
+   <group>
+<div class="oe_button_box" name="button_box">
+<button name="action_config_wifi" type="object" class="oe_stat_button" icon="fa-rss" string="Config. WiFi" attrs="{'invisible': [('is_brand_all_olt','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_brand_all_olt&quot;, &quot;=&quot;, false]]}"/>  
+<button name="action_contract_gestion_pppoe_vsol" type="object" class="oe_stat_button" icon="fa-rss" string="Conf. WAN" attrs="{'invisible': [('is_brand_olt_vsol','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_brand_olt_vsol&quot;, &quot;=&quot;, false]]}"/>  
+<button name="action_activate_tr069" type="object" class="oe_stat_button" icon="fa-tumblr" string="Enable TR069" attrs="{'invisible': ['|',('is_tr069','=',True),('is_active_tr','=',False)]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;is_tr069&quot;, &quot;=&quot;, true], [&quot;is_active_tr&quot;, &quot;=&quot;, false]]}"/>
+<button name="action_disable_tr069" type="object" class="oe_stat_button" icon="fa-tumblr" string="Disable TR069" attrs="{'invisible': ['|',('is_tr069','=',False),('is_active_tr','=',False)]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;is_tr069&quot;, &quot;=&quot;, false], [&quot;is_active_tr&quot;, &quot;=&quot;, false]]}"/>
+<button name="action_sync_tr069" type="object" class="oe_stat_button" icon="fa-repeat" string="Sync TR069" attrs="{'invisible': [('is_active_tr','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_active_tr&quot;, &quot;=&quot;, false]]}"/>
+<button name="action_sync_wifi_lan" type="object" class="oe_stat_button" icon="fa-repeat" string="Sync Wifi TR069" attrs="{'invisible': [('is_active_tr','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_active_tr&quot;, &quot;=&quot;, false]]}"/>
+<button name="action_restore_tr069" type="object" class="oe_stat_button" icon="fa-spinner" string="Rest. Fabrica TR069" attrs="{'invisible': ['|',('is_active_tr','=',False),('device_tr069_id','=',False)]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;is_active_tr&quot;, &quot;=&quot;, false], [&quot;device_tr069_id&quot;, &quot;=&quot;, false]]}"/>
+<button name="action_contract_reboot_onu" type="object" class="oe_stat_button" icon="fa-refresh" string="Reboot"/>
+<button name="action_shutdown_onu_port" type="object" class="oe_stat_button" icon="fa-rss" string="ShutDown Port ONU" attrs="{'invisible': ['|',('is_brand_olt_zte','=',False),('is_shutdown_onu_port','=',True)]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;is_brand_olt_zte&quot;, &quot;=&quot;, false], [&quot;is_shutdown_onu_port&quot;, &quot;=&quot;, true]]}"/>
+<button name="action_activate_onu_port" type="object" class="oe_stat_button" icon="fa-rss" string="Activate Port ONU" attrs="{'invisible': ['|',('is_shutdown_onu_port','=',False),('is_brand_olt_zte','=',False)]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;is_shutdown_onu_port&quot;, &quot;=&quot;, false], [&quot;is_brand_olt_zte&quot;, &quot;=&quot;, false]]}"/> 
+<button name="action_info_tr069" type="object" class="oe_stat_button" icon="fa-hdd-o" string="Info ONU TR069" attrs="{'invisible': [('is_active_tr','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_active_tr&quot;, &quot;=&quot;, false]]}"/>
+<button name="action_resynchronize_mk" type="object" class="oe_stat_button" icon="fa-refresh" string="Resincronizar MK" attrs="{'invisible': [('state_service','!=','active')]}" modifiers="{&quot;invisible&quot;: [[&quot;state_service&quot;, &quot;!=&quot;, &quot;active&quot;]]}"/> 
+<button name="action_resynchronize_olt" type="object" class="oe_stat_button" icon="fa-refresh" string="Resincronizar OLT" attrs="{'invisible': ['|',('state_service','!=','active'),('link_type','=','wifi')]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;state_service&quot;, &quot;!=&quot;, &quot;active&quot;], [&quot;link_type&quot;, &quot;=&quot;, &quot;wifi&quot;]]}"/>
+<button name="action_change_ont_service" type="object" class="oe_stat_button" icon="fa-rss" string="Cambiar ONU"/>
+</div>
+</group>
+   <div class="oe_button_box" name="button_box" id="button_box_wifi">
+                            </div>
+                            <group name="gestion_wifi1">
+                                <group string="2.4/Dual Band">
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="dual_band" class="o_light_label" widget="radio" modifiers="{}"/>
+                                        </div>
+                                    </div>
+                                </group>
+                                <group string="Gesti&#243;n Onu">
+                                    <field name="device_tr069_id" attrs="{'invisible': [('is_active_tr','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_active_tr&quot;, &quot;=&quot;, false]]}"/>
+                                    <field name="sssid" modifiers="{}"/>                                
+                                    <field name="company_id" invisible="1" on_change="1" can_create="false" can_write="false" modifiers="{&quot;invisible&quot;: true, &quot;required&quot;: true}"/>
+                                    <field name="password" modifiers="{}"/>
+                                    <field name="last_password" readonly="1" attrs="{'invisible': [('last_password','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;last_password&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: true}"/>
+                                    <field name="hide" widget="boolean_toggle" modifiers="{}"/>
+                                </group>
+                            </group>
+                            <group name="onu_vlans" string="S-Vlan y C-Vlan">
+                                <group>
+                                    <field name="s_vlan" readonly="1" modifiers="{&quot;readonly&quot;: true}"/> 
+                                    <field name="c_vlan" readonly="1" modifiers="{&quot;readonly&quot;: true}"/>
+                                    <field name="is_management_vlan_contract" widget="boolean_toggle" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                    <field name="gs_vlan" attrs="{'invisible': [('is_management_vlan_contract','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_management_vlan_contract&quot;, &quot;=&quot;, false]]}"/> 
+                                    <field name="gc_vlan" attrs="{'invisible': [('is_management_vlan_contract','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_management_vlan_contract&quot;, &quot;=&quot;, false]]}"/> 
+                                </group>
+                            </group>
+
+                            <group attrs="{'invisible': [('is_active_tr','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_active_tr&quot;, &quot;=&quot;, false]]}">
+                                <group string="Wan setup mode">
+                                    <field name="service_type" modifiers="{}"/> 
+                                    <field name="protocol_type" modifiers="{}"/>
+                                    <field name="mtu" modifiers="{}"/>
+                                    <field name="enable_nat" widget="boolean_toggle" modifiers="{}"/>
+                                </group>
+                                <group string="Setting for compatible ONUs">
+                                    <field name="onu_mode" modifiers="{}"/>
+                                    <field name="wan_mode" modifiers="{}"/>
+                                    <field name="config_method" modifiers="{}"/>
+                                    <!-- <field name="protocol_type"/> -->
+                                </group>
+                            </group>
+
+                            <group attrs="{'invisible': [('is_active_tr','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_active_tr&quot;, &quot;=&quot;, false]]}">
+                                <group attrs="{'invisible': [('wan_mode','!=','ip_static')]}" modifiers="{&quot;invisible&quot;: [[&quot;wan_mode&quot;, &quot;!=&quot;, &quot;ip_static&quot;]]}">
+                                    <field name="ipv4_address" modifiers="{}"/> 
+                                    <field name="subnet_mask" modifiers="{}"/>
+                                    <field name="default_gateway" modifiers="{}"/>
+                                    <field name="dn1_wan" modifiers="{}"/>
+                                    <field name="dns2_wan" modifiers="{}"/>
+                                </group>
+                            </group>
+                            <group attrs="{'invisible': [('is_active_tr','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_active_tr&quot;, &quot;=&quot;, false]]}">
+                                <group attrs="{'invisible': [('wan_mode','!=','pppoe')]}" modifiers="{&quot;invisible&quot;: [[&quot;wan_mode&quot;, &quot;!=&quot;, &quot;pppoe&quot;]]}">
+                                    <field name="username_wan" modifiers="{}"/>
+                                    <field name="password_wam" password="True" modifiers="{}"/>
+                                </group>
+                            </group>
+                            <group attrs="{'invisible': [('is_active_tr','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_active_tr&quot;, &quot;=&quot;, false]]}">
+                                <group>
+                                    <field name="wifi_wan" widget="boolean_toggle" modifiers="{}"/>
+                                </group>
+                                <field name="contract_mode_wan_ids" nolabel="1" widget="section_and_note_one2many" attrs="{'invisible': [('wifi_wan','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;wifi_wan&quot;, &quot;=&quot;, false]]}">
+                                    </field>
+                            </group>
+                        </page>
+                        <page name="info_onu" string="Informaci&#243;n Onu">
+                            <div class="oe_button_box" name="button_info_onu" id="button_info_onu_id">
+                            
+<button name="action_info_onu" type="object" class="oe_stat_button" icon="fa-rss" string="Mostrar Config. Actual"/>
+</div>
+                                <field name="description_onu" widget="html" modifiers="{}"/>
+                        </page>
+                        <page name="data_radius" string="Informacion Radius" attrs="{'invisible': [('is_radius_ng','=',False)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_radius_ng&quot;, &quot;=&quot;, false]]}">
+                            
+<group>
+<div class="oe_button_box" name="button_box">
+<button name="action_information_radius" type="object" class="oe_stat_button" icon="fa-info" string="Obtener Datos Radius"/>
+</div>
+</group>
+   <group name="group_info_radius">
+                                <field name="contract_table_radius_ids" nolabel="1" widget="section_and_note_one2many" readonly="1" modifiers="{&quot;readonly&quot;: true}">
+                                    </field>
+                            </group>
+                        </page>
+                        <page name="mb_consumption" string="Consumo Megas">
+                            <group name="group_info_radius">
+                                <field name="contract_mb_consumption_ids" nolabel="1" widget="section_and_note_one2many" modifiers="{}">
+                                    </field>
+                            </group>
+                        </page>
+                    </notebook>           
+                </page>
+        
+        <page name="contract_documentation" string="Documentaci&#243;n">     
+                    <group name="documentation" string="Cargar documentaci&#243;n">         
+                        <group>
+                            <field name="doc_vat_copy" attrs="{'readonly':[('state','!=','draft')]}" on_change="1" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]]}"/>
+                            <field name="installation_request" attrs="{'readonly':[('state','!=','draft')]}" on_change="1" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]]}"/>
+                            <field name="service_contract" attrs="{'readonly':[('state','!=','draft')]}" on_change="1" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]]}"/>
+                            <field name="basic_service_sheet" attrs="{'readonly':[('state','!=','draft')]}" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]]}"/>
+                            <field name="is_validate" attrs="{'readonly':[('state','!=','draft')]}" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]]}"/>
+                        </group>
+                    </group>
+                    <group name="commission" string="Comisiones">
+                        <field name="is_commission" readonly="1" modifiers="{&quot;readonly&quot;: true}"/> 
+                        <field name="is_incorrect_documents" attrs="{'invisible':[('is_commission','=',False)]}" widget="boolean_toggle" on_change="1" modifiers="{&quot;invisible&quot;: [[&quot;is_commission&quot;, &quot;=&quot;, false]]}"/>
+                        <field name="date_penalty" modifiers="{}"/> 
+                        <field name="is_commission_discount" readonly="1" modifiers="{&quot;readonly&quot;: true}"/> 
+                    </group>             
+                </page>
+        
+        <page name="isp_iptv" string="Servicio IPTV/OTT" attrs="{'invisible':[('type_service_name','not in',['iptv','iptv+'])]}" modifiers="{&quot;invisible&quot;: [[&quot;type_service_name&quot;, &quot;not in&quot;, [&quot;iptv&quot;, &quot;iptv+&quot;]]]}">  
+                    <notebook name="contract_OTT" colspan="4">
+                        <page string="Datos Tecnicos" name="ott_networks">
+                            <field name="is_iptv" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>   
+                            <div class="oe_button_box" name="button_box">
+                                <button name="action_done" type="object" class="oe_stat_button" icon="fa-circle" string="Activar" attrs="{'invisible':[('state_service_ott','not in', 'inactive')]}" modifiers="{&quot;invisible&quot;: [[&quot;state_service_ott&quot;, &quot;not in&quot;, &quot;inactive&quot;]]}"/>
+                                <button name="action_stop_iptv" type="object" class="oe_stat_button" icon="fa-rss" string="Cortar" states="open" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;open&quot;]]]}"/>
+                                <button name="action_reconnection_service_iptv" type="object" class="oe_stat_button" icon="fa-rss" string="Reconectar" states="open" modifiers="{&quot;invisible&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;open&quot;]]]}"/>
+                                <button name="action_done" type="object" class="oe_stat_button" icon="fa-rss" string="Verificar Plan"/>
+                                <button name="action_delete_service" type="object" class="oe_stat_button" icon="fa-rss" string="Eliminar Servicio"/>
+
+                            </div>         
+                            <group name="iptv_networks_1">         
+                                <group>
+                                    <field name="equipments_ott_ids" readonly="0" widget="many2many_tags" can_create="true" can_write="true" modifiers="{}"/>
+                                    <field name="assigned_equipments" readonly="0" modifiers="{}"/>  
+                                    <field name="node__iptv_id" readonly="0" can_create="true" can_write="true" modifiers="{}"/>     
+                                    
+                                </group>
+                                <group>
+                                </group>
+                            </group>   
+                        </page>
+                        <page string="Fechas Programadas" name="ott_dates">
+                            
+                             <group name="ott_date_1">         
+                                <group>
+                                    <field name="date_start_ott" modifiers="{&quot;readonly&quot;: true}"/>
+                                    <field name="date_reconect_ott" modifiers="{&quot;readonly&quot;: true}"/> 
+                                    <field name="date_cut_ott" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>     
+                                </group>
+                                <group>
+                                </group>
+                            </group>           
+                        </page>
+                    </notebook>         
+                </page>
+        </notebook>
+                </sheet>
+                <div class="o_attachment_preview"/>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" modifiers="{}"/>
+                    <field name="activity_ids" modifiers="{}"/>
+                    <field name="message_ids" modifiers="{}"/>
+                </div>
+            </form>
+            
+            
