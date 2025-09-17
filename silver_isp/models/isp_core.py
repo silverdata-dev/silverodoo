@@ -27,7 +27,7 @@ class IspCore(models.Model):
 
     node_id = fields.Many2one('isp.node', string='Nodo')
     brand_id = fields.Many2one('product.brand', string='Marca', index=True)
-    gateway = fields.Many2one('isp.ip.address', string='Gateway')
+   # gateway = fields.Many2one('isp.ip.address', string='Gateway')
     radius_id = fields.Many2one('isp.radius', string='Radius')
     networks_device_id = fields.Many2many('isp.device.networks', string='Networks Device')
     company_id = fields.Many2one('res.company', string='Compañía', default=lambda self: self.env.company)
@@ -71,7 +71,7 @@ class IspCore(models.Model):
     is_device_network = fields.Boolean(string='Equipos de infraestructura de red')
     is_fiber = fields.Boolean(string='Fibra Óptica')
     is_wifi = fields.Boolean(string='Medio Inalámbrico')
-    is_isp_radius = fields.Boolean(string='Activar Radius')
+    is_isp_radius = fields.Boolean(string='Activar Radius',  default=True)
     is_mikrotik_radius = fields.Boolean(string='Mikrotik Radius')
     is_pppoe_profile = fields.Boolean(string='Profile PPPoE')
     is_key_pppoe = fields.Boolean(string='Clave PPPoE')
@@ -95,12 +95,12 @@ class IspCore(models.Model):
     is_unique_vlans = fields.Boolean(string='Vlans única')
     is_active_vlans = fields.Boolean(string='Activar Vlans Core')
 
-    is_type_core_access = fields.Boolean(string='Acceso')
+    is_type_core_access = fields.Boolean(string='Acceso', default=True)
     is_type_core_bandwidth = fields.Boolean(string='Ancho de banda')
 
     is_desactive_core = fields.Boolean(string='Desactivar Core')
     is_desactive_olt = fields.Boolean(string='Desactivar OLT')
-    is_cutoff_reconnection = fields.Boolean(string='Corte/Reconexión Servicio')
+    is_cutoff_reconnection = fields.Boolean(string='Corte/Reconexión Servicio', default=True)
     cutoff_reconnection_ipaddress = fields.Boolean(string='IP Address')
     cutoff_reconnection_piloto = fields.Boolean(string='Name Contrato')
 
@@ -197,6 +197,23 @@ class IspCore(models.Model):
             record.radius_count = self.env['isp.radius'].search_count([('core_id', '=', record.id)])
             record.ap_count = self.env['isp.ap'].search_count([('node_ids', 'in', record.node_ids.ids)])
             record.contracts_cores_count = self.env['isp.contract'].search_count([('core_id', '=', record.id)])
+
+    @api.model
+    def default_get(self, fields_list):
+        res = super(IspCore, self).default_get(fields_list)
+        rr = self.search([('radius_id', '!=', False)])
+        r = self.search([('radius_id', '!=', False)], limit=1)
+
+        # Set a default partner_id and payment_term_id
+        res['radius_id'] = r.radius_id.id
+        res['networks_device_id'] = r.networks_device_id
+        res['company_id'] = r.company_id
+        res['user_nass'] = r.user_nass
+        res['password_nass'] =r.password_nass
+        res['port_coa'] = r.port_coa
+
+        print(("default", res, r, rr))
+        return res
 
 
     def create_ap(self):

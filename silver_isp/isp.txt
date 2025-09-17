@@ -128,7 +128,7 @@ model:isp.node
 "id","ID","Equipo Core","entero","Campo base","","True","True",""
 "interface","Interface","Equipo Core","Carácter","Campo base","","True","",""
 "ip_address_ids","Direcciones IP","Equipo Core","one2many","Campo base","","True","","isp.ip.address"
-"ip_address_line_ids","Direcciones IP","Equipo Core","one2many","Campo base","","True","","isp.ip.address.line"
+"ip_address_pool_ids","Direcciones IP","Equipo Core","one2many","Campo base","","True","","isp.ip.address.pool"
 "ip","IP de Conexion","Equipo Core","Carácter","Campo base","","True","",""
 "is_action_button","Ejecutado desde el Boton","Equipo Core","booleano","Campo base","","True","",""
 "is_active_vlans","Activar Vlans Core","Equipo Core","booleano","Campo base","","True","",""
@@ -403,7 +403,7 @@ model=isp.core
 </page>
                   <page name="ip_address" string="Direcciones IP" attrs="{'invisible': [('type_access_net','not in',['dhcp','dhcp_leases','dhcp_leases_vlan'])]}" modifiers="{&quot;invisible&quot;: [[&quot;type_access_net&quot;, &quot;not in&quot;, [&quot;dhcp&quot;, &quot;dhcp_leases&quot;, &quot;dhcp_leases_vlan&quot;]]]}">
                   <group>
-            <field name="ip_address_line_ids" nolabel="1" modifiers="{}">
+            <field name="ip_address_pool_ids" nolabel="1" modifiers="{}">
                 </field>
 </group>
                     <group>
@@ -492,7 +492,7 @@ model=isp.core
 "id","ID","Equipo Core","entero","Campo base","","True","True",""
 "interface","Interface","Equipo Core","Carácter","Campo base","","True","",""
 "ip_address_ids","Direcciones IP","Equipo Core","one2many","Campo base","","True","","isp.ip.address"
-"ip_address_line_ids","Direcciones IP","Equipo Core","one2many","Campo base","","True","","isp.ip.address.line"
+"ip_address_pool_ids","Direcciones IP","Equipo Core","one2many","Campo base","","True","","isp.ip.address.pool"
 "ip","IP de Conexion","Equipo Core","Carácter","Campo base","","True","",""
 "is_action_button","Ejecutado desde el Boton","Equipo Core","booleano","Campo base","","True","",""
 "is_active_vlans","Activar Vlans Core","Equipo Core","booleano","Campo base","","True","",""
@@ -760,7 +760,7 @@ model: isp.otl
 
   <page string="Direcciones IP" attrs="{'invisible': ['|', ('type_access_net','!=','dhcp'), ('type_access_net','=','dhcp_leases')]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;type_access_net&quot;, &quot;!=&quot;, &quot;dhcp&quot;], [&quot;type_access_net&quot;, &quot;=&quot;, &quot;dhcp_leases&quot;]]}">
             <group>
-            <field name="ip_address_line_ids" nolabel="1" modifiers="{}">
+            <field name="ip_address_pool_ids" nolabel="1" modifiers="{}">
                 </field>
 </group>
               <group>
@@ -842,7 +842,7 @@ model: isp.otl
 <field name="vlan_mgn_tr069" modifiers="{}"/>
 </group>
 
-<field name="ip_address_line_tr69_ids" context="{'default_is_tr_069': True}" nolabel="1" modifiers="{}">
+<field name="ip_address_pool_tr69_ids" context="{'default_is_tr_069': True}" nolabel="1" modifiers="{}">
 </field>
 <field name="ip_address_tr69_ids" context="{'default_is_tr_069': True}" nolabel="1" modifiers="{}">
 </field>
@@ -899,8 +899,8 @@ model: isp.otl
 "hostname_olt","Hostname","Equipo OLT","Carácter","Campo base","","True","",""
 "id","ID","Equipo OLT","entero","Campo base","","True","True",""
 "ip_address_ids","Direcciones IP","Equipo OLT","one2many","Campo base","","True","","isp.ip.address"
-"ip_address_line_ids","Direcciones IP","Equipo OLT","one2many","Campo base","","True","","isp.ip.address.line"
-"ip_address_line_tr69_ids","Direcciones IP","Equipo OLT","one2many","Campo base","","True","","isp.ip.address.line"
+"ip_address_pool_ids","Direcciones IP","Equipo OLT","one2many","Campo base","","True","","isp.ip.address.pool"
+"ip_address_pool_tr69_ids","Direcciones IP","Equipo OLT","one2many","Campo base","","True","","isp.ip.address.pool"
 "ip_address_tr69_ids","Direcciones IP","Equipo OLT","one2many","Campo base","","True","","isp.ip.address"
 "ip","IP de Conexion","Equipo OLT","Carácter","Campo base","","True","",""
 "is_activation_bridge","Activacion Bridge","Equipo OLT","booleano","Campo base","","True","",""
@@ -1076,7 +1076,7 @@ model:isp.otl.card
 <page name="ip_address" string="Direcciones IP" attrs="{'invisible': ['|', ('type_access_net','!=','dhcp'), ('type_access_net','=','dhcp_leases')]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;type_access_net&quot;, &quot;!=&quot;, &quot;dhcp&quot;], [&quot;type_access_net&quot;, &quot;=&quot;, &quot;dhcp_leases&quot;]]}">
 
 <group>
-<field name="ip_address_line_ids" nolabel="1" modifiers="{}">
+<field name="ip_address_pool_ids" nolabel="1" modifiers="{}">
 </field>
 </group>
 
@@ -1124,7 +1124,7 @@ model:isp.otl.card
 "has_message","Has Message","Tarjeta de Equipo OLT","booleano","Campo base","","","True",""
 "id","ID","Tarjeta de Equipo OLT","entero","Campo base","","True","True",""
 "ip_address_ids","Direcciones IP","Tarjeta de Equipo OLT","one2many","Campo base","","True","","isp.ip.address"
-"ip_address_line_ids","Direcciones IP","Tarjeta de Equipo OLT","one2many","Campo base","","True","","isp.ip.address.line"
+"ip_address_pool_ids","Direcciones IP","Tarjeta de Equipo OLT","one2many","Campo base","","True","","isp.ip.address.pool"
 "is_generate","Generado?","Tarjeta de Equipo OLT","booleano","Campo base","","True","",""
 "message_attachment_count","Attachment Count","Tarjeta de Equipo OLT","entero","Campo base","","","True",""
 "message_follower_ids","Followers","Tarjeta de Equipo OLT","one2many","Campo base","","True","","mail.followers"
@@ -1257,7 +1257,7 @@ model: isp.olt.card.port
 <notebook colspan="4">
 <page string="Direcciones IP" attrs="{'invisible': [('type_access_net','not in',['dhcp','dhcp_leases'])]}" modifiers="{&quot;invisible&quot;: [[&quot;type_access_net&quot;, &quot;not in&quot;, [&quot;dhcp&quot;, &quot;dhcp_leases&quot;]]]}">
 <group>
-<field name="ip_address_line_ids" nolabel="1" modifiers="{}">
+<field name="ip_address_pool_ids" nolabel="1" modifiers="{}">
 </field>
 </group>
 
@@ -1328,7 +1328,7 @@ name="gateway" options="{'no_create': True,
 "id","ID","Puerto de Tarjeta OLT","entero","Campo base","","True","True",""
 "interface","Interface","Puerto de Tarjeta OLT","Carácter","Campo base","","True","",""
 "ip_address_ids","Direcciones IP","Puerto de Tarjeta OLT","one2many","Campo base","","True","","isp.ip.address"
-"ip_address_line_ids","Direcciones IP","Puerto de Tarjeta OLT","one2many","Campo base","","True","","isp.ip.address.line"
+"ip_address_pool_ids","Direcciones IP","Puerto de Tarjeta OLT","one2many","Campo base","","True","","isp.ip.address.pool"
 "is_custom_pppoe_profile","Custom PPPoE Profile","Puerto de Tarjeta OLT","booleano","Campo base","","True","",""
 "is_extra_serviceport","Serviport Extra","Puerto de Tarjeta OLT","booleano","Campo base","","True","",""
 "is_generate","Generado?","Puerto de Tarjeta OLT","booleano","Campo base","","True","",""
@@ -1734,7 +1734,7 @@ model: isp.ap
                 </field>
 </group>
               <group invisible="1" modifiers="{&quot;invisible&quot;: true}">
-                <field name="ip_address_line_ids" nolabel="1" modifiers="{}">
+                <field name="ip_address_pool_ids" nolabel="1" modifiers="{}">
 </field>
               </group>
               <group invisible="1" modifiers="{&quot;invisible&quot;: true}">
@@ -1814,7 +1814,7 @@ model: isp.ap
 "id","ID","Punto de acceso inalámbrico","entero","Campo base","","True","True",""
 "interface","Interface","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
 "ip_address_ids","Direcciones IP","Punto de acceso inalámbrico","one2many","Campo base","","True","","isp.ip.address"
-"ip_address_line_ids","Direcciones IP","Punto de acceso inalámbrico","one2many","Campo base","","True","","isp.ip.address.line"
+"ip_address_pool_ids","Direcciones IP","Punto de acceso inalámbrico","one2many","Campo base","","True","","isp.ip.address.pool"
 "ip","IP de Conexion","Punto de acceso inalámbrico","Carácter","Campo base","","True","",""
 "is_dhcp_static","Habilitar Dhcp Static","Punto de acceso inalámbrico","booleano","Campo base","","True","",""
 "is_generate","Generado?","Punto de acceso inalámbrico","booleano","Campo base","","True","",""
@@ -1968,7 +1968,7 @@ model: isp.radius
 </page>
 <page name="ip_address" string="Direcciones IP" attrs="{'invisible': ['|',('type_access_net','not in',['dhcp','dhcp_leases','dhcp_leases_vlan']),('type_radius','!=','mk_radius')]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;type_access_net&quot;, &quot;not in&quot;, [&quot;dhcp&quot;, &quot;dhcp_leases&quot;, &quot;dhcp_leases_vlan&quot;]], [&quot;type_radius&quot;, &quot;!=&quot;, &quot;mk_radius&quot;]]}">
 
-<field name="ip_address_line_ids" nolabel="1" modifiers="{}">
+<field name="ip_address_pool_ids" nolabel="1" modifiers="{}">
 </field>
 <group>
 <div>
@@ -2022,7 +2022,7 @@ model: isp.radius
 "has_message","Has Message","isp.radius","booleano","Campo base","","","True",""
 "id","ID","isp.radius","entero","Campo base","","True","True",""
 "ip_address_ids","Direcciones IP","isp.radius","one2many","Campo base","","True","","isp.ip.address"
-"ip_address_line_ids","Direcciones IP","isp.radius","one2many","Campo base","","True","","isp.ip.address.line"
+"ip_address_pool_ids","Direcciones IP","isp.radius","one2many","Campo base","","True","","isp.ip.address.pool"
 "ip_core_radius","IP de Conexion","isp.radius","Carácter","Campo base","","True","",""
 "ip","IP","isp.radius","Carácter","Campo base","","True","",""
 "is_cutoff","Corte","isp.radius","booleano","Campo base","","True","",""

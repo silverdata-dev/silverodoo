@@ -15,7 +15,7 @@ class IspOltCardPort(models.Model):
 
     num_port = fields.Integer(string='Numero Puerto')
     olt_id = fields.Many2one('isp.olt', string='Equipo OLT', required=False, ondelete='cascade')
-    olt_card_n = fields.Integer(string='Tarjeta', required=0, default=0)
+    olt_card_n = fields.Integer(string='Tarjeta', required=False, default=0)
     olt_card_id = fields.Many2one('isp.olt.card', string='Tarjeta OLT', required=False, ondelete='cascade')
     capacity_port_pon = fields.Selection([("32","32"), ("64", "64"), ("128", "128"), ("256","256")], string='Total PON')
     capacity_usage_port_pon = fields.Integer(string='Usada PON', readonly=False)

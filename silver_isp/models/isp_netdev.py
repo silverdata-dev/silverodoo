@@ -30,7 +30,7 @@ class IspNetdev(models.Model):
     dhcp_client = fields.Boolean(string='Profiles VSOL')
     software_version = fields.Char(string='Version Software')
 
-    ip_address_line_ids = fields.One2many('isp.ip.address.line', 'netdev_id', string='Direcciones IP')
+    ip_address_pool_ids = fields.One2many('isp.ip.address.pool', 'netdev_id', string='Direcciones IP')
     ip_address_ids = fields.One2many('isp.ip.address', 'netdev_id', string='Direcciones IP')
 
 
@@ -61,6 +61,10 @@ class IspNetdev(models.Model):
     radius_client_secret = fields.Char(string='Radius Shared Secret')
     radius_client_services = fields.Many2many('isp.radius.service', string='Radius Services') # Assuming a model isp.radius.service exists or will be created
 
+    def generar(self):
+        for ret in self.ip_address_pool_ids:
+            ret.action_generate_ips()
+
     @api.model
     def _get_api_connection(self):
         self.ensure_one()
@@ -90,6 +94,10 @@ class IspNetdev(models.Model):
             self.write({'state': 'error'})
             # Consider logging the error e
             return None
+
+    def get_real_model_name_by_id(self):
+        print("get real")
+        return self.model
 
     def button_add_update_radius_client(self):
         self.ensure_one()
@@ -367,3 +375,11 @@ class IspNetdev(models.Model):
             }
         finally:
             api.close()
+
+    def get_formview_id(self, access_uid=None):
+        self.ensure_one()
+        if self.env['isp.core'].search([('netdev_id', '=', self.id)], limit=1):
+            return self.env.ref('view_isp_core_form').id
+        if self.env['isp.ap'].search([('netdev_id', '=', self.id)], limit=1):
+            return self.env.ref('view_isp_ap_form').id
+        return super().get_formview_id(access_uid=access_uid)

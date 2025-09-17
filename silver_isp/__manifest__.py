@@ -36,7 +36,7 @@
         'views/isp_kex_algorithms_views.xml',
         'views/isp_vlan_views.xml',
         'views/addres_list_channel_line_views.xml',
-        'views/isp_ip_address_line_views.xml',
+        'views/isp_ip_address_pool_views.xml',
         'views/isp_ip_address_views.xml',
         'views/isp_core_port_line_views.xml',
         'views/olt_line_product_views.xml',
@@ -58,6 +58,8 @@
             # Map View Assets
             'silver_isp/static/src/css/map_view.css',
             'silver_isp/static/src/js/map_view.js',
+            'silver_isp/static/src/js/m2o_widget.js',
+            'silver_isp/static/src/js/ip_widget.js',
             'silver_isp/static/src/js/node_map_widget.js',
             'silver_isp/static/src/js/node_network_widget.js',
       #  ],

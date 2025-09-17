@@ -2,13 +2,13 @@
 <odoo>
     <data>
         <!-- isp.ip.address.pool -->
-        <record id="action_isp_ip_address_line" model="ir.actions.act_window">
+        <record id="action_isp_ip_address_pool" model="ir.actions.act_window">
             <field name="name">Líneas de Dirección IP ISP</field>
             <field name="res_model">isp.ip.address.pool</field>
             <field name="view_mode">tree,form</field>
         </record>
 
-        <record id="view_isp_ip_address_line_tree" model="ir.ui.view">
+        <record id="view_isp_ip_address_pool_tree" model="ir.ui.view">
             <field name="name">isp.ip.address.pool.tree</field>
             <field name="model">isp.ip.address.pool</field>
             <field name="arch" type="xml">
@@ -29,31 +29,58 @@
             </field>
         </record>
 
-        <record id="view_isp_ip_address_line_form" model="ir.ui.view">
+        <record id="view_isp_ip_address_pool_form" model="ir.ui.view">
             <field name="name">isp.ip.address.pool.form</field>
             <field name="model">isp.ip.address.pool</field>
             <field name="arch" type="xml">
                 <form string="Línea de Dirección IP ISP">
                         <header>
                     <button name="action_generate_ips" type="object" string="Generate IPs" class="oe_highlight"/>
+                    <button name="action_clear_ips" type="object" string="Borrar IPs" class="oe_highlighte"/>
                 </header>
                     <sheet>
                         <group>
+                                 <group>
                             <field name="name"/>
-                                                <field name="network"/>
+                                                <field name="network" widget="ip_address"/>
                     <field name="nmask"/>
-                    <field name="gateway"/>
+                                     <field name="mask" readonly="True"/>
+                    <field name="gateway" widget="ip_address"/>
                     <field name="netdev_id"/>
                             <field name="is_tr_069"/>
+                                          </group>
                             <group>
                                  <field name="total_ips"/>
                             <field name="used_ips"/>
                             <field name="usage_percentage" widget="progressbar"/>
                             </group>
                         </group>
+                        <notebook>
+                             <page string="IPs">
+                                 <field name="address_ids">
+                                      <tree string="IP Ranges">
+                <field name="name"/>
+                <field name="cidr"/>
+                <field name="used"/>
+
+
+            </tree>
+                                 </field>
+                             </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>
         </record>
+
+
+
+    <record id="isp_ip_address_pool_action" model="ir.actions.act_window">
+        <field name="name">Pools de IP</field>
+        <field name="res_model">isp.ip.address.pool</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
     </data>
 </odoo>

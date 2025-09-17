@@ -29,13 +29,9 @@
                         </group>
                         <notebook>
                             <page string="Direcciones IP">
-                                <field name="ip_line_ids">
-                                    <tree editable="bottom">
-                                        <field name="ip_address"/>
-                                        <field name="is_assigned"/>
-                                        <field name="assigned_contract_id"/>
-                                    </tree>
-                                </field>
+                                <field name="ip_line_ids"/>
+
+
                             </page>
                         </notebook>
                     </sheet>

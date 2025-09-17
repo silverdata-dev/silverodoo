@@ -33,7 +33,7 @@
             <field name="model">isp.ap</field>
             <field name="arch" type="xml">
                 <form string="Equipo AP ISP">
-                <sheet>S
+                <sheet>
 <div class="oe_button_box" name="button_box"> 
               
 <button name="action_connect_ap" type="object" class="oe_stat_button" icon="fa-signal" string="Probar Conexion" invisible="description_brand != 'mk'"/>
@@ -87,17 +87,27 @@
 <notebook colspan="4">
 <page string="Direcciones IP" invisible="type_access_net not in ['dhcp', 'dhcp_leases']">
     <group>
-            <field name="device_pool_ip_ids" nolabel="1">
+        <group string="Pools" colspan="4">
+            <field name="ip_address_pool_ids" nolabel="1"  widget="one2many_list" colspan="4" >
+                <tree multi_selectable="1"  colspan="2" editable="bottom">
+                          <field name="name" readonly="True"/>
+                    <field name="network"/>
+                    <field name="nmask"/>
+
+                     <field name="total_ips"/>
+                            <field name="used_ips"/>
+                            <field name="usage_percentage" widget="progressbar"/>
+                    </tree>
                 </field>
-</group>
-              <group invisible="1">
-                <field name="ip_address_line_ids" nolabel="1">
-</field>
-              </group>
-              <group invisible="1">
-                <field name="ip_address_ids" nolabel="1">
+
+
+        </group>
+ <button name="generar" string="Regenerar IPs" type="object"/>
+        <group  string="IPs" colspan="4">
+                <field name="ip_address_ids" nolabel="1"  colspan="4">
                      </field>
               </group>
+    </group>
             </page>
             <page string="Datos Ubicacion">
             <group string="Datos Ubicacion">

@@ -8,8 +8,9 @@
             <tree string="IP Ranges">
                 <field name="name"/>
                 <field name="cidr"/>
-                <field name="gateway"/>
-                <field name="usage_percentage" widget="progressbar"/>
+                <field name="line_id"/>
+
+
             </tree>
         </field>
     </record>
@@ -19,9 +20,7 @@
         <field name="model">isp.ip.address</field>
         <field name="arch" type="xml">
             <form string="IP Range">
-                <header>
-                    <button name="action_generate_ips" type="object" string="Generate IPs" class="oe_highlight"/>
-                </header>
+
                 <sheet>
                     <div class="oe_title">
                         <h1><field name="name" placeholder="e.g. Public IPs Sector A"/></h1>
@@ -29,26 +28,15 @@
                     <group>
                         <group>
                             <field name="cidr"/>
-                            <field name="gateway" readonly="1"/>
+                            <field name="line_id"/>
+                            <field  name="netdev_id" />
+
                         </group>
                         <group>
-                            <field name="total_ips"/>
-                            <field name="used_ips"/>
-                            <field name="usage_percentage" widget="progressbar"/>
+
                         </group>
                     </group>
-                    <notebook>
-                        <page string="IP Addresses" name="ip_lines">
-                            <field name="line_ids" nolabel="1">
-                                <tree editable="bottom">
-                                    <field name="name" readonly="1"/>
-                                    <field name="status"/>
-                                    <field name="assigned_to"/>
-                                    <field name="description"/>
-                                </tree>
-                            </field>
-                        </page>
-                    </notebook>
+
                 </sheet>
             </form>
         </field>

@@ -63,13 +63,13 @@ class IspAp(models.Model):
     def write(self, vals):
         print(("apwrite", vals))
 
-        for i, record in enumerate(self):
+        for record in self:
             if vals.get('core_id'):
                 core = self.env['isp.core'].browse(vals['core_id'])
             else:
                 core = record.core_id
 
-            if core.exists() and core.name:
+            if core.exists() and core.name and 'parent_id' not in vals:
                 hostname = vals.get('hostname_ap', record.hostname_ap)
                 record.asset_id.name = f"{core.name}/{hostname}"
                 record.parent_id = core.asset_id.id
@@ -96,6 +96,12 @@ class IspAp(models.Model):
         for record in self:
             # Assuming 'isp.contract' has a 'ap_id' field.
             record.contract_count = self.env['isp.contract'].search_count([('ap_id', '=', record.id)])
+
+
+
+    def generar(self):
+        for record in self:
+            record.netdev_id.generar()
 
     def action_view_contracts(self):
         self.ensure_one()

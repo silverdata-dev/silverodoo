@@ -8,5 +8,5 @@ class IspContractHolding(models.Model):
 
     name = fields.Char(string='Nombre del Holding', required=True)
     partner_id = fields.Many2one('res.partner', string='Cliente Principal')
-    contract_ids = fields.One2many('isp.contract', 'holding_id', string='Contratos en este Holding')
+    #contract_ids = fields.One2many('isp.contract', 'holding_id', string='Contratos en este Holding')
     notes = fields.Text(string='Notas')

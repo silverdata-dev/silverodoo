@@ -205,16 +205,24 @@
                             </page>
 
                             <page name="ip_addresses" string="Direcciones IP">
-                                <field name="ip_address_ids">
+                                <field name="ip_address_pool_ids">
                                     <tree editable="bottom">
                                         <field name="name"/>
-                                        <field name="cidr"/>
+                                        <field name="network"/>
                                         <field name="gateway"/>
-                                        <field name="status"/>
+
                                         <field name="assigned_to"/>
                                         <field name="description"/>
                                     </tree>
                                 </field>
+                                <field name="ip_address_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="cidr"/>
+                                        <field name="status"/>
+                                    </tree>
+                                </field>
+
                             </page>
 
 

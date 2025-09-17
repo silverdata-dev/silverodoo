@@ -49,10 +49,9 @@
         <!--menuitem id="menu_isp_aps" name="AP" parent="menu_isp_infrastructure" sequence="70"/-->
             <menuitem id="menu_isp_ap" name="Equipos AP" parent="menu_isp_oltss" action="action_isp_ap" sequence="80"/>
 
-        <menuitem id="menu_isp_radiuss" name="Radius" parent="menu_isp_infrastructure" sequence="80"/>
-            <menuitem id="menu_isp_radius" name="Servidores Radius" parent="menu_isp_radiuss" action="action_isp_radius" sequence="90"/>
 
-            <menuitem id="menu_isp_ip_ranges" name="IP Ranges" parent="menu_isp_radiuss" action="isp_ip_address_action" sequence="10"/>
+            <menuitem id="menu_isp_radius" name="Servidores Radius" parent="menu_isp_oltss" action="action_isp_radius" sequence="90"/>
+
 
 
         <menuitem id="menu_isp_splitters" name="Pasivos" parent="menu_isp_infrastructure" sequence="150"/>
@@ -72,6 +71,10 @@
                   action="action_product_brand"
                   sequence="1"/>
 
+
+        <menuitem id="menu_isp_radius_table" name="Tablas Radius" parent="menu_isp_config" action="action_isp_radius_table" sequence="10"/>
+        <menuitem id="menu_isp_radius_attributes" name="Atributos Radius" parent="menu_isp_config" action="action_isp_radius_attributes" sequence="20"/>
+            <menuitem id="menu_isp_ip_ranges" name="Pools de IPs" parent="menu_isp_config" action="isp_ip_address_pool_action" sequence="10"/>
 
 
     </data>

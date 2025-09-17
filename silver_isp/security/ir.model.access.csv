@@ -8,7 +8,7 @@ access_isp_device_networks,access.isp.device.networks,model_isp_device_networks,
 access_isp_kex_algorithms,access.isp.kex.algorithms,model_isp_kex_algorithms,base.group_user,1,1,1,1
 access_isp_vlan,access.isp.vlan,model_isp_vlan,base.group_user,1,1,1,1
 access_addres_list_channel_line,access.addres.list.channel.line,model_addres_list_channel_line,base.group_user,1,1,1,1
-access_isp_ip_address_line,access.isp.ip.address.line,model_isp_ip_address_line,base.group_user,1,1,1,1
+access_isp_ip_address_pool,access.isp.ip.address.pool,model_isp_ip_address_pool,base.group_user,1,1,1,1
 access_isp_ip_address,access.isp.ip.address,model_isp_ip_address,base.group_user,1,1,1,1
 access_isp_core_port_line,access.isp.core.port.line,model_isp_core_port_line,base.group_user,1,1,1,1
 access_product_brand,access.product.brand,model_product_brand,base.group_user,1,1,1,1
@@ -40,3 +40,6 @@ access_isp_netdev_queue_wizard_line,access.isp.netdev.queue.wizard.line,model_is
 access_isp_splice_closure,isp.splice.closure,model_isp_splice_closure,base.group_user,1,1,1,1
 access_isp_cable,isp.cable,model_isp_cable,base.group_user,1,1,1,1
 access_isp_netdev,access.isp.netdev,model_isp_netdev,base.group_user,1,1,1,1
+access_isp_radius_table,access.isp.radius.table,model_isp_radius_table,base.group_user,1,1,1,1
+access_isp_radius_column,access.isp.radius.column,model_isp_radius_column,base.group_user,1,1,1,1
+access_isp_radius_attributes,access.isp.radius.attributes,model_isp_radius_attributes,base.group_user,1,1,1,1

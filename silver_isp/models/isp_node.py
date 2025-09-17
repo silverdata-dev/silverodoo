@@ -1,3 +1,5 @@
+
+from datetime import datetime
 from odoo import models, fields, api
 
 class IspNode(models.Model):
@@ -39,6 +41,22 @@ class IspNode(models.Model):
     )
 
 
+    @api.model
+    def create(self, vals):
+        if vals.get('gps_lon') and vals.get('gps_lat'):
+            vals['date_localization'] =  datetime.now()
+        return super(IspNode, self).create(vals)
+
+    @api.model
+    def write(self, vals):
+        if vals.get('gps_lon') and vals.get('gps_lat'):
+            vals['date_localization'] = datetime.now()
+
+        for record in self:
+            if (vals.get('gps_lon') or vals.get('gps_lat')):
+                record.date_localization =  datetime.now()
+                print(("record", record, record.date_localization))
+        return super(IspNode, self).write(vals)
 
 
     def _compute_counts(self):
@@ -58,6 +76,7 @@ class IspNode(models.Model):
             #'name': f"Core for {self.name}",
             'node_id': self.id,
         })
+
         return {
             'name': 'Core Creado',
             'type': 'ir.actions.act_window',

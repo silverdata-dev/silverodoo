@@ -74,11 +74,11 @@
                                 <field name="software_version"/>
                                 <field name="node_id"/>
                                 <field name="node_ids" widget="many2many_tags"/>
-                            </group>
-                            <group>
                                 <field name="brand_id"/>
                                 <field name="model"/>
-                                <field name="is_isp_radius" invisible="1"/>
+                            </group>
+                            <group string="Radius"  invisible="not is_isp_radius">
+
                                 <field name="radius_id" invisible="not is_isp_radius"/>
                                 <field name="networks_device_id" invisible="not is_device_network" options="{'no_create': True, 'no_create_edit':True}" widget="many2many_tags"/>
                                 <field name="company_id" invisible="1"/>
@@ -146,7 +146,7 @@
                                         <field name="is_extract_ip_arp" widget="boolean_toggle"/>
                                     </group>
                                     <group string="Radius"> 
-                                        <field name="is_isp_radius" widget="boolean_toggle"/>
+                                        <field name="is_isp_radius" widget="boolean_toggle" />
                                         <field name="is_mikrotik_radius" widget="boolean_toggle"/>
                                         <field name="user_profile_radius"/>
                                     </group>
@@ -197,16 +197,24 @@
                                 </group>
                             </page>
                             <page name="ip_address"   string="Direcciones IP">
-                                <field name="ip_address_ids">
+                                <field name="ip_address_pool_ids">
                                     <tree editable="bottom">
                                         <field name="name"/>
-                                        <field name="cidr"/>
+                                        <field name="network"/>
                                         <field name="gateway"/>
-                                        <field name="status"/>
+
                                         <field name="assigned_to"/>
                                         <field name="description"/>
                                     </tree>
                                 </field>
+                                <field name="ip_address_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="cidr"/>
+                                        <field name="status"/>
+                                    </tree>
+                                </field>
+
                             </page>
                             
                             <page name="config_port_slot" string="Configuracion Interface GPON" invisible="brand_description != 'hua'">

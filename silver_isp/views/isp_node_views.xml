@@ -31,14 +31,18 @@
             <field name="arch" type="xml">
                 <form string="Nodo ISP">
                     <header>
-                        <button name="create_core" string="Crear Equipo Core" type="object" invisible="1"/>     
+                        <button name="create_core" string="Crear Equipo Core" type="object" />
                         <!--button name="action_create_ticket_node" string="Crear Ticket" icon="fa-ticket" type="object" class="oe_highlight"/-->
                         <button name="create_olt" string="Crear Equipo Olt" type="object"/>
 
-                         <div class="botones-right" name="button_box"> 
+
+                        
+                    </header>
+                    <sheet string="Nodo ISP">
+                                                <div class="botones-rightt" name="button_box">
                             <button class="oe_stat_button" type="object" name="action_view_cores" icon="fa-arrows-v">
                                 <field string="Equipos Core" name="core_count" widget="statinfo"/>
-                            </button>   
+                            </button>
                             <!--button class="oe_stat_button" type="object" name="action_view_support_tickets" icon="fa-ticket">
                                 <field string="Tickets" name="support_ticket_count" widget="statinfo"/>
                             </button-->
@@ -49,10 +53,6 @@
                                 <field string="Equipos Olt" name="olt_count" widget="statinfo"/>
                             </button>
                         </div>
-                        
-                    </header>
-                    <sheet string="Nodo ISP">
-                       
                         <div class="oe_title">
                             <h1>
                                 <field name="name" placeholder="Nombre del Nodo"/>
@@ -86,7 +86,7 @@
                                             <span>, Long: </span><field name="gps_lon" nolabel="1" class="oe_inline"/>
                                             <br/>
                                             <span invisible="not date_localization">Actualizado el: </span>
-                                            <field name="date_localization" nolabel="1" class="oe_inline"/>
+                                            <field invisible="not date_localization"  name="date_localization" nolabel="1" class="oe_inline"/>
                                         </div>
                                         <field name="distance"/>
                                     </group>

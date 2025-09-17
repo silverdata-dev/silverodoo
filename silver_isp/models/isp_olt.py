@@ -118,7 +118,7 @@ class IspOlt(models.Model):
     ssid8 = fields.Boolean(string='SSID8')
     isp_tr_069_id = fields.Many2one('isp.tr.069', string='Servidor TR-069')
     vlan_mgn_tr069 = fields.Integer(string='Vlan Mgn_TR69')
-#    ip_address_line_tr69_ids = fields.One2many('isp.ip.address.line', 'olt_id', string='Direcciones IP', domain=[('is_tr_069', '=', True)])
+#    ip_address_pool_tr69_ids = fields.One2many('isp.ip.address.pool', 'olt_id', string='Direcciones IP', domain=[('is_tr_069', '=', True)])
 #    ip_address_tr69_ids = fields.One2many('isp.ip.address', 'olt_id', string='Direcciones IP', domain=[('is_tr_069', '=', True)])
     state = fields.Selection([('down', 'Down'), ('active', 'Active')], string='Estado', default='down')
     olt_card_count = fields.Integer(string='Conteo Slot OLT', compute='_compute_olt_card_count')

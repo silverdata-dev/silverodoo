@@ -163,6 +163,15 @@ class IspRadius(models.Model):
                 vals['name'] = f"{core.name}/RADIUS{radius_count + 1}"
         return super(IspRadius, self).create(vals)
 
+
+
+
+    def generar(self):
+        for record in self:
+            record.netdev_id.generar()
+
+
+    @api.model
     def write(self, vals):
         if 'core_id' in vals:
             new_core = self.env['isp.core'].browse(vals['core_id'])
@@ -255,3 +264,68 @@ class IspRadius(models.Model):
 
     def button_remove_radius_client(self):
         return self.netdev_id.button_remove_radius_client()
+
+class IspRadiusTable(models.Model):
+    _name = 'isp.radius.table'
+    _description = 'Radius Table'
+
+    name = fields.Char(string="Name", required=True)
+    isp_radius_columns = fields.One2many('isp.radius.column', 'radius_table_id', string="Radius Columns")
+
+class IspRadiusColumn(models.Model):
+    _name = 'isp.radius.column'
+    _description = 'Radius Column'
+
+    name = fields.Char(string="Name", required=True)
+    radius_table_id = fields.Many2one('isp.radius.table', string="Radius Table")
+
+class IspRadiusAttributes(models.Model):
+    _name = 'isp.radius.attributes'
+    _description = 'Atributos Radius'
+
+    name = fields.Char(string="Name", required=True)
+    description = fields.Text(string="Description")
+
+class IspRadiusLine(models.Model):
+    _name = 'isp.radius.line'
+    _description = 'ISP Radius Line'
+
+    radius_id = fields.Many2one('isp.radius', string='Radius')
+    isp_radius_table_id = fields.Many2one('isp.radius.table', string="Tabla Radius")
+    isp_radius_column_id = fields.Many2one('isp.radius.column', string="Campos BD")
+    value_column = fields.Selection([
+        ("ct", "CT"),
+        ("mac", "MAC"),
+        ("dni", "DNI"),
+        ("ppp", "PPP"),
+        ("speed_product", "Velocidad(Producto)"),
+        ("text", "Texto"),
+        ("ip", "IP")
+    ], string="Valor Campo BD")
+    isp_radius_attribute_id = fields.Many2one('isp.radius.attributes', string="Atributos")
+    op = fields.Selection([
+        ("=", "="),
+        (":=", ":="),
+        ("==", "=="),
+        ("+=", "+="),
+        ("!=", "!="),
+        (">", ">"),
+        (">=", ">="),
+        ("<", "<"),
+        ("<=", "<=")
+    ], string="Operador")
+    value = fields.Selection([
+        ("ct", "CT"),
+        ("mac", "MAC"),
+        ("dni", "DNI"),
+        ("ppp", "PPP"),
+        ("speed_product", "Velocidad(Producto)"),
+        ("text", "Texto"),
+        ("ip", "IP")
+    ], string="Valor")
+    value_text = fields.Char(string="Texto fijo")
+    function_radius = fields.Selection([
+        ("active", "Activar"),
+        ("active_bandwidth", "Activar/Ancho Banda"),
+        ("cutoff", "Cortar")
+    ], string="Función")

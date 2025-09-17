@@ -235,7 +235,7 @@
             "is_dhcp_static": {"type": "Boolean"},
             "dhcp_client": {"type": "Boolean"},
             "software_version": {"type": "Char"},
-            "ip_address_line_ids": {"type": "One2many", "relation": "isp.ip.address.line"},
+            "ip_address_pool_ids": {"type": "One2many", "relation": "isp.ip.address.pool"},
             "ip_address_ids": {"type": "One2many", "relation": "isp.ip.address"},
             "ip": {"type": "Char"},
             "port": {"type": "Char"},
