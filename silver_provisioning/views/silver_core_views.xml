@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_silver_core_form_provisioning_inherit" model="ir.ui.view">
+            <field name="name">silver.core.form.provisioning.inherit</field>
+            <field name="model">silver.core</field>
+            <field name="inherit_id" ref="silver_network.view_silver_core_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button" type="object" name="action_view_contracts" icon="fa-arrows-v">
+                        <field string="Contratos" name="contract_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

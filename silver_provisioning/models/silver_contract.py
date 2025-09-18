@@ -5,6 +5,15 @@ from odoo.exceptions import UserError
 class IspContract(models.Model):
     _inherit = 'silver.contract'
 
+    access_point_id = fields.Many2one('silver.access_point', string='Punto de Acceso')
+    mac_address = fields.Char(string='Dirección MAC')
+    vlan_id = fields.Many2one('silver.vlan', string='VLAN')
+    olt_card_id = fields.Many2one('silver.olt.card', string='Tarjeta OLT')
+    radius_id = fields.Many2one('silver.radius', string='Servidor Radius')
+    notes = fields.Text(string='Notas')
+    company_id = fields.Many2one('res.company', string='Compañía', default=lambda self: self.env.company)
+    active = fields.Boolean(default=True)
+
     # --- Pestaña: Servicio Internet ---
     link_type = fields.Selection([
         ('fiber', 'Fibra Óptica'), ('wifi', 'Inalámbrico'),

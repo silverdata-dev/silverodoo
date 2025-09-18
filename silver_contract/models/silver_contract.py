@@ -74,7 +74,6 @@ class SilverContract(models.Model):
     description_contract = fields.Text(string="Términos y Condiciones")
     holding_id = fields.Many2one('silver.contract.holding', string='Holding/Grupo de Contratos')
     reception_channel_id = fields.Many2one('silver.reception.channel', string='Canal de Recepción')
-    tag_ids = fields.Many2many('silver.contract.tag', string="Etiquetas")
 
     # --- Pestaña: Documentación ---
     doc_vat_copy = fields.Binary(string="Copia de RIF/CI", attachment=True)
@@ -94,7 +93,28 @@ class SilverContract(models.Model):
             vals['name'] = self.env['ir.sequence'].next_by_code('silver.contract.sequence') or _('Nuevo')
         return super(SilverContract, self).create(vals)
 
-    
+    def action_open(self):
+        return None
+
+
+    def action_cancel(self):
+        return None
+
+
+    def action_register_notification(self):
+        pass
+
+    def action_amountdue_notification(self):
+        pass
+
+    def enable_portal_access_contract(self):
+        pass
+
+    def action_cutoff_notification(self):
+        pass
+
+    def disable_portal_access_contract(self):
+        pass
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'

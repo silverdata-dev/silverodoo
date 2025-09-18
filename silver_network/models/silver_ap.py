@@ -24,7 +24,7 @@ class SilverAp(models.Model):
 
 
     capacity_usage_ap = fields.Integer(string='Usada AP', readonly=False)
-    contract_count = fields.Integer(string="Contratos", compute='_compute_contract_count')
+
     core_id = fields.Many2one('silver.core', 'Equipo Core')
     is_mgn_mac_onu = fields.Boolean(string='Gestion MAC ONU')
     device_pool_ip_ids = fields.One2many('silver.device.pool.ip', 'ap_id', string='Device Pool Ip')
@@ -94,25 +94,7 @@ class SilverAp(models.Model):
             }
         }
 
-    def _compute_contract_count(self):
-        for record in self:
-            # Assuming 'silver.contract' has a 'ap_id' field.
-            record.contract_count = self.env['silver.contract'].search_count([('ap_id', '=', record.id)])
-
-
 
     def generar(self):
         for record in self:
             record.netdev_id.generar()
-
-    def action_view_contracts(self):
-        self.ensure_one()
-        return {
-            'name': 'Contratos',
-            'type': 'ir.actions.act_window',
-            'res_model': 'silver.contract',
-            'view_mode': 'tree,form',
-            'domain': [('ap_id', '=', self.id)],
-            'context': {'default_ap_id': self.id},
-            'target': 'current',
-        }

@@ -19,7 +19,7 @@ class SilverSplitter(models.Model):
     olt_card_port_id = fields.Many2one('silver.olt.card.port', string='Puerto Tarjeta OLT', required=True, ondelete='cascade')
 
     box_count = fields.Integer(string='Conteo Cajas', compute='_compute_box_count')
-    contracts_count = fields.Integer(string='Conteo Cajas', compute='_compute_contracts_count')
+#    contracts_count = fields.Integer(string='Conteo Cajas', compute='_compute_contracts_count')
 
 
 
@@ -71,9 +71,7 @@ class SilverSplitter(models.Model):
         for record in self:
             record.box_count = self.env['silver.box'].search_count([('splitter_id', '=', record.id)])
 
-    def _compute_contracts_count(self):
-        for record in self:
-            record.contracts_count = self.env['silver.contract'].search_count([('splitter_id', '=', record.id)])
+
 
     def create_box(self):
         self.ensure_one()
@@ -102,14 +100,3 @@ class SilverSplitter(models.Model):
             'target': 'current',
         }
 
-    def action_view_contracts(self):
-        self.ensure_one()
-        return {
-            'name': 'Contratos',
-            'type': 'ir.actions.act_window',
-            'res_model': 'silver.contract',
-            'view_mode': 'tree,form',
-            'domain': [('splitter_id', '=', self.id)],
-            'context': {'default_splitter_id': self.id},
-            'target': 'current',
-        }

@@ -66,7 +66,7 @@ class SilverCore(models.Model):
     olt_count = fields.Integer(string='Conteo Equipo OLT', compute='_compute_counts')
     radius_count = fields.Integer(string='Conteo Servidor Radius', compute='_compute_counts')
     ap_count = fields.Integer(string='Conteo Equipo AP', compute='_compute_counts')
-    contracts_cores_count = fields.Integer(string='Conteo Cores', compute='_compute_counts')
+
     
     # --- Campos de Configuración y Funcionalidades ---
     is_device_network = fields.Boolean(string='Equipos de infraestructura de red')
@@ -197,7 +197,7 @@ class SilverCore(models.Model):
             record.olt_count = self.env['silver.olt'].search_count([('core_id', '=', record.id)])
             record.radius_count = self.env['silver.radius'].search_count([('core_id', '=', record.id)])
             record.ap_count = self.env['silver.ap'].search_count([('node_ids', 'in', record.node_ids.ids)])
-            record.contracts_cores_count = self.env['silver.contract'].search_count([('core_id', '=', record.id)])
+            #record.contracts_cores_count = self.env['silver.contract'].search_count([('core_id', '=', record.id)])
 
     @api.model
     def default_get(self, fields_list):
@@ -342,18 +342,6 @@ class SilverCore(models.Model):
             'name': 'Equipos AP',
             'type': 'ir.actions.act_window',
             'res_model': 'silver.ap',
-            'view_mode': 'tree,form',
-            'domain': [('core_id', '=', self.id)],
-            'context': {'default_core_id': self.id},
-            'target': 'current',
-        }
-
-    def action_view_contracts(self):
-        self.ensure_one()
-        return {
-            'name': 'Contratos',
-            'type': 'ir.actions.act_window',
-            'res_model': 'silver.contract',
             'view_mode': 'tree,form',
             'domain': [('core_id', '=', self.id)],
             'context': {'default_core_id': self.id},

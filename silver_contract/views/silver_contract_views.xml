@@ -7,8 +7,6 @@
             <field name="arch" type="xml">
                 <form string="Contrato">
                     <header>
-                        <button name="action_activate_service" string="Activar Servicio" type="object" class="oe_highlight" invisible="(state != 'open') or (state_service != 'inactive')"/>
-                        <button name="action_cutoff_service" string="Cortar Servicio" type="object" class="oe_highlight" invisible="state_service != 'active'"/>
                         <button name="action_open" string="Confirmar Contrato" type="object" class="oe_highlight" invisible="state != 'draft'"/>
                         <button name="action_cancel" string="Anular" type="object" invisible="state != 'draft'"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,open,done"/>
@@ -24,7 +22,7 @@
                             <group>
                                 <field name="partner_id" readonly="state != 'draft'"/>
                                 <field name="holding_id" readonly="state != 'draft'"/>
-                                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" readonly="state != 'draft'"/>
+                                <!--field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" readonly="state != 'draft'"/-->
                             </group>
                             <group>
                                 <field name="state_service" widget="badge" decoration-danger="state_service in ('disabled','removed')" decoration-warning="state_service == 'removal_list'" decoration-success="state_service == 'active'" decoration-info="state_service in ('suspended', 'inactive')"/>
@@ -34,7 +32,6 @@
                             <group>
                                 <field name="service_type_id" readonly="state != 'draft'"/>
                                 <field name="plan_type_id" readonly="state != 'draft'"/>
-                                <field name="tag_ids" widget="many2many_tags" readonly="state != 'draft'"/>
                             </group>
                             <group>
                                 <field name="cutoff_day_id" readonly="state != 'draft'"/>
@@ -207,6 +204,22 @@
                 </p>
             </field>
         </record>
+
+
+                <record id="silver_contract_search_panel" model="ir.ui.view">
+   <field name="name">silver.contract.search.panel</field>
+   <field name="model">silver.contract</field>
+   <field name="arch" type="xml">
+       <search>
+           <searchpanel>
+               <field name="state" enable_counters="1" icon="fa fa-filter"/>
+           </searchpanel>
+       </search>
+   </field>
+</record>
+
+
+
 
     </data>
 </odoo>

@@ -123,8 +123,9 @@ class SilverOlt(models.Model):
 #    ip_address_tr69_ids = fields.One2many('silver.ip.address', 'olt_id', string='Direcciones IP', domain=[('is_tr_069', '=', True)])
     state = fields.Selection([('down', 'Down'), ('active', 'Active')], string='Estado', default='down')
     olt_card_count = fields.Integer(string='Conteo Slot OLT', compute='_compute_olt_card_count')
-    contracts_olt_count = fields.Integer(string='Conteo Olts', compute='_compute_contracts_olt_count')
+    #contracts_olt_count = fields.Integer(string='Conteo Olts', compute='_compute_contracts_olt_count')
     ip_range_count = fields.Integer(string='IP Ranges', compute='_compute_ip_range_count')
+
 
 
     olt_card_port_count = fields.Integer(string='Conteo Puertos', compute='_compute_counts')
@@ -212,10 +213,6 @@ class SilverOlt(models.Model):
         for record in self:
             record.olt_card_count = self.env['silver.olt.card'].search_count([('olt_id', '=', record.id)])
 
-    def _compute_contracts_olt_count(self):
-        for record in self:
-            record.contracts_olt_count = self.env['silver.contract'].search_count([('olt_id', '=', record.id)])
-
     def _compute_ip_range_count(self):
         for record in self:
             record.ip_range_count = self.env['silver.ip.address'].search_count([('olt_id', '=', record.id)])
@@ -280,18 +277,6 @@ class SilverOlt(models.Model):
             'name': 'Tarjetas OLT',
             'type': 'ir.actions.act_window',
             'res_model': 'silver.olt.card',
-            'view_mode': 'tree,form',
-            'domain': [('olt_id', '=', self.id)],
-            'context': {'default_olt_id': self.id},
-            'target': 'current',
-        }
-
-    def action_view_contracts(self):
-        self.ensure_one()
-        return {
-            'name': 'Contratos',
-            'type': 'ir.actions.act_window',
-            'res_model': 'silver.contract',
             'view_mode': 'tree,form',
             'domain': [('olt_id', '=', self.id)],
             'context': {'default_olt_id': self.id},

@@ -23,7 +23,7 @@ class SilverOltCard(models.Model):
         ('64', '64 Puertos'),
     ], string='Cantidad de Puertos')
 
-    contracts_card_count = fields.Integer(string='Conteo Tarjetas Olt', compute='_compute_counts')
+    #contracts_card_count = fields.Integer(string='Conteo Tarjetas Olt', compute='_compute_counts')
 
     olt_card_port_count = fields.Integer(string='Conteo Puertos', compute='_compute_counts')
     
@@ -51,10 +51,6 @@ class SilverOltCard(models.Model):
     def _compute_olt_card_port_count(self):
         for record in self:
             record.olt_card_port_count = self.env['silver.olt.card.port'].search_count([('olt_card_id', '=', record.id)])
-
-    def _compute_contracts_card_count(self):
-        for record in self:
-            record.contracts_card_count = self.env['silver.contract'].search_count([('olt_card_id', '=', record.id)])
 
     def create_olt_card_port(self):
         self.ensure_one()
@@ -86,14 +82,3 @@ class SilverOltCard(models.Model):
             'target': 'current',
         }
 
-    def action_view_contracts(self):
-        self.ensure_one()
-        return {
-            'name': 'Contratos',
-            'type': 'ir.actions.act_window',
-            'res_model': 'silver.contract',
-            'view_mode': 'tree,form',
-            'domain': [('olt_card_id', '=', self.id)],
-            'context': {'default_olt_card_id': self.id},
-            'target': 'current',
-        }

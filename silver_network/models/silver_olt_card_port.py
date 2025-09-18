@@ -64,9 +64,6 @@ class SilverOltCardPort(models.Model):
         for record in self:
             record.splitter2_count = self.env['silver.splitter'].search_count([('olt_port_id', '=', record.id), ('type_splitter', '=', '2')])
 
-    def _compute_contracts_port_count(self):
-        for record in self:
-            record.contracts_port_count = self.env['silver.contract'].search_count([('olt_port_id', '=', record.id)])
 
     def create_splitter_primary(self):
         self.ensure_one()
@@ -143,14 +140,3 @@ class SilverOltCardPort(models.Model):
             'target': 'current',
         }
 
-    def action_view_contracts(self):
-        self.ensure_one()
-        return {
-            'name': 'Contratos',
-            'type': 'ir.actions.act_window',
-            'res_model': 'silver.contract',
-            'view_mode': 'tree,form',
-            'domain': [('olt_card_port_id', '=', self.id)],
-            'context': {'default_olt_card_port_id': self.id},
-            'target': 'current',
-        }

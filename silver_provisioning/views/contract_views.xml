@@ -6,6 +6,11 @@
             <field name="model">silver.contract</field>
             <field name="inherit_id" ref="silver_contract.silver_contract_view_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                                            <button name="action_activate_service" string="Activar Servicio" type="object" class="oe_highlight" invisible="(state != 'open') or (state_service != 'inactive')"/>
+                        <button name="action_cutoff_service" string="Cortar Servicio" type="object" class="oe_highlight" invisible="state_service != 'active'"/>
+
+                </xpath>
                 <xpath expr="//notebook" position="inside">
                     <page name="provisioning" string="Servicio Internet">
                         <notebook>
