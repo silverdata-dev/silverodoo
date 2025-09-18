@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Consumption View -->
+        <record id="silver_contract_consumption_view_tree" model="ir.ui.view">
+            <field name="name">silver.contract.consumption.tree</field>
+            <field name="model">silver.contract.consumption</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="date"/>
+                    <field name="download_gb"/>
+                    <field name="upload_gb"/>
+                    <field name="total_gb"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- RADIUS Entry View -->
+        <record id="silver_contract_radius_entry_view_tree" model="ir.ui.view">
+            <field name="name">silver.contract.radius.entry.tree</field>
+            <field name="model">silver.contract.radius.entry</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="session_start"/>
+                    <field name="session_end"/>
+                    <field name="session_duration"/>
+                    <field name="framed_ip_address"/>
+                    <field name="nas_ip_address"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

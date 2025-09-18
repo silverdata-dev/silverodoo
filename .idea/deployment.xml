@@ -8,8 +8,8 @@
             <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
           </mappings>
           <excludedPaths>
-            <excludedPath local="true" path="$PROJECT_DIR$/silver_isp/.history" />
-            <excludedPath local="true" path="$PROJECT_DIR$/silver_isp/.venv" />
+            <excludedPath local="true" path="$PROJECT_DIR$/silver_network/.history" />
+            <excludedPath local="true" path="$PROJECT_DIR$/silver_network/.venv" />
           </excludedPaths>
         </serverdata>
       </paths>

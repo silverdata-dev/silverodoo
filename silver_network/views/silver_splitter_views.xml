@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- isp.splitter -->
+        <record id="action_silver_splitter" model="ir.actions.act_window">
+            <field name="name">Splitters</field>
+            <field name="res_model">silver.splitter</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_silver_splitter_tree" model="ir.ui.view">
+            <field name="name">silver.splitter.tree</field>
+            <field name="model">silver.splitter</field>
+            <field name="arch" type="xml">
+                <tree string="Splitter" default_order="name desc">
+                    <field name="name"/>
+                    <field name="name"/>
+                    <field name="capacity_splitter"/>
+                    <field name="port_splitter"/>
+                    <field name="type_splitter"/>
+                    <field name="splitter_id"/>
+                    <field name="olt_card_port_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_silver_splitter_form" model="ir.ui.view">
+            <field name="name">silver.splitter.form</field>
+            <field name="model">silver.splitter</field>
+            <field name="arch" type="xml">
+                <form string="Splitter">
+                    <header>
+                        <button name="create_box" string="Crear Caja NAP" type="object"/>
+                    </header>
+                    <sheet string="Splitter">
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" name="action_view_boxes" icon="fa-arrows-v">
+                                <field string="Cajas NAP" name="box_count" widget="statinfo"/>
+                            </button>
+                            <button class="oe_stat_button" type="object" name="action_view_contracts" icon="fa-link" invisible="type_splitter != '2'">
+                                <field string="Contratos" name="contracts_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1><field name="name" readonly="1"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name" invisible="type_splitter != '2'"/>
+                                <field name="capacity_splitter"/>
+                                <field name="port_splitter" invisible="type_splitter == '1'"/>
+                            </group>
+                            <group>
+                                <field name="type_splitter" readonly="1"/>
+                                <field name="splitter_id" invisible="type_splitter == '1'"/>
+                                <field name="olt_card_port_id" readonly="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

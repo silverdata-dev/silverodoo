@@ -1,7 +1,0 @@
-<templates>
-    <t t-name="silver_isp.PPPSpeedChart" owl="1">
-        <div class="ppp_speed_chart" style="position: relative; height:40vh; width:80vw">
-            <canvas t-ref="chart"/>
-        </div>
-    </t>
-</templates>

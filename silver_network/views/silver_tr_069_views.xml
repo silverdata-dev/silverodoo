@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- isp.tr.069 -->
+        <record id="action_silver_tr_069" model="ir.actions.act_window">
+            <field name="name">Servidores TR-069 ISP</field>
+            <field name="res_model">silver.tr.069</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_silver_tr_069_tree" model="ir.ui.view">
+            <field name="name">silver.tr.069.tree</field>
+            <field name="model">silver.tr.069</field>
+            <field name="arch" type="xml">
+                <tree string="Servidores TR-069 ISP">
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_silver_tr_069_form" model="ir.ui.view">
+            <field name="name">silver.tr.069.form</field>
+            <field name="model">silver.tr.069</field>
+            <field name="arch" type="xml">
+                <form string="Servidor TR-069 ISP">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="url"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

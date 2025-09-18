@@ -6,8 +6,10 @@
     'author': 'Gemini',
     'website': 'https://www.gemini.com',
     'category': 'Services/Telecommunications',
-    'depends': ['silver_isp', 'silver_contract'],
-    'data': [],
+    'depends': ['silver_network', 'silver_contract'],
+    'data': [
+        'views/contract_views.xml',
+    ],
     'installable': True,
     'application': False,
 }

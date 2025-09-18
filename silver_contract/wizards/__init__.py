@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-from . import isp_ping_wizard
+from . import silver_ping_wizard

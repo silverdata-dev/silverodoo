@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Menú Principal para Contratos, dentro del menú de Silver ISP -->
+
+
+        <menuitem id="menu_silver_contract_root" name="Contratos" sequence="10"/>
+
+
+        <menuitem id="silver_contract_menu_root"
+                  name="Contratos"
+                  parent="silver_contract.menu_silver_contract_root"
+                  sequence="20"/>
+
+
+
+
+
+        <!-- Acción para mostrar todos los contratos -->
+        <!--menuitem id="silver_contract_menu_action"
+                  name="Todos los Contratos"
+                  parent="silver_contract_menu_root"
+                  action="silver_contract_action"
+                  sequence="10"/-->
+
+        <menuitem id="silver_contratoe_menu_action"
+                  name="Todos los contratos"
+                  parent="silver_contract_menu_root"
+                  action="silver_contract_action1"
+                  sequence="10"/>
+
+        <menuitem id="silver_payment_promise_menu_action"
+                  name="Promesas de Pago"
+                  parent="silver_contract_menu_root"
+                  action="silver_payment_promise_action"
+                  sequence="30"/>
+
+        <menuitem id="silver_referred_contact_menu_action"
+                  name="Contactos Referidos"
+                  parent="silver_contract_menu_root"
+                  action="silver_referred_contact_action"
+                  sequence="40"/>
+    </data>
+</odoo>

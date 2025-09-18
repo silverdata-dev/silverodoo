@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- isp.kex.algorithms -->
+        <record id="action_silver_kex_algorithms" model="ir.actions.act_window">
+            <field name="name">Algoritmos Kex ISP</field>
+            <field name="res_model">silver.kex.algorithms</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_silver_kex_algorithms_tree" model="ir.ui.view">
+            <field name="name">silver.kex.algorithms.tree</field>
+            <field name="model">silver.kex.algorithms</field>
+            <field name="arch" type="xml">
+                <tree string="Algoritmos Kex ISP">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_silver_kex_algorithms_form" model="ir.ui.view">
+            <field name="name">silver.kex.algorithms.form</field>
+            <field name="model">silver.kex.algorithms</field>
+            <field name="arch" type="xml">
+                <form string="Algoritmo Kex ISP">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

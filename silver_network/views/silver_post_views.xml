@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- isp.post -->
+        <record id="action_silver_post" model="ir.actions.act_window">
+            <field name="name">Postes</field>
+            <field name="res_model">silver.post</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_silver_post_tree" model="ir.ui.view">
+            <field name="name">silver.post.tree</field>
+            <field name="model">silver.post</field>
+            <field name="arch" type="xml">
+                <tree string="Poste" default_order="name desc">
+                    <field name="name"/>
+
+                    <field name="type_post"/>
+                    <field name="gps_lon"/>
+                    <field name="gps_lat"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_silver_post_form" model="ir.ui.view">
+            <field name="name">silver.post.form</field>
+            <field name="model">silver.post</field>
+            <field name="arch" type="xml">
+                <form string="Poste">
+                    <header>
+
+                    </header>
+                    <sheet string="Poste">
+                        <div class="oe_title">
+                            <h1><field name="name" readonly="1"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="zone_id"/>
+                                <field name="type_post"/>
+                                <field name="gps_lon"/>
+                                <field name="gps_lat"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

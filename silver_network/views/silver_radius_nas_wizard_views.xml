@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="silver_radius_nas_wizard_form_view" model="ir.ui.view">
+            <field name="name">silver.radius.nas.wizard.form</field>
+            <field name="model">silver.radius.nas.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Manage MikroTik NAS Clients">
+                    <sheet>
+                        <group>
+                            <field name="radius_id" invisible="1"/>
+                            <field name="nas_address"/>
+                            <field name="nas_secret" password="True"/>
+                            <field name="nas_services" widget="many2many_tags"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Add NAS Client" name="action_add_nas_client" type="object" class="oe_highlight"/>
+                        <button string="Remove NAS Client" name="action_remove_nas_client" type="object" class="oe_highlight"/>
+                        <button string="View All NAS Clients" name="action_view_nas_clients" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_silver_radius_nas_wizard"
+            name="Manage MikroTik NAS Clients"
+            res_model="isp.radius.nas.wizard"
+            view_mode="form"
+            target="new"
+            binding_model="isp.radius"/>
+    </data>
+</odoo>

@@ -1,1 +1,1 @@
-from . import isp_contract
+from . import silver_contract

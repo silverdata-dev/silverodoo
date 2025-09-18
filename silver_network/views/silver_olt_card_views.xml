@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- isp.olt.card -->
+        <record id="action_silver_olt_card" model="ir.actions.act_window">
+            <field name="name">Tarjetas OLT</field>
+            <field name="res_model">silver.olt.card</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_silver_olt_card_tree" model="ir.ui.view">
+            <field name="name">silver.olt.card.tree</field>
+            <field name="model">silver.olt.card</field>
+            <field name="arch" type="xml">
+                <tree string="Tarjetas OLT ISP" default_order="name desc">
+                    <field name="name"/>
+                    <field name="num_card"/>
+                    <field name="port_card"/>
+                    <field name="olt_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_silver_olt_card_form" model="ir.ui.view">
+            <field name="name">silver.olt.card.form</field>
+            <field name="model">silver.olt.card</field>
+            <field name="arch" type="xml">
+                <form string="Tarjeta OLT ISP">
+                    <header>
+                        <button name="create_olt_card_port" string="Crear Puertos OLT" type="object"/>
+                    </header>
+                    <sheet string="Tarjeta OLT ISP">
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" name="action_view_olt_card_ports" icon="fa-arrows-v">
+                                <field string="Puertos OLT" name="olt_card_port_count" widget="statinfo"/>
+                            </button>
+                            <button class="oe_stat_button" type="object" name="action_view_contracts" icon="fa-link">
+                                <field string="Contratos" name="contracts_card_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1><field name="name" readonly="1"/></h1>
+                        </div>
+                        <group name="card_olt">
+                            <group>
+                                <field name="num_card"/>
+                                <field name="port_card"/>
+                            </group>
+                            <group>
+                                <field name="olt_id"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

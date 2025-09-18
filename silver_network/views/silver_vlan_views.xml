@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- isp.vlan -->
+        <record id="action_silver_vlan" model="ir.actions.act_window">
+            <field name="name">VLANs ISP</field>
+            <field name="res_model">silver.vlan</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_silver_vlan_tree" model="ir.ui.view">
+            <field name="name">silver.vlan.tree</field>
+            <field name="model">silver.vlan</field>
+            <field name="arch" type="xml">
+                <tree string="VLANs ISP">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_silver_vlan_form" model="ir.ui.view">
+            <field name="name">silver.vlan.form</field>
+            <field name="model">silver.vlan</field>
+            <field name="arch" type="xml">
+                <form string="VLAN ISP">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

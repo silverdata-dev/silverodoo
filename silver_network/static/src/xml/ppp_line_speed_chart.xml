@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="silver_network.PPPLineSpeedChart" owl="1">
+            <div t-ref="hola"/>
+        <div class="o_field_ppp_line_speed_chart">
+            <canvas t-ref="chart"/>
+        </div>
+    </t>
+</templates>

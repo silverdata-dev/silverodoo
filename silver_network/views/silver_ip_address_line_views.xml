@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- silver.ip.address.pool -->
+        <record id="action_silver_ip_address_line" model="ir.actions.act_window">
+            <field name="name">Líneas de Dirección IP Silver</field>
+            <field name="res_model">silver.ip.address.pool</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_silver_ip_address_line_tree" model="ir.ui.view">
+            <field name="name">silver.ip.address.pool.tree</field>
+            <field name="model">silver.ip.address.pool</field>
+            <field name="arch" type="xml">
+                <tree string="Líneas de Dirección IP Silver">
+                    <field name="name"/>
+                    <field name="network"/>
+                    <field name="nmask"/>
+                    <field name="gateway"/>
+
+                    <field name="netdev_id"/>
+                    <field name="is_tr_069"/>
+
+                     <field name="total_ips"/>
+                            <field name="used_ips"/>
+                            <field name="usage_percentage" widget="progressbar"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_silver_ip_address_line_form" model="ir.ui.view">
+            <field name="name">silver.ip.address.pool.form</field>
+            <field name="model">silver.ip.address.pool</field>
+            <field name="arch" type="xml">
+                <form string="Línea de Dirección IP Silver">
+                        <header>
+                    <button name="action_generate_ips" type="object" string="Generate IPs" class="oe_highlight"/>
+                </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                                                <field name="network"/>
+                    <field name="nmask"/>
+                    <field name="gateway"/>
+                    <field name="netdev_id"/>
+                            <field name="is_tr_069"/>
+                            <group>
+                                 <field name="total_ips"/>
+                            <field name="used_ips"/>
+                            <field name="usage_percentage" widget="progressbar"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

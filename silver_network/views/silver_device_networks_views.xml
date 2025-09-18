@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- silver.device.networks -->
+        <record id="action_silver_device_networks" model="ir.actions.act_window">
+            <field name="name">Redes de Dispositivos Silver</field>
+            <field name="res_model">silver.device.networks</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_silver_device_networks_tree" model="ir.ui.view">
+            <field name="name">silver.device.networks.tree</field>
+            <field name="model">silver.device.networks</field>
+            <field name="arch" type="xml">
+                <tree string="Redes de Dispositivos Silver">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_silver_device_networks_form" model="ir.ui.view">
+            <field name="name">silver.device.networks.form</field>
+            <field name="model">silver.device.networks</field>
+            <field name="arch" type="xml">
+                <form string="Red de Dispositivos Silver">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

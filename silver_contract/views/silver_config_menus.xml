@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="silver_contract_menu_config"
+                  name="Configuración"
+                  parent="silver_contract_menu_root"
+                  sequence="100"/>
+
+        <menuitem id="silver_payment_type_menu"
+                  name="Formas de Pago"
+                  parent="silver_contract_menu_config"
+                  action="silver_payment_type_action"
+                  sequence="10"/>
+
+        <menuitem id="silver_service_type_menu"
+                  name="Tipos de Servicio"
+                  parent="silver_contract_menu_config"
+                  action="silver_service_type_action"
+                  sequence="20"/>
+
+        <menuitem id="silver_plan_type_menu"
+                  name="Tipos de Plan"
+                  parent="silver_contract_menu_config"
+                  action="silver_plan_type_action"
+                  sequence="30"/>
+
+        <menuitem id="silver_contract_term_menu"
+                  name="Períodos de Permanencia"
+                  parent="silver_contract_menu_config"
+                  action="silver_contract_term_action"
+                  sequence="40"/>
+
+        <menuitem id="silver_cutoff_day_menu"
+                  name="Días de Corte"
+                  parent="silver_contract_menu_config"
+                  action="silver_cutoff_day_action"
+                  sequence="50"/>
+
+        <menuitem id="silver_discount_plan_menu"
+                  name="Planes de Descuento"
+                  parent="silver_contract_menu_config"
+                  action="silver_discount_plan_action"
+                  sequence="60"/>
+
+        <menuitem id="silver_contract_holding_menu"
+                  name="Grupos de Contratos (Holdings)"
+                  parent="silver_contract_menu_config"
+                  action="silver_contract_holding_action"
+                  sequence="70"/>
+
+        <menuitem id="silver_reception_channel_menu"
+                  name="Canales de Recepción"
+                  parent="silver_contract_menu_config"
+                  action="silver_reception_channel_action"
+                  sequence="80"/>
+
+        <menuitem id="silver_contract_tag_menu"
+                  name="Etiquetas de Contrato"
+                  parent="silver_contract_menu_config"
+                  action="silver_contract_tag_action"
+                  sequence="90"/>
+
+        <menuitem id="silver_wifi_channel_menu"
+                  name="Canales WiFi"
+                  parent="silver_contract_menu_config"
+                  action="silver_wifi_channel_line_action"
+                  sequence="100"/>
+
+        <menuitem id="silver_ip_pool_menu"
+                  name="Pools de IP"
+                  parent="silver_contract_menu_config"
+                  action="silver_ip_pool_action"
+                  sequence="110"/>
+    </data>
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- address.list.channel.line -->
+        <record id="action_address_list_channel_line" model="ir.actions.act_window">
+            <field name="name">Líneas de Canal de Lista de Direcciones</field>
+            <field name="res_model">address.list.channel.line</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_address_list_channel_line_tree" model="ir.ui.view">
+            <field name="name">address.list.channel.line.tree</field>
+            <field name="model">address.list.channel.line</field>
+            <field name="arch" type="xml">
+                <tree string="Líneas de Canal de Lista de Direcciones">
+                    <field name="name"/>
+                    <field name="core_id"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_address_list_channel_line_form" model="ir.ui.view">
+            <field name="name">address.list.channel.line.form</field>
+            <field name="model">address.list.channel.line</field>
+            <field name="arch" type="xml">
+                <form string="Línea de Canal de Lista de Direcciones">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="core_id"/>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

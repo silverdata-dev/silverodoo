@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- IspRouterInterfaceWizard -->
+        <record id="view_silver_router_interface_wizard_tree" model="ir.ui.view">
+            <field name="name">silver.netdev.interface.wizard.tree</field>
+            <field name="model">silver.netdev.interface.wizard</field>
+            <field name="arch" type="xml">
+                <tree string="Router Interfaces">
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_silver_router_interface_wizard_form" model="ir.ui.view">
+            <field name="name">silver.netdev.interface.wizard.form</field>
+            <field name="model">silver.netdev.interface.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Router Interface">
+                    <sheet>
+                        <group>
+
+                        </group>
+                        <notebook>
+                            <page string="Interfaces">
+                                <field name="line_ids">
+                                    <tree string="Interfaces">
+                                        <field name="name"/>
+                                        <field name="mac_address"/>
+                                        <field name="type"/>
+                                        <field name="running"/>
+                                        <field name="disabled"/>
+                                        <field name="comment"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_silver_router_interface_wizard" model="ir.actions.act_window">
+            <field name="name">Router Interfaces</field>
+            <field name="res_model">silver.netdev.interface.wizard</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- IspRouterRouteWizard -->
+        <record id="view_silver_router_route_wizard_tree" model="ir.ui.view">
+            <field name="name">silver.netdev.route.wizard.tree</field>
+            <field name="model">silver.netdev.route.wizard</field>
+            <field name="arch" type="xml">
+                <tree string="Router Routes">
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_silver_router_route_wizard_form" model="ir.ui.view">
+            <field name="name">silver.netdev.route.wizard.form</field>
+            <field name="model">silver.netdev.route.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Router Route">
+                    <sheet>
+                        <group>
+
+                        </group>
+                        <notebook>
+                            <page string="Routes">
+                                <field name="line_ids">
+                                    <tree string="Routes">
+                                        <field name="dst_address"/>
+                                        <field name="gateway"/>
+                                        <field name="distance"/>
+                                        <field name="active"/>
+                                        <field name="static"/>
+                                        <field name="comment"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_silver_router_route_wizard" model="ir.actions.act_window">
+            <field name="name">Router Routes</field>
+            <field name="res_model">silver.netdev.route.wizard</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+            <record id="action_ppp" model="ir.actions.act_window">
+            <field name="name">PPP</field>
+            <field name="res_model">silver.netdev.ppp.active.wizard</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- IspRouterPppActiveWizard -->
+        <record id="view_silver_router_ppp_active_wizard_tree" model="ir.ui.view">
+            <field name="name">silver.netdev.ppp.active.wizard.tree</field>
+            <field name="model">silver.netdev.ppp.active.wizard</field>
+            <field name="arch" type="xml">
+                <tree string="PPP Active Connections">
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_silver_router_ppp_active_wizard_line_form" model="ir.ui.view">
+            <field name="name">silver.netdev.ppp.active.wizard.line.form</field>
+            <field name="model">silver.netdev.ppp.active.wizard.line</field>
+            <field name="arch" type="xml">
+                <form string="PPP Active Connection Speed" readonly="1">
+                    <sheet>
+                        <group>
+                            <group>
+                            <field name="name" readonly="1"/>
+                            <field name="service" readonly="1"/>
+                            <field name="caller_id" readonly="1" invisible="1"/>
+                            <field name="address" readonly="1"/>
+                            <field name="uptime" readonly="1"/>
+                        </group>
+                                <group>
+                                </group>
+                        </group>
+                        <notebook>
+                            <page string="Realtime Speed">
+                                <field name="ppp_speed_chart" widget="ppp_line_speed_chart"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <footer>
+                        <button string="OK" class="btn-primary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_silver_router_ppp_active_wizard_line" model="ir.actions.act_window">
+            <field name="name">PPP Active Connection Speed</field>
+            <field name="res_model">silver.netdev.ppp.active.wizard.line</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="view_silver_router_ppp_active_wizard_line_tree" model="ir.ui.view">
+            <field name="name">silver.netdev.ppp.active.wizard.line.tree</field>
+            <field name="model">silver.netdev.ppp.active.wizard.line</field>
+            <field name="arch" type="xml">
+                <tree string="Active Connections" editable="bottom">
+                    <field name="name"/>
+                    <field name="service"/>
+                    <field name="caller_id"/>
+                    <field name="address"/>
+                    <field name="uptime"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_silver_router_ppp_active_wizard_form" model="ir.ui.view">
+            <field name="name">silver.netdev.ppp.active.wizard.form</field>
+            <field name="model">silver.netdev.ppp.active.wizard</field>
+            <field name="arch" type="xml">
+                <form string="PPP Active Connection">
+                    <sheet>
+                        <group>
+
+                        </group>
+                        <notebook>
+                            <page string="Active Connections">
+                                <field name="line_ids">
+                                    <tree string="Active Connections" create="false" delete="false">
+                                        <field name="name"/>
+                                        <field name="service"/>
+                                        <field name="uptime"/>
+                                        <field name="caller_id"/>
+                                        <field name="address"/>
+                                        <button name="action_open_speed_chart" type="object" icon="fa-area-chart"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_silver_router_ppp_active_wizard" model="ir.actions.act_window">
+            <field name="name">PPP Active Connections3</field>
+            <field name="res_model">silver.netdev.ppp.active.wizard</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- IspRouterFirewallWizard -->
+        <record id="view_silver_router_firewall_wizard_tree" model="ir.ui.view">
+            <field name="name">silver.netdev.firewall.wizard.tree</field>
+            <field name="model">silver.netdev.firewall.wizard</field>
+            <field name="arch" type="xml">
+                <tree string="Firewall Rules">
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_silver_router_firewall_wizard_form" model="ir.ui.view">
+            <field name="name">silver.netdev.firewall.wizard.form</field>
+            <field name="model">silver.netdev.firewall.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Firewall Rule">
+                    <sheet>
+                        <group>
+
+                        </group>
+                        <notebook>
+                            <page string="Firewall Rules">
+                                <field name="line_ids">
+                                    <tree string="Firewall Rules">
+                                        <field name="chain"/>
+                                        <field name="action"/>
+                                        <field name="src_address"/>
+                                        <field name="dst_address"/>
+                                        <field name="protocol"/>
+                                        <field name="comment"/>
+                                        <field name="disabled"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_silver_router_firewall_wizard" model="ir.actions.act_window">
+            <field name="name">Firewall Rules</field>
+            <field name="res_model">silver.netdev.firewall.wizard</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- IspRouterQueueWizard -->
+        <record id="view_silver_router_queue_wizard_tree" model="ir.ui.view">
+            <field name="name">silver.netdev.queue.wizard.tree</field>
+            <field name="model">silver.netdev.queue.wizard</field>
+            <field name="arch" type="xml">
+                <tree string="Router Queues">
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_silver_router_queue_wizard_form" model="ir.ui.view">
+            <field name="name">silver.netdev.queue.wizard.form</field>
+            <field name="model">silver.netdev.queue.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Router Queue">
+                    <sheet>
+                        <group>
+
+                        </group>
+                        <notebook>
+                            <page string="Queues">
+                                <field name="line_ids">
+                                    <tree string="Queues">
+                                        <field name="name"/>
+                                        <field name="target"/>
+                                        <field name="max_limit"/>
+                                        <field name="burst_limit"/>
+                                        <field name="disabled"/>
+                                        <field name="comment"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_silver_router_queue_wizard" model="ir.actions.act_window">
+            <field name="name">Router Queues</field>
+            <field name="res_model">silver.netdev.queue.wizard</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>
