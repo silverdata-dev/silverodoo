@@ -119,9 +119,8 @@
 
                         <notebook colspan="4">
                             <page name="ip_addresses" string="Direcciones IP">
-                               <group>
-        <group string="Pools" colspan="4">
-            <field name="ip_address_pool_ids" nolabel="1"  widget="one2many_list" colspan="4" >
+
+            <field name="ip_address_pool_ids" nolabel="1"  widget="one2many_list"  >
                 <tree multi_selectable="1"  colspan="2" editable="bottom">
                           <field name="name" readonly="True"/>
                     <field name="network"/>
@@ -134,13 +133,12 @@
                 </field>
 
 
-        </group>
- <button name="generar" string="Regenerar IPs" type="object"/>
-        <group  string="IPs" colspan="4">
-                <field name="ip_address_ids" nolabel="1"  colspan="4">
+
+ <button name="generar" string="Generar IPs" type="object"/>
+
+                <field name="ip_address_ids" nolabel="1" >
                      </field>
-              </group>
-    </group>
+
                             </page>
                         </notebook>
                     </sheet>

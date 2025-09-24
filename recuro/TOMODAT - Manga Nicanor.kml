@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Document>
+<Placemark>
+	<name>Manga 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8927815721,10.472344523,0</coordinates></Point>
+</Placemark>
+</Document></kml>

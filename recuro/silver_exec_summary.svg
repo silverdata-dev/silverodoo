@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="540" viewBox="0 0 1000 540" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .title { fill:#0b1220; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; font-weight:700; font-size:18px; }
+    .subtitle { fill:#334155; font-family: Inter, sans-serif; font-size:12px; }
+    .box { fill:#f8fafc; stroke:#cbd5e1; stroke-width:1.4; rx:8; }
+    .hdr { fill:#063a6b; font-family: Inter, sans-serif; font-size:13px; font-weight:700; fill:#ffffff; }
+    .txt { fill:#0b1220; font-family: Inter, sans-serif; font-size:12px; }
+    .edge { stroke:#93b0d8; stroke-width:1.6; marker-end:url(#a); }
+  </style>
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#93b0d8" />
+    </marker>
+  </defs>
+
+  <rect width="1000" height="540" fill="#ffffff"/>
+  <text x="24" y="36" class="title">SilverData — Resumen ejecutivo (Base de datos)</text>
+  <text x="24" y="56" class="subtitle">Un vistazo para gerencia: dónde está la información crítica y los puntos de control.</text>
+
+  <!-- Boxes -->
+  <g transform="translate(40,90)">
+    <rect class="box" x="0" y="0" width="280" height="120"/>
+    <rect x="0" y="0" width="280" height="28" rx="6" fill="#0b6fb3"/>
+    <text x="12" y="20" class="hdr">Clientes</text>
+    <text x="12" y="44" class="txt">res.partner</text>
+    <text x="12" y="64" class="txt">contacto, direcciones, KYC</text>
+    <text x="12" y="84" class="txt">opt_in_whatsapp (control legal)</text>
+  </g>
+
+  <g transform="translate(360,90)">
+    <rect class="box" x="0" y="0" width="280" height="120"/>
+    <rect x="0" y="0" width="280" height="28" rx="6" fill="#0b6fb3"/>
+    <text x="12" y="20" class="hdr">Contratos & Servicios</text>
+    <text x="12" y="44" class="txt">isp.contract</text>
+    <text x="12" y="64" class="txt">plan, estado, vinculación a puerto/OLT</text>
+    <text x="12" y="84" class="txt">billing_reference → facturas</text>
+  </g>
+
+  <g transform="translate(680,90)">
+    <rect class="box" x="0" y="0" width="280" height="120"/>
+    <rect x="0" y="0" width="280" height="28" rx="6" fill="#0b6fb3"/>
+    <text x="12" y="20" class="hdr">Infraestructura</text>
+    <text x="12" y="44" class="txt">Zonas / Nodos / Postes / Cajas</text>
+    <text x="12" y="64" class="txt">splitters, OLTs, puertos</text>
+    <text x="12" y="84" class="txt">georreferenciación clave para field ops</text>
+  </g>
+
+  <!-- Middle row -->
+  <g transform="translate(40,240)">
+    <rect class="box" x="0" y="0" width="440" height="120"/>
+    <rect x="0" y="0" width="440" height="28" rx="6" fill="#0b6fb3"/>
+    <text x="12" y="20" class="hdr">Operaciones & NetOps</text>
+    <text x="12" y="44" class="txt">silver.netops: playbooks, tareas, exec_log</text>
+    <text x="12" y="64" class="txt">helpdesk_ticket ↔ task → ejecución en dispositivo</text>
+    <text x="12" y="84" class="txt">idempotencia y rollback son obligatorios</text>
+  </g>
+
+  <g transform="translate(520,240)">
+    <rect class="box" x="0" y="0" width="440" height="120"/>
+    <rect x="0" y="0" width="440" height="28" rx="6" fill="#0b6fb3"/>
+    <text x="12" y="20" class="hdr">Facturación & Pagos</text>
+    <text x="12" y="44" class="txt">account_move, bank_tx, reconciliation</text>
+    <text x="12" y="64" class="txt">Matching automático (reglas) → DLQ</text>
+    <text x="12" y="84" class="txt">Suspensión automática por deuda</text>
+  </g>
+
+  <!-- Connections -->
+  <line x1="320" y1="140" x2="360" y2="140" class="edge"/>
+  <text x="320" y="128" class="txt">contrato↔cliente</text>
+
+  <line x1="640" y1="140" x2="680" y2="140" class="edge"/>
+  <text x="640" y="128" class="txt">contrato↔infra</text>
+
+  <line x1="260" y1="300" x2="500" y2="300" class="edge"/>
+  <text x="360" y="288" class="txt">ticket → netops</text>
+
+  <line x1="700" y1="300" x2="760" y2="300" class="edge"/>
+  <text x="720" y="288" class="txt">factura ↔ pago</text>
+
+  <!-- Footer notes -->
+  <text x="24" y="420" class="txt">Puntos de control para gerencia:</text>
+  <text x="24" y="440" class="txt">• Reserva y vínculo de puerto/splitter al vender (evita overbooking).</text>
+  <text x="24" y="460" class="txt">• Autonomy: conciliación automática ≥ 85% o plan para manuales.</text>
+  <text x="24" y="480" class="txt">• WhatsApp consentimiento y trazabilidad (legal + CX).</text>
+
+</svg>

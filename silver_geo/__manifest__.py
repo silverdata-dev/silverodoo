@@ -14,6 +14,9 @@
             'silver_geo/static/src/css/map_view.css',
             'silver_geo/static/src/js/map_view.js',
             'silver_geo/static/src/xml/map_view.xml',
+            # Coordinate Picker Assets
+            #   'silver_geo/static/src/js/coordinate_picker_map.js',
+            #    'silver_geo/static/src/xml/coordinate_picker_map.xml',
         ],
     },
     'installable': True,

@@ -1,0 +1,465 @@
+<form string="Producto" name="Product Template">
+                <header>
+                    <button string="Imprimir etiquetas" type="object" name="action_open_label_layout"/>
+                
+                        <button string="Actualizar la cantidad " type="object" name="action_update_quantity_on_hand" attrs="{'invisible': [('type', '!=', 'product')]}" modifiers="{&quot;invisible&quot;: [[&quot;type&quot;, &quot;!=&quot;, &quot;product&quot;]]}"/>
+                        <button string="Reabastecer" type="action" name="355" context="{'default_product_tmpl_id': id}" attrs="{'invisible': [('type', '!=', 'product')]}" modifiers="{&quot;invisible&quot;: [[&quot;type&quot;, &quot;!=&quot;, &quot;product&quot;]]}"/>
+                    </header>
+                <sheet name="product_form">
+                    <field name="product_variant_count" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                    <field name="service_type" widget="radio" invisible="True" modifiers="{&quot;invisible&quot;: true}"/>
+                    <field name="visible_expense_policy" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                
+                    <field name="is_product_variant" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                    <field name="attribute_line_ids" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+                    <field name="type" invisible="1" on_change="1" modifiers="{&quot;invisible&quot;: true}"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="open_pricelist_rules" icon="fa-list-ul" type="object">
+                               <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="pricelist_item_count" modifiers="{&quot;readonly&quot;: true}"/>
+                                    </span>
+                                    <span attrs="{'invisible': [('pricelist_item_count', '=', 1)]}" modifiers="{&quot;invisible&quot;: [[&quot;pricelist_item_count&quot;, &quot;=&quot;, 1]]}">
+                                        Precios extra
+                                    </span>
+                                    <span attrs="{'invisible': [('pricelist_item_count', '!=', 1)]}" modifiers="{&quot;invisible&quot;: [[&quot;pricelist_item_count&quot;, &quot;!=&quot;, 1]]}">
+                                        Precio extra
+                                    </span>
+                               </div>
+                        </button>
+                    
+                <button name="157" type="action" icon="fa-sitemap" class="oe_stat_button" invisible="1" modifiers="{&quot;invisible&quot;: true}">
+                    <field string="Variantes" name="product_variant_count" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+                </button>
+            
+                        <field name="show_on_hand_qty_status_button" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                        <field name="show_forecasted_qty_status_button" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                        <button type="object" name="action_open_quants" attrs="{'invisible':[('show_on_hand_qty_status_button', '=', False)]}" class="oe_stat_button" icon="fa-cubes" modifiers="{&quot;invisible&quot;: [[&quot;show_on_hand_qty_status_button&quot;, &quot;=&quot;, false]]}">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value" widget="statinfo">
+                                    <field name="qty_available" widget="statinfo" nolabel="1" class="mr4" modifiers="{&quot;readonly&quot;: true}"/>
+                                    <field name="uom_name" modifiers="{&quot;readonly&quot;: true}"/>
+                                </span>
+                                <span class="o_stat_text">A Mano</span>
+                            </div>
+                        </button>
+                        <button type="object" name="action_product_tmpl_forecast_report" attrs="{'invisible':[('show_forecasted_qty_status_button', '=', False)]}" context="{'default_product_tmpl_id': id}" class="oe_stat_button" icon="fa-cubes" modifiers="{&quot;invisible&quot;: [[&quot;show_forecasted_qty_status_button&quot;, &quot;=&quot;, false]]}">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="virtual_available" widget="statinfo" nolabel="1" class="mr4" modifiers="{&quot;readonly&quot;: true}"/>
+                                    <field name="uom_name" modifiers="{&quot;readonly&quot;: true}"/>
+                                </span>
+                                <span class="o_stat_text">Pronosticado</span>
+                            </div>
+                        </button>
+                        <button type="object" name="action_view_stock_move_lines" attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}" class="oe_stat_button" icon="fa-exchange" modifiers="{&quot;invisible&quot;: [[&quot;type&quot;, &quot;not in&quot;, [&quot;product&quot;, &quot;consu&quot;]]]}">
+                            <div class="o_field_widget o_stat_info mr4">
+                                <span class="o_stat_text">Entrada:</span>
+                                <span class="o_stat_text">Salida:</span>
+                            </div>
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value"><field name="nbr_moves_in" modifiers="{&quot;readonly&quot;: true}"/></span>
+                                <span class="o_stat_value"><field name="nbr_moves_out" modifiers="{&quot;readonly&quot;: true}"/></span>
+                            </div>
+                        </button>
+                        <button type="object" name="action_view_orderpoints" attrs="{'invisible':['|',('type', '!=', 'product'),('nbr_reordering_rules', '!=', 1)]}" class="oe_stat_button" icon="fa-refresh" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;type&quot;, &quot;!=&quot;, &quot;product&quot;], [&quot;nbr_reordering_rules&quot;, &quot;!=&quot;, 1]]}">
+                            <div class="o_field_widget o_stat_info mr4">
+                                <span class="o_stat_text">M&#237;nimo:</span>
+                                <span class="o_stat_text">M&#225;ximo:</span>
+                            </div>
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value"><field name="reordering_min_qty" modifiers="{&quot;readonly&quot;: true}"/></span>
+                                <span class="o_stat_value"><field name="reordering_max_qty" modifiers="{&quot;readonly&quot;: true}"/></span>
+                            </div>
+                        </button>
+                    <button type="object" name="action_view_orderpoints" attrs="{'invisible':['|',('type', '!=', 'product'),('nbr_reordering_rules', '==', 1)]}" class="oe_stat_button" icon="fa-refresh" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;type&quot;, &quot;!=&quot;, &quot;product&quot;], [&quot;nbr_reordering_rules&quot;, &quot;==&quot;, 1]]}">
+                            <field name="nbr_reordering_rules" widget="statinfo" modifiers="{&quot;readonly&quot;: true}"/>
+                         </button>
+                        <button string="Lote / N&#250;meros de serie" type="object" name="action_open_product_lot" attrs="{'invisible': [('tracking', '=', 'none')]}" class="oe_stat_button" icon="fa-bars" modifiers="{&quot;invisible&quot;: [[&quot;tracking&quot;, &quot;=&quot;, &quot;none&quot;]]}"/>
+                        <button string="Reglas de Estrateg&#237;a de Traslado" type="object" name="action_view_related_putaway_rules" class="oe_stat_button" icon="fa-random" attrs="{'invisible': [('type', '=', 'service')]}" context="{                                 'invisible_handle': True,                                 'single_product': product_variant_count == 1,                             }" modifiers="{&quot;invisible&quot;: [[&quot;type&quot;, &quot;=&quot;, &quot;service&quot;]]}"/>
+                        <button type="object" string="Capacidades de almacenamiento" name="action_view_storage_category_capacity" class="oe_stat_button" icon="fa-cubes" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+                    
+                    <button class="oe_stat_button" name="action_view_po" type="object" icon="fa-credit-card" attrs="{'invisible': [('purchase_ok', '=', False)]}" help="Comprado en los &#250;ltimos 365 d&#237;as" modifiers="{&quot;invisible&quot;: [[&quot;purchase_ok&quot;, &quot;=&quot;, false]]}">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value">
+                                <field name="purchased_product_qty" widget="statinfo" nolabel="1" class="mr4" modifiers="{&quot;readonly&quot;: true}"/>
+                                <field name="uom_name" modifiers="{&quot;readonly&quot;: true}"/>
+                            </span>
+                            <span class="o_stat_text">Comprado</span>
+                        </div>
+                    </button>
+                
+                    <button class="oe_stat_button" name="action_view_sales" type="object" icon="fa-signal" help="Vendido en los &#250;ltimos 365 d&#237;as" attrs="{'invisible': [('sale_ok', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;sale_ok&quot;, &quot;=&quot;, false]]}">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value">
+                                <field name="sales_count" widget="statinfo" nolabel="1" class="mr4" modifiers="{&quot;readonly&quot;: true}"/>
+                                <field name="uom_name" modifiers="{&quot;readonly&quot;: true}"/>
+                            </span>
+                            <span class="o_stat_text">Vendido</span>
+                        </div>
+                    </button>
+                </div>
+                    <widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;active&quot;, &quot;=&quot;, true]]}"/>
+                    <field name="id" invisible="True" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                    <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}" modifiers="{}"/>
+                    <div class="oe_title">
+                        <label for="name" string="Nombre producto"/>
+                        <h1>
+                            <div class="d-flex">
+                                <field name="priority" widget="priority" class="mr-3" modifiers="{}"/>
+                                <field class="text-break" name="name" placeholder="p. ej. Hamburguesa de queso" on_change="1" modifiers="{&quot;required&quot;: true}"/>
+                            </div>
+                        </h1>
+                    </div>
+                    <style>
+                        div[name="options"] .o_field_boolean {
+                            margin-left: 10px;
+                            margin-right: 0px;
+                        }
+                    </style>
+                    <div name="options">
+                        <span class="d-inline-block">
+                            <field name="sale_ok" on_change="1" modifiers="{}"/>
+                            <label for="sale_ok"/>
+                        </span>
+                        <span class="d-inline-block">
+                            <field name="purchase_ok" modifiers="{}"/>
+                            <label for="purchase_ok"/>
+                        </span>
+<span class="d-inline-block">
+                    <field name="recurring_invoices_ok" modifiers="{}"/>
+                    <label for="recurring_invoices_ok"/>
+                </span>
+
+                    </div>
+                    <notebook>
+                        <page string="Informaci&#243;n general" name="general_information">
+                            <group>
+                                <group name="group_general">
+                                    <field name="active" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+                                    <field name="detailed_type" on_change="1" modifiers="{&quot;required&quot;: true}"/>
+                    <field name="invoice_policy" required="1" modifiers="{&quot;required&quot;: true}"/>
+                    <field name="expense_policy" widget="radio" attrs="{'invisible': [('visible_expense_policy', '=', False)]}" on_change="1" modifiers="{&quot;invisible&quot;: [[&quot;visible_expense_policy&quot;, &quot;=&quot;, false]]}"/>
+                
+                                    <field name="product_tooltip" string="" class="font-italic text-muted" modifiers="{&quot;readonly&quot;: true}"/>
+                <label for="product_tooltip" string="" attrs="{'invisible': ['|', ('type', 'not in', ('product', 'consu')), ('invoice_policy', '!=', 'order')]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;type&quot;, &quot;not in&quot;, [&quot;product&quot;, &quot;consu&quot;]], [&quot;invoice_policy&quot;, &quot;!=&quot;, &quot;order&quot;]]}"/>
+                <div attrs="{'invisible': ['|', ('type', 'not in', ('product', 'consu')), ('invoice_policy', '!=', 'order')]}" class="font-italic text-muted" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;type&quot;, &quot;not in&quot;, [&quot;product&quot;, &quot;consu&quot;]], [&quot;invoice_policy&quot;, &quot;!=&quot;, &quot;order&quot;]]}">
+                    Puede facturarlas antes de que se entreguen.
+                </div>
+                <label for="product_tooltip" string="" attrs="{'invisible': ['|', ('type', 'not in', ('product', 'consu')), ('invoice_policy', '!=', 'delivery')]}" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;type&quot;, &quot;not in&quot;, [&quot;product&quot;, &quot;consu&quot;]], [&quot;invoice_policy&quot;, &quot;!=&quot;, &quot;delivery&quot;]]}"/>
+                <div attrs="{'invisible': ['|', ('type', 'not in', ('product', 'consu')), ('invoice_policy', '!=', 'delivery')]}" class="font-italic text-muted" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;type&quot;, &quot;not in&quot;, [&quot;product&quot;, &quot;consu&quot;]], [&quot;invoice_policy&quot;, &quot;!=&quot;, &quot;delivery&quot;]]}">
+                    Factura despu&#233;s de la entrega, basada en las cantidades entregadas, no en las &#243;rdenes.
+                </div>
+            
+                                    <field name="uom_id" options="{'no_create': True}" on_change="1" can_create="true" can_write="true" modifiers="{&quot;required&quot;: true}"/>
+                                    <field name="uom_po_id" options="{'no_create': True}" on_change="1" can_create="true" can_write="true" modifiers="{&quot;required&quot;: true}"/>
+                                </group>
+                                <group name="group_standard_price">
+                                    <label for="list_price" class="mt-1"/>
+                                    <div name="pricing">
+                                      <field name="list_price" class="oe_inline" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" on_change="1" modifiers="{}"/>
+                                    
+                    <span class="ml-2"/><field name="tax_string" modifiers="{&quot;readonly&quot;: true}"/>
+                </div>
+                    <field name="taxes_id" widget="many2many_tags" context="{'default_type_tax_use':'sale', 'search_default_sale': 1, 'search_default_service': type == 'service', 'search_default_goods': type == 'consu'}" on_change="1" can_create="true" can_write="true" modifiers="{}"/>
+                
+                                    <label for="standard_price" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;product_variant_count&quot;, &quot;&gt;&quot;, 1], [&quot;is_product_variant&quot;, &quot;=&quot;, false]]}"/>
+                                    <div name="standard_price_uom" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}" class="o_row" modifiers="{&quot;invisible&quot;: [[&quot;product_variant_count&quot;, &quot;&gt;&quot;, 1], [&quot;is_product_variant&quot;, &quot;=&quot;, false]]}">
+                                        <field name="standard_price" widget="monetary" options="{'currency_field': 'cost_currency_id', 'field_digits': True}" modifiers="{}"/>
+                                        <span class="oe_read_only">por
+                                            <field name="uom_name" modifiers="{&quot;readonly&quot;: true}"/>
+                                        </span>
+                                    </div>
+                                    
+                <field name="product_brand_id" attrs="{'required':[('is_required_brand', '=', True)]}" placeholder="Marca" can_create="true" can_write="true" modifiers="{&quot;required&quot;: [[&quot;is_required_brand&quot;, &quot;=&quot;, true]]}"/>
+                <field name="is_required_brand" invisible="1" modifiers="{&quot;invisible&quot;: true}"/><div/>
+            <field name="categ_id" string="Categor&#237;a de producto" on_change="1" can_create="true" can_write="true" modifiers="{&quot;required&quot;: true}"/>
+<field name="number_list_partner" modifiers="{}"/>
+
+                <field name="default_code" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}" on_change="1" modifiers="{&quot;invisible&quot;: [[&quot;product_variant_count&quot;, &quot;&gt;&quot;, 1]]}"/>
+                <field name="barcode" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}" modifiers="{&quot;invisible&quot;: [[&quot;product_variant_count&quot;, &quot;&gt;&quot;, 1]]}"/>
+            
+                <field name="allow_negative_stock" attrs="{'invisible': [('type', '!=', 'product')]}" modifiers="{&quot;invisible&quot;: [[&quot;type&quot;, &quot;!=&quot;, &quot;product&quot;]]}"/>
+            
+                                    <field name="company_id" options="{'no_create': True}" on_change="1" can_create="true" can_write="true" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+                <field name="is_commission_product" widget="boolean_toggle" modifiers="{}"/>
+                <field name="commission_percentage" attrs="{'invisible': [('is_commission_product', '=', False)]}" widget="percentage" modifiers="{&quot;invisible&quot;: [[&quot;is_commission_product&quot;, &quot;=&quot;, false]]}"/>
+        
+                                    <field name="currency_id" invisible="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                    <field name="cost_currency_id" invisible="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                    <field name="product_variant_id" invisible="1" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                </group>
+                            </group>
+                            <group string="Notas internas">
+                                <field name="description" nolabel="1" placeholder="Esta nota es solo para fines internos." modifiers="{}"/>
+                            </group>
+                        </page>
+                <page name="fields_isp" string="Datos ISP">
+                    <div class="oe_button_box" name="button_box">
+            <button name="action_create_group" type="object" class="oe_stat_button" icon="fa-signal" string="Crear Grupo"/>
+                    </div>
+                    <group attrs="{'invisible':[('type','not in','service')]}" modifiers="{&quot;invisible&quot;: [[&quot;type&quot;, &quot;not in&quot;, &quot;service&quot;]]}">
+                        <group string="Es un servicio de Internet">
+                            <field name="is_internet" widget="boolean_toggle" modifiers="{}"/>
+                        </group>
+                    </group>
+                    <group attrs="{'invisible':[('type','not in','service')]}" modifiers="{&quot;invisible&quot;: [[&quot;type&quot;, &quot;not in&quot;, &quot;service&quot;]]}">
+                        <group string="Ancho de Banda">
+                            <field name="uploaded_bandwidth" modifiers="{}"/>
+                            <field name="download_bandwidth" modifiers="{}"/>
+                            <field name="is_speed_control" widget="boolean_toggle" modifiers="{}"/>
+                        </group>
+                        <group string="Comparticion">
+                            <div>
+                                <field name="sharing_bandwidth_a" class="oe_inline" modifiers="{}"/> -
+                                <field name="sharing_bandwidth_b" class="oe_inline" modifiers="{}"/>
+                            </div>
+                        </group>
+                        <group string="Configure Queue">
+                            <field name="configure_queue_burst" widget="boolean_toggle" modifiers="{}"/>
+                                <label for="product_upload_download" string="" attrs="{'invisible':[('configure_queue_burst', '!=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;configure_queue_burst&quot;, &quot;!=&quot;, true]]}"/>
+                                <div attrs="{'invisible':[('configure_queue_burst', '!=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;configure_queue_burst&quot;, &quot;!=&quot;, true]]}">
+                                    <field name="product_upload_download" invisible="1" class="oe_inline" modifiers="{&quot;invisible&quot;: true}"/>
+                                    UPLOAD-DOWNLOAD
+                                </div>
+                                <label for="burst_limit_upload" string="Burst Limit" attrs="{'invisible':[('configure_queue_burst', '!=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;configure_queue_burst&quot;, &quot;!=&quot;, true]]}"/>
+                                <div attrs="{'invisible':[('configure_queue_burst', '!=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;configure_queue_burst&quot;, &quot;!=&quot;, true]]}">
+                                    <field name="burst_limit_upload" class="oe_inline" placeholder="unlimited" modifiers="{}"/>-<field name="burst_limit_download" placeholder="unlimited" class="oe_inline" modifiers="{}"/>&amp;nbsp;bits/s
+                                </div>
+
+                                <label for="burst_threshold_upload" string="Burst Threshold" attrs="{'invisible':[('configure_queue_burst', '!=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;configure_queue_burst&quot;, &quot;!=&quot;, true]]}"/>
+                                <div attrs="{'invisible':[('configure_queue_burst', '!=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;configure_queue_burst&quot;, &quot;!=&quot;, true]]}">
+                                    <field name="burst_threshold_upload" class="oe_inline" placeholder="unlimited" modifiers="{}"/>-<field name="burst_threshold_download" class="oe_inline" placeholder="unlimited" modifiers="{}"/> bits/s
+                                </div>
+
+                                <label for="burst_time_upload" string="Burst Time" attrs="{'invisible':[('configure_queue_burst', '!=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;configure_queue_burst&quot;, &quot;!=&quot;, true]]}"/>
+                                <div attrs="{'invisible':[('configure_queue_burst', '!=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;configure_queue_burst&quot;, &quot;!=&quot;, true]]}">
+                                    <field name="burst_time_upload" class="oe_inline" placeholder="0" modifiers="{}"/>-<field name="burst_time_download" class="oe_inline" placeholder="0" modifiers="{}"/> s
+                                </div>
+                                <label for="queue_priority_upload" string="Prioridad" attrs="{'invisible':[('configure_queue_burst', '!=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;configure_queue_burst&quot;, &quot;!=&quot;, true]]}"/>
+                                <div attrs="{'invisible':[('configure_queue_burst', '!=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;configure_queue_burst&quot;, &quot;!=&quot;, true]]}">
+                                    <field name="queue_priority_upload" placeholder="8" class="oe_inline" modifiers="{}"/>-<field name="queue_priority_download" class="oe_inline" placeholder="8" modifiers="{}"/>
+                                </div>
+                        </group>
+                    </group>
+                    <group attrs="{'invisible':[('type','not in','service')]}" modifiers="{&quot;invisible&quot;: [[&quot;type&quot;, &quot;not in&quot;, &quot;service&quot;]]}">
+                        <group string="Custom Traffic Table">
+                            <field name="is_custom_traffic_table" widget="boolean_toggle" modifiers="{}"/>
+                            <field name="name_custom_traffic_table" attrs="{'invisible':[('is_custom_traffic_table', '!=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_custom_traffic_table&quot;, &quot;!=&quot;, true]]}"/>
+                        </group>
+                        <group string="Custom AddessList">
+                            <field name="is_custom_address_list" widget="boolean_toggle" modifiers="{}"/>
+                            <field name="name_address_list" attrs="{'invisible':[('is_custom_address_list', '!=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_custom_address_list&quot;, &quot;!=&quot;, true]]}"/>
+                             <field name="is_product_vlan" widget="boolean_toggle" modifiers="{}"/>
+                            <field name="s_vlan" attrs="{'invisible':[('is_product_vlan', '!=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_product_vlan&quot;, &quot;!=&quot;, true]]}"/>
+                            <field name="c_vlan" attrs="{'invisible':[('is_product_vlan', '!=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_product_vlan&quot;, &quot;!=&quot;, true]]}"/>
+                            <field name="name_custom_profile" attrs="{'invisible':[('is_product_vlan', '!=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_product_vlan&quot;, &quot;!=&quot;, true]]}"/>
+                            <field name="traffic_profile_index" modifiers="{}"/>
+                        </group>
+                    </group>
+                    <group attrs="{'invisible':[('type','not in','service')]}" modifiers="{&quot;invisible&quot;: [[&quot;type&quot;, &quot;not in&quot;, &quot;service&quot;]]}">
+                        <group string="Attributes Radius">
+                            <field name="radius_id" string="Radius" can_create="true" can_write="true" modifiers="{}"/>
+                            <field name="radius_attributes_ids" widget="many2many_tags" can_create="true" can_write="true" modifiers="{}"/>
+                            <field name="profile_radius" modifiers="{}"/>
+                        </group>
+                        <group string="Custom TCON">
+                            <field name="is_custom_tcon_profile" widget="boolean_toggle" modifiers="{}"/>
+                            <field name="name_custom_tcon_profile" attrs="{'invisible':[('is_custom_tcon_profile', '!=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_custom_tcon_profile&quot;, &quot;!=&quot;, true]]}"/>
+                        </group>
+                        <group string="Custom PPPoE Profile" name="custom_profile">
+                            <field name="is_custom_pppoe_profile" widget="boolean_toggle" modifiers="{}"/>
+                            <field name="name_custom_pppoe_profile" attrs="{'invisible':[('is_custom_pppoe_profile', '!=', True)]}" modifiers="{&quot;invisible&quot;: [[&quot;is_custom_pppoe_profile&quot;, &quot;!=&quot;, true]]}"/>
+                        </group>
+                    </group>
+                    <group attrs="{'invisible':[('type','in','service')]}" modifiers="{&quot;invisible&quot;: [[&quot;type&quot;, &quot;in&quot;, &quot;service&quot;]]}">
+                        <group string="Stock Asumido por Instalacion">
+                            <field name="qty_extra_stock" modifiers="{}"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+
+                    <group name="ip_address" string="Direccionamiento IP">
+<group>
+<field name="type_access_net" modifiers="{&quot;required&quot;: true}"/>
+</group>
+
+<group attrs="{'invisible': [('type_access_net','!=','dhcp_leases')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_access_net&quot;, &quot;!=&quot;, &quot;dhcp_leases&quot;]]}">
+<field name="dhcp_custom_server" modifiers="{}"/>
+                            <field name="interface" modifiers="{}"/>
+<field name="is_multiple_vlans" widget="boolean_toggle" modifiers="{}"/>
+</group>
+</group>
+<notebook colspan="4">
+                  <page name="ip_address" string="Direcciones IP" attrs="{'invisible': [('type_access_net','!=','dhcp_leases')]}" modifiers="{&quot;invisible&quot;: [[&quot;type_access_net&quot;, &quot;!=&quot;, &quot;dhcp_leases&quot;]]}">
+                  <group>
+            <field name="ip_address_line_ids" nolabel="1" modifiers="{}">
+                </field>
+</group>
+                    <group>
+                      <group>
+                        <!--field name="is_generate" invisible="1"/>
+                        <label for="poolip" string="Poolip"/-->
+                        <div>
+                          <span>
+                            <!--field name="poolip"  attrs="{'readonly': [('is_generate','=',True)]}"/>
+                            <button class="oe_link" name="action_generate_ip_address" string="&#8658; Generar" type="object"/-->
+                          </span>
+                        </div>
+                      </group>
+                      <group>
+                        <!--field name="gateway" options="{'no_create': True, 'no_create_edit':True}"/-->
+                      </group>
+                    </group>
+                    <group>
+                        <field name="ip_address_ids" nolabel="1" modifiers="{}">
+                          </field>
+                    </group>
+                        </page>
+                    </notebook>
+                </page>
+            
+                <page name="fields_iptv" string="Datos IPTV">
+                    <group>
+                        <group>
+                            <field name="is_iptv" modifiers="{}"/>
+                            <field name="code_ott" modifiers="{}"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </page>
+            
+                <page name="variants" string="Atributos y variantes" invisible="1" modifiers="{&quot;invisible&quot;: true}">
+                    <field name="attribute_line_ids" widget="one2many" context="{'show_attribute': False}" modifiers="{}">
+                        </field>
+                        <p class="oe_grey oe_edit_only">
+                        <strong>Advertencia</strong>: a&#241;adir o quitar atributos borrar&#225;
+                        y recrear&#225; las variantes existentes y llevar&#225; a la
+                        perdida de sus posibles personalizaciones.
+                    </p>
+                </page>
+            
+                        <page string="Ventas" attrs="{'invisible':[('sale_ok','=',False)]}" name="sales" invisible="0" modifiers="{&quot;invisible&quot;: [[&quot;sale_ok&quot;, &quot;=&quot;, false]]}">
+                            <group name="sale" invisible="0" modifiers="{}">
+                                <group string="Aumentar ventas y cross-sell" name="upsell" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+                            </group>
+                            <group>
+                                <group string="Descripci&#243;n de Ventas" name="description">
+                                    <field name="description_sale" nolabel="1" placeholder="Esta nota se agrega a pedidos de ventas y facturas." modifiers="{}"/>
+                                </group>
+                    <group string="Aviso cuando vende este producto" invisible="1" modifiers="{&quot;invisible&quot;: true}">
+                        <field name="sale_line_warn" nolabel="1" modifiers="{&quot;required&quot;: true}"/>
+                        <field name="sale_line_warn_msg" colspan="3" nolabel="1" attrs="{'required':[('sale_line_warn','!=','no-message')],'readonly':[('sale_line_warn','=','no-message')], 'invisible':[('sale_line_warn','=','no-message')]}" modifiers="{&quot;invisible&quot;: [[&quot;sale_line_warn&quot;, &quot;=&quot;, &quot;no-message&quot;]], &quot;readonly&quot;: [[&quot;sale_line_warn&quot;, &quot;=&quot;, &quot;no-message&quot;]], &quot;required&quot;: [[&quot;sale_line_warn&quot;, &quot;!=&quot;, &quot;no-message&quot;]]}"/>
+                    </group>
+                
+                            </group>
+                        </page>
+                        <page string="Compra" name="purchase" attrs="{'invisible': [('purchase_ok','=',False)]}" invisible="0" modifiers="{&quot;invisible&quot;: [[&quot;purchase_ok&quot;, &quot;=&quot;, false]]}">
+                            
+                    <field name="seller_ids" context="{'default_product_tmpl_id':context.get('product_tmpl_id',active_id), 'product_template_invisible_variant': True, 'tree_view_ref':'purchase.product_supplierinfo_tree_view2'}" nolabel="1" attrs="{'invisible': [('product_variant_count','&gt;',1)], 'readonly': [('product_variant_count','&gt;',1)]}" modifiers="{&quot;invisible&quot;: [[&quot;product_variant_count&quot;, &quot;&gt;&quot;, 1]], &quot;readonly&quot;: [[&quot;product_variant_count&quot;, &quot;&gt;&quot;, 1]]}"/>
+                    <field name="variant_seller_ids" context="{'default_product_tmpl_id': context.get('product_tmpl_id', active_id), 'tree_view_ref':'purchase.product_supplierinfo_tree_view2'}" nolabel="1" attrs="{'invisible': [('product_variant_count','&lt;=',1)], 'readonly': [('product_variant_count','&lt;=',1)]}" modifiers="{&quot;invisible&quot;: [[&quot;product_variant_count&quot;, &quot;&lt;=&quot;, 1]], &quot;readonly&quot;: [[&quot;product_variant_count&quot;, &quot;&lt;=&quot;, 1]]}"/>
+                <group name="purchase">
+                                
+                <group string="Abastecimiento" attrs="{'invisible': [('type','!=','service')]}" modifiers="{&quot;invisible&quot;: [[&quot;type&quot;, &quot;!=&quot;, &quot;service&quot;]]}">
+                    <field name="service_to_purchase" modifiers="{}"/>
+                </group>
+            <group string="Facturas de proveedores" name="bill">
+                    <field name="supplier_taxes_id" colspan="2" widget="many2many_tags" attrs="{'readonly':[('purchase_ok','=',0)]}" context="{'default_type_tax_use':'purchase'}" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;purchase_ok&quot;, &quot;=&quot;, 0]]}"/>
+                
+                    <field name="purchase_method" widget="radio" modifiers="{}"/>
+                </group>
+                            </group>
+                        
+                    <group>
+                        <group string="Descripci&#243;n de compra">
+                           <field name="description_purchase" nolabel="1" placeholder="Esta nota se agrega a los pedidos de compra." modifiers="{}"/>
+                        </group>
+                        <group string="Aviso cuando compra este producto" invisible="1" modifiers="{&quot;invisible&quot;: true}">
+                            <field name="purchase_line_warn" nolabel="1" modifiers="{&quot;required&quot;: true}"/>
+                            <field name="purchase_line_warn_msg" colspan="3" nolabel="1" attrs="{'required':[('purchase_line_warn','!=','no-message')],'readonly':[('purchase_line_warn','=','no-message')], 'invisible':[('purchase_line_warn','=','no-message')]}" modifiers="{&quot;invisible&quot;: [[&quot;purchase_line_warn&quot;, &quot;=&quot;, &quot;no-message&quot;]], &quot;readonly&quot;: [[&quot;purchase_line_warn&quot;, &quot;=&quot;, &quot;no-message&quot;]], &quot;required&quot;: [[&quot;purchase_line_warn&quot;, &quot;!=&quot;, &quot;no-message&quot;]]}"/>
+                        </group>
+                    </group>
+                </page>
+                        <page string="Inventario" name="inventory" attrs="{'invisible':[('type', '=', 'service')]}" modifiers="{&quot;invisible&quot;: [[&quot;type&quot;, &quot;=&quot;, &quot;service&quot;]]}">
+                            <group name="inventory">
+                                
+                    <field name="has_available_route_ids" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                    <group string="Operaciones" name="operations">
+                        <label for="route_ids" attrs="{'invisible': [('type', '=', 'service')]}" modifiers="{&quot;invisible&quot;: [[&quot;type&quot;, &quot;=&quot;, &quot;service&quot;]]}"/>
+                        <div>
+                            <field name="route_ids" class="mb-0" widget="many2many_checkboxes" attrs="{'invisible': ['|', ('has_available_route_ids', '=', False), ('type', '=', 'service')]}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;has_available_route_ids&quot;, &quot;=&quot;, false], [&quot;type&quot;, &quot;=&quot;, &quot;service&quot;]]}"/>
+                            <button id="stock.view_diagram_button" string="Ver diagrama" type="action" name="361" icon="fa-arrow-right" attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}" class="btn btn-link pt-0" context="{'default_product_tmpl_id': id}" modifiers="{&quot;invisible&quot;: [[&quot;type&quot;, &quot;not in&quot;, [&quot;product&quot;, &quot;consu&quot;]]]}"/>
+                        </div>
+                        <field name="route_from_categ_ids" widget="many2many_tags" attrs="{'invisible': [('route_from_categ_ids', '=', [])]}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;route_from_categ_ids&quot;, &quot;=&quot;, []]], &quot;readonly&quot;: true}"/>
+                    </group>
+                <group name="group_lots_and_weight" string="Log&#237;stica" attrs="{'invisible': [('type', 'not in', ['product', 'consu'])]}" modifiers="{&quot;invisible&quot;: [[&quot;type&quot;, &quot;not in&quot;, [&quot;product&quot;, &quot;consu&quot;]]]}">
+                                    
+                        
+                <field name="qty_extra_stock" modifiers="{}"/>
+            <field name="responsible_id" domain="[('share', '=', False)]" widget="many2one_avatar_user" can_create="true" can_write="true" modifiers="{}"/>
+                    <label for="weight" attrs="{'invisible':[('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;product_variant_count&quot;, &quot;&gt;&quot;, 1], [&quot;is_product_variant&quot;, &quot;=&quot;, false]]}"/>
+                                    <div class="o_row" name="weight" attrs="{'invisible':[('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;product_variant_count&quot;, &quot;&gt;&quot;, 1], [&quot;is_product_variant&quot;, &quot;=&quot;, false]]}">
+                                        <field name="weight" modifiers="{}"/>
+                                        <span><field name="weight_uom_name" modifiers="{&quot;readonly&quot;: true}"/></span>
+                                    </div>
+                                    <label for="volume" attrs="{'invisible':[('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;product_variant_count&quot;, &quot;&gt;&quot;, 1], [&quot;is_product_variant&quot;, &quot;=&quot;, false]]}"/>
+                                    <div class="o_row" name="volume" attrs="{'invisible':[('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;product_variant_count&quot;, &quot;&gt;&quot;, 1], [&quot;is_product_variant&quot;, &quot;=&quot;, false]]}">
+                                        <field name="volume" string="Volumen" modifiers="{}"/>
+                                        <span><field name="volume_uom_name" modifiers="{&quot;readonly&quot;: true}"/></span>
+                                    </div>
+                                
+                    <label for="sale_delay" attrs="{'invisible': [('sale_ok', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;sale_ok&quot;, &quot;=&quot;, false]]}"/>
+                    <div attrs="{'invisible': [('sale_ok', '=', False)]}" modifiers="{&quot;invisible&quot;: [[&quot;sale_ok&quot;, &quot;=&quot;, false]]}">
+                        <field name="sale_delay" class="oe_inline" style="vertical-align:baseline" modifiers="{}"/> d&#237;as
+                    </div>
+                </group>
+                    <group string="Trazabilidad" name="traceability" attrs="{'invisible': [('type', '=', 'consu')]}" modifiers="{&quot;invisible&quot;: [[&quot;type&quot;, &quot;=&quot;, &quot;consu&quot;]]}">
+                        <field name="tracking" widget="radio" attrs="{'invisible': [('type', '=', 'service')]}" on_change="1" modifiers="{&quot;invisible&quot;: [[&quot;type&quot;, &quot;=&quot;, &quot;service&quot;]], &quot;required&quot;: true}"/>
+                    </group>
+                     <group string="Ubicaciones de contrapartida" name="stock_property">
+                        <field name="property_stock_production" can_create="true" can_write="true" modifiers="{}"/>
+                        <field name="property_stock_inventory" can_create="true" can_write="true" modifiers="{}"/>
+                    </group>
+                
+                            </group>
+                            <group name="packaging" string="Empaquetado" colspan="4" invisible="1" modifiers="{&quot;invisible&quot;: true}">
+                                <field name="packaging_ids" nolabel="1" context="{'tree_view_ref':'product.product_packaging_tree_view2', 'default_company_id': company_id}" modifiers="{}"/>
+                            </group>
+                        
+                    <group>
+                        <group string="Descripci&#243;n para Recepciones">
+                            <field name="description_pickingin" nolabel="1" placeholder="Esta nota se agrega a los pedidos de recibo (por ejemplo, d&#243;nde almacenar el producto en el almac&#233;n)." modifiers="{}"/>
+                        </group>
+                        <group string="Descripci&#243;n para pedidos de entrega">
+                            <field name="description_pickingout" nolabel="1" placeholder="Esta nota se agrega a los pedidos de entrega." modifiers="{}"/>
+                        </group>
+                        <group string="Descripci&#243;n para Transferencias Internas">
+                            <field name="description_picking" placeholder="Esta nota se agrega a las &#243;rdenes de transferencia internas (por ejemplo, d&#243;nde elegir el producto en el almac&#233;n)." nolabel="1" modifiers="{}"/>
+                        </group>
+                    </group>
+                </page>
+                    <page string="Contabilidad" name="invoicing">
+                        <group name="properties">
+                            <group string="Por cobrar">
+                                <field name="property_account_income_id" can_create="true" can_write="true" modifiers="{}"/>
+                            </group>
+                            <group string="Por Pagar" name="payables">
+                                <field name="property_account_expense_id" attrs="{'readonly': [('purchase_ok', '=', 0)]}" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;purchase_ok&quot;, &quot;=&quot;, 0]]}"/>
+                    <field name="property_account_creditor_price_difference" domain="[('deprecated','=',False)]" attrs="{'readonly':[('purchase_ok', '=', 0)]}" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;purchase_ok&quot;, &quot;=&quot;, 0]]}"/>
+                
+                            </group>
+                        </group>
+                        <group name="accounting"/>
+                    </page>
+                
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" modifiers="{}"/>
+                    <field name="activity_ids" modifiers="{}"/>
+                    <field name="message_ids" modifiers="{}"/>
+                </div>
+            </form>
+            

@@ -1,0 +1,2823 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Document>
+<Placemark>
+	<name>Nap La Paz 5A11 San Francisco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9483664199,10.48541024,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5A12 San Francisco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9484723671,10.4855117806,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5A13 SAM</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9483436211,10.4858299317,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5A14 SAM</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.948265837,10.4858774052,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5A15 Talleres</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9480941757,10.485452781,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5A16 Talleres</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9480660125,10.4854699242,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5A17 Rotaria</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9484401806,10.485891911,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5A18 Rotaria</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9483771487,10.4859393845,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5A19 Rotaria</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9483181401,10.485977627,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5A110 Filomena</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9478018149,10.4850255188,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5A111 Filomena</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9477240308,10.4850835421,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5A112 Phrofinca</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9474960431,10.4852747552,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5A113 Phrofinca</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9474531277,10.4852233255,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5A114 Alfredo Bassano</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9477304875,10.4858493544,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5A115 Alfredo Bassano</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9477841317,10.4858559479,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5A116 Alfredo Bassano</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9478216826,10.4858994653,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6A21 Calle Ciega</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9488229092,10.4856778468,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6A22 Calle Ciega</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.949074927,10.4855177943,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6A23 La Linea</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9491423894,10.4857517111,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6A24 La Linea</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9493644462,10.4853352983,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6A25 La Linea</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.94942573,10.4850098802,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6A26 La Linea</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9495442632,10.4846769607,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6A27 La Linea</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9497411168,10.484350325,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6A28 C. Antimano</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9492764547,10.4859818452,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6A29 C. Antimano</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9495270963,10.4858451855,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6A210 C. Antimano</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9498463736,10.485395467,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6A211 C. Antimano</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9501405982,10.4850557752,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6A212 C. Antimano</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9504315058,10.4847389308,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6A216 Tamaira</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9479988525,10.4863351456,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6A213 Funchal</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9499554554,10.4849386513,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6A214 Funchal</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9498857982,10.4848934753,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6A215 Funchal</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9498241074,10.4848460017,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7A31 San Michael</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.94923626,10.4844848336,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7A32 San Michael</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9492761579,10.4844828555,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7A33 San Michael</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9493234318,10.4844828555,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7A34 Emma</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9491859686,10.4843529622,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7A35 Emma</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9492530238,10.4843107633,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7A36 Marina Suites</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9491826158,10.4849272617,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7A37 Marina Suites</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9492355894,10.4849477018,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7A38 Marina Suites</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9492865514,10.4849720979,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7A39 Santa Fe</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.94923626,10.4847202239,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7A310 Santa Fe</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9493113618,10.4847169271,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7A311 Ulises</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9488822084,10.4845646157,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7A312 Rotaria</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9490987968,10.4845125266,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7A313 Cultura</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9485891771,10.4846107707,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7A314 Cultura</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9485452989,10.4845413356,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7A315 Talleres</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9481246536,10.4854349244,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  8A71 Urbanismo A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9508675577,10.4822683763,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  8A72 Urbanismo A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9508407356,10.4822466174,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  8A73 Urbanismo A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9508145841,10.482222221,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  8A74 Urbanismo A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9507931264,10.4822017808,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8A77 Urbanismo B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9507522227,10.4823705773,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  8A75 Urbanismo A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9507703276,10.4821787031,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  8A76 Urbanismo A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9507515521,10.482160241,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8A78 Urbanismo B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9507280828,10.4823514558,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8A79 Urbanismo B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9507046135,10.4823283782,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8A710 Urbanismo B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9506851675,10.4823092567,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8A711 Urbanismo B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9506630393,10.4822888165,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8A712 Urbanismo B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9506422521,10.4822657389,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  9A71 Urbanismo C</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9506429227,10.4824609098,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  9A72 Urbanismo C</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9506231079,10.4824455135,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  9A73 Urbanismo C</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9506029914,10.4824263921,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  9A74 Urbanismo C</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9505801926,10.4824079299,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  9A75 Urbanismo C</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9505587349,10.4823841929,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  9A76 Urbanismo C</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9505332539,10.4823564998,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  9A77 Urbanismo D</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9505386183,10.4825437583,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  9A78 Urbanismo D</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9505171607,10.4825239775,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  9A79 Urbanismo D</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.950495703,10.4825081528,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  9A710 Urbanismo D</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9504775981,10.4824923282,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  9A711 Urbanismo D</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9504581521,10.4824725473,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  9A712 Urbanismo D</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9504340122,10.4824488103,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  10A81 Urbanismo E</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9503334294,10.4821573284,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  10A82 Urbanismo E</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9502730797,10.4820979858,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  10A83 Urbanismo E</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9502180944,10.4820531492,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 10A84 Urbanismo E</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.950161768,10.48201095,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  10A85 Urbanismo F</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.950239552,10.4822430454,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  10A86 Urbanismo F</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9502020011,10.4822034837,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  10A87 Urbanismo F</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9501604269,10.4821744718,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  10A88 Urbanismo F</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9501215348,10.4821415037,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz  10A89 Urbanismo F</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9500893483,10.4821111731,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 10A810 Urbanismo F</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9500585029,10.4820847986,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 11A81 Urbanismo G</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9501282404,10.482335356,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 11A82 Urbanismo G</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9500866661,10.4823155752,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 11A83 Urbanismo G</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9500477741,10.4822839258,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 11A84 Urbanismo G</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9500196109,10.4822522765,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 11A85 Urbanismo G</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9499927888,10.4822219458,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 11A86 Urbanismo G</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9499606023,10.4821889778,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 11A87 Urbanismo H</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9500236342,10.4824184356,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 11A88 Urbanismo H</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9499901066,10.4823879046,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 11A89 Urbanismo H</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9499659667,10.4823615302,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 11A810 Urbanismo H</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.949931098,10.4823364744,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 11A811 Urbanismo H</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9498989115,10.4823035064,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 11A812 Urbanismo H</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.949866725,10.482271857,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 12A81 Urbanismo I</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9499203692,10.4824986773,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 12A82 Urbanismo I</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9498855005,10.482476259,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 12A83 Urbanismo I</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9498586784,10.482452522,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 12A84 Urbanismo I</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9498291741,10.4824301037,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 12A85 Urbanismo I</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9497969876,10.4823997731,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 12A86 Urbanismo I</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9497567544,10.4823615302,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 12A87 Urbanismo J</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9498103986,10.4825936253,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 12A88 Urbanismo J</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9497808943,10.4825659321,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 12A89 Urbanismo J</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9497487078,10.48254747,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 12A810 Urbanismo J</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9497192035,10.482523733,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 12A811 Urbanismo J</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9496883581,10.4824973586,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 12A812 Urbanismo J</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9496548305,10.4824683467,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 13A51 Guayanita</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.951777629,10.4812838709,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 13A52 Guayanita</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9518501274,10.4825454756,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 13A53 Guayanita</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9511788938,10.4829495564,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 13A54 Guayanita</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9504565863,10.4834931332,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 13A59 Giuseppe</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9518864568,10.4826809844,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 13A55 Mares</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9507233444,10.4833682183,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 13A56 Mares</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.950758621,10.4833518203,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 13A57 Mares</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9507881253,10.4833386331,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 13A58 Mares</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9508256763,10.4833201711,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 13A510 Giuseppe</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9519271193,10.4826660859,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 13A511 Calle La Guayanita</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9514514411,10.4827722542,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 14A51 Linea 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9506691667,10.4833496732,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 14A52 Linea 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9509117727,10.4832074698,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 14A53 Linea 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9511373428,10.4831039242,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 14A54 Linea 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9513628364,10.483028769,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 14A55 Linea 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.951876229,10.4829064375,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 15A51 Elena</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9500944731,10.4829302525,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 15A52 Elena</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9500636277,10.4829038781,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 15A53 Elena</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9500314412,10.4828735475,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 15A54 Blanca</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9502902744,10.4830146506,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 15A55 Blanca</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9503184376,10.4829869574,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 4B91</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9480270358,10.4868684214,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 4B92 Vista Bella</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9499757648,10.4860828139,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 4B93 Vista Bella</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9504675034,10.4857977198,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 4B94 Vista Bella</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.95033337,10.4854967271,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 4B95 Vista Bella</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9507051867,10.4852878875,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 4B96 Vista Bella</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9511785618,10.4860995319,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 4B97 Vista Bella</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9505676126,10.4865013774,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 4B98 Vista Bella</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9508204951,10.4863564253,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 4B99 Vista Bella</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9509281107,10.4868147721,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 4B910 Vista Bella</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9516821501,10.4864060681,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 4B911 Vista Bella</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9522872681,10.4865810732,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 4B912 Vista Bella</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9524530351,10.4870225605,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 4B913 Vista Bella</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9528541617,10.4872955195,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 4B914 Vista Bella</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9528680612,10.4870106745,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 4B915 Vista Bella</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9531059471,10.4872200728,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 4B916 Vista Bella</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9537288,10.4879894345,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 5B101 Miranda</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9480173236,10.4869391767,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 5B102 INTI</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9475152293,10.4886965043,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 5B103 INTI</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9471048513,10.4888362861,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 5B104 INTI</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9467481175,10.4890340903,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 5B105 Rio</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9481959183,10.4871853888,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 5B106 Helio</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9479652483,10.4873317646,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5B107 Mago</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9478197384,10.487853511,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5B1011 Simon Bolivar</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9478948403,10.4880354915,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5B1012 Simon Bolivar</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9479271671,10.4880209814,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5B1013 Simon Bolivar</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9479606947,10.4880038384,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5B108 San Juan</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.947989156,10.4883281064,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5B109 San Juan</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9480320714,10.4883043699,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5B110 San Juan</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9480823628,10.4882773366,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 5B1014 Helio</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9479404768,10.4873434114,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 5B1015 Edificio San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9483890511,10.4870895136,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6B131 Santa Maria</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.94878146,10.4879795691,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6B132 Santa Maria</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9487157459,10.4880191301,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6B133 Santa Maria</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9486513729,10.4880481415,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6B134 San Gaetano</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9487841422,10.4874824193,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6B135 San Gaetano</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9488297398,10.4874652762,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6B136 Clinica</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9487345214,10.4883923216,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6B137 San Vicente</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9485695655,10.4875561166,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6B138 San Vicente</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9485038514,10.4875930402,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6B1312 Libertador</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9484555716,10.4881600809,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6B1313 Libertador</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9483979041,10.4881956857,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 6B1314 Libertador</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9483469422,10.4882312906,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7B121 Vista Bella</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9510148372,10.4842287699,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7B122 Vista Bella</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9510644581,10.4842129453,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7B123 Vista Bella</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9511167612,10.4841984395,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7B124 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9511135636,10.4851005911,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7B125 Iglesia</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.951337528,10.4855386162,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7B126 Piedra Azul</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9519897789,10.4847773609,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7B127 Piedra Azul</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9523679704,10.4851347318,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7B128 Piedra Azul</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9524578244,10.4849224193,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 7B129 Piedra Azul</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9523847606,10.4852962306,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 19B151 Araguaney</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9525882834,10.4890435535,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8B156 Santa Rosa</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9530000025,10.4886743188,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8B157 Santa Rosa</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9530563289,10.4886453075,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8B158 Victoria</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9524193042,10.4894039064,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8B159 Victoria</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9524353975,10.4894395112,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8B1510 Victoria</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9524608785,10.489483028,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8B1511 Monte Blanco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9527183705,10.488867198,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8B1512 Vista Hermosa</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9523750478,10.4891915968,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8B1513 Vista Hermosa</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9522851938,10.4891915968,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8B153 Calle 15</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9539522689,10.4874633393,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8B152 Calle 15</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9545877388,10.487659299,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8B154 Calle 15</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9548555049,10.487569451,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8B1514 Calle 12</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.952146502,10.4895111166,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8B1515 Calle 7</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9524987014,10.4901247072,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8B1516 Calle 7</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9523838921,10.4889289647,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 8B155 Calle 15</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9545589911,10.4881440902,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 9B164 Calle F</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9559698924,10.4900188485,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 9B162 Calle B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9555106933,10.4890793118,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 9B163 Calle B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9556661921,10.489410415,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 9B161 Calle 7A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9553574507,10.488771618,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 9B167 Calle 7A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9550150883,10.4883620755,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 9B168 Calle 14</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9554172683,10.4891811116,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 9B169 Calle 14</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.95446893,10.488811516,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 9B166 Calle 14</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9544462193,10.4886907032,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 9B1610 Calle 14</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9540104235,10.4883339146,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 9B165 Calle 14</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9556526588,10.4896219425,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 9B1611 Calle F</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9562661565,10.4891777077,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 9B1612 Calle F</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9561814864,10.4889983702,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 9B1613 Calle F</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9558966868,10.4873780943,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 9B1614 Calle F</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9558507625,10.4872462905,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 9B1615 Calle F</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9563701174,10.4878679689,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 9B1616 Calle F</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.956353452,10.4885053875,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 18171 Calle 5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.948807624,10.4896230966,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 18172 Calle 5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9494889051,10.489166829,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 18173 Calle 5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.950116542,10.4887422093,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 18174 Calle 5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9503197194,10.4887178134,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 18175 Calle 5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9496015579,10.4891958402,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La paz 18176 Calle 5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9489390522,10.4896283714,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 1911 Linea 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9455076545,10.4885411094,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 1912 Linea 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9449858894,10.4889859004,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 1913 Linea 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9446055969,10.4899555365,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 1914 Linea 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9443328902,10.4895451672,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 1915 Linea 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9438002252,10.4898005787,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 1916 Linea 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9435545155,10.4902747011,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 1917 Linea 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9438758419,10.4906241433,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2021 Pinos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9459058319,10.4954729516,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2023 Pinos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9461585517,10.4955592986,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2022 Pinos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9459140178,10.4957834627,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2024 Pinos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9465361199,10.4955917057,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2025 Pinos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.947088655,10.4955943431,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2026 Pinos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9474695286,10.4957024736,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2027 Pinos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.947756525,10.4957486269,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2121 Moran</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9456671923,10.4954787063,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2129 Pinos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9468698278,10.5015158339,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2128 Moran</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9464591146,10.5007401423,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2127 Moran</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9460621476,10.4997633549,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2126 Moran</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9458261132,10.4991534793,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2125 Moran</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9457382709,10.4984651426,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2124 Moran</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9458935037,10.4977412007,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2123 Moran</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9455873966,10.4968438532,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2122 Moran</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9457060844,10.4959712279,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2231 Eucalipto</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9359150156,10.497088135,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2232 Eucalipto</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9363468513,10.4975170288,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2233 Eucalipto</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.936477609,10.4979584494,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2234 Eucalipto</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.936522536,10.4981456985,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2235 Eucalipto</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9367739931,10.4986382159,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2236 Eucalipto</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9370764121,10.4989553519,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2237 Eucalipto</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9370542839,10.4996245671,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2238 Eucalipto</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9370469078,10.499873462,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2341 La Quebradita 12</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9447316546,10.4933365795,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2342 La Quebradita 12</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9447169024,10.4932838325,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2343 La Quebradita 12</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9447008092,10.4932376788,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2344 La Quebradita 12</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9446833748,10.4931849318,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>La Paz 2451 Ezequiel Zamora</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9326598197,10.4998625832,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>La Paz 2452 Ezequiel Zamora</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9316992536,10.5006943194,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>La Paz 2453 Ezequiel Zamora</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9333571941,10.4991449081,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>La Paz 2454 Ezequiel Zamora</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9340874255,10.4987832678,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>La Paz 2455 Ezequiel Zamora</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9334698468,10.5002034535,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>La Paz 2456 Ezequiel Zamora</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9333612174,10.5008891491,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2551 El Carmen</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9343844801,10.4985281083,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2552 El Carmen</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9348397851,10.4985063506,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2553 El Carmen</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9352746382,10.4994818233,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2554 El Carmen</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9345551357,10.4995830296,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2555 El Carmen</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.934062615,10.4999014833,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2556 El Carmen</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9355525821,10.4999951073,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2557 El Carmen</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9352099299,10.4986279964,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2651 Leoncio Martinez</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9320868328,10.4987779932,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2652 Leoncio Martinez</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9317146763,10.4998137932,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2653 Leoncio Martinez</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9310109317,10.499125458,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2654 Leoncio Martinez</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9307541102,10.5005868498,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2655 Leoncio Martinez</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.930851005,10.4985551407,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2656 Leoncio Martinez</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9308577105,10.4980187779,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2657 Leoncio Martinez</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9304084405,10.4999746683,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2731 San Martin</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9366636872,10.4962877073,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2732 San Martin</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9373218343,10.4960018869,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2733 San Martin</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9381995872,10.4959718873,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2734 San Martin</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9388255477,10.4956145289,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2735 San Martin</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9395782426,10.4954750799,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2861 Guarataro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9279330969,10.4991198537,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2862 Guarataro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9279967993,10.4982923989,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2863 Guarataro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9278097153,10.5003241097,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2864 Guarataro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9288142025,10.4997821456,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2865 Guarataro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9294039533,10.4999347792,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2866 Guarataro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9293603674,10.4993410574,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2867 Guarataro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9300926104,10.498973813,0</coordinates></Point>
+</Placemark>
+</Document></kml>

@@ -1,0 +1,3033 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Document>
+<Placemark>
+	<name>Nap Coche 111 Aragua</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9229823804,10.4496751893,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 112 Aragua</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9229636049,10.4496676059,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 113 Aragua</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9229444942,10.4496603521,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 114 Aragua</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9229263893,10.4496537578,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 115 Aragua</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9229056021,10.4496455149,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 116 Aragua</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9228844797,10.4496376018,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 117 Aragua</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9228603399,10.4496277103,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 118 Barinas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9237451938,10.4493559565,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 119 Bolivar</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.923489471,10.4493709853,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 119 Carabobo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9233645076,10.4496281778,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 1111 Cojedes</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9234088215,10.4498726439,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 1112 Falcon</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9232880209,10.4501167622,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 1113 Guarico</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9234504268,10.4503067469,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 1114 Lara</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9237400276,10.4503125557,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 1115 Merida</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9241642893,10.4502303854,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 1116 Miranda</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9238663772,10.4501084369,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 231 Apure</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9232099917,10.4492749165,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 232 Apure</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9231778052,10.4492663439,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 233 Apure</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9231516537,10.4492590901,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 234 Apure</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9231275138,10.4492505175,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 235 Apure</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9231053856,10.4492439232,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 236 Apure</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9230819163,10.4492353506,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 237 Apure</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9230591175,10.4492280968,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 238 Anzoategui</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9234619491,10.448964212,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 239 Anzoategui</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9234317742,10.4489487153,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 2310 Anzoategui</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9234093107,10.4489417913,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 2311 Anzoategui</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9233687423,10.448939813,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 2312 Anzoategui</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9233399086,10.4489391536,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 2313 Anzoategui</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9233127512,10.4489286026,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 2314 Anzoategui</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9232865997,10.4489183814,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 346 Zulia</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9242794941,10.4492128923,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 345 Yaracuy</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9245160804,10.4493014903,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 344 Sucre</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9245158718,10.4495612619,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 343 Trujillo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9247711668,10.4496085607,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 342 Tachira</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9248180575,10.4498637309,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 341 Portuguesa</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9246374901,10.4500206157,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 421 Nueva Esparta</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.924055169,10.450877682,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 422 Nueva Esparta</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9240390757,10.4508552615,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 423 Nueva Esparta</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9240263352,10.4508381163,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 424 Nueva Esparta</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9240142653,10.4508216306,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 425 Nueva Esparta</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.924004207,10.4508058043,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 426 Nueva Esparta</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9239928076,10.450794594,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 427 Nueva Esparta</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9239800671,10.45077613,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 428 Monagas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9242671663,10.4507723618,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 429 Monagas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9242530847,10.4507532384,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 4210 Monagas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9242410148,10.4507387309,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 4211 Monagas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9242299507,10.4507252126,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 4212 Monagas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.924218216,10.4507087269,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 4213 Monagas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9242044697,10.4506929006,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 4214 Monagas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9241937409,10.4506754258,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 551 Caobo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9242651818,10.4510899915,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 5513 Caobo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9243215082,10.4510636144,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 552 Saman</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9241530273,10.451230014,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 553 Seiba</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9244425952,10.4513508467,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 554 Seiba</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9245847523,10.4513495278,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 555 Araguaney</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9242099136,10.4516179146,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 556 Araguaney</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9242313713,10.4517372708,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 557 Bucare</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.924743142,10.4520192805,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 559 Jabillo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9249013924,10.4516358493,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 5510 Jabillo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9249671065,10.4517097051,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 5511 Jabillo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9250730537,10.4517954306,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 558 Jabillo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9248209261,10.4515659501,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 5512 Jabillo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9251521789,10.4519035765,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche T5N1 Bloque 5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9261462321,10.4447139733,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche T5N2 Bloque 5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9269455304,10.4446849579,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche T6N1 Bloque 6</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9261435499,10.444218073,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche T6N2 Bloque 6</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.927010258,10.4441558881,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche T7N1 Bloque 7</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9261487618,10.4436392042,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche T7N2 Bloque 7</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9270338907,10.4436128265,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche T8N1 Bloque 8</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9262667789,10.4431116488,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche T8N2 Bloque 8</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9270768061,10.4430720822,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche T4N1 Bloque 4</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9259991843,10.4452739524,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche T4N2 Bloque 4</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9268440801,10.4452238349,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche T3N1 Bloque 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.925674637,10.4458226061,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche T3N2 Bloque 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9266295034,10.4457909531,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche T2N1 Bloque 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9253876406,10.4463712589,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche T2N2 Bloque 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9262244898,10.4463290549,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche T1N1 Bloque 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9249546843,10.4469679279,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche T1N2 Bloque 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9259578304,10.4468703312,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 9101 Bloque 13</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9255801013,10.4441858284,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 9102 Bloque 13</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9256337455,10.4442108872,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 9103 Bloque 13</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9256552031,10.4442715559,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 9104 Bloque 13</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9256484976,10.4443203546,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 9105 Bloque 13</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9256055823,10.4443638778,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 661 Boulevard</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9246602459,10.4476618899,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 662 Boulevard</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9252677662,10.4478729091,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 663 Mercadito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9241895182,10.4483869231,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 664 Mercadito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9243491096,10.4484436344,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 665 Mercadito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9243705673,10.4484594608,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 666 Mercadito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9246857268,10.4486071738,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 667 Mercadito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9247045023,10.4486335511,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 668 Mercadito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9248775048,10.4486691605,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 669 Mercadito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9252305568,10.4488593255,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 6610 Boulevard</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9246381794,10.4476525364,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 6611 Mercadito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9243887321,10.4484665894,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 6612 Mercadito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9239222778,10.4481836254,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 6613 Mercadito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9249066485,10.4477325722,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 6614 Mercadito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9252178979,10.448566482,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 6615 Mercadito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9250567634,10.4493845791,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 6616 Mercadito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9247447998,10.4486924684,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 11121 Calle Zea</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9296768064,10.441645668,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 11122 Calle Zea</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9291878542,10.4416995276,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 11123 Calle Zea</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9283945795,10.4417223588,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 11124 Calle Zea</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.927645404,10.4416670502,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 11125 Calle Zea</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9270381689,10.441729059,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 11126 Calle Zea</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9261102017,10.4417613132,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 11127 Calle Zea</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9308244503,10.4414338191,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 11128 Calle Zea</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9312927249,10.4412329888,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 12121 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.930626662,10.4415322139,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 12122 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9312768929,10.4417220746,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 12123 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9313409231,10.441999983,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 12124 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9314088444,10.4424038224,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 12127 El Quilombo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9310944745,10.4407291563,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 12126 El Quilombo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9308547706,10.4408007353,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 12125 El Quilombo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9307215792,10.4410567175,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 13121 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9301196655,10.441883569,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 13122 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9303758749,10.4421537027,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 13123 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9304838917,10.4423994426,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 13124 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9305939129,10.4419661679,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 13125 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.930866028,10.4424031972,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 13126 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9304335251,10.4427719815,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 13127 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9309345561,10.441727883,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 13128 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.931137433,10.4421057803,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 14131 Gabriel del Avila</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9257601956,10.4419824394,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 14132 Gabriel del Avila</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9258259097,10.441975845,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 14133 Gabriel del Avila</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9257669011,10.4420549786,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 14134 Gabriel del Avila</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.925828592,10.4420483841,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 14135</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9285500058,10.4418093889,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 14136</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.928732396,10.4418159834,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 14137</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.928757877,10.4420256876,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 14138</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9284601518,10.4423857455,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 14139</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9282818403,10.4425145755,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 141310</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9281486954,10.4423679852,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 141311</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.928118496,10.4422147796,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 141312</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.928079604,10.4420828903,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 141313</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9282271255,10.4420499179,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 141314</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9283296243,10.4419737989,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 141315</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9283725397,10.4420740349,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 15143 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9299863606,10.4429232161,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 15144 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9294413935,10.4431364017,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 15145 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9290824874,10.4432538446,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 15146 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9286378352,10.4431911553,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 15147 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.928965775,10.443041281,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 15148 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9290643163,10.4425890497,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 15141 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9299804161,10.4424674075,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 15142 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9294625617,10.4423866657,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 16121 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.929337548,10.4419739526,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 16122 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9288217533,10.4421534062,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 16123 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9285189735,10.4425003766,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 16124 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9285747621,10.442866099,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 17141 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9306547838,10.4430293074,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 17142 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9307675634,10.4434430413,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 17143 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9304159623,10.4438388098,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 17144 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9308969043,10.4438122437,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 17145 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9312971023,10.4426851235,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 17146 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9315396967,10.4431937516,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 17147 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9315608283,10.443728999,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 17148 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9311007862,10.44329341,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 18151 Cochecito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9332147017,10.4470623762,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 18152 Cochecito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9330132008,10.4459808986,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 18153 Cochecito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9327151403,10.4453217889,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 18154 Cochecito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9329256937,10.4443705451,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 18155 Cochecito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9322014973,10.4432155301,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 18156 Cochecito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9324740767,10.4433315923,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 18157 Cochecito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9327513501,10.4438222185,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 18158 Cochecito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9324402139,10.4445406811,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 19141 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9316981896,10.4440695904,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 19142 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.931322068,10.4445614535,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 19143 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9316112889,10.4447594269,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 19144 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9318405432,10.444924868,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 19145 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9319511993,10.4454825386,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 19146 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9312120974,10.4450761474,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 19147 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9305184111,10.4450543858,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 19148 El Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9302300577,10.4450136444,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 20172 El Manguito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9284671918,10.4443487835,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 20171 El Manguito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9291886811,10.444438642,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 20173 El Manguito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9289147634,10.4438931995,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 20174 El Manguito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9297358967,10.4441710266,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 20175 El Manguito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9297299,10.443775,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap coche 20176 El Manguito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.930527217,10.4445286243,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap coche 20177 El Manguito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9308106867,10.444426122,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap coche 20178 El Manguito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9284711575,10.44526792,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 21161 Rinconada 20A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9253702462,10.4405035524,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 21162 Rinconada 20B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9253397535,10.4406245823,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 21164 Rinconada 24B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9255502895,10.4397184758,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 21163 Rinconada 24A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9255834818,10.4395529533,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 21165 Rinconada 25A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9257438285,10.439581296,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 21166 Rinconada 25B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9259195132,10.4396155875,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 21167 Rinconada 18A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9253379008,10.4407975963,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 21168 Rinconada 18B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9254492125,10.4408252932,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 22151 cochecito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9334074541,10.4478461587,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 22152 cochecito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9335567861,10.448745139,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 22153 cochecito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.934197395,10.4492105628,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 22154 cochecito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9323777578,10.4467012986,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 22155 Maclan</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9340126589,10.4435314039,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 22156 Maclan</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9351767376,10.4424898104,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 22157 Maclan</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9369104505,10.442066116,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 23181 Hipodromo 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9269025482,10.4397304836,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 23182 Hipodromo 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9268676794,10.4397186135,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 23183 Hipodromo 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9268261052,10.4397014678,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 23184 Hipodromo 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.926784531,10.4396836625,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 23185 Hipodromo 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9267496622,10.4396698141,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 23186 Hipodromo 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9267107702,10.4396539872,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 23187 Hipodromo 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9266759015,10.4396394793,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 23188 Hipodromo 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9270701862,10.4393123908,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 23189 Hipodromo 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9270379997,10.4392978828,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 231810 Hipodromo 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.927003131,10.4392860127,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 231811 Hipodromo 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9269669212,10.4392688669,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 231812 Hipodromo 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9269320525,10.4392569968,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 231813 Hipodromo 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.926899866,10.4392438077,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 231814 Hipodromo 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9268636561,10.4392332565,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 231815 Hipodromo 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9273857878,10.4383416398,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 24191 Mercado Mayor</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9288041443,10.4406680852,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 24192 Mercado Mayor</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9285764918,10.441340064,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 24193 Mercado Mayor</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9280246273,10.4413552314,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 24194 Mercado Mayor</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9284594804,10.4396855032,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 24195 Mercado Mayor</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.928743124,10.4391688221,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 24196 Mercado Mayor</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9295437634,10.4400719419,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 24197 Mercado Mayor</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9298538938,10.4395470182,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 24198 Mercado Mayor</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9271854311,10.4397873885,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 24199 Mercado Mayor</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9275669754,10.4406318155,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 241910 Mercado Mayor</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9272176176,10.4411293701,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 241911 Mercado Mayor</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9281154695,10.4403778207,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 241912 Mercado Mayor</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9293727132,10.4389987325,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 25201 Rinconada 1 1A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9240713865,10.4462990776,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 25203 Rinconada 1 6A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9244670123,10.4451279135,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 25204 Rinconada 1 6B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9246577844,10.4451724257,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 25205 Rinconada 1 10A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9250068069,10.4441977712,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 25206 Rinconada 1 10B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.924970597,10.4443642804,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 2527 Rinconada 1 13</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9248297811,10.4435231608,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 25208 Rinconada 1 9A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9248586148,10.4447325786,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 25209 Rinconada 1 9B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9248106703,10.4449455781,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 252010 Rinconada 1 12B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9245900586,10.4435093125,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 252011 Rinconada 1 12A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9245350733,10.4437968299,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 252012 Rinconada 1 13B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9249920547,10.4438884925,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 252013 Rinconada 1 13A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9250517339,10.4436055913,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 26211 Cochecito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9329196587,10.4484501571,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 26212 Cochecito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9329458103,10.44787579,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 26213 Cochecito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9330290133,10.4488459064,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 26214 Cochecito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9333741349,10.4484499707,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 26215 Cochecito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9332298691,10.4484252101,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche  27171 Res. el Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.929331254,10.4454077705,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche  27172 Res. el Estanque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9292735865,10.4454446992,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>NAPNap Coche  27175 Madre Maria</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9288489512,10.445418456,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche  27176 Madre Maria</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9298400272,10.4458804858,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche  27177 Madre Maria</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9305710077,10.4458291944,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche  27178 Madre Maria</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9319389127,10.4462183266,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche  27173 C. Central Cochecito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9296529429,10.4451706661,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche  27174 C. Central Cochecito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9301414879,10.4454383457,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 28181 Hipodromo 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9275118516,10.438858652,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 28182 Hipodromo 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.927452843,10.4388454629,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 28183 Hipodromo 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9273857878,10.438829636,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 28184 Hipodromo 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9273294614,10.4388058957,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 28185 Hipodromo 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9276888774,10.4384682551,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 28186 Hipodromo 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9276030467,10.4384366013,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 28187 Hipodromo 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9275333093,10.4384023096,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 28188 Hipodromo 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9274689363,10.4383706558,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 29221 Paraguaipoa</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9325049834,10.4483489752,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 29222 Paraguaipoa</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9324795024,10.4483924978,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 29223 Paraguaipoa</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9324540214,10.4484320638,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 29224 Paraguaipoa</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9324312227,10.4484716298,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 29225 Paraguaipoa</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9324070828,10.4485177902,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 29226 Paraguaipoa</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9323775785,10.4485626316,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2961 Guarataro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9271747023,10.4996473138,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2962 Guarataro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9273275882,10.500700583,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2963 Guarataro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9282385334,10.5012323259,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2964 Guarataro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9285365939,10.501042771,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2965 Guarataro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9274908677,10.5016427531,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2966 Guarataro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.926808916,10.501763079,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2967 Guarataro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9268826768,10.5010460677,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap La Paz 2968 Guarataro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9262064248,10.5000976321,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 30221 Roraima</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9322370086,10.4483171138,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 30222 Roraima</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9321940933,10.4482986497,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 30223 Roraima</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9321458135,10.4482735912,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 30224 Roraima</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.932101557,10.4482498516,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 30225 Cumanagoto</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9315774084,10.4479461454,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 30226 Cumanagoto</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9315988661,10.4479039416,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 30227 Cumanagoto</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9316189826,10.4478591,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 30228 Cumanagoto</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9316444636,10.4478182151,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 31231 Paraguachi</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9315616085,10.448425255,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 31232 Paraguachi</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9315844073,10.4483777758,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 31233 Paraguachi</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9316072061,10.4483434852,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 31234 Paraguachi</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9316340282,10.4483052381,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 31235 Paraguachi</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9316528036,10.4482696286,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 31236 Paraguachi</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9316688969,10.4482379758,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 35264 Veredas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9305029884,10.4492803827,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 35261 Veredas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9317176938,10.4494096313,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 35262 Veredas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9312751293,10.4493792974,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 35263 Veredas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9309059903,10.4493512716,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 35265 Veredas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9299668819,10.4494604075,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 35266 Veredas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9295397401,10.4494993139,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 35267 Veredas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9290485606,10.4496889004,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 35268 Veredas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9289670885,10.4488092184,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 36173 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9296932966,10.4437674847,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 36178 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.931938976,10.4462182965,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 36171 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9299953803,10.4450781257,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 36172 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9299048558,10.4442383269,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 36174 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9309643283,10.445301676,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 36175 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9312151149,10.444479353,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 36176 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9305609912,10.4460484911,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 36177 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9311467186,10.4457042639,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 37271 Veredas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9286455587,10.4485965512,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Coche 37272 Veredas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9284309819,10.4480699934,0</coordinates></Point>
+</Placemark>
+</Document></kml>

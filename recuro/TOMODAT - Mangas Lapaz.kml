@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Document>
+<Placemark>
+	<name>Manga 4 - 48 Hilos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9499456732,10.4840811512,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 5 - 48 Hilos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9520747615,10.4823774738,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 6 - 48 Hilos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9509518139,10.4816783563,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 7 - 48 Hilos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9507322653,10.4823047514,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 8 - 48 Hilos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9501144978,10.4822291614,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 12</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9510096145,10.4846791785,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 10</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9481588617,10.4870090712,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 11</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9475419224,10.4879088115,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 13</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9487109694,10.4884083889,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 14</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9537381952,10.4879950043,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 15</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.952523561,10.4888677274,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 16</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9553940185,10.4888214167,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9482712273,10.4854175509,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9486968528,10.4861119706,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9491149974,10.4845042803,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 9</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9462621259,10.4874167144,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga P</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9487734134,10.4877288663,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 17</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.948277859,10.4895052317,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga T1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9454913674,10.4886073301,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga T4</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9348112145,10.4984961493,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga T3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9453708442,10.4952713714,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9455018027,10.4885696222,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga T2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9449222034,10.4937976033,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9456459576,10.4953689943,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>MangaNap P</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9519530634,10.4848190121,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9361716409,10.4967438011,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 4</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9447829825,10.4935345648,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9326893756,10.4998425249,0</coordinates></Point>
+</Placemark>
+</Document></kml>

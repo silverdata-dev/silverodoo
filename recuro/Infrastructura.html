@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación del Módulo Silver ISP</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 1024px; margin: 20px auto; padding: 0 20px; }
+        h1, h2, h3, h4 { color: #2c3e50; border-bottom: 2px solid #ecf0f1; padding-bottom: 10px; }
+        h1 { font-size: 2.5em; text-align: center; border-bottom: 4px solid #3498db; }
+        h2 { font-size: 2em; }
+        h3 { font-size: 1.5em; border-bottom: 1px solid #ecf0f1; }
+        h4 { font-size: 1.2em; border-bottom: none; color: #34495e; }
+        code { background-color: #ecf0f1; padding: 3px 6px; border-radius: 4px; font-family: "Courier New", Courier, monospace; font-size: 0.9em; }
+        pre { background-color: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 5px; overflow-x: auto; text-align: center; }
+        pre.mermaid { background-color: #f9f9f9; }
+        pre code { background-color: transparent; padding: 0; }
+        .container { background-color: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+        .section { margin-bottom: 40px; }
+        ul { list-style-type: square; padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #f2f2f2; font-weight: bold; }
+        .toc { background-color: #f9f9f9; border: 1px solid #e0e0e0; padding: 15px; border-radius: 5px; margin-bottom: 30px; }
+        .toc ul { list-style-type: none; padding-left: 0; }
+        .toc ul li a { text-decoration: none; color: #3498db; }
+        .toc ul li a:hover { text-decoration: underline; }
+        .placeholder { color: blue; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Documentación Exhaustiva del Módulo `silver_isp`</h1>
+        <p style="text-align:center;"><strong>Fecha de Generación:</strong> 02/09/2025 | <strong>Versión del Módulo:</strong> 17.0.2.1</p>
+
+        <div class="toc section">
+            <h3>Tabla de Contenidos</h3>
+            <ul>
+                <li><a href="#vision">1. Visión General y Estratégica</a></li>
+                <li><a href="#arquitectura">2. Arquitectura y Diseño del Sistema</a></li>
+                <li><a href="#procesos">3. Procesos Clave y Flujos de Trabajo</a></li>
+                <li><a href="#guia_tecnica">4. Guía Técnica Detallada</a></li>
+                <li><a href="#despliegue">5. Despliegue y Mantenimiento</a></li>
+                <li><a href="#roadmap">6. Roadmap y Mejoras Futuras</a></li>
+            </ul>
+        </div>
+
+        <div class="section" id="vision">
+            <h2>1. Visión General y Estratégica</h2>
+            <p>Este documento proporciona una descripción técnica y funcional completa del módulo <code>silver_isp</code>. Su propósito es servir como referencia para desarrolladores, administradores de sistemas y gerentes de proyecto involucrados en su implementación, mantenimiento y evolución.</p>
+            
+            <h3>1.1. Objetivos de Negocio</h3>
+            <ul>
+                <li><strong>Centralizar el Inventario de Red:</strong> Crear un registro único y fiable de todos los activos de red.</li>
+                <li><strong>Automatizar el Aprovisionamiento:</strong> Facilitar la configuración y activación de servicios para nuevos clientes.</li>
+                <li><strong>Mejorar la Visibilidad de la Red:</strong> Ofrecer herramientas de visualización y mapeo de la infraestructura.</li>
+                <li><strong>Gestionar el Ciclo de Vida del Cliente:</strong> Controlar el proceso completo desde el contrato hasta la baja del servicio.</li>
+            </ul>
+
+            <h3>1.2. Roles y Responsabilidades</h3>
+            <p>A continuación se definen los roles clave para el éxito del proyecto. <span class="placeholder">[COMPLETAR con los nombres y contactos reales]</span></p>
+            <ul>
+                <li><strong>Jefe de Proyecto (Cliente):</strong> <span class="placeholder">Nombre del responsable</span></li>
+                <li><strong>Administrador de Red Principal:</strong> <span class="placeholder">Nombre del usuario clave de red</span></li>
+                <li><strong>Responsable de Contratos y Clientes:</strong> <span class="placeholder">Nombre del usuario clave de administración</span></li>
+                <li><strong>Líder Técnico (Implementador):</strong> <span class="placeholder">Nombre del desarrollador principal</span></li>
+            </ul>
+
+            <h3>1.3. Indicadores Clave de Rendimiento (KPIs)</h3>
+            <p>El éxito del proyecto se medirá a través de los siguientes KPIs. <span class="placeholder">[COMPLETAR con valores objetivo]</span></p>
+            <ul>
+                <li>Reducción del tiempo de activación de un nuevo cliente a <span class="placeholder">X horas</span>.</li>
+                <li>Disminución de errores de inventario de red por debajo del <span class="placeholder">Y%</span>.</li>
+                <li>Aumento de la tasa de resolución de incidencias en la primera llamada en un <span class="placeholder">Z%</span>.</li>
+            </ul>
+        </div>
+
+        <div class="section" id="arquitectura">
+            <h2>2. Arquitectura y Diseño del Sistema</h2>
+            
+            <h3>2.1. Diagrama de Componentes de Alto Nivel</h3>
+            <p>El sistema interactúa con varios componentes. El siguiente diagrama ilustra la arquitectura general:</p>
+            <pre class="mermaid">
+graph TD
+    A[Usuario Final] --&gt;|Interfaz Web Odoo| B(Servidor Odoo);
+    B --&gt;|Python ORM| C[Base de Datos PostgreSQL];
+    B --&gt;|Scripts de Aprovisionamiento| D{Equipos de Red};
+    D --&gt;|SNMP / SSH / API| B;
+
+    subgraph "Módulo silver_isp"
+        direction LR
+        B;
+    end
+
+    subgraph "Infraestructura Física"
+        D --- E[OLTs];
+        D --- F[Routers Core];
+        D --- G[Servidores RADIUS];
+    end
+            </pre>
+
+            <h3>2.2. Modelo de Datos Detallado</h3>
+            <h4>Herencia de Clases y Modelos Base</h4>
+            <p>El módulo utiliza la herencia de Odoo para reutilizar lógica y campos, promoviendo un diseño DRY (Don't Repeat Yourself). Dos modelos base son fundamentales:</p>
+            <ul>
+                <li><code>isp.asset</code>: Un modelo <strong>abstracto</strong> que proporciona campos y lógica para cualquier elemento considerado un "activo físico". Incluye campos para ubicación (dirección, coordenadas GPS), datos de instalación, marca y modelo. Cualquier modelo que represente un objeto físico hereda de él.</li>
+                <li><code>isp.netdev</code>: Un modelo <strong>abstracto</strong> para "dispositivos de red". Proporciona campos para la gestión de red, como dirección IP, puerto, credenciales de acceso, tipo de conexión (SSH, Telnet) y versión de software.</li>
+                <li><code>mail.thread</code> y <code>mail.activity.mixin</code>: La mayoría de los modelos heredan de estos mixins de Odoo para obtener el chatter, la gestión de seguidores y la planificación de actividades, lo cual es crucial para la trazabilidad.</li>
+            </ul>
+            <p>La siguiente tabla muestra la estructura de herencia de los modelos más importantes:</p>
+            <table>
+                <thead><tr><th>Modelo Hijo</th><th>Hereda de...</th><th>Propósito de la Herencia</th></tr></thead>
+                <tbody>
+                    <tr><td><code>isp.node</code>, <code>isp.post</code>, <code>isp.cable</code>, <code>isp.splice_closure</code></td><td><code>isp.asset</code>, <code>mail.thread</code></td><td>Son activos físicos con ubicación y trazabilidad.</td></tr>
+                    <tr><td><code>isp.core</code>, <code>isp.olt</code>, <code>isp.ap</code></td><td><code>isp.asset</code>, <code>isp.netdev</code>, <code>mail.thread</code></td><td>Son activos físicos y a la vez dispositivos de red configurables.</td></tr>
+                    <tr><td><code>isp.olt.card.port</code></td><td><code>isp.netdev</code>, <code>mail.thread</code></td><td>Es un componente lógico de un dispositivo de red, por lo que es configurable.</td></tr>
+                    <tr><td><code>isp.radius</code></td><td><code>isp.netdev</code>, <code>mail.thread</code></td><td>Se trata como un dispositivo de red configurable (el servidor RADIUS).</td></tr>
+                </tbody>
+            </table>
+
+            <h4>Diagrama Entidad-Relación (ERD)</h4>
+            <p>El siguiente diagrama muestra las relaciones fundamentales entre las entidades principales del módulo. Puede ser renderizado con una herramienta compatible con Mermaid.</p>
+            <pre class="mermaid">
+erDiagram
+    ISP_ZONE ||--o{ ISP_NODE : contains
+    ISP_NODE ||--o{ ISP_OLT : contains
+    ISP_NODE ||--o{ ISP_CORE : contains
+    
+    ISP_OLT ||--o{ ISP_OLT_CARD : "has cards"
+    ISP_OLT_CARD ||--o{ ISP_OLT_CARD_PORT : "has ports"
+    
+    ISP_OLT_CARD_PORT }o--o{ ISP_SPLITTER : "feeds"
+    ISP_SPLITTER }o--o{ ISP_BOX : "terminates in"
+    
+    RES_PARTNER ||--|{ ISP_CONTRACT : "has"
+    ISP_CONTRACT }|--|| ISP_BOX : "connects_to"
+    ISP_CONTRACT }|--|| ISP_RADIUS_USER : "provisions"
+    
+    ISP_CORE ||--|{ ISP_RADIUS : "manages"
+    ISP_RADIUS ||--o{ ISP_RADIUS_USER : "contains"
+            </pre>
+        </div>
+
+        <div class="section" id="procesos">
+            <h2>3. Procesos Clave y Flujos de Trabajo</h2>
+            <h3>3.1. Flujo de Aprovisionamiento de Cliente de Fibra (FTTH)</h3>
+            <p>Este es el proceso más crítico que el módulo busca automatizar. El siguiente diagrama de secuencia ilustra los pasos desde la creación del contrato hasta la activación del servicio.</p>
+            <pre class="mermaid">
+sequenceDiagram
+    participant User as Usuario (Admin)
+    participant Odoo
+    participant CoreRouter as Router Core
+    participant OLT
+    participant Radius as Servidor RADIUS
+
+    User->>Odoo: Crea un nuevo Contrato (isp.contract) para un cliente.
+    Odoo->>Odoo: Valida la disponibilidad de puertos en la Caja (isp.box) seleccionada.
+    User->>Odoo: Asigna una ONU y la asocia al contrato.
+    User->>Odoo: Hace clic en el botón "Activar Servicio".
+    
+    Odoo->>CoreRouter: Crea/Modifica Address-List o Perfil PPPoE.
+    CoreRouter-->>Odoo: Confirmación de configuración.
+    
+    Odoo->>OLT: Configura el service-port, VLAN y perfiles de tráfico para la ONU.
+    OLT-->>Odoo: Confirmación de configuración.
+    
+    Odoo->>Radius: Crea el usuario (isp.radius.user) con su perfil de velocidad.
+    Radius-->>Odoo: Confirmación de creación.
+    
+    Odoo->>User: Muestra el estado del contrato como "Activado".
+            </pre>
+
+            <h3>3.2. Diagramas de Procesos de Negocio (BPMN)</h3>
+            <p>A continuación se modelan los flujos de trabajo más importantes del negocio en formato de diagrama.</p>
+
+            <h4>3.2.1. Alta de Cliente y Validación de Factibilidad</h4>
+            <pre class="mermaid">
+graph TD
+    A(Inicio: Solicitud de Venta) --&gt; B{Registrar Cliente en Odoo};
+    B --&gt; C{Verificar Factibilidad Técnica};
+    C --&gt; D{¿Cobertura y puertos libres?};
+    D --&gt; |Sí| E[Generar Contrato en Odoo];
+    E --&gt; F[Programar Orden de Instalación];
+    F --&gt; G((Fin: Cliente a Instalar));
+    D --&gt; |No| H[Notificar a Ventas: Sin Factibilidad];
+    H --&gt; I((Fin: Venta Rechazada));
+
+    style A fill:#c9ffc9,stroke:#333,stroke-width:2px
+    style G fill:#c9ffc9,stroke:#333,stroke-width:2px
+    style I fill:#ffc9c9,stroke:#333,stroke-width:2px
+            </pre>
+
+            <h4>3.2.2. Suspensión de Servicio por Morosidad</h4>
+            <pre class="mermaid">
+graph TD
+    A(Inicio: Odoo detecta Factura Vencida) --&gt; B[Enviar Recordatorio de Pago Automático];
+    B --&gt; C{Esperar N días de gracia};
+    C --&gt; D{¿Cliente ha pagado?};
+    D --&gt; |No| E[Ejecutar Script de Suspensión];
+    E --&gt; F["Acción en Red: Llamada a API de OLT/Router"];
+    F --&gt; G["Acción en Red: Cortar servicio"];
+    G --&gt; H[Actualizar Estado del Contrato a 'Suspendido'];
+    H --&gt; I((Fin: Cliente Suspendido));
+    D --&gt; |Sí| J((Fin: Proceso Terminado));
+
+    style A fill:#ffc9c9,stroke:#333,stroke-width:2px;
+    style I fill:#ffc9c9,stroke:#333,stroke-width:2px;
+    style J fill:#c9ffc9,stroke:#333,stroke-width:2px;
+            </pre>
+
+            <h4>3.2.3. Gestión de Incidencia Técnica</h4>
+            <pre class="mermaid">
+graph TD
+    Start(Inicio: Cliente reporta por WhatsApp) --&gt; CreateTicket[Soporte N1 crea Ticket en Odoo];
+    CreateTicket --&gt; LinkTicket{Asociar Ticket a Contrato y Activos};
+    LinkTicket --&gt; DiagN1{Diagnóstico Inicial con datos de Odoo};
+    DiagN1 --&gt; DecisionN1{¿Se puede resolver en N1?};
+    DecisionN1 --&gt; |Sí| SolveN1[Aplicar solución y documentar en Ticket];
+    SolveN1 --&gt; Communicate[Comunicar solución al Cliente];
+    Communicate --&gt; EndResolved((Fin: Ticket Resuelto));
+    DecisionN1 --&gt; |No| Escalate[Escalar Ticket a NetOps N2];
+    Escalate --&gt; DiagN2{Diagnóstico Avanzado en Equipos};
+    DiagN2 --&gt; SolveN2[Aplicar solución y documentar en Ticket];
+    SolveN2 --&gt; Communicate;
+
+    style Start fill:#c9c9ff,stroke:#333,stroke-width:2px;
+    style EndResolved fill:#c9ffc9,stroke:#333,stroke-width:2px;
+            </pre>
+        </div>
+
+        <div class="section" id="guia_tecnica">
+            <h2>4. Guía Técnica Detallada</h2>
+            <h3>4.1. API y Endpoints Externos</h3>
+            <p>El módulo expone una API para obtener datos de la topología de red, utilizada por la vista de mapa.</p>
+            <ul>
+                <li><strong>Endpoint:</strong> <code>/network/nodes</code></li>
+                <li><strong>Método:</strong> <code>GET</code></li>
+                <li><strong>Controlador:</strong> <code>node_network.py</code></li>
+                <li><strong>Respuesta:</strong> Un JSON que contiene una estructura jerárquica de nodos, postes y cajas, incluyendo sus coordenadas GPS. Es consumido por los componentes de JavaScript para renderizar el mapa de red en la interfaz de Odoo.</li>
+            </ul>
+
+            <h3>4.2. Modelo de Seguridad</h3>
+            <p>La seguridad se gestiona a través de grupos de acceso definidos en Odoo. El archivo <code>security/ir.model.access.csv</code> establece dos niveles de permiso principales:</p>
+            <ul>
+                <li><strong>Usuario (Infrastructure / User):</strong> Tiene permisos de lectura en la mayoría de los modelos. Puede ver la infraestructura pero no puede realizar cambios críticos. Puede gestionar actividades y mensajes.</li>
+                <li><strong>Administrador (Infrastructure / Manager):</strong> Tiene permisos completos (Crear, Leer, Escribir, Borrar) sobre todos los modelos del módulo. Este rol está destinado a los administradores de red y personal de alto nivel.</li>
+            </ul>
+
+            <h3>4.3. Scripts y Procesos Externos</h3>
+            <ul>
+                <li><code>ssync.sh</code>: Automatiza la sincronización de archivos locales a un servidor remoto usando <code>rsync</code> sobre SSH. <strong>Advertencia:</strong> Este método es efectivo para desarrollo en solitario pero no es una práctica recomendada para producción o equipos, ya que carece de control de versiones y puede sobreescribir cambios. Las credenciales en <code>sync_config.jsonc</code> son un riesgo de seguridad.</li>
+                <li><code>testsnmp.py</code>: Un script de prueba que utiliza <code>pysnmp</code> para realizar una consulta SNMP a un dispositivo. Esto confirma la intención de integrar SNMP para monitoreo, aunque actualmente no está implementado en el módulo principal.</li>
+            </ul>
+        </div>
+
+        <div class="section" id="despliegue">
+            <h2>5. Despliegue y Mantenimiento</h2>
+            <h3>5.1. Proceso de Despliegue</h3>
+            <p>El despliegue actual es un proceso manual/semi-manual basado en la sincronización de archivos y el reinicio del servicio de Odoo.</p>
+            <ol>
+                <li>Los cambios se copian del entorno de desarrollo al servidor mediante el script <code>ssync.sh</code>.</li>
+                <li>Se debe reiniciar el servicio de Odoo en el servidor para que los cambios en el código Python se apliquen.</li>
+                <li>Se debe actualizar el módulo desde la línea de comandos o la interfaz de Odoo para aplicar cambios en las vistas (XML) o en los modelos de datos. <code>odoo-bin -u silver_isp -d &lt;database_name&gt;</code>.</li>
+            </ol>
+            
+            <h3>5.2. Control de Versiones</h3>
+            <p><span class="placeholder">[COMPLETAR: Definir la estrategia de Git. Ejemplo: El código fuente se gestiona en un repositorio Git en &lt;URL del Repositorio&gt;. La estrategia de ramas es GitFlow: `main` para producción, `develop` para integración y `feature/` para nuevos desarrollos.]</span></p>
+
+            <h3>5.3. Dependencias</h3>
+            <ul>
+                <li><strong>Módulos Odoo:</strong> <code>base</code>, <code>mail</code>, <code>stock</code>, <code>product</code>, <code>account</code>.</li>
+                <li><strong>Librerías Python:</strong> Se ha detectado el uso de <code>pysnmp</code> en scripts de prueba. Es probable que se necesiten otras librerías para la conexión con equipos (ej. <code>paramiko</code> para SSH, <code>pyrad</code> para RADIUS). <span class="placeholder">[COMPLETAR: Crear un archivo `requirements.txt` para listar estas dependencias.]</span></li>
+            </ul>
+        </div>
+
+        <div class="section" id="roadmap">
+            <h2>6. Roadmap y Mejoras Futuras</h2>
+            <h3>6.1. Deuda Técnica a Abordar</h3>
+            <ul>
+                <li><strong>Implementar Pruebas Automatizadas:</strong> Prioridad alta. Crear una suite de pruebas con <code>pytest</code> para los flujos de negocio críticos, especialmente el aprovisionamiento y la interacción con dispositivos.</li>
+                <li><strong>Refactorizar Lógica de Configuración:</strong> La alta cantidad de campos booleanos <code>is_...</code> en modelos como <code>isp.core</code> debe ser refactorizada. Se recomienda un patrón de diseño "Strategy" para encapsular las diferentes lógicas de configuración por marca o tipo de equipo.</li>
+                <li><strong>Gestión de Secretos:</strong> Las contraseñas y claves de API no deben estar almacenadas en texto plano en la configuración o el código. Utilizar el gestor de contraseñas de Odoo o una solución como HashiCorp Vault.</li>
+            </ul>
+
+            <h3>6.2. Planificación a Futuro</h3>
+            <ul>
+                <li><strong>Integración SNMP Completa:</strong> Desarrollar un sistema de monitoreo proactivo basado en SNMP para obtener el estado en tiempo real de los dispositivos.</li>
+                <li><strong>Dashboard de Operaciones:</strong> Crear un panel de control gráfico con los KPIs más importantes de la red.</li>
+                <li><strong>Portal de Cliente y Ticketing:</strong> Extender la funcionalidad para que los clientes puedan autogestionarse y crear tickets de soporte que se vinculen automáticamente a su infraestructura.</li>
+            </ul>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+</body>
+</html>

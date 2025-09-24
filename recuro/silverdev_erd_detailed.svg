@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="2200" viewBox="0 0 1600 2200" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .title { fill:#0b1220; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; font-weight:700; font-size:22px; }
+    .section { fill:#0b1220; font-family: Inter, sans-serif; font-size:14px; font-weight:700; }
+    .field { fill:#0b1220; font-family: Inter, sans-serif; font-size:12px; }
+    .box { fill:#f4f7fb; stroke:#cbd9ee; stroke-width:1.8; rx:8; }
+    .line { stroke:#7b93c1; stroke-width:1.2; marker-end:url(#arrow); }
+    .note { fill:#334155; font-family: Inter, sans-serif; font-size:12px; }
+    .header { fill:#ffffff; font-family: Inter, sans-serif; font-size:13px; font-weight:700; }
+    .header-bg { fill:#234e78; rx:6; }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#7b93c1" />
+    </marker>
+  </defs>
+
+  <rect width="1600" height="2200" fill="#ffffff"/>
+  <text x="40" y="48" class="title">SilverData — ERD detallado (Developer)</text>
+  <text x="40" y="74" class="note">Versión: ERD técnico. Incluye tablas críticas y campos principales (no exhaustivo). Usa esto para implementar modelos y migraciones.</text>
+
+  <!-- Customers -->
+  <g transform="translate(40,110)">
+    <rect x="0" y="0" width="520" height="160" class="box"/>
+    <rect x="0" y="0" width="520" height="28" class="header-bg"/>
+    <text x="12" y="19" class="header">res_partner — Cliente (partner)</text>
+    <text x="12" y="44" class="field">id (pk)</text>
+    <text x="160" y="44" class="field">name</text>
+    <text x="12" y="64" class="field">document_type, document_number</text>
+    <text x="160" y="64" class="field">email, phone</text>
+    <text x="12" y="84" class="field">addresses → res_partner_address (one2many)</text>
+    <text x="12" y="104" class="field">kyc_status, opt_in_whatsapp (bool)</text>
+    <text x="12" y="124" class="field">created_at, updated_at</text>
+  </g>
+
+  <!-- Products & Plans -->
+  <g transform="translate(600,110)">
+    <rect x="0" y="0" width="440" height="140" class="box"/>
+    <rect x="0" y="0" width="440" height="28" class="header-bg"/>
+    <text x="12" y="19" class="header">product_template / product_product — Plan</text>
+    <text x="12" y="44" class="field">id (pk), name, code</text>
+    <text x="220" y="44" class="field">price, currency_id</text>
+    <text x="12" y="64" class="field">speed_profile_id, billing_cycle (monthly)</text>
+    <text x="12" y="84" class="field">profile_quota, qos_profile</text>
+    <text x="12" y="104" class="field">is_active, tags</text>
+  </g>
+
+  <!-- Contracts -->
+  <g transform="translate(40,300)">
+    <rect x="0" y="0" width="520" height="220" class="box"/>
+    <rect x="0" y="0" width="520" height="28" class="header-bg"/>
+    <text x="12" y="19" class="header">isp_contract — Contrato</text>
+    <text x="12" y="44" class="field">id (pk), partner_id → res_partner</text>
+    <text x="12" y="64" class="field">product_id → product.product</text>
+    <text x="12" y="84" class="field">status (active/suspended/cancelled)</text>
+    <text x="12" y="104" class="field">start_date, end_date, billing_cycle_start</text>
+    <text x="12" y="124" class="field">assigned_onu_id → silver_cpe / serial</text>
+    <text x="12" y="144" class="field">olt_id → isp.olt, olt_card_port_id → isp.olt.card.port</text>
+    <text x="12" y="164" class="field">splitter_id, box_id, ap_id, radius_username</text>
+    <text x="12" y="184" class="field">billing_reference, last_invoice_id → account_move</text>
+  </g>
+
+  <!-- CPE / Inventory -->
+  <g transform="translate(600,300)">
+    <rect x="0" y="0" width="440" height="200" class="box"/>
+    <rect x="0" y="0" width="440" height="28" class="header-bg"/>
+    <text x="12" y="19" class="header">silver_cpe — CPE / ONT / Router</text>
+    <text x="12" y="44" class="field">id (pk), serial_number (unique)</text>
+    <text x="12" y="64" class="field">model_id → silver.cpe.model</text>
+    <text x="12" y="84" class="field">state (stock/assigned/installed/defective)</text>
+    <text x="12" y="104" class="field">assigned_contract_id → isp_contract</text>
+    <text x="12" y="124" class="field">mac_address, firmware_version</text>
+    <text x="12" y="144" class="field">last_seen, last_config_applied (playbook_id)</text>
+  </g>
+
+  <!-- Network Passive: zone/node/post -->
+  <g transform="translate(40,560)">
+    <rect x="0" y="0" width="320" height="220" class="box"/>
+    <rect x="0" y="0" width="320" height="28" class="header-bg"/>
+    <text x="12" y="19" class="header">isp_zone / isp_node / isp_post</text>
+    <text x="12" y="44" class="field">isp_zone: id, name, geo_polygon</text>
+    <text x="12" y="64" class="field">isp_node: id, zone_id → isp_zone, code, description</text>
+    <text x="12" y="84" class="field">isp_post: id, node_id → isp_node, gps_lat, gps_lon, asset_tag</text>
+    <text x="12" y="104" class="field">isp_box: id, post_id → isp_post, serial, capacity</text>
+    <text x="12" y="124" class="field">isp_splitter: id, box_id → isp_box, port_count, used_ports</text>
+    <text x="12" y="144" class="field">isp_cable: id, from_post_id, to_post_id, length_m</text>
+  </g>
+
+  <!-- Network Active: OLT, cards, ports, core, radius -->
+  <g transform="translate(420,560)">
+    <rect x="0" y="0" width="640" height="300" class="box"/>
+    <rect x="0" y="0" width="640" height="28" class="header-bg"/>
+    <text x="12" y="19" class="header">isp_olt / isp_olt_card / isp_olt_card_port / isp_core / isp_radius</text>
+
+    <text x="12" y="44" class="field">isp_core: id, hostname, mgmt_ip, cores_type</text>
+    <text x="12" y="64" class="field">isp_olt: id, hostname, node_id → isp_node, mgmt_ip, vendor, model</text>
+    <text x="12" y="84" class="field">isp_olt_card: id, olt_id → isp_olt, slot_number, card_model</text>
+    <text x="12" y="104" class="field">isp_olt_card_port: id, card_id → isp_olt_card, port_number, pon_id, used_by_contract_id</text>
+    <text x="12" y="124" class="field">isp_radius: id, host, secret, port_coa, accounting_port</text>
+    <text x="12" y="144" class="field">radius_user: id, username, contract_id → isp_contract, profile_name, created_at</text>
+
+    <text x="12" y="174" class="field">Notes: CoA and Disconnect use radius_user ↔ isp_radius (coa/disconnect)</text>
+  </g>
+
+  <!-- Helpdesk & WhatsApp -->
+  <g transform="translate(40,820)">
+    <rect x="0" y="0" width="520" height="200" class="box"/>
+    <rect x="0" y="0" width="520" height="28" class="header-bg"/>
+    <text x="12" y="19" class="header">helpdesk_ticket / wa_message</text>
+    <text x="12" y="44" class="field">helpdesk_ticket: id, partner_id, contract_id, category, priority</text>
+    <text x="12" y="64" class="field">status (new/open/closed), sla_deadline, assigned_user</text>
+    <text x="12" y="84" class="field">wa_message: id, external_id, partner_id, direction(in/out), payload, attachments</text>
+    <text x="12" y="104" class="field">link: incoming wa_message → create/update helpdesk_ticket</text>
+    <text x="12" y="124" class="field">exec_log: task_id, playbook_id, device_id, output, status</text>
+  </g>
+
+  <!-- Payments & Accounting -->
+  <g transform="translate(600,920)">
+    <rect x="0" y="0" width="600" height="200" class="box"/>
+    <rect x="0" y="0" width="600" height="28" class="header-bg"/>
+    <text x="12" y="19" class="header">account_move / silver_payments (bank_tx)</text>
+    <text x="12" y="44" class="field">account_move: id, move_type(invoice), partner_id, amount_total, currency, invoice_date</text>
+    <text x="12" y="64" class="field">payment_transaction / bank_tx: id, external_id, bank_account_id, amount, date, status</text>
+    <text x="12" y="84" class="field">reconciliation_rule: id, matcher_expr, priority</text>
+    <text x="12" y="104" class="field">dead_letter_queue: tx_id, reason, retries</text>
+  </g>
+
+  <!-- NetOps / Playbooks -->
+  <g transform="translate(40,1040)">
+    <rect x="0" y="0" width="1160" height="240" class="box"/>
+    <rect x="0" y="0" width="1160" height="28" class="header-bg"/>
+    <text x="12" y="19" class="header">silver_netops — playbooks, tasks, device_credentials</text>
+    <text x="12" y="44" class="field">playbook: id, name, template, variables_schema</text>
+    <text x="12" y="64" class="field">task: id, playbook_id, target_device_id, params, status, started_at, finished_at</text>
+    <text x="12" y="84" class="field">device_credential: id, device_id, username, vault_ref, vendor</text>
+    <text x="12" y="104" class="field">exec_log: id, task_id, output, exit_code, timestamp</text>
+    <text x="12" y="124" class="field">Retry policy: exponential backoff, dead-letter on N failures</text>
+    <text x="12" y="144" class="field">Idempotency: tasks must be safe to re-run; playbooks declare rollbacks</text>
+  </g>
+
+  <!-- Relationships (arrows) -->
+  <!-- partner -> contract -->
+  <line x1="300" y1="220" x2="300" y2="300" class="line"/>
+  <text x="310" y="260" class="note">partner_id</text>
+
+  <!-- contract -> product -->
+  <line x1="580" y1="340" x2="640" y2="340" class="line"/>
+  <text x="600" y="322" class="note">product_id</text>
+
+  <!-- contract -> olt_port -->
+  <line x1="300" y1="420" x2="620" y2="640" class="line"/>
+  <text x="420" y="520" class="note">olt_card_port_id</text>
+
+  <!-- contract -> cpe -->
+  <line x1="540" y1="420" x2="640" y2="380" class="line"/>
+  <text x="580" y="400" class="note">assigned_onu_id</text>
+
+  <!-- cpe -> inventory -->
+  <line x1="840" y1="420" x2="720" y2="420" class="line"/>
+  <text x="770" y="440" class="note">serial ↔ inventory</text>
+
+  <!-- radius_user -> contract -->
+  <line x1="680" y1="700" x2="300" y2="420" class="line"/>
+  <text x="540" y="560" class="note">radius_user.contract_id</text>
+
+  <!-- helpdesk -> netops -->
+  <line x1="260" y1="980" x2="480" y2="1120" class="line"/>
+  <text x="360" y="1040" class="note">ticket → task</text>
+
+  <!-- payments -> account_move -->
+  <line x1="840" y1="1020" x2="660" y2="620" class="line"/>
+  <text x="760" y="860" class="note">last_invoice_id</text>
+
+  <!-- footer -->
+  <text x="40" y="1310" class="note">Leyenda: Las flechas representan FKs o referencias principales. Revisa triggers y constraints en migraciones. Documenta índices en campos de búsqueda: partner_id, contract_id, serial_number, olt_id, port_number.</text>
+
+</svg>

@@ -91,6 +91,33 @@ class SilverIpAddressLine(models.Model):
 
     ip_int = fields.Integer(compute='_compute_ip_int', store=True, help="Technical field for sorting")
 
+    @api.onchange('network')
+    def _onchange_network(self):
+        if self.network and '/' in self.network:
+            try:
+                interface = ipaddress.ip_interface(self.network)
+                self.network = str(interface.ip)
+                self.nmask = interface.network.prefixlen
+            except ValueError:
+                # Fail silently on the onchange, the create/write will catch the error
+                pass
+
+    def _process_network_field(self, vals):
+        if 'network' in vals and vals['network'] and '/' in vals['network']:
+            try:
+                interface = ipaddress.ip_interface(vals['network'])
+                vals['network'] = str(interface.ip)
+                vals['nmask'] = interface.network.prefixlen
+            except ValueError:
+                raise ValidationError(_("El formato de red '%s' no es válido. Use una IP o una notación CIDR como '192.168.1.0/24'.") % vals['network'])
+        elif 'network' in vals and vals['network']:
+            try:
+                # Validate that it's at least a valid IP if no CIDR is present
+                ipaddress.ip_address(vals['network'])
+            except ValueError:
+                raise ValidationError(_("La dirección de red '%s' no es una IP válida.") % vals['network'])
+        return vals
+
     def _computemask(self):
         for record in self:
 
@@ -163,6 +190,7 @@ class SilverIpAddressLine(models.Model):
 
     @api.model
     def create(self, vals):
+        vals = self._process_network_field(vals)
         if not vals.get('name'):
             vals['name'] = f"{vals.get('network')}/{vals.get('nmask')}"
 
@@ -170,6 +198,7 @@ class SilverIpAddressLine(models.Model):
         return super(SilverIpAddressLine, self).create(vals)
 
     def write(self, vals):
+        vals = self._process_network_field(vals)
         if not 'name' in vals:
             for record in self:
                 if not record.name:

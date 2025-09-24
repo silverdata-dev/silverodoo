@@ -40,6 +40,6 @@
     right: 0;
 }
 
-div [name=ppp_speed_chart],div [name=isp_radius_ids],div [name=ip_address_pool_ids], div [name=ip_address_ids] {
+div [name=ppp_speed_chart],div [name=isp_radius_ids],div [name=ip_address_pool_ids], div [name=ip_address_ids], div[name=onu_ids_silver] {
     width:100% !important;
 }

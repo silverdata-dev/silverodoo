@@ -1,0 +1,40 @@
+
+Hello, this is gpon olt platform (version 1.00).
+Copyright 2020-2025,All Rights Reserved.
+
+
+User Access Verification
+
+Login: aynitics_OLT
+Password: 
+
+gpon-olt-16-04-Carapita> 
+gpon-olt-16-04-Carapita> 
+gpon-olt-16-04-Carapita> terminal length 0
+gpon-olt-16-04-Carapita> terminal width 511
+% Unknown command.
+gpon-olt-16-04-Carapita> aynitics_OLT
+% Unknown command.
+gpon-olt-16-04-Carapita> 
+2025/09/10 13:58:45   User Login                   User aynitics_OLT-172.235.150.180-telnet log in.
+********
+% Unknown command.
+gpon-olt-16-04-Carapita> enable
+Password: 
+
+gpon-olt-16-04-Carapita# 
+gpon-olt-16-04-Carapita# terminal length 0
+gpon-olt-16-04-Carapita# terminal width 511
+% Unknown command.
+gpon-olt-16-04-Carapita# conf t
+gpon-olt-16-04-Carapita(config)# interface gpon 0/5
+gpon-olt-16-04-Carapita(config-pon-0/5)# 
+2025/09/10 13:58:51   User Login                   User admin logged in from 172.16.0.150 on web
+onu 47 pri wifi_ssid 1 name Suena-5G hide disable auth_mode wpapsk/wpa2psk encrypt_type tkipaes shared_key Jalu_1024.5367372 rekey_interval 0
+gpon-olt-16-04-Carapita(config-pon-0/5)# onu 47 pri wifi_ssid 5 name Suena hide disable auth_mode wpapsk/wpa2psk encrypt_type tkipaes shared_key Jalu_1024.5367372 rekey_interval 0
+gpon-olt-16-04-Carapita(config-pon-0/5)# exit
+gpon-olt-16-04-Carapita(config)# 
+gpon-olt-16-04-Carapita(config)# 
+gpon-olt-16-04-Carapita(config)# end
+gpon-olt-16-04-Carapita# 
+gpon-olt-16-04-Carapita# exit

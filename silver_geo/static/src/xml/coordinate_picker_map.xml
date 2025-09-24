@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="silver_geo.CoordinatePickerMap" owl="1">
+        <div class="d-flex flex-column h-100">
+            <div class="flex-grow-1" t-ref="map-container"/>
+            <div class="o_form_sheet_bg">
+                <div class="o_cp_footer d-flex justify-content-between p-2">
+                    <div>
+                        <strong>Lat:</strong> <span t-esc="state.lat.toFixed(7)"/>,
+                        <strong>Lon:</strong> <span t-esc="state.lon.toFixed(7)"/>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" t-on-click="onSave">Guardar</button>
+                        <button class="btn btn-secondary" t-on-click="onCancel">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

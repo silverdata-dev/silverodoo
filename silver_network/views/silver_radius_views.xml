@@ -59,7 +59,7 @@
                         <field name="state" invisible="1"/>
                         <div class="oe_title">
                             <h1>
-                                <field name="name" readonly="1"/>
+                                <field name="name" readonly="0"/>
                             </h1>
                         </div>
                         <group name="radius" string="Base Radius">
@@ -157,29 +157,26 @@
                             <page name="ip_address" string="Direcciones IP"
                                   invisible="(type_access_net not in ['dhcp','dhcp_leases','dhcp_leases_vlan']) or (type_radius != 'mk_radius')">
 
-                                <group>
-                                    <group string="Pools" colspan="4">
-                                        <field name="ip_address_pool_ids" nolabel="1" widget="one2many_list"
-                                               colspan="4">
-                                            <tree multi_selectable="1" colspan="2" editable="bottom">
-                                                <field name="name" readonly="True"/>
-                                                <field name="network"/>
-                                                <field name="nmask"/>
 
-                                                <field name="total_ips"/>
-                                                <field name="used_ips"/>
-                                                <field name="usage_percentage" widget="progressbar"/>
-                                            </tree>
-                                        </field>
+            <field name="ip_address_pool_ids" nolabel="1"  widget="one2many_list"  >
+                <tree multi_selectable="1"  colspan="2" editable="bottom">
+                          <field name="name" readonly="True"/>
+                    <field name="network"/>
+                    <field name="nmask"/>
+
+                     <field name="total_ips"/>
+                            <field name="used_ips"/>
+                            <field name="usage_percentage" widget="progressbar"/>
+                    </tree>
+                </field>
 
 
-                                    </group>
-                                    <button name="generar" string="Regenerar IPs" type="object"/>
-                                    <group string="IPs" colspan="4">
-                                        <field name="ip_address_ids" nolabel="1" colspan="4"/>
 
-                                    </group>
-                                </group>
+ <button name="generar" string="Generar IPs" type="object"/>
+
+                <field name="ip_address_ids" nolabel="1" >
+                     </field>
+
                             </page>
                             <page string="Nas" name="nas">
                                 <group name="mikrotik_nas_config" string="MikroTik NAS Configuration">
@@ -204,6 +201,27 @@
                             </page>
                         </notebook>
 
+                        <notebook>
+                            <!--page string="NAS" name="nas">
+                                <field name="nas_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="server"/>
+                                        <field name="secret"/>
+                                        <field name="type"/>
+                                    </tree>
+                                </field>
+                            </page-->
+                            <page string="Equipos Core" name="cores">
+                                <field name="core_ids" nolabel="1">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="hostname_core"/>
+                                        <field name="ip"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids"/>

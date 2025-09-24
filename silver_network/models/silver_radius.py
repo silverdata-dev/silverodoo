@@ -23,25 +23,62 @@ class SilverRadius(models.Model):
     )
 
 
-    name = fields.Char(string='Hostname', required=True, readonly=True, copy=False, default='New')
+    name = fields.Char(string='Hostname', required=True, readonly=False, copy=False, default='New')
     ip_core_radius = fields.Char(string='IP Core Radius')
     port_core_radius = fields.Char(string='Puerto Core Radius')
     user_core_radius = fields.Char(string='Usuario Core Radius')
     password_core_radius = fields.Char(string='Password Core Radius')
     database = fields.Char(string='Database')
     core_id = fields.Many2one('silver.core', string='Core')
-    state = fields.Selection([('down', 'Down'), ('active', 'Activo')], string='Estado', default='down', track_visibility='onchange')
+    #nas_ids = fields.One2many('silver.radius.nas.wizard', 'radius_id', string='NAS')
 
-    def button_test_connection(self):
+    core_ids = fields.Many2many('silver.core', string='Equipos Core',
+                                compute='_compute_core_ids',
+                                inverse='_inverse_core_ids')
+
+    def _compute_core_ids(self):
         for record in self:
-            # TODO: Implement actual RADIUS connection test using pyrad library.
-            # This is a placeholder.
-            import random
-            if random.choice([True, False]):
-                record.state = 'active'
-            else:
-                record.state = 'down'
-        return True
+            # Find all cores that are linked to this radius server
+            linked_cores = self.env['silver.core'].search([('radius_id', '=', record.id)])
+            record.core_ids = linked_cores
+
+    def _inverse_core_ids(self):
+        for record in self:
+            # Cores that are currently linked in the database
+            cores_currently_linked = self.env['silver.core'].search([('radius_id', '=', record.id)])
+            
+            # Cores that the user wants to be linked (from the UI)
+            cores_to_link = record.core_ids
+
+            # Unlink cores that were removed by the user
+            cores_to_unlink = cores_currently_linked - cores_to_link
+            if cores_to_unlink:
+                cores_to_unlink.write({'radius_id': False})
+
+            # Link cores that were added by the user
+            cores_to_add = cores_to_link - cores_currently_linked
+            if cores_to_add:
+                # Default values to write for the new cores
+                vals_to_write = {'radius_id': record.id}
+
+                # Find a "template" core from the ones already linked to get the values
+                template_core = None
+                if cores_currently_linked:
+                    template_core = cores_currently_linked[0]
+                
+                # If we found a template, add its values to the write dictionary
+                if template_core:
+                    vals_to_write.update({
+                        'user_nass': template_core.user_nass,
+                        'password_nass': template_core.password_nass,
+                        'port_coa': template_core.port_coa,
+                    })
+                
+                cores_to_add.write(vals_to_write)
+
+
+
+    state = fields.Selection([('down', 'Down'), ('active', 'Activo')], string='Estado', default='down', track_visibility='onchange')
 
     type_radius = fields.Selection([], string='Tipo Radius')
     port_coa = fields.Char(string='Puerto COA')
@@ -215,12 +252,10 @@ class SilverRadius(models.Model):
 
     def button_test_connection(self):
         si = False
-        print("butontest")
         for core in self:
             if core.netdev_id:
                 try:
                     is_successful = core.netdev_id.button_test_connection()
-                    print(("butontest", is_successful, core.state))
                     if is_successful:
                         core.state = 'active'
                         si = True
@@ -229,19 +264,21 @@ class SilverRadius(models.Model):
                 except Exception:
                     core.state = 'down'
             else:
-                print(("butontest", 222))
                 core.state = 'down'
+        
         if si:
-            print(("butontest", si))
             return {
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
                 'params': {
-                    'title': 'Connection Test',
-                    'message': 'Connection to Radius server was successful!',
+                    'title': _('Connection Test'),
+                    'message': _('Connection to Radius server was successful!'),
                     'type': 'success',
+                    'next': {'type': 'ir.actions.client', 'tag': 'reload'},
                 }
             }
+        # If the connection fails, we still reload to show the 'down' state.
+        return {'type': 'ir.actions.client', 'tag': 'reload'}
 
     def button_get_system_info(self):
         return self.netdev_id.button_get_system_info()

@@ -11,7 +11,7 @@
                     <field name="date_start"/>
                     <field name="date_end"/>
                     <field name="state"/>
-                    <field name="state_service"/>
+                    <field name="state_service"  invisible="1"/>
                 </tree>
             </field>
         </record>
@@ -23,9 +23,17 @@
             <field name="arch" type="xml">
                 <form string="Contrato">
                     <header>
+                        <widget name="web_ribbon" title="Activo" bg_color="bg-success" invisible="state_service != 'active'"/>
+                        <widget name="web_ribbon" title="Inactivo" bg_color="bg-secondary" invisible="state_service != 'inactive'"/>
+                        <widget name="web_ribbon" title="Retirado" bg_color="bg-danger" invisible="state_service != 'removed'"/>
+                        <widget name="web_ribbon" title="En Lista de Retiro" bg_color="bg-warning" invisible="state_service != 'removal_list'"/>
+                        <widget name="web_ribbon" title="Cortado" bg_color="bg-warning" invisible="state_service != 'disabled'"/>
+                        <widget name="web_ribbon" title="Suspendido" bg_color="bg-warning" invisible="state_service != 'suspended'"/>
                         <button name="action_open" type="object" string="Open" class="oe_highlight" invisible="state != 'draft'"/>
                         <button name="action_cancel" type="object" string="Cancel"  invisible="state in ['cancel', 'done']"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,open,done"/>
+
+
                     </header>
                     <sheet>
                         <div class="oe_title">
@@ -36,13 +44,14 @@
                         <group>
                             <group>
                                 <field name="state" invisible="1"/>
+                                <field name="state_service" invisible="1"/>
                                 <field name="partner_id" readonly="state != 'draft'"/>
                                 <field name="holding_id" readonly="state != 'draft'"/>
                                 <!--field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" readonly="state != 'draft'"/-->
                             </group>
-                            <group>
+                            <!--group>
                                 <field name="state_service" widget="badge" decoration-danger="state_service in ('disabled','removed')" decoration-warning="state_service == 'removal_list'" decoration-success="state_service == 'active'" decoration-info="state_service in ('suspended', 'inactive')"/>
-                            </group>
+                            </group-->
                             </group>
                         <group>
                             <group>

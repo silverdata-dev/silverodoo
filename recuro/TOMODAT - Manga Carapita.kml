@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Document>
+<Placemark>
+	<name>​Manga 6</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.97654778,10.4724541621,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 1 - Carapita</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9732926704,10.4733405938,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9754923657,10.4764494228,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 4 - Carapita</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9778763545,10.476059897,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>​Manga 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9759688496,10.4754963699,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>​Manga 5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9743954448,10.4732176291,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 13</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9825309931,10.4797725553,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 12</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9846641818,10.483395728,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga T2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.986692143,10.4846694,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 11</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9822274916,10.4835371075,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga T1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9816805621,10.4836083169,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 7</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9726030283,10.4740833755,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 8</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9739077133,10.4765495254,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 9</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.976361628,10.479252614,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 10</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9795939221,10.4789176181,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga T5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9871834741,10.4778371144,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 14</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9861503129,10.4762622785,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga T6</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9886406663,10.4792926469,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 15</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9858948774,10.4798153324,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Minimanga 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9875477098,10.4793418924,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga T7</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9936884627,10.4846642502,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 16</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9937094359,10.4846955639,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>MiniManga 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.976736315,10.4756711833,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 17</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9953586213,10.4847844862,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 20</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9803105389,10.4722851112,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 21</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9831503637,10.4772749618,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga T8</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9798785912,10.46804489,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 23</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9763230461,10.4701730411,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 18</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.974699943,10.469494628,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>MiniManga 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9749062562,10.4694207951,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 19</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9798397853,10.4680948201,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 22 Urb. Antimano</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9799502519,10.4652263428,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>MiniManga 4</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9800010431,10.4656292848,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 22 El Padre</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9772250758,10.469459099,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga T5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9377588104,10.4961128078,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga T6</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9364244273,10.4965004544,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>MangaNap de Paso</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ffff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9810871635,10.4656292402,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 26</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9812490366,10.4654106103,0</coordinates></Point>
+</Placemark>
+</Document></kml>

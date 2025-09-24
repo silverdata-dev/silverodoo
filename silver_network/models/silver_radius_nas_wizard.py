@@ -8,6 +8,8 @@ class SilverRadiusNasWizard(models.TransientModel):
     _name = 'silver.radius.nas.wizard'
     _description = 'Manage MikroTik NAS Clients'
 
+    name = fields.Char(string="Nombre")
+
     radius_id = fields.Many2one('silver.radius', string='Radius Server', required=True)
     nas_address = fields.Char(string='NAS Address', required=True)
     nas_secret = fields.Char(string='NAS Secret', required=True)

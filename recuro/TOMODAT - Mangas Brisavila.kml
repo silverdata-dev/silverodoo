@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Document>
+<Placemark>
+	<name>Manga 6 (48 Hilos)</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9087284332,10.5173455598,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 10 (48 Hilos)</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9097198395,10.5186208135,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 8 (48 Hilos)</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9118825857,10.5177920437,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 5 (48 Hilos)</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9102897677,10.5153298586,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 7</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9111356061,10.5144676766,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 0 (48 Hilos)</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9108643382,10.5124792749,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 1 (48 Hilos)</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9101438507,10.5125531761,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 11 - Sol de Caraballo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9111829062,10.52005763,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 2 (48 Hilos)</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9091966055,10.5128403957,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 3 (48 Hilos)</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9087460524,10.5140986422,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 4 (48 Hilos)</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9096151012,10.5160741577,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 12</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9124419523,10.5194392533,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 13. Altagracia</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9110160997,10.5208673535,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 15</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9093261556,10.5211829695,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga Paso (Retiro)</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9135506987,10.5193766009,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga Paso (El Retiro)</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9120931804,10.5194912932,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>MiniManga</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ffc0c0c0</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9165471962,10.5172596189,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga D4 - Mini manga</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ffc0c0c0</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9165495845,10.5172220617,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 14</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9121694457,10.5206166647,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 9</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.908981172,10.5139945115,0</coordinates></Point>
+</Placemark>
+</Document></kml>

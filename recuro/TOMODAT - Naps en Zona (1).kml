@@ -1,0 +1,1663 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Document>
+<Placemark>
+	<name>Nap Altagracia 2131 Eucaliptus</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9132624184,10.5217434781,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 2132 Eucaliptus</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9136128729,10.5215241625,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 2133 Eucaliptus</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9128568523,10.5215185825,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 2134 Eucaliptus</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9129885785,10.5211990401,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 2135 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9106421885,10.5207520066,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 2136 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9110095915,10.5215028209,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 2137 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9107756162,10.5211314658,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 2138 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9103876925,10.5208485918,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1146 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9126130402,10.5210673468,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1147 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9131140304,10.5210418312,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1148 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9133580174,10.5211435588,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1149 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9135310862,10.5212194715,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 11410 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9123319667,10.5211542223,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 11411 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9122246693,10.521345892,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 11412 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9120605627,10.521614503,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 11413 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9117791207,10.5215280466,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 11414 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9124650217,10.5217132414,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 11415 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9128722425,10.5218012812,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1141 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9121296434,10.5205658243,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1142 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9120865759,10.5204616581,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1143 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9119779465,10.5204405611,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1144 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9119296667,10.5203996857,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1145 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9124567208,10.5205895584,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 3131 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9108755902,10.5207442047,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 3132 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9104596405,10.5203210145,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 3133 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9103544489,10.5200245485,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 3134 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9101091901,10.5193787576,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 3135 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9098768481,10.5192136026,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 3136 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9098191159,10.5198007679,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 3137 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.90996135,10.5197747469,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 3138 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9102259858,10.5203524923,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 4151 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9093493847,10.5211762485,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 4152 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9096106713,10.5210267863,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 4153 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9093406038,10.5207849236,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 4154 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9100575173,10.5207133585,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 4155 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9094714598,10.519859981,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 4156 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9092653772,10.5198508767,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 4157 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9095299937,10.5193595985,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 4158 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9097277779,10.518930557,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 5131 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9104734866,10.5211975387,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 5132 Cujicitos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9106468412,10.5213762188,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 5135 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9123655558,10.521084178,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 5137 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9133194163,10.5218090542,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 5136 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9122091,10.5213837,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 5139 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9145827368,10.5216402791,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 5138 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9137140363,10.5219896961,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 51311 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9089910015,10.5173773608,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 51310 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9094593823,10.5179865411,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 51313 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9093577936,10.5173071467,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 51312 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ffc0c0c0</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9091978669,10.5172349548,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 51364 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9101034477,10.5192085242,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 51314 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.91095002,10.5212443827,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 5133 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9103227183,10.5200105406,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 51315 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9103612751,10.5208695827,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 821 Sabana Blanco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9183442606,10.5196982256,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 823 Sabana del Blanco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9187449362,10.5193125607,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 822 Sabana del Blanco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9193356062,10.5193127566,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 824 Sabana del Blanco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9182611024,10.5192484123,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap de Paso</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ffff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.91832911,10.5187642005,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 826 Sabana del Blanco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9188414673,10.5187220237,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 827 Sabana del Blanco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.918259659,10.5182259384,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 829 Sabana del Blanco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9172034681,10.5182329737,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 828 Sabana del Blanco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9186559195,10.5181681593,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 8211 Sabana del Blanco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9179370984,10.5178184283,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 8210 Sabana del Blanco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9184347665,10.5177640257,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 8212 Sabana del Blanco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9174307586,10.5178003277,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 8213 Sabana del Blanco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9167336912,10.5178038778,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 8214 Sabana del Blanco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9162403753,10.5174081425,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 8215 Sabana del Blanco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9174728653,10.517277774,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 8216 Sabana del Blanco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9172827069,10.5168974694,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 825 Sabana del Blanco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9169614757,10.5168575785,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 932 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9190664701,10.5216930358,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 931 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9186723336,10.5214348368,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 933 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9190483053,10.5224659977,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 934 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9186406514,10.5223010338,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 935 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9181115694,10.5222524364,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 936 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9192362171,10.5214844786,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 937 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9193273008,10.5223398682,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 938 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9196094222,10.5227800689,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1031 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9192159974,10.5230922203,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1032 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9187550325,10.5230142026,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1033 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.919357359,10.523628881,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1034 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9197438263,10.5236732404,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1035 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9201376917,10.5236138921,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1036 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9199991263,10.5230515614,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1037 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9198909429,10.5224040064,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1038 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9202837857,10.5229504015,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 711 Cardon</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9162162569,10.5212361111,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 712 Cardon</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.915866093,10.5221161623,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 713 Cardon</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9159277774,10.5211251691,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 714 Cardon</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9156283965,10.5213111397,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 715 Cardon</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9157414085,10.5217945935,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 716 Cardon</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9156757095,10.5221797725,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1146 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9213091683,10.5233696659,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1143 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9209518799,10.5233660846,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1141 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9205450413,10.5231857226,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1144 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9206762426,10.5228250435,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1147 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9211704787,10.5221527862,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1145 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9206686158,10.5223370321,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1142 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9207535366,10.5236553033,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1148 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9189768696,10.5235620344,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1241 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9188566801,10.5238716688,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1242 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9181983345,10.5236089234,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1243 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9179822795,10.5231623831,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1244 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9182208281,10.5228577239,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1245 Mecedores</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9186208913,10.5226666432,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1351 Hijos de Dios</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9163007803,10.5202966524,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1352 Hijos de Dios</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9160768158,10.5204140043,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1353 Hijos de Dios B1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.916645717,10.5204356217,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 1354 Hijos de Dios B1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9162970298,10.5206518655,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 14178 Erazos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9077236578,10.5199752691,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 14177 Erazos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9068931788,10.5197425428,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 14176 Erazos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9068237766,10.519323569,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 14175 Erazos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9065501913,10.5189504148,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 14174 Erazos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.905952394,10.5189253621,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 14173 Erazos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9060366138,10.5186949308,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 14172 Erazos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9057599,10.5184854,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 14171 Erazos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9055822492,10.5180564253,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 15174 Erazos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9086104631,10.5205841146,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 15173 Erazos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9084149972,10.5206886105,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 15172 Erazos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9087868184,10.5212180116,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 15171 Erazos</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9084478542,10.5204430287,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 15175 Quebrada Anauco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9048419595,10.5171901233,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 15176 Quebrada Anauco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9049844518,10.5165024861,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 15177 Quebrada Anauco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9047960266,10.5154225695,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 15178 Quebrada Anauco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9047293067,10.5148278886,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 16161 SuperBloque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9082037364,10.5214248434,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 16162 SuperBloque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9081420456,10.5212771651,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 161613SuperBloque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9080803547,10.5211242125,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 16164 SuperBloque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9080267106,10.5209870825,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 16165 SuperBloque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9079516087,10.5208473153,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 16166 SuperBloque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9079006467,10.5207154594,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 16167 SuperBloque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9078416381,10.5205809664,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 16168 SuperBloque</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9077665363,10.5204306505,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 17171 Yuruani</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.905122453,10.518061397,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 17172 Yuruani</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9050205291,10.5181128212,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 17173 Yuruani</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.90505808,10.5178860271,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 17174 Yuruani</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9049638967,10.5175342516,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 17175 Yuruani</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9050027887,10.5176832503,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 17176 Odeon</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9047787129,10.5182865729,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 17178 Osito</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9064738408,10.5194961374,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 17179 Avila</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9063383893,10.51953965,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 171710 Butanta</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9061895267,10.5195950297,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 18161 Gomes</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9077356721,10.5218487757,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 18162 Gomes</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9078514575,10.5216795691,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 18163 Gomes</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.907721647,10.5214755748,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 18164 Gomes</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9075693815,10.521138431,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 18165 Avila</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9079734384,10.5221620719,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 18166 Avila</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9076850847,10.5223070018,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 18167 Avila</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9083094437,10.5228998668,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 19181 Dos Tuneles</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9043638557,10.5194026829,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 19182 Dos Tuneles</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9042760134,10.5191818232,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 19184 Dos Tuneles</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.904072836,10.5187025242,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 19183 Dos Tuneles</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9042250514,10.5189823901,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 19188 Bambu</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9043696,10.5213314,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 19189 Bambu</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9045405462,10.5217055476,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 19186 Bambu</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9044560567,10.520219203,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 19185 Bambu</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9041077048,10.5198298976,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 19187 Bambu</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.904331334,10.5204990675,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 191812</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9051388865,10.5189862976,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 20191 Castellano</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9062547773,10.5218227878,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 20192 Castellano</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9059597343,10.5218096022,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 22212 La Palmita</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9010986015,10.5212058149,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 22211 La Palmita</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9015518948,10.5207327822,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 22214 La Palmita</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9020065293,10.521732578,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Altagracia 22213 La Palmita</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9015934691,10.5221835234,0</coordinates></Point>
+</Placemark>
+</Document></kml>

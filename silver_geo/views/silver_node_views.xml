@@ -6,6 +6,9 @@
             <field name="model">silver.node</field>
             <field name="inherit_id" ref="silver_network.view_silver_node_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//div[@name='geolocalize']" position="inside">
+                    <field name="name" widget="coordinate_picker_widget" readonly="1" nolabel="1"/>
+                </xpath>
                 <xpath expr="//notebook/page[@name='network_graph']" position="before">
                     <page name="map_view" string="Mapa">
                         <field name="id" class="map-field" widget="node_map"/>

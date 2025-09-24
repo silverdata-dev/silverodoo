@@ -1,0 +1,1153 @@
+¿Qué me interesa saber, es, hasta dónde conoces tú el proceso, o cómo conoces tú
+el proceso? ¿Qué, qué parte del proceso? El proceso, todo lo que tiene que ver con la parte de infraestructura.
+Ah, de el proceso. Exacto. Más o menos eso. Tenemos, tenemos varios, varios procesos. Tenemos el proceso de instalación,
+tenemos el proceso de mantener la plataforma, que es la parte del día a día, ¿no? Entonces, ¿cuál es la que vamos a empezar, la de mantener la plataforma?
+Correcto. Es como el más, es urgente, ¿no? Bueno, mira, lo que pasa es que ustedes contemplaron de que si, si mantenemos, mantenemos la plataforma, no podemos incluir clientes, ¿contemplaron eso?, porque para nosotros el proceso operativo es todos los días hacer instalaciones, todos los días vamos agregando el sistema,
+pero si es un proceso base, pues tal vez es cosa de hacerlo también.
+Por eso es que digo, o sea, mantener la plataforma no está, no es difícil,
+que realmente lo que es, lo que se busca allí son, son un par de cosas. Permíteme una hoja blanca de esa, por favor.
+El proceso más, que requiere más, es el de, el de instalación.
+Porque el resto son los modelos de las cosas y como que funciones para esas cosas, como que deciden ver o cortarlas al final.
+Exactamente. Por eso, eso es el mantener. El mantener es poder cortar, poder cambiar un plan, poder reconectar,
+vamos a buscar aquí esto que está en activo.
+Aquí está su recurrente mensual, esta es la parte administrativa,
+correcto, pero si ella no paga en cierta fecha, se va a cortar el servicio automáticamente.
+Entonces, de repente, si yo quiero, la persona me llama y me dice, mira, vale, dame dos días y yo te pago.
+Yo puedo venir aquí y yo le doy aquí, bueno este porque no está cortado, pero yo le doy aquí a una cosa que se llama promesa de pago.
+Y entonces ahí yo le activo el servicio por tres días.
+Después del corte, después del corte.
+Está cortado, vamos a buscarte a alguien que esté cortado.
+Es este que está cortado.
+Yo a esta persona, le doy una promesa de pago.
+Y el servicio es el activo por tres días nada más.
+Si él no paga en esos tres días, se le vuelve a cortar.
+Ok, eso es prácticamente el mantener la plataforma.
+Ok, ah, que de repente, bueno, mira, puede pasar, ha pasado muy poco pero puede pasar.
+Es un amigo de blando y mira, vale, yo reconecto.
+Entonces yo tengo que venir aquí y le doy reconectar.
+Ya no es una promesa de pago, ya es una reconexión directa.
+Entonces yo puedo a esta persona reconectar o cortar.
+Bueno, todas esas funciones están implementadas en este odio.
+De ahí de los que están, o sea, hay por ejemplo la opción de simplificar donde hay muchas opciones que...
+Por ejemplo, esto que dice aquí es suspender.
+Esto no es para suspender el servicio.
+Esto es para suspender la factura.
+La factura.
+Lo que pasa es que este suspender se entiende otra cosa pero no es la realidad.
+Dispender la factura, ¿qué pasa?
+No factura más.
+O sea, no lo cortas más nunca.
+Porque no se le va a hacer la factura.
+Entonces por ejemplo, ¿es de botón?
+No debe ir ahí.
+No se usa.
+No debería ir.
+Sí lo usan, pero lo están usando incorrectamente.
+Porque es lo que te estoy diciendo, esto es para suspender la factura.
+O sea, que la factura no se vaya generando automáticamente.
+Esto que está aquí es para ver...
+Esto está tu bolete, él me va a decir...
+qué potencia tiene, si está conectado, dónde está conectado.
+Eso es lo que me va a decir.
+Esto no está implementado.
+Aquí es para hacer un test de velocidad.
+¿Eso es con el radius?
+No, este es para hacer un test de velocidad.
+Este es para hacer un test de velocidad.
+Un test de velocidad es la conexión entre el servidor
+y el dispositivo del cliente, hacer una prueba de velocidad.
+Esto es eliminar el contrato completamente, eliminar el servicio.
+Esto sí es con el radius.
+Esto de conectar sesión de red es que él tumba el radius
+de la sesión.
+Él viene aquí.
+Cuando yo lo deje aquí, desconectar de red.
+Él viene aquí y hace...
+Tumbó la sesión.
+Y él vuelve otra vez, a cierto tiempo, volverse a conectar.
+Eso es todo.
+Eso es todo lo que hace.
+Fíjate que aquí se desconectó, aquí conectó.
+OK, eso es simplemente eso.
+Esto nos sirve a nosotros para aquellos casos
+donde el radius no se comunicó bien con el microtip.
+Entonces, ahí donde voy.
+Fíjate.
+Este es una persona de fibra óptica.
+Entonces, él viene aquí.
+Esta NAP puede ser de 8 ó de 16.
+Y él está conectado, según esto,
+en el puerto 5 de esa NAP que está aquí.
+Este número que está aquí es el número que identifica a esta caja.
+Y este número que está aquí es lo que identifica en dónde está conectado el cliente,
+en qué puerto.
+De esa caja está conectado el cliente.
+Entonces, esto que dice código de cliente,
+esto que está aquí es el precinto que se le coloca al cable.
+Entonces, está la NAP, está el cable y aquí le ponen un precinto.
+Vamos a ver aquí.
+Este es el precinto.
+Eso se lo colocan al cable.
+Mira cómo queda.
+¿Y ese es la caja NAP en un edificio?
+En este caso sí.
+Por eso puede estar en un poste,
+puede estar en la sotea de un edificio,
+puede estar en el pasillo de un edificio.
+Puede estar en las escaleras, en el cuarto de basura.
+Puede estar en diferentes lugares.
+Esos son los precintos.
+Esto no trabaja nada.
+Aquí también está el precinto.
+Aquí está pegado un poste.
+Este es un poste también.
+Entonces bueno, volvamos aquí.
+Él está pegado aquí.
+Esa NAP obligatoriamente llega a una manga.
+Aquí a nivel de sistema yo no declaro esa manga.
+A nivel de sistema yo no declaro esa manga.
+Yo aquí no declaro esa manga.
+Solamente declaro las cajas NAP.
+Pero físicamente eso va a una manga.
+Entonces de esa manga,
+él llega a una OLT.
+Eso sí lo declaro yo acá.
+Eso sí lo declaro yo acá.
+Pero esa OLT tiene,
+puede tener 1, 4, 8 o 16 portos.
+Que son estos que yo declaro aquí.
+Esta persona que está conectada
+en un puerto aquí, en esta NAP,
+puede tener un puerto diferente aquí.
+Como es el caso.
+Puerto en la NAP,
+puerto en la OLT.
+Y puede tener un ID diferente.
+Vamos a ver.
+Porque dentro de esa OLT,
+que es el PON1,
+te dice PON1,
+1, 2, 3, 4,
+hasta el 120.
+Hasta el 120.
+Y después,
+te dice PON1,
+te dice PON1,
+te dice PON1,
+te dice PON1,
+te dice PON1,
+te dice PON1,
+hasta el 128.
+Entonces ya aquí,
+yo puedo estar en un PON diferente,
+pero puedo tener un ID diferente.
+Que es lo que yo estoy mencionando acá.
+1 ID 70.
+Entonces yo estoy en el PON1,
+estoy en el PON1,
+ID 70.
+Y aquí estoy en el 5,
+en el puerto 5 de la NAP.
+Esto que está acá,
+¿verdad?
+va conectado a uno o más.
+Router de acceso.
+Estos son los routers.
+¿Qué son los equipos cortos?
+Exactamente,
+que son los equipos cortos.
+Que eso yo,
+lo declaro aquí.
+Lo que pasa es que aquí yo declaro varias cosas,
+porque uno depende,
+uno depende de la otra.
+¿Y las mangas,
+los splitters están metidos ahí no?
+No, los splitters están, bueno,
+los splitters están dentro de las mangas
+y están dentro de las NAP.
+Por eso es que aquí te dice,
+¿splitter,
+si es un splitter primario o secundario?
+Reciente hay dos.
+Bueno,
+no todos los casos son iguales.
+Eso depende de cómo se haga el diseño en la red.
+Y no son necesarios incluirlas en el sistema.
+Sí.
+Entonces voy a incluir mangas también.
+No, las mangas no.
+Estoy hablando de los splitters.
+Como tú ves aquí,
+yo no necesito las mangas.
+Porque esto no me va a hacer un mapeo de la red.
+Geográficamente cuando quieras hacerlo.
+A menos que si lo queremos hacer,
+entonces sí tenemos que poner las mangas.
+Cuando quieras tener la vista geográfica,
+así como en el...
+Sería buenísimo.
+Porque cuando yo la estoy incluyendo.
+Ok, buenísimo.
+Entonces,
+¿de qué depende la manga?
+Pero entonces ya la manga tienes que trabajarla con hilos.
+Para saber qué hilo va conectado con esta napa.
+Porque te explico.
+Aquí pasa un cable.
+Pero este cable tiene diferentes hilos.
+Y esos hilos son de color.
+Pero también tiene varios buffers.
+Hay un buffer.
+Aquí está.
+Entonces, fíjate.
+Vamos a ver si lo podemos ver más grande.
+Fíjate.
+Este es el cable.
+Pero dentro de ese cable hay varios buffers.
+Y dentro de esos buffers hay diferentes hilos.
+Entonces los buffers son de colores y los hilos son de colores.
+Entonces, ¿qué pasa?
+Eso pasa por aquí.
+Pero yo aquí...
+Yo aquí...
+Conecto un splitter.
+¿Para qué?
+Para poder conectar diferentes snaps.
+¿Ok?
+Diferentes snaps.
+Continúo con ese cable.
+Continúo con ese cable.
+Llego a otra manga.
+Y de ahí saco otro hilo para conectar otras snaps.
+Las mangas son con tenedores.
+Son con tenedores.
+Se registraría solo la localización y qué es lo que tiene dentro.
+Pero las mangas tienen número también, ¿oíste?
+¿Un identificador?
+Sí, tienen un número.
+Estas son las mangas.
+Estas son las mangas.
+Estas son las mangas.
+Pero esas mangas tienen un identificador.
+Tienen un número.
+No sé si a ti te dieron acceso a esto.
+Sí.
+¿El Tomodar?
+Sí.
+Ok, bueno.
+Ahí en el Tomodar tú puedes ver las mangas de la distribución tal.
+Porque la distribución también tiene un número.
+Todo está enumerado para poder saber, ¿no?
+Entonces ese cable sigue y continúa a otra manga.
+Y de ahí yo agarro otro hilo y saco otras cajas snaps.
+Y así lo decíamos hasta que los hilos se me acaben.
+Ok.
+Entonces bueno, aquí en el router.
+Aquí en el router.
+Dependiendo del PON en donde tú estés.
+¿Verdad?
+Aquí se va a activar.
+Aquí se activa una VLAN específica.
+Porque está directamente relacionado con una VLAN que yo he documentado en la OLT.
+Por ejemplo.
+Si yo tengo una OLT de uno, es una sola.
+Tiene dos VLANs.
+Una administrativa y una VLAN que es la de servicio.
+Que es la que va contra el cliente.
+Ok.
+Ahora.
+Si yo tengo una de cuatro, entonces tengo cinco VLANs.
+Una administrativa y una por cada PON.
+Que son las de servicio.
+Ok.
+En la de ocho, tengo nueve.
+La administrativa y las de servicio.
+Y una VLAN diferente para cada uno.
+Y está lógicamente relacionada con las VLANs de estos equipos.
+Entonces se conecta directamente a esa VLAN.
+Y esa VLAN que puede ser.
+Por carácter ahorita documentado, que se entienda educativo.
+Puede ser la 1001, la 1002, la 1003, la 1004, la 1005, la 1006, la 1007 y la 1008.
+En el caso de que ésta es una OLT de ocho.
+Si fuera de cuatro, solamente utilizo ésta.
+Si fuera de ocho, utilizo toda ésta.
+Si fuera de dieciséis, entonces ya tengo nueve, diez, hasta el dieciséis utilizo ésta.
+Es el distribuyendo entre los routers que tengan conectados.
+Es correcto, que se distribuyen entre cualquiera de los routers conectados.
+Por ejemplo, vamos a ver aquí equipo OLT.
+Este no tiene quica salida.
+Ayayay, carrapita.
+Fíjate, la OLT de dieciséis, la número dos, tiene cuatro.
+Está casada con cuatro routers.
+Por eso yo te decía, puede estar con uno, con dos o varios routers.
+A nivel lógico, todos los routers, todos conocen las villas, solo que no trabajan con todas las villas.
+Pero eso ya es otra cosa, eso es problema a nosotros.
+Esto lo administramos nosotros directamente a través del router.
+A nivel de esto, no se van a meter.
+Yo simplemente te lo estoy explicando para que tengas una noción de cómo es la cuestión.
+O sea, no va a haber un formulario.
+No, por eso es que lo que nosotros hacemos es que la OLT va casada con estos routers.
+Simplemente lo que hacemos es esto, porque nosotros declaramos los routers.
+Todos esos controles necesitan.
+Todos estos controles, sí, porque todos los equipos trabajan igual.
+No todos.
+Fíjate que ellos aquí ya están metiendo I.P.O.E. y P.P.O.E.
+Entonces, tú, a nivel de sistema, tienes que declarar las GAMs que pertenecen a unos mangas específicos,
+que pertenecen a un puerto específico, a una OLT o a un puerto específico.
+Sí, pero es que tienen una VLAN específica ese puerto.
+Esa puerto del hotel tiene una VLAN específica.
+Que esa VLAN específica va a tener, va a tener un direccionamiento I.P.E. específico.
+Vamos a buscarlo aquí.
+Aquí no me sale. Interesante porque no me sale.
+Hay que grabar el puerto.
+Puerto, puerto, aquí está.
+Entonces, cada puerto tiene, cada puerto tiene un segmento I.P.E. diferente.
+O sea, cada VLAN tiene un segmento de I.P.E., cada VLAN tiene un segmento I.P.E. diferente.
+Y aquí tú se lo inventas o lo configuras a nivel, dices, estos van a ser los inventos
+y aquí en los routers estos van a ser los inventos y aquí te lo jales.
+No, yo lo declaro aquí.
+Yo declaro aquí, yo no declaro nada en el router, en ese caso.
+Aquí nada más, Rangos.
+Ya vamos a ver eso para que lo veas.
+Ahí tienen que, los equipos core y los, por equipos core tienen.
+Sí, aquí sí.
+Ok, fíjate.
+Fíjate que yo aquí, yo no declaro nada.
+Aquí yo no estoy declarando absolutamente nada.
+Todo esto es dinámico, todo esto que está aquí es dinámico.
+Estas son las I.P.E. de los clientes, yo no estoy declarando esto.
+Esto lo toma él automáticamente, porque aquí hay un rough ride.
+Este profile que yo estoy declarando aquí, yo le digo, mira, cuál es tu dirección I.P.Local,
+cuáles son tus DNS, si usas IPv6 o no y de dónde vas a tomar la dirección IPv6.
+Eso es todo lo que yo pongo ahí.
+La dirección, el direccionamiento IPv4, yo lo estoy tomando de acá.
+Porque cuando levanta el PPV, el de aquí se lo va asignando.
+Porque al cliente, aquí yo le asigno un IP.
+A mano.
+A mano, bueno.
+A mano entre comillas, te voy a explicar por qué el entre comillas.
+Vamos a buscar aquí un contrato que no te ha hecho.
+¿Por qué Dave? Porque tendrías que saber todas las I.P.E. que tienen ya asignadas.
+Pero eso lo hace automáticamente el sistema, no lo hago yo.
+Ya te voy a explicar, fíjate.
+Este cliente que está aquí, él no tiene el dato de ningún tipo.
+Cuando yo vengo aquí y yo pongo,
+hey, mira, esto pertenece a tal nodo, a tal...
+Bueno, éste es porque éste es...
+Éste es de radio, éste.
+Éste es de radio frecuencia.
+Cuando yo vengo aquí, yo le digo, mira, tú perteneces al nodo,
+esto es porque se entra.
+Tú perteneces al nodo para que se entra.
+¿Cuál es la caja NAP?
+Yo pongo aquí, ah bueno, mira.
+La caja NAP, voy a poner por poner.
+Esta caja NAP, fíjate que automáticamente cuando yo coloco esto me trajo todo
+lo que es referente a esa caja NAP.
+Entonces me dice, mira, esa caja NAP está conectada con el de equipo core para que se entrara.
+El de equipo core parque central pertenece a la OLT 8 de parque central,
+a la tarjeta 0 porque tiene una sola tarjeta,
+al puerto 1 de esa OLT, ¿no?
+Tiene un split secundario.
+El 1ID que yo tengo disponible en esa OLT es el 65 de ese PON.
+Y el service port es el 1.
+Cuando yo le doy aquí asignar IP, él automáticamente va a seleccionar
+qué IP tengo disponible.
+Por eso que te digo que es automático entre comillas, ¿no?
+¿Por qué? Porque yo tengo que darle aquí.
+Porque yo puedo guardar esto aquí,
+yo puedo guardar esto aquí, me puede quedar esto sin la IP.
+Sin la IP.
+Entonces, ¿la IP de dónde la saca?
+De lo que yo declaré en ese PON aquí.
+Si nosotros buscamos, vamos a buscar esa OLT.
+A ver, ¿eh?
+Parque central OLT 2.
+Parque central OLT 2.
+Aquí me decía que era el PON 1.
+Tengo aquí, voy a buscar...
+PON 1.
+Y aquí yo tengo relacionado, fíjate,
+este contrato tiene este IP.
+Todo es... aquí.
+Fíjate que la IP es la 40, es la máxima que yo he usado.
+Perdón, aquí, hay otras líneas aquí.
+Aquí la IP, la 64 es la que yo he usado, máxima.
+Cuando yo le doy al botón, él me debe dar la 65.
+Eso es lo que tiene registrado a nivel de sistema.
+Es correcto.
+O también hay una forma de decirle al OLT, al cuarto que va a usar esa para ese contrato.
+Si está más relacionado, me va a dar un error cuando yo lo vaya a activar.
+Entonces, como me va a dar un error, yo voy a tener que irme directo a ese contrato.
+Yo voy a tener que irme directamente a donde?
+A la OLT para ver dónde está.
+Y entonces tengo que empezar a buscar OLT por OLT.
+Si tengo 20 OLT, en las 20 OLT tengo que buscarlo.
+Y si esas 20 OLT tienen 16 PON cada uno, yo tengo que ir metiendo en cada uno de esos PON.
+Aquí.
+Vamos a ver.
+Esta tiene 16 PON, y entonces yo tengo que irme metiendo, 8 PON, perdón.
+Y yo me tengo que ir metiendo aquí e ir viendo dónde está metido.
+Tengo que ir uno por uno para ver dónde está metido.
+Entonces, si son 16 OLT de 16 PON, yo tengo que meterme en las 16 OLT en cada uno de esos PON para verificar realmente dónde está.
+Y luego que me diga dónde está, entonces tengo que irme al PON para ver cuál es el ONOID que realmente tengo disponible,
+para entonces venir aquí y decirle, no, mira, esto no es esto.
+Esto es esto.
+Esto no es esto, esto es tal cosa.
+Entonces funciona porque de casualidad van aumentando, si aquí en el sistema está ocupado 32, le aumenta a 33, y está suponiendo que en el otro va a ser lo mismo.
+Exactamente.
+Él lo va almacenando ahí, él ve ahí, ah, mira, según mi registro, según mi base de datos, según mi base de datos, esto no está ocupado.
+Entonces, como eso no está ocupado, este es el que te voy a signar.
+Así es.
+¿Cómo me parecen?
+Ah, aquí está.
+Ah, pero siempre acogen, siempre lo mantienen.
+Ah, es el tufe.
+Ah, es el tufe.
+Ah, es el tufe.
+Ah, es el tufe.
+Ah, es el tufe.
+Prendrían o no prendrían?
+No.
+Ah, está tomando cinco bien.
+Vamos a ver.
+¿Ahí abajo?
+Sí.
+¿Abajo no lo moviste?
+¿Abajo?
+Exacto.
+Exacto.
+Dice Alfredo que yo bajo que va a salir ese porte que hay un cliente.
+Ah, ahí lo voy.
+Estoy viviendo lo que no hay.
+Si voy a desconectar, pero no me ha dado cuenta cuál era el cambio.
+Ok.
+Entonces, fíjate.
+Esto, obviamente, esto es un número que está guardado a nivel de base de datos aquí.
+No hay una comunicación para que diga, mira.
+Ok, porque si yo retiro a un cliente, cuando yo retiro a un cliente, libero toda esa data técnica.
+Esa data técnica es esto, todo esto, yo lo libero.
+Y entonces, cuando yo lo libero, lo mando a eliminar de la OLT y puedo agregar otro en su lugar.
+Porque realmente lo que él es el que le dice a través del comando a la OLT dónde, en
+qué posición lo va a agregar.
+Por eso fue que te hice el ejemplo aquí.
+Si esto aquí hay un error, yo pongo aquí el número que es, y ya.
+Ok.
+Te estoy poniendo un número que es incorrecto.
+Aquí el máximo son 128.
+Y esas comunicaciones de IP son solo rangos, no dicen, son solo rangos, son solo decir
+qué es lo que está pasando.
+Y esas comunicaciones de IP son solo rangos, no dicen, son solo rangos, son solo decir
+qué es lo que se configuran ahí.
+Bueno, igual como no tengo acceso a escritura, tampoco me he podido poner a probar en los
+puertos de la OLT.
+Ese, ese coquetito, ahí qué hacen, ahí nada más le ponen el, como que el A, B, C,
+la IP, máscara, máscara.
+Sí, la máscara de red.
+Nada más.
+Ahí pueden poner varios de esos.
+Sí, yo puedo ir agregando varios.
+De hecho, esto tiene un error.
+¿Por qué tiene un error?
+Te voy a explicar por qué.
+Porque aquí no hay 126 IP.
+Aquí yo puedo usar más IP de las que dice ella.
+¿Por qué?
+O sea, no es un error precisamente.
+Si lo vemos, lógicamente no es un error.
+Te voy a explicar por qué.
+Cuando yo declaro un segmento de red, por ejemplo ese, 10, 90, 8, 0, barra 25, él me
+está diciendo que yo tengo desde la IP número 0 hasta la IP 127, que es la 10, 90, 8, 127.
+Ok.
+Esta viene de la 0 hasta la 127.
+Entonces viene 0, 1, 2, 3, 4, 5, 6, 7, 8, 127.
+Este es mi IP mayor.
+¿Pero qué sucede?
+De que yo utilizo un protocolo que se llama PPOE.
+A yo usar PPOE, yo puedo usar todas las IPs del segmento.
+Pero cuando yo uso un DHCP, que es un protocolo de despacho de IP de manera automática,
+yo solamente puedo usar desde la 1 hasta la 126.
+¿Por qué?
+Esto que está aquí viene siendo la IP de red y esto que está aquí es una IP de broadcast.
+Entonces estas dos yo no la puedo asignar.
+Y esta que está aquí se le asigna un equipo que es realmente la pasarela hacia otro lugar.
+Vamos a hacerte un ejemplo.
+Yo tengo aquí un router.
+Yo tengo aquí una lacto.
+Yo tengo aquí un celular.
+¿Verdad?
+Para que ellos se comuniquen, tienen que tener una IP.
+Y esa IP debe tener una máscara de red que es la que la máscara de red le va a decir a que red pertenece.
+Ok, entonces máscara de red, esta es la IP de red, esta es la máscara de red.
+Entonces vendría aquí mi IP de red.
+Nunca lo configuran porque vuelvo y te repito, en el PPOE no hace falta.
+En el PPOE yo puedo poner un gateway cualquiera que no tenga relación a esto.
+Ok, no tiene absolutamente nada de relación con esto.
+Entonces esos botoncitos, el borrar pool es como borrar toda la fila.
+Borrar pool es borrar todo.
+Y remover contratos como borrar todos los contratos que están en ese.
+Todos estos son los contratos.
+Hice regular pool.
+Regularizar pool es que él va a buscar en la base de datos todos los clientes que están dentro de ese segmento de red y me lo va a poner aquí.
+Entonces fíjate, yo tengo mi IP de red.
+Entonces a este equipo que está aquí yo le pongo 10, 90, 8, 1.
+Y la máscara viene siendo 255, 255, 255, 128.
+Porque barra 25.
+Entonces esta lacto y este celular deben tener una IP diferente a esta porque esto que está aquí es la pasarela de este hacia otro lugar.
+O sea todo lo que él no consiga lo va a buscar aquí y lo que él no consiga aquí lo va a buscar afuera.
+Ok, entonces aquí yo pongo 10, 90, 8, 2 por ejemplo y aquí pongo 10, 90, 8, 3.
+Esto es porque yo lo estoy poniendo manualmente.
+Pero si yo lo hago por DHCP lo que yo conecte va a agarrar una IP aleatoria.
+Va a agarrar la 2, la 3, la 5, la 10, la 15, la 10, pero no va a salir, no va a ser mayor a esto.
+O es 126, pero 1 tampoco va a ser.
+Ok, como yo trabajo con PPOE yo puedo usar la 1, la 0, la que sea porque aquí voy con el escenario, esto con DHCP, voy con el escenario PPOE.
+Aquí tengo la lacto igual, aquí tengo el celular.
+Esto está por PPOE, yo pongo un usuario y una clave, esa clave me dan permiso para conectarme aquí.
+Él, yo le pongo un direccionamiento IP 10, 0, 0 por poner cualquier cosa, porque realmente es eso, yo puedo poner cualquier cosa.
+Yo puedo poner lo que yo quiera.
+Cuando este usuario y esta clave se autentican aquí, él va a buscar aquí, bueno a ti te toca esta porque te dijimos que tu eras fulano de tal.
+Entonces, que es lo que hago yo acá?
+Le asigno una IP 10, 90, 80, 0.
+La máscara de red viene siendo 255, 255, 255, 255.
+Esta es la máscara de red.
+Y su puerto de enlace viene siendo 10, 10, 0, 0.
+Esto que te está diciendo aquí?
+Que aquí no hay más IP disponible en ese segmento de red, no hay más.
+Entonces, como esto me está diciendo a mi que no hay más segmento de red, pero yo estoy usando un protocolo que si me permite, entonces ya yo sé que es lo que voy a buscar.
+¿Y dónde lo voy a buscar?
+Porque mi pasarela es esta.
+Mi pasarela es esta.
+Entonces, todo lo que yo no consiga en esta red, lo voy a buscar aquí y él lo va a buscar afuera.
+Bueno, esto era más indicado cómo trabajan en este odu normal.
+Entonces, es como que no tienen muchos cambios con respecto a este odu.
+Cambios por ahora no.
+Después sí vamos a pasar a un protocolo que se llama...
+Que se llama...
+Muy similar a eso.
+Que va a ser uso de las mismas rancos IP.
+Sí, claro.
+Entonces así como requerimientos especiales no tienen.
+No tienen.
+No tienen nada de los mismos.
+No tienen nada de los mismos.
+es correcto
+entonces así como requerimientos especiales no tienen?
+requerimientos especiales
+como decir, no, que quiero esto en el formulario, quiero esto que se conecte con el LTE desde acá y que haga esto
+no, tiene que ser esto, tal cual
+porque estas cajas NAB, estas mangas y estas cajas NAB, estas cajas NAB que están aquí, las carga Proyecto
+ellos las cargan y cuando la cargan la deben de casar
+caja NAB
+ellos le ponen si tiene, osea ellos le ponen el nombre, le ponen el puerto, de cuanto es la NAB
+si tiene split secundario no
+donde esta la, cual es la ubicación
+si esta activa no
+ellos la, de aquí ellos la van levantando, la van levantando, la van levantando
+entonces lo que dices del proceso de instalación tambien esta todo ya hecho acá
+fíjate ve, ellos aquí te dicen, el split secundario ya ellos ponen aquí a quien pertenece
+es el split secundario del PON15 de la OLTA1 del parque central
+yo me voy aquí
+me dice 1-8
+puerto de tarjeta OLT, splitter
+tiene 5 cajas NAB
+quitan las 5 cajas NAB, conectadas a ese split
+hay un plato, pero hay un tema de conexión
+aquí debería, por ejemplo como es un, esto es un edificio
+aquí debería en alguna parte decir, mira
+piso tal, caja en el puerto de basura, está en azotea, urbano
+que paso cuento
+acá por un momento para el coche he llevado la plancha a colocarla en la tanquilla
+ya la corte, ya no tengo lista
+yo no la he pintado, no la he colocado, no he identificado la pintura
+yo no he trabajado, me he colocado la tanquilla para proteger la mano
+pero eso no tiene
+eso no está hecho con cemento
+si, pero la plancha que le he colocado es de planchas triadas
+la corte a la media porque ya la trajeron
+pero con el agua y la vaina va a caer en desgracia
+como caen todas las tanquillas, entonces eso es una lámina triada
+eso no es cualquier lámina
+yo creo que te mueres tu memoria y esa lámina todavía está ahí
+esperemoso, gracias chau
+yo le digo pasar, ya llueve ese caramelo
+bueno, dale pues, está bien
+ok, entonces fíjate, aquí es donde se va casando, por eso es que tienes que saber esto
+para que lógicamente tú las puedas ir casando una con otra
+bueno, pero eso sabe el que está instalando, no?
+eso lo sabe el proyecto, es correcto, el proyecto el que tiene que decírtelo
+pero tú tienes que saberlo para poderlo relacionar a nivel de base de datos
+o como lo vas a mostrar allí
+bueno, si eso igual va a ser un rollo porque hay información allá en el Tomodata
+en el Tomodata, en Excel y como que tienen distintos nombres
+y tienen distintas, se puso a graficar las coordenadas que están en Ogo
+y están en lugares muy equivocados
+entonces tienes que saber cómo ir todo eso
+sí, bueno, eso ya hay que sentarte con la gente del proyecto que yo te clarifiquen esa información
+pero del lado de nosotros es este
+y esto entra dentro del proceso de mantener
+y de instalación, porque en la instalación yo hago esto
+en la instalación yo le digo, eh, para tú perteneces a esto, él me trae todo lo demás, le digo dónde va a ir
+sí, fíjate
+yo le digo, este es el parque central
+¿verdad? entonces yo le digo, mira, este es el Movedano
+Movedano, piso 16
+vamos
+este es el Movedano, bueno, yo voy a agarrar cualquiera porque realmente no sé dónde, en qué piso está
+fíjate, yo le digo, pero está en el Movedano
+y automáticamente él me trae todo lo demás, todo
+esto lo único que hago aquí es poner, cuando voy a instalar, el serial de la ONU
+el modelo de la ONU, asignar la IP
+le doy guardar, le doy aquí activar
+después que le doy activar, me voy aquí a gestión de ONU
+pongo aquí el nombre de la red
+WIFI
+la clave que quiere el cliente
+le doy
+y ya, ese es todo lo que llevamos
+no hago nada
+entonces se lo mandan por WhatsApp
+se usa WhatsApp para todo eso
+sí, lo ideal aquí es que esta parte de aquí
+esta parte de aquí
+y esta parte de aquí
+la tenga ya el instalador
+el instalador entra, busca el número del contrato
+llena la data técnica
+llena toda la data técnica, le da activar
+luego viene aquí
+configura su red WIFI porque él está con el cliente
+mira que red WIFI quiere, ah yo quiero la red WIFI y tal
+le pone la contraseña
+lo cambia aquí
+el tipo quedó activado
+ya no hace falta mandar y llamar a nadie
+ya no hace falta mandar nada por WhatsApp
+ya no falta nada
+y está obligado
+el instalador está obligado a hacerlo, ¿por qué?
+porque si yo no le da al botón activar
+no va a tener internet
+¿lo ves?
+o sea, no va a tener internet
+de como no va a tener internet
+él está obligado a darle al botón activar
+joder
+más ahí de otro
+por eso que lo ideal es que el técnico lo tenga
+ah sí, tengo internet, ah ya todo listo
+carga las fotos en el sistema
+mira aquí me dio IPv6 y aquí me dio el plan
+ya listo, chau, me voy, sigo con el siguiente cliente
+por eso tiene que ser el procesor
+sumamente automatizado
+bueno
+¿estamos claros? ¿seguro?
+¿alguna duda? ¿alguna pregunta?
+¿alguna observación?
+no, entonces me seguiré guiando por el doctor
+si has visto que actualizaron en el otro
+no, no, el que estaban haciendo ustedes yo no lo he visto
+no, que estaban aquí el 18
+no, yo no he visto nada tampoco de eso
+no he visto nada de eso
+entonces
+para mantener la plataforma
+es simplemente si el cliente me llama y me pide el saldo
+el saldo yo lo veo aquí
+si yo quiero ver si la factura se generó o no se generó
+vamos, un contrato viejo
+contrato viejo
+contrato viejo, si yo quiero lo doy aquí
+y aquí yo veo cuáles son las facturas que le ha pagado
+le ha pagado todas estas facturas
+aquí veo el monto que tiene vencido
+o sea lo que debe ser
+o sea lo que debe ser
+y aquí, cortar si lo quiero cortar
+reconectar si lo quiero reconectar
+aquí pin, para ver si el equipo está activo o no está activo
+bueno, en este caso el Estatue LT no entra porque esto es inalámbrico
+si
+aquí es un test de velocidad
+como te dijiste de eliminar servicios, yo lo doy ahí
+ya el tipo se desconecta, pierde servicio
+se pierde el contrato, todo
+cómo manejan el valor de las divisas
+cuánto tienen que pagar cada mes
+distinto
+servicio recurrente
+25
+y eso le da un monto en bolívares que cambia todos los días a través de la tasa de cambio
+es como una variable global que tiene
+como una variable global
+o sea como que
+esto se conecta a través de la API al Banco Central
+y se trae este valor
+fíjate, como voy aquí
+tengo un histórico
+pero este por API del Banco Central
+sí, me traigo ese valor
+eso lo multiplica por esto y le da un monto en bolívares
+y bueno, aquí el monto en sí es lo que debe experimentar
+vamos a buscar a alguien que dé
+de estos activos
+estos son
+contratoros
+vamos a buscar aquí
+ah, yo sé
+servicio
+servicio
+entonces, servicio técnico rey
+este
+este que te dije, fíjate
+él no ha pagado a este mes
+si yo me voy aquí, yo le doy aquí
+él me dice, mira, factura pendiente
+septiembre, facturas pagadas
+abril, mayo, junio, julio, agosto
+monto en bolívares
+este es el monto en bolívares según la multiplicación de esto
+ok, igualmente hace con todos los demás
+con todos los demás clientes
+pero este valor es el que se refleja
+ah, vamos a buscar a alguien
+eeeeh
+aquí
+ah, bueno, él no dice
+coño, que tengo mucho el público como busco yo
+eeeeh, como busco yo que tengo el público
+vamos a buscar por
+y así nada
+pero lo que sé es que aquí no me va a salir
+no
+bueno
+hay unos que tienen IP pública
+ok
+vamos a ver aquí
+ok
+vamos a ver aquí
+este que tiene
+fíjate, él tiene su servicio
+de internet
+más un servicio IP público
+esto tiene un precio, esto tiene otro precio
+y esto suma
+aquí
+esto es un prorrateo lo que tiene aquí
+porque está recién instalado
+eeeeh
+esto lo instalaron el 27 de agosto
+entonces lo que se refleja aquí son los días
+del prorrateo
+los días usados hasta el primero
+ok
+entonces
+eeeeh
+igualmente la multiplicación te da el resultado
+el prorrateo
+ajá
+y esto se captura por los meses
+el que publica se cobra todos los meses
+el servicio se cobra todos los meses
+dale
+chévere
+ajá
+alguna otra duda
+no
+está claro
+está claro con esto no
+no, de tener más requerimientos no
+el requerimiento es eso
+puedes mantener la plataforma
+puedes ir instalando
+porque
+cómo hacemos, paramos el servicio hasta que
+instalaciones hasta que Odo vuelva a estar
+no podemos
+tiene que estar todo
+tiene que estar todo en la mano
+porque están relacionados una cosa con la otra
+hace su ticket
+porque él llamó
+y dijo mira no me
+no me está llegando el plan
+Katjuska lo atendió
+le creó un ticket
+le hizo una certificación de plan
+Anthony
+lo atendió
+por un caso de soporte
+está creyendo
+IP pública
+entonces
+con esto
+le hicieron un cambio de equipos
+le van a hacer un cambio de equipos
+perdón
+entonces aquí
+en este ticket cambio de equipos
+aquí están los equipos que le vamos a
+ponemos cuáles son los equipos que se van a conectar
+se le pone toda la información
+con estos botones se elimina el equipo anterior
+se cambia el equipo
+y se agrega el nuevo equipo
+fíjate aquí
+aquí María
+le editó la facturación recurrente
+le agregó esto
+y la IP pública
+esto es lo anterior
+esto es lo nuevo
+aquí
+es para gestión de IP
+cambiar de una IP pública
+a otra IP pública
+de una IP privada
+a otra IP privada
+de una IP privada
+a una IP pública
+de una IP pública
+a una IP privada
+todos esos cambios se hacen ahí
+todo se hace a través de un ticket
+este caso administrativo
+seguramente
+está reportando un pago
+aquí en este caso
+está solicitando la IP pública
+mira, estoy formalmente diciendo que me ponga la IP pública ya
+pero aquí yo puedo tener un tema
+un tema de
+de pagos
+registrar los pagos
+mira, la persona que hizo un pago
+porque la persona llama por aquí
+porque la persona llama por aquí
+la persona escribe aquí
+fíjate
+quiero reportar un pago
+él pasó el pago
+esto
+yo lo tomo
+le creo
+le creo un ticket
+le creo un ticket
+y en ese ticket
+yo le genero el pago
+y le digo a la administración
+para revisar el pago
+ellos verifican
+mira, si
+cita la cuenta
+no está
+si es como dice el cliente
+y le hacen el proceso manualmente
+de la factura del pago
+ok
+pero todo eso viene por aquí
+ok
+ya
+mira Rubén
+ese caso
+que tiene 22 minutos
+de Kenderling
+asigné esos tres casos que están ahí
+ok
+chévere
+dale
+entonces está listo
+necesitas ver algo de
+IPOE
+de IPOE
+necesitas ver algo de eso
+en qué se diferencia
+de fotos y ahorita
+a la micronofilación
+es de
+rango tipo S
+o el sistema va a hacer algo
+a través de esos
+protocolos
+no
+no, el sistema no va a hacer nada
+simplemente asina IP
+quita IP
+pon el servicio
+ah bueno
+ah por cierto
+permíteme ir
+porque hay algo aquí
+que no te
+que no te he explicado
+hay algo que no te he explicado
+ahorita que metí a Forda
+mira
+aquí tienes jodos
+verdad
+aquí tienes el radius
+y aquí tienes
+el microtip
+sí
+o el router
+como lo quieras ver
+el usuario
+verdad
+hace un set
+de lo que nosotros
+tratamos de
+el plan
+donde está conectado
+la IP
+todo eso
+esos datos que nosotros vimos
+que le colegamos allí
+y Odo
+le manda
+ah porque aquí no falta
+no falta la WLT
+Odo
+le manda
+al radius
+qué información
+el usuario
+clave
+eso para crearlo
+en el momento de la instalación
+el plan
+la IP
+ok
+eso se lo manda al radius
+simultáneamente
+le manda a la WLT
+qué datos
+el serial
+de la ONO
+el modelo de la ONO
+en qué PON
+lo va a colocar
+y en qué ONO
+ID
+va a quedar
+ok
+más allá
+ok
+fíjate
+configura esto
+por cada ONO
+qué configura
+el TECOM
+sí
+dos valores del TECOM
+los valores
+los valores del GEMPORT
+esto ahorita lo está haciendo con el SSH
+el valor del service
+sí
+aquí en el service
+yo pongo que VLAN pertenece
+en el GEMPORT
+no lo pongo
+ok
+en el SERVICE PORT
+porque este es SERVICE
+y este es SERVICE
+y luego viene
+SERVICE
+PORT
+le pongo cuál es la VLAN
+el PORT VLAN
+los valores de la VLAN
+los valores del DHCP
+el SECURITY
+ah
+WIFI
+y los valores de WIFI
+entonces eso lo llenas en el formulario del
+claro
+del OLT
+es correcto
+y algunos específicos en el contrato
+fíjate
+yo le dije la caja NAC
+eso no va contra el OLT
+no va contra el
+contra el RADIUS
+fíjate que nada de esto
+esto nada más va contra esto
+yo le digo mira
+en qué PON
+qué ONO ID
+y en qué puerto
+sí
+la IP
+va contra esto
+el serial de la ONU
+y el modelo de la ONU
+va contra esto
+fíjate que
+serial de la ONU, modelo de la ONU
+qué PON
+en qué PON
+sí
+¿lo ves?
+esto no lo estoy usando
+ni para esto ni para esto
+ahora
+voy aquí
+configuración de WIFI
+configuración de WIFI
+es dual band
+este es el nombre de la red
+esta es la contraseña
+para la WIFI
+¿sí?
+la configuración de la WAN
+son los valores que yo mandé para acá
+acá
+que aquí yo le digo
+cuál es el usuario
+cuál es la clave
+fíjate
+aquí yo le estoy diciendo
+calidad de servicio
+deshabilitado
+LMTU
+cómodo el método de conexión por PPOE
+¿sí?
+si tiene PPOE proxy
+habilitado o no
+el usuario
+que es el número del contrato
+la contraseña
+que es la cédula
+¿sí?
+el usuario es igual al número
+del contrato
+la clave es igual
+a la cédula
+¿sí?
+le habilitó el NAND
+los valores de IPv6
+fíjate
+le digo cuál es la VLAN
+le digo cuál es la VLAN
+porque es lo que voy a usar aquí
+la VLAN la uso solamente en esto
+¿sí?
+eso es todo
+chévere
+entonces
+y ahí es donde están los datos
+todos los datos que yo pongo aquí
+son los datos que yo voy a utilizar
+para hacer esto y para hacer esto
+ahora bien
+tú dices bueno pero
+¿y en el micro T qué estás haciendo?
+en el micro T nosotros simplemente
+declaramos un profile
+y le decimos a él
+mira
+ese profile
+va a buscar la información
+en el RADIUS
+cuando un cliente
+cuando un cliente venga aquí
+a través de la OLT
+que se quiera conectar aquí
+él no le va a pasar información aquí
+sino que el cliente
+esto es una pasarela en ese caso
+viene aquí el cliente
+se conecta
+a través de la OLT
+¿verdad?
+porque eso me lleva a conexión
+pasa en el micro T
+en el micro T
+consulta RADIUS
+¿qué consulta?
+esto
+porque
+la VLAN y todo eso
+ya viene
+identificada por acá
+eso es algo transparente
+transparente para ODO
+transparente
+transparente para RADIUS
+esto solamente lo hablan ellos dos
+ok
+entonces
+ya de ahí
+lo que hace es retornar
+¿qué información?
+ah bueno mira
+créale una Q
+X
+y
+él va a tener
+una IP
+X
+que es la definida aquí
+el plan
+es igual a la cola
+chévere
+estas son las colas
+entonces
+este cliente tiene una cola
+de 100
+200
+200 de descarga
+100 de
+subida
+esto va atado
+al plan
+que es lo mismo
+pero eso que yo estoy poniendo ahí
+no sé
+esto
+nada de esto
+se define aquí
+si no está
+conectado al cliente
+que yo aquí
+le digo mira
+fíjate yo aquí le digo
+a través de RADIUS
+mira toda la información
+ve buscarla ahí en el RADIUS
+todo esto
+búscalo en el RADIUS
+yo simplemente le digo mira
+este cliente
+o sea
+el cliente se conecta aquí
+y dice
+yo soy fulano de tal
+no sé qué
+ok dame un momento
+él viene aquí
+a RADIUS le dice
+mira fulano de tal
+clave de tal
+si
+si lo tengo
+dame los valores
+le dice bueno este es el plan
+esta es la IP
+y lo retorno
+y él
+crea la cola
+y la IP
+tal cual así
+ok
+está asustado
+ok
+chévere
+alguna duda
+alguna pregunta
+ok
+hey Joey

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Document>
+<Placemark>
+	<name>Nap Nicanor 111 Nicanor</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8925833553,10.472319255,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Nicanor 112 Nicanor</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.892527029,10.4723311239,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Nicanor 113 Nicanor</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8924666793,10.4723469491,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Nicanor 114 Nicanor</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8924090118,10.4723746432,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Nicanor 115 Nicanor</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8923553676,10.4723944247,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Nicanor 116 Fco Lazo Marti</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8929361462,10.4725120661,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Nicanor 117 Fco Lazo Marti</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8928885705,10.4725224341,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Nicanor 118 Fco Lazo Marti</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8928272976,10.4725311407,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Nicanor 119 Fco Lazo Marti</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8927762038,10.472539576,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Nicanor 1110 Fco Lazo Marti</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8927053959,10.4725592703,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Nicanor 1111 Lissandro Alvarado</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8932413081,10.4727157154,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Nicanor 1112 Lissandro Alvarado</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8931986171,10.4727188828,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Nicanor 1113 Lissandro Alvarado</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8931567512,10.4727262409,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Nicanor 1115 Lissandro Alvarado</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8930312842,10.4727504911,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Nicanor 1114 Lissandro Alvarado</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8931001784,10.4727371768,0</coordinates></Point>
+</Placemark>
+</Document></kml>

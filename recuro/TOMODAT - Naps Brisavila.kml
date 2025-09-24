@@ -1,0 +1,2623 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Document>
+<Placemark>
+	<name>Nap Brisavila 101 Brisavila</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9109672038,10.5125705056,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 102 Brisavila</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9109815026,10.5125941012,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 103 Brisavila</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9110056425,10.5126171766,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 104 Brisavila</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.911037829,10.5126283847,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 105 Brisavila</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9110814149,10.5126303626,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 106 Brisavila</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9110995198,10.51260465,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 107 Brisavila</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9110840971,10.5125631143,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 109 Santa Ana de Coro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9111261575,10.512249602,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1010 Santa Ana de Coro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9111295103,10.5122243218,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1011 Santa Ana de Coro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9111456035,10.5122137731,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1012 Santa Ana de Coro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9111751078,10.5122150917,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1013 Santa Ana de Coro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9111992477,10.5122375078,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1014 Santa Ana de Coro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9111965655,10.5122744285,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 108 Brisavila</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9110381169,10.5125447357,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>NAp Brisavila 1015 Libertad</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9103681569,10.5121433189,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 211 Terraplen</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9099310962,10.5121723473,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 212 Terraplen</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9100495869,10.5123891139,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 213 Terraplen</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9102580329,10.5129221874,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 214 Terraplen</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9105388889,10.512775,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 215 Terraplen</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9102679865,10.5132484458,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 216 Terraplen</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9103641291,10.5126578296,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 217 Terraplen</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.910809476,10.5129509238,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 218 Terraplen</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9103262685,10.5136559698,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 219 San Francisco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9104829786,10.5123028883,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 2110 San Francisco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9104843197,10.5122849312,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 2111 San Francisco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9104876725,10.5122658115,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 2112 San Francisco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9104923663,10.5122466919,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 2113 San Francisco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9104957191,10.512226913,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 2114 San Francisco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.910500413,10.5122048907,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 2115 Santa Isabel</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9092736104,10.5124785627,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 2116 Santa Isabel</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.909352065,10.5124910894,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 391 Evelyn</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9090905844,10.5126561337,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>NAp Brisavila 392 Mary Cruz</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9088414734,10.5128323447,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 393 Mary Cruz</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9088267213,10.5128817919,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 394 Edificio 2-9</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9089646497,10.5131673463,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 395.  San Alfonso</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9091918362,10.5131707054,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 396.  San Alfonso</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9092102764,10.5131730129,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 397. Primavera</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9090865472,10.5135543582,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 398. Villa Rosa</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9088795593,10.5135852407,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 399. Villa Rosa</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9088285973,10.5135826035,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 3910 Lourdes</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9089545994,10.514545543,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 3911 Edificio 105</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9091155319,10.5150162777,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 3912 Edificio 65</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9091839283,10.5150321007,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 3213 Palma Linda</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9088839991,10.5149347294,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 3214 Palma Linda</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9089389844,10.5149597825,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 3915 Apoyo 426</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9090626193,10.5140636739,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 3916 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9092064319,10.5129489952,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 421 San jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9092619142,10.5122175087,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 422 San jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9092040247,10.5125415672,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 423 San jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9086791563,10.5127425513,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 424 San jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9096766418,10.5129527665,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 425 San jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9090380972,10.5134186188,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 426 San jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9090226495,10.514040662,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 427 San jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9095288866,10.5141467157,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 428 San jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9100199964,10.5138481736,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 429 San jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9103939467,10.5142933368,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 4210 San jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9098691431,10.5146314527,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 4211 San jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9097903718,10.5151444284,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 4212 San jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9097042442,10.5155424065,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 4213 San jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9091216255,10.5158949292,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 4214 San jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9087558807,10.5153078235,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 4215 San jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9087549735,10.5149865053,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 4216 San Cayetano</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9083187885,10.512728364,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 531 Brisas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9088045574,10.5141621005,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 532 Brisas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9088534577,10.5141705816,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 533 Brisas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9088454111,10.5142180506,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 534 Brisas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9087978019,10.5142068427,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 535 Brisas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9087790216,10.5143559955,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 536 Brisas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9088252897,10.5143625884,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 537 Brisas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9088123389,10.5144246956,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 538 Brisas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9087670767,10.5144154655,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 539 Brisas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9087258615,10.5145774875,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 5310 Brisas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9087734707,10.5145801247,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 5311 Brisas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9087667652,10.514633857,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 5312 Brisas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9087147974,10.514628253,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 5313 Brisas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9085953899,10.5145460392,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 5314 Brisas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9085856669,10.514609661,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 5315 Brisas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9085122414,10.5146001012,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 5316 Brisas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9085243114,10.5145414242,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 651 Constituyente</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.910221954,10.5162178154,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 652 Constituyente</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9103352774,10.516244187,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 653 Constituyente</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9104492712,10.5162712178,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 654 Constituyente</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9105237025,10.5158644362,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 655 Constituyente</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.910407697,10.5158407018,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 656 Constituyente</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9102957148,10.515816308,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 6510 Constituyente</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9105156559,10.5162817665,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 657 Constituyente</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9102470764,10.5153033605,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 658 Constituyente</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9102490881,10.5152872079,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 659 Constituyente</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9102517703,10.5152723738,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 6511 Palma Linda</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.908821787,10.5149709742,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 6512 San Lorenzo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.909331018,10.5152587602,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 6513 San Lorenzo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9093122425,10.5153115035,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 771 Panteon 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9113116175,10.5142831766,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 772 Panteon 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9113220111,10.5142343889,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 773 Panteon 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9113317341,10.5141925238,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 774 Panteon 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9113414571,10.5141486808,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 775 Panteon 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9113891202,10.5144994837,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 776 Panteon 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9114544991,10.5145153067,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 777 Panteon 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9115004319,10.5145245368,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 778 Panteon 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9115567583,10.5145383819,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 779 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9109090246,10.5136697145,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 7710 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9108483887,10.5139670061,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 7711 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9105956453,10.5135984927,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 7712 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9124468779,10.514715979,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 7713 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9128427663,10.5146494944,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 7714 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9134480879,10.5150317485,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 7715 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9136821439,10.515260948,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 7716 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9136361499,10.5156668933,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 841 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9096309309,10.5161496256,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 842 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9100058763,10.5165213979,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 843 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9102252141,10.5170659405,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 844 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9103617868,10.5177549012,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 845 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9098918942,10.5180372579,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 846 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9105705785,10.5182380346,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 847 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9107503226,10.5184094384,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 848 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9108777489,10.5189912937,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 849 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9104063654,10.5185314177,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 8410 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9104073476,10.5190625297,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 8411 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9097341948,10.5186352144,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 8416 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9084194077,10.5171716802,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 8412 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9096096572,10.5183529582,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 8413 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9094251905,10.5180817892,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 8414 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9092767199,10.5177817325,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 8415 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9089358813,10.5174868587,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 961 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9096733894,10.5173721302,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 962 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9095711813,10.5171260085,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 963 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9098747083,10.5169053466,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 964 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9095203052,10.5166688261,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 965 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9089558454,10.5163763302,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 966 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9081473945,10.5161788468,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 967 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9080711685,10.5158457139,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 968 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9071738193,10.5151421495,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1051 PPPO2 A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9099658992,10.5151570225,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1052 PPPO2 A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9099699225,10.5151385623,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1053 PPPO2 A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.90997294,10.5151240579,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1054 PPPO2 A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9099752869,10.5151085646,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1055 PPPO2 A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9099786397,10.5150927416,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1056 PPPO2 A</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9099819924,10.5150752703,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1057 PPPO2 B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9099968004,10.5149768731,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1058 PPPO2 B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9100001532,10.5149636872,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1059 PPPO2 B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9100028354,10.5149511607,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 10510 PPPO2 B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9100058529,10.5149402824,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 10511 PPPO2 B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9100081998,10.5149284151,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 10512 PPPO2 B</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9100118879,10.5149148996,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 10513 Brisas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9111367528,10.5138476201,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 10514 Brisas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9111330647,10.5138726732,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1141 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9098554073,10.5160464719,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1142 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9099772371,10.5162912054,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1143 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9106481344,10.5166868477,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1144 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9108962907,10.5175475479,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1145 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9113290474,10.5176700632,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1146 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9120362058,10.5167274726,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1147 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9119484552,10.5172148603,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1148 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9118432671,10.5177072103,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1149 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9121611458,10.5178395657,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 11410 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9127888948,10.5168758407,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 11411 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9128676827,10.5173135659,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 11412 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9127191926,10.5179689306,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 11413 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9131840362,10.5180676823,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 11414 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9138532927,10.5182377056,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 11415 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9099732482,10.5165388861,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 11416 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9087221898,10.5151576764,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1281 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9125745532,10.516816597,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1282 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9130202943,10.5165286548,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1283 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9134835757,10.5161779891,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1284 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9135373162,10.5170408838,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1285 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9136191728,10.5166799934,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1286 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9138982664,10.5164765983,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1287 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9142969763,10.5166955166,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1288 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9133520246,10.5158260172,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1289 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9130445461,10.515906503,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 12810 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.912592542,10.5158211855,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 12811 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9121557723,10.5159793362,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 12812 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9118212952,10.5151791058,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 12813 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9119582921,10.5149851542,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 12814 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9127081874,10.5149498538,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 12815 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9130436959,10.5152435706,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 12816 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.913172339,10.5156567947,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1382 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.91086507,10.5175291527,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1383 San Jose</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9106102601,10.516728778,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1381 Providenza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9119935456,10.5172624526,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1384 Berthel</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9121061984,10.5169774453,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1385 Hosp. Vargas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9119077149,10.5165898038,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1386 Hosp. Vargas</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9119238082,10.5163906987,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Naps Brisavila 1387 Apoyo 1281</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9125323709,10.5168270985,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Naps Brisavila 1388 Calle Real</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9123690966,10.5152532989,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Naps Brisavila 1389 Apoyo 12815</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9131523884,10.5153154898,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Naps Brisavila 13810 Simeon</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9132444433,10.5159634397,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Naps Brisavila 13811 Apoyo 1285</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9136523832,10.5166862514,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 13816 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9123514292,10.5153430564,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 13812 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9117421643,10.517756045,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 13814 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9128794065,10.5169191947,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 13815 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9121299898,10.5164254142,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 13813 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9108120104,10.5173365907,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1461 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9087223012,10.5173536409,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1462 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9081050255,10.5168980598,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1463 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9076578445,10.5164984481,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1464 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9070068425,10.5161839222,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1465 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9065964032,10.5163927676,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1466 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9070565198,10.5167946931,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 1467 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.907814248,10.5173019242,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 15101 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.909321449,10.5190614156,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 15102 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9091347348,10.5189006869,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 15103 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9085122687,10.5179361297,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 15104 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9090571329,10.5186392313,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 15105 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9088707047,10.5185943721,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 15106 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9081491396,10.5175984589,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 15107 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9108818428,10.5189687894,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 15108 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9107519194,10.5194914781,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 16111 Sol de Caraballo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9114965179,10.5197161865,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 16112 Sol de Caraballo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9114442148,10.5196898152,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 16113 Sol de Caraballo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.911433486,10.51983222,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 16114 Sol de Caraballo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9113798418,10.519790026,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 16115 Sol de Caraballo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9114227571,10.519958802,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 16116 Sol de Caraballo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9113717952,10.5200194559,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 16117 Sol de Caraballo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9114992001,10.5200089074,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 16118 Sol de Caraballo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9114267805,10.5200827469,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 16119 Sol de Caraballo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9112497547,10.5200181373,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 161110 Sol de Caraballo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9112155565,10.5199858326,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 161111 Sol de Caraballo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9112148859,10.5201829576,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 161112 Sol de Caraballo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9111826994,10.5202264701,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 161113 Sol de Caraballo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9115863719,10.5201763647,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 161114 Sol de Caraballo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.91151127,10.5202541598,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 17101 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9092157132,10.5186215981,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 17102 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9088510142,10.5181203473,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 17103 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9084588704,10.5176107011,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 17104 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.908010487,10.5171157974,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 17105 Cotiza</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9074505228,10.5167990345,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 17106 Apoyo 844</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9104573924,10.5177666986,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 17108 Apoyo</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9107630813,10.5185146633,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 18128 Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9134132661,10.5195693419,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 18127 Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9134091871,10.5192094662,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 18126 Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9130319424,10.5192524423,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 18125 Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9128913761,10.5190332875,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 18124 Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9128479857,10.5187511104,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 18123 Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9124123428,10.518596716,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 18122 Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.91211954,10.5187305556,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 18121 Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9126555556,10.5189083333,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 19128 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9130840144,10.5195142597,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 19127 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9135742971,10.5198481124,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 19126 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9141409003,10.5201686535,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 19125 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9141221258,10.519959474,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 19124 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9145999429,10.5200911073,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 19123 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9144289551,10.5198664581,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 19122 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9140382944,10.5195158312,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 19121 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9136842707,10.5195417282,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 20121 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9128244961,10.519648732,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 20122 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9131408063,10.5199748805,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 20123 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9137130084,10.5203500909,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 20124 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9144202673,10.5205861784,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 20125 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9143042645,10.5213486458,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 20126 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9142069897,10.5209377966,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 20127 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9138812837,10.5207387121,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 20128 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9133395994,10.5205075576,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 20129 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9129479096,10.5204012147,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 201210 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9129798798,10.5201885492,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 201211 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9124976322,10.5201121956,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 201212 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9122652796,10.5197526597,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 201213 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9121034004,10.519518802,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 201214 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9116870403,10.5195603344,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 201215 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9122841179,10.5203724534,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap Brisavila 201216 El Retiro</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9128491425,10.5206807901,0</coordinates></Point>
+</Placemark>
+</Document></kml>

@@ -96,11 +96,9 @@
 </group>
 
 <notebook>
-<page string="Series Onu">
-<group>
-<field name="onu_ids_silver" nolabel="1" modifiers="{}">
+<page string="Series Onu" colspan="4">
+<field name="onu_ids_silver" nolabel="1" modifiers="{}" >
 </field>
-</group>
 </page>
 </notebook>
   </sheet>

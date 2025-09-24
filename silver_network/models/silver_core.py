@@ -366,16 +366,20 @@ class SilverCore(models.Model):
                     core.state = 'down'
             else:
                 core.state = 'down'
+        
         if si:
             return {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
-                'title': 'Connection Test',
-                'message': 'Connection to Radius server was successful!',
-                'type': 'success',
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Connection Test'),
+                    'message': _('Connection to Core was successful!'),
+                    'type': 'success',
+                    'next': {'type': 'ir.actions.client', 'tag': 'reload'},
+                }
             }
-        }
+        # If the connection fails, we still reload to show the 'down' state.
+        return {'type': 'ir.actions.client', 'tag': 'reload'}
 
 
     def button_get_system_info(self):

@@ -1,0 +1,3461 @@
+WEBVTT
+
+00:00.000 --> 00:21.480
+¿Qué me interesa saber, es, hasta dónde conoces tú el proceso, o cómo conoces tú
+
+00:21.480 --> 00:34.360
+el proceso? ¿Qué, qué parte del proceso? El proceso, todo lo que tiene que ver con la parte de infraestructura.
+
+00:34.360 --> 00:45.120
+Ah, de el proceso. Exacto. Más o menos eso. Tenemos, tenemos varios, varios procesos. Tenemos el proceso de instalación,
+
+00:45.120 --> 01:05.000
+tenemos el proceso de mantener la plataforma, que es la parte del día a día, ¿no? Entonces, ¿cuál es la que vamos a empezar, la de mantener la plataforma?
+
+01:05.000 --> 01:34.000
+Correcto. Es como el más, es urgente, ¿no? Bueno, mira, lo que pasa es que ustedes contemplaron de que si, si mantenemos, mantenemos la plataforma, no podemos incluir clientes, ¿contemplaron eso?, porque para nosotros el proceso operativo es todos los días hacer instalaciones, todos los días vamos agregando el sistema,
+
+01:36.000 --> 01:39.640
+pero si es un proceso base, pues tal vez es cosa de hacerlo también.
+
+01:43.320 --> 01:51.120
+Por eso es que digo, o sea, mantener la plataforma no está, no es difícil,
+
+01:52.960 --> 02:01.920
+que realmente lo que es, lo que se busca allí son, son un par de cosas. Permíteme una hoja blanca de esa, por favor.
+
+02:05.000 --> 02:19.120
+El proceso más, que requiere más, es el de, el de instalación.
+
+02:19.120 --> 02:29.120
+Porque el resto son los modelos de las cosas y como que funciones para esas cosas, como que deciden ver o cortarlas al final.
+
+02:29.240 --> 02:40.240
+Exactamente. Por eso, eso es el mantener. El mantener es poder cortar, poder cambiar un plan, poder reconectar,
+
+02:42.240 --> 02:45.240
+vamos a buscar aquí esto que está en activo.
+
+02:45.360 --> 02:55.360
+Aquí está su recurrente mensual, esta es la parte administrativa,
+
+02:58.360 --> 03:06.360
+correcto, pero si ella no paga en cierta fecha, se va a cortar el servicio automáticamente.
+
+03:06.480 --> 03:22.480
+Entonces, de repente, si yo quiero, la persona me llama y me dice, mira, vale, dame dos días y yo te pago.
+
+03:22.480 --> 03:33.480
+Yo puedo venir aquí y yo le doy aquí, bueno este porque no está cortado, pero yo le doy aquí a una cosa que se llama promesa de pago.
+
+03:33.600 --> 03:38.600
+Y entonces ahí yo le activo el servicio por tres días.
+
+03:40.600 --> 03:44.600
+Después del corte, después del corte.
+
+03:44.600 --> 03:49.600
+Está cortado, vamos a buscarte a alguien que esté cortado.
+
+03:49.600 --> 03:52.600
+Es este que está cortado.
+
+03:53.600 --> 03:58.600
+Yo a esta persona, le doy una promesa de pago.
+
+03:58.720 --> 04:02.720
+Y el servicio es el activo por tres días nada más.
+
+04:05.720 --> 04:08.720
+Si él no paga en esos tres días, se le vuelve a cortar.
+
+04:11.720 --> 04:15.720
+Ok, eso es prácticamente el mantener la plataforma.
+
+04:16.720 --> 04:25.720
+Ok, ah, que de repente, bueno, mira, puede pasar, ha pasado muy poco pero puede pasar.
+
+04:25.840 --> 04:32.840
+Es un amigo de blando y mira, vale, yo reconecto.
+
+04:34.840 --> 04:37.840
+Entonces yo tengo que venir aquí y le doy reconectar.
+
+04:38.840 --> 04:41.840
+Ya no es una promesa de pago, ya es una reconexión directa.
+
+04:44.840 --> 04:48.840
+Entonces yo puedo a esta persona reconectar o cortar.
+
+04:48.960 --> 04:53.960
+Bueno, todas esas funciones están implementadas en este odio.
+
+04:54.960 --> 05:03.960
+De ahí de los que están, o sea, hay por ejemplo la opción de simplificar donde hay muchas opciones que...
+
+05:04.960 --> 05:07.960
+Por ejemplo, esto que dice aquí es suspender.
+
+05:08.960 --> 05:11.960
+Esto no es para suspender el servicio.
+
+05:12.960 --> 05:15.960
+Esto es para suspender la factura.
+
+05:16.080 --> 05:17.080
+La factura.
+
+05:20.080 --> 05:27.080
+Lo que pasa es que este suspender se entiende otra cosa pero no es la realidad.
+
+05:28.080 --> 05:30.080
+Dispender la factura, ¿qué pasa?
+
+05:31.080 --> 05:32.080
+No factura más.
+
+05:35.080 --> 05:36.080
+O sea, no lo cortas más nunca.
+
+05:37.080 --> 05:38.080
+Porque no se le va a hacer la factura.
+
+05:42.080 --> 05:43.080
+Entonces por ejemplo, ¿es de botón?
+
+05:44.080 --> 05:45.080
+No debe ir ahí.
+
+05:46.080 --> 05:47.080
+No se usa.
+
+05:48.080 --> 05:49.080
+No debería ir.
+
+05:50.080 --> 05:53.080
+Sí lo usan, pero lo están usando incorrectamente.
+
+05:54.080 --> 05:57.080
+Porque es lo que te estoy diciendo, esto es para suspender la factura.
+
+06:01.080 --> 06:04.080
+O sea, que la factura no se vaya generando automáticamente.
+
+06:08.080 --> 06:11.080
+Esto que está aquí es para ver...
+
+06:11.200 --> 06:14.200
+Esto está tu bolete, él me va a decir...
+
+06:17.200 --> 06:21.200
+qué potencia tiene, si está conectado, dónde está conectado.
+
+06:22.200 --> 06:23.200
+Eso es lo que me va a decir.
+
+06:26.200 --> 06:28.200
+Esto no está implementado.
+
+06:29.200 --> 06:31.200
+Aquí es para hacer un test de velocidad.
+
+06:32.200 --> 06:33.200
+¿Eso es con el radius?
+
+06:34.200 --> 06:36.200
+No, este es para hacer un test de velocidad.
+
+06:36.320 --> 06:38.320
+Este es para hacer un test de velocidad.
+
+06:39.320 --> 06:43.320
+Un test de velocidad es la conexión entre el servidor
+
+06:44.320 --> 06:48.320
+y el dispositivo del cliente, hacer una prueba de velocidad.
+
+06:52.320 --> 06:56.320
+Esto es eliminar el contrato completamente, eliminar el servicio.
+
+06:57.320 --> 06:59.320
+Esto sí es con el radius.
+
+07:01.320 --> 07:04.320
+Esto de conectar sesión de red es que él tumba el radius
+
+07:06.320 --> 07:07.320
+de la sesión.
+
+07:18.320 --> 07:19.320
+Él viene aquí.
+
+07:21.320 --> 07:23.320
+Cuando yo lo deje aquí, desconectar de red.
+
+07:24.320 --> 07:26.320
+Él viene aquí y hace...
+
+07:31.320 --> 07:32.320
+Tumbó la sesión.
+
+07:32.440 --> 07:37.440
+Y él vuelve otra vez, a cierto tiempo, volverse a conectar.
+
+07:38.440 --> 07:39.440
+Eso es todo.
+
+07:40.440 --> 07:41.440
+Eso es todo lo que hace.
+
+07:42.440 --> 07:46.440
+Fíjate que aquí se desconectó, aquí conectó.
+
+07:49.440 --> 07:51.440
+OK, eso es simplemente eso.
+
+07:53.440 --> 07:58.440
+Esto nos sirve a nosotros para aquellos casos
+
+07:58.560 --> 08:10.560
+donde el radius no se comunicó bien con el microtip.
+
+08:14.560 --> 08:16.560
+Entonces, ahí donde voy.
+
+08:17.560 --> 08:18.560
+Fíjate.
+
+08:19.560 --> 08:21.560
+Este es una persona de fibra óptica.
+
+08:22.560 --> 08:24.560
+Entonces, él viene aquí.
+
+08:28.560 --> 08:34.560
+Esta NAP puede ser de 8 ó de 16.
+
+08:35.560 --> 08:38.560
+Y él está conectado, según esto,
+
+08:40.560 --> 08:44.560
+en el puerto 5 de esa NAP que está aquí.
+
+08:45.560 --> 08:51.560
+Este número que está aquí es el número que identifica a esta caja.
+
+08:51.680 --> 08:58.680
+Y este número que está aquí es lo que identifica en dónde está conectado el cliente,
+
+08:58.680 --> 08:59.680
+en qué puerto.
+
+08:59.680 --> 09:01.680
+De esa caja está conectado el cliente.
+
+09:04.680 --> 09:08.680
+Entonces, esto que dice código de cliente,
+
+09:08.680 --> 09:14.680
+esto que está aquí es el precinto que se le coloca al cable.
+
+09:14.800 --> 09:20.800
+Entonces, está la NAP, está el cable y aquí le ponen un precinto.
+
+09:21.800 --> 09:23.800
+Vamos a ver aquí.
+
+09:33.800 --> 09:34.800
+Este es el precinto.
+
+09:37.800 --> 09:39.800
+Eso se lo colocan al cable.
+
+09:39.920 --> 09:41.920
+Mira cómo queda.
+
+09:48.920 --> 09:51.920
+¿Y ese es la caja NAP en un edificio?
+
+09:52.920 --> 09:53.920
+En este caso sí.
+
+09:53.920 --> 09:56.920
+Por eso puede estar en un poste,
+
+09:57.920 --> 10:00.920
+puede estar en la sotea de un edificio,
+
+10:00.920 --> 10:03.920
+puede estar en el pasillo de un edificio.
+
+10:04.040 --> 10:07.040
+Puede estar en las escaleras, en el cuarto de basura.
+
+10:07.040 --> 10:09.040
+Puede estar en diferentes lugares.
+
+10:15.040 --> 10:17.040
+Esos son los precintos.
+
+10:17.040 --> 10:20.040
+Esto no trabaja nada.
+
+10:27.040 --> 10:30.040
+Aquí también está el precinto.
+
+10:30.160 --> 10:32.160
+Aquí está pegado un poste.
+
+10:41.160 --> 10:43.160
+Este es un poste también.
+
+10:47.160 --> 10:50.160
+Entonces bueno, volvamos aquí.
+
+11:00.160 --> 11:02.160
+Él está pegado aquí.
+
+11:02.160 --> 11:08.160
+Esa NAP obligatoriamente llega a una manga.
+
+11:11.160 --> 11:17.160
+Aquí a nivel de sistema yo no declaro esa manga.
+
+11:24.160 --> 11:27.160
+A nivel de sistema yo no declaro esa manga.
+
+11:30.160 --> 11:32.160
+Yo aquí no declaro esa manga.
+
+11:35.160 --> 11:38.160
+Solamente declaro las cajas NAP.
+
+11:41.160 --> 11:44.160
+Pero físicamente eso va a una manga.
+
+11:45.160 --> 11:48.160
+Entonces de esa manga,
+
+11:49.160 --> 11:54.160
+él llega a una OLT.
+
+11:54.160 --> 11:56.160
+Eso sí lo declaro yo acá.
+
+11:56.280 --> 11:58.280
+Eso sí lo declaro yo acá.
+
+11:58.280 --> 12:01.280
+Pero esa OLT tiene,
+
+12:03.280 --> 12:16.280
+puede tener 1, 4, 8 o 16 portos.
+
+12:16.280 --> 12:18.280
+Que son estos que yo declaro aquí.
+
+12:21.280 --> 12:24.280
+Esta persona que está conectada
+
+12:24.400 --> 12:26.400
+en un puerto aquí, en esta NAP,
+
+12:26.400 --> 12:29.400
+puede tener un puerto diferente aquí.
+
+12:31.400 --> 12:33.400
+Como es el caso.
+
+12:33.400 --> 12:35.400
+Puerto en la NAP,
+
+12:35.400 --> 12:42.400
+puerto en la OLT.
+
+12:45.400 --> 12:48.400
+Y puede tener un ID diferente.
+
+12:48.520 --> 12:50.520
+Vamos a ver.
+
+12:50.520 --> 12:55.520
+Porque dentro de esa OLT,
+
+12:55.640 --> 12:58.640
+que es el PON1,
+
+12:58.640 --> 13:00.640
+te dice PON1,
+
+13:00.640 --> 13:03.640
+1, 2, 3, 4,
+
+13:03.640 --> 13:06.640
+hasta el 120.
+
+13:06.640 --> 13:09.640
+Hasta el 120.
+
+13:09.640 --> 13:11.640
+Y después,
+
+13:11.640 --> 13:13.640
+te dice PON1,
+
+13:13.640 --> 13:15.640
+te dice PON1,
+
+13:15.640 --> 13:17.640
+te dice PON1,
+
+13:17.640 --> 13:19.640
+te dice PON1,
+
+13:19.640 --> 13:21.640
+te dice PON1,
+
+13:21.640 --> 13:23.640
+te dice PON1,
+
+13:23.760 --> 13:25.760
+hasta el 128.
+
+13:26.760 --> 13:28.760
+Entonces ya aquí,
+
+13:28.760 --> 13:30.760
+yo puedo estar en un PON diferente,
+
+13:30.760 --> 13:33.760
+pero puedo tener un ID diferente.
+
+13:34.760 --> 13:37.760
+Que es lo que yo estoy mencionando acá.
+
+13:37.760 --> 13:42.760
+1 ID 70.
+
+13:42.760 --> 13:47.760
+Entonces yo estoy en el PON1,
+
+13:47.760 --> 13:49.760
+estoy en el PON1,
+
+13:50.760 --> 13:52.760
+ID 70.
+
+13:53.760 --> 13:55.760
+Y aquí estoy en el 5,
+
+13:55.760 --> 13:58.760
+en el puerto 5 de la NAP.
+
+14:02.760 --> 14:04.760
+Esto que está acá,
+
+14:04.760 --> 14:06.760
+¿verdad?
+
+14:06.760 --> 14:12.760
+va conectado a uno o más.
+
+14:14.760 --> 14:16.760
+Router de acceso.
+
+14:17.760 --> 14:19.760
+Estos son los routers.
+
+14:20.760 --> 14:22.760
+¿Qué son los equipos cortos?
+
+14:22.880 --> 14:23.880
+Exactamente,
+
+14:23.880 --> 14:25.880
+que son los equipos cortos.
+
+14:26.880 --> 14:27.880
+Que eso yo,
+
+14:27.880 --> 14:29.880
+lo declaro aquí.
+
+14:29.880 --> 14:32.880
+Lo que pasa es que aquí yo declaro varias cosas,
+
+14:32.880 --> 14:33.880
+porque uno depende,
+
+14:33.880 --> 14:35.880
+uno depende de la otra.
+
+14:35.880 --> 14:37.880
+¿Y las mangas,
+
+14:37.880 --> 14:39.880
+los splitters están metidos ahí no?
+
+14:39.880 --> 14:41.880
+No, los splitters están, bueno,
+
+14:41.880 --> 14:43.880
+los splitters están dentro de las mangas
+
+14:43.880 --> 14:46.880
+y están dentro de las NAP.
+
+14:46.880 --> 14:48.880
+Por eso es que aquí te dice,
+
+14:49.000 --> 14:50.000
+¿splitter,
+
+14:50.000 --> 14:53.000
+si es un splitter primario o secundario?
+
+14:53.000 --> 14:55.000
+Reciente hay dos.
+
+14:55.000 --> 14:56.000
+Bueno,
+
+14:56.000 --> 14:59.000
+no todos los casos son iguales.
+
+14:59.000 --> 15:02.000
+Eso depende de cómo se haga el diseño en la red.
+
+15:04.000 --> 15:08.000
+Y no son necesarios incluirlas en el sistema.
+
+15:08.000 --> 15:09.000
+Sí.
+
+15:10.000 --> 15:12.000
+Entonces voy a incluir mangas también.
+
+15:12.000 --> 15:14.000
+No, las mangas no.
+
+15:14.000 --> 15:16.000
+Estoy hablando de los splitters.
+
+15:16.120 --> 15:18.120
+Como tú ves aquí,
+
+15:18.120 --> 15:20.120
+yo no necesito las mangas.
+
+15:20.120 --> 15:24.120
+Porque esto no me va a hacer un mapeo de la red.
+
+15:24.120 --> 15:27.120
+Geográficamente cuando quieras hacerlo.
+
+15:27.120 --> 15:29.120
+A menos que si lo queremos hacer,
+
+15:29.120 --> 15:32.120
+entonces sí tenemos que poner las mangas.
+
+15:32.120 --> 15:34.120
+Cuando quieras tener la vista geográfica,
+
+15:34.120 --> 15:36.120
+así como en el...
+
+15:36.120 --> 15:38.120
+Sería buenísimo.
+
+15:38.120 --> 15:41.120
+Porque cuando yo la estoy incluyendo.
+
+15:41.120 --> 15:44.120
+Ok, buenísimo.
+
+15:46.120 --> 15:47.120
+Entonces,
+
+15:47.120 --> 15:49.120
+¿de qué depende la manga?
+
+15:49.120 --> 15:52.120
+Pero entonces ya la manga tienes que trabajarla con hilos.
+
+15:52.120 --> 15:55.120
+Para saber qué hilo va conectado con esta napa.
+
+15:55.120 --> 15:57.120
+Porque te explico.
+
+15:58.120 --> 16:01.120
+Aquí pasa un cable.
+
+16:03.120 --> 16:06.120
+Pero este cable tiene diferentes hilos.
+
+16:06.120 --> 16:09.120
+Y esos hilos son de color.
+
+16:11.120 --> 16:14.120
+Pero también tiene varios buffers.
+
+16:14.240 --> 16:16.240
+Hay un buffer.
+
+16:26.240 --> 16:28.240
+Aquí está.
+
+16:31.240 --> 16:33.240
+Entonces, fíjate.
+
+16:33.240 --> 16:36.240
+Vamos a ver si lo podemos ver más grande.
+
+16:38.240 --> 16:39.240
+Fíjate.
+
+16:40.240 --> 16:42.240
+Este es el cable.
+
+16:44.240 --> 16:47.240
+Pero dentro de ese cable hay varios buffers.
+
+16:49.240 --> 16:52.240
+Y dentro de esos buffers hay diferentes hilos.
+
+16:54.240 --> 16:57.240
+Entonces los buffers son de colores y los hilos son de colores.
+
+17:02.240 --> 17:03.240
+Entonces, ¿qué pasa?
+
+17:03.240 --> 17:05.240
+Eso pasa por aquí.
+
+17:05.240 --> 17:07.240
+Pero yo aquí...
+
+17:07.240 --> 17:09.240
+Yo aquí...
+
+17:09.240 --> 17:11.240
+Conecto un splitter.
+
+17:11.240 --> 17:12.240
+¿Para qué?
+
+17:12.360 --> 17:15.360
+Para poder conectar diferentes snaps.
+
+17:18.360 --> 17:19.360
+¿Ok?
+
+17:19.360 --> 17:21.360
+Diferentes snaps.
+
+17:21.360 --> 17:23.360
+Continúo con ese cable.
+
+17:25.360 --> 17:27.360
+Continúo con ese cable.
+
+17:27.360 --> 17:29.360
+Llego a otra manga.
+
+17:31.360 --> 17:36.360
+Y de ahí saco otro hilo para conectar otras snaps.
+
+17:36.480 --> 17:39.480
+Las mangas son con tenedores.
+
+17:39.480 --> 17:41.480
+Son con tenedores.
+
+17:41.480 --> 17:46.480
+Se registraría solo la localización y qué es lo que tiene dentro.
+
+17:46.480 --> 17:49.480
+Pero las mangas tienen número también, ¿oíste?
+
+17:53.480 --> 17:55.480
+¿Un identificador?
+
+17:55.480 --> 17:58.480
+Sí, tienen un número.
+
+17:58.480 --> 18:00.480
+Estas son las mangas.
+
+18:01.480 --> 18:03.480
+Estas son las mangas.
+
+18:03.600 --> 18:05.600
+Estas son las mangas.
+
+18:05.600 --> 18:07.600
+Pero esas mangas tienen un identificador.
+
+18:07.600 --> 18:09.600
+Tienen un número.
+
+18:10.600 --> 18:13.600
+No sé si a ti te dieron acceso a esto.
+
+18:13.600 --> 18:15.600
+Sí.
+
+18:15.600 --> 18:16.600
+¿El Tomodar?
+
+18:16.600 --> 18:17.600
+Sí.
+
+18:17.600 --> 18:19.600
+Ok, bueno.
+
+18:19.600 --> 18:22.600
+Ahí en el Tomodar tú puedes ver las mangas de la distribución tal.
+
+18:22.600 --> 18:25.600
+Porque la distribución también tiene un número.
+
+18:26.600 --> 18:30.600
+Todo está enumerado para poder saber, ¿no?
+
+18:30.720 --> 18:37.720
+Entonces ese cable sigue y continúa a otra manga.
+
+18:37.720 --> 18:41.720
+Y de ahí yo agarro otro hilo y saco otras cajas snaps.
+
+18:41.720 --> 18:44.720
+Y así lo decíamos hasta que los hilos se me acaben.
+
+18:47.720 --> 18:48.720
+Ok.
+
+18:48.720 --> 18:51.720
+Entonces bueno, aquí en el router.
+
+18:51.720 --> 18:52.720
+Aquí en el router.
+
+18:52.720 --> 18:56.720
+Dependiendo del PON en donde tú estés.
+
+18:56.720 --> 18:57.720
+¿Verdad?
+
+18:57.840 --> 19:00.840
+Aquí se va a activar.
+
+19:00.840 --> 19:03.840
+Aquí se activa una VLAN específica.
+
+19:05.840 --> 19:16.840
+Porque está directamente relacionado con una VLAN que yo he documentado en la OLT.
+
+19:17.840 --> 19:19.840
+Por ejemplo.
+
+19:20.840 --> 19:23.840
+Si yo tengo una OLT de uno, es una sola.
+
+19:23.840 --> 19:25.840
+Tiene dos VLANs.
+
+19:25.960 --> 19:28.960
+Una administrativa y una VLAN que es la de servicio.
+
+19:28.960 --> 19:31.960
+Que es la que va contra el cliente.
+
+19:32.960 --> 19:33.960
+Ok.
+
+19:34.960 --> 19:35.960
+Ahora.
+
+19:35.960 --> 19:38.960
+Si yo tengo una de cuatro, entonces tengo cinco VLANs.
+
+19:39.960 --> 19:42.960
+Una administrativa y una por cada PON.
+
+19:43.960 --> 19:45.960
+Que son las de servicio.
+
+19:48.960 --> 19:49.960
+Ok.
+
+19:49.960 --> 19:52.960
+En la de ocho, tengo nueve.
+
+19:53.080 --> 19:58.080
+La administrativa y las de servicio.
+
+19:58.080 --> 20:01.080
+Y una VLAN diferente para cada uno.
+
+20:02.080 --> 20:09.080
+Y está lógicamente relacionada con las VLANs de estos equipos.
+
+20:11.080 --> 20:14.080
+Entonces se conecta directamente a esa VLAN.
+
+20:15.080 --> 20:18.080
+Y esa VLAN que puede ser.
+
+20:18.200 --> 20:25.200
+Por carácter ahorita documentado, que se entienda educativo.
+
+20:26.200 --> 20:45.200
+Puede ser la 1001, la 1002, la 1003, la 1004, la 1005, la 1006, la 1007 y la 1008.
+
+20:45.320 --> 20:50.320
+En el caso de que ésta es una OLT de ocho.
+
+20:50.320 --> 20:57.320
+Si fuera de cuatro, solamente utilizo ésta.
+
+20:57.320 --> 21:02.320
+Si fuera de ocho, utilizo toda ésta.
+
+21:03.320 --> 21:12.320
+Si fuera de dieciséis, entonces ya tengo nueve, diez, hasta el dieciséis utilizo ésta.
+
+21:12.440 --> 21:17.440
+Es el distribuyendo entre los routers que tengan conectados.
+
+21:18.440 --> 21:23.440
+Es correcto, que se distribuyen entre cualquiera de los routers conectados.
+
+21:23.440 --> 21:30.440
+Por ejemplo, vamos a ver aquí equipo OLT.
+
+21:30.560 --> 21:41.560
+Este no tiene quica salida.
+
+21:42.560 --> 21:45.560
+Ayayay, carrapita.
+
+21:46.560 --> 21:53.560
+Fíjate, la OLT de dieciséis, la número dos, tiene cuatro.
+
+21:54.560 --> 21:57.560
+Está casada con cuatro routers.
+
+21:57.680 --> 22:04.680
+Por eso yo te decía, puede estar con uno, con dos o varios routers.
+
+22:11.680 --> 22:22.680
+A nivel lógico, todos los routers, todos conocen las villas, solo que no trabajan con todas las villas.
+
+22:22.800 --> 22:27.800
+Pero eso ya es otra cosa, eso es problema a nosotros.
+
+22:27.800 --> 22:34.800
+Esto lo administramos nosotros directamente a través del router.
+
+22:34.800 --> 22:39.800
+A nivel de esto, no se van a meter.
+
+22:39.800 --> 22:46.800
+Yo simplemente te lo estoy explicando para que tengas una noción de cómo es la cuestión.
+
+22:46.920 --> 22:49.920
+O sea, no va a haber un formulario.
+
+22:49.920 --> 22:55.920
+No, por eso es que lo que nosotros hacemos es que la OLT va casada con estos routers.
+
+22:56.920 --> 23:01.920
+Simplemente lo que hacemos es esto, porque nosotros declaramos los routers.
+
+23:02.920 --> 23:05.920
+Todos esos controles necesitan.
+
+23:06.920 --> 23:13.920
+Todos estos controles, sí, porque todos los equipos trabajan igual.
+
+23:14.040 --> 23:17.040
+No todos.
+
+23:19.040 --> 23:24.040
+Fíjate que ellos aquí ya están metiendo I.P.O.E. y P.P.O.E.
+
+23:32.040 --> 23:43.040
+Entonces, tú, a nivel de sistema, tienes que declarar las GAMs que pertenecen a unos mangas específicos,
+
+23:43.160 --> 23:48.160
+que pertenecen a un puerto específico, a una OLT o a un puerto específico.
+
+23:49.160 --> 23:56.160
+Sí, pero es que tienen una VLAN específica ese puerto.
+
+23:57.160 --> 24:00.160
+Esa puerto del hotel tiene una VLAN específica.
+
+24:00.160 --> 24:11.160
+Que esa VLAN específica va a tener, va a tener un direccionamiento I.P.E. específico.
+
+24:11.280 --> 24:14.280
+Vamos a buscarlo aquí.
+
+24:19.280 --> 24:22.280
+Aquí no me sale. Interesante porque no me sale.
+
+24:23.280 --> 24:26.280
+Hay que grabar el puerto.
+
+24:26.400 --> 24:33.400
+Puerto, puerto, aquí está.
+
+24:34.400 --> 24:41.400
+Entonces, cada puerto tiene, cada puerto tiene un segmento I.P.E. diferente.
+
+24:42.400 --> 24:49.400
+O sea, cada VLAN tiene un segmento de I.P.E., cada VLAN tiene un segmento I.P.E. diferente.
+
+24:49.520 --> 24:56.520
+Y aquí tú se lo inventas o lo configuras a nivel, dices, estos van a ser los inventos
+
+25:00.520 --> 25:03.520
+y aquí en los routers estos van a ser los inventos y aquí te lo jales.
+
+25:04.520 --> 25:07.520
+No, yo lo declaro aquí.
+
+25:08.520 --> 25:13.520
+Yo declaro aquí, yo no declaro nada en el router, en ese caso.
+
+25:19.520 --> 25:22.520
+Aquí nada más, Rangos.
+
+25:23.520 --> 25:26.520
+Ya vamos a ver eso para que lo veas.
+
+25:49.520 --> 26:06.520
+Ahí tienen que, los equipos core y los, por equipos core tienen.
+
+26:07.520 --> 26:10.520
+Sí, aquí sí.
+
+26:10.640 --> 26:11.640
+Ok, fíjate.
+
+26:12.640 --> 26:17.640
+Fíjate que yo aquí, yo no declaro nada.
+
+26:19.640 --> 26:22.640
+Aquí yo no estoy declarando absolutamente nada.
+
+26:22.640 --> 26:27.640
+Todo esto es dinámico, todo esto que está aquí es dinámico.
+
+26:28.640 --> 26:31.640
+Estas son las I.P.E. de los clientes, yo no estoy declarando esto.
+
+26:32.640 --> 26:39.640
+Esto lo toma él automáticamente, porque aquí hay un rough ride.
+
+26:40.640 --> 26:49.640
+Este profile que yo estoy declarando aquí, yo le digo, mira, cuál es tu dirección I.P.Local,
+
+26:52.640 --> 26:59.640
+cuáles son tus DNS, si usas IPv6 o no y de dónde vas a tomar la dirección IPv6.
+
+27:00.640 --> 27:02.640
+Eso es todo lo que yo pongo ahí.
+
+27:03.640 --> 27:08.640
+La dirección, el direccionamiento IPv4, yo lo estoy tomando de acá.
+
+27:08.760 --> 27:15.760
+Porque cuando levanta el PPV, el de aquí se lo va asignando.
+
+27:16.760 --> 27:21.760
+Porque al cliente, aquí yo le asigno un IP.
+
+27:23.760 --> 27:24.760
+A mano.
+
+27:25.760 --> 27:26.760
+A mano, bueno.
+
+27:27.760 --> 27:32.760
+A mano entre comillas, te voy a explicar por qué el entre comillas.
+
+27:34.760 --> 27:37.760
+Vamos a buscar aquí un contrato que no te ha hecho.
+
+27:38.760 --> 27:43.760
+¿Por qué Dave? Porque tendrías que saber todas las I.P.E. que tienen ya asignadas.
+
+27:44.760 --> 27:47.760
+Pero eso lo hace automáticamente el sistema, no lo hago yo.
+
+27:48.760 --> 27:50.760
+Ya te voy a explicar, fíjate.
+
+27:51.760 --> 27:56.760
+Este cliente que está aquí, él no tiene el dato de ningún tipo.
+
+27:59.760 --> 28:02.760
+Cuando yo vengo aquí y yo pongo,
+
+28:02.880 --> 28:07.880
+hey, mira, esto pertenece a tal nodo, a tal...
+
+28:08.880 --> 28:10.880
+Bueno, éste es porque éste es...
+
+28:14.880 --> 28:15.880
+Éste es de radio, éste.
+
+28:16.880 --> 28:18.880
+Éste es de radio frecuencia.
+
+28:20.880 --> 28:26.880
+Cuando yo vengo aquí, yo le digo, mira, tú perteneces al nodo,
+
+28:27.880 --> 28:29.880
+esto es porque se entra.
+
+28:30.000 --> 28:33.000
+Tú perteneces al nodo para que se entra.
+
+28:34.000 --> 28:35.000
+¿Cuál es la caja NAP?
+
+28:36.000 --> 28:38.000
+Yo pongo aquí, ah bueno, mira.
+
+28:39.000 --> 28:42.000
+La caja NAP, voy a poner por poner.
+
+28:43.000 --> 28:48.000
+Esta caja NAP, fíjate que automáticamente cuando yo coloco esto me trajo todo
+
+28:49.000 --> 28:52.000
+lo que es referente a esa caja NAP.
+
+28:53.000 --> 28:58.000
+Entonces me dice, mira, esa caja NAP está conectada con el de equipo core para que se entrara.
+
+28:58.120 --> 29:05.120
+El de equipo core parque central pertenece a la OLT 8 de parque central,
+
+29:06.120 --> 29:09.120
+a la tarjeta 0 porque tiene una sola tarjeta,
+
+29:11.120 --> 29:16.120
+al puerto 1 de esa OLT, ¿no?
+
+29:17.120 --> 29:19.120
+Tiene un split secundario.
+
+29:20.120 --> 29:27.120
+El 1ID que yo tengo disponible en esa OLT es el 65 de ese PON.
+
+29:28.120 --> 29:31.120
+Y el service port es el 1.
+
+29:32.120 --> 29:37.120
+Cuando yo le doy aquí asignar IP, él automáticamente va a seleccionar
+
+29:38.120 --> 29:41.120
+qué IP tengo disponible.
+
+29:42.120 --> 29:47.120
+Por eso que te digo que es automático entre comillas, ¿no?
+
+29:48.120 --> 29:49.120
+¿Por qué? Porque yo tengo que darle aquí.
+
+29:50.120 --> 29:52.120
+Porque yo puedo guardar esto aquí,
+
+29:53.120 --> 29:56.120
+yo puedo guardar esto aquí, me puede quedar esto sin la IP.
+
+29:58.120 --> 30:00.120
+Sin la IP.
+
+30:07.120 --> 30:10.120
+Entonces, ¿la IP de dónde la saca?
+
+30:11.120 --> 30:16.120
+De lo que yo declaré en ese PON aquí.
+
+30:19.120 --> 30:25.120
+Si nosotros buscamos, vamos a buscar esa OLT.
+
+30:28.120 --> 30:31.120
+A ver, ¿eh?
+
+30:54.120 --> 30:57.120
+Parque central OLT 2.
+
+30:58.120 --> 31:01.120
+Parque central OLT 2.
+
+31:04.120 --> 31:09.120
+Aquí me decía que era el PON 1.
+
+31:10.120 --> 31:13.120
+Tengo aquí, voy a buscar...
+
+31:18.120 --> 31:20.120
+PON 1.
+
+31:21.120 --> 31:24.120
+Y aquí yo tengo relacionado, fíjate,
+
+31:24.240 --> 31:27.240
+este contrato tiene este IP.
+
+31:28.240 --> 31:31.240
+Todo es... aquí.
+
+31:32.240 --> 31:36.240
+Fíjate que la IP es la 40, es la máxima que yo he usado.
+
+31:37.240 --> 31:40.240
+Perdón, aquí, hay otras líneas aquí.
+
+31:45.240 --> 31:48.240
+Aquí la IP, la 64 es la que yo he usado, máxima.
+
+31:49.240 --> 31:52.240
+Cuando yo le doy al botón, él me debe dar la 65.
+
+31:52.360 --> 31:55.360
+Eso es lo que tiene registrado a nivel de sistema.
+
+31:55.360 --> 31:56.360
+Es correcto.
+
+31:56.360 --> 32:01.360
+O también hay una forma de decirle al OLT, al cuarto que va a usar esa para ese contrato.
+
+32:02.360 --> 32:09.360
+Si está más relacionado, me va a dar un error cuando yo lo vaya a activar.
+
+32:12.360 --> 32:19.360
+Entonces, como me va a dar un error, yo voy a tener que irme directo a ese contrato.
+
+32:19.480 --> 32:24.480
+Yo voy a tener que irme directamente a donde?
+
+32:25.480 --> 32:28.480
+A la OLT para ver dónde está.
+
+32:29.480 --> 32:32.480
+Y entonces tengo que empezar a buscar OLT por OLT.
+
+32:33.480 --> 32:36.480
+Si tengo 20 OLT, en las 20 OLT tengo que buscarlo.
+
+32:37.480 --> 32:44.480
+Y si esas 20 OLT tienen 16 PON cada uno, yo tengo que ir metiendo en cada uno de esos PON.
+
+32:45.480 --> 32:46.480
+Aquí.
+
+32:46.600 --> 32:49.600
+Vamos a ver.
+
+33:00.600 --> 33:05.600
+Esta tiene 16 PON, y entonces yo tengo que irme metiendo, 8 PON, perdón.
+
+33:06.600 --> 33:10.600
+Y yo me tengo que ir metiendo aquí e ir viendo dónde está metido.
+
+33:10.720 --> 33:13.720
+Tengo que ir uno por uno para ver dónde está metido.
+
+33:14.720 --> 33:23.720
+Entonces, si son 16 OLT de 16 PON, yo tengo que meterme en las 16 OLT en cada uno de esos PON para verificar realmente dónde está.
+
+33:24.720 --> 33:31.720
+Y luego que me diga dónde está, entonces tengo que irme al PON para ver cuál es el ONOID que realmente tengo disponible,
+
+33:32.720 --> 33:37.720
+para entonces venir aquí y decirle, no, mira, esto no es esto.
+
+33:37.840 --> 33:39.840
+Esto es esto.
+
+33:42.840 --> 33:45.840
+Esto no es esto, esto es tal cosa.
+
+33:46.840 --> 34:02.840
+Entonces funciona porque de casualidad van aumentando, si aquí en el sistema está ocupado 32, le aumenta a 33, y está suponiendo que en el otro va a ser lo mismo.
+
+34:03.840 --> 34:04.840
+Exactamente.
+
+34:04.960 --> 34:13.960
+Él lo va almacenando ahí, él ve ahí, ah, mira, según mi registro, según mi base de datos, según mi base de datos, esto no está ocupado.
+
+34:16.960 --> 34:23.960
+Entonces, como eso no está ocupado, este es el que te voy a signar.
+
+34:23.960 --> 34:25.080
+Así es.
+
+34:54.080 --> 34:55.080
+¿Cómo me parecen?
+
+35:06.080 --> 35:07.080
+Ah, aquí está.
+
+35:07.200 --> 35:10.200
+Ah, pero siempre acogen, siempre lo mantienen.
+
+35:12.200 --> 35:13.200
+Ah, es el tufe.
+
+35:20.200 --> 35:21.200
+Ah, es el tufe.
+
+35:26.200 --> 35:27.200
+Ah, es el tufe.
+
+35:32.200 --> 35:33.200
+Ah, es el tufe.
+
+35:37.200 --> 35:38.200
+Ah, es el tufe.
+
+35:55.200 --> 35:56.200
+Prendrían o no prendrían?
+
+35:57.200 --> 35:58.200
+No.
+
+36:03.200 --> 36:05.200
+Ah, está tomando cinco bien.
+
+36:07.200 --> 36:08.200
+Vamos a ver.
+
+36:15.200 --> 36:16.200
+¿Ahí abajo?
+
+36:16.200 --> 36:17.200
+Sí.
+
+36:28.200 --> 36:29.200
+¿Abajo no lo moviste?
+
+36:37.200 --> 36:38.200
+¿Abajo?
+
+36:40.200 --> 36:41.200
+Exacto.
+
+36:47.200 --> 36:48.200
+Exacto.
+
+36:49.200 --> 36:52.200
+Dice Alfredo que yo bajo que va a salir ese porte que hay un cliente.
+
+37:03.200 --> 37:04.200
+Ah, ahí lo voy.
+
+37:07.200 --> 37:09.200
+Estoy viviendo lo que no hay.
+
+37:14.200 --> 37:19.200
+Si voy a desconectar, pero no me ha dado cuenta cuál era el cambio.
+
+37:30.200 --> 37:31.200
+Ok.
+
+37:32.200 --> 37:35.200
+Entonces, fíjate.
+
+37:37.200 --> 37:44.200
+Esto, obviamente, esto es un número que está guardado a nivel de base de datos aquí.
+
+37:45.200 --> 37:48.200
+No hay una comunicación para que diga, mira.
+
+37:50.200 --> 37:57.200
+Ok, porque si yo retiro a un cliente, cuando yo retiro a un cliente, libero toda esa data técnica.
+
+37:58.200 --> 38:01.200
+Esa data técnica es esto, todo esto, yo lo libero.
+
+38:01.320 --> 38:12.320
+Y entonces, cuando yo lo libero, lo mando a eliminar de la OLT y puedo agregar otro en su lugar.
+
+38:12.440 --> 38:19.440
+Porque realmente lo que él es el que le dice a través del comando a la OLT dónde, en
+
+38:19.440 --> 38:21.440
+qué posición lo va a agregar.
+
+38:21.440 --> 38:23.440
+Por eso fue que te hice el ejemplo aquí.
+
+38:23.440 --> 38:28.440
+Si esto aquí hay un error, yo pongo aquí el número que es, y ya.
+
+38:32.440 --> 38:33.440
+Ok.
+
+38:33.560 --> 38:36.560
+Te estoy poniendo un número que es incorrecto.
+
+38:36.560 --> 38:39.560
+Aquí el máximo son 128.
+
+38:42.560 --> 38:49.560
+Y esas comunicaciones de IP son solo rangos, no dicen, son solo rangos, son solo decir
+
+38:49.560 --> 38:52.560
+qué es lo que está pasando.
+
+38:52.680 --> 38:59.680
+Y esas comunicaciones de IP son solo rangos, no dicen, son solo rangos, son solo decir
+
+38:59.680 --> 39:04.680
+qué es lo que se configuran ahí.
+
+39:04.680 --> 39:13.680
+Bueno, igual como no tengo acceso a escritura, tampoco me he podido poner a probar en los
+
+39:13.680 --> 39:16.680
+puertos de la OLT.
+
+39:16.800 --> 39:27.800
+Ese, ese coquetito, ahí qué hacen, ahí nada más le ponen el, como que el A, B, C,
+
+39:27.800 --> 39:29.800
+la IP, máscara, máscara.
+
+39:29.800 --> 39:32.800
+Sí, la máscara de red.
+
+39:32.800 --> 39:33.800
+Nada más.
+
+39:33.800 --> 39:35.800
+Ahí pueden poner varios de esos.
+
+39:35.800 --> 39:38.800
+Sí, yo puedo ir agregando varios.
+
+39:38.800 --> 39:41.800
+De hecho, esto tiene un error.
+
+39:41.800 --> 39:43.800
+¿Por qué tiene un error?
+
+39:43.920 --> 39:44.920
+Te voy a explicar por qué.
+
+39:44.920 --> 39:47.920
+Porque aquí no hay 126 IP.
+
+39:47.920 --> 39:50.920
+Aquí yo puedo usar más IP de las que dice ella.
+
+39:50.920 --> 39:52.920
+¿Por qué?
+
+39:54.920 --> 39:57.920
+O sea, no es un error precisamente.
+
+39:59.920 --> 40:02.920
+Si lo vemos, lógicamente no es un error.
+
+40:02.920 --> 40:05.920
+Te voy a explicar por qué.
+
+40:06.040 --> 40:17.040
+Cuando yo declaro un segmento de red, por ejemplo ese, 10, 90, 8, 0, barra 25, él me
+
+40:17.040 --> 40:30.040
+está diciendo que yo tengo desde la IP número 0 hasta la IP 127, que es la 10, 90, 8, 127.
+
+40:30.160 --> 40:33.160
+Ok.
+
+40:36.160 --> 40:40.160
+Esta viene de la 0 hasta la 127.
+
+40:40.160 --> 40:45.160
+Entonces viene 0, 1, 2, 3, 4, 5, 6, 7, 8, 127.
+
+40:45.160 --> 40:48.160
+Este es mi IP mayor.
+
+40:48.160 --> 40:49.160
+¿Pero qué sucede?
+
+40:49.160 --> 40:52.160
+De que yo utilizo un protocolo que se llama PPOE.
+
+40:52.160 --> 40:58.160
+A yo usar PPOE, yo puedo usar todas las IPs del segmento.
+
+40:58.280 --> 41:15.280
+Pero cuando yo uso un DHCP, que es un protocolo de despacho de IP de manera automática,
+
+41:15.280 --> 41:22.280
+yo solamente puedo usar desde la 1 hasta la 126.
+
+41:24.280 --> 41:25.280
+¿Por qué?
+
+41:25.400 --> 41:32.400
+Esto que está aquí viene siendo la IP de red y esto que está aquí es una IP de broadcast.
+
+41:35.400 --> 41:38.400
+Entonces estas dos yo no la puedo asignar.
+
+41:39.400 --> 41:46.400
+Y esta que está aquí se le asigna un equipo que es realmente la pasarela hacia otro lugar.
+
+41:50.400 --> 41:53.400
+Vamos a hacerte un ejemplo.
+
+41:53.520 --> 41:56.520
+Yo tengo aquí un router.
+
+41:56.520 --> 41:59.520
+Yo tengo aquí una lacto.
+
+42:00.520 --> 42:03.520
+Yo tengo aquí un celular.
+
+42:05.520 --> 42:06.520
+¿Verdad?
+
+42:07.520 --> 42:12.520
+Para que ellos se comuniquen, tienen que tener una IP.
+
+42:13.520 --> 42:20.520
+Y esa IP debe tener una máscara de red que es la que la máscara de red le va a decir a que red pertenece.
+
+42:20.640 --> 42:29.640
+Ok, entonces máscara de red, esta es la IP de red, esta es la máscara de red.
+
+42:30.640 --> 42:35.640
+Entonces vendría aquí mi IP de red.
+
+42:36.640 --> 42:41.640
+Nunca lo configuran porque vuelvo y te repito, en el PPOE no hace falta.
+
+42:41.760 --> 42:48.760
+En el PPOE yo puedo poner un gateway cualquiera que no tenga relación a esto.
+
+42:51.760 --> 42:54.760
+Ok, no tiene absolutamente nada de relación con esto.
+
+42:55.760 --> 43:00.760
+Entonces esos botoncitos, el borrar pool es como borrar toda la fila.
+
+43:01.760 --> 43:02.760
+Borrar pool es borrar todo.
+
+43:03.760 --> 43:08.760
+Y remover contratos como borrar todos los contratos que están en ese.
+
+43:08.880 --> 43:09.880
+Todos estos son los contratos.
+
+43:10.880 --> 43:11.880
+Hice regular pool.
+
+43:12.880 --> 43:23.880
+Regularizar pool es que él va a buscar en la base de datos todos los clientes que están dentro de ese segmento de red y me lo va a poner aquí.
+
+43:28.880 --> 43:31.880
+Entonces fíjate, yo tengo mi IP de red.
+
+43:32.000 --> 43:38.000
+Entonces a este equipo que está aquí yo le pongo 10, 90, 8, 1.
+
+43:39.000 --> 43:46.000
+Y la máscara viene siendo 255, 255, 255, 128.
+
+43:49.000 --> 43:51.000
+Porque barra 25.
+
+43:51.120 --> 44:06.120
+Entonces esta lacto y este celular deben tener una IP diferente a esta porque esto que está aquí es la pasarela de este hacia otro lugar.
+
+44:07.120 --> 44:15.120
+O sea todo lo que él no consiga lo va a buscar aquí y lo que él no consiga aquí lo va a buscar afuera.
+
+44:15.240 --> 44:28.240
+Ok, entonces aquí yo pongo 10, 90, 8, 2 por ejemplo y aquí pongo 10, 90, 8, 3.
+
+44:29.240 --> 44:31.240
+Esto es porque yo lo estoy poniendo manualmente.
+
+44:32.240 --> 44:37.240
+Pero si yo lo hago por DHCP lo que yo conecte va a agarrar una IP aleatoria.
+
+44:37.360 --> 44:46.360
+Va a agarrar la 2, la 3, la 5, la 10, la 15, la 10, pero no va a salir, no va a ser mayor a esto.
+
+44:48.360 --> 44:53.360
+O es 126, pero 1 tampoco va a ser.
+
+44:53.480 --> 45:12.480
+Ok, como yo trabajo con PPOE yo puedo usar la 1, la 0, la que sea porque aquí voy con el escenario, esto con DHCP, voy con el escenario PPOE.
+
+45:13.480 --> 45:17.480
+Aquí tengo la lacto igual, aquí tengo el celular.
+
+45:17.600 --> 45:33.600
+Esto está por PPOE, yo pongo un usuario y una clave, esa clave me dan permiso para conectarme aquí.
+
+45:33.720 --> 45:48.720
+Él, yo le pongo un direccionamiento IP 10, 0, 0 por poner cualquier cosa, porque realmente es eso, yo puedo poner cualquier cosa.
+
+45:49.720 --> 45:51.720
+Yo puedo poner lo que yo quiera.
+
+45:51.840 --> 46:06.840
+Cuando este usuario y esta clave se autentican aquí, él va a buscar aquí, bueno a ti te toca esta porque te dijimos que tu eras fulano de tal.
+
+46:07.840 --> 46:10.840
+Entonces, que es lo que hago yo acá?
+
+46:11.840 --> 46:19.840
+Le asigno una IP 10, 90, 80, 0.
+
+46:21.840 --> 46:30.840
+La máscara de red viene siendo 255, 255, 255, 255.
+
+46:31.840 --> 46:33.840
+Esta es la máscara de red.
+
+46:34.840 --> 46:41.840
+Y su puerto de enlace viene siendo 10, 10, 0, 0.
+
+46:45.840 --> 46:47.840
+Esto que te está diciendo aquí?
+
+46:51.840 --> 46:59.840
+Que aquí no hay más IP disponible en ese segmento de red, no hay más.
+
+46:59.960 --> 47:24.960
+Entonces, como esto me está diciendo a mi que no hay más segmento de red, pero yo estoy usando un protocolo que si me permite, entonces ya yo sé que es lo que voy a buscar.
+
+47:25.080 --> 47:27.080
+¿Y dónde lo voy a buscar?
+
+47:28.080 --> 47:30.080
+Porque mi pasarela es esta.
+
+47:32.080 --> 47:34.080
+Mi pasarela es esta.
+
+47:35.080 --> 47:42.080
+Entonces, todo lo que yo no consiga en esta red, lo voy a buscar aquí y él lo va a buscar afuera.
+
+47:42.200 --> 47:47.200
+Bueno, esto era más indicado cómo trabajan en este odu normal.
+
+47:47.200 --> 47:51.200
+Entonces, es como que no tienen muchos cambios con respecto a este odu.
+
+47:52.200 --> 47:54.200
+Cambios por ahora no.
+
+47:56.200 --> 48:00.200
+Después sí vamos a pasar a un protocolo que se llama...
+
+48:01.200 --> 48:03.200
+Que se llama...
+
+48:03.320 --> 48:05.320
+Muy similar a eso.
+
+48:12.320 --> 48:15.320
+Que va a ser uso de las mismas rancos IP.
+
+48:16.320 --> 48:18.320
+Sí, claro.
+
+48:18.440 --> 48:21.440
+Entonces así como requerimientos especiales no tienen.
+
+48:23.440 --> 48:25.440
+No tienen.
+
+48:33.440 --> 48:35.440
+No tienen nada de los mismos.
+
+48:36.440 --> 48:38.440
+No tienen nada de los mismos.
+
+48:38.440 --> 48:40.440
+es correcto
+
+48:44.440 --> 48:48.440
+entonces así como requerimientos especiales no tienen?
+
+48:48.440 --> 48:50.440
+requerimientos especiales
+
+48:52.440 --> 49:03.440
+como decir, no, que quiero esto en el formulario, quiero esto que se conecte con el LTE desde acá y que haga esto
+
+49:03.440 --> 49:05.440
+no, tiene que ser esto, tal cual
+
+49:06.440 --> 49:17.440
+porque estas cajas NAB, estas mangas y estas cajas NAB, estas cajas NAB que están aquí, las carga Proyecto
+
+49:19.440 --> 49:23.440
+ellos las cargan y cuando la cargan la deben de casar
+
+49:30.440 --> 49:32.440
+caja NAB
+
+49:36.440 --> 49:45.440
+ellos le ponen si tiene, osea ellos le ponen el nombre, le ponen el puerto, de cuanto es la NAB
+
+49:49.440 --> 49:51.440
+si tiene split secundario no
+
+49:52.440 --> 49:54.440
+donde esta la, cual es la ubicación
+
+49:55.440 --> 49:57.440
+si esta activa no
+
+50:00.440 --> 50:04.440
+ellos la, de aquí ellos la van levantando, la van levantando, la van levantando
+
+50:06.440 --> 50:14.440
+entonces lo que dices del proceso de instalación tambien esta todo ya hecho acá
+
+50:15.440 --> 50:24.440
+fíjate ve, ellos aquí te dicen, el split secundario ya ellos ponen aquí a quien pertenece
+
+50:24.440 --> 50:31.440
+es el split secundario del PON15 de la OLTA1 del parque central
+
+50:36.440 --> 50:38.440
+yo me voy aquí
+
+50:42.440 --> 50:44.440
+me dice 1-8
+
+50:46.440 --> 50:49.440
+puerto de tarjeta OLT, splitter
+
+50:50.440 --> 50:52.440
+tiene 5 cajas NAB
+
+50:54.440 --> 50:57.440
+quitan las 5 cajas NAB, conectadas a ese split
+
+51:05.440 --> 51:09.440
+hay un plato, pero hay un tema de conexión
+
+51:26.440 --> 51:31.440
+aquí debería, por ejemplo como es un, esto es un edificio
+
+51:31.440 --> 51:33.440
+aquí debería en alguna parte decir, mira
+
+51:34.440 --> 51:40.440
+piso tal, caja en el puerto de basura, está en azotea, urbano
+
+51:40.440 --> 51:42.440
+que paso cuento
+
+51:42.440 --> 51:46.440
+acá por un momento para el coche he llevado la plancha a colocarla en la tanquilla
+
+51:46.440 --> 51:48.440
+ya la corte, ya no tengo lista
+
+51:48.440 --> 51:52.440
+yo no la he pintado, no la he colocado, no he identificado la pintura
+
+51:52.440 --> 51:56.440
+yo no he trabajado, me he colocado la tanquilla para proteger la mano
+
+51:57.440 --> 52:00.440
+pero eso no tiene
+
+52:03.440 --> 52:05.440
+eso no está hecho con cemento
+
+52:06.440 --> 52:10.440
+si, pero la plancha que le he colocado es de planchas triadas
+
+52:11.440 --> 52:13.440
+la corte a la media porque ya la trajeron
+
+52:13.440 --> 52:18.440
+pero con el agua y la vaina va a caer en desgracia
+
+52:19.440 --> 52:24.440
+como caen todas las tanquillas, entonces eso es una lámina triada
+
+52:24.440 --> 52:26.440
+eso no es cualquier lámina
+
+52:27.440 --> 52:30.440
+yo creo que te mueres tu memoria y esa lámina todavía está ahí
+
+52:32.440 --> 52:34.440
+esperemoso, gracias chau
+
+52:35.440 --> 52:38.440
+yo le digo pasar, ya llueve ese caramelo
+
+52:43.440 --> 52:45.440
+bueno, dale pues, está bien
+
+52:52.440 --> 52:56.440
+ok, entonces fíjate, aquí es donde se va casando, por eso es que tienes que saber esto
+
+52:57.440 --> 53:01.440
+para que lógicamente tú las puedas ir casando una con otra
+
+53:02.440 --> 53:05.440
+bueno, pero eso sabe el que está instalando, no?
+
+53:06.440 --> 53:10.440
+eso lo sabe el proyecto, es correcto, el proyecto el que tiene que decírtelo
+
+53:10.440 --> 53:14.440
+pero tú tienes que saberlo para poderlo relacionar a nivel de base de datos
+
+53:14.440 --> 53:17.440
+o como lo vas a mostrar allí
+
+53:19.440 --> 53:26.440
+bueno, si eso igual va a ser un rollo porque hay información allá en el Tomodata
+
+53:26.440 --> 53:31.440
+en el Tomodata, en Excel y como que tienen distintos nombres
+
+53:34.440 --> 53:41.440
+y tienen distintas, se puso a graficar las coordenadas que están en Ogo
+
+53:41.440 --> 53:46.440
+y están en lugares muy equivocados
+
+53:47.440 --> 53:49.440
+entonces tienes que saber cómo ir todo eso
+
+53:49.440 --> 53:55.440
+sí, bueno, eso ya hay que sentarte con la gente del proyecto que yo te clarifiquen esa información
+
+53:58.440 --> 54:00.440
+pero del lado de nosotros es este
+
+54:01.440 --> 54:04.440
+y esto entra dentro del proceso de mantener
+
+54:05.440 --> 54:09.440
+y de instalación, porque en la instalación yo hago esto
+
+54:10.440 --> 54:15.440
+en la instalación yo le digo, eh, para tú perteneces a esto, él me trae todo lo demás, le digo dónde va a ir
+
+54:15.440 --> 54:18.440
+sí, fíjate
+
+54:20.440 --> 54:23.440
+yo le digo, este es el parque central
+
+54:27.440 --> 54:32.440
+¿verdad? entonces yo le digo, mira, este es el Movedano
+
+54:39.440 --> 54:43.440
+Movedano, piso 16
+
+54:45.440 --> 54:48.440
+vamos
+
+55:00.440 --> 55:06.440
+este es el Movedano, bueno, yo voy a agarrar cualquiera porque realmente no sé dónde, en qué piso está
+
+55:07.440 --> 55:12.440
+fíjate, yo le digo, pero está en el Movedano
+
+55:13.440 --> 55:17.440
+y automáticamente él me trae todo lo demás, todo
+
+55:37.440 --> 55:44.440
+esto lo único que hago aquí es poner, cuando voy a instalar, el serial de la ONU
+
+55:45.440 --> 55:49.440
+el modelo de la ONU, asignar la IP
+
+55:50.440 --> 55:53.440
+le doy guardar, le doy aquí activar
+
+55:56.440 --> 55:59.440
+después que le doy activar, me voy aquí a gestión de ONU
+
+56:00.440 --> 56:03.440
+pongo aquí el nombre de la red
+
+56:04.440 --> 56:06.440
+WIFI
+
+56:07.440 --> 56:10.440
+la clave que quiere el cliente
+
+56:12.440 --> 56:14.440
+le doy
+
+56:15.440 --> 56:18.440
+y ya, ese es todo lo que llevamos
+
+56:19.440 --> 56:21.440
+no hago nada
+
+56:23.440 --> 56:26.440
+entonces se lo mandan por WhatsApp
+
+56:27.440 --> 56:29.440
+se usa WhatsApp para todo eso
+
+56:30.440 --> 56:35.440
+sí, lo ideal aquí es que esta parte de aquí
+
+56:36.440 --> 56:38.440
+esta parte de aquí
+
+56:39.440 --> 56:41.440
+y esta parte de aquí
+
+56:42.440 --> 56:44.440
+la tenga ya el instalador
+
+56:44.440 --> 56:48.440
+el instalador entra, busca el número del contrato
+
+56:53.440 --> 56:55.440
+llena la data técnica
+
+56:57.440 --> 57:00.440
+llena toda la data técnica, le da activar
+
+57:01.440 --> 57:03.440
+luego viene aquí
+
+57:04.440 --> 57:06.440
+configura su red WIFI porque él está con el cliente
+
+57:07.440 --> 57:10.440
+mira que red WIFI quiere, ah yo quiero la red WIFI y tal
+
+57:14.440 --> 57:16.440
+le pone la contraseña
+
+57:17.440 --> 57:19.440
+lo cambia aquí
+
+57:20.440 --> 57:22.440
+el tipo quedó activado
+
+57:24.440 --> 57:27.440
+ya no hace falta mandar y llamar a nadie
+
+57:28.440 --> 57:30.440
+ya no hace falta mandar nada por WhatsApp
+
+57:31.440 --> 57:33.440
+ya no falta nada
+
+57:35.440 --> 57:37.440
+y está obligado
+
+57:38.440 --> 57:41.440
+el instalador está obligado a hacerlo, ¿por qué?
+
+57:44.440 --> 57:47.440
+porque si yo no le da al botón activar
+
+57:49.440 --> 57:51.440
+no va a tener internet
+
+57:57.440 --> 57:58.440
+¿lo ves?
+
+57:59.440 --> 58:01.440
+o sea, no va a tener internet
+
+58:03.440 --> 58:05.440
+de como no va a tener internet
+
+58:06.440 --> 58:08.440
+él está obligado a darle al botón activar
+
+58:14.440 --> 58:15.440
+joder
+
+58:16.440 --> 58:18.440
+más ahí de otro
+
+58:19.440 --> 58:22.440
+por eso que lo ideal es que el técnico lo tenga
+
+58:23.440 --> 58:25.440
+ah sí, tengo internet, ah ya todo listo
+
+58:26.440 --> 58:28.440
+carga las fotos en el sistema
+
+58:30.440 --> 58:32.440
+mira aquí me dio IPv6 y aquí me dio el plan
+
+58:33.440 --> 58:36.440
+ya listo, chau, me voy, sigo con el siguiente cliente
+
+58:44.440 --> 58:46.440
+por eso tiene que ser el procesor
+
+58:47.440 --> 58:49.440
+sumamente automatizado
+
+58:54.440 --> 58:55.440
+bueno
+
+59:02.440 --> 59:05.440
+¿estamos claros? ¿seguro?
+
+59:07.440 --> 59:09.440
+¿alguna duda? ¿alguna pregunta?
+
+59:11.440 --> 59:12.440
+¿alguna observación?
+
+59:13.440 --> 59:16.440
+no, entonces me seguiré guiando por el doctor
+
+59:20.440 --> 59:24.440
+si has visto que actualizaron en el otro
+
+59:25.440 --> 59:28.440
+no, no, el que estaban haciendo ustedes yo no lo he visto
+
+59:29.440 --> 59:31.440
+no, que estaban aquí el 18
+
+59:32.440 --> 59:34.440
+no, yo no he visto nada tampoco de eso
+
+59:36.440 --> 59:38.440
+no he visto nada de eso
+
+59:43.440 --> 59:44.440
+entonces
+
+59:45.440 --> 59:47.440
+para mantener la plataforma
+
+59:48.440 --> 59:51.440
+es simplemente si el cliente me llama y me pide el saldo
+
+59:52.440 --> 59:54.440
+el saldo yo lo veo aquí
+
+59:55.440 --> 59:58.440
+si yo quiero ver si la factura se generó o no se generó
+
+59:59.440 --> 01:00:02.440
+vamos, un contrato viejo
+
+01:00:02.440 --> 01:00:03.440
+contrato viejo
+
+01:00:08.440 --> 01:00:11.440
+contrato viejo, si yo quiero lo doy aquí
+
+01:00:12.440 --> 01:00:14.440
+y aquí yo veo cuáles son las facturas que le ha pagado
+
+01:00:16.440 --> 01:00:18.440
+le ha pagado todas estas facturas
+
+01:00:23.440 --> 01:00:26.440
+aquí veo el monto que tiene vencido
+
+01:00:28.440 --> 01:00:30.440
+o sea lo que debe ser
+
+01:00:31.440 --> 01:00:33.440
+o sea lo que debe ser
+
+01:00:40.440 --> 01:00:42.440
+y aquí, cortar si lo quiero cortar
+
+01:00:43.440 --> 01:00:45.440
+reconectar si lo quiero reconectar
+
+01:00:46.440 --> 01:00:50.440
+aquí pin, para ver si el equipo está activo o no está activo
+
+01:00:51.440 --> 01:00:55.440
+bueno, en este caso el Estatue LT no entra porque esto es inalámbrico
+
+01:00:56.440 --> 01:00:57.440
+si
+
+01:00:58.440 --> 01:01:00.440
+aquí es un test de velocidad
+
+01:01:01.440 --> 01:01:04.440
+como te dijiste de eliminar servicios, yo lo doy ahí
+
+01:01:05.440 --> 01:01:07.440
+ya el tipo se desconecta, pierde servicio
+
+01:01:08.440 --> 01:01:10.440
+se pierde el contrato, todo
+
+01:01:11.440 --> 01:01:13.440
+cómo manejan el valor de las divisas
+
+01:01:14.440 --> 01:01:16.440
+cuánto tienen que pagar cada mes
+
+01:01:17.440 --> 01:01:18.440
+distinto
+
+01:01:20.440 --> 01:01:22.440
+servicio recurrente
+
+01:01:23.440 --> 01:01:25.440
+25
+
+01:01:27.440 --> 01:01:32.440
+y eso le da un monto en bolívares que cambia todos los días a través de la tasa de cambio
+
+01:01:33.440 --> 01:01:35.440
+es como una variable global que tiene
+
+01:01:36.440 --> 01:01:37.440
+como una variable global
+
+01:01:37.440 --> 01:01:38.440
+o sea como que
+
+01:01:39.440 --> 01:01:43.440
+esto se conecta a través de la API al Banco Central
+
+01:01:44.440 --> 01:01:45.440
+y se trae este valor
+
+01:01:47.440 --> 01:01:49.440
+fíjate, como voy aquí
+
+01:01:50.440 --> 01:01:52.440
+tengo un histórico
+
+01:01:54.440 --> 01:01:56.440
+pero este por API del Banco Central
+
+01:01:59.440 --> 01:02:01.440
+sí, me traigo ese valor
+
+01:02:03.440 --> 01:02:06.440
+eso lo multiplica por esto y le da un monto en bolívares
+
+01:02:20.440 --> 01:02:23.440
+y bueno, aquí el monto en sí es lo que debe experimentar
+
+01:02:24.440 --> 01:02:26.440
+vamos a buscar a alguien que dé
+
+01:02:29.440 --> 01:02:31.440
+de estos activos
+
+01:02:34.440 --> 01:02:35.440
+estos son
+
+01:02:36.440 --> 01:02:37.440
+contratoros
+
+01:02:38.440 --> 01:02:39.440
+vamos a buscar aquí
+
+01:02:42.440 --> 01:02:43.440
+ah, yo sé
+
+01:02:44.440 --> 01:02:45.440
+servicio
+
+01:02:45.440 --> 01:02:46.440
+servicio
+
+01:02:48.440 --> 01:02:51.440
+entonces, servicio técnico rey
+
+01:02:52.440 --> 01:02:53.440
+este
+
+01:02:55.440 --> 01:02:56.440
+este que te dije, fíjate
+
+01:02:57.440 --> 01:02:59.440
+él no ha pagado a este mes
+
+01:03:00.440 --> 01:03:02.440
+si yo me voy aquí, yo le doy aquí
+
+01:03:03.440 --> 01:03:05.440
+él me dice, mira, factura pendiente
+
+01:03:06.440 --> 01:03:08.440
+septiembre, facturas pagadas
+
+01:03:10.440 --> 01:03:12.440
+abril, mayo, junio, julio, agosto
+
+01:03:13.440 --> 01:03:15.440
+monto en bolívares
+
+01:03:16.440 --> 01:03:19.440
+este es el monto en bolívares según la multiplicación de esto
+
+01:03:26.440 --> 01:03:28.440
+ok, igualmente hace con todos los demás
+
+01:03:30.440 --> 01:03:32.440
+con todos los demás clientes
+
+01:03:33.440 --> 01:03:35.440
+pero este valor es el que se refleja
+
+01:03:38.440 --> 01:03:40.440
+ah, vamos a buscar a alguien
+
+01:03:42.440 --> 01:03:44.440
+eeeeh
+
+01:04:01.440 --> 01:04:02.440
+aquí
+
+01:04:04.440 --> 01:04:05.440
+ah, bueno, él no dice
+
+01:04:07.440 --> 01:04:09.440
+coño, que tengo mucho el público como busco yo
+
+01:04:12.440 --> 01:04:14.440
+eeeeh, como busco yo que tengo el público
+
+01:04:19.440 --> 01:04:20.440
+vamos a buscar por
+
+01:04:26.440 --> 01:04:27.440
+y así nada
+
+01:04:37.440 --> 01:04:39.440
+pero lo que sé es que aquí no me va a salir
+
+01:04:42.440 --> 01:04:43.440
+no
+
+01:04:57.440 --> 01:04:58.440
+bueno
+
+01:04:59.440 --> 01:05:01.440
+hay unos que tienen IP pública
+
+01:05:02.440 --> 01:05:03.440
+ok
+
+01:05:12.440 --> 01:05:13.440
+vamos a ver aquí
+
+01:05:36.440 --> 01:05:37.440
+ok
+
+01:05:38.440 --> 01:05:39.440
+vamos a ver aquí
+
+01:05:39.440 --> 01:05:40.440
+este que tiene
+
+01:05:42.440 --> 01:05:44.440
+fíjate, él tiene su servicio
+
+01:05:45.440 --> 01:05:46.440
+de internet
+
+01:05:47.440 --> 01:05:48.440
+más un servicio IP público
+
+01:05:49.440 --> 01:05:51.440
+esto tiene un precio, esto tiene otro precio
+
+01:05:52.440 --> 01:05:53.440
+y esto suma
+
+01:05:55.440 --> 01:05:56.440
+aquí
+
+01:05:57.440 --> 01:05:58.440
+esto es un prorrateo lo que tiene aquí
+
+01:05:59.440 --> 01:06:00.440
+porque está recién instalado
+
+01:06:10.440 --> 01:06:11.440
+eeeeh
+
+01:06:12.440 --> 01:06:14.440
+esto lo instalaron el 27 de agosto
+
+01:06:17.440 --> 01:06:19.440
+entonces lo que se refleja aquí son los días
+
+01:06:20.440 --> 01:06:21.440
+del prorrateo
+
+01:06:23.440 --> 01:06:25.440
+los días usados hasta el primero
+
+01:06:27.440 --> 01:06:28.440
+ok
+
+01:06:29.440 --> 01:06:30.440
+entonces
+
+01:06:30.440 --> 01:06:31.440
+eeeeh
+
+01:06:37.440 --> 01:06:39.440
+igualmente la multiplicación te da el resultado
+
+01:06:41.440 --> 01:06:42.440
+el prorrateo
+
+01:06:43.440 --> 01:06:44.440
+ajá
+
+01:06:45.440 --> 01:06:47.440
+y esto se captura por los meses
+
+01:06:48.440 --> 01:06:50.440
+el que publica se cobra todos los meses
+
+01:06:51.440 --> 01:06:52.440
+el servicio se cobra todos los meses
+
+01:07:01.440 --> 01:07:02.440
+dale
+
+01:07:02.440 --> 01:07:03.440
+chévere
+
+01:07:04.440 --> 01:07:05.440
+ajá
+
+01:07:05.440 --> 01:07:06.440
+alguna otra duda
+
+01:07:08.440 --> 01:07:09.440
+no
+
+01:07:10.440 --> 01:07:11.440
+está claro
+
+01:07:12.440 --> 01:07:13.440
+está claro con esto no
+
+01:07:14.440 --> 01:07:16.440
+no, de tener más requerimientos no
+
+01:07:17.440 --> 01:07:18.440
+el requerimiento es eso
+
+01:07:19.440 --> 01:07:20.440
+puedes mantener la plataforma
+
+01:07:21.440 --> 01:07:23.440
+puedes ir instalando
+
+01:07:25.440 --> 01:07:26.440
+porque
+
+01:07:27.440 --> 01:07:29.440
+cómo hacemos, paramos el servicio hasta que
+
+01:07:30.440 --> 01:07:32.440
+instalaciones hasta que Odo vuelva a estar
+
+01:07:33.440 --> 01:07:34.440
+no podemos
+
+01:07:35.440 --> 01:07:36.440
+tiene que estar todo
+
+01:07:37.440 --> 01:07:38.440
+tiene que estar todo en la mano
+
+01:07:41.440 --> 01:07:43.440
+porque están relacionados una cosa con la otra
+
+01:07:50.440 --> 01:07:51.440
+hace su ticket
+
+01:07:53.440 --> 01:07:54.440
+porque él llamó
+
+01:07:54.440 --> 01:07:55.440
+y dijo mira no me
+
+01:07:56.440 --> 01:07:57.440
+no me está llegando el plan
+
+01:07:57.440 --> 01:07:58.440
+Katjuska lo atendió
+
+01:07:59.440 --> 01:08:00.440
+le creó un ticket
+
+01:08:00.440 --> 01:08:01.440
+le hizo una certificación de plan
+
+01:08:03.440 --> 01:08:04.440
+Anthony
+
+01:08:05.440 --> 01:08:06.440
+lo atendió
+
+01:08:06.440 --> 01:08:07.440
+por un caso de soporte
+
+01:08:10.440 --> 01:08:11.440
+está creyendo
+
+01:08:11.440 --> 01:08:12.440
+IP pública
+
+01:08:16.440 --> 01:08:17.440
+entonces
+
+01:08:17.440 --> 01:08:18.440
+con esto
+
+01:08:18.440 --> 01:08:19.440
+le hicieron un cambio de equipos
+
+01:08:20.440 --> 01:08:21.440
+le van a hacer un cambio de equipos
+
+01:08:21.440 --> 01:08:22.440
+perdón
+
+01:08:23.440 --> 01:08:24.440
+entonces aquí
+
+01:08:24.440 --> 01:08:25.440
+en este ticket cambio de equipos
+
+01:08:25.440 --> 01:08:27.440
+aquí están los equipos que le vamos a
+
+01:08:32.440 --> 01:08:34.440
+ponemos cuáles son los equipos que se van a conectar
+
+01:08:36.440 --> 01:08:37.440
+se le pone toda la información
+
+01:08:39.440 --> 01:08:41.440
+con estos botones se elimina el equipo anterior
+
+01:08:43.440 --> 01:08:44.440
+se cambia el equipo
+
+01:08:45.440 --> 01:08:46.440
+y se agrega el nuevo equipo
+
+01:08:53.440 --> 01:08:54.440
+fíjate aquí
+
+01:08:55.440 --> 01:08:56.440
+aquí María
+
+01:08:57.440 --> 01:08:58.440
+le editó la facturación recurrente
+
+01:09:01.440 --> 01:09:02.440
+le agregó esto
+
+01:09:03.440 --> 01:09:04.440
+y la IP pública
+
+01:09:07.440 --> 01:09:08.440
+esto es lo anterior
+
+01:09:08.440 --> 01:09:09.440
+esto es lo nuevo
+
+01:09:14.440 --> 01:09:15.440
+aquí
+
+01:09:17.440 --> 01:09:18.440
+es para gestión de IP
+
+01:09:19.440 --> 01:09:20.440
+cambiar de una IP pública
+
+01:09:21.440 --> 01:09:22.440
+a otra IP pública
+
+01:09:22.440 --> 01:09:23.440
+de una IP privada
+
+01:09:23.440 --> 01:09:24.440
+a otra IP privada
+
+01:09:25.440 --> 01:09:26.440
+de una IP privada
+
+01:09:26.440 --> 01:09:27.440
+a una IP pública
+
+01:09:27.440 --> 01:09:28.440
+de una IP pública
+
+01:09:28.440 --> 01:09:29.440
+a una IP privada
+
+01:09:30.440 --> 01:09:31.440
+todos esos cambios se hacen ahí
+
+01:09:33.440 --> 01:09:34.440
+todo se hace a través de un ticket
+
+01:09:41.440 --> 01:09:42.440
+este caso administrativo
+
+01:09:42.440 --> 01:09:43.440
+seguramente
+
+01:09:44.440 --> 01:09:45.440
+está reportando un pago
+
+01:09:54.440 --> 01:09:55.440
+aquí en este caso
+
+01:09:56.440 --> 01:09:58.440
+está solicitando la IP pública
+
+01:09:58.440 --> 01:10:01.440
+mira, estoy formalmente diciendo que me ponga la IP pública ya
+
+01:10:07.440 --> 01:10:09.440
+pero aquí yo puedo tener un tema
+
+01:10:09.440 --> 01:10:10.440
+un tema de
+
+01:10:12.440 --> 01:10:13.440
+de pagos
+
+01:10:13.440 --> 01:10:14.440
+registrar los pagos
+
+01:10:15.440 --> 01:10:17.440
+mira, la persona que hizo un pago
+
+01:10:19.440 --> 01:10:20.440
+porque la persona llama por aquí
+
+01:10:20.440 --> 01:10:21.440
+porque la persona llama por aquí
+
+01:10:27.440 --> 01:10:28.440
+la persona escribe aquí
+
+01:10:30.440 --> 01:10:31.440
+fíjate
+
+01:10:31.440 --> 01:10:32.440
+quiero reportar un pago
+
+01:10:38.440 --> 01:10:39.440
+él pasó el pago
+
+01:10:40.440 --> 01:10:41.440
+esto
+
+01:10:41.440 --> 01:10:42.440
+yo lo tomo
+
+01:10:45.440 --> 01:10:46.440
+le creo
+
+01:10:46.440 --> 01:10:47.440
+le creo un ticket
+
+01:10:47.440 --> 01:10:48.440
+le creo un ticket
+
+01:10:49.440 --> 01:10:50.440
+y en ese ticket
+
+01:10:51.440 --> 01:10:52.440
+yo le genero el pago
+
+01:10:54.440 --> 01:10:55.440
+y le digo a la administración
+
+01:10:55.440 --> 01:10:56.440
+para revisar el pago
+
+01:10:57.440 --> 01:10:58.440
+ellos verifican
+
+01:10:59.440 --> 01:11:00.440
+mira, si
+
+01:11:01.440 --> 01:11:02.440
+cita la cuenta
+
+01:11:02.440 --> 01:11:03.440
+no está
+
+01:11:03.440 --> 01:11:04.440
+si es como dice el cliente
+
+01:11:04.440 --> 01:11:06.440
+y le hacen el proceso manualmente
+
+01:11:07.440 --> 01:11:08.440
+de la factura del pago
+
+01:11:11.440 --> 01:11:12.440
+ok
+
+01:11:14.440 --> 01:11:15.440
+pero todo eso viene por aquí
+
+01:11:17.440 --> 01:11:18.440
+ok
+
+01:11:26.440 --> 01:11:27.440
+ya
+
+01:11:29.440 --> 01:11:30.440
+mira Rubén
+
+01:11:30.440 --> 01:11:31.440
+ese caso
+
+01:11:31.440 --> 01:11:33.440
+que tiene 22 minutos
+
+01:11:36.440 --> 01:11:37.440
+de Kenderling
+
+01:11:42.440 --> 01:11:44.440
+asigné esos tres casos que están ahí
+
+01:11:47.440 --> 01:11:48.440
+ok
+
+01:11:54.440 --> 01:11:55.440
+chévere
+
+01:11:55.440 --> 01:11:56.440
+dale
+
+01:11:57.440 --> 01:11:58.440
+entonces está listo
+
+01:12:02.440 --> 01:12:04.440
+necesitas ver algo de
+
+01:12:04.440 --> 01:12:05.440
+IPOE
+
+01:12:05.440 --> 01:12:06.440
+de IPOE
+
+01:12:07.440 --> 01:12:08.440
+necesitas ver algo de eso
+
+01:12:09.440 --> 01:12:10.440
+en qué se diferencia
+
+01:12:10.440 --> 01:12:11.440
+de fotos y ahorita
+
+01:12:11.440 --> 01:12:12.440
+a la micronofilación
+
+01:12:12.440 --> 01:12:13.440
+es de
+
+01:12:13.440 --> 01:12:14.440
+rango tipo S
+
+01:12:17.440 --> 01:12:19.440
+o el sistema va a hacer algo
+
+01:12:19.440 --> 01:12:20.440
+a través de esos
+
+01:12:20.440 --> 01:12:21.440
+protocolos
+
+01:12:21.440 --> 01:12:22.440
+no
+
+01:12:22.440 --> 01:12:24.440
+no, el sistema no va a hacer nada
+
+01:12:24.440 --> 01:12:25.440
+simplemente asina IP
+
+01:12:25.440 --> 01:12:26.440
+quita IP
+
+01:12:27.440 --> 01:12:28.440
+pon el servicio
+
+01:12:28.440 --> 01:12:29.440
+ah bueno
+
+01:12:29.440 --> 01:12:30.440
+ah por cierto
+
+01:12:30.440 --> 01:12:31.440
+permíteme ir
+
+01:12:31.440 --> 01:12:32.440
+porque hay algo aquí
+
+01:12:32.440 --> 01:12:33.440
+que no te
+
+01:12:33.440 --> 01:12:34.440
+que no te he explicado
+
+01:12:36.440 --> 01:12:37.440
+hay algo que no te he explicado
+
+01:12:37.440 --> 01:12:38.440
+ahorita que metí a Forda
+
+01:12:40.440 --> 01:12:41.440
+mira
+
+01:12:44.440 --> 01:12:45.440
+aquí tienes jodos
+
+01:12:48.440 --> 01:12:49.440
+verdad
+
+01:12:51.440 --> 01:12:52.440
+aquí tienes el radius
+
+01:12:55.440 --> 01:12:56.440
+y aquí tienes
+
+01:12:57.440 --> 01:12:58.440
+el microtip
+
+01:13:01.440 --> 01:13:02.440
+sí
+
+01:13:02.440 --> 01:13:03.440
+o el router
+
+01:13:03.440 --> 01:13:04.440
+como lo quieras ver
+
+01:13:07.440 --> 01:13:08.440
+el usuario
+
+01:13:11.440 --> 01:13:12.440
+verdad
+
+01:13:14.440 --> 01:13:15.440
+hace un set
+
+01:13:15.440 --> 01:13:16.440
+de lo que nosotros
+
+01:13:16.440 --> 01:13:17.440
+tratamos de
+
+01:13:18.440 --> 01:13:19.440
+el plan
+
+01:13:20.440 --> 01:13:21.440
+donde está conectado
+
+01:13:23.440 --> 01:13:24.440
+la IP
+
+01:13:24.440 --> 01:13:25.440
+todo eso
+
+01:13:25.440 --> 01:13:26.440
+esos datos que nosotros vimos
+
+01:13:26.440 --> 01:13:27.440
+que le colegamos allí
+
+01:13:28.440 --> 01:13:29.440
+y Odo
+
+01:13:30.440 --> 01:13:31.440
+le manda
+
+01:13:32.440 --> 01:13:33.440
+ah porque aquí no falta
+
+01:13:34.440 --> 01:13:35.440
+no falta la WLT
+
+01:13:37.440 --> 01:13:38.440
+Odo
+
+01:13:38.440 --> 01:13:39.440
+le manda
+
+01:13:39.440 --> 01:13:40.440
+al radius
+
+01:13:41.440 --> 01:13:42.440
+qué información
+
+01:13:44.440 --> 01:13:45.440
+el usuario
+
+01:13:46.440 --> 01:13:47.440
+clave
+
+01:13:49.440 --> 01:13:50.440
+eso para crearlo
+
+01:13:50.440 --> 01:13:51.440
+en el momento de la instalación
+
+01:13:51.440 --> 01:13:52.440
+el plan
+
+01:13:53.440 --> 01:13:54.440
+la IP
+
+01:13:57.440 --> 01:13:58.440
+ok
+
+01:14:01.440 --> 01:14:03.440
+eso se lo manda al radius
+
+01:14:04.440 --> 01:14:05.440
+simultáneamente
+
+01:14:06.440 --> 01:14:08.440
+le manda a la WLT
+
+01:14:08.440 --> 01:14:09.440
+qué datos
+
+01:14:13.440 --> 01:14:14.440
+el serial
+
+01:14:15.440 --> 01:14:16.440
+de la ONO
+
+01:14:18.440 --> 01:14:19.440
+el modelo de la ONO
+
+01:14:25.440 --> 01:14:26.440
+en qué PON
+
+01:14:27.440 --> 01:14:28.440
+lo va a colocar
+
+01:14:29.440 --> 01:14:30.440
+y en qué ONO
+
+01:14:31.440 --> 01:14:32.440
+ID
+
+01:14:32.440 --> 01:14:33.440
+va a quedar
+
+01:14:37.440 --> 01:14:38.440
+ok
+
+01:14:40.440 --> 01:14:41.440
+más allá
+
+01:14:44.440 --> 01:14:45.440
+ok
+
+01:14:58.440 --> 01:14:59.440
+fíjate
+
+01:15:02.440 --> 01:15:03.440
+configura esto
+
+01:15:04.440 --> 01:15:05.440
+por cada ONO
+
+01:15:06.440 --> 01:15:07.440
+qué configura
+
+01:15:09.440 --> 01:15:10.440
+el TECOM
+
+01:15:11.440 --> 01:15:12.440
+sí
+
+01:15:12.440 --> 01:15:13.440
+dos valores del TECOM
+
+01:15:14.440 --> 01:15:15.440
+los valores
+
+01:15:17.440 --> 01:15:18.440
+los valores del GEMPORT
+
+01:15:24.440 --> 01:15:26.440
+esto ahorita lo está haciendo con el SSH
+
+01:15:27.440 --> 01:15:28.440
+el valor del service
+
+01:15:29.440 --> 01:15:30.440
+sí
+
+01:15:32.440 --> 01:15:33.440
+aquí en el service
+
+01:15:33.440 --> 01:15:34.440
+yo pongo que VLAN pertenece
+
+01:15:35.440 --> 01:15:36.440
+en el GEMPORT
+
+01:15:37.440 --> 01:15:38.440
+no lo pongo
+
+01:15:41.440 --> 01:15:42.440
+ok
+
+01:15:43.440 --> 01:15:44.440
+en el SERVICE PORT
+
+01:15:44.440 --> 01:15:45.440
+porque este es SERVICE
+
+01:15:46.440 --> 01:15:47.440
+y este es SERVICE
+
+01:15:47.440 --> 01:15:48.440
+y luego viene
+
+01:15:48.440 --> 01:15:49.440
+SERVICE
+
+01:15:50.440 --> 01:15:51.440
+PORT
+
+01:15:54.440 --> 01:15:55.440
+le pongo cuál es la VLAN
+
+01:15:58.440 --> 01:15:59.440
+el PORT VLAN
+
+01:15:59.440 --> 01:16:00.440
+los valores de la VLAN
+
+01:16:11.440 --> 01:16:12.440
+los valores del DHCP
+
+01:16:30.440 --> 01:16:31.440
+el SECURITY
+
+01:16:42.440 --> 01:16:43.440
+ah
+
+01:16:44.440 --> 01:16:45.440
+WIFI
+
+01:16:46.440 --> 01:16:47.440
+y los valores de WIFI
+
+01:16:49.440 --> 01:16:51.440
+entonces eso lo llenas en el formulario del
+
+01:16:51.440 --> 01:16:52.440
+claro
+
+01:16:54.440 --> 01:16:55.440
+del OLT
+
+01:16:55.440 --> 01:16:56.440
+es correcto
+
+01:17:00.440 --> 01:17:02.440
+y algunos específicos en el contrato
+
+01:17:03.440 --> 01:17:04.440
+fíjate
+
+01:17:06.440 --> 01:17:07.440
+yo le dije la caja NAC
+
+01:17:08.440 --> 01:17:10.440
+eso no va contra el OLT
+
+01:17:11.440 --> 01:17:12.440
+no va contra el
+
+01:17:12.440 --> 01:17:13.440
+contra el RADIUS
+
+01:17:14.440 --> 01:17:15.440
+fíjate que nada de esto
+
+01:17:17.440 --> 01:17:18.440
+esto nada más va contra esto
+
+01:17:19.440 --> 01:17:20.440
+yo le digo mira
+
+01:17:20.440 --> 01:17:21.440
+en qué PON
+
+01:17:23.440 --> 01:17:24.440
+qué ONO ID
+
+01:17:24.440 --> 01:17:25.440
+y en qué puerto
+
+01:17:26.440 --> 01:17:27.440
+sí
+
+01:17:28.440 --> 01:17:29.440
+la IP
+
+01:17:29.440 --> 01:17:30.440
+va contra esto
+
+01:17:33.440 --> 01:17:34.440
+el serial de la ONU
+
+01:17:35.440 --> 01:17:36.440
+y el modelo de la ONU
+
+01:17:36.440 --> 01:17:37.440
+va contra esto
+
+01:17:38.440 --> 01:17:39.440
+fíjate que
+
+01:17:39.440 --> 01:17:40.440
+serial de la ONU, modelo de la ONU
+
+01:17:41.440 --> 01:17:42.440
+qué PON
+
+01:17:42.440 --> 01:17:43.440
+en qué PON
+
+01:17:44.440 --> 01:17:45.440
+sí
+
+01:17:45.440 --> 01:17:46.440
+¿lo ves?
+
+01:17:48.440 --> 01:17:50.440
+esto no lo estoy usando
+
+01:17:51.440 --> 01:17:52.440
+ni para esto ni para esto
+
+01:17:55.440 --> 01:17:56.440
+ahora
+
+01:17:57.440 --> 01:17:58.440
+voy aquí
+
+01:17:58.440 --> 01:18:00.440
+configuración de WIFI
+
+01:18:02.440 --> 01:18:04.440
+configuración de WIFI
+
+01:18:05.440 --> 01:18:06.440
+es dual band
+
+01:18:06.440 --> 01:18:07.440
+este es el nombre de la red
+
+01:18:08.440 --> 01:18:09.440
+esta es la contraseña
+
+01:18:10.440 --> 01:18:11.440
+para la WIFI
+
+01:18:12.440 --> 01:18:13.440
+¿sí?
+
+01:18:14.440 --> 01:18:16.440
+la configuración de la WAN
+
+01:18:19.440 --> 01:18:21.440
+son los valores que yo mandé para acá
+
+01:18:21.440 --> 01:18:22.440
+acá
+
+01:18:25.440 --> 01:18:26.440
+que aquí yo le digo
+
+01:18:26.440 --> 01:18:27.440
+cuál es el usuario
+
+01:18:27.440 --> 01:18:28.440
+cuál es la clave
+
+01:18:28.440 --> 01:18:29.440
+fíjate
+
+01:18:30.440 --> 01:18:31.440
+aquí yo le estoy diciendo
+
+01:18:34.440 --> 01:18:35.440
+calidad de servicio
+
+01:18:35.440 --> 01:18:36.440
+deshabilitado
+
+01:18:38.440 --> 01:18:39.440
+LMTU
+
+01:18:40.440 --> 01:18:42.440
+cómodo el método de conexión por PPOE
+
+01:18:43.440 --> 01:18:44.440
+¿sí?
+
+01:18:44.440 --> 01:18:45.440
+si tiene PPOE proxy
+
+01:18:46.440 --> 01:18:47.440
+habilitado o no
+
+01:18:48.440 --> 01:18:49.440
+el usuario
+
+01:18:49.440 --> 01:18:50.440
+que es el número del contrato
+
+01:18:52.440 --> 01:18:53.440
+la contraseña
+
+01:18:53.440 --> 01:18:54.440
+que es la cédula
+
+01:18:56.440 --> 01:18:57.440
+¿sí?
+
+01:18:57.440 --> 01:18:59.440
+el usuario es igual al número
+
+01:19:00.440 --> 01:19:01.440
+del contrato
+
+01:19:04.440 --> 01:19:06.440
+la clave es igual
+
+01:19:07.440 --> 01:19:08.440
+a la cédula
+
+01:19:12.440 --> 01:19:13.440
+¿sí?
+
+01:19:15.440 --> 01:19:16.440
+le habilitó el NAND
+
+01:19:18.440 --> 01:19:20.440
+los valores de IPv6
+
+01:19:22.440 --> 01:19:23.440
+fíjate
+
+01:19:23.440 --> 01:19:24.440
+le digo cuál es la VLAN
+
+01:19:28.440 --> 01:19:29.440
+le digo cuál es la VLAN
+
+01:19:29.440 --> 01:19:30.440
+porque es lo que voy a usar aquí
+
+01:19:35.440 --> 01:19:38.440
+la VLAN la uso solamente en esto
+
+01:19:45.440 --> 01:19:46.440
+¿sí?
+
+01:19:52.440 --> 01:19:53.440
+eso es todo
+
+01:20:00.440 --> 01:20:01.440
+chévere
+
+01:20:04.440 --> 01:20:05.440
+entonces
+
+01:20:05.440 --> 01:20:06.440
+y ahí es donde están los datos
+
+01:20:06.440 --> 01:20:07.440
+todos los datos que yo pongo aquí
+
+01:20:08.440 --> 01:20:09.440
+son los datos que yo voy a utilizar
+
+01:20:09.440 --> 01:20:11.440
+para hacer esto y para hacer esto
+
+01:20:12.440 --> 01:20:13.440
+ahora bien
+
+01:20:14.440 --> 01:20:15.440
+tú dices bueno pero
+
+01:20:15.440 --> 01:20:17.440
+¿y en el micro T qué estás haciendo?
+
+01:20:18.440 --> 01:20:20.440
+en el micro T nosotros simplemente
+
+01:20:20.440 --> 01:20:21.440
+declaramos un profile
+
+01:20:22.440 --> 01:20:23.440
+y le decimos a él
+
+01:20:23.440 --> 01:20:24.440
+mira
+
+01:20:25.440 --> 01:20:26.440
+ese profile
+
+01:20:28.440 --> 01:20:29.440
+va a buscar la información
+
+01:20:29.440 --> 01:20:30.440
+en el RADIUS
+
+01:20:30.440 --> 01:20:31.440
+cuando un cliente
+
+01:20:32.440 --> 01:20:34.440
+cuando un cliente venga aquí
+
+01:20:34.440 --> 01:20:35.440
+a través de la OLT
+
+01:20:35.440 --> 01:20:37.440
+que se quiera conectar aquí
+
+01:20:39.440 --> 01:20:40.440
+él no le va a pasar información aquí
+
+01:20:41.440 --> 01:20:42.440
+sino que el cliente
+
+01:20:43.440 --> 01:20:44.440
+esto es una pasarela en ese caso
+
+01:20:46.440 --> 01:20:47.440
+viene aquí el cliente
+
+01:20:51.440 --> 01:20:52.440
+se conecta
+
+01:20:53.440 --> 01:20:54.440
+a través de la OLT
+
+01:20:56.440 --> 01:20:57.440
+¿verdad?
+
+01:20:57.440 --> 01:20:58.440
+porque eso me lleva a conexión
+
+01:20:59.440 --> 01:21:00.440
+pasa en el micro T
+
+01:21:00.440 --> 01:21:01.440
+en el micro T
+
+01:21:01.440 --> 01:21:02.440
+consulta RADIUS
+
+01:21:02.440 --> 01:21:03.440
+¿qué consulta?
+
+01:21:03.440 --> 01:21:04.440
+esto
+
+01:21:07.440 --> 01:21:08.440
+porque
+
+01:21:08.440 --> 01:21:09.440
+la VLAN y todo eso
+
+01:21:09.440 --> 01:21:10.440
+ya viene
+
+01:21:10.440 --> 01:21:11.440
+identificada por acá
+
+01:21:13.440 --> 01:21:14.440
+eso es algo transparente
+
+01:21:17.440 --> 01:21:18.440
+transparente para ODO
+
+01:21:18.440 --> 01:21:19.440
+transparente
+
+01:21:19.440 --> 01:21:20.440
+transparente para RADIUS
+
+01:21:22.440 --> 01:21:23.440
+esto solamente lo hablan ellos dos
+
+01:21:28.440 --> 01:21:29.440
+ok
+
+01:21:30.440 --> 01:21:31.440
+entonces
+
+01:21:31.440 --> 01:21:32.440
+ya de ahí
+
+01:21:32.440 --> 01:21:33.440
+lo que hace es retornar
+
+01:21:35.440 --> 01:21:36.440
+¿qué información?
+
+01:21:36.440 --> 01:21:37.440
+ah bueno mira
+
+01:21:37.440 --> 01:21:38.440
+créale una Q
+
+01:21:42.440 --> 01:21:43.440
+X
+
+01:21:44.440 --> 01:21:45.440
+y
+
+01:21:45.440 --> 01:21:46.440
+él va a tener
+
+01:21:46.440 --> 01:21:47.440
+una IP
+
+01:21:48.440 --> 01:21:49.440
+X
+
+01:21:49.440 --> 01:21:50.440
+que es la definida aquí
+
+01:21:51.440 --> 01:21:52.440
+el plan
+
+01:21:52.440 --> 01:21:53.440
+es igual a la cola
+
+01:22:06.440 --> 01:22:07.440
+chévere
+
+01:22:17.440 --> 01:22:18.440
+estas son las colas
+
+01:22:29.440 --> 01:22:30.440
+entonces
+
+01:22:30.440 --> 01:22:31.440
+este cliente tiene una cola
+
+01:22:31.440 --> 01:22:32.440
+de 100
+
+01:22:32.440 --> 01:22:33.440
+200
+
+01:22:33.440 --> 01:22:34.440
+200 de descarga
+
+01:22:34.440 --> 01:22:35.440
+100 de
+
+01:22:35.440 --> 01:22:36.440
+subida
+
+01:22:43.440 --> 01:22:44.440
+esto va atado
+
+01:22:45.440 --> 01:22:46.440
+al plan
+
+01:22:47.440 --> 01:22:48.440
+que es lo mismo
+
+01:23:03.440 --> 01:23:05.440
+pero eso que yo estoy poniendo ahí
+
+01:23:05.440 --> 01:23:06.440
+no sé
+
+01:23:12.440 --> 01:23:13.440
+esto
+
+01:23:13.440 --> 01:23:14.440
+nada de esto
+
+01:23:15.440 --> 01:23:16.440
+se define aquí
+
+01:23:18.440 --> 01:23:19.440
+si no está
+
+01:23:20.440 --> 01:23:21.440
+conectado al cliente
+
+01:23:25.440 --> 01:23:26.440
+que yo aquí
+
+01:23:27.440 --> 01:23:28.440
+le digo mira
+
+01:23:30.440 --> 01:23:31.440
+fíjate yo aquí le digo
+
+01:23:31.440 --> 01:23:32.440
+a través de RADIUS
+
+01:23:33.440 --> 01:23:34.440
+mira toda la información
+
+01:23:35.440 --> 01:23:36.440
+ve buscarla ahí en el RADIUS
+
+01:23:38.440 --> 01:23:39.440
+todo esto
+
+01:23:39.440 --> 01:23:40.440
+búscalo en el RADIUS
+
+01:23:41.440 --> 01:23:43.440
+yo simplemente le digo mira
+
+01:23:43.440 --> 01:23:44.440
+este cliente
+
+01:23:44.440 --> 01:23:45.440
+o sea
+
+01:23:45.440 --> 01:23:46.440
+el cliente se conecta aquí
+
+01:23:47.440 --> 01:23:48.440
+y dice
+
+01:23:48.440 --> 01:23:49.440
+yo soy fulano de tal
+
+01:23:49.440 --> 01:23:50.440
+no sé qué
+
+01:23:50.440 --> 01:23:51.440
+ok dame un momento
+
+01:23:51.440 --> 01:23:52.440
+él viene aquí
+
+01:23:53.440 --> 01:23:54.440
+a RADIUS le dice
+
+01:23:54.440 --> 01:23:55.440
+mira fulano de tal
+
+01:23:55.440 --> 01:23:56.440
+clave de tal
+
+01:23:56.440 --> 01:23:57.440
+si
+
+01:23:58.440 --> 01:23:59.440
+si lo tengo
+
+01:24:00.440 --> 01:24:01.440
+dame los valores
+
+01:24:02.440 --> 01:24:03.440
+le dice bueno este es el plan
+
+01:24:03.440 --> 01:24:04.440
+esta es la IP
+
+01:24:04.440 --> 01:24:05.440
+y lo retorno
+
+01:24:06.440 --> 01:24:07.440
+y él
+
+01:24:07.440 --> 01:24:08.440
+crea la cola
+
+01:24:08.440 --> 01:24:09.440
+y la IP
+
+01:24:14.440 --> 01:24:15.440
+tal cual así
+
+01:24:17.440 --> 01:24:18.440
+ok
+
+01:24:21.440 --> 01:24:22.440
+está asustado
+
+01:24:36.440 --> 01:24:37.440
+ok
+
+01:24:37.440 --> 01:24:38.440
+chévere
+
+01:24:39.440 --> 01:24:40.440
+alguna duda
+
+01:24:41.440 --> 01:24:42.440
+alguna pregunta
+
+01:24:47.440 --> 01:24:48.440
+ok
+
+01:25:07.440 --> 01:25:08.440
+hey Joey
+

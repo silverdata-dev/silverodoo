@@ -1,0 +1,2643 @@
+Primero, porque se han hablado aquí, se han hablado allá, se han hablado allá, se han hablado muchas cosas, muchas, muchos temas, porque son temas de...
+Pero lo que te haría ahorita, hasta ahorita, sagónica, escuchaba lo que es un dios que crees tú que es tan importante dentro del llamado según lo que tú crees.
+Ah, eso es para...
+Como a nivel de procesos, o como a nivel de lo que güey ha salido?
+Según lo que va a hacer.
+De lo que te han dicho, mira, tenemos el que crees tú que es lo más importante.
+Segundo, porque hasta ahora se los me ha salido como que copiar medio de los todos.
+Como queriendo hacer algo distinto, poner las mangas, o no sé, bueno, la comunicación con los equipos, el API.
+Podríamos usar como una pata de protocolo para el ECMF con otro LTE.
+Ahora sí, tenemos una visita para que veas si te has notado o has escuchado algo, pero esperamos que haya puesto.
+La gasolina.
+Entonces es que sí se puede poner particularmente, ven, solamente...
+Lo que no es lo que...
+Me explicas el día de ayer y un poco por ayer cómo funcionan las cosas, qué es lo que tenemos...
+A, B, C, D, E, y todo esto encaja así.
+Así que voy a tratar de colocarlo ya directamente a que se debe hacer.
+Y de ahí partimos luego a dudas, comentarios, o lo que vaya a salir en el camino.
+Pero ya hay una generación de teoría práctica, yo voy a tratar de llevarlo de la práctica de teoría.
+Bien, movimentenle un poco en todo esto.
+Vamos a ver.
+¿Qué es lo más importante para hacer hoy? ¿Hasta los que?
+Pero si en algún momento ya te habrán mostrado.
+Cada cliente que esto agrega tiene toda una información.
+¿Qué?
+Además de la parte de la mezcla, te la resuelves luego.
+Anía el operativo.
+Son módulos.
+La mayoría de esa información por muchos la consiguen directamente en el condado.
+Esta pantalla la cuento antes.
+Lo que yo voy a enfocar ahorita...
+Esta parte de serial es un tema de almacén.
+Este tema de las cargas snap viene siendo más proyecto.
+Anía, yo te puedo hablar mejor de toda esta parte de las cajanas.
+Aunque ya te hablaron de cajanas.
+La instalación y todo eso es como para saber...
+Igual saben cuál cajana está.
+Hasta el final del tema, la cajana viene siendo...
+La diferencia es lo que te veo.
+Las cajanas, por ser una...
+Un íter netamente pasivo.
+Pasivo quiere decir que no tiene nada que ver con...
+O sea, no se le enchufa nada a nivel de energía.
+Entonces no habla con nada.
+Porque acá es bruta.
+Es mecánico incluso en cierto sentido.
+Entonces la data es netamente...
+Estaba otra cosa.
+¿Por qué?
+Porque el final de esta parte en particular es...
+Depende de si se agregó vino o no.
+No hay un punto de referencia que yo pueda decir que...
+Bueno, se agregó la caja.
+Si se agregó esta caja.
+Pero lo comparas con estos dos modos, lo debes conseguir bien.
+Si encargaste la caja mal, te bajó la caja mal.
+Igual con las otras.
+Porque el final es como en un serial.
+De verdad que se arreglaron unos...
+Un almacenes.
+Que bueno, se arreglaron unos cajones.
+Pero esta para usted.
+Si tiene la entidad de que si hay correlación.
+Entonces...
+En este punto en el mundo si creo yo que...
+A nivel de infraestructura...
+Con...
+Que el objetivo principal sería...
+Garantizar la correlación...
+Entre los diferentes modos.
+La...
+Correlación.
+No es porque el final baja tenemos un X, X, etc.
+Pero todavía tienen que estar bien...
+Correlacionados unos como otros.
+Para garantizar que esta parte está bien.
+O sea claro, esa es la parte que al final...
+Garantiza que todos los clientes que se vayan agregando...
+Cuando se venga la caja NAP.
+Estén de forma de cuadro.
+Y que el cliente cuando se vaya a tener.
+Cuando se vaya a provisionar.
+Cuando vaya a una falla.
+Cuando vaya lo que sea asociado al cliente.
+No pueda ir aquí.
+Y hacer todo eso solo el cliente.
+Principalmente esta parte.
+La caja NAP si se puede pegar a esto.
+Pero vuelvo al punto.
+Esta parte se carga más mal.
+O sea que no es lo que se hace como que bueno.
+Esta caja va pegada con este último punto que va.
+Que si ya está guardado así.
+Todo esto ya está guardado entonces claro.
+Si tu dices que bueno que está aquí.
+Esto casa con esto.
+Al fin.
+Pero...
+Como dice esta parte es pasivo.
+Mientras que esto si hay manera de como...
+Que no está aquí otra vez.
+No está mal.
+No hay una conexión clara.
+Entonces.
+Lo que voy a hacer ahora.
+Es ir.
+De arriba a abajo.
+Porque creo que el orden es el de abajo.
+Si.
+De arriba a abajo.
+A ver.
+Primero.
+Vamos a comenzar.
+Con el primer módulo.
+El equipo 4.
+El equipo 4.
+Lo llaman equipo 4.
+Personalmente no me gusta su nombre.
+Porque en realidad es un rauto.
+Ya es un rauto.
+Ya lo tengo.
+Pero bueno aquí se llama el equipo 4.
+Para eso.
+Voy a irme directamente al módulo de infraestructura.
+Voy a tener aquí el contrato aparte.
+Para ver la infraestructura.
+Si te muestro el tema de los nodos.
+Ya sé que has visto esta parte antes.
+El tema del nodo es más como una de si.
+Una ubicación física que de hecho lo habíamos hablado alguna vez.
+En la reunión anterior.
+Para decir que tienes estas localidades.
+Tienes estas ubicaciones.
+Que tienen los elementos.
+Pero lo que más nos interesa.
+Para el nivel de funcionalidad.
+Es el equipo 4 entonces.
+Aquí me están hablando del coche.
+Vamos a buscar la localidad de coche.
+Me da el list de la localidad.
+Pero lo que más nos interesa.
+Aquí está toda la lista de los rotos.
+Entonces.
+Está diciendo que el cliente tiene el access coche 1.
+Entonces busco el access coche 1.
+Entonces busco el access coche 2.
+Aquí tiene todo.
+Lo que estábamos hablando en la reunión.
+En ese momento.
+Con la que hemos hablado.
+La pregunta no va de...
+No, bueno, es que se necesita que piensen.
+Que no se ve su sitio para establecer prioridad.
+Si vamos a hablar de prioridad.
+El principal importante.
+En la parte que está aquí arriba.
+Si en algún momento tienes chance.
+De revisar los diferentes equipos coches.
+Cuando esta parte que está abajo.
+La gran parte.
+Por mucho son iguales.
+Las diferencias.
+Que puedes tener.
+Entre si es.
+Radio.
+O si es.
+Fibra óptica.
+Bueno.
+Como?
+Es bueno?
+Es bueno tenerlo todo.
+Por que razón?
+Una razón practica de nosotros.
+De operación.
+Pero ahorita no la estamos usando.
+Para que más agente lo usemos.
+Y si en un inicio no la necesitamos.
+Pero después llega.
+Ahora si necesitamos esta parte.
+Ah bueno, chévere.
+Dame tres meses.
+Si pasa eso.
+Por eso que al final lo que hablamos en la reunión.
+No bueno.
+Salió experimental.
+Pero ahorita.
+En este momento la gran mayoría.
+Si es verdad que no se.
+Incluso si están habilitadas.
+O no habilitadas.
+O los habilitamos en todo.
+Porque son grabados y no los habilitamos.
+Porque son radio.
+Pero ahorita son solo valores.
+De decidas.
+No son cosas que configuren.
+O sea que voy a ser honesto.
+Que ni yo mismo se que.
+Que hace ese tipo de core acceso.
+Yo no tengo otro tipo de core.
+Todos son acceso.
+El activar radios.
+Yo no tengo un core que no tenga radios.
+Todos son unos radios.
+Porque esto lo que hacen.
+Es que te habilita esta parte de aquí.
+Pero todos los necesitan.
+Porque todos dependen de radio.
+Entonces realmente agregar la pestañita de activar radios.
+Pero no.
+Dame esto una vez ni yo.
+Es la verdad.
+Entonces.
+De este modo.
+Como te dije.
+Lo mas relevante es que esta aquí arriba.
+Para ver.
+Que del tray este puedo decir de aquí arriba.
+Si obviamente el nombre.
+Pero bueno.
+Se le agrega normas.
+Se le agrega versiones.
+Pero por ejemplo este tipo de cosas se pueden extraer.
+Exactamente del equipo.
+Por la API.
+Que puede ser un ítem.
+Pero no se puede considerar.
+La IP si es importante.
+En este punto si es importante.
+Este.
+El puerto.
+No. Ahorita no.
+No.
+Ahorita no se usa.
+Toma el mismo protocolo siempre.
+Porque.
+Que pasa.
+Obviamente todos los medios.
+Todos los medios tienen la misma API.
+Pero.
+El tema del IP lo que refleja es.
+Como alcanza el equipo.
+Entonces.
+Que ellos cuenten.
+Bueno mira.
+El equipo es el que se interrune directamente.
+Entonces le ponemos un IP cubierto.
+Pero no entiendo.
+No me interesa que el equipo sea alcanzado.
+Evidentemente es internet.
+Entonces se le pone un IP privado.
+Por eso por ahora.
+Que más.
+La marca.
+Siempre es microchip.
+Aunque bueno tenerlo. El modelo.
+El radius. Como dije sin disca.
+Y bueno.
+No sale con presión.
+Eso es una observación.
+No es una observación en línea general.
+Esta parte ya la has visto.
+Déjame ver si puedo profundizarte en algunos puntos.
+Que valga la pena que estemos en cuenta.
+Quiero comenzar.
+Por lo importante de todo esto.
+La fibra óptica.
+Todos ellos.
+Si van a tener en común.
+Esta parte.
+Y ahora.
+Que es lo más importante que diría ellos.
+Bueno lo primero.
+La profipe.
+Cuando uno carga un elemento.
+Un equipo core nuevo.
+Para decirles.
+Donde vamos a acceder al equipo.
+A ver si es como lo ubico.
+1.1
+El puerto.
+Si eventualmente es el contrario.
+Es bueno tenerlo.
+Porque no sabría si eventualmente.
+Empieza a tener varios cores de forma visualizada.
+Y entonces ya la diferencia en el IP.
+Sino el puerto.
+Y el puerto.
+El segundo punto importante de todo esto.
+Ya sería el radio.
+Tú ya estabas tratando con la parte de radio.
+Básicamente.
+Ya la comunicación con el radio ya la tienes.
+Entonces.
+La relación.
+Que tiene esto con radio.
+Es que.
+Creo que lo hablamos antes.
+El core.
+Siempre va a ser cliente radio.
+Mientras que lo que se montó.
+Es el servidor radio.
+Entonces aquí lo que se le está diciendo.
+Es básicamente.
+Tú vas a hablar.
+Con este servidor radio.
+Y vas a mandar esta clave.
+Es la clave para el radio.
+Indicar servidor.
+Y 2.2
+Indicar clave.
+Entonces.
+Que va a pasar.
+Y ahí como tiende.
+Tiene que buscar.
+A este servidor radio.
+Con esta clave.
+Para decirle mira.
+Todos los temas que necesita de radio.
+Para autenticar.
+Busque a este.
+Este puerto coa.
+Si hay que editar.
+Que es.
+Puerto coa es para.
+La manera.
+En la cual.
+El servidor radio.
+Puede enviar.
+Parámetros adicionales.
+Al equipo.
+Con el coa.
+El rol.
+El rol cliente servidor.
+Se inviar.
+Porque.
+Por ejemplo.
+Puede llegar a un cliente.
+El equipo.
+Se comporta.
+Inicialmente como un cliente radio.
+Para decirle mira.
+Al servidor.
+Estoy recibiendo este cliente.
+Yo le dice si.
+Pero luego.
+En ese momento.
+El servidor radio.
+Le dice.
+Al coa.
+Para que sepa que a este cliente.
+Tienes que agregarle.
+Estipe.
+Y expansionar.
+Pero él es el que manda.
+La orden.
+Y luego este como servidor.
+Simplemente en ejecución.
+Como que la información.
+Que le solicita.
+Puede cambiar en cualquier momento.
+Entonces es como que.
+Porque hay cosas.
+Hay cosas.
+Que.
+En la comunicación.
+Van por estándar.
+Que es la autenticación.
+Pero.
+La autorización.
+Que es el clan.
+Va por allí.
+Pero.
+Por ejemplo.
+En los equipos cortos.
+Para un ejemplo.
+Ahora sí.
+Un equipo corto.
+De hecho estábamos viendo.
+Voy a entrar.
+Pero.
+Tengo una.
+Una.
+El microdit.
+Tiene una de las funciones particulares.
+Que tienen lo que llaman una.
+Unos adreslips.
+Y esos adreslips tienen básicamente un IP.
+Son listas con IP.
+Pero ellos sirven como referencia.
+Para hacer cosas.
+Ya.
+El tema es que tenemos el caso.
+Para radio.
+Por cierto.
+Que es que.
+El cliente no paga.
+Que pasa a estar cortado.
+El cliente puede estar mandando petición.
+Dice coño autentiquen autentiquen autentiquen.
+El cliente es cliente que no paga.
+Claro.
+Tu pudieras simplemente decirle al servidor radio.
+Que cuando pasa cortado.
+Que ya ven en alta, niégalo.
+El problema de eso es que.
+Se va a mantener mandando peticiones.
+Y consumiendo recursos.
+Porque no lo autentiquen y se queda pegado bien.
+Entonces.
+La alternativa es que.
+Es que.
+El equipo corto.
+Si lo autentica.
+Y lo mete en una lista de suspendidos.
+Entonces como que bueno.
+Te acepto a nivel de radio.
+Pero cada vez que intentas navegar.
+Te dropea los paquetes.
+Para que no te hacen interno.
+Ya no hacen peticiones radio.
+Pero si quieren tener acceso.
+Y llenar.
+La lista de suspendidos.
+Agregando la IP del cliente.
+Se hace con el coño.
+El servidor radio.
+Ve que el cliente está.
+Cortado.
+Entonces usa los atributos core.
+Para decirle al equipo core.
+Para este pan a meterlo en la lista de suspendidos.
+Por ahora indicar que bueno.
+Si hay que agregar.
+Realmente siempre ponemos un buen número.
+En este caso siempre es bueno agregarlo.
+Porque nuevamente.
+Este.
+Ok.
+Hasta ahora.
+Hemos hablado de.
+Agregar las IPs con el puerto.
+Y en radios indicar.
+Cuál es el servidor.
+La clara con la que va a hablar con el servidor.
+Y este.
+El puerto.
+Como tercer punto.
+Hasta el tema de la API.
+Ok.
+Que es precisamente lo que se tiene.
+Que es lo que se tiene aquí.
+Usuario.
+Y.
+Contracción.
+Los equipos core.
+Van a utilizar un usuario.
+Los equipos core van a utilizar un usuario.
+Y contracción en particular.
+Por el tema.
+O dicho de otra manera.
+El lodo.
+Cuando va a hablar con los equipos.
+Este.
+Se va.
+Se le indica el usuario.
+Y ese es el usuario de contracción.
+Que va a tener los privilegios de agua.
+Para hablar y hacer cosas.
+Vale la pena indicarlo aquí.
+Se ha indicado allí.
+Este soy el nuestro.
+Porque el mismo lodo puede comunicarse.
+A través del API.
+Si esto tu le dices al lodo.
+Le dices el usuario de contraseña.
+Y el lodo es el que va a usar la API.
+Para hablar con los equipos.
+Es cierto.
+Minimo para ver como el.
+Estativo no.
+Pero también.
+Podrías hacer otras cosas.
+Pero pudieras tener.
+Porque que pasa.
+El radio.
+No solo se le puede indicar a los clientes.
+Sino para enterar.
+El que va a meterse en el equipo.
+Para ver cosas.
+Radios también lo usamos para eso.
+Entonces.
+Como el servidor de radios.
+Tiene todos esos usuarios.
+Entonces.
+Al final lo que estas diciendo.
+Es decirle al lodo.
+Mira vas a usar este usuario de contraseña.
+Para tu hablar con el corp.
+Pero.
+En ese senario no me interesa.
+Definir un usuario diferente por corp.
+Definir el mismo usuario para todos.
+Y que.
+Odo va a tener siempre el mismo usuario de contraseña.
+Para hablar con los equipos corp.
+Entonces en este caso.
+Agregarselo al grupo corp.
+Si lo pondría opcional.
+Pero en cambio si tendría que en algún lado indicarse.
+Este que usuario de contraseña.
+Para hablar con la API.
+Con Odo.
+Igual lo estoy colgando por aquí.
+Pero.
+Claro.
+Si es así.
+Ponte un poquito.
+El tema lo bajas un poquito.
+En el tema de la lógica.
+Esta hora hemos hablado.
+A Odo.
+Le estamos diciendo.
+Que el IP del equipo corp.
+Le estamos invitando.
+Un puerto.
+Para el cual buscar hablar con el equipo corp.
+Este.
+Le estamos invitando.
+Cuál es el servidor.
+Cuál es la clave.
+Para hablar con el servidor.
+Cuál es el puerto.
+Eso está bien.
+Y aquí el tema.
+Quién realmente usa.
+Esta información.
+En un momento.
+Te hago una pregunta.
+Quién usa la IP del cuerpo.
+O nada más.
+Quién usa la información de radio.
+O nada más.
+Lo usa el corp.
+Lo usa el servidor.
+Quién es la usa.
+O tu cepa.
+Cuál es la IP.
+Quién necesita la IP.
+Para hablar con el equipo corp.
+Las culturas o LTs.
+La relación.
+No, las LTs no tienen que hablar con el equipo corp.
+Las LTs.
+De hecho la idea es que se mea.
+Suave y aparte.
+Y es todo en tal caso que pueda hablar con las LTs.
+Pero la LTs no tiene que hablar.
+A nivel IP con el equipo corp.
+Realmente no tiene.
+Para lo que hemos hablado hasta ahora.
+Ok.
+Todo si le interesa tener la IP.
+Notar si le interesa tener la IP.
+Hay alguien más dentro de todo esto que le interesa la IP.
+Quién es el radio.
+El servidor radio.
+Por qué razón.
+Porque.
+El tema de la clave.
+Lleve una clave.
+Pero él también espera recibir esa clave de alguien.
+Entonces cuando un cliente
+llega al equipo corp.
+Un cliente usuario.
+Llega al equipo corp.
+Y el corp busca hablar
+con el servidor radio.
+El manda su clave.
+Pero él también está indicando
+su IP ahorita.
+Así es como el servidor radio
+dice, ah bueno estoy recibiendo
+esta IP.
+De esta IP estoy recibiendo esta clave.
+Y ahí es donde él verifica
+su baseada.
+Pero bueno, aquí lo que él dedica.
+Más específicamente.
+Buenas.
+En el servidor radio.
+En user manager.
+Tengo todos los equipos.
+En distribución perpete que tienen indicada la IP.
+Sí, igual todo está redondante.
+Todos los que están en mordu.
+Todos los equipitos por todo el servicio.
+Y los radios.
+Hay dos formas de verlo.
+Puedes verlo como redondante.
+Aunque realmente
+no tanto porque al final todo también le interesa
+hablar directamente con el equipo corp.
+O sea le interesa que todo le indique la IP.
+Pero también está el
+cargar
+del equipo corp
+al servidor radio.
+Porque si yo instalo un equipo corp nuevo.
+Y como que
+tengo ahí que llenarlo
+en el servidor radio y decir
+mira se agregó un equipo corp nuevo.
+Se puede dejar manual.
+O se puede agregar la función
+para que en el mismo modo
+se encarga de llenar.
+¿Sabes que en el momento que
+te le das a activar el radio al radio
+le agregaré el equipo corp nuevo.
+¿Es prioritario?
+Claro.
+No, porque verdad.
+Yo no pude meter y lo agregó y el manager.
+Y se acabó.
+Exacto.
+Pero si es una mucho ponen ahí mejor.
+Y al revés
+o sea
+la configuración
+en el equipo, en el router
+de cuál va a ser el pared y todo eso
+ya viene configurado.
+Porque aquí lo estoy llenando
+con el radio.
+Aquí no le estoy diciendo
+al equipo corp.
+Estoy llenando como que
+el radio si pienso.
+Pero no le estoy diciendo al corp
+a través del API del corp
+que va a usar ese radio.
+Buena pregunta.
+Lo mismo pasa
+de hecho.
+Y bueno, estamos en el Axis 8.1
+de hecho.
+También me meto
+uno se tiene que entregar el equipo corp
+de forma manual y decirle
+la IP del
+servidor radio
+y la clave que va a mandar
+más aún
+en incoming.
+Aquí está el cuarto corp.
+Cuídate.
+El cuarto para el corp.
+Sin discoma malveno.
+Ahora
+que también es valioso por decir
+llenar eso en el corp.
+De la misma manera.
+El problema en todo esto
+es el
+cómo
+alcanza el equipo
+con cosas nuevas.
+Porque
+yo tengo un equipo
+que
+desde el principio no necesito configurarle
+el radio para que puedas acceder.
+Tengo que
+acargarle una configuración base
+al equipo corp.
+Para que
+él pueda hablar con la red
+y tenga comunicación con el radio
+y con todo lo posible.
+Para luego ir cargando las mismas cosas.
+No a mano.
+Que no está malo.
+Hay muchas cosas hechas que se pueden hacer
+y que
+la idea
+que no
+ya tener el que hay que configurar en el equipo.
+Igualito tienen que entrar
+y tener que
+unar un admin de
+un mínimo.
+Si es algo que también sería deseable agregar
+pero similar
+a la otra ocasión no es
+pero si hay que buscar
+luego.
+Cómo
+se disminuya la carga a la hora
+de cargar un equipo corp.
+Por ejemplo
+este carasote
+mira
+¿sabes cuántas veces se ponen los comandos
+cuando están en el comando?
+Llega esta mano, no levanta, no guarda
+entonces hay que así
+configurarla aquí.
+Está dando bien.
+No.
+Aquí él tiene funciones mejores
+pero también sale.
+Entonces
+a él no lo configura
+entonces él no le levanta los tigentes, me llama a mí
+diciendo
+Marico no me levantes los tigentes, que gola
+me están jodiendo.
+Y cuando me pongo a ver el otro no cargo los trabajos.
+Y eso es porque
+se resta.
+Mira
+yo hago el test.
+El que lo revisa.
+No, porque después
+él lo revisa.
+Si él lo revisa él tiene la culpa.
+El que lo hizo él lo revisó.
+El último que lo revisa es yo él.
+Lo usé como
+un chico para graduarle a la corte.
+Gracias.
+Gracias.
+A apoyar.
+Si pasa.
+Si pasa.
+Por supuesto
+en el momento uno gusta
+definir los procesos. Bueno mira
+vamos a abrirlo nosotros a ver quién hace las calculaciones
+manualmente, quién lo revisa, qué tal.
+Pero son procesos que también se pueden
+automatizar perfectamente.
+Que nada más cargamos
+un mínimo
+y luego cargálo de más.
+Pero
+lo ponemos en la cola.
+Si en algún momento ves
+y dices coño ya está todo montado
+como que te vamos a botar tú y dices no
+no espera pues no haces todo esto
+podemos automatizar todos los funcionarios
+de los muchachos porque tienen los
+ah bueno si ya tienes unos meses más de trabajo.
+Bien
+salado.
+Tiene lenguela por ahí.
+Este
+a ver
+hablamos de las
+IPEN, hablamos de quienes
+usan
+y hablamos de que bueno la verdad es que hay muchas de las
+cosas que vamos a mantener
+los manuales inicialmente y luego vemos
+cómo hacemos para que se
+de forma automática. Pero por ahora
+todo lo que hemos hablado
+de que mira
+este equipo core
+va a comunicarse con este radio
+con esta clave
+y usando este puerto core
+lo vamos a agregar para que
+ojo la tele
+porque es bueno que la información esté cargada.
+Estos puntos como tal
+está como he venido hablando
+si te has dado cuenta fíjate que
+es una comunicación en equipo core
+radio
+pero lo estás llenando en ojo
+que es muy cierto
+que si bien se está indicando
+la clave aquí
+este
+no hace nada inicialmente
+a no ser de que se le agregue una función
+de que bueno no se llenen el radio
+por lo menos como mínimo
+porque si el radio tenga la clave
+es claro que después de esto
+se hizo algo con eso
+pero por ahora si te digo vamos a mantenerlo
+vamos a darle oye y luego
+se ve como está esa información
+entonces bueno todo esto
+si vale la pena ir agregando
+algunas veces se usarán inmediatamente
+estas cosas las vamos a seguir usando mal
+pero o sea como sea es bueno tenerlo una vez
+que esta parte si es la más
+importante
+bueno
+este
+necesitas tomar una foto
+de esto
+la pizarrita
+esta fea pero
+si logras entender algo
+si es que a nivel de equipo core
+no hay
+más configuraciones que a nivel
+de api
+este
+bueno los microtips
+si debo decirlo
+a nivel
+lógico también es
+entonces todo lo que puedas
+hacer con
+todo lo que se pase con el equipo lo vamos a poder hacer con api
+este
+lo que haga falta aquí en esta pantalla
+o en el contrato
+que recién es que van a querer ver
+que si la velocidad
+que si no se que
+si
+a ver
+ponte aquí
+aquí no, aquí la tele
+las cosas
+si eso se quiere
+obviamente esa parte
+no se quiere ver
+pero voy con eso
+voy con eso
+este
+porque que pudo
+bueno el contrato de mi
+aquí si te da miedo
+si tienes un personal
+obviamente ya
+que diga de repente no va a perder más peso
+en tu caso
+porque ahí no iba a tener más peso
+pero ¿por qué?
+no se si tu estabas de casualidad o no, tu estabas en la reunión
+con la gente de
+de este o de ahí
+este
+pero los carajos básicamente se lanzaron
+pero no lo he visto
+básicamente se lanzaron
+quieto mamagón a tu plan
+aquí estoy
+con los carajos
+vamos a actualizar hoy
+de la versión 15 a la 18
+cuesta tanto
+y
+si quieren no la pasen
+pero ten en cuenta que van a perder el soporte
+si esta bien
+entonces
+yo
+lo saludé ese tipo de
+ese tipo de
+entonces
+para salir de ese tipo de gente
+si se logra
+replicar lo que tiene o
+y es que ahorita
+o está implementado
+pero no me está dando la velocidad
+de hecho
+o no tienen ni idea
+de cómo está la red
+porque ejecuta cosas
+pero él no tiene forma
+de verificar si lo que él ejecutó se hizo
+porque de paso no tiene
+usaste la mesa
+entonces
+lanza comandos pero él no se si el comando
+se le pudo bien, se le pudo mal, se le pudo mal
+no sabe nada
+que de hecho pasa
+que si no es muy lejos
+si no es muy lejos
+el cliente inicialmente
+te aparece en estado de instalación
+y te aparece aquí como
+retirado
+y aquí aparece un botón que dice activa
+activa
+activas
+y él pasa activo y te dice
+todo bien
+y ahora cuando te das para abajo dice
+todo bien
+pero
+estas capturas
+de repente no parecen
+cuando te bajas la boleta
+resulta que no confirma
+y no tiene conexión
+entonces esta lo baño
+tiene que meterse a mano
+pero ah coño
+porque pasó eso
+de repente se incontó algún parámetro
+en la parte de infraestructura
+de repente mira aquí coño
+y de hecho que es un caso muy seguido
+aquí no está
+solo que se haya indicado la IP mal
+del equipo core
+pero como no se hizo algo bien
+en la parte de infraestructura
+entonces ahí está agregando un primer cliente
+y ese primer cliente falla
+porque bueno no está bien la parte de infraestructura
+pero lo que digo con esto es que
+como él no verifica
+si lo que hizo está bien o está mal
+no se entera si está bien o está mal
+voy
+más allá el caso más grave
+los clientes cortados
+ahí para acá
+los clientes cortados
+este está cortado
+te dice cortado
+este
+pero que realmente le está cortado
+bueno depende de
+radiofibra óptica que teníamos por allá
+pero no estoy soltando su pieza
+si es fibra óptica
+lo que hace es que va el OLT
+y él borra un parámetro
+que dentro del OLT es necesario
+para terminar de levantar el enlace
+entonces claro como que corta el camino
+como decir como que se cortara el
+inlo mitad camino para que no haya comunicación
+pero ese comando falla
+cuando llega el día de corte él empieza y dice
+bueno mira tengo 800
+2000 clientes que he cortado
+en este OLT y entonces lo que se hace
+es que conecta en cada uno y corta esto
+corta esto
+corta esto
+entonces
+que el comando teniente falló
+no se dio cuenta
+que falló
+entonces cuando te vas a ver
+el cliente todo el piezo viene
+lo marco cortado y va a tener
+acceso toda la vida
+exactamente
+lo que he tenido que hacer es que yo me metiera
+o sea yo me lanzé a un tema
+de unos escribes en Python
+que uso la API Marketing
+me exporto a todos los clientes
+por photopeo
+que tienen una sesión photopeo de ti
+o sea que están conectados record
+que los voy a conectar
+y comparo con la lista de cortados
+y conseguido 3 o 4
+de repente en un usuario que mira
+esto no lo corto
+se le digo a Daniel anda y métete y le cortamos
+porque no tiene una forma de repetir
+dicho eso
+dicho eso
+si eso es lo que tiene Proaction
+y eso es lo que se tiene a funcionar
+en el momento que ya copias el uso
+pues muy ilimitado que esta él
+para mi ya supiendo para encima
+y de ahí en adelante seguimos nosotros
+hay alguna duda de comentar esta ahora
+claro
+la había visto que le habías tomado una foto
+el resumen de estos
+si en efecto es como lo mas
+importante
+IP, Radios, agregar la información
+de la API Marketing
+el resumen nuevamente
+esta parte de Radios todavía
+vamos a tener que cargarlo en acceso
+y en el servidor Radios
+inicialmente
+el IP puerto silo
+nunca usado
+para poder hablar con el equipo core
+y tener todo el tema de la API
+y bueno
+el usuario cortaseña
+le damos una paquete, sea sencillo
+que odio y diga voy a buscar este equipo core
+busco el IP, busco el puerto
+y uso este usuario cortaseña
+y ya con esa primera parte
+este
+ya tenemos
+la llave
+te voy a mostrar como es el proceso de agregar un equipo core
+el proceso es algo así
+yo voy a hallar
+y bueno no tengo mucho mas que mostrar
+porque ya tenemos todo lo que hay
+usuario, versión
+tal, tal, tal, tal
+y luego le va a guardar
+y listo, ya crea el equipo core
+como lo esta creando dentro
+de uno, entonces bueno todo ese
+core por que no es ese nomo
+ya
+se llama así nomerado
+él los enumera
+pero ver
+ellos los enumeran
+es por un tema de
+como yo de gestión de base de datos
+porque ellos se inventaron un tema de
+bueno, este
+cada nodo va a tener un código
+y luego cada equipo core tiene
+un código, entonces claro si yo veo
+el código
+veo esto que dice COCH
+y veo CR4
+yo se que bueno es el equipo core 4 dentro
+del nodo COCH
+ah y bueno
+yo se que el nodo COCH es COCH
+yo se que el CR4 es este router
+edificio
+estamos hablando del equipo core edificio
+que pertenece a COCH
+y ellos hacen como que crear
+estas jerarquías
+por que conforme vayamos avanzando
+en este punto
+conforme vas avanzando entonces las jerarquías
+se van manteniendo, ah bueno de hecho obtienes
+precisamente esto que ves aquí
+y si le sirve si
+mmmmm
+honestamente
+para mi es innecesario
+la utilidad
+es más propiamente de
+o como es que se supone internamente
+de forma de como correlacionar todo
+y bueno que por eso
+que esta ahí bueno entiendo
+la razón
+este, pero es que de paso
+mientras camino me quitaron la necesidad
+del código
+y de hecho por eso es que tu vas a ver que
+los primeros son estos que dicen
+COCH, CR1, CR2, CR3
+pero luego un momento se la de ya
+y ahora veo
+core 6 core 11 core
+22 core 23
+literalmente se la de ya
+no ya
+ya nosotros nos guiamos por el
+que es el nombre del equipo y ya
+y ya
+que es por ser por todo el tiempo
+que se la de ya que ven conmigo porque
+las caras no estudiaran, mira esto se ve todo todo el tiempo
+y asociales tu el código
+y era yo que meto que pente el código
+por cada uno, por vaina
+lo gene en la tablita para que luego a los meses
+no ya no se necesite
+para hacer
+cuentos de vida
+ok estan claras
+el te dice
+el equipo core
+cuando es gira
+le dice los equipos VLT que estan asociados
+vamos a pasar
+a la
+o VLT
+aqui pasa mas o menos lo mismo
+inicialmente tenia
+node equipo core
+o VLT
+o VLT1 o VLT2
+al final hacia el ayer en general sabes que
+no y VLT ya
+pero
+si te establece una correlacion
+de que VLT
+que VLT
+alberga el equipo core
+de forma similar
+lo mas importante
+la parte de abajo
+si se usa
+pero se usa en todo
+como de todo estan en la misma configuracion
+si si si
+custom
+custom GEMPORT y el nombre
+y la vaina de esto o se usa
+de hecho que lo que te dicen es como que hay unos
+parámetros dentro del VLT que se llama TICOM
+y cual es el TICOM
+el GEMPORT se usa
+y cual es el GEMPORT
+gestión bueno se usa
+corte y reconexión porque se usa
+que esta es la parte de mira voy a portar
+a los clientes
+por VLT
+aquí entre en una VLT
+8 ALTAGRAS
+voy a irme a otra
+VLT
+de cualquier lado
+VLT
+VLT y voy a agregar
+si esa era una de 8
+voy a agregar una de
+si consigo una de 4
+0 de 0
+si esa era la de 4
+la de 8
+voy a irme a otra
+una de 16
+esta es una VLT de 8
+8 puertos y una de 16 puertos
+y ahora vamos
+para el nivel
+2
+es que no cambia absolutamente
+no
+bueno este tiene el NAME SERVER INTERNET
+este
+no lo tiene
+no lo tiene
+los VLT son los que corren esos
+scripts de
+por Ternet
+lo que se hace por Ternet lo hacen estos
+porque no tenemos
+bueno teníamos la API
+la documentación de la API
+pero como que no funciona
+no se hay que revisar
+hay que revisar
+pero bueno
+fíjate que no ha cambiado
+está cambiando la gente de internet
+realmente
+esto igual son opciones
+de ver
+o sea de que
+a nivel de ODO nada más
+que tú ves y de que tiene
+comprendido ahí entonces sabes que tiene
+comprendido ahí nadie más
+a nadie más le importa
+o sea
+una vez que le das la activa entonces se comunica
+y manda al Ternet
+una cosa diferente
+estos valores si tienen
+función si tú los editas
+pero
+todas nos aletezcan las cosas igual
+o sea no es como que ahorita te diga
+no bueno aletezco
+como esta forma que hay
+entonces
+en ese sentido
+que más bien vale la pena
+es bueno
+se pueden agregar todos los botoncitos si tú quieres
+pero
+uno solo
+pegas todo lo que ves allí y que se usen las parametras
+es bueno si tenerlo
+activado
+porque hay más funciones aquí que
+justamente nosotros no estamos jugando ahorita
+pero este
+valdría la pena agregarlo
+este
+se dice por lo menos corto por fuerza
+yo no
+hay como varias cosas
+que me pueden servir
+este
+que una vez teniendo
+la api debería de funcionar
+por aquí que dice bueno mira
+vas a hacerle esto y esto a los clientes
+vamos a ver
+bueno habría que ver que
+que se gira cada una de esas cosas
+para ponerlo en su sentido
+claro si
+por lo menos los que están activados
+a ver
+yo sé que esta bastante fastidioso
+pero
+¿cuál es tu referencia
+para eso?
+lo tienes aquí en cualquier contrato
+tú tienes un contrato cualquiera
+y todo el contrato es cuando se crea
+siempre vas a ver a
+ángel hablar por su señor de aquí
+que hizo la activación
+este
+esos parámetros que he visto allí
+tindados y eso están casados
+estrictamente con el tema activación
+de bueno ¿cómo activa el pígato?
+entonces
+vas a tener este
+que es el más grande mensaje
+que dice como que bueno
+se creó, activó el servicio
+hizo todo esto y venía aquí está
+la referencia
+esto son los comandos
+si ni siquiera responden
+ahí tú le dices son los tal y
+si si le ejecutó el pígato
+y lanzó comandos
+porque literalmente está en negro
+pero ahora vamos a hacer una comparación
+vamos a hacer una comparación
+este
+cliente
+está en la VLT
+este
+te dice
+con 8, eso lo vamos a ver luego
+con 8 y 16
+pero para ejemplo
+ticón 1 dba max
+van
+ticón 1
+dba max
+van
+bien por uno
+ticón 1
+bien por uno
+bien por uno
+eeeeh
+servicio
+bien por uno
+bien por uno
+bilan 638
+la bilan 638
+esto va casada con el
+pond directamente
+ah entonces dicen
+configuraciones directas
+porque si le apagó se le prende
+se debería comunicarse con el console
+para apagarlo primero
+este
+se tienen que tener los atributos en la VLT
+de bueno cual son los números
+pero cuando se ejecute la activación del cliente
+el va a ir a la VLT y va a sacar esa información
+para ejecutar el cliente
+eso es lo que hace
+eeeeh
+entonces aquí esta la referencia de lo que hizo
+hacer esto
+implica activar el cliente
+de una parte
+osea es un botón, ese es el botón activar
+que año le estamos pagando
+este, luego esta
+el botón, el segundo botón
+es el de aprovisionar la WAN
+eso es lo que el le carga a la
+a la ONU
+y
+tambien esta por ahi el de WIFI
+pero esos archivos
+son tus referencias
+entonces cuando vayas a ver
+que es lo que se necesita para ejecutar el cliente
+busca los contratos
+eeeeh
+ves las
+activaciones que hizo
+Angelo Blanco y los archivos que esten asociados
+y ese es todo lo que hace
+buscate cualquiera que se activa
+generalmente vas a ver 3 archivos
+si ves mas es porque hubo algún problema
+pero realmente son dos
+activación, WAN y WIFI
+pero son 3 los tales aditivos
+un botón que es activar
+que ya no aparece porque el cliente
+esta en proceso
+bueno, vamos con el contrato
+vamos con el contrato
+bueno la activación
+imagino que es la primera vez
+los otros si es que modificas parámetros
+si
+ese botón activar
+hace este primero
+luego tienes
+este ONU
+que es el config 1
+no lo veo aquí
+me imagino que si
+es este
+este es el config 1
+y este es el segundo
+no veo el tercero
+que es config WIFI
+pero de repente
+puede ser porque el ONU no es WIFI
+no lo veo
+eso es el que le construyeron al WIFI
+no lo veo
+pero bueno
+puedes llevar el contrato y tomar la referencia
+bajando el nominado como una gran mayoría
+en ese caso
+si
+vamos a la OLT
+a meter lo mas importante
+que es lo que mas interesa
+en este caso
+entonces en la OLT
+tenemos
+la IP
+y
+1.1
+el tipo de conexión lo voy a colocar
+sabemos que ahorita esta nada mas
+un portal
+y todos son portales de origen
+pero bueno, normalmente se cambia de API
+no hay que avisarle también cual
+cual radius
+este señor no habla con un radius
+seria ideal
+por temas de usuario
+pero
+creo que las baletas no soportan autentica
+clienta o usuario
+osea el administrador
+creo que no la verifican por radius
+sino otra cosa llamada TAC
+que basicamente es lo mismo radio
+pero que si trata
+pero no
+en lo que no estamos hablando
+este
+vamos a darle primer
+segundo
+este
+usuario
+y que diferencia hay cuando
+es equipo core y equipo score
+ya voy a eso
+de hecho
+eso es lo mas importante
+no? eso no importa
+voy a agregarle el tercer punto
+que es el programa de conexión
+programa de conexión
+porque precisamente
+esto esta bien
+o no trata de hablar con
+con la baleta
+a ver si le llega, a ver si se conecta
+y de hecho lo que hace probar conexión es que
+que el como que
+entro, lanzo unos comanditos
+y luego se salió
+ah bueno, pudo entrar sin problemas
+y entonces verifica
+esa es la forma de ver que tiene comunicación literalmente
+conectarse por telnet
+ah pudo entrar, sali
+ponemos algo mismo
+este el negro
+no funciona
+ah
+la pregunta que me hiciste
+que pasa?
+este
+tu puedes tener
+este señal
+por uno
+por dos
+por tres
+huele
+este
+este es un área
+si, de hecho existe
+este
+donde una misma baleta es
+compartida por varios core
+eso es por esta, parece
+el equipo core, de hecho
+de ellos pusieron como que los dos
+pero es porque inicialmente
+ellos colocaban como que una baleta
+nada mas tenia que estar casada con un core
+pero luego
+de hecho hay nueve denominas
+si puedes estar con varios core
+pero no como ahora en el video
+sino como ahora en otro video
+uno que es equipo core y otro que es equipo core
+este pero si puedes tener
+este escenario
+eso también al nivel de administración
+tampoco al huele
+le importa o si le importa?
+la parte que importa
+la manejamos nosotros internamente
+osea ya es un tema
+eso si es netamente configuración
+que nosotros hacemos para que al nivel de servicio
+este los clientes puedan entrar
+por uno, por otro, por otro, pero nosotros
+internamente en los routers
+si, si porque de hecho
+lo que hacemos es que ponemos a los
+routers
+a manejar las mismas
+villains donde esta el ambiente
+a manejar, osea como que
+cualquiera de los equipos core este
+capacitado de manejar a los clientes
+por un tema de redundancia
+de repente te falla un equipo core
+le levantan por el otro y los clientes se ponen sol
+pero es una configuración que se hace en
+los equipos core y de hecho
+se suele poner un pichecito en el medio
+para hacer esa gestión
+pero es una configuración
+que hacemos nosotros
+ahorita ahorita
+no es para nada
+relevante
+lo único es un tema netamente
+como dijiste administrativo de saber que bueno
+la estabilidad puede depender
+de cualquiera de estos equipos
+por un tema de gestión, osea al final
+ese tipo de cosas tienen valor
+que yo entre
+por ejemplo un nodo
+voy a decir cualquier cosa
+y en alta gracia
+como no
+y en alta gracia
+bueno yo puedo hacer agrupar
+por
+yo puedo hacer esto
+agrupar clientes por equipos core
+la agrupación
+de los clientes que
+según están en el access 1
+según están en el access 2
+ah yo el primer caja
+así que si los clientes pueden levantar
+con cualquier core 1 o 2
+y uno le te puede depender de varios core
+porque me están diciendo que unos clientes
+me aparecen en un core y otro en otro
+porque
+esto te lo estoy indicando
+según
+debería estar normalmente
+provisional
+es decir, si todo está bien
+los clientes deberían estar distribuidos de esta manera
+si haces esa distribución de cara
+pero al mismo tiempo lo letes por esta casa
+ah si
+yo puedo hacer agrupar por
+si le digo a los 2
+ah bueno
+voy a hacer una prueba rapido
+porque no me ha hecho
+y si yo le digo equipo core
+y luego le digo agrupar vlt
+y las correlaciones
+pero
+access 1
+el access 1
+tiene la let de 8 octagrax
+pero la let de 8 octagrax también está en el access
+eso me permite cómo hacer
+ese juego
+no
+ahora que tienes clientes
+ya estoy pensando
+que tienes clientes que están en este señor
+pero le estás indicando la acción de 1 o 2
+volviendo al caso de los clientes
+si quieres agarrar uno de ti cualquiera
+voy a ver este cliente que está en la let de 8
+pero el access 2
+y vas a tener otro que está en la let de 8
+pero el access 1
+entonces
+al final lo que te sirve esa vez
+es cómo está distribuida la carga
+entre estos señores para una misma hora
+me extendí un poco pero quedó claro
+ya
+volviendo a la let
+de la let como tal
+es básicamente eso
+lo que estoy poniendo aquí
+y luego el puerto
+y el botón de probar con el chopper
+esta puerta también es importante tenerla
+mira
+indique cuál es la marca y qué es la marca
+tenemos administrativa
+y no hay que listar usuarios
+nada
+de velocidad
+nada así
+si es que llegamos a funcionar lápiz
+te digo
+preferiría no
+por qué razón
+porque esta jodleta es
+el CTU es muy
+endeble
+no son muy buenos
+para procesar
+ellos son buenos para darle
+continuidad al tráfico de los clientes
+como que bueno recibo por aquí y saco por allá
+chévere eso lo hacen bien
+pero de ellos tener que hacer algo
+de hecho
+se reinicia
+cuando la mandas mucho a vainas se reinicia
+entonces tumba los clientes y lo vuelve a levantar
+si les piden mucho
+el CTU se dispara al 100%
+entonces
+ese tipo de cosas es mejor mantenerlos al mismo
+lo ideal para ver ese tipo de cosas
+en el tráfico del cliente
+es
+o aquí
+el propio
+el propio equipo core
+que yo tengo
+yo tengo lo que es
+los cubes, las colas
+y yo puedo entrar en una cola
+específica y él me muestra un consumo
+en tiempo real
+para este contrato
+ese es para verlo en tiempo real
+y si quiero ver el histórico
+le voy a hacer de verdad
+no voy a abrirlo
+pero si yo me meto en session
+el archivo grande que está
+ah bueno
+el archivo grande que está
+se duele
+le cuesta abrir
+aquí en el Linux
+de hecho se pega si lo hago
+si yo abro esto
+me va a pegar
+me voy a tener que cerrar
+en el Windows si me abre
+mejor
+pero básicamente lo que tiene
+es una base de datos
+de este
+aquí está activo
+ah bueno estuvo conectado desde hoy
+a las 12 del mediodía
+hasta las 4 de la tarde
+y te guardas el registro de cuando
+consumió
+y te guardas el registro de
+cuando consumió
+y se queda como el histórico del consumo
+pero bueno, esas dos cosas
+son cosas donde las verías idealmente
+esto si sería el momento
+de agregarlo y sería mejor
+dentro del contrato que hubiese un item de valor
+el por cada uno
+consumo actual
+que se vaya del equipo core
+busque la cola y te muestre la gráfica
+en tiempo real del consumo
+ah muestrame el histórico
+ah bueno
+da ya el histórico y vea
+cuánto está consumiendo ahora
+pero que se mete en el value
+ninguna de esas dos está
+no
+él no sabe nada
+si está viva, está muerta
+no sabe nada
+tú le pides que haga el hace
+pero él no sabe, no tiene estados
+no maneja estados
+lo parecimos porque de hecho
+radio está hecho también
+dentro de radio hay un tercer item
+que es accounting
+que
+viene a llevar registros asociados
+a este cliente
+entonces por ahí es donde él le reporta
+que él ha consumido tanto
+ya hablamos de OLT
+hablamos de esto
+OLT, consumo como tal
+OLT
+si además vamos a mantener un tema
+de status pero
+preferiblemente el tema de
+conectar y aprovisionar cliente
+status
+lo mismo, bueno
+hay que ver el cpu, el que monitorea memoria
+que monitorea esas cosas pero lo mismo
+aprovisionar que es
+agregar cliente
+configurarlo, instalarlo
+agregarlo
+aclaro con esta parte
+no sé si le das una foto a esta
+y una nave 8.3
+a ver 11
+por si que hay como enchufarla
+y como enchufarla
+al celular
+no sé si el cable
+es largo
+no se la crea otra vez
+yo no la he comprado en el video todavía
+no sé si la carga
+no se la crea
+no
+no se la crea
+no se la crea
+con el chuche o el PC
+intenta conectarlo aquí directamente a ver si
+se cae
+si no la conecto
+si la cobra va a salir
+no la conecto
+ahí tiene la parte de arriba
+ok
+vamos a pasar
+al
+tarjeta OLT
+cuando tu entras en una
+OLT
+y le puedes indicar tarjeta
+este
+no es que vea
+no es que vea
+si la escrita también va a ser como
+un numerito nada más que
+no importa
+si porque pasa es que
+las boletas que nosotros tenemos
+físicamente
+esta fundada en unidad
+es como si tuvieras una sola
+tarjeta pero existe
+un bolete que tu le puedes insertar
+varias tarjetas
+por eso es que existe este
+pero
+es bueno tenerlo
+con las tarjetas boletas
+este
+esta
+y
+hay que dejar la cantidad
+de la tarjeta OLT
+y a esta
+lo importante de la tarjeta OLT es indicar
+el numerito
+chico
+chico chico
+chico
+lo importante de la tarjeta es decirle
+por eso la cantidad de puertos que tiene
+luego que tu le indicas
+la cantidad de puertos
+por ejemplo
+el te crea
+de los puertos
+los que
+son así
+múltiples tarjetas
+pueden tener diferentes
+cantidades de puertos en el mismo bolete
+la misma bolete puede tener
+varias tarjetas
+puede tener una tarjeta de 8
+una de 16
+siempre son potenciados
+son 4, 8, 16
+y
+siempre son
+potenciados
+4, 8, 16
+aunque yo sepa no hay 32
+pero
+generalmente llega hasta 16
+potenciados
+es bien
+¿que hay ahora?
+no estoy ocupado
+no estoy ocupado
+no estoy ocupado
+no estoy ocupado
+no estoy ocupado
+no estoy ocupado
+no estoy ocupado
+son las 12
+tu crees que no estoy viendo la hora
+que hace que...
+este
+ahora pruebo
+puerto
+cada tarjeta puede tener
+un número de puertos
+puede tener
+puertos
+entonces hay que abrir
+este
+este
+en los puertos
+de esta manera es muy sencillo
+pero
+aquí es donde si
+a mi parece hay como más
+información valiosa que hay
+que usar
+que sale de los puertos
+que sea importante
+uno
+es lo que llama
+total pong
+voy a ponerlo para decirlo
+este es el máximo número de puertos
+el máximo número de puertos
+el máximo número de puertos
+se está pondiendo hasta 128
+pero hay otros
+que pueden tener 50
+depende de la tarjeta
+depende de la tarjeta, depende de la tecnología
+depende de la empresa
+porque
+de hecho hay una recomendación que te dice que
+queríamos llegar hasta 64
+físicamente
+lo puedes llegar hasta 128
+si quieres plata
+para el máximo puerto
+vamos a sacarle plata
+a 125
+este
+total pong
+el siguiente item
+es la villain
+no corporativo
+que se muestra
+villain
+que se muestra
+villain
+y se villain
+deben haber
+dos tipos de villain dentro del paquete
+pero por ahora siempre están en el mismo
+eventualmente si hay que indicar
+los dos
+luego de esto
+además para meternos
+usted
+está el
+tipo de dirección
+IP
+esto siempre lo ponemos como
+IP asignado
+por sistema
+el IP asignado
+por sistema
+en el momento que tú lo colocas
+te abre esto aquí abajo
+que esto es
+si quiero tomar una foto de él
+esto es
+esto es
+el puerto pong
+bien asignado
+esta por detrás
+y full IP
+esto es básicamente de donde va a sacar
+las IPs que le va a asignar
+a la opción
+se le indicó un segmento
+generalmente barro 25
+entonces 3.1
+siempre 3
+y es el que le
+te la gana
+nosotros tenemos
+un direccionamiento IP
+donde
+por nodo
+por zona
+y tenemos que decir la red
+que estamos juntando para cada uno
+de los combos
+definimos uno aquí y ese es el que creamos
+porque si asignamos
+las IPs las asignamos
+dependiendo del fondo
+donde esté
+de la zona donde esté
+tenemos una IP
+para que al final este es un cliente
+se le asignaron las IPs
+y eso no es
+dejar de usar ese Excel
+para que todo se automatice acá
+este
+no no
+definitivamente
+este
+ese punto
+es que a ver por ejemplo
+WISControl
+WISControl si tenía un apartado
+donde tu indicabas las full IPs
+que existen
+y luego aquí lo que hacías era llamar
+a esos full IPs
+y la automatización
+en si
+por lo menos en la documentación si se puede hacer
+el documento en full
+y luego lo que hacer es asignarlo
+por phone
+pero ahora la configuración
+como tal
+si es otra historia
+si se puede hacer pero más allá
+en el mismo tema que hablábamos
+hace rato de
+que tanto se puede ir automatizando
+las funciones del tipo
+como que por nodo
+tenía decir una lista de rangos
+y aquí escojeron
+por nodo
+tanto por nodo
+pero si hay unas zonas de
+aquí se complica un poquito
+la historia
+se complica un poquito la historia porque
+este no está estructurado a la red
+en los nodos
+a mí me depende de si algunos
+de otros
+tienes nodos que conectan como
+un nodo
+y uno de esos nodos sale en internet
+entonces la asignación IP
+viene encajada por esa idea
+por ejemplo
+tienes, la sale en internet
+conecta como un nodo
+que es alta gracia
+y alta gracia sale en otros nodos
+que son visables, que son
+centros, que son parte central
+entonces todos ellos
+tienen
+pools de espejo
+común
+al mismo tiempo si
+como dijiste unos pools
+por nodo como tal
+entonces por ejemplo voy a tomar el mismo tiempo
+que ejemplo que te estaba
+decir que es alta gracia
+si hay también
+en la asignación por nodo
+estos 10.90
+son parques central
+10.91
+son
+son prisávidos
+10.94
+alta gracia como tal
+si hay unos pools
+asignados por
+por nodo
+pero
+pero
+no me interesa más
+la asignación
+eso va a tener
+si vamos a llegar a eso
+pero
+yo diré que todavía no
+no
+no acondillamos ni en culo
+en el momento en que empecemos a
+quitar cuestiones, quitar esto de
+que tal estaba y documentando más en todo
+todo eso
+estamos hablando de la red
+estamos hablando de la máscara
+y 4.3
+IPS disponible
+y
+un detalle que si es bueno
+que tienes en cuenta
+este punto es importante
+4.3.1
+se deben
+poder
+usar
+todas
+las
+IPS
+disponibles
+en
+red
+este punto es importante
+porque qué pasa
+la red
+en total
+son 128
+pero por temas de
+cómo se hace
+se separan las redes
+y generalmente siempre te quedan dos por fuera
+que son la primera y la última
+pero esa es una clase
+de hecho
+nosotros nos interesa en usarla 128
+y que es muy bien
+entonces muchas veces le toca
+ya cuando llegan
+hasta 126 y quedan
+dos disponibles y se agregan esos dos clientes
+disponibles, entonces te toca
+hacerlos a mano
+y te toca hacer un cambio en la vaina
+para que la aplicación funcione
+por cómo está hecho o que no permite
+que él mismo se te de las
+entonces termina él
+haciéndolas a mano
+en O
+a través de un botón especial
+que son estos
+acción
+a asignar el IP manualmente
+y él le pone el IP manualmente
+y este asignar el IP manualmente
+se salta las reglas aquí
+se pone el IP manual
+solo mira, esta es la IP que tiene
+y se salta
+pero la idea es que se puede usar
+todo, son 128
+que puede usar los 128
+fíjate que
+por último
+está este
+el
+que
+relaciona
+7
+7
+relacionarse
+es esto que ves aquí
+el hecho de que
+como él va a ir asignando las IPs
+por clientes
+le asignan un IP a cada cliente
+él va
+documentando
+que IP tiene cada cliente
+que se agrega en ese cuerpo
+y esto tiene
+dos funciones importantes
+no solo la asignación del IP en sí
+sino también
+que ya con esto
+sabes
+este
+que estos clientes que ves aquí
+van a agarrar la información
+asociada
+del POM
+del AOLT
+y del equipo POM
+y esto será el momento
+que creas el contrato
+creas el contrato y le dices
+cual
+caja nabla
+saben que foto esta y le asignan la IP
+y
+se la dice
+a los routers
+como él sabe que esta en ese POM
+que sabe que esta en ese AOLT
+entonces ya saben
+donde esta y todo eso
+y si se la
+te la dice
+no a los routers
+eh
+por ejemplo
+es porque
+cuando el cliente conecta
+que ya se le habilitado
+todos los parámetros
+de WLT
+ya el resto
+lo hace de configuración interna del cuerpo
+porque el cliente
+cuando todo
+fíjate que todo el tema de activar al cliente
+esta casado directamente
+con la WLT
+porque el tema de la vida
+si bien porque, si no se queda, todo eso
+normalmente es de WLT
+pero una vez que se configura es como si ya creaste el puente
+para que el cliente pueda subir al POT
+pero ya la comunicación cliente
+es POT
+es por radio
+entonces
+el tema de asignar la IP
+si
+si es si
+pero es a través
+del radio
+lo cual lleva a un punto importante
+que es que
+este
+este punto es importante
+hay que hacerlo
+o no
+ok
+este
+así
+asignar
+los parámetros
+del cliente
+en radio
+como se aleja
+este
+es que esta parte
+de la IP
+si él se la tiene con mi cabeza de radio
+si él se la tiene con mi cabeza de radio
+este
+es clartor
+si
+es como en que a las 12
+ya
+así ya
+vamos a cerrar
+pero bueno
+vamos a hacer
+un radio
+entonces
+ya lo quemamos
+el contrato
+este
+se le va
+cuando se llega
+se le asigna una cajana
+esta parte con el mismo
+ya la cajana
+está bien está mal pero se agrega
+pero ahora la cajana
+va casada con
+el puerto
+el efectivo del POM
+el puerto POM
+a su vez va casada con la tarjeta
+que va a ser casada con el equipo
+y va casada con el equipo
+con el equipo
+entonces en el momento
+en que al cliente se le dice
+mira tu estas en esta
+cajana
+como se sabe que pertenece este POM
+que era todos los parámetros del POM
+que vimos hoy
+es que bueno se sabe de donde se van a sacar las IP
+se sabe en la vida en que va a estar casada con ese cliente
+luego
+se sabe que ese POM
+pertenece a este tablete
+entonces de ahí donde se va a sacar
+la parte que decía James Power
+la parte que decía Ticcom
+la parte que decía
+osea los parámetros de estos chiquiticos
+que están todos habilitados en el tablete
+de la parte core
+actualmente no
+a nivel de odor
+no hay
+un requerimiento como tal por ahora
+pero ya con esos parámetros
+ya el cliente va a poder hablar con el equipo
+y luego lo demás
+si se hace manualmente
+ah bueno pero ya hay un último punto
+que es el tema de
+la información del cliente del radio
+que esto si no está aquí
+esto si no está aquí
+ya es el inicio porque no quiero
+cliente
+se le dice Cajaná
+Cajaná
+va con un puerto POM
+que está casado
+con una tarjeta
+de un equipo
+que está casado
+las mangas no les interesan
+este
+a no son
+a mi
+personalmente no
+si es importante
+se puede ser importante más con un tema
+o nivel de proyecto
+o sea geográfico
+si que esto va de la mano con el tema de la caja
+Cajaná como tal
+pero
+todo
+pero además no tanto
+porque es un tema de split secundario
+también
+es un tema físico asociado con el tema de la caja
+va
+fíjate que
+eh
+ah bueno
+no hablamos del tema ONOID
+no es cierto
+pero bueno
+por lo menos la IP la sacó
+de donde
+porque están
+el ONOID
+el también lo jala
+bueno no hemos hablado del ONOID
+ya vamos
+el
+el service port
+ya vamos
+bueno
+todo esto está relacionado
+chévere
+y eso lo entendemos hasta ahora
+ahora bien
+la parte que
+si hay que buscar agregar que si es importante
+de canal
+radio
+bueno bueno
+ya yo sé
+como voy a configurar la blt
+a la hora de activar a un cliente
+para que el cliente levanta el servicio
+pero hay una ultima parte
+que si no está indicada aquí
+que es el como
+este
+se autentica el cliente de
+vía radio
+esto no está indicado aquí
+porque esto es algo que netamente
+es la gente de este ojo
+hizo ellos internamente
+entonces una caja se va
+una caja negra, ellos no nos muestran
+casi nada de eso
+pero aquí es donde entra
+que información le pasa al cliente
+es esto
+si puedes tomar una foto
+puedes tomar una foto todo completo
+esta información
+es la que se carga
+en el servidor radio
+cuando los clientes
+cuando un hotel todo se crea
+nada más en la correlación
+hay que cargar esta información al cliente
+en el servidor radio para que pueda autenticarse
+para que pueda levantar el servicio
+esta es la información que se va a cargar
+y lo que se va a cargar
+en el servidor radio es esto
+hay un usuario
+que fíjate que este número
+05 325
+ese número es
+el número control
+hay un número SEM
+siempre es las euros
+hay otro
+se agrega esto de grupos clientes
+porque esta es la aparición para nosotros
+está el SHARE USERS
+es como cuantos clientes pueden compartir
+a este usuario y encontrarse en el mismo tiempo
+y último tiene
+la IP
+que de donde la va a sacar
+¿de donde va a sacar IP?
+del cuarto POM
+y está el plan
+NICRO TRIP GRAY LINIT
+este es el ancho de banda
+ULTRA FIBRA 200 MEGA PLAN
+y todo eso se lo dice al router
+al radio
+y
+y aquí en la UNO
+la UNO realmente nunca se entera del plan
+pero la IP si
+¿que pasa?
+para cubrir la parte que esta
+la UNO no tiene que tener esa USB clave
+no si
+pero es su suerte
+que clave
+se llenan
+este es
+de los botones
+que te lanzan
+configura WAN
+este que dice WAN
+no se que es la Lola
+tiene usuario y contraseño
+y eso es como
+este botón de aquí arriba
+se dice INTERNET
+UNO CONFIGUAN
+hay un momento de configurar
+entre los parámetros que se configuran en el OLT
+este botón
+lo que hace es decirle al OLT
+mira
+este
+configura a la UNO
+con este usuario y contraseño
+entonces
+para convertirlo en un módulo mas
+para convertirlo en un módulo mas
+para no
+radio
+en la parte de radio
+hay 3 involucrados
+tienes
+la UNO
+tienes
+la UNO
+tienes
+la UNO
+tienes
+el tipo core
+y tienes
+el server
+el server radio
+y tienes
+como hacer la comunicación
+UNO
+UNO
+habla
+con
+core
+vía
+vía
+vía
+básicamente le dices
+mira quiero internet
+dos
+por
+habla
+con
+server
+radio
+la UNO no se está identificando como nada
+este
+mando usuario y contraseño
+y se lo pone el instalador manual
+no
+cuando tu le das a este
+botón
+config one
+y el LTE
+pero automáticamente lo que hace eso es que el LTE
+le dice a la UNO
+mira esta es la otra comunicación que da un poco
+entonces
+ODO
+usa la LTE como intermediario
+para configurar
+la UNO
+entonces eso es lo que permite que la UNO nada mas
+la conecte y luego todo se
+configura rematamente
+ok
+entonces ODO no habla con el cuerpo y ya te puede
+luego dos
+habla con server radio
+vía radio
+bueno
+este tres
+server
+radio
+asigna
+el P
+P
+P
+y este plan
+y luego
+envía
+al POR
+POR
+POR
+aplica
+plan
+al POR
+y
+envía
+y P
+a
+la
+UNO
+ese es por que me
+una vez que ya la LTE esta
+configurada
+y una vez que se ejecutaron todos estos botones
+este es lo que pasa luego
+por detrás
+el cliente
+habla con el POR, mira aquí en el internet
+el POR le consulta a través de él, mira este aquí en el internet
+se lo damos o no?
+el server le dice, dale si va
+le asigna un IP y le asigna un plan
+y todo eso se le envía al POR
+y luego el POR
+hace dos cosas
+una, emita la conexión que tiene
+por POR
+dice bueno todo va a ir a 200 Mbps
+y luego dos
+por el mismo POR le dice
+a la UNO mira este es el IP que va
+a ver
+y así empieza
+alguna duda está?
+no
+comentario
+preocupación
+la verdad esta preocupada
+yo te preocupo
+porque no se
+sabes que este tipo de cosas siempre salen unos
+cambriajos que te cambian
+nunca sale bonito
+como si no
+siempre sale algo
+estoy viendo si es que funciona el API
+entonces
+una tarjeta que mandaron es como
+una cosa así sin sentido
+depende de otros archivos que si no
+no lo mandaron
+entonces
+salvo la página de la boleta y no mandaron
+no lo mandaron bien
+no mandaron bien
+pero digo que tal vez no haga falta
+que son solo como unas fracciones de unos
+números ahí
+y
+como se, hay que irte y contar
+los cambios que son
+tal vez haya complicaciones
+por ahí
+ok
+este
+mire líneas generales
+esto
+a nivel de
+de infraestructura las cosas como dependen
+y eso
+este
+tal vez no
+si
+entonces parte esta solo como
+mas o menos copiarse
+de los detectors
+¿como?
+de esta parte esta también como solo
+copiarse de los detectors
+doctor
+para comenzar
+reitero, para salir de esta gente
+te ofrezcas un copy
+y salimos de esta
+y es bueno
+que si
+hay cualquier cantidad de trabajo aquí
+no tiene
+cualquier cantidad de cosas
+que se pueden mejorar
+pero bueno
+tienes un excel
+vamos a salir el excel
+este
+donde sacamos las velocidades aquí o allá
+este mira que mas se puede ver
+hay unos temas de log de
+porque por ejemplo
+algo que existe en la ley es que
+cuando usas el internet
+que pasa si alguien se impone a hacer
+vamos a hacerle el parque
+al presidente
+llega
+y te dice mira
+¿quien tiene este IP?
+tu tienes que poder decirle
+mira pues carajos anda y matalo a él
+y dice no
+que red no se sabe
+que red no se sabe
+si pero no
+a mi te camina
+porque
+hay una configuración
+que se dice en la red de
+de como se dice
+bueno mira osea que
+tengo este IP público
+se la distribuyen estos 200
+clientes
+y entonces si hay un ataque
+va a venir de alguno de estos 200
+y tambien hay un tema de puerto
+que se usa
+TCP entonces si que actualidad el ataque
+es por TCP que es lo mas probable
+este
+yo puedo decir bueno yo decir que este rango
+haga este cliente entonces el que es
+eso es una video pero hay otras
+que precisamente se reporta
+a esta hora
+esta usando
+a esta hora esta usando todo
+y lo va guardando
+eso consume
+no
+no se hacen rave
+no se hacen rave porque esto es otra cosa
+mas arriba
+eso es
+en la parte del
+en el momento en que traducen
+de que es privada a publico
+hay otro tema
+hay otra vaina que es mas
+si si lo que es
+que es mas de lo que pasa
+pero en fin
+se dice que esta muy por encima
+esta alla adelante
+no se le va a dar nota a esta gente
+si primero se le va a dar nota a esta gente
+y despues
+esta
+esta
+esta
+estamos
+estamos
+estamos
+estamos
+donde esta el
+¿Cómo es el petito de si lo voy a comer?
+Sí.
+¿No?
+¿Nosotros qué podemos hacer?
+Que si, por ejemplo, tomes y...
+No, porque...
+En...
+En...
+En...
+En...
+En...
+En...
+En...
+En...
+En...
+En...
+En...
+En...
+En...
+En...
+En...
+En...
+En...
+En...
+En...
+En...
+En...
+En...
+En...
+En...
+Y el día de...
+Bueno, vale, vamos a acercarnos, pero hay por ahí una lanchería, ¿no?
+Ahí es que va, pensé más que aquí va
+Coño, bajá... medio, medio
+Medio, medio, medio, medio
+Tiene que estar ahí en contra de esa lanchería, medio lejos
+Donde solo no se ve como dos piezas
+Así, vamos a quedarnos
+No nos creen en Torrejumbo
+No nos queremos ir a Torrejumbo
+No queremos ir a Torrejumbo
+Ustedes no quieren
+Mira, escúchame, es complicado
+¿Quién ha presentado esto?
+No sé, no sé, pero estoy ya...
+Están dando el saco a un mando
+Que no se ve nada de...
+Estoy haciendo para...
+Para un software, unas cosas, para máquinas virtuales
+No, más ni siquiera, en contenedores
+En unas tarjetas de envío que tiro en la red
+Para mí eso sí es... no es más de negro pero...
+Tiene que ser la 5070
+Para sacar cuotas en Estados Unidos en la frontera es como carajo, pero...
+5070 para sacar cuotas en Estados Unidos
+La saca a cuotas, la grafica
+Tú lo tenés una grafica, tú tenés la 60
+No, la 2060
+Pero esa era la 5070
+Pero no...
+Ya, no te había llegado la tarjeta
+Ya
+Grafica no
+Ah, no te había llegado
+No, porque me pusiste en el taller
+Y la sacé la 5070 de donde se llega
+Ahí fue a cuotas
+¿A cuotas?
+Cuatro cobros de 125 a 130
+Sí, pico un caché, pero gringo
+Pico un caché, ¿existe eso?
+No, no es que ni siquiera tenés la registra allí
+Tenemos la tarjeta allá por acá
+O una tarjeta internacional
+Porque Facebook te da la opción cada quien se diga
+¿Y cómo te vas a hacer todo eso?
+Yo la sacé, no me importa si me la traes para la tarjeta allá
+Bien
+También vas a aplicar el crédito de Amazon
+Si te metes una tarjeta digital que es elegible
+Amazon te habilita la opción de pagar las 5 cuotas mensuales
+Entonces te acabas pagando por lo menos...
+Ese panel ya te compró la 5090
+Pues no te la dejo porque no uso esa tarjeta
+Yo se la compré a los cobros de 125 a 130
+Va a quedar pagando por 5 meses
+Creo que es como 300
+No te va a pagar, entonces yo llevo por lo menos
+Claro
+Ese es la venta
+No hay sal por ahí
+¿Ah?
+Sal
+¿Sal?
+No
+Si no le poses

@@ -23,7 +23,12 @@
                     <field name="port"/>
                     <field name="username"/>
                     <field name="description_brand" invisible="1"/>
+                    <field name="state" invisible="1"/>
                     <field name="state" widget="badge" decoration-danger="state == 'down'" decoration-success="state == 'active'"/>
+                        <!--widget name="web_ribbon" title="Activo" invisible="state != 'active'"/>
+                        <widget name="web_ribbon" title="Down" bg_color="bg-danger" invisible="state == 'active'"/-->
+
+
                 </tree>
             </field>
         </record>
@@ -83,9 +88,8 @@
 </group>
 <notebook colspan="4">
 <page string="Direcciones IP" invisible="type_access_net not in ['dhcp', 'dhcp_leases']">
-    <group>
-        <group string="Pools" colspan="4">
-            <field name="ip_address_pool_ids" nolabel="1"  widget="one2many_list" colspan="4" >
+
+            <field name="ip_address_pool_ids" nolabel="1"  widget="one2many_list"  >
                 <tree multi_selectable="1"  colspan="2" editable="bottom">
                           <field name="name" readonly="True"/>
                     <field name="network"/>
@@ -98,13 +102,12 @@
                 </field>
 
 
-        </group>
- <button name="generar" string="Regenerar IPs" type="object"/>
-        <group  string="IPs" colspan="4">
-                <field name="ip_address_ids" nolabel="1"  colspan="4">
+
+ <button name="generar" string="Generar IPs" type="object"/>
+
+                <field name="ip_address_ids" nolabel="1" >
                      </field>
-              </group>
-    </group>
+
             </page>
             <page string="Datos Ubicacion">
             <group string="Datos Ubicacion">

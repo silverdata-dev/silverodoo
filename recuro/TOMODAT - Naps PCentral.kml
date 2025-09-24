@@ -1,0 +1,1683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Document>
+<Placemark>
+	<name>Nap PC 111 San Martin Oficina 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9009314297,10.4983644965,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 112 San Martin Oficina 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9009545235,10.4983672334,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 113 San Martin Piso 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9009749753,10.4983705301,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 114 San Martin Piso 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.901002468,10.4983741564,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 115 San Martin Piso 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9010286195,10.498375475,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 116 San Martin Piso 4</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9010517536,10.4983781123,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 117 San Martin Piso 5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9010775698,10.4983800903,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 118 San Martin Piso 6</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9011097564,10.4983833869,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 211 San Martin Piso 7</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9008995813,10.498542844,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 212 San Martin Piso 8</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9009230506,10.4985451516,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 213 San Martin Piso 9</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9009431672,10.4985491076,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 214 San Martin Piso 10</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9009649601,10.4985504262,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 215 San Martin Piso 11</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9009921175,10.4985547118,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 216 San Martin Piso 12</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9010162574,10.4985580085,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 217 San Martin Piso 13</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.90104375,10.4985609754,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 218 San Martin Piso 14</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9010725837,10.4985669094,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 311 San Martin Piso 15</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.900877453,10.498721521,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 312 San Martin Piso 16</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9009156745,10.4987281143,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 313 San Martin Piso 17</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9009579193,10.4987340482,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 314 San Martin Piso 18</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9009954702,10.4987399821,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 315 San Martin Piso 19</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9010424089,10.4987465754,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 316 Lecuna Anuaco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9005480694,10.4988735714,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 317 Lecuna Hilton</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9011937564,10.4991466128,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 316B Lecuna Anuaco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9005320652,10.4988725969,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 317B Lecuna Hilton</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9012081214,10.4991497015,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1321 Caroata Oficina 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9023219885,10.4983628574,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1322 Caroata Oficina 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9023246707,10.4983420885,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1323 Caroata Piso 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9023273529,10.4983203307,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1324 Caroata Piso 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9023307057,10.4982962653,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1325 Caroata Piso 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.902334729,10.4982705515,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1326 Caroata Piso 4</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9023397581,10.4982441784,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1327 Caroata Piso 5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9023439632,10.4982179469,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1328 Caroata Piso 6</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9023489924,10.4981843212,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1421 Caroata Piso 7</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.902376485,10.4983748669,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1422 Caroata Piso 8</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9023798378,10.4983504718,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1423 Caroata Piso 9</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9023811789,10.4983254173,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1424 Caroata Piso 10</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9023852022,10.4983039892,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1425 Caroata Piso 11</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9023892255,10.4982789347,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1426 Caroata Piso 12</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.902392243,10.4982525616,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1427 Caroata Piso 13</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9023972721,10.4982228919,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1428 Caroata Piso 14</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9024006249,10.4981919035,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1521 Caroata Piso 15</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9024358289,10.4983860754,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1522 Caroata Piso 16</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9024375053,10.4983583837,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1523 Caroata Piso 17</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.902440858,10.4983326699,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1524 Caroata Piso 18</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9024465577,10.4983046485,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1525 Caroata Piso 19</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9024515869,10.4982700338,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1526 Caroata Piso 20</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9024535985,10.4982426717,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1527 Caroata Piso PH</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9024559455,10.4982087164,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1021 Catuche Oficina 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9017827569,10.4982655131,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1022 Catuche Oficina 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9017857744,10.4982414476,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1023 Catuche Piso 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9017887918,10.4982196898,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1024 Catuche Piso 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9017918093,10.4981952947,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1025 Catuche Piso 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9017965032,10.4981705699,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1026 Catuche Piso 4</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9018005265,10.4981455155,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1027 Catuche Piso 5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9018065615,10.4981201313,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1028 Catuche Piso 6</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9018115906,10.4980894726,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1121 Catuche Piso 7</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9018508179,10.4982780403,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1122 Catuche Piso 8</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9018551765,10.4982533155,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1123 Catuche Piso 9</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9018578587,10.4982315577,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1124 Catuche Piso 10</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9018612115,10.4982088109,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1125 Catuche Piso 11</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9018662406,10.4981834268,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1126 Catuche Piso 12</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9018682523,10.4981554054,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1127 Catuche Piso 13</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9018722756,10.4981306806,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1128 Catuche Piso 14</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9018742873,10.4980970549,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1221 Catuche Piso 15</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9019235729,10.4982928752,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1222 Catuche Piso 16</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9019306136,10.4982526562,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1223 Catuche Piso 17</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9019366486,10.4982150745,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1224 Catuche Piso 18</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9019436894,10.4981685919,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1225 Catuche Piso 19</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9019497244,10.4981198017,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1226 S1 T Oeste</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9021149593,10.498283219,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1227 Lecuna Tajamar</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.902034493,10.4979364125,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1269 Bolivar Zona 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9019675264,10.4979627856,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1228 Lecuna Zona 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9027185449,10.4981408042,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1226B S1 T Oeste</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9021092427,10.4983145242,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1227B Lecuna Tajamar</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9020256357,10.4979347565,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1228B Lecuna Zona 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9027046584,10.4981391482,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1269B Bolivar Zona 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9019590044,10.4979611296,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 411 El Tejar Oficina 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9011995121,10.4981395824,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 412 El Tejar Oficina 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9012075587,10.4981118906,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 413 El Tejar Piso 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9012122525,10.4980809022,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 414 El Tejar Piso 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.901217617,10.4980466171,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 415 El Tejar Piso 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.901224993,10.4980116728,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 416 El Tejar Piso 4</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.901231028,10.4979747504,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 417 El Tejar Piso 5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9012357219,10.4979384873,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 418 El Tejar Piso 6</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9012437685,10.4978811258,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 511 El Tejar Piso 7</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9010875831,10.4981247388,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 512 El Tejar Piso 8</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9010889242,10.4980983657,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 513 El Tejar Piso 9</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9010956298,10.4980673773,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 514 El Tejar Piso 10</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9010989825,10.4980297956,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 515 El Tejar Piso 11</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9011036764,10.4979968292,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 516 El Tejar Piso 12</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9011097114,10.4979618848,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 517 El Tejar Piso 13</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9011130641,10.4979229844,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 518 El Tejar Piso 14</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9011170874,10.4978748534,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 611 El Tejar Piso 15</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9009501199,10.4980924317,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 612 El Tejar Piso 16</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9009581666,10.4980317735,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 613 El Tejar Piso 17</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9009668837,10.4979750713,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 614 El Tejar Piso 18</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9009776126,10.4979163911,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 615 El Tejar Piso 19</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9009910236,10.497849799,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 616 S1 Magi Clean</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9008920079,10.4980152079,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 617 Lecuna City Park</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9011454766,10.4982631152,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 618 Lecuna T Este</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8996689205,10.4977791684,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 617B Lecuna City Park</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.901115918,10.4982787096,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 616B S1 Magi Clean</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9008797978,10.4980095959,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 711 Mohedano Oficina 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9005892598,10.4980159478,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 712 Mohedano Oficina 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9005932831,10.4979816628,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 713 Mohedano Piso 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9005966359,10.497951993,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 714 Mohedano Piso 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9006013298,10.4979236419,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 715 Mohedano Piso 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9006066942,10.4978873788,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 716 Mohedano Piso 4</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9006127292,10.4978491378,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 717 Mohedano Piso 5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9006201052,10.4978056221,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 718 Mohedano Piso 6</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9006274813,10.4977634251,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 811 Mohedano Piso 7</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9004383856,10.497988256,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 812 Mohedano Piso 8</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9004424089,10.4979585863,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 813 Mohedano Piso 9</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9004457616,10.4979289165,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 814 Mohedano Piso 10</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9004517966,10.4978992467,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 815 Mohedano Piso 11</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9004558199,10.4978669396,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 816 Mohedano Piso 12</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9004645371,10.4978280393,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 817 Mohedano Piso 13</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9004699015,10.4977858423,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 818 Mohedano Piso 14</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9004779482,10.4977429859,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 911 Mohedano Piso 15</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9002935463,10.4979632016,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 912 Mohedano Piso 16</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9002989107,10.4979150706,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 913 Mohedano Piso 17</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9003116512,10.4978557311,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 914 Mohedano Piso 18</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9003190273,10.4978023255,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 915 Mohedano Piso 19</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9003277444,10.4977429859,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 916 Lecuna Mohedano</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9007565563,10.4978411453,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 916B Lecuna Mohedano</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ff00</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.900745091,10.4978411376,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1621 Tacagua Oficina 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9029112951,10.4986534882,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1622 Tacagua Oficina 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9029404642,10.4986577738,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1623 Tacagua Piso 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9029696332,10.4986630484,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1624 Tacagua Piso 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.902998508,10.4986677391,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1625 Tacagua Piso 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.90302533,10.4986720247,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1626 Tacagua Piso 4</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9030558402,10.498675651,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1627 Tacagua Piso 5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9030816564,10.4986805959,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1628 Tacagua Piso 6</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9031081432,10.4986838926,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1721 Tacagua Piso 7</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9029009426,10.4986904858,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1722 Tacagua Piso 8</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9029297763,10.4986974087,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1723 Tacagua Piso 9</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.902960957,10.4987023537,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1724 Tacagua Piso 10</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9029881144,10.4987076283,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1725 Tacagua Piso 11</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9030176187,10.4987112546,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1726 Tacagua Piso 12</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9030474583,10.4987168589,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1727 Tacagua Piso 13</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9030739451,10.4987214742,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1728 Tacagua Piso 14</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9031011025,10.4987274081,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1821 Tacagua Piso 15</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9028894903,10.4987378389,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1822 Tacagua Piso 16</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9029330761,10.4987457508,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1823 Tacagua Piso 17</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.902982697,10.4987536627,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1824 Tacagua Piso 18</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9030249418,10.4987595967,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1825 Tacagua Piso 19</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9030745627,10.4987714646,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1921 Tajamar Oficina 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9029639216,10.4984905914,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1921 Tajamar Oficina 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9029672743,10.498465537,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1923 Tajamar Piso 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9029719682,10.4984391639,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1924 Tajamar Piso 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9029739798,10.4984174061,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1925 Tajamar Piso 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9029780031,10.4983923516,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1926 Tajamar Piso 4</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9029833676,10.4983620226,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1927 Tajamar Piso 5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9029907436,10.4983270782,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 1928 Tajamar Piso 6</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9029967786,10.4982921339,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 2021 Tajamar Piso 7</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9030363412,10.4985031186,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 2022 Tajamar Piso 8</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9030383529,10.4984754269,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 2023 Tajamar Piso 9</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9030417056,10.4984497131,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 2024 Tajamar Piso 10</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9030457289,10.4984299333,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 2025 Tajamar Piso 11</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9030497522,10.4984042195,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 2026 Tajamar Piso 12</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9030517639,10.4983738905,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 2027 Tajamar Piso 13</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9030584694,10.4983442207,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 2028 Tajamar Piso 14</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9030618222,10.4983053204,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 2121 Tajamar Piso 15</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9031080903,10.4985182831,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 2122 Tajamar Piso 16</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9031161369,10.4984826795,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 2123 Tajamar Piso 17</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9031221719,10.4984470758,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 2124 Tajamar Piso 18</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9031302185,10.4984075162,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Nap PC 2121 Tajamar Piso 19</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.9031362535,10.4983686159,0</coordinates></Point>
+</Placemark>
+</Document></kml>

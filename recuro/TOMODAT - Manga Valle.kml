@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Document>
+<Placemark>
+	<name>Manga 2. Edif Marco</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8961810887,10.4802705823,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 4</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8955550736,10.4812124715,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8963691606,10.4797388963,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Manga 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff0099ff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8954444212,10.4817906723,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Paso 1</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ffff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8951459731,10.4804794473,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Paso 2</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ffff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8950128608,10.4806603,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Paso 3</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ffff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8949717001,10.4811833806,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Paso 4</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ffff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8958494418,10.4818865652,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Paso 5</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ffff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8959977071,10.4817763357,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Paso 6</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ffff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.896018625,10.4815961092,0</coordinates></Point>
+</Placemark>
+<Placemark>
+	<name>Paso 7</name>
+	<Style>
+	<IconStyle>
+	<Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>
+	<color>ff00ffff</color>
+	</IconStyle>
+	</Style>
+	<Point><coordinates>-66.8962129454,10.4816235332,0</coordinates></Point>
+</Placemark>
+</Document></kml>

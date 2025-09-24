@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="900" viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <!-- Background -->
+  <rect width="1200" height="900" fill="#0f172a"/>
+  <style>
+    .title { fill:#e6f0ff; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; font-weight:700; font-size:18px; }
+    .subtitle { fill:#a8bedf; font-family: Inter, sans-serif; font-size:12px; }
+    .box-label { fill:#0b1220; font-family: Inter, sans-serif; font-size:12px; font-weight:700; }
+    .field { fill:#0b1220; font-family: Inter, sans-serif; font-size:11px; }
+    .note { fill:#c7d9ff; font-family: Inter, sans-serif; font-size:11px; }
+    .edge { stroke:#9fb7df; stroke-width:1.6; marker-end:url(#arrow); }
+    .edge-highlight { stroke:#ffd166; stroke-width:2.2; marker-end:url(#arrow); }
+    .legend-text { fill:#cbdff8; font-family: Inter, sans-serif; font-size:12px; }
+    .box { rx:8; }
+  </style>
+
+  <!-- Arrow head -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#9fb7df" />
+    </marker>
+    <marker id="arrow_yellow" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#ffd166" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="28" y="36" class="title">SilverData — Diagrama conceptual de la base de datos (ISP)</text>
+  <text x="28" y="58" class="subtitle">Visión rápida para gerentes · detalle relacional para desarrolladores · foco en provisión, mapeo y conciliación</text>
+
+  <!-- LEFT: Geographic & Passive Assets (blue) -->
+  <g transform="translate(40,90)">
+    <rect x="0" y="0" width="320" height="360" rx="10" fill="#103c6b" class="box" />
+    <text x="16" y="26" class="box-label">Zonas & Activos (Pasivo)</text>
+
+    <!-- zone -->
+    <rect x="16" y="42" width="288" height="60" rx="6" fill="#1e4f86" />
+    <text x="28" y="62" class="field">isp.zone — zone</text>
+    <text x="28" y="78" class="field">fields: name, gps_top/left/right/bottom</text>
+
+    <!-- node -->
+    <rect x="16" y="110" width="288" height="64" rx="6" fill="#1e4f86" />
+    <text x="28" y="132" class="field">isp.node — nodo</text>
+    <text x="28" y="148" class="field">fields: asset_id → isp.asset, code, node_count</text>
+
+    <!-- post/box/cable/splitter -->
+    <rect x="16" y="184" width="136" height="122" rx="6" fill="#1e4f86" />
+    <text x="28" y="206" class="field">isp.post — poste</text>
+    <text x="28" y="222" class="field">gps_lat/gps_lon (asset)</text>
+
+    <rect x="168" y="184" width="136" height="122" rx="6" fill="#1e4f86" />
+    <text x="180" y="206" class="field">isp.box — caja</text>
+    <text x="180" y="222" class="field">splitter_id, capacity_usage_nap, pon/olt refs</text>
+
+    <rect x="16" y="320" width="136" height="24" rx="6" fill="#163d6e" />
+    <text x="28" y="338" class="field">isp.cable — tramos</text>
+
+    <rect x="168" y="320" width="136" height="24" rx="6" fill="#163d6e" />
+    <text x="180" y="338" class="field">isp.splitter — splitter</text>
+
+    <!-- relationships (arrows) -->
+    <line x1="160" y1="110" x2="160" y2="184" class="edge" marker-end="url(#arrow)"/>
+    <line x1="80" y1="172" x2="80" y2="184" class="edge" marker-end="url(#arrow)"/>
+    <line x1="224" y1="172" x2="224" y2="184" class="edge" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- CENTER: Active Network Devices (orange) -->
+  <g transform="translate(400,90)">
+    <rect x="0" y="0" width="420" height="360" rx="10" fill="#3e1f0b" class="box"/>
+    <text x="16" y="26" class="box-label">Dispositivos & Núcleos (Activos de red)</text>
+
+    <!-- core -->
+    <rect x="20" y="48" width="180" height="82" rx="6" fill="#6a391d" />
+    <text x="34" y="70" class="field">isp.core — core</text>
+    <text x="34" y="86" class="field">fields: asset_id, hostname_core, radius_id, ip, gateway, core_ports_count</text>
+
+    <!-- olt -->
+    <rect x="220" y="48" width="180" height="82" rx="6" fill="#6a391d" />
+    <text x="234" y="70" class="field">isp.olt — OLT</text>
+    <text x="234" y="86" class="field">fields: asset_id, node_id, card_ids, port_ids, is_pppoe/is_ipoe</text>
+
+    <!-- olt.card and ports -->
+    <rect x="20" y="150" width="140" height="88" rx="6" fill="#5d2e13" />
+    <text x="30" y="170" class="field">isp.olt.card — tarjeta</text>
+    <text x="30" y="186" class="field">fields: num_card, port_card, contracts_card_count</text>
+
+    <rect x="180" y="150" width="220" height="88" rx="6" fill="#5d2e13" />
+    <text x="192" y="170" class="field">isp.olt.card.port — puerto</text>
+    <text x="192" y="186" class="field">fields: num_port, olt_card_id, capacity_usage_port_pon, s_vlan, c_vlan</text>
+
+    <!-- AP -->
+    <rect x="20" y="256" width="170" height="76" rx="6" fill="#6a3a18" />
+    <text x="34" y="276" class="field">isp.ap — Access Point</text>
+    <text x="34" y="292" class="field">fields: asset_id, hostname_ap, node_ids, core_id</text>
+
+    <!-- radius -->
+    <rect x="220" y="256" width="180" height="76" rx="6" fill="#6a3a18" />
+    <text x="234" y="276" class="field">isp.radius — RADIUS</text>
+    <text x="234" y="292" class="field">fields: ip_core_radius, port_coa, nas_secret, radius_user_count</text>
+
+    <!-- arrows between core, olt, card, port, radius -->
+    <line x1="200" y1="96" x2="220" y2="96" class="edge" marker-end="url(#arrow)"/>
+    <line x1="120" y1="140" x2="120" y2="150" class="edge" marker-end="url(#arrow)"/>
+    <line x1="220" y1="140" x2="220" y2="150" class="edge" marker-end="url(#arrow)"/>
+    <line x1="260" y1="216" x2="260" y2="256" class="edge" marker-end="url(#arrow)"/>
+    <line x1="300" y1="216" x2="300" y2="256" class="edge" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- RIGHT: Business / Service Layer (green) -->
+  <g transform="translate(860,90)">
+    <rect x="0" y="0" width="320" height="360" rx="10" fill="#103b22" class="box" />
+    <text x="16" y="26" class="box-label">Clientes, Contratos & Servicios (Negocio)</text>
+
+    <!-- partner / contract -->
+    <rect x="16" y="42" width="288" height="72" rx="6" fill="#1f5f3e" />
+    <text x="28" y="64" class="field">res.partner — cliente</text>
+    <text x="28" y="80" class="field">contacto, direcciones, KYC</text>
+
+    <rect x="16" y="124" width="288" height="84" rx="6" fill="#1f5f3e" />
+    <text x="28" y="146" class="field">isp.contract — contrato</text>
+    <text x="28" y="162" class="field">product_id, node_id, olt_id, olt_card_port_id, splitter_id, box_id, ap_id, radius_id, onu_id</text>
+
+    <!-- product -->
+    <rect x="16" y="220" width="136" height="62" rx="6" fill="#1f5f3e" />
+    <text x="28" y="242" class="field">product.product / plan</text>
+    <text x="28" y="258" class="field">price, profile</text>
+
+    <rect x="168" y="220" width="136" height="62" rx="6" fill="#1f5f3e" />
+    <text x="180" y="242" class="field">account.move / pagos</text>
+    <text x="180" y="258" class="field">facturas, conciliación</text>
+
+    <!-- arrows: contract -> network assets -->
+    <line x1="-60" y1="184" x2="-120" y2="184" class="edge-highlight" marker-end="url(#arrow_yellow)" transform="translate(860,90)"/>
+    <!-- Actually we draw arrows from contract box center to central ports area: using absolute coords below -->
+  </g>
+
+  <!-- Cross-links: Contracts -> Ports/Splitters/Core -->
+  <!-- arrow from contract (approx 860+16+144, 90+124+42) coords: contract center -->
+  <line x1="1000" y1="218" x2="620" y2="248" class="edge-highlight" marker-end="url(#arrow_yellow)"/>
+  <text x="760" y="208" class="note">Reserva / vínculo → puerto/splitter/OLT/RADIUS</text>
+
+  <!-- Contracts -> Customer -->
+  <line x1="900" y1="208" x2="900" y2="150" class="edge" marker-end="url(#arrow)"/>
+  <text x="760" y="190" class="note"></text>
+
+  <!-- BOTTOM: Inventory & Helpdesk (purple / teal) -->
+  <g transform="translate(40,480)">
+    <rect x="0" y="0" width="1140" height="320" rx="10" fill="#09202b" class="box"/>
+    <text x="16" y="26" class="box-label">Inventario, Helpdesk & Soporte (Operaciones)</text>
+
+    <!-- cpe / inventory -->
+    <rect x="20" y="48" width="240" height="120" rx="6" fill="#0e3b3a" />
+    <text x="34" y="72" class="field">silver.inventory / isp.onu.line / isp.cpe</text>
+    <text x="34" y="92" class="field">serial, state, assigned_contract</text>
+
+    <!-- helpdesk -->
+    <rect x="280" y="48" width="300" height="120" rx="6" fill="#0e3b3a" />
+    <text x="294" y="72" class="field">helpdesk.ticket / WhatsApp</text>
+    <text x="294" y="92" class="field">incoming messages → ticket, attachments, SLA</text>
+
+    <!-- netops tasks -->
+    <rect x="600" y="48" width="260" height="120" rx="6" fill="#0e3b3a" />
+    <text x="614" y="72" class="field">silver.netops — tasks & playbooks</text>
+    <text x="614" y="92" class="field">workers, exec_log, dry-run, rollback</text>
+
+    <!-- payments -->
+    <rect x="880" y="48" width="240" height="120" rx="6" fill="#0e3b3a" />
+    <text x="894" y="72" class="field">silver.payments — bank.tx, reconciliation</text>
+    <text x="894" y="92" class="field">matcher rules, dead-letter queue</text>
+
+    <!-- arrows between helpdesk -> netops -> devices -->
+    <line x1="380" y1="168" x2="600" y2="168" class="edge" marker-end="url(#arrow)"/>
+    <line x1="760" y1="168" x2="520" y2="300" class="edge" marker-end="url(#arrow)"/>
+    <line x1="760" y1="168" x2="760" y2="300" class="edge" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
+    <text x="420" y="198" class="note">Ticket → tarea NetOps → ejecución en OLT/Router (playbook)</text>
+
+    <!-- inventory -> contract relation -->
+    <line x1="220" y1="120" x2="980" y2="200" class="edge" marker-end="url(#arrow)"/>
+    <text x="520" y="150" class="note">CPE asignado ↔ contrato (trazabilidad)</text>
+  </g>
+
+  <!-- LEGEND -->
+  <g transform="translate(28,820)">
+    <rect x="0" y="-18" width="1144" height="70" rx="8" fill="#071028" />
+    <text x="16" y="0" class="legend-text">Leyenda: </text>
+    <rect x="90" y="-12" width="16" height="12" fill="#1e4f86" rx="2" /><text x="112" y="0" class="legend-text">Pasivo / Geo-assets (postes, cajas, splitters)</text>
+    <rect x="420" y="-12" width="16" height="12" fill="#6a391d" rx="2" /><text x="442" y="0" class="legend-text">Activos de red (OLT, tarjetas, puertos, core)</text>
+    <rect x="780" y="-12" width="16" height="12" fill="#1f5f3e" rx="2" /><text x="802" y="0" class="legend-text">Negocio / Servicio (clientes, contratos, planes)</text>
+    <line x1="90" y="18" x2="110" y2="18" class="edge" /><text x="116" y="22" class="legend-text">Relación FK / referencia</text>
+    <line x1="310" y="18" x2="330" y2="18" class="edge-highlight" marker-end="url(#arrow_yellow)"/><text x="336" y="22" class="legend-text">Vínculo crítico: reserva de puerto / reprovisión (Contrato → Puerto/Splitter/RADIUS)</text>
+  </g>
+
+  <!-- Footer notes -->
+  <text x="28" y="760" class="note">Notas clave: 1) la **reserva de puerto/splitter** es el cuello de botella operacional; 2) RADIUS/CoA y idempotencia deben ser probados en UAT; 3) conciliación bancaria requiere reglas y DLQ.</text>
+  <text x="28" y="782" class="note">Si quieres: exporto un PNG, un SVG con capas por rol (toggle) o un ERD con todos los campos y FK trazables.</text>
+
+</svg>
