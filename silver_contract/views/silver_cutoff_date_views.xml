@@ -1,0 +1,285 @@
+<odoo>
+    <data>
+        <!-- silver.cutoff.date tree view -->
+        <record id="silver_cutoff_date_view_tree" model="ir.ui.view">
+            <field name="name">silver.cutoff.date.view.tree</field>
+            <field name="model">silver.cutoff.date</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="plan_type_id"/>
+                    <field name="recurring_invoicing_type"/>
+                    <field name="day_invoice"/>
+                    <field name="day_cut"/>
+                    <field name="days_grace"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- silver.cutoff.date form view -->
+        <record id="silver_cutoff_date_view_form" model="ir.ui.view">
+            <field name="name">silver.cutoff.date.view.form</field>
+            <field name="model">silver.cutoff.date</field>
+            <field name="arch" type="xml">
+                <form string="Período de Consumo">
+                    <header>
+                        <button icon="fa-spinner" type="object" name="action_update_contract_date_cut" string="Actualizar Fecha Corte" class="oe_highlight" invisible="type_cut == 'days'"/>
+                        <button icon="fa-spinner" type="object" name="action_update_date_invoice" string="Actualizar Fecha Facturación" class="oe_highlight"/>
+                    </header>
+                    <sheet string="Período de consumo">
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" string="Activo" widget="boolean_button"/>
+                            </button>
+                            <button name="action_open_contract" class="oe_stat_button" type="object" icon="fa-link">
+                                <field string="Contratos" name="contract_actives" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="display_name" readonly="1"/>
+                            </h1>
+                            <h1>
+                                <field name="date_cut" force_save="1" invisible="type_cut == 'days'" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="plan_type_id" required="1" widget="selection"/>
+                                <field name="recurring_invoicing_type" required="1" widget="selection"/>
+                                <field name="name" required="1"/>
+                                <field name="type_cut" required="1"/>
+                                <field name="day_cut" invisible="type_cut == 'days'" required="type_cut != 'days'"/>
+                                <field name="month_grace" invisible="recurring_invoicing_type == 'post'" required="1"/>
+                                <field name="days_grace" invisible="month_grace == '2'" required="1"/>
+                                <field name="publish_invoices" widget="boolean_toggle" string="¿Publicar Facturas?" invisible="1"/>
+                                <field name="is_invoice_debts" widget="boolean_toggle"/>
+                                <field name="is_draft_invoices" widget="boolean_toggle" invisible="is_invoice_debts == False"/>
+                                <field name="is_active_umbral" widget="boolean_toggle"/>
+                                <field name="amount_exempt_cut" invisible="is_active_umbral == False"/>
+                            </group>
+                            <group>
+                                <field name="is_cutoff_service" widget="boolean_toggle"/>
+                                <field name="is_skip_cutoff" widget="boolean_toggle" invisible="is_cutoff_service == False"/>
+                                <field name="date_cut" force_save="1" invisible="type_cut == 'days'" readonly="1"/>
+                                <field name="last_month" readonly="1" force_save="1" invisible="type_cut == 'days'"/>
+                            </group>
+                        </group>
+                        <notebook colspan="4">
+                            <page name="config" string="Configuracion Generales">
+                                <group string="Período de Consumo" invisible="type_cut == 'days'">
+                                    <group>
+                                        <field name="day_consumption" required="1"/>
+                                        <field name="days_grace_comsumption" required="1"/>
+                                    </group>
+                                    <group>
+                                        <label for="date_from" string="Período"/>
+                                        <div>
+                                            <field name="date_from" class="oe_inline" readonly="1"/>-
+                                            <field name="date_to" class="oe_inline" readonly="1"/>
+                                        </div>
+                                        <field name="month_comsumption" invisible="1"/>
+                                    </group>
+                                </group>
+                                <group string="Período de Consumo" name="period_days" invisible="type_cut != 'days'">
+                                    <group>
+                                        <field name="type_period" widget="selection"/>
+                                    </group>
+                                </group>
+                                <group string="Prorateo" name="apportion" invisible="type_cut == 'days'">
+                                    <group>
+                                        <field name="is_apportion" widget="boolean_toggle"/>
+                                        <field name="apportion_next_date" widget="boolean_toggle"/>
+                                        <field name="is_round_up" widget="boolean_toggle" invisible="is_apportion == False"/>
+                                        <field name="invoice_advance_month" widget="boolean_toggle" invisible="(is_apportion == False) or (recurring_invoicing_type == 'post')"/>
+                                    </group>
+                                    <group>
+                                        <label for="day_from_prorate" string="Proratear desde" invisible="is_apportion == False"/>
+                                        <div invisible="is_apportion == False">
+                                            <field name="day_from_prorate" class="oe_inline" required="is_apportion == True"/>al
+                                            <field name="day_to_prorate" class="oe_inline" required="is_apportion == True"/>
+                                        </div>
+                                        <field name="has_iptv_discount" widget="boolean_toggle" invisible="is_apportion == False"/>
+                                    </group>
+                                </group>
+                                <group name="facturacion" string="Facturación">
+                                    <group>
+                                        <field name="is_day_start" widget="boolean_toggle" invisible="type_cut == 'date'"/>
+                                        <field name="day_invoice" invisible="is_day_start == True" required="1"/>
+                                        <field name="type_date_invoice" required="1"/>
+                                        <field name="is_fac_extra_value" widget="boolean_toggle"/>
+                                        <field name="is_fac_material_extra" widget="boolean_toggle" invisible="is_fac_extra_value == False"/>
+                                        <field name="is_select_journal_invoice" widget="boolean_toggle"/>
+                                        <field name="make_invoice_bolivares" widget="boolean_toggle"/>
+                                        <field name="advance_invoice" widget="boolean_toggle" invisible="is_day_start == False"/>
+                                    </group>
+                                    <group>
+                                        <field name="date_invoice" invisible="is_day_start == True" readonly="1"/>
+                                        <field name="is_preinvoice" widget="boolean_toggle"/>
+                                        <field name="is_invoice_posted" widget="boolean_toggle" invisible="is_preinvoice == False"/>
+                                        <!--field name="journal_preinvoice_id" invisible="is_invoice_posted != True" required="is_invoice_posted == True"/-->
+                                        <field name="is_preinvoice_active" widget="boolean_toggle" invisible="is_preinvoice == False"/>
+                                        <field name="is_preinvoice_removal_list" widget="boolean_toggle" invisible="is_preinvoice == False"/>
+                                    </group>
+                                </group>
+                                <group string="Promesas de Pago">
+                                    <group>
+                                        <field name="payment_promise_day_cut"/>
+                                        <field name="is_apply_active_ct" widget="boolean_toggle"/>
+                                    </group>
+                                    <group>
+                                        <field name="pay_promise_day_cut"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="reconex" string="Reconexiones">
+                                <group>
+                                    <field name="is_aditional_preinvoice" widget="boolean_toggle"/>
+                                    <field name="reconnection_policy" required="(apply_reconnection == True) or (is_aditional_preinvoice == True)" invisible="(is_aditional_preinvoice == False) and (apply_reconnection == False)"/>
+                                    <field name="product_reconnection_id" required="(apply_reconnection == True) or (is_aditional_preinvoice == True)" invisible="(is_aditional_preinvoice == False) and (apply_reconnection == False)" options="{'no_create': True, 'no_create_edit':True}" domain="[('detailed_type','=','service')]"/>
+                                    <field name="apply_reconnection" widget="boolean_toggle"/>
+                                    <field name="is_reconnection_required" widget="boolean_toggle" invisible="apply_reconnection == False"/>
+                                    <field name="is_not_apply_cutoff" widget="boolean_toggle" invisible="apply_reconnection == False"/>
+                                    <field name="is_proration_cutoff" widget="boolean_toggle" invisible="is_not_apply_cutoff == False"/>
+                                    <field name="advance_invoice" widget="boolean_toggle" invisible="is_day_start == False"/>
+                                </group>
+                                <group invisible="apply_reconnection == False">
+                                    <group>
+                                        <field name="charge_proration" widget="boolean_toggle"/>
+                                        <field name="charge_reconection_portal" widget="boolean_toggle"/>
+                                        <field name="is_status_removal_list" invisible="(charge_reconection_portal == False) or (apply_reconnection == False)" widget="boolean_toggle"/>
+                                        <field name="is_status_disabled" invisible="(is_not_apply_cutoff == True) or (charge_reconection_portal == False) or (apply_reconnection == False)" widget="boolean_toggle"/>
+                                        <field name="days_without_proration" widget="boolean_toggle" invisible="charge_proration == False"/>
+                                        <field name="number_days_without_proration" invisible="days_without_proration == False"/>
+                                        <field name="reconnection_type" widget="selection"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="product_remove_reconnection_id" required="apply_reconnection == True" invisible="apply_reconnection == False" options="{'no_create': True, 'no_create_edit':True}" domain="[('detailed_type','=','service')]"/>
+                                </group>
+                                <group invisible="apply_reconnection == False">
+                                    <group invisible="reconnection_type == 'static'">
+                                        <label for="day_reconnection_from" string="Rango de mora"/>
+                                        <div>
+                                            <field name="day_reconnection_from" class="oe_inline" required="apply_reconnection == True"/>-
+                                            <field name="day_reconnection_to" class="oe_inline" required="apply_reconnection == True"/>días
+                                        </div>
+                                        <label for="day_reconnection_rl_from" string="Rango de mora"/>
+                                        <div>
+                                            <field name="day_reconnection_rl_from" class="oe_inline" required="apply_reconnection == True"/>-
+                                            <field name="day_reconnection_rl_to" class="oe_inline" required="apply_reconnection == True"/>días
+                                        </div>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="skip_cutoff" string="Omitir Cortes" invisible="is_skip_cutoff == False">
+                                <group>
+                                    <field name="is_cutoff_friday" widget="boolean_toggle"/>
+                                    <field name="is_cutoff_saturday" widget="boolean_toggle"/>
+                                    <field name="is_cutoff_sunday" widget="boolean_toggle"/>
+                                    <field name="is_cutoff_monday" widget="boolean_toggle"/>
+                                </group>
+                                <field name="contract_days_cutoff_line_ids"/>
+                            </page>
+                            <page name="config" string="Notificaciones">
+                                <group string="Notificaciones Email" id="n_mail">
+                                    <group id="n_mail_1">
+                                        <field name="is_active_contract_mail" widget="boolean_toggle"/>
+                                        <field name="is_preinvoice_mail" widget="boolean_toggle"/>
+                                        <field name="is_cutoff_mail" widget="boolean_toggle"/>
+                                    </group>
+                                    <group id="n_mail_2">
+                                        <field name="is_send_preinvoice_mail" widget="boolean_toggle"/>
+                                        <field name="is_payment_mail" widget="boolean_toggle"/>
+                                        <field name="is_removal_list_mail" widget="boolean_toggle"/>
+                                    </group>
+                                    <group id="n_mail_3">
+                                        <field name="color" widget="color_picker"/>
+                                    </group>
+                                </group>
+                                <group string="Notificaciones Recurrentes Email" id="n2_mail">
+                                    <group id="n2_mail_1">
+                                        <field name="is_amount_due_cutoff_mail" widget="boolean_toggle"/>
+                                        <field name="day_cutoff_recursive_mail" invisible="is_amount_due_cutoff_mail == False"/>
+                                    </group>
+                                    <group id="n2_mail_2">
+                                        <field name="is_amount_due_mail" widget="boolean_toggle"/>
+                                        <label for="day_recursive_mail" invisible="is_amount_due_mail == False"/>
+                                        <div invisible="is_amount_due_mail == False">
+                                            <field name="day_recursive_mail" class="oe_inline"/>repeticiones:
+                                            <field name="quantity_recursive_mail" class="oe_inline"/>
+                                        </div>
+                                        <field name="is_outstanding_debts" widget="boolean_toggle" invisible="is_amount_due_mail == False"/>
+                                    </group>
+                                </group>
+                                <group string="Notificaciones WhatsApp" id="n_wp">
+                                    <group id="n_wp_1">
+                                        <field name="is_active_contract_wp" widget="boolean_toggle"/>
+                                        <field name="is_preinvoice_wp" widget="boolean_toggle"/>
+                                        <field name="is_payment_wp" widget="boolean_toggle"/>
+                                        <field name="is_amount_due_wp" widget="boolean_toggle"/>
+                                        <field name="is_cutoff_wp" widget="boolean_toggle"/>
+                                        <field name="is_removal_list_wp" widget="boolean_toggle"/>
+                                        <field name="is_send_preinvoice_wp" widget="boolean_toggle"/>
+                                        <field name="is_end_date_shipping" widget="boolean_toggle"/>
+                                        <field name="end_date_shipping" invisible="is_end_date_shipping == False"/>
+                                    </group>
+                                    <group id="n_wp_2">
+                                        <field name="template_active_contract_wp" invisible="is_active_contract_wp == False"/>
+                                        <field name="template_preinvoice_wp" invisible="is_preinvoice_wp == False"/>
+                                        <field name="template_payment_wp" invisible="is_payment_wp == False"/>
+                                        <field name="template_amount_due_wp" invisible="is_amount_due_wp == False"/>
+                                        <field name="is_outstanding_debts" invisible="is_amount_due_wp == False" widget="boolean_toggle"/>
+                                        <field name="template_cutoff_wp" invisible="is_cutoff_wp == False"/>
+                                        <field name="template_removal_list_wp" invisible="is_removal_list_wp == False"/>
+                                        <field name="template_send_preinvoice_wp" invisible="is_send_preinvoice_wp == False"/>
+                                    </group>
+                                </group>
+                                <group string="Notificaciones Recurrentes WhatsApp" id="n2_wp">
+                                    <group id="n2_wp_1">
+                                        <field name="is_amount_due_cutoff_wp" widget="boolean_toggle"/>
+                                        <field name="day_cutoff_recursive_wp" invisible="is_amount_due_cutoff_wp == False"/>
+                                    </group>
+                                    <group id="n2_wp_2">
+                                        <field name="is_amount_due_recursive_wp" widget="boolean_toggle"/>
+                                        <label for="day_recursive_wp" invisible="is_amount_due_recursive_wp == False"/>
+                                        <div invisible="is_amount_due_recursive_wp == False">
+                                            <field name="day_recursive_wp" class="oe_inline"/>repeticiones:
+                                            <field name="quantity_recursive_wp" class="oe_inline"/>
+                                        </div>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="others" string="Otros">
+                                <group id="n_other_1">
+                                    <field name="is_payment_selected_journal" widget="boolean_toggle"/>
+                                    <field name="days_cut_benefit" invisible="is_payment_selected_journal == False"/>
+                                    <field name="additional_users" widget="boolean_toggle"/>
+                                    <field name="is_accumulate_discounts" widget="boolean_toggle"/>
+                                </group>
+                                <!--group id="n_other_2">
+                                    <field name="journal_benefits_ids" widget="many2many_tags" invisible="is_payment_selected_journal == False"/>
+                                    <field name="date_cut_with_benefit" readonly="1" invisible="(is_payment_selected_journal == False) or (type_cut == 'days')" force_save="1"/>
+                                </group-->
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="o_attachment_preview"/>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- silver.cutoff.date action window -->
+        <record id="silver_cutoff_date_action" model="ir.actions.act_window">
+            <field name="name">Periodos de Consumo</field>
+            <field name="res_model">silver.cutoff.date</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

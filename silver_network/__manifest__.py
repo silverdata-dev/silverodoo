@@ -10,7 +10,7 @@
     'website': "https://www.silverdale.com",
     'category': 'Industries',
     'version': '17.0.2.1',
-    'depends': ['base', 'mail', 'stock', 'product', 'account'],
+    'depends': ['base', 'mail', 'stock', 'product', 'account', 'silver_product'],
     'data': [
         'views/silver_views.xml',
 
@@ -46,8 +46,7 @@
         'views/silver_device_pool_ip_views.xml',
         'views/silver_radius_line_views.xml',
         'views/silver_radius_user_views.xml',
-        "views/silver_map_views.xml",
-        "views/silver_menus.xml",
+        "views/menus.xml",
     ],
     'assets': {
         'web.assets_backend': [
@@ -55,9 +54,6 @@
             'silver_network/static/src/js/ppp_speed_chart.js',
             'silver_network/static/src/js/ppp_line_speed_chart.js',
             'silver_network/static/src/css/general.css',
-            # Map View Assets
-            'silver_network/static/src/css/map_view.css',
-            'silver_network/static/src/js/map_view.js',
             'silver_network/static/src/js/m2o_widget.js',
             'silver_network/static/src/js/ip_widget.js',
             'silver_network/static/src/js/node_map_widget.js',
@@ -66,7 +62,6 @@
       #  'web.assets_qweb': [
             'silver_network/static/src/xml/ppp_speed_chart.xml',
             'silver_network/static/src/xml/ppp_line_speed_chart.xml',
-            'silver_network/static/src/xml/map_view.xml',
             'silver_network/static/src/xml/node_map_widget.xml',
             'silver_network/static/src/xml/node_network_widget.xml',
         ],

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_template_form_view_inherit_silver" model="ir.ui.view">
+            <field name="name">product.template.form.inherit.silver</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+
+                <!-- 1. Replace Header Buttons -->
+                <xpath expr="//header" position="inside">
+                        <button string="Imprimir etiquetas" type="object" name="action_open_label_layout"/>
+                        <button string="Actualizar la cantidad " type="object" name="action_update_quantity_on_hand" invisible="type != 'product'"/>
+                        <button string="Reabastecer" type="action" name="355" context="{'default_product_tmpl_id': id}" invisible="type != 'product'"/>
+                </xpath>
+
+                <!-- 2. Replace the Stat Button Box -->
+                <xpath expr="//div[@name='button_box']" position="inside">
+                        <button class="oe_stat_button" name="open_pricelist_rules" icon="fa-list-ul" type="object">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="pricelist_item_count"/>
+                                </span>
+                                <span invisible="pricelist_item_count == 1">Precios extra</span>
+                                <span invisible="pricelist_item_count != 1">Precio extra</span>
+                            </div>
+                        </button>
+
+
+
+                        <!--button string="Lote / Números de serie" type="object" name="action_open_product_lot" invisible="tracking == 'none'" class="oe_stat_button" icon="fa-bars"/-->
+                        <button string="Reglas de Estrategia de Traslado" type="object" name="action_view_related_putaway_rules" class="oe_stat_button" icon="fa-random" invisible="type == 'service'" context="{'invisible_handle': True, 'single_product': product_variant_count == 1}"/>
+
+
+                </xpath>
+
+
+
+                <!-- 3. Add Priority to Title -->
+                <xpath expr="//field[@name='name']" position="before">
+                    <field name="priority" widget="priority" class="me-3"/>
+                </xpath>
+
+
+                <!-- 4. Add Recurring Invoices checkbox -->
+                <xpath expr="//div[@name='options']" position="inside">
+                    <span class="d-inline-block">
+                        <field name="recurring_invoices_ok"/>
+                        <label for="recurring_invoices_ok"/>
+                    </span>
+                </xpath>
+
+                <!-- 5. Add UoM fields to General Information -->
+                <xpath expr="//page[@name='general_information']//group[@name='group_general']" position="inside">
+                    <field name="uom_id" options="{'no_create': True}" on_change="1" required="1"/>
+                    <field name="uom_po_id" options="{'no_create': True}" on_change="1" required="1"/>
+                </xpath>
+
+                <!-- 6. Add custom fields to Standard Price group -->
+                <xpath expr="//page[@name='general_information']//group[@name='group_standard_price']" position="inside">
+                    <field name="product_brand_id" required="is_required_brand == True" placeholder="Marca"/>
+                    <field name="is_required_brand" invisible="1"/>
+                    <field name="number_list_partner"/>
+                    <field name="allow_negative_stock" invisible="type != 'product'"/>
+                    <field name="is_commission_product" widget="boolean_toggle"/>
+                    <field name="commission_percentage" invisible="is_commission_product == False" widget="percentage"/>
+                </xpath>
+
+
+                 <xpath expr="//page[@name='inventory']//group[@name='group_lots_and_weight']" position="inside">
+                    <field name="qty_extra_stock"/>
+                     <label for="weight"/>
+                     <field name="weight"/>
+                </xpath>
+
+
+                <!-- 8. Add new Notebook Pages -->
+                <xpath expr="//notebook" position="inside">
+                    <page name="fields_isp" string="Datos ISP">
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_create_group" type="object" class="oe_stat_button" icon="fa-signal" string="Crear Grupo"/>
+                        </div>
+                        <group invisible="type not in 'service'">
+                            <group string="Es un servicio de Internet">
+                                <field name="is_internet" widget="boolean_toggle"/>
+                            </group>
+                        </group>
+                        <group invisible="type not in 'service'">
+                            <group string="Ancho de Banda">
+                                <field name="uploaded_bandwidth"/>
+                                <field name="download_bandwidth"/>
+                                <field name="is_speed_control" widget="boolean_toggle"/>
+                            </group>
+                            <group string="Comparticion">
+                                <div>
+                                    <field name="sharing_bandwidth_a" class="oe_inline"/> -
+                                    <field name="sharing_bandwidth_b" class="oe_inline"/>
+                                </div>
+                            </group>
+                            <group string="Configure Queue">
+                                <field name="configure_queue_burst" widget="boolean_toggle"/>
+                                <label for="product_upload_download" string="" invisible="configure_queue_burst != True"/>
+                                <div invisible="configure_queue_burst != True">
+                                    <field name="product_upload_download" invisible="1" class="oe_inline"/>
+                                    UPLOAD-DOWNLOAD
+                                </div>
+                                <label for="burst_limit_upload" string="Burst Limit" invisible="configure_queue_burst != True"/>
+                                <div invisible="configure_queue_burst != True">
+                                    <field name="burst_limit_upload" class="oe_inline" placeholder="unlimited"/>-<field name="burst_limit_download" placeholder="unlimited" class="oe_inline"/>&amp;nbsp;bits/s
+                                </div>
+                                <label for="burst_threshold_upload" string="Burst Threshold" invisible="configure_queue_burst != True"/>
+                                <div invisible="configure_queue_burst != True">
+                                    <field name="burst_threshold_upload" class="oe_inline" placeholder="unlimited"/>-<field name="burst_threshold_download" class="oe_inline" placeholder="unlimited"/> bits/s
+                                </div>
+                                <label for="burst_time_upload" string="Burst Time" invisible="configure_queue_burst != True"/>
+                                <div invisible="configure_queue_burst != True">
+                                    <field name="burst_time_upload" class="oe_inline" placeholder="0"/>-<field name="burst_time_download" class="oe_inline" placeholder="0"/> s
+                                </div>
+                                <label for="queue_priority_upload" string="Prioridad" invisible="configure_queue_burst != True"/>
+                                <div invisible="configure_queue_burst != True">
+                                    <field name="queue_priority_upload" placeholder="8" class="oe_inline"/>-<field name="queue_priority_download" class="oe_inline" placeholder="8"/>
+                                </div>
+                            </group>
+                        </group>
+                        <group invisible="type not in 'service'">
+                            <group string="Custom Traffic Table">
+                                <field name="is_custom_traffic_table" widget="boolean_toggle"/>
+                                <field name="name_custom_traffic_table" invisible="is_custom_traffic_table != True"/>
+                            </group>
+                            <group string="Custom AddessList">
+                                <field name="is_custom_address_list" widget="boolean_toggle"/>
+                                <field name="name_address_list" invisible="is_custom_address_list != True"/>
+                                <field name="is_product_vlan" widget="boolean_toggle"/>
+                                <field name="s_vlan" invisible="is_product_vlan != True"/>
+                                <field name="c_vlan" invisible="is_product_vlan != True"/>
+                                <field name="name_custom_profile" invisible="is_product_vlan != True"/>
+                                <field name="traffic_profile_index"/>
+                            </group>
+                        </group>
+                        <group invisible="type not in 'service'">
+                            <group string="Attributes Radius">
+                                <field name="radius_id" string="Radius"/>
+                                <field name="radius_attributes_ids" widget="many2many_tags"/>
+                                <field name="profile_radius"/>
+                            </group>
+                            <group string="Custom TCON">
+                                <field name="is_custom_tcon_profile" widget="boolean_toggle"/>
+                                <field name="name_custom_tcon_profile" invisible="is_custom_tcon_profile != True"/>
+                            </group>
+                            <group string="Custom PPPoE Profile" name="custom_profile">
+                                <field name="is_custom_pppoe_profile" widget="boolean_toggle"/>
+                                <field name="name_custom_pppoe_profile" invisible="is_custom_pppoe_profile != True"/>
+                            </group>
+                        </group>
+                        <group invisible="type in 'service'">
+                            <group string="Stock Asumido por Instalacion">
+                                <field name="qty_extra_stock"/>
+                            </group>
+                            <group/>
+                        </group>
+                        <group name="ip_address" string="Direccionamiento IP">
+                            <group>
+                                <field name="type_access_net" required="1"/>
+                            </group>
+                            <group invisible="type_access_net != 'dhcp_leases'">
+                                <field name="dhcp_custom_server"/>
+                                <field name="interface"/>
+                                <field name="is_multiple_vlans" widget="boolean_toggle"/>
+                            </group>
+                        </group>
+                        <notebook colspan="4">
+                            <page name="ip_address" string="Direcciones IP" invisible="type_access_net != 'dhcp_leases'">
+                              <group>
+        <!--group string="Pools" colspan="4">
+            <field name="ip_address_pool_ids" nolabel="1"  widget="one2many_list" colspan="4" >
+                <tree multi_selectable="1"  colspan="2" editable="bottom">
+                          <field name="name" readonly="True"/>
+                    <field name="network"/>
+                    <field name="nmask"/>
+
+                     <field name="total_ips"/>
+                            <field name="used_ips"/>
+                            <field name="usage_percentage" widget="progressbar"/>
+                    </tree>
+                </field>
+
+
+        </group>
+ <button name="generar" string="Regenerar IPs" type="object"/>
+        <group  string="IPs" colspan="4">
+                <field name="ip_address_ids" nolabel="1"  colspan="4">
+                     </field>
+              </group>
+    </group-->
+                            </page>
+                        </notebook>
+                    </page>
+                    <page name="fields_iptv" string="Datos IPTV">
+                        <group>
+                            <group>
+                                <field name="is_iptv"/>
+                                <field name="code_ott"/>
+                            </group>
+                            <group/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_template_tree_view_inherit_silver" model="ir.ui.view">
+            <field name="name">product.template.tree.inherit.silver</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="replace">
+                    <tree string="Product" multi_edit="1" sample="1">
+                        <header>
+                            <button string="Print Labels" type="object" name="action_open_label_layout"/>
+                        </header>
+                        <field name="product_variant_count" invisible="1"/>
+                        <field name="sale_ok" invisible="1"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="cost_currency_id" invisible="1"/>
+                        <field name="priority" widget="priority" optional="show" nolabel="1"/>
+                        <field name="name" string="Product Name"/>
+                        <field name="default_code" optional="show"/>
+                        <field name="barcode" optional="hide" attrs="{'readonly': [('product_variant_count', '&gt;', 1)]}"/>
+                        <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company" optional="hide"/>
+                        <field name="list_price" string="Sales Price" widget="monetary" options="{'currency_field': 'currency_id'}" optional="show" decoration-muted="not sale_ok"/>
+                        <field name="standard_price" widget="monetary" options="{'currency_field': 'cost_currency_id'}" optional="show" readonly="1"/>
+                        <field name="categ_id" optional="hide"/>
+                        <field name="detailed_type" optional="hide" readonly="1"/>
+                        <field name="type" invisible="1"/>
+                        <field name="uom_id" readonly="1" optional="show" groups="uom.group_uom"/>
+                        <field name="active" invisible="1"/>
+                        <field name="activity_exception_decoration" widget="activity_exception"/>
+                    </tree>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

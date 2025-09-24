@@ -103,19 +103,6 @@ class SilverOltCardPort(models.Model):
             'target': 'current',
         }
 
-    def active_contracts(self):
-        self.ensure_one()
-        # Simulate activating contracts
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
-                'title': 'Activate Contracts',
-                'message': 'Contracts activated successfully!',
-                'type': 'success',
-            }
-        }
-
     def action_view_splitter1(self):
         self.ensure_one()
         return {
@@ -140,3 +127,6 @@ class SilverOltCardPort(models.Model):
             'target': 'current',
         }
 
+    def generar(self):
+        for record in self:
+            record.netdev_id.generar()

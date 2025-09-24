@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <!-- contract.days.cutoff.line tree view -->
+        <record id="contract_days_cutoff_line_view_tree" model="ir.ui.view">
+            <field name="name">contract.days.cutoff.line.view.tree</field>
+            <field name="model">contract.days.cutoff.line</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="day_from"/>
+                    <field name="day_to"/>
+                    <field name="days_grace"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

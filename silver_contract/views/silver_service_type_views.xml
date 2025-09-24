@@ -1,0 +1,38 @@
+<odoo>
+    <data>
+        <!-- silver.service.type tree view -->
+        <record id="silver_service_type_view_tree" model="ir.ui.view">
+            <field name="name">silver.service.type.view.tree</field>
+            <field name="model">silver.service.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- silver.service.type form view -->
+        <record id="silver_service_type_view_form" model="ir.ui.view">
+            <field name="name">silver.service.type.view.form</field>
+            <field name="model">silver.service.type</field>
+            <field name="arch" type="xml">
+                <form string="Service Type">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- silver.service.type action window -->
+        <record id="silver_service_type_action" model="ir.actions.act_window">
+            <field name="name">Service Types</field>
+            <field name="res_model">silver.service.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

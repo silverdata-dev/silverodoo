@@ -38,9 +38,6 @@
               
 <button name="action_connect_ap" type="object" class="oe_stat_button" icon="fa-signal" string="Probar Conexion" invisible="description_brand != 'mk'"/>
 
-              <button class="oe_stat_button" type="object" name="action_view_contracts" icon="fa-arrows-v">
-                                <field string="Contratos" name="contract_count" widget="statinfo"/>
-                            </button>
            </div>
 <widget name="web_ribbon" title="Active" invisible="(state == 'down') or (description_brand != 'mk')"/>
 <widget name="web_ribbon" title="Down" bg_color="bg-danger" invisible="(state == 'active') or (description_brand != 'mk')"/>

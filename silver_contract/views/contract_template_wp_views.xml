@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+        <!-- contract.template.wp tree view -->
+        <record id="contract_template_wp_view_tree" model="ir.ui.view">
+            <field name="name">contract.template.wp.view.tree</field>
+            <field name="model">contract.template.wp</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- contract.template.wp form view -->
+        <record id="contract_template_wp_view_form" model="ir.ui.view">
+            <field name="name">contract.template.wp.view.form</field>
+            <field name="model">contract.template.wp</field>
+            <field name="arch" type="xml">
+                <form string="Plantilla de WhatsApp">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="content" nolabel="1" placeholder="Escribe aquí el contenido de la plantilla..."/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- contract.template.wp action window -->
+        <record id="contract_template_wp_action" model="ir.actions.act_window">
+            <field name="name">Plantillas de WhatsApp</field>
+            <field name="res_model">contract.template.wp</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="contract_template_wp_menu" name="Plantillas de WhatsApp" parent="silver_contract_configuration_menu" action="contract_template_wp_action" sequence="120"/>
+    </data>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_template_form_view_inherit_silver_accounting" model="ir.ui.view">
+            <field name="name">product.template.form.inherit.silver.accounting</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Contabilidad" name="invoicing">
+                        <group name="properties">
+                            <group string="Por cobrar">
+                                <field name="property_account_income_id"/>
+                            </group>
+                            <group string="Por Pagar" name="payables">
+                                <field name="property_account_expense_id" readonly="purchase_ok == 0"/>
+                                <field name="property_account_creditor_price_difference" domain="[('deprecated','=',False)]" readonly="purchase_ok == 0"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

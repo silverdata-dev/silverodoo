@@ -11,7 +11,7 @@ access_address_list_channel_line,access.address.list.channel.line,model_address_
 access_silver_ip_address_pool,access.silver.ip.address.pool,model_silver_ip_address_pool,base.group_user,1,1,1,1
 access_silver_ip_address,access.silver.ip.address,model_silver_ip_address,base.group_user,1,1,1,1
 access_silver_core_port_line,access.silver.core.port.line,model_silver_core_port_line,base.group_user,1,1,1,1
-access_product_brand,access.product.brand,model_product_brand,base.group_user,1,1,1,1
+
 access_silver_olt,access.silver.olt,model_silver_olt,base.group_user,1,1,1,1
 access_silver_olt_card,access.silver.olt.card,model_silver_olt_card,base.group_user,1,1,1,1
 access_silver_olt_card_port,access.silver.olt.card.port,model_silver_olt_card_port,base.group_user,1,1,1,1
@@ -26,7 +26,7 @@ access_silver_onu_line,access.silver.onu.line,model_silver_onu_line,base.group_u
 access_device_pool_ip,access.silver_device.pool.ip,model_silver_device_pool_ip,base.group_user,1,1,1,1
 access_silver_radius_line,access.silver.radius.line,model_silver_radius_line,base.group_user,1,1,1,1
 access_silver_radius_user,access.silver.radius.user,model_silver_radius_user,base.group_user,1,1,1,1
-access_silver_contract,access.silver.contract,model_silver_contract,base.group_user,1,1,1,1
+
 access_silver_netdev_interface_wizard,access.silver.netdev.interface.wizard,model_silver_netdev_interface_wizard,base.group_user,1,1,1,1
 access_silver_netdev_interface_wizard_line,access.silver.netdev.interface.wizard.line,model_silver_netdev_interface_wizard_line,base.group_user,1,1,1,1
 access_silver_netdev_route_wizard,access.silver.netdev.route.wizard,model_silver_netdev_route_wizard,base.group_user,1,1,1,1

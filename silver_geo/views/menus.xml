@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_isp_mapa" name="Mapa"   parent="silver_network.menu_silver_network_root" sequence="20"/>
+
+        <!-- Menu Item -->
+        <menuitem id="menu_isp_asset_mapa"
+                  name="Mapa"
+                  parent="menu_isp_mapa"
+                  action="action_silver_asset_map"
+                  sequence="1"/>
+    </data>
+</odoo>

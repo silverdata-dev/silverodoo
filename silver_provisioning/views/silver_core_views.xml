@@ -10,6 +10,8 @@
                     <button class="oe_stat_button" type="object" name="action_view_contracts" icon="fa-arrows-v">
                         <field string="Contratos" name="contract_count" widget="statinfo"/>
                     </button>
+
+
                 </xpath>
             </field>
         </record>

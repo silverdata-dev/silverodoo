@@ -330,3 +330,7 @@ class SilverRadiusLine(models.Model):
         ("active_bandwidth", "Activar/Ancho Banda"),
         ("cutoff", "Cortar")
     ], string="Función")
+
+    def generar(self):
+        for record in self:
+            record.netdev_id.generar()

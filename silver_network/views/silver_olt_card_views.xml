@@ -34,9 +34,6 @@
                             <button class="oe_stat_button" type="object" name="action_view_olt_card_ports" icon="fa-arrows-v">
                                 <field string="Puertos OLT" name="olt_card_port_count" widget="statinfo"/>
                             </button>
-                            <button class="oe_stat_button" type="object" name="action_view_contracts" icon="fa-link">
-                                <field string="Contratos" name="contracts_card_count" widget="statinfo"/>
-                            </button>
                         </div>
                         <div class="oe_title">
                             <h1><field name="name" readonly="1"/></h1>

@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+        <!-- silver.reception.channel tree view -->
+        <record id="silver_reception_channel_view_tree" model="ir.ui.view">
+            <field name="name">silver.reception.channel.view.tree</field>
+            <field name="model">silver.reception.channel</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="is_internal_referral"/>
+                    <field name="commission_percentage"/>
+                    <field name="team_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- silver.reception.channel form view -->
+        <record id="silver_reception_channel_view_form" model="ir.ui.view">
+            <field name="name">silver.reception.channel.view.form</field>
+            <field name="model">silver.reception.channel</field>
+            <field name="arch" type="xml">
+                <form string="Reception Channel">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="is_internal_referral"/>
+                            <field name="commission_percentage"/>
+                            <field name="team_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- silver.reception.channel action window -->
+        <record id="silver_reception_channel_action" model="ir.actions.act_window">
+            <field name="name">Reception Channels</field>
+            <field name="res_model">silver.reception.channel</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

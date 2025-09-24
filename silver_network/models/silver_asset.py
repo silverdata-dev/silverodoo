@@ -36,7 +36,7 @@ class SilverAsset(models.Model):
     street2 = fields.Char(string='Calle 2')
     zip = fields.Char(string='Codigo Postal')
     state_id = fields.Many2one('res.country.state', string='Estado')
-    country_id = fields.Many2one('res.country', string='País')
+    country_id = fields.Many2one('res.country', string='País', default=lambda self: self._get_default_country())
     place = fields.Char(string='Edificio/Zona')
     n = fields.Char(string='Número')
     nn = fields.Char(string='Correlativo')
@@ -55,3 +55,6 @@ class SilverAsset(models.Model):
 
     line_string_wkt = fields.Char(string='LineString WKT')
     color = fields.Char(string="Color")
+
+    def _get_default_country(self):
+        return self.env['res.country'].search([('code', '=', 'VE')], limit=1)

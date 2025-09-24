@@ -21,7 +21,7 @@ class SilverContract(models.Model):
     service_type_id = fields.Many2one('silver.service.type', string="Tipo de Servicio", required=True)
     plan_type_id = fields.Many2one('silver.plan.type', string="Tipo de Plan", required=True)
     contract_term_id = fields.Many2one('silver.contract.term', string="Período de Permanencia")
-    cutoff_day_id = fields.Many2one('silver.cutoff.day', string="Día de Corte")
+    cutoff_date_id = fields.Many2one('silver.cutoff.date', string="Periodo de Consumo")
     tag_ids = fields.Many2many('silver.contract.tag', string="Etiquetas")  # TODO: Crear modelo silver.contract.tag
 
     # Campos de Servicio (reemplazan a los anteriores)
@@ -59,7 +59,7 @@ class SilverContract(models.Model):
     street2 = fields.Char(string='Calle 2')
     city = fields.Char(string='Ciudad')
     state_id = fields.Many2one('res.country.state', string='Estado/Provincia')
-    country_id = fields.Many2one('res.country', string='País')
+    country_id = fields.Many2one('res.country', string='País', default=lambda self: self._get_default_country())
     zip = fields.Char(string='Código Postal')
     contract_latitude = fields.Float(string='Latitud', digits=(10, 7))
     contract_longitude = fields.Float(string='Longitud', digits=(10, 7))
@@ -77,15 +77,22 @@ class SilverContract(models.Model):
 
     # --- Pestaña: Documentación ---
     doc_vat_copy = fields.Binary(string="Copia de RIF/CI", attachment=True)
+    doc_vat_copy_filename = fields.Char(string="Nombre de archivo de Copia de RIF/CI")
     installation_request = fields.Binary(string="Solicitud de Instalación", attachment=True)
+    installation_request_filename = fields.Char(string="Nombre de archivo de Solicitud de Instalación")
     service_contract = fields.Binary(string="Contrato de Servicio Firmado", attachment=True)
+    service_contract_filename = fields.Char(string="Nombre de archivo de Contrato de Servicio Firmado")
     basic_service_sheet = fields.Binary(string="Ficha de Servicio Básico", attachment=True)
+    basic_service_sheet_filename = fields.Char(string="Nombre de archivo de Ficha de Servicio Básico")
     is_validated = fields.Boolean(string="Documentación Validada")
 
     # --- Pestaña: Notificaciones ---
     is_portal_user = fields.Boolean(string="Es Usuario del Portal", compute="_compute_is_portal_user")
     dont_send_notification_wp = fields.Boolean(string="No Enviar Notificaciones por WhatsApp")
     links_payment = fields.Char(string="Enlaces de Pago", compute="_compute_links_payment", readonly=True)
+
+    def _get_default_country(self):
+        return self.env['res.country'].search([('code', '=', 'VE')], limit=1)
 
     @api.model
     def create(self, vals):

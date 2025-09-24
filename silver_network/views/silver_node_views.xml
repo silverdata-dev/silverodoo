@@ -68,9 +68,9 @@
                                         <field name="country_id"/>
                                         <field name="state_id" domain="[('country_id','=', country_id)]"/>
                                         <field name="zip"/>
-                                        <field name="journal_id"/>
+                                        <!--field name="journal_id"/>
                                         <field name="account_analytic_id"/>
-                                        <field name="account_cost_analytic_id"/>
+                                        <field name="account_cost_analytic_id"/-->
                                     </group>
                                     <group>
                                         <field name="phone"/>
@@ -91,9 +91,6 @@
                                         <field name="distance"/>
                                     </group>
                                 </group>
-                            </page>
-                            <page name="map_view" string="Mapa">
-                                <field name="id" class="map-field" widget="node_map"/>
                             </page>
                             <page string="Network Graph" name="network_graph">
                                 <field name="id" class="map-field" widget="node_network"/>

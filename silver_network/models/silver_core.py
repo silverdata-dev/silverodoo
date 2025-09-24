@@ -122,7 +122,7 @@ class SilverCore(models.Model):
     custom_list_layoff = fields.Char(string='Suspendidos')
 
     dhcp_custom_server = fields.Char(string='DHCP Leases')
-    brand_description = fields.Text(string='Descripción', readonly=False)
+    #brand_description = fields.Text(string='Descripción', readonly=False)
     software_version = fields.Char(string='Versión Software')
     poolip = fields.Char(string='Poolip')
     user_profile_radius = fields.Char(string='User PROFILE')
@@ -197,7 +197,7 @@ class SilverCore(models.Model):
             record.olt_count = self.env['silver.olt'].search_count([('core_id', '=', record.id)])
             record.radius_count = self.env['silver.radius'].search_count([('core_id', '=', record.id)])
             record.ap_count = self.env['silver.ap'].search_count([('node_ids', 'in', record.node_ids.ids)])
-            #record.contracts_cores_count = self.env['silver.contract'].search_count([('core_id', '=', record.id)])
+
 
     @api.model
     def default_get(self, fields_list):
@@ -216,6 +216,9 @@ class SilverCore(models.Model):
         print(("default", res, r, rr))
         return res
 
+    def generar(self):
+        for record in self:
+            record.netdev_id.generar()
 
     def create_ap(self):
         self.ensure_one()

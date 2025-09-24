@@ -1,11 +1,14 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_silver_contract,access.silver.contract,model_silver_contract,base.group_user,1,1,1,1
 access_silver_contract_user,access.silver.contract.user,model_silver_contract,base.group_user,1,1,1,1
 access_silver_contract_line_user,access.silver.contract.line.user,model_silver_contract_line,base.group_user,1,1,1,1
 access_silver_payment_type_user,access.silver.payment.type.user,model_silver_payment_type,base.group_user,1,1,1,1
 access_silver_service_type_user,access.silver.service.type.user,model_silver_service_type,base.group_user,1,1,1,1
 access_silver_plan_type_user,access.silver.plan.type.user,model_silver_plan_type,base.group_user,1,1,1,1
 access_silver_contract_term_user,access.silver.contract.term.user,model_silver_contract_term,base.group_user,1,1,1,1
-access_silver_cutoff_day_user,access.silver.cutoff.day.user,model_silver_cutoff_day,base.group_user,1,1,1,1
+access_silver_cutoff_date_user,access.silver.cutoff.date.user,model_silver_cutoff_date,base.group_user,1,1,1,1
+access_silver_cutoff_factor_user,access.silver.cutoff.factor.user,model_silver_cutoff_factor,base.group_user,1,1,1,1
 access_silver_discount_plan_user,access.silver.discount.plan.user,model_silver_discount_plan,base.group_user,1,1,1,1
 access_silver_contract_discount_line_user,access.silver.contract.discount.line.user,model_silver_contract_discount_line,base.group_user,1,1,1,1
 access_silver_contract_holding_user,access.silver.contract.holding.user,model_silver_contract_holding,base.group_user,1,1,1,1
@@ -22,3 +25,5 @@ access_silver_ip_pool_line_user,access.silver.ip.pool.line.user,model_silver_ip_
 access_silver_contract_consumption_user,access.silver.contract.consumption.user,model_silver_contract_consumption,base.group_user,1,1,1,1
 access_silver_contract_radius_entry_user,access.silver.contract.radius.entry.user,model_silver_contract_radius_entry,base.group_user,1,1,1,1
 access_silver_ping_wizard_user,access.silver.ping.wizard.user,model_silver_ping_wizard,base.group_user,1,1,1,1
+access_contract_days_cutoff_line,access.contract.days.cutoff.line,model_contract_days_cutoff_line,base.group_user,1,1,1,1
+access_contract_template_wp,access.contract.template.wp,model_contract_template_wp,base.group_user,1,1,1,1

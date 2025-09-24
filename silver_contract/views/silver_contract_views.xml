@@ -1,25 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!-- silver.contract tree view -->
+        <record id="silver_contract_view_tree" model="ir.ui.view">
+            <field name="name">silver.contract.view.tree</field>
+            <field name="model">silver.contract</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="state"/>
+                    <field name="state_service"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- silver.contract form view -->
         <record id="silver_contract_view_form" model="ir.ui.view">
-            <field name="name">silver.contract.form</field>
+            <field name="name">silver.contract.view.form</field>
             <field name="model">silver.contract</field>
             <field name="arch" type="xml">
                 <form string="Contrato">
                     <header>
-                        <button name="action_open" string="Confirmar Contrato" type="object" class="oe_highlight" invisible="state != 'draft'"/>
-                        <button name="action_cancel" string="Anular" type="object" invisible="state != 'draft'"/>
+                        <button name="action_open" type="object" string="Open" class="oe_highlight" invisible="state != 'draft'"/>
+                        <button name="action_cancel" type="object" string="Cancel"  invisible="state in ['cancel', 'done']"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,open,done"/>
                     </header>
                     <sheet>
-                        <div class="oe_button_box" name="button_box">
-                            <!-- Stat buttons se añadirán aquí en futuras iteraciones -->
-                        </div>
                         <div class="oe_title">
-                            <h1><field name="name" readonly="1"/></h1>
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
                         </div>
                         <group>
                             <group>
+                                <field name="state" invisible="1"/>
                                 <field name="partner_id" readonly="state != 'draft'"/>
                                 <field name="holding_id" readonly="state != 'draft'"/>
                                 <!--field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" readonly="state != 'draft'"/-->
@@ -27,17 +43,17 @@
                             <group>
                                 <field name="state_service" widget="badge" decoration-danger="state_service in ('disabled','removed')" decoration-warning="state_service == 'removal_list'" decoration-success="state_service == 'active'" decoration-info="state_service in ('suspended', 'inactive')"/>
                             </group>
-                        </group>
+                            </group>
                         <group>
                             <group>
                                 <field name="service_type_id" readonly="state != 'draft'"/>
                                 <field name="plan_type_id" readonly="state != 'draft'"/>
-                            </group>
+                        </group>
                             <group>
-                                <field name="cutoff_day_id" readonly="state != 'draft'"/>
+                                <field name="cutoff_date_id" readonly="state != 'draft'"/>
                                 <field name="contract_term_id" readonly="state != 'draft'"/>
                             </group>
-                        </group>
+                                </group>
                         <notebook>
                                                         <page string="Servicios Recurrentes" name="invoice_info">
                                 <separator string="Líneas de Servicio Recurrente"/>
@@ -47,8 +63,8 @@
                                         <field name="name"/>
                                         <field name="quantity"/>
                                         <field name="price_unit"/>
-                                        <field name="price_subtotal"/>
-                                        <field name="line_type" invisible="1"/>
+                                        <field name="price_subtotal" sum="Total"/>
+                                         <field name="line_type" invisible="1"/>
                                     </tree>
                                 </field>
                                 <separator string="Valores Extra (Cargos Únicos)"/>
@@ -58,11 +74,11 @@
                                         <field name="name"/>
                                         <field name="quantity"/>
                                         <field name="price_unit"/>
-                                        <field name="price_subtotal"/>
-                                        <field name="line_type" invisible="1"/>
+                                        <field name="price_subtotal" sum="Total"/>
+                                         <field name="line_type" invisible="1"/>
                                     </tree>
                                 </field>
-                                <group name="invoice_fields">
+                                                              <group name="invoice_fields">
                                     <group>
                                         <field name="payment_type_id" readonly="state != 'draft'"/>
                                     </group>
@@ -72,7 +88,7 @@
                                     </group>
                                 </group>
                             </page>
-                                                        <page name="anticipated_payment" string="Pago Anticipado">
+                                <page name="anticipated_payment" string="Pago Anticipado">
                                 <field name="anticipated_payment_line_ids" readonly="state != 'draft'">
                                     <tree editable="bottom">
                                         <field name="date"/>
@@ -82,7 +98,19 @@
                                     </tree>
                                 </field>
                             </page>
-                            <!--page name="payment_promises" string="Promesas de Pago">
+                            <page string="Discounts and Promotions">
+                                <group>
+                                    <field name="discount_plan_id"/>
+                                </group>
+                                <field name="discount_line_ids">
+                                    <tree editable="bottom">
+                                        <field name="description"/>
+                                        <field name="amount"/>
+                                        <field name="apply_date"/>
+                                    </tree>
+                                </field>
+                            </page>
+                             <!--page name="payment_promises" string="Promesas de Pago">
                                 <field name="payment_promise_ids" readonly="state != 'draft'">
                                     <tree editable="bottom">
                                         <field name="name"/>
@@ -111,7 +139,7 @@
                                     </group>
                                 </group>
                             </page>
-                            
+
                             <page name="silver_stock" string="Materiales Asignados">
                                 <field name="stock_line_ids" readonly="state != 'draft'">
                                     <tree editable="bottom">
@@ -123,7 +151,7 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page name="documentation" string="Documentación">
+              <page name="documentation" string="Documentación">
                                 <group string="Cargar Documentación">
                                     <group>
                                         <field name="doc_vat_copy" widget="binary" filename="'doc_vat_copy_filename'"/>
@@ -185,17 +213,17 @@
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">
-                        <field name="message_follower_ids"/>
-                        <field name="activity_ids"/>
-                        <field name="message_ids"/>
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
                     </div>
                 </form>
             </field>
         </record>
 
         <!-- Acción de Ventana -->
-        <record id="silver_contract_action1" model="ir.actions.act_window">
-            <field name="name">Contratos ISP</field>
+        <record id="silver_contract_action" model="ir.actions.act_window">
+            <field name="name">Contratos</field>
             <field name="res_model">silver.contract</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
@@ -216,10 +244,6 @@
            </searchpanel>
        </search>
    </field>
-</record>
-
-
-
-
+        </record>
     </data>
 </odoo>

@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <!-- Top menu item -->
+        <menuitem name="Contratos"
+            id="silver_contract_menu_root"/>
+
+        <!-- menu categories -->
+        <menuitem name="Contratos"
+            id="silver_contract_menu"
+            parent="silver_contract_menu_root"
+            sequence="10"/>
+
+        <menuitem name="Configuración"
+            id="silver_contract_configuration_menu"
+            parent="silver_contract_menu_root"
+            sequence="100"/>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="silver_contract_menu_act" name="Contratos" parent="silver_contract_menu" action="silver_contract_action" sequence="10"/>
+        <menuitem id="silver_payment_type_menu" name="Formas de Pago" parent="silver_contract_configuration_menu" action="silver_payment_type_action" sequence="10"/>
+        <menuitem id="silver_service_type_menu" name="Tipos de Servicio" parent="silver_contract_configuration_menu" action="silver_service_type_action" sequence="20"/>
+        <menuitem id="silver_plan_type_menu" name="Tipos de Plan" parent="silver_contract_configuration_menu" action="silver_plan_type_action" sequence="30"/>
+        <menuitem id="silver_contract_term_menu" name="Términos de Contrato" parent="silver_contract_configuration_menu" action="silver_contract_term_action" sequence="40"/>
+        <menuitem id="silver_cutoff_date_menu" name="Periodos de Consumo" parent="silver_contract_configuration_menu" action="silver_cutoff_date_action" sequence="50"/>
+        <menuitem id="silver_cutoff_factor_menu" name="Factores de Corte" parent="silver_contract_configuration_menu" action="silver_cutoff_factor_action" sequence="51"/>
+        <menuitem id="silver_discount_plan_menu" name="Planes de Descuento" parent="silver_contract_configuration_menu" action="silver_discount_plan_action" sequence="60"/>
+        <menuitem id="silver_contract_holding_menu" name="Holdings de Contratos" parent="silver_contract_configuration_menu" action="silver_contract_holding_action" sequence="70"/>
+        <menuitem id="silver_reception_channel_menu" name="Canales de Recepción" parent="silver_contract_configuration_menu" action="silver_reception_channel_action" sequence="80"/>
+        <menuitem id="silver_contract_tag_menu" name="Etiquetas de Contrato" parent="silver_contract_configuration_menu" action="silver_contract_tag_action" sequence="90"/>
+        <menuitem id="silver_ip_pool_menu" name="Pools de IP" parent="silver_contract_configuration_menu" action="silver_ip_pool_action" sequence="100"/>
+        <menuitem id="silver_wifi_channel_line_menu" name="Canales WiFi" parent="silver_contract_configuration_menu" action="silver_wifi_channel_line_action" sequence="110"/>
+    </data>
+</odoo>

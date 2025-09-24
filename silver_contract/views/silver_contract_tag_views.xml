@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+        <!-- silver.contract.tag tree view -->
+        <record id="silver_contract_tag_view_tree" model="ir.ui.view">
+            <field name="name">silver.contract.tag.view.tree</field>
+            <field name="model">silver.contract.tag</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="color" widget="color_picker"/>
+                    <field name="is_technical"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- silver.contract.tag form view -->
+        <record id="silver_contract_tag_view_form" model="ir.ui.view">
+            <field name="name">silver.contract.tag.view.form</field>
+            <field name="model">silver.contract.tag</field>
+            <field name="arch" type="xml">
+                <form string="Contract Tag">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="color" widget="color_picker"/>
+                            <field name="is_technical"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- silver.contract.tag action window -->
+        <record id="silver_contract_tag_action" model="ir.actions.act_window">
+            <field name="name">Contract Tags</field>
+            <field name="res_model">silver.contract.tag</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

@@ -29,8 +29,6 @@
                     <header>
                         <button name="create_splitter_primary" string="Crear Splitter Primario" type="object"/>
                         <button name="create_splitter_secondary" string="Crear Splitter Secundario" type="object"/>
-                        <button name="active_contracts" type="object" class="oe_stat_button"
-                                string="Activar Contratos"/>
                     </header>
                     <sheet string="Puerto OLT ISP">
                         <!--div class="oe_button_box" name="button_box">
@@ -121,24 +119,28 @@
 
                         <notebook colspan="4">
                             <page name="ip_addresses" string="Direcciones IP">
-                                <field name="ip_address_pool_ids">
-                                    <tree editable="bottom">
-                                        <field name="name"/>
-                                        <field name="network"/>
-                                        <field name="gateway"/>
+                               <group>
+        <group string="Pools" colspan="4">
+            <field name="ip_address_pool_ids" nolabel="1"  widget="one2many_list" colspan="4" >
+                <tree multi_selectable="1"  colspan="2" editable="bottom">
+                          <field name="name" readonly="True"/>
+                    <field name="network"/>
+                    <field name="nmask"/>
 
-                                        <field name="assigned_to"/>
-                                        <field name="description"/>
-                                    </tree>
-                                </field>
-                                <field name="ip_address_ids">
-                                    <tree editable="bottom">
-                                        <field name="name"/>
-                                        <field name="cidr"/>
-                                        <field name="status"/>
-                                    </tree>
-                                </field>
+                     <field name="total_ips"/>
+                            <field name="used_ips"/>
+                            <field name="usage_percentage" widget="progressbar"/>
+                    </tree>
+                </field>
 
+
+        </group>
+ <button name="generar" string="Regenerar IPs" type="object"/>
+        <group  string="IPs" colspan="4">
+                <field name="ip_address_ids" nolabel="1"  colspan="4">
+                     </field>
+              </group>
+    </group>
                             </page>
                         </notebook>
                     </sheet>

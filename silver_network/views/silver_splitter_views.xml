@@ -37,9 +37,6 @@
                             <button class="oe_stat_button" type="object" name="action_view_boxes" icon="fa-arrows-v">
                                 <field string="Cajas NAP" name="box_count" widget="statinfo"/>
                             </button>
-                            <button class="oe_stat_button" type="object" name="action_view_contracts" icon="fa-link" invisible="type_splitter != '2'">
-                                <field string="Contratos" name="contracts_count" widget="statinfo"/>
-                            </button>
                         </div>
                         <div class="oe_title">
                             <h1><field name="name" readonly="1"/></h1>

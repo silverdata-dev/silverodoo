@@ -10,6 +10,7 @@
           <excludedPaths>
             <excludedPath local="true" path="$PROJECT_DIR$/silver_network/.history" />
             <excludedPath local="true" path="$PROJECT_DIR$/silver_network/.venv" />
+            <excludedPath local="true" path="$PROJECT_DIR$/recuro" />
           </excludedPaths>
         </serverdata>
       </paths>

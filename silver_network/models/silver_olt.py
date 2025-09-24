@@ -282,3 +282,6 @@ class SilverOlt(models.Model):
             'context': {'default_olt_id': self.id},
             'target': 'current',
         }
+    def generar(self):
+        for record in self:
+            record.netdev_id.generar()

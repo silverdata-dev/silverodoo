@@ -59,7 +59,7 @@ class SilverBox(models.Model):
         readonly=False
     )
 
-    contract_count = fields.Integer(string="Contratos", compute='_compute_contract_count')
+    #contract_count = fields.Integer(string="Contratos", compute='_compute_contract_count')
  
 
 
