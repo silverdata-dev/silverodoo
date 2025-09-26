@@ -6,8 +6,13 @@
             <field name="model">silver.ap</field>
             <field name="inherit_id" ref="silver_network.view_silver_ap_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//group[@name='ap']/group[1]" position="inside">
+                <xpath expr="//field[@name='node_ids']"  position="after">
                     <field name="stock_lot_id"/>
+                    <field name="brand_name"/>
+                    <field name="model_name"/>
+                    <field name="software_version"/>
+                    <field name="firmware_version"/>
+                    <!--field name="serial_number"/-->
                 </xpath>
             </field>
         </record>

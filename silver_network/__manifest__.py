@@ -1,5 +1,5 @@
 {
-    'name': "Infrastructura",
+    'name': "Infraestructura",
     'summary': "Módulo para la gestión de proveedores de servicios de Internet (Silver)",
     'description': """
         Este módulo proporciona las herramientas necesarias para gestionar la infraestructura de red de un Silver,

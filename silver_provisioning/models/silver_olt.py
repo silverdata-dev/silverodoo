@@ -12,3 +12,8 @@ class SilverOlt(models.Model):
         ondelete='cascade',
         help="Registro de provisioning asociado a esta OLT."
     )
+
+
+
+    def action_view_contracts(self):
+        return self.access_point_id.action_view_contracts()

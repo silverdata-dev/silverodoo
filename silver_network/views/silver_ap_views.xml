@@ -24,9 +24,10 @@
                     <field name="username"/>
                     <!--field name="description_brand" invisible="1"/-->
                     <field name="state" invisible="1"/>
-                    <field name="state" widget="badge" decoration-danger="state == 'down'" decoration-success="state == 'active'"/>
-                        <!--widget name="web_ribbon" title="Activo" invisible="state != 'active'"/>
-                        <widget name="web_ribbon" title="Down" bg_color="bg-danger" invisible="state == 'active'"/-->
+                    <field name="state" widget="badge" decoration-danger="state == 'down'"
+                           decoration-success="state == 'active'"/>
+                    <!--widget name="web_ribbon" title="Activo" invisible="state != 'active'"/>
+                    <widget name="web_ribbon" title="Down" bg_color="bg-danger" invisible="state == 'active'"/-->
 
 
                 </tree>
@@ -38,106 +39,109 @@
             <field name="model">silver.ap</field>
             <field name="arch" type="xml">
                 <form string="Equipo AP Silver">
-                <sheet>
-<div class="oe_button_box" name="button_box"> 
-              
-<button name="action_connect_ap" type="object" class="oe_stat_button" icon="fa-signal" string="Probar Conexion" />
-
-           </div>
-<widget name="web_ribbon" title="Active" invisible="(state == 'down') "/>
-<widget name="web_ribbon" title="Down" bg_color="bg-danger" invisible="(state == 'active') "/>
-                    <field name="state" invisible="1"/>
-            <div class="oe_title">
-<h1>
-<field name="name"/>
-</h1>
-</div>
-<group name="ap">
-<group>
-<field name="hostname_ap"/>
-<field name="software_version"/>
-<field name="node_ids" widget="many2many_tags" invisible="1" can_create="true" can_write="true" readonly="1"/>
-</group>
-<group>
-<!--field name="brand_id" on_change="1" can_create="false" can_write="false"/-->
-<field name="model"/>
-<!--field name="description_brand" invisible="1" readonly="1"/-->
-</group>
-</group>
-<group name="core_conexion" string="Datos Conexion">
-<group>
-<field name="ip"/>
-<field name="port"/>
-</group>
-<group>
-<field name="username"/>
-<field name="password" password="True"/>
-</group>
-</group>
-<group>
-<group name="ip_address" string="Direccionamiento IP">
-<field name="type_access_net" required="1"/>
-<field name="dhcp_custom_server" invisible="type_access_net != 'dhcp_leases'"/>
-<field name="interface" invisible="type_access_net != 'dhcp_leases'"/>
-<field name="is_dhcp_static" invisible="type_access_net != 'ip_fija'" widget="boolean_toggle"/>
-</group>
-<group name="capacity" string="Capacidad Usada AP">
-<field name="capacity_usage_ap" readonly="1"/>
-<field name="is_mgn_mac_onu" widget="boolean_toggle"/>
-</group>
-</group>
-<notebook colspan="4">
-<page string="Direcciones IP" invisible="type_access_net not in ['dhcp', 'dhcp_leases']">
-
-            <field name="ip_address_pool_ids" nolabel="1"  widget="one2many_list"  >
-                <tree multi_selectable="1"  colspan="2" editable="bottom">
-                          <field name="name" readonly="True"/>
-                    <field name="network"/>
-                    <field name="nmask"/>
-
-                     <field name="total_ips"/>
-                            <field name="used_ips"/>
-                            <field name="usage_percentage" widget="progressbar"/>
-                    </tree>
-                </field>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
 
 
+                        </div>
+                        <widget name="web_ribbon" title="Active" invisible="(state == 'down') "/>
+                        <widget name="web_ribbon" title="Down" bg_color="bg-danger" invisible="(state == 'active') "/>
+                        <field name="state" invisible="1"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group name="ap">
+                            <group>
+                                <field name="hostname_ap"/>
+ <field name="node_id"/>
+                                <field name="core_id"/>
+                                <field name="node_ids" widget="many2many_tags" invisible="1" can_create="true"
+                                       can_write="true" readonly="1"/>
+                            </group>
+  <group name="core_conexion" string="Datos Conexion">
 
- <button name="generar" string="Generar IPs" type="object"/>
+                                <field name="ip"/>
+                                <field name="port"/>
 
-                <field name="ip_address_ids" nolabel="1" >
-                     </field>
+                                <field name="username"/>
+                                <field name="password" password="True"/>
+                            <!--button name="action_connect_ap" type="object" class="oe_stat_button" icon="fa-signal"
+                                    string="Probar Conexion"/-->
+  <button name="button_test_connection" type="object" string="Test Connection" class="oe_highlight"/>
 
-            </page>
-            <page string="Datos Ubicacion">
-            <group string="Datos Ubicacion">
-<group>
-<field name="country_id" can_create="false" can_write="false"/>
-<field name="state_id" can_create="true" can_write="true"/>
-<field name="zip"/>
-</group>
-<group>
-<field name="street"/>
-<field name="street2"/>
-</group>
-</group>
-<group>
-<group string="Geolocalizacion">
-                                <label for="date_localization" string="Geolocalizacion"/>
-                                <div>
-                                    <span>Lat : </span>
-                                    <field name="gps_lat" nolabel="1" class="oe_inline"/>
-                                    <span>, Long: </span>
-                                    <field name="gps_lon" nolabel="1" class="oe_inline"/>
-                                    <br/>
-                                    <span invisible="date_localization == False">Actualizado el: </span>
-                                    <field name="date_localization" nolabel="1" class="oe_inline"/>
-                                </div>
-                    </group>
-</group>
-            </page>
-        </notebook>
-</sheet>
+                        </group>
+                        </group>
+                                              <notebook colspan="4">
+
+                             <page string="Configuración general" name="config">
+
+                        <group>
+                            <group name="ip_address" string="Direccionamiento IP">
+                                <field name="type_access_net" required="1"/>
+                                <field name="dhcp_custom_server" invisible="type_access_net != 'dhcp_leases'"/>
+                                <field name="interface" invisible="type_access_net != 'dhcp_leases'"/>
+                                <field name="is_dhcp_static" invisible="type_access_net != 'ip_fija'"
+                                       widget="boolean_toggle"/>
+                            </group>
+                            <group name="capacity" string="Capacidad Usada AP">
+                                <field name="capacity_usage_ap" readonly="1"/>
+                                <field name="is_mgn_mac_onu" widget="boolean_toggle"/>
+                            </group>
+                        </group>
+
+                             </page>
+                            <page string="Direcciones IP" invisible="type_access_net not in ['dhcp', 'dhcp_leases']">
+
+                                <field name="ip_address_pool_ids" nolabel="1" widget="one2many_list">
+                                    <tree multi_selectable="1" colspan="2" editable="bottom">
+                                        <field name="name" readonly="True"/>
+                                        <field name="network"/>
+                                        <field name="nmask"/>
+
+                                        <field name="total_ips"/>
+                                        <field name="used_ips"/>
+                                        <field name="usage_percentage" widget="progressbar"/>
+                                    </tree>
+                                </field>
+
+
+                                <button name="generar" string="Generar IPs" type="object"/>
+
+                                <field name="ip_address_ids" nolabel="1">
+                                </field>
+
+                            </page>
+                            <page string="Datos Ubicacion">
+                                <group string="Datos Ubicacion">
+                                    <group>
+                                        <field name="country_id" can_create="false" can_write="false"/>
+                                        <field name="state_id" can_create="true" can_write="true"/>
+                                        <field name="zip"/>
+                                    </group>
+                                    <group>
+                                        <field name="street"/>
+                                        <field name="street2"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group string="Geolocalizacion">
+                                        <label for="date_localization" string="Geolocalizacion"/>
+                                        <div>
+                                            <span>Lat :</span>
+                                            <field name="gps_lat" nolabel="1" class="oe_inline"/>
+                                            <span>, Long:</span>
+                                            <field name="gps_lon" nolabel="1" class="oe_inline"/>
+                                            <br/>
+                                            <span invisible="date_localization == False">Actualizado el:</span>
+                                            <field name="date_localization" nolabel="1" class="oe_inline"/>
+                                        </div>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids"/>
                         <field name="activity_ids"/>

@@ -52,6 +52,17 @@ class SilverAsset(models.Model):
     astate = fields.Selection([('new','New'),('deployed','Deployed'),('maintenance','Maintenance'),('retired','Retired')], default='new')
     notes = fields.Text()
 
+    #
+    # core_ids = fields.One2many('silver.core', 'asset_id', string='Cores')
+    #olt_ids = fields.One2many('silver.olt', 'asset_id', string='OLTs')
+    #box_ids = fields.One2many('silver.box', 'asset_id', string='Boxes')
+    #ap_ids = fields.One2many('silver.ap', 'asset_id', string='APs')
+    #cable_ids = fields.One2many('silver.cable', 'asset_id', string='Cables')
+    #splice_closure_ids = fields.One2many('silver.splice_closure', 'asset_id', string='Splice Closures')
+    #splitter_ids = fields.One2many('silver.splitter', 'asset_id', string='Splitters')
+    #post_ids = fields.One2many('silver.post', 'asset_id', string='Posts')
+    #node_ids = fields.One2many('silver.node', 'asset_id', string='Nodos')
+
 
     line_string_wkt = fields.Char(string='LineString WKT')
     color = fields.Char(string="Color")

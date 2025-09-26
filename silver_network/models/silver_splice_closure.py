@@ -12,7 +12,9 @@ class SilverSpliceClosure(models.Model):
 
     name = fields.Char(string="Nombre", related="asset_id.name", readonly=False)
 
+
     node_id = fields.Many2one('silver.node', string='Nodo')
+
     zone_id = fields.Many2one('silver.zone', string="Zona", related="asset_id.zone_id", readonly=False)
     
 
@@ -31,3 +33,5 @@ class SilverSpliceClosure(models.Model):
         store=True,
         readonly=False
     )
+
+

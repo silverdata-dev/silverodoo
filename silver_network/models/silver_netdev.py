@@ -29,7 +29,7 @@ class SilverNetdev(models.Model):
     interface = fields.Char(string='Interface')
     is_dhcp_static = fields.Boolean(string='Habilitar Dhcp Static')
     dhcp_client = fields.Boolean(string='Profiles VSOL')
-    software_version = fields.Char(string='Version Software')
+
 
     ip_address_pool_ids = fields.One2many('silver.ip.address.pool', 'netdev_id', string='Direcciones IP')
     ip_address_ids = fields.One2many('silver.ip.address', 'netdev_id', string='Direcciones IP')
@@ -44,13 +44,7 @@ class SilverNetdev(models.Model):
 
     #api_hostname = fields.Char(string='Hostname/IP', required=True)
     api_port = fields.Integer(string='API Port', default=21000, required=True)
-    vendor = fields.Selection([
-        ('mikrotik', 'MikroTik'),
-        # Add other vendors here in the future
-    ], string='Vendor', default='mikrotik', required=True)
-    model = fields.Char(string='Modelo')
-    firmware_version = fields.Char(string='Firmware Version', readonly=False)
-    serial_number = fields.Char(string='Serial Number', readonly=False)
+
 
     state = fields.Selection([('down', 'Down'), ('active', 'Active'), ('connected', 'Connected'),
         ('connecting', 'Connecting'),
@@ -61,6 +55,13 @@ class SilverNetdev(models.Model):
     radius_client_ip = fields.Char(string='Radius Server IP')
     radius_client_secret = fields.Char(string='Radius Shared Secret')
     radius_client_services = fields.Many2many('silver.radius.service', string='Radius Services') # Assuming a model silver.radius.service exists or will be created
+
+    #core_ids = fields.One2many('silver.core', 'netdev_id', string='Cores')
+    #olt_ids = fields.One2many('silver.olt', 'netdev_id', string='OLTs')
+    #olt_card_port_ids = fields.One2many('silver.olt.card.port', 'netdev_id', string='OLT Card Ports')
+    #box_ids = fields.One2many('silver.box', 'netdev_id', string='Boxes')
+    #ap_ids = fields.One2many('silver.ap', 'netdev_id', string='APs')
+    #radius_ids = fields.One2many('silver.radius', 'netdev_id', string='Radius Servers')
 
     def generar(self):
         for ret in self.ip_address_pool_ids:

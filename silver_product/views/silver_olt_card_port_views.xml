@@ -8,6 +8,11 @@
             <field name="arch" type="xml">
                 <xpath expr="//group[@name='port']/group[1]" position="inside">
                     <field name="stock_lot_id"/>
+                    <field name="brand_name"/>
+                    <field name="model_name"/>
+                    <field name="software_version"/>
+                   <field name="firmware_version"/>
+                     <!--field name="serial_number"/-->
                 </xpath>
             </field>
         </record>

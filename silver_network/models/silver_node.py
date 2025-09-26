@@ -31,6 +31,11 @@ class SilverNode(models.Model):
   #aa  stock_picking_count = fields.Integer(string='Movimientos', compute='_compute_counts')
     olt_count = fields.Integer(string='Equipos OLT', compute='_compute_counts')
 
+    core_ids = fields.One2many('silver.core', 'node_id', string='Cores')
+    olt_ids = fields.One2many('silver.olt', 'node_id', string='OLTs')
+    box_ids = fields.One2many('silver.box', 'node_id', string='Boxes')
+    #splice_closure_ids = fields.One2many('silver.splice_closure', 'node_id', string='Splice Closures')
+
 
 
 

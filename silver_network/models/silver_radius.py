@@ -32,9 +32,7 @@ class SilverRadius(models.Model):
     core_id = fields.Many2one('silver.core', string='Core')
     #nas_ids = fields.One2many('silver.radius.nas.wizard', 'radius_id', string='NAS')
 
-    core_ids = fields.Many2many('silver.core', string='Equipos Core',
-                                compute='_compute_core_ids',
-                                inverse='_inverse_core_ids')
+    core_ids = fields.One2many('silver.core', 'radius_id', string='Equipos Core')
 
     def _compute_core_ids(self):
         for record in self:
@@ -107,6 +105,8 @@ class SilverRadius(models.Model):
 
     nas_address = fields.Char(string='NAS Address')
     nas_secret = fields.Char(string='NAS Secret')
+
+    user_ids = fields.One2many('silver.radius.user', 'radius_id', string='Users')
 
     def _compute_radius_user_count(self):
         for record in self:

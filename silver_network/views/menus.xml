@@ -2,10 +2,10 @@
 <odoo>
     <data>
 
-        <menuitem id="menu_silver_network_root" name="Infrastructura" sequence="10"/>
+        <menuitem id="menu_silver_network_root" name="Infraestructura" sequence="10"/>
 
 
-                <menuitem id="menu_isp_infrastructure" name="Infrastructura"   parent="menu_silver_network_root" sequence="10"/>
+                <menuitem id="menu_isp_infrastructure" name="Infraestructura"   parent="menu_silver_network_root" sequence="10"/>
 
         <!--menuitem id="menu_isp_routers" name="Routers" parent="menu_isp_infrastructure" sequence="110"/>
 

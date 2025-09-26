@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_lot_form_silver" model="ir.ui.view">
+        <field name="name">stock.lot.form.silver</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="before">
+                    <field name="external_equipment" widget="boolean_toggle"/>
+                        <field name="series_mac"/>
+                        <field name="applied_accounting_cost" widget="boolean_toggle"/>
+                </xpath>
+            <!--xpath expr="//form" position="replace">
+                <form string="Lotes/N&#250;meros de serie">
+                <sheet>
+                <field name="display_complete" invisible="1"/>
+                <div class="oe_button_box" name="button_box" invisible="display_complete == False">
+                    <button class="oe_stat_button" name="action_view_so" type="object" icon="fa-pencil-square-o" help="Pedidos de venta"-->
+                           <!-- invisible="sale_order_count == 0 or display_complete == False">-->
+                        <!--div class="o_field_widget o_stat_info"-->
+                            <!--span class="o_stat_value">
+                                <field name="sale_order_count" widget="statinfo" nolabel="1" class="mr4"/>
+                            </span-->
+                            <!--span class="o_stat_text">Ventas</span>
+                        </div>
+                    </button>
+                    <button class="oe_stat_button" name="action_view_po" type="object" icon="fa-credit-card" help="Pedidos de compra" invisible="purchase_order_count == 0 or display_complete == False">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value">
+                                <field name="purchase_order_count" widget="statinfo" nolabel="1" class="mr4"/>
+                            </span>
+                            <span class="o_stat_text">Compras</span>
+                        </div>
+                    </button>
+                    <button class="oe_stat_button" name="action_lot_open_transfers" type="object" icon="fa-truck" help="Transferencias" invisible="delivery_count == 0">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value">
+                                <field name="delivery_count" widget="statinfo" nolabel="1" class="mr4"/>
+                            </span>
+                            <span class="o_stat_text">Traslados</span>
+                        </div>
+                    </button>
+                    <button name="action_lot_open_quants" icon="fa-arrows" class="oe_stat_button" string="Lugar" type="object"/>
+                    <button name="325" icon="fa-arrow-up" class="oe_stat_button" string="Trazabilidad" type="action"/>
+                </div>
+                <div class="oe_title">
+                    <label for="name"/>
+                    <h1>
+                        <field name="name" placeholder="p. ej. LOT/0001/20121" required="1"/>
+                    </h1>
+                </div>
+                <group name="main_group">
+                    <group>
+                        <field name="product_id" context="{'default_detailed_type': 'product', 'default_tracking': 'lot'}" readonly="context.get('set_product_readonly', False)" force_save="1" help="Producto que contiene este lote/n&#250;mero de serie. Ya no puede cambiarlo si ya se movi&#243;." required="1"/>
+                        <label for="product_qty" invisible="display_complete == False"/>
+                        <div class="o_row" invisible="display_complete == False">
+                            <field name="product_qty"/>
+                            <field name="product_uom_id"/>
+                        </div>
+                        <field name="ref"/>
+                        <field name="external_equipment" widget="boolean_toggle"/>
+                        <field name="series_mac"/>
+                        <field name="applied_accounting_cost" widget="boolean_toggle"/>
+                        <field name="company_id" invisible="1" required="1"/>
+                    </group>
+                    <group/>
+                </group-->
+                <!--group>
+                    <field name="sale_order_ids" widget="many2many" readonly="True" invisible="not sale_order_ids or display_complete == True"/>
+                </group>
+                <group>
+                    <field name="purchase_order_ids" widget="many2many" readonly="True" invisible="not purchase_order_ids or display_complete == True"/>
+                </group-->
+                <!--notebook invisible="display_complete == False">
+                    <page string="Descripci&#243;n" name="description">
+                        <field name="note"/>
+                    </page>
+                </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+            </xpath-->
+        </field>
+    </record>
+</odoo>

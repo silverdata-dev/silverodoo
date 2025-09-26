@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+         <!--record id="product_template_form_view_inherit_silver1" model="ir.ui.view">
+            <field name="name">product.template.form.inherit.silver1</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='additional_product_tag_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+            </field>
+         </record-->
+
         <record id="product_template_form_view_inherit_silver" model="ir.ui.view">
             <field name="name">product.template.form.inherit.silver</field>
             <field name="model">product.template</field>
-            <field name="inherit_id" ref="product.product_template_form_view"/>
+  <field name="priority">32</field>
+            <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
             <field name="arch" type="xml">
 
                 <!-- 1. Replace Header Buttons -->
@@ -59,6 +73,7 @@
                 <!-- 6. Add custom fields to Standard Price group -->
                 <xpath expr="//page[@name='general_information']//group[@name='group_standard_price']" position="inside">
                     <field name="product_brand_id" required="is_required_brand == True" placeholder="Marca"/>
+                    <field name="model"/>
                     <field name="is_required_brand" invisible="1"/>
                     <field name="number_list_partner"/>
                     <field name="allow_negative_stock" invisible="type != 'product'"/>
@@ -78,14 +93,15 @@
                 <xpath expr="//notebook" position="inside">
                     <page name="fields_isp" string="Datos ISP">
                         <div class="oe_button_box" name="button_box">
-                            <button name="action_create_group" type="object" class="oe_stat_button" icon="fa-signal" string="Crear Grupo"/>
+                            <button name="action_create_group" type="object" class="oe_stat_button" icon="fa-signal" string="Crear Grupo" invisible="1"/>
                         </div>
-                        <group invisible="type not in 'service'">
+   <group invisible="type =='service'">
                             <group string="Es un servicio de Internet">
+
                                 <field name="is_internet" widget="boolean_toggle"/>
                             </group>
                         </group>
-                        <group invisible="type not in 'service'">
+                        <group invisible="type != 'service'">
                             <group string="Ancho de Banda">
                                 <field name="uploaded_bandwidth"/>
                                 <field name="download_bandwidth"/>
@@ -122,12 +138,12 @@
                                 </div>
                             </group>
                         </group>
-                        <group invisible="type not in 'service'">
+                        <group invisible="type != 'service'">
                             <group string="Custom Traffic Table">
                                 <field name="is_custom_traffic_table" widget="boolean_toggle"/>
                                 <field name="name_custom_traffic_table" invisible="is_custom_traffic_table != True"/>
                             </group>
-                            <group string="Custom AddessList">
+                            <!--group string="Custom AddessList">
                                 <field name="is_custom_address_list" widget="boolean_toggle"/>
                                 <field name="name_address_list" invisible="is_custom_address_list != True"/>
                                 <field name="is_product_vlan" widget="boolean_toggle"/>
@@ -135,9 +151,9 @@
                                 <field name="c_vlan" invisible="is_product_vlan != True"/>
                                 <field name="name_custom_profile" invisible="is_product_vlan != True"/>
                                 <field name="traffic_profile_index"/>
-                            </group>
+                            </group-->
                         </group>
-                        <group invisible="type not in 'service'">
+                        <group invisible="type != 'service'">
                             <group string="Attributes Radius">
                                 <field name="radius_id" string="Radius"/>
                                 <field name="radius_attributes_ids" widget="many2many_tags"/>
@@ -152,13 +168,13 @@
                                 <field name="name_custom_pppoe_profile" invisible="is_custom_pppoe_profile != True"/>
                             </group>
                         </group>
-                        <group invisible="type in 'service'">
+                        <group invisible="[('type', '=', 'service')]">
                             <group string="Stock Asumido por Instalacion">
                                 <field name="qty_extra_stock"/>
                             </group>
                             <group/>
                         </group>
-                        <group name="ip_address" string="Direccionamiento IP">
+                        <!--group name="ip_address" string="Direccionamiento IP">
                             <group>
                                 <field name="type_access_net" required="1"/>
                             </group>
@@ -167,9 +183,9 @@
                                 <field name="interface"/>
                                 <field name="is_multiple_vlans" widget="boolean_toggle"/>
                             </group>
-                        </group>
-                        <notebook colspan="4">
-                            <page name="ip_address" string="Direcciones IP" invisible="type_access_net != 'dhcp_leases'">
+                        </group-->
+                        <!--notebook colspan="4">
+                            <page name="ip_address" string="Direcciones IP" invisible="type_access_net != 'dhcp_leases'"-->
                               <!--group>
         <group string="Pools" colspan="4">
             <field name="ip_address_pool_ids" nolabel="1"  widget="one2many_list" colspan="4" >
@@ -192,8 +208,8 @@
                      </field>
               </group>
     </group-->
-                            </page>
-                        </notebook>
+                            <!--/page>
+                        </notebook-->
                     </page>
                     <page name="fields_iptv" string="Datos IPTV">
                         <group>

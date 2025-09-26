@@ -60,9 +60,8 @@
                         </div>
                         <group><group>
                         <field name="code" placeholder="Codigo del Nodo"/></group></group>
-                        <notebook name="networks_isp">
-                            <page name="geolocaloze" string="Datos Ubicacion">
-                                <group>
+
+                             <group string="Datos Ubicacion">
                                     <group>
                                         <field name="zone_id" required="True"/>
                                         <field name="country_id"/>
@@ -78,8 +77,8 @@
                                         <field name="street2"/>
                                     </group>
                                 </group>
-                                <group>
-                                    <group string="Geolocalizacion">
+                                <group string="Geolocalizacion">
+                                    <group >
                                         <label for="date_localization" string="Geolocalizacion"/>
                                         <div name="geolocalize">
                                             <span>Lat : </span><field name="gps_lat" nolabel="1" class="oe_inline"/>
@@ -91,10 +90,21 @@
                                         <field name="distance"/>
                                     </group>
                                 </group>
+
+                        <notebook name="related">
+
+                            <page name="Equipos Core" >
+                                <field name="core_ids"/>
                             </page>
-                            <page string="Network Graph" name="network_graph">
+                            <page name="Equipos OLT" >
+                                <field name="olt_ids"/>
+                            </page>
+                            <page name="Cajas NAP" >
+                                <field name="box_ids"/>
+                            </page>
+                            <!--page string="Network Graph" name="network_graph">
                                 <field name="id" class="map-field" widget="node_network"/>
-                            </page>
+                            </page-->
                         </notebook> 
                     </sheet>
                     <div class="oe_chatter">

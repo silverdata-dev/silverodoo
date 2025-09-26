@@ -67,6 +67,9 @@ class SilverCore(models.Model):
     radius_count = fields.Integer(string='Conteo Servidor Radius', compute='_compute_counts')
     ap_count = fields.Integer(string='Conteo Equipo AP', compute='_compute_counts')
 
+    olt_ids = fields.One2many('silver.olt', 'core_id', string='OLTs')
+    ap_ids = fields.One2many('silver.ap', 'core_id', string='APs')
+
     
     # --- Campos de Configuración y Funcionalidades ---
     is_device_network = fields.Boolean(string='Equipos de infraestructura de red')
@@ -123,7 +126,7 @@ class SilverCore(models.Model):
 
     dhcp_custom_server = fields.Char(string='DHCP Leases')
     #brand_description = fields.Text(string='Descripción', readonly=False)
-    software_version = fields.Char(string='Versión Software')
+
     poolip = fields.Char(string='Poolip')
     user_profile_radius = fields.Char(string='User PROFILE')
     model = fields.Char(string='Modelo')

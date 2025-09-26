@@ -20,9 +20,9 @@
         <record id="action_stock_production_lot_silver" model="ir.actions.act_window">
             <field name="name">Lotes/Números Seriales</field>
             <field name="res_model">stock.lot</field>
-            <field name="view_mode">tree</field>
+            <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_stock_production_lot_tree_silver"/>
-            <field name="context">{'group_by': 'product_id'}</field>
+            <field name="context">{'search_default_group_by_product_id': 1}</field>
         </record>
 
         <menuitem

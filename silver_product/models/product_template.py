@@ -13,7 +13,10 @@ class ProductTemplate(models.Model):
 
     # General
     recurring_invoices_ok = fields.Boolean(string="Para facturación recurrente?")
-    product_brand_id = fields.Many2one('product.brand', string='Brand')
+    product_brand_id = fields.Many2one('product.brand', string='Marca')
+    model = fields.Char(string='Modelo')
+
+
     is_required_brand = fields.Boolean(string="Es numero serie unico?")
     number_list_partner = fields.Char(string="Nombre Plan Padre")
     allow_negative_stock = fields.Boolean(string="Permitir Stock Negativo")

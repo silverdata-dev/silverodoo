@@ -10,3 +10,6 @@ class SilverNetdev(models.Model):
         string='Equipo (Serie/Lote)',
         help="Vincula este dispositivo de red a un equipo específico con número de serie/lote."
     )
+
+    brand_name = fields.Char('Nombre Marca')
+    software_version = fields.Char('Nombre Marca')

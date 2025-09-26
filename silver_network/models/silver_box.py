@@ -5,11 +5,10 @@ class SilverBox(models.Model):
     _description = 'Caja de Conexion'
     #_table = 'isp_box'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _inherits = {'silver.asset': 'asset_id',
-                 'silver.netdev':'netdev_id'}
+    _inherits = {'silver.asset': 'asset_id'}
 
     asset_id = fields.Many2one('silver.asset', required=True, ondelete="cascade")
-    netdev_id = fields.Many2one('silver.netdev', required=True, ondelete="cascade")
+
 
     name = fields.Char(string="Nombre", related="asset_id.name", readonly=False)
 
@@ -48,12 +47,6 @@ class SilverBox(models.Model):
 
     asset_type = fields.Selection(
         related='asset_id.asset_type',
-        default='cto',
-        store=True,
-        readonly=False
-    )
-    netdev_type = fields.Selection(
-        related='netdev_id.netdev_type',
         default='cto',
         store=True,
         readonly=False

@@ -12,3 +12,7 @@ class SilverCore(models.Model):
         ondelete='cascade',
         help="Registro de provisioning asociado a este Core."
     )
+
+
+    def action_view_contracts(self):
+        return self.access_point_id.action_view_contracts()

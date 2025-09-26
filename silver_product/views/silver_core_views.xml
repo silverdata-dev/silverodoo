@@ -6,8 +6,13 @@
             <field name="model">silver.core</field>
             <field name="inherit_id" ref="silver_network.view_silver_core_form"/>
             <field name="arch" type="xml">
-               <xpath expr="//field[@name='model']"  position="replace">
+               <xpath expr="//field[@name='node_ids']"  position="after">
                     <field name="stock_lot_id"/>
+                    <field name="brand_name"/>
+                    <field name="model_name"/>
+                    <field name="software_version"/>
+                   <field name="firmware_version"/>
+                     <!--field name="serial_number"/-->
                 </xpath>
             </field>
         </record>
