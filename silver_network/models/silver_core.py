@@ -27,7 +27,7 @@ class SilverCore(models.Model):
     active = fields.Boolean(string='Activo', default=True)
 
     node_id = fields.Many2one('silver.node', string='Nodo')
-    brand_id = fields.Many2one('product.brand', string='Marca', index=True)
+    #brand_id = fields.Many2one('product.brand', string='Marca', index=True)
    # gateway = fields.Many2one('silver.ip.address', string='Gateway')
     radius_id = fields.Many2one('silver.radius', string='Radius')
     networks_device_id = fields.Many2many('silver.device.networks', string='Networks Device')
@@ -149,6 +149,32 @@ class SilverCore(models.Model):
         store=True,
         readonly=False
     )
+
+
+    @api.onchange('node_id')
+    def _onchange_node_id(self):
+        # Primero, verifica si hay un nodo principal anterior para eliminarlo
+
+        previous_nodes_ids = self._origin.node_ids.ids
+        print(("previus", previous_nodes_ids))
+
+        # Si había un nodo principal anterior, lo removemos de la lista
+        if self._origin.node_id:
+            # Creamos un conjunto para una eliminación más eficiente
+            nodes_set = set(previous_nodes_ids)
+            nodes_set.discard(self._origin.node_id.id)
+            current_nodes_ids = list(nodes_set)
+        else:
+            current_nodes_ids = previous_nodes_ids
+
+        # Ahora, agregamos el ID del nuevo nodo principal si existe
+        if self.node_id:
+            if self.node_id.id not in current_nodes_ids:
+                current_nodes_ids.append(self.node_id.id)
+
+        # Asignar la lista final de IDs al campo many2many usando el comando (6,0,...)
+        self.node_ids = [(6, 0, current_nodes_ids)]
+
 
     @api.depends('name', 'company_id')
     def _compute_display_name(self):

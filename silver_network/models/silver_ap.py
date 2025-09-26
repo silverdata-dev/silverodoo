@@ -19,7 +19,7 @@ class SilverAp(models.Model):
     hostname_ap = fields.Char(string='Hostname')
     node_ids = fields.Many2many('silver.node', string='Nodos', readonly=False)
 
-    description_brand = fields.Text(string='Descripcion', related='brand_id.description')
+    #description_brand = fields.Text(string='Descripcion', related='brand_id.description')
 
 
 

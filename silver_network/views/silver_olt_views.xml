@@ -14,7 +14,7 @@
             <field name="arch" type="xml">
                 <tree string="Equipos OLT ISP" default_order="name desc">
                     <field name="name"/>
-                    <field name="brand_id"/>
+                    <!--field name="brand_id"/-->
                     <field name="model"/>
                     <field name="ip"/>
                     <field name="port"/>
@@ -67,7 +67,7 @@
                                 <field name="node_id"/>
                             </group>
                             <group>
-                                <field name="brand_id"/>
+                                <!--field name="brand_id"/-->
                                 <field name="model"/>
                                 <field name="num_slot_olt"/>
                             </group>
@@ -174,10 +174,10 @@
                                         <field name="is_virtual" widget="boolean_toggle"/>
                                     </group>
                                     <group>
-                                        <field name="brand_description" invisible="1" readonly="1"/>
+                                        <!--field name="brand_description" invisible="1" readonly="1"/-->
                                         <field name="silver_core_port_line_id"
                                                options="{'no_create': True,  'no_open': True}"
-                                               invisible="brand_description != 'hua'" can_create="true"
+                                                can_create="true"
                                                can_write="true"/>
                                     </group>
                                 </group>

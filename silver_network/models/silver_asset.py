@@ -46,8 +46,8 @@ class SilverAsset(models.Model):
     date_localization = fields.Date(string='Fecha de Geolocalización')
     date_install = fields.Date(string='Fecha de Instalación')
 
-    brand_id = fields.Many2one('product.brand', string='Marca')
-    brand_description = fields.Text(string='Descripción de Marca', related='brand_id.description')
+    #brand_id = fields.Many2one('product.brand', string='Marca')
+    #brand_description = fields.Text(string='Descripción de Marca', related='brand_id.description')
     model = fields.Char(string='Modelo')
     astate = fields.Selection([('new','New'),('deployed','Deployed'),('maintenance','Maintenance'),('retired','Retired')], default='new')
     notes = fields.Text()

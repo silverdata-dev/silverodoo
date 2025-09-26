@@ -52,11 +52,7 @@
 
             <menuitem id="menu_isp_config" name="Configuración"   parent="menu_silver_network_root" sequence="210"/>
 
-                <menuitem id="menu_isp_asset_map"
-                  name="Marcas"
-                  parent="menu_isp_config"
-                  action="action_product_brand"
-                  sequence="13"/>
+
 
           <menuitem id="menu_isp_zone" name="Zonas" parent="menu_isp_config" action="action_silver_zone" sequence="1"/>
 

@@ -10,7 +10,7 @@
     'website': "https://www.silverdale.com",
     'category': 'Industries',
     'version': '17.0.2.1',
-    'depends': ['base', 'mail', 'stock', 'product', 'account', 'silver_product'],
+    'depends': ['base', 'mail', 'stock', 'account'],
     'data': [
         'views/silver_views.xml',
 
@@ -31,7 +31,6 @@
         'views/silver_radius_wizards_views.xml',
         'views/silver_splice_closure_views.xml',
         'views/silver_cable_views.xml',
-        'views/product_brand_views.xml',
         'views/silver_device_networks_views.xml',
         'views/silver_kex_algorithms_views.xml',
         'views/silver_vlan_views.xml',

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_silver_olt_form_inherit_product" model="ir.ui.view">
+            <field name="name">silver.olt.form.inherit.product</field>
+            <field name="model">silver.olt</field>
+            <field name="inherit_id" ref="silver_network.view_silver_olt_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='olt']/group[1]" position="inside">
+                    <field name="stock_lot_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

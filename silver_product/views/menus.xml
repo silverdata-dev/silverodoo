@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--menuitem id="silver_network.menu_isp_config" name="Configuración" parent="silver_network.menu_silver_network_root" sequence="210"/-->
+
+        <menuitem id="menu_isp_asset_map"
+                  name="Marcas"
+                  parent="silver_network.menu_isp_config"
+                  action="silver_network.action_product_brand"
+                  sequence="13"/>
+    </data>
+</odoo>

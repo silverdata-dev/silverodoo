@@ -17,7 +17,7 @@
                 <tree string="Equipos Core Silver" default_order="name desc">
                     <field name="name"/>
                     <field name="hostname_core"/>
-                    <field name="brand_id"/>
+                    <!--field name="brand_id"/-->
                     <field name="model"/>
                     <field name="ip"/>
                     <field name="port"/>
@@ -69,10 +69,11 @@
                         <group name="core">
                             <group>
                                 <field name="hostname_core"/>
-                                <field name="software_version"/>
                                 <field name="node_id"/>
-                                <field name="node_ids" widget="many2many_tags"/>
-                                <field name="brand_id"/>
+                                <field name="node_ids" widget="many2many_tags" invisible="1"/>
+
+                                <field name="software_version"/>
+                                <!--field name="brand_id"/-->
                                 <field name="model"/>
                             </group>
                             <group string="Radius"  invisible="not is_silver_radius">
@@ -89,8 +90,8 @@
                             <group>
                                 <field name="ip"/>
                                 <field name="port"/>
-                                <field name="type_connection" invisible="brand_description != 'hua'"/>
-                                <field name="kex_algorithms_ids" invisible="brand_description != 'hua'" widget="many2many_tags"/>
+                                <!--field name="type_connection" invisible="brand_description != 'hua'"/-->
+                                <!--field name="kex_algorithms_ids" invisible="brand_description != 'hua'" widget="many2many_tags"/-->
                             </group>
                             <group>
                                 <field name="username"/>
@@ -113,7 +114,7 @@
                                 <field name="is_active_vlans" widget="boolean_toggle"/>
                                 <field name="cvlan" invisible="not is_active_vlans"/>
                                 <field name="svlan" invisible="not is_active_vlans"/>
-                                <field name="brand_description" invisible="1"/>
+                                <!--field name="brand_description" invisible="1"/-->
                                 <field name="silver_vlans_ids" widget="many2many_tags"/>
                             </group>
                             <group>
@@ -220,7 +221,8 @@
 
                             </page>
                             
-                            <page name="config_port_slot" string="Configuracion Interface GPON" invisible="brand_description != 'hua'">
+                            <page name="config_port_slot" string="Configuracion Interface GPON"
+                                  >
                                 
                                     <div class="oe_button_box" name="button_box">
                                         <button name="action_calculate_gpon" type="object" class="oe_stat_button" icon="fa-spinner" string="Calcular GigabitEthernet"/>
