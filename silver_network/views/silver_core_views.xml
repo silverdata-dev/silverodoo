@@ -36,13 +36,13 @@
                         <button name="create_ap" string="Crear Equipo AP" type="object"/>
                         <button name="create_radius" string="Crear Radius" type="object" invisible="not is_silver_radius"/>
                         <button name="button_test_connection" type="object" string="Test Connection" class="oe_highlight"/>
-                        <button name="button_get_system_info" type="object" string="Get System Info"/>
+                        <!--button name="button_get_system_info" type="object" string="Get System Info"/>
                         <button name="button_view_interfaces" type="object" string="View Interfaces"/>
                         <button name="button_view_routes" type="object" string="View Routes"/>
                         <button name="button_view_ppp_active" type="object" string="View PPP Active"/>
                         <button name="button_view_firewall_rules" type="object" string="View Firewall Rules"/>
-                        <button name="button_view_queues" type="object" string="View Queues"/>
-                        <field name="state" widget="statusbar" statusbar_visible="down,active"/>
+                        <button name="button_view_queues" type="object" string="View Queues"/-->
+                        <!--field name="state" widget="statusbar" statusbar_visible="down,active"/-->
                     </header>
                     <sheet string="Equipo Core Silver">
                         <div class="oe_button_box" name="button_box"> 

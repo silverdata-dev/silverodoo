@@ -170,8 +170,8 @@
                         </group>
                         <notebook colspan="4">
                             <page name="ip_address" string="Direcciones IP" invisible="type_access_net != 'dhcp_leases'">
-                              <group>
-        <!--group string="Pools" colspan="4">
+                              <!--group>
+        <group string="Pools" colspan="4">
             <field name="ip_address_pool_ids" nolabel="1"  widget="one2many_list" colspan="4" >
                 <tree multi_selectable="1"  colspan="2" editable="bottom">
                           <field name="name" readonly="True"/>
@@ -225,7 +225,7 @@
                         <field name="priority" widget="priority" optional="show" nolabel="1"/>
                         <field name="name" string="Product Name"/>
                         <field name="default_code" optional="show"/>
-                        <field name="barcode" optional="hide" attrs="{'readonly': [('product_variant_count', '&gt;', 1)]}"/>
+                        <field name="barcode" optional="hide" readonly="product_variant_count > 1"/>
                         <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company" optional="hide"/>
                         <field name="list_price" string="Sales Price" widget="monetary" options="{'currency_field': 'currency_id'}" optional="show" decoration-muted="not sale_ok"/>
                         <field name="standard_price" widget="monetary" options="{'currency_field': 'cost_currency_id'}" optional="show" readonly="1"/>

@@ -5,10 +5,11 @@
     'author': 'SilverData',
     'website': 'https://www.silverdata.org',
     'category': 'Sales',
-    'depends': ['product'],
+    'depends': ['product', 'stock'],
     'data': [
         'security/ir.model.access.csv',
         'views/product_view.xml',
+        'views/stock_production_lot_views.xml',
     ],
     'installable': True,
     'application': False,
