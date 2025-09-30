@@ -48,6 +48,19 @@
                             </group>
                         </group>
 
+                        <notebook colspan="4">
+
+                            <page string="Puertos">
+                                   <field name="port_ids" >
+                <tree string="Puertos OLT ISP" default_order="name desc">
+                    <field name="name"/>
+                    <field name="num_port"/>
+                    <field name="olt_card_n"/>
+                    <field name="type_access_net"/>
+                </tree>
+            </field>
+                            </page>
+                        </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids"/>

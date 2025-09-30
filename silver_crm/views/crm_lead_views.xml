@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="crm_lead_view_kanban_inherit_silver" model="ir.ui.view">
+            <field name="name">crm.lead.kanban.inherit.silver</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="replace">
+                    <button name="action_open_partner" type="object" class="oe_link">
+                        <field name="partner_id"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

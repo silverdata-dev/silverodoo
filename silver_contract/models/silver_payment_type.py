@@ -6,5 +6,6 @@ class SilverPaymentType(models.Model):
     _description = 'Forma de Pago para Contratos ISP'
     _order = 'name'
 
+    code = fields.Char(string='Código', required=True)
     name = fields.Char(string='Nombre', required=True)
     description = fields.Text(string='Descripción')

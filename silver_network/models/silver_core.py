@@ -26,7 +26,7 @@ class SilverCore(models.Model):
 #    name = fields.Char(string='Código', required=True)
     active = fields.Boolean(string='Activo', default=True)
 
-    node_id = fields.Many2one('silver.node', string='Nodo')
+   # node_id = fields.Many2one('silver.node', string='Nodo')
     #brand_id = fields.Many2one('product.brand', string='Marca', index=True)
    # gateway = fields.Many2one('silver.ip.address', string='Gateway')
     radius_id = fields.Many2one('silver.radius', string='Radius')
@@ -37,11 +37,10 @@ class SilverCore(models.Model):
     silver_core_port_line_ids = fields.One2many('silver.core.port.line', 'core_id', string='Líneas Puerto Slot')
 
     kex_algorithms_ids = fields.Many2many('silver.kex.algorithms', string='Kex Algorithms')
-    networks_device_id = fields.Many2many('silver.device.networks', string='Equipos de red')
+
     silver_vlans_ids = fields.Many2many('silver.vlan', string='Vlans')
     pooOnlyCore = fields.Boolean(string='Pool de IPs Único')
 
-    node_ids = fields.Many2many('silver.node', string='Nodos') # ¡Ojo con este, podría ser redundante!
 
     # --- Campos de Conectividad y Acceso ---
     user = fields.Char(string='Usuario')
@@ -54,7 +53,7 @@ class SilverCore(models.Model):
     port = fields.Char(string='Puerto de Conexión', related="netdev_id.port", readonly=False)
     port_coa = fields.Char(string='Puerto COA')
     ip = fields.Char(string='IP de Conexión', related="netdev_id.ip", readonly=False)
-    hostname_core = fields.Char(string='Hostname')
+
     interface = fields.Char(string='Interface')
     cvlan = fields.Char(string='CVLAN')
     svlan = fields.Char(string='SVLAN')

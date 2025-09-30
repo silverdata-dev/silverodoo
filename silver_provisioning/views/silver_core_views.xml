@@ -14,7 +14,7 @@
 
                 </xpath-->
 
-  <xpath expr="//page[@name='aps']" position="before">
+  <xpath expr="//page[1]" position="before">
                       <page string="Contratos">
                    <field name="contract_ids"/>
                       </page>

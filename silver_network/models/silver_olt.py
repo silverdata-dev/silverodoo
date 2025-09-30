@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import UserError
 
 class SilverOlt(models.Model):
     _name = 'silver.olt'
@@ -15,7 +16,8 @@ class SilverOlt(models.Model):
 
 
 
-    hostname_olt = fields.Char(string='Hostname', compute='_compute_hostname', store=True, readonly=False)
+    hostname_olt = fields.Char(string='Hostname')
+    name = fields.Char('Nombre', related='asset_id.name', compute='_compute_hostname', store=True, readonly=True)
 
 
 
@@ -27,8 +29,36 @@ class SilverOlt(models.Model):
     core_id = fields.Many2one('silver.core', string='Equipo Core')
     node_id = fields.Many2one('silver.node', string='Nodo')
     num_slot_olt = fields.Integer(string='Numero de Slots')
-
-
+    num_ports1 = fields.Selection([
+        ('8', '8 Puertos'),
+        ('16', '16 Puertos'),
+        ('32', '32 Puertos'),
+        ('64', '64 Puertos'),
+    ], string='Cantidad de Puertos 0', default="8")
+    num_ports2 = fields.Selection([
+        ('8', '8 Puertos'),
+        ('16', '16 Puertos'),
+        ('32', '32 Puertos'),
+        ('64', '64 Puertos'),
+    ], string='Cantidad de Puertos 0', default="8")
+    num_ports3 = fields.Selection([
+        ('8', '8 Puertos'),
+        ('16', '16 Puertos'),
+        ('32', '32 Puertos'),
+        ('64', '64 Puertos'),
+    ], string='Cantidad de Puertos 0', default="8")
+    num_ports4 = fields.Selection([
+        ('8', '8 Puertos'),
+        ('16', '16 Puertos'),
+        ('32', '32 Puertos'),
+        ('64', '64 Puertos'),
+    ], string='Cantidad de Puertos 0', default="8")
+    num_ports5 = fields.Selection([
+        ('8', '8 Puertos'),
+        ('16', '16 Puertos'),
+        ('32', '32 Puertos'),
+        ('64', '64 Puertos'),
+    ], string='Cantidad de Puertos 0', default="8")
 
     kex_algorithms_ids = fields.Many2many('silver.kex.algorithms', string='Kex Algorithms')
     is_multi_user_olt = fields.Boolean(string='Multiples Usuarios')
@@ -125,8 +155,9 @@ class SilverOlt(models.Model):
     olt_card_count = fields.Integer(string='Conteo Slot OLT', compute='_compute_olt_card_count')
     #contracts_olt_count = fields.Integer(string='Conteo Olts', compute='_compute_contracts_olt_count')
     ip_range_count = fields.Integer(string='IP Ranges', compute='_compute_ip_range_count')
+    isp_tr_069_id = fields.Many2one("isp.tr.069", sting="Equipo OLT")
 
-
+#    "ip_address_line_tr69_ids", "Direcciones IP", "Equipo OLT", "one2many", "Campo base", "", "True", "", "isp.ip.address.line"
 
     olt_card_port_count = fields.Integer(string='Conteo Puertos', compute='_compute_counts')
 
@@ -137,6 +168,7 @@ class SilverOlt(models.Model):
     def _compute_olt_card_port_count(self):
         for record in self:
             record.olt_card_port_count = self.env['silver.olt.card.port'].search_count([('olt_id', '=', record.id)])
+
 
 
 
@@ -196,6 +228,54 @@ class SilverOlt(models.Model):
 
 
 
+   # @api.onchange('num_slot_olt', 'num_ports1', 'num_ports2', 'num_ports3', 'num_ports4', 'num_ports5')
+    def action_generar(self):
+        if self.num_slot_olt > 5:
+            self.num_slot_olt = 5
+            return {
+                'warning': {
+                    'title': "Límite Excedido",
+                    'message': "El número de slots no puede ser mayor a 5. Se ha ajustado automáticamente a 5.",
+                }
+            }
+
+        num_ports_fields = [int(self.num_ports1), int(self.num_ports2), int(self.num_ports3), int(self.num_ports4), int(self.num_ports5)]
+
+        # Crear tarjetas faltantes de forma aditiva
+        current_card_count = len(self.card_ids)
+        for i in range(current_card_count, self.num_slot_olt):
+            new_card = self.env['silver.olt.card'].new({
+                'name': f'{self.name}/C{i}',
+                'olt_id': self._origin.id,
+                'num_card': i,
+            })
+            self.card_ids += new_card
+
+        # Crear puertos faltantes para cada tarjeta de forma aditiva
+        for i, card in enumerate(self.card_ids):
+            if i >= self.num_slot_olt:
+                continue
+
+            target_port_count = num_ports_fields[i] if i < len(num_ports_fields) else 0
+            current_port_count = len(card.port_ids)
+            if (i == 0) and (current_port_count == 0):
+                for p in self.port_ids:
+                    p.olt_card_id = card
+                    card.port_ids += p
+                current_port_count = len(card.port_ids)
+
+            for j in range(current_port_count, target_port_count):
+                new_port = self.env['silver.olt.card.port'].new({
+                    'name':  f'{card.name}/P{j+1}',
+                    'olt_id': self._origin.id,
+                    'olt_card_id': card._origin.id,
+                    'olt_card_n':i,
+                    'num_port':j+1,
+
+                })
+                card.port_ids += new_port
+
+
     def _compute_hostname(self):
         for olt in self:
             if olt.node_id:
@@ -205,9 +285,9 @@ class SilverOlt(models.Model):
 
                 # Construimos el código.
                 # Si el campo 'code' del nodo es 'u', y ya tiene 2 OLTs, el nuevo será 'u/2'
-                olt.code = f"{olt.node_id.code}/{olt.node_id.node}{olt_count}"
+                olt.name = f"{olt.node_id.code}/{olt.node_id.node}{olt_count}"
             else:
-                olt.code = False
+                olt.name = False
 
     def _compute_olt_card_count(self):
         for record in self:

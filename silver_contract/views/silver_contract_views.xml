@@ -11,7 +11,7 @@
                     <field name="date_start"/>
                     <field name="date_end"/>
                     <field name="state"/>
-                    <field name="state_service"  invisible="1"/>
+                    <field name="state_service" invisible="1"/>
                 </tree>
             </field>
         </record>
@@ -23,81 +23,142 @@
             <field name="arch" type="xml">
                 <form string="Contrato">
                     <header>
-                        <widget name="web_ribbon" title="Activo" bg_color="bg-success" invisible="state_service != 'active'"/>
-                        <widget name="web_ribbon" title="Inactivo" bg_color="bg-secondary" invisible="state_service != 'inactive'"/>
-                        <widget name="web_ribbon" title="Retirado" bg_color="bg-danger" invisible="state_service != 'removed'"/>
-                        <widget name="web_ribbon" title="En Lista de Retiro" bg_color="bg-warning" invisible="state_service != 'removal_list'"/>
-                        <widget name="web_ribbon" title="Cortado" bg_color="bg-warning" invisible="state_service != 'disabled'"/>
-                        <widget name="web_ribbon" title="Suspendido" bg_color="bg-warning" invisible="state_service != 'suspended'"/>
-                        <button name="action_open" type="object" string="Open" class="oe_highlight" invisible="state != 'draft'"/>
-                        <button name="action_cancel" type="object" string="Cancel"  invisible="state in ['cancel', 'done']"/>
+    <widget name="web_ribbon" title="Activo" bg_color="bg-success"
+                                invisible="state_service != 'active'"/>
+                        <widget name="web_ribbon" title="Inactivo" bg_color="bg-secondary"
+                                invisible="state_service != 'inactive'"/>
+                        <widget name="web_ribbon" title="Retirado" bg_color="bg-danger"
+                                invisible="state_service != 'removed'"/>
+                        <widget name="web_ribbon" title="En Lista de Retiro" bg_color="bg-warning"
+                                invisible="state_service != 'removal_list'"/>
+                        <widget name="web_ribbon" title="Cortado" bg_color="bg-warning"
+                                invisible="state_service != 'disabled'"/>
+                        <widget name="web_ribbon" title="Suspendido" bg_color="bg-warning"
+                                invisible="state_service != 'suspended'"/>
+                        <button name="action_open" type="object" string="Open" class="oe_highlight"
+                                invisible="state != 'draft'"/>
+                        <button name="action_cancel" type="object" string="Cancel"
+                                invisible="state in ['cancel', 'done']"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,open,done"/>
-
 
                     </header>
                     <sheet>
+                        <field name="image" widget="image" class="oe_avatar"/>
+
+
+
                         <div class="oe_title">
                             <h1>
                                 <field name="name" readonly="1"/>
                             </h1>
                         </div>
+
                         <group>
                             <group>
                                 <field name="state" invisible="1"/>
+                                <field name="payment_type_code" invisible="1"/>
+                                <field name="is_first_invoice" invisible="1"/>
+                                <field name="is_extra_value_active" invisible="1"/>
+                                <field name="is_extra_value" invisible="1"/>
                                 <field name="state_service" invisible="1"/>
                                 <field name="partner_id" readonly="state != 'draft'"/>
-                                <field name="holding_id" readonly="state != 'draft'"/>
-                                <!--field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" readonly="state != 'draft'"/-->
+                                <field name="address"/>
+                                <field name="phone"/>
                             </group>
-                            <!--group>
-                                <field name="state_service" widget="badge" decoration-danger="state_service in ('disabled','removed')" decoration-warning="state_service == 'removal_list'" decoration-success="state_service == 'active'" decoration-info="state_service in ('suspended', 'inactive')"/>
-                            </group-->
-                            </group>
-                        <group>
                             <group>
-                                <field name="service_type_id" readonly="state != 'draft'"/>
-                                <field name="plan_type_id" readonly="state != 'draft'"/>
+                                   <field name="service_type_id" readonly="state != 'draft'"/>
+                            <field name="plan_type_id" readonly="state != 'draft'"/>
+                            <field name="cutoff_date_id" readonly="state != 'draft'"/>
+                            <field name="contract_term_id" readonly="state != 'draft'"/>
+                            </group>
+
                         </group>
-                            <group>
-                                <field name="cutoff_date_id" readonly="state != 'draft'"/>
-                                <field name="contract_term_id" readonly="state != 'draft'"/>
-                            </group>
-                                </group>
+
                         <notebook>
-                                                        <page string="Servicios Recurrentes" name="invoice_info">
-                                <separator string="Líneas de Servicio Recurrente"/>
-                                <field name="line_ids" readonly="state != 'draft'" context="{'default_line_type': 'recurring'}">
+                            <page string="Servicios" name="invoice_info">
+
+                                <field name="line_ids" readonly="state != 'draft'"
+                                       context="{'default_line_type': 'recurring'}">
                                     <tree editable="bottom">
                                         <field name="product_id"/>
                                         <field name="name"/>
                                         <field name="quantity"/>
                                         <field name="price_unit"/>
                                         <field name="price_subtotal" sum="Total"/>
-                                         <field name="line_type" invisible="1"/>
+                                        <field name="line_type" invisible="1"/>
                                     </tree>
                                 </field>
-                                <separator string="Valores Extra (Cargos Únicos)"/>
-                                <field name="line_debit_ids" readonly="state != 'draft'" context="{'default_line_type': 'one_time'}">
+                                <!--separator string="Valores Extra (Cargos Únicos)"/>
+                                <field name="line_debit_ids" readonly="state != 'draft'"
+                                       context="{'default_line_type': 'one_time'}">
                                     <tree editable="bottom">
                                         <field name="product_id"/>
                                         <field name="name"/>
                                         <field name="quantity"/>
                                         <field name="price_unit"/>
                                         <field name="price_subtotal" sum="Total"/>
-                                         <field name="line_type" invisible="1"/>
+                                        <field name="line_type" invisible="1"/>
                                     </tree>
-                                </field>
-                                                              <group name="invoice_fields">
-                                    <group>
-                                        <field name="payment_type_id" readonly="state != 'draft'"/>
-                                    </group>
-                                    <group>
-                                        <field name="date_start"/>
-                                        <field name="date_end"/>
-                                    </group>
+                                </field-->
+                                <group name="invoice_fields">
+                                <group name="invoice_fields2">
+                                    <field name="is_recurring_invoicing_type" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
+                                    <field name="recurring_invoicing_type" readonly="1" force_save="1" string="Tipo de Consumo" on_change="1" modifiers="{&quot;readonly&quot;: true}"/>
+                                    <field name="payment_type_id" options="{'no_create': True}" widget="selection" required="1" readonly="state != 'draft'" on_change="1" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]], &quot;required&quot;: true}"/>
+                                    <field name="is_other_partner_bank" invisible="payment_type_code not in ['credit_card','debit']" readonly="state != 'draft'" widget="boolean_toggle" on_change="1" modifiers="{&quot;invisible&quot;: [[&quot;payment_type_code&quot;, &quot;not in&quot;, [&quot;credit_card&quot;, &quot;debit&quot;]]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]]}"/>
+                                    <field name="partner_bank_id" invisible="is_other_partner_bank == False" required="is_other_partner_bank == True" readonly="state != 'draft'" options="{'no_create': True}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;is_other_partner_bank&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]], &quot;required&quot;: [[&quot;is_other_partner_bank&quot;, &quot;=&quot;, true]]}"/>
+                                    <field name="res_partner_bank_id" invisible="payment_type_code not in ['credit_card','debit']" required="payment_type_code in ['credit_card','debit']" readonly="state != 'draft'" domain="['|',('partner_id','=',partner_id),('partner_id','=',partner_bank_id)]" widget="selection" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;payment_type_code&quot;, &quot;not in&quot;, [&quot;credit_card&quot;, &quot;debit&quot;]]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]], &quot;required&quot;: [[&quot;payment_type_code&quot;, &quot;in&quot;, [&quot;credit_card&quot;, &quot;debit&quot;]]]}"/>
+                                    <button name="action_generate_first_invoice" string="&#8658;Generar Primer AC" type="object" class="oe_link" invisible="is_first_invoice == True or (is_extra_value_active == True and is_extra_value == False)" readonly="state != 'draft'" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;is_first_invoice&quot;, &quot;=&quot;, true], &quot;&amp;&quot;, [&quot;is_extra_value_active&quot;, &quot;=&quot;, true], [&quot;is_extra_value&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]]}"/>
+                                    <button name="action_generate_first_ext_materials" string="&#8658;Generar AC Extras" type="object" class="oe_link" invisible="is_extra_value == True or is_extra_value_active == False" readonly="state != 'draft'" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;is_extra_value&quot;, &quot;=&quot;, true], [&quot;is_extra_value_active&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]]}"/>
                                 </group>
+                                <group name="invoice_fields1">
+                                    <field name="is_select_journal_invoice" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                    <field name="type_journal_invoice" widget="selection" invisible="is_select_journal_invoice == False" on_change="1" modifiers="{&quot;invisible&quot;: [[&quot;is_select_journal_invoice&quot;, &quot;=&quot;, false]]}"/>
+                                    <!--field name="journal_id" widget="selection" readonly="1" invisible="is_select_journal_invoice == False" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;is_select_journal_invoice&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: true}"/-->
+                                    <label for="recurring_invoices" string="Recurrencia"/>
+                                    <div class="o_row">
+                                        <field name="recurring_invoices" widget="boolean_toggle" on_change="1" modifiers="{}"/>
+                                        <field name="recurring_interval" class="oe_inline" nolabel="1" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                        <field name="recurring_rule_type" class="oe_inline" nolabel="1" on_change="1" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;not in&quot;, [&quot;draft&quot;, &quot;pending&quot;]]]}"/>
+                                    </div>
+                                    <field name="recurring_next_date" readonly="1" force_save="1" string="Fecha Pr&#243;ximo AC" modifiers="{&quot;readonly&quot;: true}"/>
+                                </group>
+                            </group>
+                                 <group string="Descuentos y promociones">
+                                <group name="discount_main">
+
+
+
+                <field name="contract_discount_id" widget="selection" readonly="promotion_active == True" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;promotion_active&quot;, &quot;=&quot;, true]]}"/>
+                <field name="active_payment_anticipated" widget="boolean_toggle" modifiers="{}"/>
+                <field name="contract_discount_ids" invisible="True" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                <button string="=&gt; Asignar Promoci&#243;n " name="action_assing_discount" type="object" class="oe_link" invisible="promotion_active == True or state == 'draft'" modifiers="{&quot;invisible&quot;: [[&quot;promotion_active&quot;, &quot;=&quot;, true], [&quot;state&quot;, &quot;=&quot;, &quot;draft&quot;]]}"/>
+                <button name="action_assing_discount_manual" string="Asignar Descuento Manual" invisible="promotion_active == False or state == 'draft'" icon="fa-plus-circle" type="object" class="oe_link" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;promotion_active&quot;, &quot;=&quot;, false], [&quot;state&quot;, &quot;=&quot;, &quot;draft&quot;]]}"/>
+                <field name="promotion_active" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                <field name="contract_discount_line_id" readonly="1" invisible="promotion_active != True" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;promotion_active&quot;, &quot;!=&quot;, true]], &quot;readonly&quot;: true}"/>
+            </group>
+   <group name="discount_main_1">
+                                    <field name="is_disabled" widget="boolean_toggle" on_change="1" modifiers="{}"/>
+                                    <field name="disability_percentage" invisible="is_disabled == False" on_change="1" modifiers="{&quot;invisible&quot;: [[&quot;is_disabled&quot;, &quot;=&quot;, false]]}"/>
+                                    <field name="is_senior" widget="boolean_toggle" on_change="1" modifiers="{}"/>
+                                </group>
+                            </group>
+
+                            <field name="discount_line_ids" modifiers="{}">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="description"/>
+                                    <field name="amount"/>
+                                    <field name="apply_date"/>
+                                </tree>
+                                </field>
+                <field name="has_promotion_foreign_currency" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                <!--field name="foreign_currency_line_ids" invisible="has_promotion_foreign_currency == False" modifiers="{&quot;invisible&quot;: [[&quot;has_promotion_foreign_currency&quot;, &quot;=&quot;, false]]}">
+                    </field-->
+
+
                             </page>
-                                <page name="anticipated_payment" string="Pago Anticipado">
+                            <!--page name="anticipated_payment" string="Pago Anticipado">
                                 <field name="anticipated_payment_line_ids" readonly="state != 'draft'">
                                     <tree editable="bottom">
                                         <field name="date"/>
@@ -106,30 +167,19 @@
                                         <field name="payment_id"/>
                                     </tree>
                                 </field>
-                            </page>
-                            <page string="Discounts and Promotions">
-                                <group>
-                                    <field name="discount_plan_id"/>
-                                </group>
-                                <field name="discount_line_ids">
-                                    <tree editable="bottom">
-                                        <field name="description"/>
-                                        <field name="amount"/>
-                                        <field name="apply_date"/>
-                                    </tree>
-                                </field>
-                            </page>
-                             <!--page name="payment_promises" string="Promesas de Pago">
-                                <field name="payment_promise_ids" readonly="state != 'draft'">
-                                    <tree editable="bottom">
-                                        <field name="name"/>
-                                        <field name="promise_date"/>
-                                        <field name="amount"/>
-                                        <field name="state"/>
-                                    </tree>
-                                </field>
                             </page-->
-                            <page name="location" string="Ubicación">
+
+                            <!--page name="payment_promises" string="Promesas de Pago">
+                               <field name="payment_promise_ids" readonly="state != 'draft'">
+                                   <tree editable="bottom">
+                                       <field name="name"/>
+                                       <field name="promise_date"/>
+                                       <field name="amount"/>
+                                       <field name="state"/>
+                                   </tree>
+                               </field>
+                           </page-->
+                            <!--page name="location" string="Ubicación">
                                 <group>
                                     <group>
                                         <field name="street"/>
@@ -160,22 +210,26 @@
                                     </tree>
                                 </field>
                             </page>
-              <page name="documentation" string="Documentación">
+                            <page name="documentation" string="Documentación">
                                 <group string="Cargar Documentación">
                                     <group>
-                                        <field name="doc_vat_copy" widget="binary" filename="'doc_vat_copy_filename'"/>
-                                        <field name="installation_request" widget="binary" filename="'installation_request_filename'"/>
-                                        <field name="service_contract" widget="binary" filename="'service_contract_filename'"/>
-                                        <field name="basic_service_sheet" widget="binary" filename="'basic_service_sheet_filename'"/>
+                                        <field name="doc_vat_copy" widget="binary"
+                                               filename="'doc_vat_copy_filename'"/>
+                                        <field name="installation_request" widget="binary"
+                                               filename="'installation_request_filename'"/>
+                                        <field name="service_contract" widget="binary"
+                                               filename="'service_contract_filename'"/>
+                                        <field name="basic_service_sheet" widget="binary"
+                                               filename="'basic_service_sheet_filename'"/>
                                     </group>
                                     <group>
                                         <field name="is_validated"/>
                                     </group>
                                 </group>
-                            </page>
+                            </page-->
                             <page name="other_info" string="Otra Información">
-                                <notebook>
-                                    <page name="general" string="General">
+
+                                    <group name="general" string="General">
                                         <group>
                                             <group string="Marketing">
                                                 <field name="reception_channel_id"/>
@@ -189,8 +243,23 @@
                                         <group string="Términos y Condiciones">
                                             <field name="description_contract" nolabel="1"/>
                                         </group>
-                                    </page>
-                                    <page name="related_records" string="Registros Relacionados">
+                                    </group>
+                                <group string="Cargar Documentación">
+                                    <group>
+                                        <field name="doc_vat_copy" widget="binary"
+                                               filename="'doc_vat_copy_filename'"/>
+                                        <field name="installation_request" widget="binary"
+                                               filename="'installation_request_filename'"/>
+                                        <field name="service_contract" widget="binary"
+                                               filename="'service_contract_filename'"/>
+                                        <field name="basic_service_sheet" widget="binary"
+                                               filename="'basic_service_sheet_filename'"/>
+                                    </group>
+                                    <group>
+                                        <field name="is_validated"/>
+                                    </group>
+                                </group>
+                                    <group name="related_records" string="Registros Relacionados">
                                         <field name="referred_line_ids" mode="tree">
                                             <tree editable="bottom">
                                                 <field name="name"/>
@@ -200,16 +269,25 @@
                                                 <field name="converted_contract_id"/>
                                             </tree>
                                         </field>
-                                    </page>
-                                </notebook>
+                                    </group>
+
                             </page>
-                            <page name="notify" string="Notificaciones">
+                            <!--page name="notify" string="Notificaciones">
                                 <div class="oe_button_box" name="button_box">
-                                    <button name="action_register_notification" type="object" class="oe_stat_button" icon="fa-bell" string="N. Bienvenida" invisible="state_service != 'active'"/>
-                                    <button name="action_amountdue_notification" type="object" class="oe_stat_button" icon="fa-bell" string="N. Deudas" invisible="state != 'open'"/>
-                                    <button name="action_cutoff_notification" type="object" class="oe_stat_button" icon="fa-bell" string="N. Cortado" invisible="state_service != 'disabled'"/>
-                                    <button name="enable_portal_access_contract" type="object" class="oe_stat_button" icon="fa-user-plus" string="Permitir Acceso Portal" invisible="is_portal_user == True"/>
-                                    <button name="disable_portal_access_contract" type="object" class="oe_stat_button" icon="fa-lock" string="Quitar Acceso Portal" invisible="is_portal_user == False"/>
+                                    <button name="action_register_notification" type="object" class="oe_stat_button"
+                                            icon="fa-bell" string="N. Bienvenida"
+                                            invisible="state_service != 'active'"/>
+                                    <button name="action_amountdue_notification" type="object" class="oe_stat_button"
+                                            icon="fa-bell" string="N. Deudas" invisible="state != 'open'"/>
+                                    <button name="action_cutoff_notification" type="object" class="oe_stat_button"
+                                            icon="fa-bell" string="N. Cortado"
+                                            invisible="state_service != 'disabled'"/>
+                                    <button name="enable_portal_access_contract" type="object" class="oe_stat_button"
+                                            icon="fa-user-plus" string="Permitir Acceso Portal"
+                                            invisible="is_portal_user == True"/>
+                                    <button name="disable_portal_access_contract" type="object" class="oe_stat_button"
+                                            icon="fa-lock" string="Quitar Acceso Portal"
+                                            invisible="is_portal_user == False"/>
                                 </div>
                                 <group>
                                     <group>
@@ -218,7 +296,7 @@
                                         <field name="is_portal_user" invisible="1"/>
                                     </group>
                                 </group>
-                            </page>
+                            </page-->
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">
@@ -243,16 +321,16 @@
         </record>
 
 
-                <record id="silver_contract_search_panel" model="ir.ui.view">
-   <field name="name">silver.contract.search.panel</field>
-   <field name="model">silver.contract</field>
-   <field name="arch" type="xml">
-       <search>
-           <searchpanel>
-               <field name="state" enable_counters="1" icon="fa fa-filter"/>
-           </searchpanel>
-       </search>
-   </field>
+        <record id="silver_contract_search_panel" model="ir.ui.view">
+            <field name="name">silver.contract.search.panel</field>
+            <field name="model">silver.contract</field>
+            <field name="arch" type="xml">
+                <search>
+                    <searchpanel>
+                        <field name="state" enable_counters="1" icon="fa fa-filter"/>
+                    </searchpanel>
+                </search>
+            </field>
         </record>
     </data>
 </odoo>

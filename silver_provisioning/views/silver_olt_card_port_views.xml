@@ -6,12 +6,11 @@
             <field name="model">silver.olt.card.port</field>
             <field name="inherit_id" ref="silver_network.view_silver_olt_card_port_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//sheet" position="before">
-                    <div class="oe_button_box" name="button_box">
-                        <button class="oe_stat_button" type="object" name="action_view_contracts" icon="fa-arrows-v">
-                            <field string="Contratos" name="contract_count" widget="statinfo"/>
-                        </button>
-                    </div>
+
+  <xpath expr="//page[1]" position="before">
+                      <page string="Contratos">
+                   <field name="contract_ids"/>
+                      </page>
                 </xpath>
             </field>
         </record>

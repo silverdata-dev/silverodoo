@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!-- silver.ap -->
-        <record id="action_silver_ap" model="ir.actions.act_window">
-            <field name="name">Equipos AP</field>
-            <field name="res_model">silver.ap</field>
-            <field name="view_mode">tree,form</field>
-        </record>
 
         <record id="view_silver_ap_tree" model="ir.ui.view">
             <field name="name">silver.ap.tree</field>
@@ -17,6 +11,7 @@
                     <field name="hostname_ap"/>
                     <!--field name="brand_id"/-->
                     <field name="model"/>
+                    <field name="node_id"/>
                     <field name="capacity_usage_ap"/>
                     <field name="core_id"/>
                     <field name="ip"/>
@@ -74,25 +69,7 @@
                         </group>
                         </group>
                                               <notebook colspan="4">
-
-                             <page string="Configuración general" name="config">
-
-                        <group>
-                            <group name="ip_address" string="Direccionamiento IP">
-                                <field name="type_access_net" required="1"/>
-                                <field name="dhcp_custom_server" invisible="type_access_net != 'dhcp_leases'"/>
-                                <field name="interface" invisible="type_access_net != 'dhcp_leases'"/>
-                                <field name="is_dhcp_static" invisible="type_access_net != 'ip_fija'"
-                                       widget="boolean_toggle"/>
-                            </group>
-                            <group name="capacity" string="Capacidad Usada AP">
-                                <field name="capacity_usage_ap" readonly="1"/>
-                                <field name="is_mgn_mac_onu" widget="boolean_toggle"/>
-                            </group>
-                        </group>
-
-                             </page>
-                            <page string="Direcciones IP" invisible="type_access_net not in ['dhcp', 'dhcp_leases']">
+  <page string="Direcciones IP" invisible="type_access_net not in ['dhcp', 'dhcp_leases']">
 
                                 <field name="ip_address_pool_ids" nolabel="1" widget="one2many_list">
                                     <tree multi_selectable="1" colspan="2" editable="bottom">
@@ -113,8 +90,23 @@
                                 </field>
 
                             </page>
-                            <page string="Datos Ubicacion">
-                                <group string="Datos Ubicacion">
+
+                             <page string="Configuración general" name="config">
+
+                        <group>
+                            <group name="ip_address" string="Direccionamiento IP">
+                                <field name="type_access_net" required="1"/>
+                                <field name="dhcp_custom_server" invisible="type_access_net != 'dhcp_leases'"/>
+                                <field name="interface" invisible="type_access_net != 'dhcp_leases'"/>
+                                <field name="is_dhcp_static" invisible="type_access_net != 'ip_fija'"
+                                       widget="boolean_toggle"/>
+                            </group>
+                            <group name="capacity" string="Capacidad Usada AP">
+                                <field name="capacity_usage_ap" readonly="1"/>
+                                <field name="is_mgn_mac_onu" widget="boolean_toggle"/>
+                            </group>
+                        </group>
+ <group string="Datos Ubicacion">
                                     <group>
                                         <field name="country_id" can_create="false" can_write="false"/>
                                         <field name="state_id" can_create="true" can_write="true"/>
@@ -139,7 +131,8 @@
                                         </div>
                                     </group>
                                 </group>
-                            </page>
+                             </page>
+
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">
@@ -150,5 +143,32 @@
                 </form>
             </field>
         </record>
+
+
+
+    <record id="view_ap_search" model="ir.ui.view">
+        <field name="name">silver.ap.search.view</field>
+        <field name="model">silver.ap</field>
+        <field name="arch" type="xml">
+            <search string="Equipos AP">
+                <field name="name"/>
+                <field name="hostname_ap"/>
+                <field name="node_id" />
+                <group expand="1" string="Group By">
+                    <filter name="group_by_node_id" string="Nodo" domain="[]"  context="{'group_by':'node_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+        <record id="action_silver_ap" model="ir.actions.act_window">
+            <field name="name">Equipos AP</field>
+            <field name="res_model">silver.ap</field>
+            <field name="view_mode">tree,form</field>
+                      <field name="view_id" ref="view_silver_ap_tree"/>
+            <field name="context">{'search_default_group_by_node_id': 1}</field>
+
+        </record>
+
     </data>
 </odoo>

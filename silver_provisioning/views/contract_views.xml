@@ -13,9 +13,7 @@
                 </xpath>
                 <xpath expr="//notebook" position="inside">
                     <page name="provisioning" string="Servicio Internet">
-                        <notebook>
-                            <page string="Datos Técnicos" name="silver_technical_data">
-                                <div class="oe_button_box" name="button_box">
+                                <!--div class="oe_button_box" name="button_box">
                                     <button name="action_reconnection_service_button" type="object" class="oe_stat_button" icon="fa-rss" string="Reconectar" invisible="state != 'open'"/>
                                     <button name="action_ping_service" type="object" class="oe_stat_button" icon="fa-feed" string="PING"/>
                                     <button name="action_status_olt" type="object" class="oe_stat_button" icon="fa-signal" string="Status OLT"/>
@@ -23,7 +21,7 @@
                                     <button name="action_remove_service" type="object" class="oe_stat_button" icon="fa-times-circle" string="Eliminar Servicio"/>
                                     <button name="action_contract_reboot_onu" type="object" class="oe_stat_button" icon="fa-refresh" string="Reiniciar ONU"/>
                                     <button name="action_change_ont_service" type="object" class="oe_stat_button" icon="fa-exchange" string="Cambiar ONU"/>
-                                </div>
+                                </div-->
                                 <group name="ips_networks_1">
                                     <group>
                                         <field name="link_type" readonly="state != 'draft'"/>
@@ -58,9 +56,9 @@
                                         <field name="mac_address_onu"/>
                                     </group>
                                 </group>
-                            </page>
-                            <page name="other_info_internet" string="Fechas Programadas">
-                                <group>
+
+
+                                <group  name="other_info_internet" string="Fechas Programadas">
                                     <group name="ips_networks_start" string="Fechas Inicio">
                                         <field name="date_start"/>
                                         <field name="date_active"/>
@@ -72,16 +70,13 @@
                                         <field name="date_end"/>
                                     </group>
                                 </group>
-                            </page>
-                            <page name="gestion_wifi" string="Gestión Onu/WiFi">
-                                <group>
+                             <group>
                                     <group string="Credenciales WiFi">
                                         <field name="sssid"/>
                                         <field name="password"/>
                                         <field name="custom_channel_id" invisible="link_type != 'wifi'"/>
                                     </group>
-                                </group>
-                                <group string="Configuración WAN">
+                                  <group string="Configuración WAN">
                                     <field name="contract_mode_wan_ids">
                                         <tree editable="bottom">
                                             <field name="name"/>
@@ -90,6 +85,21 @@
                                         </tree>
                                     </field>
                                 </group>
+                                </group>
+
+                      <group name="data_radius" string="Informacion Radius">
+                                <field name="radius_entry_ids" readonly="1">
+                                    <tree>
+                                        <field name="session_start"/>
+                                        <field name="session_end"/>
+                                        <field name="session_duration"/>
+                                        <field name="framed_ip_address"/>
+                                        <field name="nas_ip_address"/>
+                                    </tree>
+                                </field>
+                            </group>
+                            <!--page name="gestion_wifi" string="Gestión Onu/WiFi">
+
                             </page>
                             <page name="mb_consumption" string="Consumo Megas">
                                 <field name="consumption_ids" readonly="1">
@@ -100,19 +110,8 @@
                                         <field name="total_gb"/>
                                     </tree>
                                 </field>
-                            </page>
-                            <page name="data_radius" string="Informacion Radius">
-                                <field name="radius_entry_ids" readonly="1">
-                                    <tree>
-                                        <field name="session_start"/>
-                                        <field name="session_end"/>
-                                        <field name="session_duration"/>
-                                        <field name="framed_ip_address"/>
-                                        <field name="nas_ip_address"/>
-                                    </tree>
-                                </field>
-                            </page>
-                        </notebook>
+                            </page-->
+
                     </page>
                 </xpath>
             </field>

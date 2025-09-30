@@ -6,6 +6,7 @@
             <field name="model">silver.payment.type</field>
             <field name="arch" type="xml">
                 <tree>
+                    <field name="code"/>
                     <field name="name"/>
                     <field name="description"/>
                 </tree>
@@ -20,6 +21,7 @@
                 <form string="Payment Type">
                     <sheet>
                         <group>
+                            <field name="code"/>
                             <field name="name"/>
                             <field name="description"/>
                         </group>

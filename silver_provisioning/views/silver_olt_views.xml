@@ -6,10 +6,11 @@
             <field name="model">silver.olt</field>
             <field name="inherit_id" ref="silver_network.view_silver_olt_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//div[@name='button_box']" position="inside">
-                    <button class="oe_stat_button" type="object" name="action_view_contracts" icon="fa-arrows-v">
-                        <field string="Contratos" name="contract_count" widget="statinfo"/>
-                    </button>
+
+  <xpath expr="//page[1]" position="before">
+                      <page string="Contratos">
+                   <field name="contract_ids"/>
+                      </page>
                 </xpath>
             </field>
         </record>

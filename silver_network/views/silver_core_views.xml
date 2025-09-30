@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!-- Accion y Menu para silver.core -->
-        <record id="action_silver_core" model="ir.actions.act_window">
-            <field name="name">Equipos Core Silver</field>
-            <field name="res_model">silver.core</field>
-            <field name="view_mode">tree,form</field>
-        </record>
 
-
-        <!-- Vistas para silver.core -->
         <record id="view_silver_core_tree" model="ir.ui.view">
             <field name="name">silver.core.tree</field>
             <field name="model">silver.core</field>
             <field name="arch" type="xml">
-                <tree string="Equipos Core Silver" default_order="name desc">
+                <tree string="Equipos Core Silver" default_order="name desc" expand="1">
                     <field name="name"/>
                     <field name="hostname_core"/>
+                    <field name="node_id"/>
                     <!--field name="brand_id"/-->
                     <field name="model"/>
                     <field name="ip"/>
@@ -27,6 +20,35 @@
                 </tree>
             </field>
         </record>
+
+
+    <record id="view_core_search" model="ir.ui.view">
+        <field name="name">silver.core.search.view</field>
+        <field name="model">silver.core</field>
+        <field name="arch" type="xml">
+            <search string="Equipos Core">
+                <field name="name"/>
+                <field name="hostname_core"/>
+                <field name="node_id" />
+                <group expand="1" string="Group By">
+                    <filter name="group_by_node_id" string="Nodo" domain="[]"  context="{'group_by':'node_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+
+        <!-- Accion y Menu para silver.core -->
+        <record id="action_silver_core" model="ir.actions.act_window">
+            <field name="name">Equipos Core Silver</field>
+            <field name="res_model">silver.core</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_silver_core_tree"/>
+            <field name="context">{'search_default_group_by_node_id': 1}</field>
+        </record>
+
+
 
         <record id="view_silver_core_form" model="ir.ui.view">
             <field name="name">silver.core.form</field>
@@ -92,9 +114,7 @@
                         </group>
 
                         <notebook colspan="4">
-                            <page name="related" string="Relaciones">
-                                <notebook colspan="4" name="relateds">
-                                    <page string="Equipos AP" name="aps">
+                             <page string="Equipos AP" name="aps">
                                         <field name="ap_ids">
 
                                         </field>
@@ -104,7 +124,28 @@
 
                                         </field>
                                     </page>
-                                </notebook>
+                                  <page name="ip_address" string="Direcciones IP">
+
+
+                                <field name="ip_address_pool_ids" nolabel="1" widget="one2many_list">
+                                    <tree multi_selectable="1" colspan="2" editable="bottom">
+                                        <field name="name" readonly="True"/>
+                                        <field name="network"/>
+                                        <field name="nmask"/>
+
+                                        <field name="total_ips"/>
+                                        <field name="used_ips"/>
+                                        <field name="usage_percentage" widget="progressbar"/>
+                                    </tree>
+                                </field>
+
+
+                                <button name="generar" string="Generar IPs" type="object"/>
+
+                                <field name="ip_address_ids" nolabel="1">
+                                </field>
+
+
                             </page>
                             <page name="config" string="Configuraciones Generales">
                                 <group string="Radius" invisible="not is_silver_radius">
@@ -216,32 +257,8 @@
                                     <field name="is_desactive_core" widget="boolean_toggle"/>
                                     <field name="is_desactive_olt" widget="boolean_toggle"/>
                                 </group>
-                            </page>
-                            <page name="ip_address" string="Direcciones IP">
 
-
-                                <field name="ip_address_pool_ids" nolabel="1" widget="one2many_list">
-                                    <tree multi_selectable="1" colspan="2" editable="bottom">
-                                        <field name="name" readonly="True"/>
-                                        <field name="network"/>
-                                        <field name="nmask"/>
-
-                                        <field name="total_ips"/>
-                                        <field name="used_ips"/>
-                                        <field name="usage_percentage" widget="progressbar"/>
-                                    </tree>
-                                </field>
-
-
-                                <button name="generar" string="Generar IPs" type="object"/>
-
-                                <field name="ip_address_ids" nolabel="1">
-                                </field>
-
-
-                            </page>
-
-                            <page name="config_port_slot" string="Configuracion Interface GPON"
+                                   <group name="config_port_slot" string="Configuracion Interface GPON"
                             >
 
                                 <div class="oe_button_box" name="button_box">
@@ -258,7 +275,11 @@
                                 <group>
                                     <field name="silver_core_port_line_ids" nolabel="1"/>
                                 </group>
+
+                            </group>
                             </page>
+
+
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">

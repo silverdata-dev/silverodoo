@@ -27,8 +27,8 @@
             <field name="arch" type="xml">
                 <form string="Puerto OLT ISP">
                     <header>
-                        <button name="create_splitter_primary" string="Crear Splitter Primario" type="object"/>
-                        <button name="create_splitter_secondary" string="Crear Splitter Secundario" type="object"/>
+                        <!--button name="create_splitter_primary" string="Crear Splitter Primario" type="object"/>
+                        <button name="create_splitter_secondary" string="Crear Splitter Secundario" type="object"/-->
                     </header>
                     <sheet string="Puerto OLT ISP">
                         <!--div class="oe_button_box" name="button_box">
@@ -54,11 +54,39 @@
                                 <field name="num_port"/>
                             </group>
                             <group>
-                                <field name="olt_card_n"/>
+                                <field name="olt_card_id" />
                             </group>
                         </group>
+                        <field name="olt_id" invisible="1"/>
 
-                        <group>
+
+
+                        <notebook colspan="4">
+
+                            <page name="ip_addresses" string="Direcciones IP">
+
+            <field name="ip_address_pool_ids" nolabel="1"  widget="one2many_list"  >
+                <tree multi_selectable="1"  colspan="2" editable="bottom">
+                          <field name="name" readonly="True"/>
+                    <field name="network"/>
+                    <field name="nmask"/>
+
+                     <field name="total_ips"/>
+                            <field name="used_ips"/>
+                            <field name="usage_percentage" widget="progressbar"/>
+                    </tree>
+                </field>
+
+
+
+ <button name="generar" string="Generar IPs" type="object"/>
+
+                <field name="ip_address_ids" nolabel="1" >
+                     </field>
+
+                            </page>
+                              <page name="config" string="Configuración">
+                                          <group>
                             <group name="capacity_port" string="Capacidad del Puerto">
                                 <field name="capacity_port_pon"/>
                                 <field name="capacity_usage_port_pon" readonly="1"/>
@@ -116,30 +144,8 @@
                                 <field name="number_reverse" invisible="not is_reverse_onuid"/>
                             </group>
                         </group>
+                              </page>
 
-                        <notebook colspan="4">
-                            <page name="ip_addresses" string="Direcciones IP">
-
-            <field name="ip_address_pool_ids" nolabel="1"  widget="one2many_list"  >
-                <tree multi_selectable="1"  colspan="2" editable="bottom">
-                          <field name="name" readonly="True"/>
-                    <field name="network"/>
-                    <field name="nmask"/>
-
-                     <field name="total_ips"/>
-                            <field name="used_ips"/>
-                            <field name="usage_percentage" widget="progressbar"/>
-                    </tree>
-                </field>
-
-
-
- <button name="generar" string="Generar IPs" type="object"/>
-
-                <field name="ip_address_ids" nolabel="1" >
-                     </field>
-
-                            </page>
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">

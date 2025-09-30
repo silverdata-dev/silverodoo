@@ -35,19 +35,18 @@
                     </header>
                     <sheet string="Equipo OLT ISP">
                         <div class="oe_button_box" name="button_box">
-                            <button class="oe_stat_button" type="object" name="action_view_olt_cards"
+                            <!--button class="oe_stat_button" type="object" name="action_view_olt_cards"
                                     icon="fa-arrows-v">
                                 <field string="Tarjetas OLT" name="olt_card_count" widget="statinfo"/>
                             </button>
-                            <button name="action_connect_olt" type="object" class="oe_stat_button" icon="fa-signal"
-                                    string="Probar Conexion"/>
+
                             <button name="action_create_profile_olt" type="object" class="oe_stat_button"
-                                    icon="fa-arrows-v" string="Crear Perfiles"/>
+                                    icon="fa-arrows-v" string="Crear Perfiles"/-->
 
                         </div>
                         <widget name="web_ribbon" title="Active" invisible="state == 'down'"/>
                         <widget name="web_ribbon" title="Down" bg_color="bg-danger" invisible="state == 'active'"/>
-                        <field name="state"/>
+                        <field name="state" invisible="1"/>
                         <div class="oe_title">
                             <h1>
                                 <label for="name" string="Nombre"/>
@@ -63,30 +62,76 @@
                                 <field name="is_brand_zte" invisible="1"/>
                                 <field name="core_id"/>
                                 <field name="node_id"/>
-                            </group>
-                            <group>
+
                                 <!--field name="brand_id"/-->
 
                                 <field name="num_slot_olt"/>
+                                <field name="num_ports1" invisible="num_slot_olt&lt;1"/>
+                                <field name="num_ports2" invisible="num_slot_olt&lt;2"/>
+                                <field name="num_ports3" invisible="num_slot_olt&lt;3"/>
+                                <field name="num_ports4" invisible="num_slot_olt&lt;4"/>
+                                <field name="num_ports5" invisible="num_slot_olt&lt;5"/>
+
+
+<button name="action_generar" string="Generar" type="object" /><br/>
+
+
                             </group>
-                        </group>
-                        <group name="core_conexion" string="Datos Conexion">
-                            <group>
+                            <group name="core_conexion" string="Datos Conexion">
+
                                 <field name="ip"/>
                                 <field name="port"/>
                                 <field name="type_connection"/>
                                 <field name="kex_algorithms_ids" widget="many2many_tags"/>
-                            </group>
-                            <group>
+
                                 <field name="is_multi_user_olt" widget="boolean_toggle"/>
                                 <field name="username" invisible="is_multi_user_olt"/>
                                 <field name="password" password="True"/>
                                 <!--button class="oe_inline oe_link " name="action_send_password"
                                         string=" →Enviar Contraseña" type="object"/-->
                                 <field name="secret_olt"/>
-                            </group>
+                                  <button name="action_connect_olt" type="object" class="oe_stat_button" icon="fa-signal"
+                                    string="Probar Conexion"/>
+
                         </group>
+                        </group>
+
                         <notebook colspan="4">
+
+                            <page string="Puertos">
+                                   <field name="port_ids" >
+                <tree string="Puertos OLT ISP" default_order="name desc">
+                    <field name="name"/>
+                    <field name="num_port"/>
+                    <field name="olt_card_n"/>
+                    <field name="type_access_net"/>
+                </tree>
+            </field>
+                            </page>
+
+                            <page name="ip_addresses" string="Direcciones IP">
+
+            <field name="ip_address_pool_ids" nolabel="1"  widget="one2many_list"  >
+                <tree multi_selectable="1"  colspan="2" editable="bottom">
+                          <field name="name" readonly="True"/>
+                    <field name="network"/>
+                    <field name="nmask"/>
+
+                     <field name="total_ips"/>
+                            <field name="used_ips"/>
+                            <field name="usage_percentage" widget="progressbar"/>
+                    </tree>
+                </field>
+
+
+
+ <button name="generar" string="Generar IPs" type="object"/>
+
+                <field name="ip_address_ids" nolabel="1" >
+                     </field>
+
+                            </page>
+
                             <page name="config" string="Configuraciones Generales">
                                 <group string="Tipo de Conexion">
 
@@ -197,42 +242,50 @@
                                         <field name="is_enable_remote_access_onu" widget="boolean_toggle"/>
                                     </group>
                                 </group>
+
+
+<group name="pppoe_1" string="Gesti&#243;n WAN ONU" invisible="is_gestion_pppoe== False">
+<group>
+<field name="connection_wan" />
+<!-- <field name="protocol_mode"/> -->
+<field name="protocol_type" />
+<field name="wan_mode" />
+<field name="service_type" />
+<field name="acquisition_mode" />
+</group>
+<group>
+<field name="vlan_id" />
+<field name="mtu" />
+<field name="is_enable_nat" widget="boolean_toggle" />
+<field name="is_disabled_dhcp_pv4" widget="boolean_toggle" />
+<field name="is_control_admin" widget="boolean_toggle" />
+<field name="admin_user" invisible ="is_control_admin== False" />
+<field name="password_user" invisible="is_control_admin== False" />
+</group>
+</group>
+<group string="Binding Option">
+<div>
+<strong>LAN1 </strong> <field name="lan1" />
+<strong>LAN2 </strong> <field name="lan2" />
+<strong>LAN3 </strong> <field name="lan3" />
+<strong>LAN4 </strong> <field name="lan4" />
+</div> <br/>
+<div>
+<strong>SSID1 </strong> <field name="ssid1" />
+<strong>SSID2 </strong> <field name="ssid2" />
+<strong>SSID3 </strong> <field name="ssid3" />
+<strong>SSID4 </strong> <field name="ssid4" />
+<strong>SSID5 </strong> <field name="ssid5" />
+<strong>SSID6 </strong> <field name="ssid6" />
+<strong>SSID7 </strong> <field name="ssid7" />
+<strong>SSID8 </strong> <field name="ssid8" />
+
+</div>
+</group>
+
                             </page>
 
-                            <page name="ip_addresses" string="Direcciones IP">
 
-            <field name="ip_address_pool_ids" nolabel="1"  widget="one2many_list"  >
-                <tree multi_selectable="1"  colspan="2" editable="bottom">
-                          <field name="name" readonly="True"/>
-                    <field name="network"/>
-                    <field name="nmask"/>
-
-                     <field name="total_ips"/>
-                            <field name="used_ips"/>
-                            <field name="usage_percentage" widget="progressbar"/>
-                    </tree>
-                </field>
-
-
-
- <button name="generar" string="Generar IPs" type="object"/>
-
-                <field name="ip_address_ids" nolabel="1" >
-                     </field>
-
-                            </page>
-
-
-                            <page string="Puertos">
-                                   <field name="port_ids" >
-                <tree string="Puertos OLT ISP" default_order="name desc">
-                    <field name="name"/>
-                    <field name="num_port"/>
-                    <field name="olt_card_n"/>
-                    <field name="type_access_net"/>
-                </tree>
-            </field>
-                            </page>
 
 
                         </notebook>

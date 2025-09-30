@@ -9,6 +9,8 @@ class SilverOltCard(models.Model):
 
     olt_id = fields.Many2one('silver.olt', string='OLT', required=True)
 
+    port_ids = fields.One2many('silver.olt.card.port', 'olt_card_id', string='Puertos')
+
     name = fields.Char(string='Nombre')
 
     # --- Campos de Acceso y Configuración ---
@@ -25,7 +27,7 @@ class SilverOltCard(models.Model):
 
     #contracts_card_count = fields.Integer(string='Conteo Tarjetas Olt', compute='_compute_counts')
 
-    olt_card_port_count = fields.Integer(string='Conteo Puertos', compute='_compute_counts')
+    olt_card_port_count = fields.Integer(string='Conteo Puertos', compute='_compute_olt_card_port_count')
     
 
     @api.model
