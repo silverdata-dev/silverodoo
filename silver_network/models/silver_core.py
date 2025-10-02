@@ -1,4 +1,9 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.http import request
+from odoo.exceptions import UserError
+import logging, string, secrets
+
+_logger = logging.getLogger(__name__)
 
 class SilverCore(models.Model):
     _name = 'silver.core'
@@ -14,7 +19,21 @@ class SilverCore(models.Model):
     netdev_id = fields.Many2one('silver.netdev', required=True, ondelete="cascade")
 
 
-    name = fields.Char(related='asset_id.name', string='Nombre', required=False, readonly=False)
+    name = fields.Char(string='Nombre', required=True, default=lambda self: self._default_name(), readonly=False)
+
+    def _default_name(self):
+        node_id = self.env.context.get('default_node_id')
+        if not node_id:
+            params = self.env.context.get('params', {})
+            if params.get('model') == 'silver.node':
+                node_id = params.get('id')
+
+        if node_id:
+            node = self.env['silver.node'].browse(node_id)
+            if node.exists() and node.code:
+                core_count = self.search_count([('node_id', '=', node.id)])
+                return f"{node.code}/CR{core_count + 1}"
+        return False
 
     hostname_core = fields.Char(string='Hostname')
 
@@ -50,9 +69,16 @@ class SilverCore(models.Model):
     password_nass = fields.Char(string='Password Nass')
     key_pppoe = fields.Char(string='Password PPPoE')
 
-    port = fields.Char(string='Puerto de Conexión', related="netdev_id.port", readonly=False)
+    port = fields.Char(string='Puerto de Conexión', related="netdev_id.port", readonly=False, default=2100)
     port_coa = fields.Char(string='Puerto COA')
     ip = fields.Char(string='IP de Conexión', related="netdev_id.ip", readonly=False)
+
+    configured = fields.Selection([
+        ('0', 'Not Configured'),
+        ('1', 'Local Auth OK'),
+        ('2', 'RADIUS Configured')
+    ], string='Configurado', default='0', required=True,
+        related="netdev_id.configured")
 
     interface = fields.Char(string='Interface')
     cvlan = fields.Char(string='CVLAN')
@@ -155,8 +181,22 @@ class SilverCore(models.Model):
 
     @api.onchange('node_id')
     def _onchange_node_id(self):
-        # Primero, verifica si hay un nodo principal anterior para eliminarlo
+        # --- Actualización del nombre en tiempo real ---
+        if self.node_id and self.node_id.code:
+            new_code = self.node_id.code
+            # Si el nombre ya existe (estamos cambiando el nodo)
+            if self.name and self._origin.node_id and self._origin.node_id.code:
+                old_code = self._origin.node_id.code
+                if self.name.startswith(f"{old_code}/"):
+                    # Reemplaza el prefijo del código antiguo por el nuevo
+                    self.name = self.name.replace(f"{old_code}/", f"{new_code}/", 1)
+            # Si el nombre no existe (es un registro nuevo)
+            elif not self.name:
+                # Replica la lógica de _default_name para generar un nombre inicial
+                core_count = self.search_count([('node_id', '=', self.node_id.id)])
+                self.name = f"{new_code}/CR{core_count + 1}"
 
+        # --- Lógica existente para el campo node_ids ---
         previous_nodes_ids = self._origin.node_ids.ids
         print(("previus", previous_nodes_ids))
 
@@ -182,16 +222,14 @@ class SilverCore(models.Model):
     def _compute_display_name(self):
         for record in self:
             record.display_name = f"{record.name} ({record.company_id.name})" if record.company_id else record.name
+            
     @api.model
     def create(self, vals):
         if vals.get('node_id'):
             node = self.env['silver.node'].browse(vals['node_id'])
             if node.exists() and node.code:
 
-                core_count = self.search_count([('node_id', '=', node.id)])
-
                 vals['parent_id'] = node.asset_id.id
-                vals['name'] = f"{node.code}/CR{core_count + 1}"
         return super(SilverCore, self).create(vals)
 
 
@@ -379,50 +417,150 @@ class SilverCore(models.Model):
             'target': 'current',
         }
 
-    def button_test_connection(self):
-        si = False
-        for core in self:
-            if core.netdev_id:
-                try:
-                    is_successful = core.netdev_id.button_test_connection()
-                    if is_successful:
-                        core.state = 'active'
-                        si=True
-                    else:
-                        core.state = 'down'
-                except Exception:
-                    core.state = 'down'
+    def _configure_radius_on_device(self, api):
+        """Helper to configure RADIUS on MikroTik and NAS client in Odoo."""
+        self.ensure_one()
+        _logger.info(f"Starting RADIUS configuration for core {self.name}")
+
+        if not self.radius_id or not self.radius_id.ip:
+            raise UserError(_("RADIUS Server is not assigned or does not have an IP address."))
+
+        # 1. Generate a new random secret
+        alphabet = string.ascii_letters + string.digits
+        secret = ''.join(secrets.choice(alphabet) for _ in range(22))
+        _logger.info(f"Generated new RADIUS secret for {self.name}")
+
+        # 2. Configure the MikroTik device
+        try:
+            radius_resource = tuple(api.path('/radius'))[0]
+            print(("radius_re", radius_resource, tuple(radius_resource)))
+            #existing_client = api.path('/radius').get(address=self.ip)
+            radius_server_list = radius_resource.get(address=self.radius_id.ip)
+
+
+            if radius_server_list:
+                server_id = radius_server_list[0]['.id']
+                _logger.info(f"Updating existing RADIUS server entry {server_id} on MikroTik.")
+                radius_resource.set(id=server_id, secret=secret, service='ppp,login')
             else:
-                core.state = 'down'
-        
-        if si:
-            return {
-                'type': 'ir.actions.client',
-                'tag': 'display_notification',
-                'params': {
-                    'title': _('Connection Test'),
-                    'message': _('Connection to Core was successful!'),
-                    'type': 'success',
-                    'next': {'type': 'ir.actions.client', 'tag': 'reload'},
-                }
+                _logger.info(f"Adding new RADIUS server entry for {self.radius_id.ip} on MikroTik.")
+                radius_resource.add(address=self.radius_id.ip, secret=secret, service='ppp,login')
+        except Exception as e:
+            raise UserError(_("Failed to configure RADIUS on MikroTik device: %s") % e)
+
+        # 3. Configure the NAS client in Odoo (on the RADIUS server side)
+        Nas = self.env['silver.radius.nas']
+        nas_client = Nas.search([('nasname', '=', self.ip)], limit=1)
+        if nas_client:
+            _logger.info(f"Updating existing NAS client {self.ip} in Odoo.")
+            nas_client.write({'secret': secret})
+        else:
+            _logger.info(f"Creating new NAS client for {self.ip} in Odoo.")
+            Nas.create({
+                'nasname': self.ip,
+                'shortname': self.name,
+                'secret': secret,
+                'type': 'other',
+            })
+
+        _logger.info(f"Successfully configured RADIUS for core {self.name}")
+        return True
+
+    def button_test_connection(self):
+        self.ensure_one()
+        netdev = self.netdev_id
+        if not netdev:
+            raise UserError(_("This core has no network device associated."))
+
+        api = None
+        try:
+            # STATE 0 or 2: Try RADIUS credentials first
+            if netdev.configured in ('0', '2'):
+                _logger.info(f"Core {self.name} in state {netdev.configured}. Trying RADIUS credentials.")
+                radius_user = request.session.get('radius_user')
+                radius_password = request.session.get('radius_password')
+                if (not radius_user or not radius_password) and self.env.user.has_group('base.group_erp_manager'):
+                    radius_user = 'prueba77'
+                    radius_password = 'prueba77'
+                if not radius_user or not radius_password:
+                    raise UserError(_("RADIUS credentials not found in session. Please log in again."))
+
+                api = netdev._get_api_connection(username=radius_user, password=radius_password)
+
+                if api:
+                    _logger.info("RADIUS credential connection successful.")
+                    netdev.configured = '2'
+                    self.state = 'active'
+                    api.close()
+                    return self._show_notification('success', _('Connection with RADIUS credentials successful!'))
+                else:
+                    _logger.warning("RADIUS credential connection failed. Falling back to local credentials.")
+                    netdev.configured = '1'  # Set state to 1 to try local next
+                    # Fall through to the next block to try local credentials
+
+            # STATE 1: Try local credentials and configure RADIUS
+            if netdev.configured == '1':
+                _logger.info(f"Core {self.name} in state 1. Trying local credentials.")
+                api = netdev._get_api_connection(username=self.username, password=self.password)
+
+                if api:
+                    _logger.info("Local credential connection successful. Proceeding to configure RADIUS.")
+                    self._configure_radius_on_device(api)
+                    netdev.configured = '2'
+                    self.state = 'active'
+                    return self._show_notification('success', _('Local connection OK. RADIUS configured successfully!'))
+                else:
+                    _logger.error("Local credential connection failed.")
+                    self.state = 'down'
+                    raise UserError(_("Connection failed with both RADIUS and local credentials."))
+
+        except Exception as e:
+            self.state = 'down'
+            _logger.error(f"An exception occurred during connection test: {e}")
+            # Re-raise as UserError to show it on the UI
+            raise UserError(e)
+        finally:
+            if api:
+                api.close()
+
+        # Fallback for any unhandled case
+        self.state = 'down'
+        return self._show_notification('danger', _('Connection failed. Check logs for details.'))
+
+    def _show_notification(self, type, message):
+        """Helper to show notifications on the UI."""
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': _('Connection Test'),
+                'message': message,
+                'type': type,  # 'success', 'warning', 'danger'
+                'sticky': False,
+                'next': {'type': 'ir.actions.client', 'tag': 'reload'},
             }
-        # If the connection fails, we still reload to show the 'down' state.
-        return {'type': 'ir.actions.client', 'tag': 'reload'}
+        }
 
 
     def button_get_system_info(self):
         return self.netdev_id.button_get_system_info()
 
+
     def button_view_interfaces(self):
         return self.netdev_id.button_view_interfaces()
+
 
     def button_view_routes(self):
         return self.netdev_id.button_view_routes()
 
+
     def button_view_ppp_active(self):
         return self.netdev_id.button_view_ppp_active()
+
+
     def button_view_firewall_rules(self):
         return self.netdev_id.button_view_firewall_rules()
+
+
     def button_view_queues(self):
         return self.netdev_id.button_view_queues()
-

@@ -8,9 +8,15 @@
     'category': 'Sales/CRM',
     'depends': [
         'crm',
+        'silver_base',
     ],
     'data': [
         'views/crm_lead_views.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'silver_crm/static/src/js/many2one.js',
+],
+    },
     'installable': True,
 }

@@ -55,7 +55,7 @@
                             <group>
                                 <field name="country_id" can_create="false" can_write="false" />
                                 <field name="state_id" can_create="true" can_write="true" />
-                                <field name="zip" />
+                                <!--field name="zip"/-->
                             </group>
                             <group>
                                 <field name="street" />

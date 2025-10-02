@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="silver_network.view_silver_splitter_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@name='button_box']" position="inside">
-                    <button class="oe_stat_button" type="object" name="action_view_contracts" icon="fa-arrows-v">
+                    <button class="oe_stat_button" type="object" name="action_view_contracts" icon="fa-arrows-v" invisible="1">
                         <field string="Contratos" name="contract_count" widget="statinfo"/>
                     </button>
                 </xpath>

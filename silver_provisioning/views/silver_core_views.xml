@@ -23,5 +23,16 @@
 
             </field>
         </record>
+
+        <record id="view_silver_core_tree_provisioning_inherit" model="ir.ui.view">
+            <field name="name">silver.core.tree.provisioning.inherit</field>
+            <field name="model">silver.core</field>
+            <field name="inherit_id" ref="silver_network.view_silver_core_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='ip']" position="after">
+                    <field name="contract_count"/>
+                </xpath>
+            </field>
+        </record>
     </data>
 </odoo>

@@ -1,6 +1,11 @@
 from odoo import models, fields, api
 from odoo.exceptions import UserError
 import librouteros
+from odoo.http import request
+
+import logging
+
+_logger = logging.getLogger(__name__)
 
 class SilverNetdev(models.Model):
     _name = 'silver.netdev'
@@ -55,6 +60,11 @@ class SilverNetdev(models.Model):
     radius_client_ip = fields.Char(string='Radius Server IP')
     radius_client_secret = fields.Char(string='Radius Shared Secret')
     radius_client_services = fields.Many2many('silver.radius.service', string='Radius Services') # Assuming a model silver.radius.service exists or will be created
+    configured = fields.Selection([
+        ('0', 'Not Configured'),
+        ('1', 'Local Auth OK'),
+        ('2', 'RADIUS Configured')
+    ], string='Configured State', default='0', required=True)
 
     #core_ids = fields.One2many('silver.core', 'netdev_id', string='Cores')
     #olt_ids = fields.One2many('silver.olt', 'netdev_id', string='OLTs')
@@ -67,34 +77,35 @@ class SilverNetdev(models.Model):
         for ret in self.ip_address_pool_ids:
             ret.action_generate_ips()
 
-    @api.model
-    def _get_api_connection(self):
+    def _get_api_connection(self, username=None, password=None):
         self.ensure_one()
-        p = self.port
-        if not p: p = self.api_port
+        p = self.port or self.api_port
+
+        # Use provided credentials, fallback to self, then to session
+        user_to_try = username or self.username or request.session.get('radius_user')
+        pass_to_try = password or self.password or request.session.get('radius_password')
+
+        if not user_to_try or not pass_to_try:
+            self.write({'state': 'error'})
+            _logger.error("Connection attempt failed: No username or password provided.")
+            return None
+
         try:
             self.write({'state': 'connecting'})
-            print(("connect", {
-                "host":self.ip,
-                "username":self.username,
-                "password":self.password,
-                "port":p
-            }))
+            _logger.info(f"Attempting to connect to {self.ip}:{p} with user '{user_to_try}'")
             api = librouteros.connect(
                 host=self.ip,
-                username=self.username,
-                password=self.password,
-                port=p,
-           #     encoding='utf-8'
+                username=user_to_try,
+                password=pass_to_try,
+                port=int(p),
                 encoding='latin-1'
             )
-            print(("connected ", api))
+            _logger.info(f"Successfully connected to {self.ip}")
             self.write({'state': 'connected'})
             return api
-        except (librouteros.exceptions.TrapError, ConnectionRefusedError) as e:
-            print(("error", e))
+        except Exception as e:
+            _logger.error(f"Failed to connect to {self.ip}:{p} with user '{user_to_try}'. Error: {e}")
             self.write({'state': 'error'})
-            # Consider logging the error e
             return None
 
     def get_real_model_name_by_id(self):
@@ -111,8 +122,9 @@ class SilverNetdev(models.Model):
             try:
                 # Check if Radius client for this IP already exists
                 r=api.path('/radius')
-                print(("radius", r, dir(r)))
+                print(("radius", r, dir(r), api.path('/radius')))
                 existing_client = api.path('/radius').get(address=self.ip)
+                #tuple(api.path('/system/resource'))[0]
                 
                 services_str = ",".join(self.radius_client_services.mapped('name')) if self.radius_client_services else ""
 

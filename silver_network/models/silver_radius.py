@@ -24,12 +24,12 @@ class SilverRadius(models.Model):
 
 
     name = fields.Char(string='Hostname', required=True, readonly=False, copy=False, default='New')
-    ip_core_radius = fields.Char(string='IP Core Radius')
-    port_core_radius = fields.Char(string='Puerto Core Radius')
-    user_core_radius = fields.Char(string='Usuario Core Radius')
-    password_core_radius = fields.Char(string='Password Core Radius')
-    database = fields.Char(string='Database')
-    core_id = fields.Many2one('silver.core', string='Core')
+#    ip_core_radius = fields.Char(string='IP Core Radius')
+#    port_core_radius = fields.Char(string='Puerto Core Radius')
+#    user_core_radius = fields.Char(string='Usuario Core Radius')
+#    password_core_radius = fields.Char(string='Password Core Radius')
+#    database = fields.Char(string='Database')
+#    core_id = fields.Many2one('silver.core', string='Core')
     #nas_ids = fields.One2many('silver.radius.nas.wizard', 'radius_id', string='NAS')
 
     core_ids = fields.One2many('silver.core', 'radius_id', string='Equipos Core')
@@ -78,7 +78,7 @@ class SilverRadius(models.Model):
 
     state = fields.Selection([('down', 'Down'), ('active', 'Activo')], string='Estado', default='down', track_visibility='onchange')
 
-    type_radius = fields.Selection([], string='Tipo Radius')
+    type_radius = fields.Selection([("free_radius", "Free Radius Custom"), ("free_radius_ng", "Free Radius"), ("mk_radius", "Mikrotik Radius")], string='Tipo Radius', default="mk_radius")
     port_coa = fields.Char(string='Puerto COA')
     is_ipv6 = fields.Boolean(string='IPV6')
 

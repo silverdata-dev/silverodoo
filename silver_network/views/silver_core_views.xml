@@ -13,8 +13,9 @@
                     <!--field name="brand_id"/-->
                     <field name="model"/>
                     <field name="ip"/>
-                    <field name="port"/>
-                    <field name="username"/>
+
+                    <!--field name="port"/>
+                    <field name="username"/-->
                     <field name="state" widget="badge" decoration-danger="state == 'down'"
                            decoration-success="state == 'active'"/>
                 </tree>
@@ -58,12 +59,12 @@
                     <header>
                         <button name="create_ap" string="Crear Equipo AP" type="object"/>
                         <!--button name="create_radius" string="Crear Radius" type="object" invisible="not is_silver_radius"/-->
-                        <!--button name="button_get_system_info" type="object" string="Get System Info"/>
+                        <button name="button_get_system_info" type="object" string="Get System Info"/>
                         <button name="button_view_interfaces" type="object" string="View Interfaces"/>
                         <button name="button_view_routes" type="object" string="View Routes"/>
                         <button name="button_view_ppp_active" type="object" string="View PPP Active"/>
                         <button name="button_view_firewall_rules" type="object" string="View Firewall Rules"/>
-                        <button name="button_view_queues" type="object" string="View Queues"/-->
+                        <button name="button_view_queues" type="object" string="View Queues"/>
                         <!--field name="state" widget="statusbar" statusbar_visible="down,active"/-->
                     </header>
                     <sheet string="Equipo Core Silver">
@@ -89,10 +90,10 @@
                             <h1>
                                 <field name="name"/>
                             </h1>
-                        </div>
+                         </div>
                         <group name="core">
                             <group>
-                                <field name="hostname_core"/>
+                                <field name="hostname_core" autofocus="autofocus"/>
                                 <field name="node_id"/>
                                 <field name="node_ids" widget="many2many_tags" invisible="1"/>
 
@@ -104,10 +105,12 @@
                                 <!--field name="type_connection" invisible="brand_description != 'hua'"/-->
                                 <!--field name="kex_algorithms_ids" invisible="brand_description != 'hua'" widget="many2many_tags"/-->
 
-                                <field name="username"/>
-                                <field name="password" password="True"/>
+                                <field name="username" invisible="configured=='2'"/>
+                                <field name="password" password="True" invisible="configured=='2'"/>
+                                  <field name="radius_id" />
+                                <field name="configured" invisible="true"/>
                                 <!--button class="oe_inline oe_link " name="action_send_password" string=" →Enviar Contraseña" type="object"/-->
-                                <button name="button_test_connection" type="object" string="Test Connection"
+                                <button name="button_test_connection" type="object" string="Conectar"
                                         class="oe_highlight"/>
 
                             </group>
@@ -148,7 +151,7 @@
 
                             </page>
                             <page name="config" string="Configuraciones Generales">
-                                <group string="Radius" invisible="not is_silver_radius">
+                                <!--group string="Radius" invisible="not is_silver_radius">
 
                                     <field name="radius_id" invisible="not is_silver_radius"/>
                                     <field name="networks_device_id" invisible="not is_device_network"
@@ -158,9 +161,9 @@
                                     <field name="user_nass" invisible="not is_silver_radius"/>
                                     <field name="password_nass" password="True" invisible="not is_silver_radius"/>
                                     <field name="port_coa" invisible="not is_silver_radius"/>
-                                </group>
+                                </group-->
 
-                                <group name="type_access_net" string="Direccionamiento IP">
+                                <group name="type_access_net" string="Pool de clientes">
                                     <group>
                                         <field name="type_access_net"/>
                                     </group>

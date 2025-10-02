@@ -13,6 +13,9 @@ class SilverCore(models.Model):
         help="Registro de provisioning asociado a este Core."
     )
 
+    contract_count = fields.Integer(related='access_point_id.contract_count', string='Contratos', readonly=True, store=True)
+
+
 
     def action_view_contracts(self):
         return self.access_point_id.action_view_contracts()

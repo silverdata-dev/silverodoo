@@ -6,7 +6,7 @@
     'author': 'Gemini',
     'website': 'https://www.gemini.com',
     'category': 'Services/Telecommunications',
-    'depends': ['silver_network', 'silver_contract'],
+    'depends': ['silver_network', 'silver_contract', 'silver_base'],
     'data': [
         'security/ir.model.access.csv',
         'views/contract_views.xml',
@@ -16,6 +16,7 @@
         'views/silver_olt_card_port_views.xml',
         'views/silver_olt_views.xml',
         'views/silver_core_views.xml',
+        'views/silver_node_views.xml',
     ],
     'installable': True,
     'application': False,

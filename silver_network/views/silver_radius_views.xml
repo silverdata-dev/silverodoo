@@ -14,9 +14,9 @@
             <field name="arch" type="xml">
                 <tree string="Servidor Radius">
                     <field name="name" string="Hostname"/>
-                    <field name="ip_core_radius"/>
-                    <field name="port_core_radius"/>
-                    <field name="user_core_radius"/>
+                    <field name="ip"/>
+                    <field name="port"/>
+                    <!--field name="user_core_radius"/-->
                     <field name="state" widget="badge" decoration-danger="state == 'down'"
                            decoration-success="state == 'active'"/>
                 </tree>
@@ -66,13 +66,15 @@
                             <group>
                                 <field name="ip"/>
                                 <field name="port"/>
-                                <field name="username"/>
-                            </group>
+                                <!--field name="username"/-->
+                            </group>button_get_system_info
                             <group>
-                                <field name="password" password="True"/>
+                                <!--field name="password" password="True"/>
                                 <field name="database" invisible="type_radius == 'mk_radius'"/>
-                                <field name="core_id" readonly="1"/>
+                                <field name="core_id" readonly="1"/ -->
                                 <field name="type_radius"/>
+                                <field name="is_ipv6" widget="boolean_toggle"/>
+                                  <field name="type_access_net"/>
                             </group>
                         </group>
                         <group string="Servidor Radius" invisible="type_radius == 'mk_radius'">
@@ -89,31 +91,30 @@
                         </group>
 
 
-                        <group string="IPV6">
-                            <field name="is_ipv6" widget="boolean_toggle"/>
-                        </group>
-                        <group>
-                            <group string="Direccionamiento IP" invisible="type_radius != 'mk_radius'">
-                                <field name="type_access_net"/>
-                            </group>
-                        </group>
-
                         <notebook colspan="4">
-
+                            <page string="Equipos Core" name="cores">
+                                <field name="core_ids" nolabel="1">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="hostname_core"/>
+                                        <field name="ip"/>
+                                    </tree>
+                                </field>
+                            </page>
                             <page name="isp_radius_ids" string="Radius Atributos"
                                   invisible="type_radius == 'mk_radius'">
-                                    <field name="silver_radius_ids" nolabel="1">
-                                         <tree string="Líneas de Radius ISP"   editable="bottom" colspan="4">
-                    <field name="silver_radius_table_id"/>
-                    <field name="silver_radius_column_id"/>
-                    <field name="value_column"/>
-                    <field name="silver_radius_attribute_id"/>
-                    <field name="op"/>
-                    <field name="value"/>
-                    <field name="value_text"/>
-                    <field name="function_radius"/>
-                </tree>
-                                    </field>
+                                <field name="silver_radius_ids" nolabel="1">
+                                    <tree string="Líneas de Radius ISP" editable="bottom" colspan="4">
+                                        <field name="silver_radius_table_id"/>
+                                        <field name="silver_radius_column_id"/>
+                                        <field name="value_column"/>
+                                        <field name="silver_radius_attribute_id"/>
+                                        <field name="op"/>
+                                        <field name="value"/>
+                                        <field name="value_text"/>
+                                        <field name="function_radius"/>
+                                    </tree>
+                                </field>
                             </page>
                             <page name="isp_gestion_radius" string="Gestion Radius"
                                   invisible="type_radius == 'mk_radius'">
@@ -158,24 +159,23 @@
                                   invisible="(type_access_net not in ['dhcp','dhcp_leases','dhcp_leases_vlan']) or (type_radius != 'mk_radius')">
 
 
-            <field name="ip_address_pool_ids" nolabel="1"  widget="one2many_list"  >
-                <tree multi_selectable="1"  colspan="2" editable="bottom">
-                          <field name="name" readonly="True"/>
-                    <field name="network"/>
-                    <field name="nmask"/>
+                                <field name="ip_address_pool_ids" nolabel="1" widget="one2many_list">
+                                    <tree multi_selectable="1" colspan="2" editable="bottom">
+                                        <field name="name" readonly="True"/>
+                                        <field name="network"/>
+                                        <field name="nmask"/>
 
-                     <field name="total_ips"/>
-                            <field name="used_ips"/>
-                            <field name="usage_percentage" widget="progressbar"/>
-                    </tree>
-                </field>
+                                        <field name="total_ips"/>
+                                        <field name="used_ips"/>
+                                        <field name="usage_percentage" widget="progressbar"/>
+                                    </tree>
+                                </field>
 
 
+                                <button name="generar" string="Generar IPs" type="object"/>
 
- <button name="generar" string="Generar IPs" type="object"/>
-
-                <field name="ip_address_ids" nolabel="1" >
-                     </field>
+                                <field name="ip_address_ids" nolabel="1">
+                                </field>
 
                             </page>
                             <page string="Nas" name="nas">
@@ -201,27 +201,6 @@
                             </page>
                         </notebook>
 
-                        <notebook>
-                            <!--page string="NAS" name="nas">
-                                <field name="nas_ids">
-                                    <tree editable="bottom">
-                                        <field name="name"/>
-                                        <field name="server"/>
-                                        <field name="secret"/>
-                                        <field name="type"/>
-                                    </tree>
-                                </field>
-                            </page-->
-                            <page string="Equipos Core" name="cores">
-                                <field name="core_ids" nolabel="1">
-                                    <tree>
-                                        <field name="name"/>
-                                        <field name="hostname_core"/>
-                                        <field name="ip"/>
-                                    </tree>
-                                </field>
-                            </page>
-                        </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids"/>
@@ -261,11 +240,11 @@
                         </group>
                         <notebook colspan="4">
                             <page name="isp_radius_columns" string="Radius Columnas">
-                                    <field name="silver_radius_columns" nolabel="1">
-                                        <tree editable="bottom">
-                                            <field name="name"/>
-                                        </tree>
-                                    </field>
+                                <field name="silver_radius_columns" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
                             </page>
                         </notebook>
                     </sheet>
@@ -333,5 +312,5 @@
             </field>
         </record>
 
-           </data>
+    </data>
 </odoo>

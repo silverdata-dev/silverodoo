@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.radius</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="silver_base.silver_res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//app[@name='silver_base']" position="inside">
+                    <block title="Autenticación RADIUS" name="silver_radius_block">
+                        <setting name="silver_radius_setting">
+                            <div class="content-group">
+
+
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12  o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="radius_auth_enabled"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="radius_auth_enabled"/>
+                                    <div class="text-muted">
+                                        Activa esta opción para autenticar usuarios contra un servidor RADIUS.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12  o_setting_box" invisible="not radius_auth_enabled">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label for="radius_server_ip" string="IP del Servidor"/>
+                                    <div class="text-muted">
+                                        Dirección IP de tu servidor RADIUS.
+                                    </div>
+                                    <div class="content-group">
+                                        <field name="radius_server_ip" class="oe_inline"/>
+                                    </div>
+                                    <label for="radius_server_port" string="Puerto"/>
+                                    <div class="text-muted">
+                                        Puerto de autenticación (por defecto: 1812).
+                                    </div>
+                                    <div class="content-group">
+                                        <field name="radius_server_port" class="oe_inline"/>
+                                    </div>
+                                    <label for="radius_server_secret" string="Secreto"/>
+                                    <div class="text-muted">
+                                        El secreto compartido para el servidor RADIUS.
+                                    </div>
+                                    <div class="content-group">
+                                        <field name="radius_server_secret" class="oe_inline" password="True"/>
+                                    </div>
+                                    <div class="mt16">
+                                        <label for="radius_test_user" string="Usuario de Prueba"/>
+                                        <field name="radius_test_user" class="oe_inline"/>
+                                    </div>
+                                    <div>
+                                        <label for="radius_test_password" string="Contraseña de Prueba"/>
+                                        <field name="radius_test_password" class="oe_inline" password="True"/>
+                                    </div>
+                                    <div class="mt8">
+                                        <button name="test_radius_connection" type="object" class="btn-primary" string="Probar Conexión"/>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="col-12 col-lg-6 o_setting_box" invisible="not radius_auth_enabled">
+                                <div class="o_setting_left_pane">
+                                    <field name="radius_auto_create_users"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="radius_auto_create_users"/>
+                                    <div class="text-muted">
+                                        Crear automáticamente un nuevo usuario en Odoo tras su primer inicio de sesión exitoso.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            </div>
+                        </setting>
+                    </block>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

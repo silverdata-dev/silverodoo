@@ -34,6 +34,9 @@
 
 }
 
+.oe_chatter{
+    width:100% !important;
+}
 
 .botones-right {
     position: absolute;
@@ -42,4 +45,9 @@
 
 div [name=ppp_speed_chart],div [name=isp_radius_ids],div [name=ip_address_pool_ids], div [name=ip_address_ids], div[name=onu_ids_silver] {
     width:100% !important;
+}
+
+.o_form_renderer {
+    display: inline-block !important;
+    width: 100% !important;
 }

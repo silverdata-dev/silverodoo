@@ -3,7 +3,7 @@
     'version': '1.0',
     'category': 'Geolocation',
     'summary': 'Geolocation features for Silver Odoo',
-    'depends': ['silver_network'],
+    'depends': ['silver_network', 'silver_base'],
     'data': [
         'views/silver_map_views.xml',
         'views/menus.xml',

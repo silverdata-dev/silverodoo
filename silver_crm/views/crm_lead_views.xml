@@ -1,17 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!-- Herencia para la vista Kanban (botón en la tarjeta) -->
         <record id="crm_lead_view_kanban_inherit_silver" model="ir.ui.view">
             <field name="name">crm.lead.kanban.inherit.silver</field>
             <field name="model">crm.lead</field>
             <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='partner_id']" position="replace">
-                    <button name="action_open_partner" type="object" class="oe_link">
-                        <field name="partner_id"/>
-                    </button>
+                <xpath expr="//div[@class='o_kanban_record_subtitle']/following-sibling::div[1]" position="replace">
+<div>
+                                        <span class="o_text_overflow" t-if="record.partner_id.value" t-esc="record.partner_id.value"/>
+    <span class="o_text_overflow" t-if="record.partner_id.value" t-esc="record.partner_id.vat"/>
+                                    </div>
+
                 </xpath>
             </field>
         </record>
+        <!--record id="silver_crm_quick_create_opportunity_form" model="ir.ui.view">
+            <field name="name">crm.lead.create.oportunity</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.quick_create_opportunity_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="replace">
+                  <field name="partner_id" widget="res_partner_many2one" class="o_field_highlight"
+                  string="Organization / Contact"
+                  context="{                             'res_partner_search_mode': type == 'opportunity' and 'customer' or False,                             'default_name': contact_name or partner_name,                             'default_is_company': type == 'opportunity' and contact_name == False,                             'default_company_name': type == 'opportunity' and partner_name,                             'default_type': 'contact',                             'default_phone': phone,                             'default_email': email_from,                             'default_user_id': user_id,                             'default_team_id': team_id,                             'show_vat': True}"/>
+
+
+                      <field name="partner_id"    widget="many2one_modal"
+       class="oe_link"  icon="fa-external-link" target='new'
+                             string="Organization / Contact" context="{                             'res_partner_search_mode': type == 'opportunity' and 'customer' or False,                             'default_name': contact_name or partner_name,                             'default_is_company': type == 'opportunity' and contact_name == False,                             'default_company_name': type == 'opportunity' and partner_name,                             'default_phone': phone,                             'default_email': email_from,                             'default_user_id': user_id,                             'default_team_id': team_id,                             'show_vat': True}"/>
+ <button name="action_open_partner"
+                            type="object"
+                            icon="fa-external-link"
+                            class="oe_link"
+                            invisible="partner_id == False"
+                            aria-label="Abrir cliente"
+                            title="Abrir cliente"/>
+                </xpath>
+            </field>
+        </record-->
     </data>
 </odoo>
