@@ -16,26 +16,20 @@
             <field name="name">silver.netdev.interface.wizard.form</field>
             <field name="model">silver.netdev.interface.wizard</field>
             <field name="arch" type="xml">
-                <form string="Router Interface">
-                    <sheet>
-                        <group>
-
-                        </group>
-                        <notebook>
-                            <page string="Interfaces">
-                                <field name="line_ids">
-                                    <tree string="Interfaces">
-                                        <field name="name"/>
-                                        <field name="mac_address"/>
-                                        <field name="type"/>
-                                        <field name="running"/>
-                                        <field name="disabled"/>
-                                        <field name="comment"/>
-                                    </tree>
-                                </field>
-                            </page>
-                        </notebook>
-                    </sheet>
+                <form>
+                    <field name="netdev_id" invisible="1"/>
+                    <field name="line_ids">
+                        <tree js_class="interface_list_view">
+                            <field name="name"/>
+                            <field name="type"/>
+                            <field name="mac_address"/>
+                            <field name="running"/>
+                            <field name="disabled"/>
+                            <field name="comment"/>
+                            <field name="rx_speed" widget="realtime_speed"/>
+                            <field name="tx_speed" widget="realtime_speed"/>
+                        </tree>
+                    </field>
                 </form>
             </field>
         </record>

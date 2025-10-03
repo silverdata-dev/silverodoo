@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_silver_netdev_system_info_wizard_form" model="ir.ui.view">
+            <field name="name">silver.netdev.system.info.wizard.form</field>
+            <field name="model">silver.netdev.system.info.wizard</field>
+            <field name="arch" type="xml">
+                <form string="System Information">
+                            <field name="info" nolabel="1"/>
+                            <field name="netdev_id" invisible="1"/>
+                            <field name="netdev_id" widget="system_info_chart" nolabel="1"/>
+                    <footer>
+                        <button string="Close" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

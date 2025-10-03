@@ -57,7 +57,7 @@
             <field name="arch" type="xml">
                 <form string="Equipo Core Silver">
                     <header>
-                        <button name="create_ap" string="Crear Equipo AP" type="object"/>
+                        <!--button name="create_ap" string="Crear Equipo AP" type="object"/-->
                         <!--button name="create_radius" string="Crear Radius" type="object" invisible="not is_silver_radius"/-->
                         <button name="button_get_system_info" type="object" string="Get System Info"/>
                         <button name="button_view_interfaces" type="object" string="View Interfaces"/>
@@ -88,19 +88,19 @@
                         <field name="state" invisible="1"/>
                         <div class="oe_title">
                             <h1>
-                                <field name="name"/>
+                                <field name="name"  required="1"/>
                             </h1>
                          </div>
                         <group name="core">
                             <group>
-                                <field name="hostname_core" autofocus="autofocus"/>
-                                <field name="node_id"/>
+                                <field name="hostname_core" autofocus="autofocus" required="1"/>
+                                <field name="node_id"  required="1"/>
                                 <field name="node_ids" widget="many2many_tags" invisible="1"/>
 
                             </group>
                             <group name="core_conexion" string="Datos Conexion">
 
-                                <field name="ip"/>
+                                <field name="ip"  required="1"/>
                                 <field name="port"/>
                                 <!--field name="type_connection" invisible="brand_description != 'hua'"/-->
                                 <!--field name="kex_algorithms_ids" invisible="brand_description != 'hua'" widget="many2many_tags"/-->
@@ -108,11 +108,12 @@
                                 <field name="username" invisible="configured=='2'"/>
                                 <field name="password" password="True" invisible="configured=='2'"/>
                                   <field name="radius_id" />
-                                <field name="configured" invisible="true"/>
+                                <field name="configured" invisible="0"/>
                                 <!--button class="oe_inline oe_link " name="action_send_password" string=" →Enviar Contraseña" type="object"/-->
                                 <button name="button_test_connection" type="object" string="Conectar"
                                         class="oe_highlight"/>
-
+<button name="button_reset_connection" type="object" string="Reset"
+                                        class="oe_highlight"/>
                             </group>
                         </group>
 

@@ -2,14 +2,15 @@
 
 from odoo import models, fields, api
 
-class SilverRouterInterfaceWizard(models.Model):
+class SilverNetdevInterfaceWizard(models.TransientModel):
     _name = 'silver.netdev.interface.wizard'
-    _description = 'Silver Router Interface Wizard'
+    _description = 'Interface Viewer Wizard'
 
+    router_id = fields.Many2one('silver.netdev', string='Router')
+    netdev_id = fields.Many2one('silver.netdev', string='Netdev')
     line_ids = fields.One2many('silver.netdev.interface.wizard.line', 'wizard_id', string='Interfaces')
-    router_id = fields.Many2one('silver.netdev')
 
-class SilverRouterInterfaceWizardLine(models.Model):
+class SilverNetdevInterfaceWizardLine(models.TransientModel):
     _name = 'silver.netdev.interface.wizard.line'
     _description = 'Silver Router Interface Wizard Line'
 
@@ -19,6 +20,8 @@ class SilverRouterInterfaceWizardLine(models.Model):
     running = fields.Boolean(string='Running')
     disabled = fields.Boolean(string='Disabled')
     comment = fields.Char(string='Comment')
+    tx_speed = fields.Char(string='TX Speed', default='0 B/s')
+    rx_speed = fields.Char(string='RX Speed', default='0 B/s')
     wizard_id = fields.Many2one('silver.netdev.interface.wizard')
 
 class SilverRouterRouteWizard(models.Model):

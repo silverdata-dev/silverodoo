@@ -2,6 +2,7 @@ from odoo import models, fields, api, _
 from odoo.http import request
 from odoo.exceptions import UserError
 import logging, string, secrets
+import re
 
 _logger = logging.getLogger(__name__)
 
@@ -182,21 +183,16 @@ class SilverCore(models.Model):
     @api.onchange('node_id')
     def _onchange_node_id(self):
         # --- Actualización del nombre en tiempo real ---
-        if self.node_id and self.node_id.code:
-            new_code = self.node_id.code
-            # Si el nombre ya existe (estamos cambiando el nodo)
-            if self.name and self._origin.node_id and self._origin.node_id.code:
-                old_code = self._origin.node_id.code
-                if self.name.startswith(f"{old_code}/"):
-                    # Reemplaza el prefijo del código antiguo por el nuevo
-                    self.name = self.name.replace(f"{old_code}/", f"{new_code}/", 1)
-            # Si el nombre no existe (es un registro nuevo)
-            elif not self.name:
-                # Replica la lógica de _default_name para generar un nombre inicial
+
+
+        patron_regex = r"^(.+)/CR(\d+)$"
+        if self.node_id:
+            if (not self.name) or (not  len(self.name)) or re.match(patron_regex, self.name):
+                new_code = self.node_id.code
                 core_count = self.search_count([('node_id', '=', self.node_id.id)])
                 self.name = f"{new_code}/CR{core_count + 1}"
 
-        # --- Lógica existente para el campo node_ids ---
+
         previous_nodes_ids = self._origin.node_ids.ids
         print(("previus", previous_nodes_ids))
 
@@ -417,54 +413,117 @@ class SilverCore(models.Model):
             'target': 'current',
         }
 
-    def _configure_radius_on_device(self, api):
-        """Helper to configure RADIUS on MikroTik and NAS client in Odoo."""
+    def _configure_radius_on_device(self, core_api):
+        """
+        Configures the RADIUS client on the Core device and
+        registers the Core as a NAS client on the RADIUS server.
+        """
         self.ensure_one()
-        _logger.info(f"Starting RADIUS configuration for core {self.name}")
+        _logger.info(f"Starting full RADIUS configuration for core {self.name}")
 
         if not self.radius_id or not self.radius_id.ip:
             raise UserError(_("RADIUS Server is not assigned or does not have an IP address."))
 
-        # 1. Generate a new random secret
-        alphabet = string.ascii_letters + string.digits
-        secret = ''.join(secrets.choice(alphabet) for _ in range(22))
-        _logger.info(f"Generated new RADIUS secret for {self.name}")
-
-        # 2. Configure the MikroTik device
-        try:
-            radius_resource = tuple(api.path('/radius'))[0]
-            print(("radius_re", radius_resource, tuple(radius_resource)))
-            #existing_client = api.path('/radius').get(address=self.ip)
-            radius_server_list = radius_resource.get(address=self.radius_id.ip)
-
-
-            if radius_server_list:
-                server_id = radius_server_list[0]['.id']
-                _logger.info(f"Updating existing RADIUS server entry {server_id} on MikroTik.")
-                radius_resource.set(id=server_id, secret=secret, service='ppp,login')
-            else:
-                _logger.info(f"Adding new RADIUS server entry for {self.radius_id.ip} on MikroTik.")
-                radius_resource.add(address=self.radius_id.ip, secret=secret, service='ppp,login')
-        except Exception as e:
-            raise UserError(_("Failed to configure RADIUS on MikroTik device: %s") % e)
-
-        # 3. Configure the NAS client in Odoo (on the RADIUS server side)
-        Nas = self.env['silver.radius.nas']
-        nas_client = Nas.search([('nasname', '=', self.ip)], limit=1)
-        if nas_client:
-            _logger.info(f"Updating existing NAS client {self.ip} in Odoo.")
-            nas_client.write({'secret': secret})
+        if self.netdev_id.radius_client_secret:
+            secret = self.netdev_id.radius_client_secret
         else:
-            _logger.info(f"Creating new NAS client for {self.ip} in Odoo.")
-            Nas.create({
-                'nasname': self.ip,
-                'shortname': self.name,
+            alphabet = string.ascii_letters + string.digits
+            secret = ''.join(secrets.choice(alphabet) for _ in range(22))
+            self.netdev_id.radius_client_secret = secret
+
+
+        # 1. Get or create the NAS secret and Odoo record
+        """Nas = self.env['silver.radius.nas']
+        nas_client = Nas.search([('nasname', '=', self.ip)], limit=1)
+        if nas_client and nas_client.secret:
+            secret = nas_client.secret
+            _logger.info(f"Found existing NAS secret for {self.ip} in Odoo.")
+        else:
+            alphabet = string.ascii_letters + string.digits
+            secret = ''.join(secrets.choice(alphabet) for _ in range(22))
+            _logger.info(f"Generated new RADIUS secret for {self.name}")
+            if nas_client:
+                nas_client.write({'secret': secret})
+            else:
+                Nas.create({
+                    'nasname': self.ip,
+                    'shortname': self.name,
+                    'secret': secret,
+                    'type': 'other',
+                })
+            _logger.info(f"Saved NAS client for {self.ip} in Odoo.")
+"""
+
+        # 2. Configure the MikroTik Core device to use the RADIUS server
+        try:
+            radius_resource = core_api.path('/radius')
+            # Find if a radius server for 'login' service is already configured
+            for s in radius_resource:
+                print(("s",s))
+            existing_server = next((s for s in radius_resource if s.get('service') == 'login'), None)
+
+            params = {
                 'secret': secret,
-                'type': 'other',
-            })
+                'service': 'login',
+                'address': self.radius_id.ip,
+                'src-address': self.netdev_id.ip,
+            }
+            print(("existing", existing_server))
+
+
+            if existing_server:
+                server_id = existing_server['.id']
+                _logger.info(f"Updating existing RADIUS server entry {server_id} on Core device.")
+            #    radius_resource.update(numbers=server_id, **params)
+            else:
+                _logger.info(f"Adding new RADIUS server entry for {self.radius_id.ip} on Core device.")
+             #   radius_resource.add(**params)
+        except Exception as e:
+            raise UserError(_("Failed to configure RADIUS on Core device: %s") % e)
+
+        # 3. Configure the RADIUS server to accept the Core as a NAS client
+        radius_api = None
+        try:
+            _logger.info(f"Connecting to RADIUS server {self.radius_id.name} at {self.radius_id.ip} to configure NAS.")
+            radius_api = self.radius_id.netdev_id._get_api_connection()
+            if not radius_api:
+                raise UserError(_("Could not connect to the RADIUS server."))
+
+            # In MikroTik User Manager, NAS clients are called "routers"
+            nas_resource = radius_api.path('/user-manager/router')
+            existing_nas = next((n for n in nas_resource if n.get('ip-address') == self.ip), None)
+
+            nas_params = {
+                'ip-address': self.ip,
+                'shared-secret': secret,
+                'name':self.hostname_core,
+                "coa-port":3799
+            }
+
+            if existing_nas:
+                nas_id = existing_nas['.id']
+                _logger.info(f"Updating existing NAS client {self.ip} on RADIUS server's User Manager.")
+            #    nas_resource.update(numbers=nas_id, **nas_params)
+            else:
+                _logger.info(f"Adding new NAS client for {self.ip} to RADIUS server's User Manager.")
+            #    nas_resource.add(**nas_params)
+
+        except Exception as e:
+            raise UserError(_("Failed to configure NAS on RADIUS server: %s") % e)
+        finally:
+            if radius_api:
+                radius_api.close()
 
         _logger.info(f"Successfully configured RADIUS for core {self.name}")
         return True
+
+    def button_reset_connection(self):
+        self.ensure_one()
+        netdev = self.netdev_id
+        if not netdev:
+            raise UserError(_("This core has no network device associated."))
+        netdev.configured = '0'
+        return self._show_notification('danger', _('Reset.'))
 
     def button_test_connection(self):
         self.ensure_one()
@@ -474,45 +533,30 @@ class SilverCore(models.Model):
 
         api = None
         try:
-            # STATE 0 or 2: Try RADIUS credentials first
-            if netdev.configured in ('0', '2'):
-                _logger.info(f"Core {self.name} in state {netdev.configured}. Trying RADIUS credentials.")
-                radius_user = request.session.get('radius_user')
-                radius_password = request.session.get('radius_password')
-                if (not radius_user or not radius_password) and self.env.user.has_group('base.group_erp_manager'):
-                    radius_user = 'prueba77'
-                    radius_password = 'prueba77'
-                if not radius_user or not radius_password:
-                    raise UserError(_("RADIUS credentials not found in session. Please log in again."))
+            # Connection test now requires local credentials to perform configuration
+            _logger.info(f"Core {self.name}: Trying local credentials for connection and configuration.")
+            api = netdev._get_api_connection(username=self.username, password=self.password)
 
-                api = netdev._get_api_connection(username=radius_user, password=radius_password)
+            if api:
+                # Fetch and set the hostname first
+                _logger.info("Fetching system identity from Core device.")
+                identity_resource = tuple(api.path('/system/identity'))
+                if identity_resource:
+                    hostname = identity_resource[0].get('name')
+                    if hostname:
+                        _logger.info(f"Found hostname: {hostname}. Updating record.")
+                        self.write({'hostname_core': hostname})
 
-                if api:
-                    _logger.info("RADIUS credential connection successful.")
-                    netdev.configured = '2'
-                    self.state = 'active'
-                    api.close()
-                    return self._show_notification('success', _('Connection with RADIUS credentials successful!'))
-                else:
-                    _logger.warning("RADIUS credential connection failed. Falling back to local credentials.")
-                    netdev.configured = '1'  # Set state to 1 to try local next
-                    # Fall through to the next block to try local credentials
-
-            # STATE 1: Try local credentials and configure RADIUS
-            if netdev.configured == '1':
-                _logger.info(f"Core {self.name} in state 1. Trying local credentials.")
-                api = netdev._get_api_connection(username=self.username, password=self.password)
-
-                if api:
-                    _logger.info("Local credential connection successful. Proceeding to configure RADIUS.")
-                    self._configure_radius_on_device(api)
-                    netdev.configured = '2'
-                    self.state = 'active'
-                    return self._show_notification('success', _('Local connection OK. RADIUS configured successfully!'))
-                else:
-                    _logger.error("Local credential connection failed.")
-                    self.state = 'down'
-                    raise UserError(_("Connection failed with both RADIUS and local credentials."))
+                _logger.info("Local credential connection successful. Proceeding to configure RADIUS.")
+                self._configure_radius_on_device(api)
+                netdev.configured = '2'
+                self.state = 'active'
+                return self._show_notification('success', _('Local connection OK. RADIUS and NAS configured successfully!'))
+            else:
+                _logger.error("Local credential connection failed.")
+                self.state = 'down'
+                netdev.configured = '0'
+                raise UserError(_("Connection failed with local credentials. Cannot configure RADIUS."))
 
         except Exception as e:
             self.state = 'down'
@@ -522,10 +566,6 @@ class SilverCore(models.Model):
         finally:
             if api:
                 api.close()
-
-        # Fallback for any unhandled case
-        self.state = 'down'
-        return self._show_notification('danger', _('Connection failed. Check logs for details.'))
 
     def _show_notification(self, type, message):
         """Helper to show notifications on the UI."""

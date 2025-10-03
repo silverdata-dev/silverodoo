@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 import librouteros
 from odoo.http import request
@@ -6,6 +6,18 @@ from odoo.http import request
 import logging
 
 _logger = logging.getLogger(__name__)
+
+
+def _format_speed(bits_per_second):
+    bits_per_second = int(bits_per_second)
+    if bits_per_second < 1000:
+        return f"{bits_per_second} B/s"
+    elif bits_per_second < 1000000:
+        return f"{bits_per_second / 1000:.2f} KB/s"
+    elif bits_per_second < 1000000000:
+        return f"{bits_per_second / 1000000:.2f} MB/s"
+    else:
+        return f"{bits_per_second / 1000000000:.2f} GB/s"
 
 class SilverNetdev(models.Model):
     _name = 'silver.netdev'
@@ -209,27 +221,55 @@ class SilverNetdev(models.Model):
             return True
         return False
 
-    @api.model
     def button_get_system_info(self):
-        for router in self:
-            api = router._get_api_connection()
-            if api:
-                try:
-                    system_resource = tuple(api.path('/system/resource'))[0]
-                    routerboard_info = tuple(api.path('/system/routerboard'))[0]
+        self.ensure_one()
+        api = self._get_api_connection()
+        if not api:
+            raise UserError(_("Could not connect to the device."))
 
-                    print(("system_resource", system_resource,"routerboard_info",routerboard_info ))
+        info_str = ""
+        try:
+            # Get System Resource
+            resource = tuple(api.path('/system/resource'))
+            if resource:
+                info_str += "--- System Resources ---\n"
+                for key, value in resource[0].items():
+                    info_str += f"{key.replace('-', ' ').title()}: {value}\n"
+                info_str += "\n"
 
-                    router.write({
-                        'model': routerboard_info.get('model'),
-                        'firmware_version': system_resource.get('version'),
-                        'serial_number': routerboard_info.get('serial-number'),
-                    })
-                finally:
-                    api.close()
-        return True
+            # Get System Health
+            health = tuple(api.path('/system/health'))
+            if health:
+                info_str += "--- System Health ---\n"
+                for key, value in health[0].items():
+                    info_str += f"{key.replace('-', ' ').title()}: {value}\n"
+                info_str += "\n"
 
-    @api.model
+            # Get RouterBoard Info
+            routerboard = tuple(api.path('/system/routerboard'))
+            if routerboard:
+                info_str += "--- RouterBoard ---\n"
+                for key, value in routerboard[0].items():
+                    info_str += f"{key.replace('-', ' ').title()}: {value}\n"
+
+            wizard = self.env['silver.netdev.system.info.wizard'].create({
+                'info': info_str,
+                'netdev_id': self.id
+            })
+
+            return {
+                'name': 'System Information',
+                'type': 'ir.actions.act_window',
+                'res_model': 'silver.netdev.system.info.wizard',
+                'view_mode': 'form',
+                'res_id': wizard.id,
+                'target': 'new',
+            }
+
+        except Exception as e:
+            raise UserError(_("Failed to fetch system info: %s") % e)
+        finally:
+            api.close()
 
     def button_view_interfaces(self):
         self.ensure_one()
@@ -239,16 +279,38 @@ class SilverNetdev(models.Model):
 
         try:
             interfaces = tuple(api.path('/interface'))
-            wizard = self.env['silver.netdev.interface.wizard'].create({'router_id': self.id})
+            print(("interfaces", interfaces))
+            interface_names = [iface.get('name') for iface in interfaces]
+
+            # Monitor the interfaces to get traffic data
+            traffic_data = api.path('/interface/monitor-traffic').call('monitor-traffic', {
+                'numbers': ",".join(interface_names),
+                'once': ''
+            })
+
+            
+        #    traffic_map = {item['name']: item for item in traffic_data}
+            traffic_map = {}
+
+            wizard = self.env['silver.netdev.interface.wizard'].create({
+                'router_id': self.id,
+                'netdev_id': self.id
+            })
+
             for interface in interfaces:
+                name = interface.get('name')
+                traffic = traffic_map.get(name, {})
+                
                 self.env['silver.netdev.interface.wizard.line'].create({
                     'wizard_id': wizard.id,
-                    'name': interface.get('name'),
+                    'name': name,
                     'mac_address': interface.get('mac-address'),
                     'type': interface.get('type'),
                     'running': interface.get('running'),
                     'disabled': interface.get('disabled'),
                     'comment': interface.get('comment'),
+                    'rx_speed': _format_speed(traffic.get('rx-bits-per-second', 0)),
+                    'tx_speed': _format_speed(traffic.get('tx-bits-per-second', 0)),
                 })
 
             return {
