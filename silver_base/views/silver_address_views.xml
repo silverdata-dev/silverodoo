@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_silver_address_tree" model="ir.ui.view">
+            <field name="name">silver.address.tree</field>
+            <field name="model">silver.address</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="city_id"/>
+                    <field name="street"/>
+                    <field name="house_number"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_silver_address_form" model="ir.ui.view">
+            <field name="name">silver.address.form</field>
+            <field name="model">silver.address</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group string="Parent">
+                                <field name="parent_id"/>
+                            </group>
+                            <group string="Geographic Location">
+                                <field name="zone_id"/>
+                                <field name="country_id"/>
+                                <field name="state_id"/>
+                                <field name="municipality_id"/>
+                                <field name="city_id"/>
+                                <field name="parish_id"/>
+                            </group>
+                            <group string="Detailed Address">
+                                <field name="street"/>
+                                <field name="building"/>
+                                <field name="floor"/>
+                                <field name="house_number"/>
+                            </group>
+                            <group string="Coordinates">
+                                <field name="latitude"/>
+                                <field name="longitude"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

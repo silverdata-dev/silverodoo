@@ -15,8 +15,8 @@
         'views/silver_views.xml',
 
         'security/ir.model.access.csv',
-        'views/silver_node_views.xml',
         'views/silver_zone_views.xml',
+        'views/silver_node_views.xml',
         'views/silver_core_views.xml',
         'wizards/silver_netdev_system_info_wizard_view.xml',
         'views/silver_olt_views.xml',
@@ -50,6 +50,7 @@
     ],
     'assets': {
         'web.assets_backend': [
+            'silver_base/static/src/css/general.css',
             'silver_network/static/src/js/raphael.min.js',
             'silver_network/static/src/js/ppp_speed_chart.js',
             'silver_network/static/src/js/ppp_line_speed_chart.js',

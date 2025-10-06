@@ -43,10 +43,9 @@
 
                     </header>
                     <sheet>
-                        <field name="image" widget="image" class="oe_avatar"/>
-
-
-
+                        <div class="oe_avatar">
+                            <field name="image" widget="image" class="oe_avatar"/>
+                        </div>
                         <div class="oe_title">
                             <h1>
                                 <field name="name" readonly="1"/>
@@ -70,6 +69,7 @@
                             <field name="plan_type_id" readonly="state != 'draft'"/>
                             <field name="cutoff_date_id" readonly="state != 'draft'"/>
                             <field name="contract_term_id" readonly="state != 'draft'"/>
+                                <field name="service_plan_id"/>
                             </group>
 
                         </group>

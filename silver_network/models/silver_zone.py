@@ -1,35 +1,20 @@
+# -*- coding: utf-8 -*-
 from odoo import models, fields, api
 
 class SilverZone(models.Model):
-    _name = 'silver.zone'
-    _description = 'Zona'
-    #_table = 'isp_zone'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = 'silver.zone'
 
 
+    assets = fields.One2many('silver.asset', 'zone_id', string='Elementos')
 
-    name = fields.Char(string='Nombre', readonly=False, copy=False)
+    node_ids = fields.One2many('silver.node', 'zone_id', string='Nodos')
+    node_count = fields.Integer(string='Nodos', compute='_compute_counts')
+
+    #node_count = fields.Integer(string='Conteo de Nodos', compute='_compute_node_count')
     gps_top = fields.Float("GPS Norte", compute='_compute_gps', readonly=True)
     gps_left = fields.Float("GPS Oeste", compute='_compute_gps', readonly=True)
     gps_right = fields.Float("GPS Este", compute='_compute_gps', readonly=True)
     gps_bottom = fields.Float("GPS Sur", compute='_compute_gps', readonly=True)
-
-    assets = fields.One2many('silver.asset', 'zone_id', string='Elementos')
-
-    node_count = fields.Integer(string='Nodos', compute='_compute_counts')
-
-    _sql_constraints = [
-        ('unique_name', 'unique (name)', 'This value must be unique!')
-    ]
-
-
-    @api.model
-    def create(self, vals):
-        return super(SilverZone, self).create(vals)
-
-    def write(self, vals):
-        return super(SilverZone, self).write(vals)
-
 
 
     def _compute_counts(self):

@@ -155,7 +155,7 @@ class SilverOlt(models.Model):
     olt_card_count = fields.Integer(string='Conteo Slot OLT', compute='_compute_olt_card_count')
     #contracts_olt_count = fields.Integer(string='Conteo Olts', compute='_compute_contracts_olt_count')
     ip_range_count = fields.Integer(string='IP Ranges', compute='_compute_ip_range_count')
-    isp_tr_069_id = fields.Many2one("isp.tr.069", sting="Equipo OLT")
+    isp_tr_069_id = fields.Many2one("isp.tr.069", string="Equipo OLT")
 
 #    "ip_address_line_tr69_ids", "Direcciones IP", "Equipo OLT", "one2many", "Campo base", "", "True", "", "isp.ip.address.line"
 

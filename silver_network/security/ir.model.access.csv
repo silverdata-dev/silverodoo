@@ -1,7 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_silver_asset,access.silver.asset,model_silver_asset,base.group_user,1,1,1,1
 access_silver_node,access.silver.node,model_silver_node,base.group_user,1,1,1,1
-access_silver_zone,access.silver.zone,model_silver_zone,base.group_user,1,1,1,1
 access_silver_core,access.silver.core,model_silver_core,base.group_user,1,1,1,1
 access_silver_radius,access.silver.radius,model_silver_radius,base.group_user,1,1,1,1
 access_silver_device_networks,access.silver.device.networks,model_silver_device_networks,base.group_user,1,1,1,1

@@ -1,5 +1,21 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
+import math
+
+def haversine(lat1, lon1, lat2, lon2):
+    """
+    Calcula la distancia entre dos puntos geográficos
+    utilizando la fórmula de Haversine.
+    """
+    R = 6371  # Radio de la Tierra en kilómetros
+    dLat = math.radians(lat2 - lat1)
+    dLon = math.radians(lon2 - lon1)
+    a = (math.sin(dLat / 2) * math.sin(dLat / 2) +
+         math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) *
+         math.sin(dLon / 2) * math.sin(dLon / 2))
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    distance = R * c
+    return distance
 
 class SilverContract(models.Model):
     _name = 'silver.contract'
@@ -136,6 +152,42 @@ class SilverContract(models.Model):
     is_portal_user = fields.Boolean(string="Es Usuario del Portal", compute="_compute_is_portal_user")
     dont_send_notification_wp = fields.Boolean(string="No Enviar Notificaciones por WhatsApp")
     links_payment = fields.Char(string="Enlaces de Pago", compute="_compute_links_payment", readonly=True)
+
+    @api.onchange('contract_latitude', 'contract_longitude')
+    def _onchange_coordinates(self):
+        if self.contract_latitude and self.contract_longitude:
+            # Encuentra el nodo más cercano
+            nodes = self.env['isp.node'].search([])
+            closest_node = None
+            min_dist_node = float('inf')
+            for node in nodes:
+                if node.latitude and node.longitude:
+                    dist = haversine(self.contract_latitude, self.contract_longitude, node.latitude, node.longitude)
+                    if dist < min_dist_node:
+                        min_dist_node = dist
+                        closest_node = node
+            self.node_id = closest_node
+
+            # Encuentra la caja NAP más cercana
+            boxes = self.env['isp.box'].search([])
+            closest_box = None
+            min_dist_box = float('inf')
+            for box in boxes:
+                if box.latitude and box.longitude:
+                    dist = haversine(self.contract_latitude, self.contract_longitude, box.latitude, box.longitude)
+                    if dist < min_dist_box:
+                        min_dist_box = dist
+                        closest_box = box
+            self.box_id = closest_box
+
+    @api.onchange('box_id')
+    def _onchange_box_id(self):
+        if self.box_id:
+            self.core_id = self.box_id.core_id
+            self.olt_id = self.box_id.olt_id
+        else:
+            self.core_id = False
+            self.olt_id = False
 
     def _get_default_country(self):
         return self.env['res.country'].search([('code', '=', 'VE')], limit=1)

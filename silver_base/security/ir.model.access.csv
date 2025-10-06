@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_silver_zone,access.silver.zone,model_silver_zone,base.group_user,1,1,1,1
+access_silver_address,access.silver.address,model_silver_address,base.group_user,1,1,1,1
+access_silver_municipality,access.silver.municipality,model_silver_municipality,base.group_user,1,1,1,1
+access_silver_city,access.silver.city,model_silver_city,base.group_user,1,1,1,1
+access_silver_parish,access.silver.parish,model_silver_parish,base.group_user,1,1,1,1
+access_res_config_settings,access.res.config.settings,base.model_res_config_settings,base.group_system,1,1,1,1

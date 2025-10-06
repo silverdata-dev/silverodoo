@@ -1,4 +1,3 @@
-from . import silver_zone
 from . import silver_asset
 from . import silver_netdev
 from . import silver_node
@@ -23,3 +22,4 @@ from . import silver_radius_nas_wizard
 from . import silver_netdev_radius_client_wizard
 from . import silver_radius_disconnect_wizard
 from . import silver_radius_user
+from . import silver_zone
