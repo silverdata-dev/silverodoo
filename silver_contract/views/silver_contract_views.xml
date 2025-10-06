@@ -69,7 +69,7 @@
                             <field name="plan_type_id" readonly="state != 'draft'"/>
                             <field name="cutoff_date_id" readonly="state != 'draft'"/>
                             <field name="contract_term_id" readonly="state != 'draft'"/>
-                                <field name="service_plan_id"/>
+                                <!--field name="service_plan_id"/-->
                             </group>
 
                         </group>
@@ -80,7 +80,7 @@
                                 <field name="line_ids" readonly="state != 'draft'"
                                        context="{'default_line_type': 'recurring'}">
                                     <tree editable="bottom">
-                                        <field name="product_id"/>
+
                                         <field name="name"/>
                                         <field name="quantity"/>
                                         <field name="price_unit"/>
@@ -146,87 +146,18 @@
 
                             <field name="discount_line_ids" modifiers="{}">
                                 <tree editable="bottom">
-                                    <field name="product_id"/>
+
                                     <field name="description"/>
                                     <field name="amount"/>
                                     <field name="apply_date"/>
                                 </tree>
                                 </field>
                 <field name="has_promotion_foreign_currency" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
-                <!--field name="foreign_currency_line_ids" invisible="has_promotion_foreign_currency == False" modifiers="{&quot;invisible&quot;: [[&quot;has_promotion_foreign_currency&quot;, &quot;=&quot;, false]]}">
-                    </field-->
+
 
 
                             </page>
-                            <!--page name="anticipated_payment" string="Pago Anticipado">
-                                <field name="anticipated_payment_line_ids" readonly="state != 'draft'">
-                                    <tree editable="bottom">
-                                        <field name="date"/>
-                                        <field name="description"/>
-                                        <field name="amount"/>
-                                        <field name="payment_id"/>
-                                    </tree>
-                                </field>
-                            </page-->
 
-                            <!--page name="payment_promises" string="Promesas de Pago">
-                               <field name="payment_promise_ids" readonly="state != 'draft'">
-                                   <tree editable="bottom">
-                                       <field name="name"/>
-                                       <field name="promise_date"/>
-                                       <field name="amount"/>
-                                       <field name="state"/>
-                                   </tree>
-                               </field>
-                           </page-->
-                            <!--page name="location" string="Ubicación">
-                                <group>
-                                    <group>
-                                        <field name="street"/>
-                                        <field name="street2"/>
-                                        <field name="city"/>
-                                        <field name="state_id"/>
-                                        <field name="country_id"/>
-                                        <field name="zip"/>
-                                    </group>
-                                    <group>
-                                        <label for="contract_latitude" string="Coordenadas"/>
-                                        <div class="o_row">
-                                            <field name="contract_latitude" nolabel="1"/>
-                                            <field name="contract_longitude" nolabel="1"/>
-                                        </div>
-                                    </group>
-                                </group>
-                            </page>
-
-                            <page name="silver_stock" string="Materiales Asignados">
-                                <field name="stock_line_ids" readonly="state != 'draft'">
-                                    <tree editable="bottom">
-                                        <field name="product_id"/>
-                                        <field name="lot_id"/>
-                                        <field name="quantity"/>
-                                        <field name="assignment_date"/>
-                                        <field name="state"/>
-                                    </tree>
-                                </field>
-                            </page>
-                            <page name="documentation" string="Documentación">
-                                <group string="Cargar Documentación">
-                                    <group>
-                                        <field name="doc_vat_copy" widget="binary"
-                                               filename="'doc_vat_copy_filename'"/>
-                                        <field name="installation_request" widget="binary"
-                                               filename="'installation_request_filename'"/>
-                                        <field name="service_contract" widget="binary"
-                                               filename="'service_contract_filename'"/>
-                                        <field name="basic_service_sheet" widget="binary"
-                                               filename="'basic_service_sheet_filename'"/>
-                                    </group>
-                                    <group>
-                                        <field name="is_validated"/>
-                                    </group>
-                                </group>
-                            </page-->
                             <page name="other_info" string="Otra Información">
 
                                     <group name="general" string="General">

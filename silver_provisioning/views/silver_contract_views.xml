@@ -11,6 +11,17 @@
                         <button name="action_cutoff_service" string="Cortar Servicio" type="object" class="oe_highlight" invisible="state_service != 'active'"/>
 
                 </xpath>
+
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='name']" position="before">
+                    <field name="product_id"/>
+                </xpath>
+
+
+                <xpath expr="//field[@name='discount_line_ids']/tree/field[@name='description']" position="before">
+                    <field name="product_id"/>
+                </xpath>
+
+
                 <xpath expr="//notebook" position="inside">
                     <page name="provisioning" string="Servicio Internet">
                                 <!--div class="oe_button_box" name="button_box">
@@ -47,8 +58,12 @@
                                 </group>
                                 <group name="ips_networks_3">
                                     <group string="Datos Equipos Asignados">
-                                        <field name="serial_onu" readonly="state != 'draft'"/>
-                                        <field name="model_onu" readonly="state != 'draft'"/>
+                                        <field name="stock_lot_id"/>
+                    <field name="brand_name"/>
+                    <field name="model_name"/>
+                    <field name="software_version"/>
+                    <field name="firmware_version"/>
+
                                         <field name="is_bridge" readonly="state != 'draft'"/>
                                     </group>
                                     <group string="Datos Lógicos Asignados">

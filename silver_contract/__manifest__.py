@@ -9,7 +9,7 @@
     'author': 'Gemini',
     'website': 'https://www.google.com',
     'category': 'Services/ISP',
-    'depends': ['base',  'product', 'silver_base'],
+    'depends': ['base',   'silver_base'],
     'data': [
         'security/ir.model.access.csv',
         'views/silver_contract_views.xml',

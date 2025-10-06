@@ -1,9 +1,33 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
+import math
 from odoo.exceptions import UserError
+
+def haversine(lat1, lon1, lat2, lon2):
+    """
+    Calcula la distancia entre dos puntos geográficos
+    utilizando la fórmula de Haversine.
+    """
+    R = 6371  # Radio de la Tierra en kilómetros
+    dLat = math.radians(lat2 - lat1)
+    dLon = math.radians(lon2 - lon1)
+    a = (math.sin(dLat / 2) * math.sin(dLat / 2) +
+         math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) *
+         math.sin(dLon / 2) * math.sin(dLon / 2))
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    distance = R * c
+    return distance
+
 
 class IspContract(models.Model):
     _inherit = 'silver.contract'
+
+
+    _inherits = {
+                 'silver.netdev':'netdev_id'}
+
+    netdev_id = fields.Many2one('silver.netdev', required=True, ondelete="cascade")
+
 
     access_point_id = fields.Many2one('silver.access_point', string='Punto de Acceso')
     mac_address = fields.Char(string='Dirección MAC')
@@ -47,6 +71,30 @@ class IspContract(models.Model):
     consumption_ids = fields.One2many('silver.contract.consumption', 'contract_id', string="Registros de Consumo")
     radius_entry_ids = fields.One2many('silver.contract.radius.entry', 'contract_id', string="Entradas de RADIUS")
 
+    #  serial_onu = fields.Many2one('stock.production.lot', string="Serial ONU")
+    pppoe = fields.Char(string="PPPoe")
+    password_pppoe = fields.Char(string="Contrasena PPPoe")
+    wan_mode = fields.Selection([], string="WAN mode")
+    is_router_wifi = fields.Boolean(string="Router")
+    password_wam = fields.Char(string="Password")
+    ip_public = fields.Char(string="Ip Public")
+    is_ip_public = fields.Boolean(string="IP Pública")
+
+    stock_lot_id = fields.Many2one(
+        'stock.lot',
+        string='Equipo (Serie/Lote)',
+        related='netdev_id.stock_lot_id',
+        readonly=False,
+        store=True,
+    )
+    brand_name = fields.Char(string='Marca', related='stock_lot_id.product_id.product_brand_id.name', readonly=True, store=True)
+    model_name = fields.Char(string='Modelo', related='stock_lot_id.product_id.model', readonly=True, store=True)
+    software_version = fields.Char(string='Versión de Software', related='stock_lot_id.software_version', readonly=True, store=True)
+
+    firmware_version = fields.Char(string='Firmware Version', related='stock_lot_id.firmware_version', readonly=True, store=True)
+    serial_number = fields.Char(string='Serial Number', related='stock_lot_id.serial_number', readonly=True, store=True)
+
+
     def action_activate_service(self):
         for contract in self:
             # 1. Validaciones
@@ -55,8 +103,9 @@ class IspContract(models.Model):
 
             if contract.link_type == 'fiber':
                 if not all([contract.olt_port_id, contract.serial_onu]):
-                    raise UserError(_("Para activar un servicio de fibra, se requiere un Puerto OLT y un Serial de ONU."))
-            
+                    raise UserError(
+                        _("Para activar un servicio de fibra, se requiere un Puerto OLT y un Serial de ONU."))
+
             elif contract.link_type == 'wifi':
                 if not all([contract.ap_id, contract.mac_address_onu]):
                     raise UserError(_("Para activar un servicio inalámbrico, se requiere un AP y una MAC Address."))
@@ -74,8 +123,8 @@ class IspContract(models.Model):
                         onu_serial=contract.serial_onu,
                         customer_name=contract.partner_id.name,
                         plan_name=plan.name,
-                        upload_speed=plan.upload_speed, # Asumiendo que tienes estos campos en el producto
-                        download_speed=plan.download_speed # Asumiendo que tienes estos campos en el producto
+                        upload_speed=plan.upload_speed,  # Asumiendo que tienes estos campos en el producto
+                        download_speed=plan.download_speed  # Asumiendo que tienes estos campos en el producto
                     )
                     if not result.get('success'):
                         raise UserError(_("Fallo al provisionar en la OLT: %s") % result.get('message'))
@@ -128,7 +177,8 @@ class IspContract(models.Model):
                         username=contract.pppoe_user
                     )
                     if not result.get('success'):
-                        raise UserError(_("Fallo al deshabilitar el usuario PPPoE en el Core: %s") % result.get('message'))
+                        raise UserError(
+                            _("Fallo al deshabilitar el usuario PPPoE en el Core: %s") % result.get('message'))
 
             except Exception as e:
                 raise UserError(_("Ha ocurrido un error técnico al intentar cortar el servicio: %s") % e)
@@ -211,8 +261,53 @@ class IspContract(models.Model):
             'target': 'new',
         }
 
-    def action_status_olt(self): pass
-    def action_test_speed_service(self): pass
-    def action_remove_service(self): pass
-    def action_contract_reboot_onu(self): pass
-    def action_change_ont_service(self): pass
+    def action_status_olt(self):
+        pass
+
+    def action_test_speed_service(self):
+        pass
+
+    def action_remove_service(self):
+        pass
+
+    def action_contract_reboot_onu(self):
+        pass
+
+    def action_change_ont_service(self):
+        pass
+
+    @api.onchange('contract_latitude', 'contract_longitude')
+    def _onchange_coordinates(self):
+        if self.contract_latitude and self.contract_longitude:
+            # Encuentra el nodo más cercano
+            nodes = self.env['silver.node'].search([])
+            closest_node = None
+            min_dist_node = float('inf')
+            for node in nodes:
+                if node.latitude and node.longitude:
+                    dist = haversine(self.contract_latitude, self.contract_longitude, node.latitude, node.longitude)
+                    if dist < min_dist_node:
+                        min_dist_node = dist
+                        closest_node = node
+            self.node_id = closest_node
+
+            # Encuentra la caja NAP más cercana
+            boxes = self.env['silver.box'].search([])
+            closest_box = None
+            min_dist_box = float('inf')
+            for box in boxes:
+                if box.latitude and box.longitude:
+                    dist = haversine(self.contract_latitude, self.contract_longitude, box.latitude, box.longitude)
+                    if dist < min_dist_box:
+                        min_dist_box = dist
+                        closest_box = box
+            self.box_id = closest_box
+
+    @api.onchange('box_id')
+    def _onchange_box_id(self):
+        if self.box_id:
+            self.core_id = self.box_id.core_id
+            self.olt_id = self.box_id.olt_id
+        else:
+            self.core_id = False
+            self.olt_id = False

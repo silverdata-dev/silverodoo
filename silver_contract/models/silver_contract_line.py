@@ -7,7 +7,8 @@ class SilverContractLine(models.Model):
     _description = 'Línea de Contrato de Servicio ISP'
 
     contract_id = fields.Many2one('silver.contract', string='Contrato', required=True, ondelete='cascade')
-    product_id = fields.Many2one('product.product', string='Producto/Servicio', required=True)
+    #product_id = fields.Many2one('product.product', string='Producto/Servicio', required=True)
+
     line_type = fields.Selection([
         ('recurring', 'Recurrente'),
         ('one_time', 'Cargo Único')
@@ -26,9 +27,3 @@ class SilverContractLine(models.Model):
     def _compute_price_subtotal(self):
         for line in self:
             line.price_subtotal = line.quantity * line.price_unit
-
-    @api.onchange('product_id')
-    def _onchange_product_id(self):
-        if self.product_id:
-            self.name = self.product_id.get_product_multiline_description_sale()
-            self.price_unit = self.product_id.list_price

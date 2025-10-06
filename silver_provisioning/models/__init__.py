@@ -6,3 +6,8 @@ from . import silver_splitter
 from . import silver_olt_card_port
 from . import silver_olt
 from . import silver_core
+from . import silver_product
+from . import silver_contract_line
+from . import silver_contract_discount_line
+from . import silver_contract_stock_line
+from . import silver_cutoff_date

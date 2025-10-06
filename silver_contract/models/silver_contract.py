@@ -42,8 +42,8 @@ class SilverContract(models.Model):
     tag_ids = fields.Many2many('silver.contract.tag', string="Etiquetas")  # TODO: Crear modelo silver.contract.tag
 
     # Campos de Servicio (reemplazan a los anteriores)
-    service_plan_id = fields.Many2one('product.product', string="Plan de Servicio", required=True, domain="[('is_silver_plan', '=', True)]")
-    monthly_fee = fields.Float(string="Tarifa Mensual", related='service_plan_id.list_price', readonly=False)
+ #   service_plan_id = fields.Many2one('product.product', string="Plan de Servicio", required=True, domain="[('is_silver_plan', '=', True)]")
+ #   monthly_fee = fields.Float(string="Tarifa Mensual", related='service_plan_id.list_price', readonly=False)
 
 
     state = fields.Selection([
@@ -103,24 +103,9 @@ class SilverContract(models.Model):
     contract_latitude = fields.Float(string='Latitud', digits=(10, 7))
     contract_longitude = fields.Float(string='Longitud', digits=(10, 7))
 
-    # --- Pestaña: Servicio Internet ---
-    ip_address = fields.Char(string="IP Asignada")
-    mac_address_onu = fields.Char(string="MAC Address Onu")
     onuid = fields.Integer(string="ONU-id")
-    olt_id = fields.Many2one('isp.olt', string="Equipo OLT")
-    box_id = fields.Many2one('isp.box', string="Caja NAP")
-    port_nap = fields.Selection([], string="Puerto NAP")
-    serial_onu = fields.Many2one('stock.production.lot', string="Serial ONU")
-    pppoe = fields.Char(string="PPPoe")
-    password_pppoe = fields.Char(string="Contrasena PPPoe")
-    node_id = fields.Many2one('isp.node', string="Nodo")
-    wan_mode = fields.Selection([], string="WAN mode")
-    is_bridge = fields.Boolean(string="Bridge")
-    is_router_wifi = fields.Boolean(string="Router")
-    sssid = fields.Char(string="SSID Name")
-    password_wam = fields.Char(string="Password")
-    ip_public = fields.Char(string="Ip Public")
-    is_ip_public = fields.Boolean(string="IP Pública")
+
+
 
 
     # --- Pestaña: Otra Información ---
@@ -241,7 +226,3 @@ class SilverContract(models.Model):
     def _compute_links_payment(self):
         for rec in self:
             rec.links_payment = ''
-
-class ProductTemplate(models.Model):
-    _inherit = 'product.template'
-    is_silver_plan = fields.Boolean(string="Es un Plan ISP", help="Marcar si este producto es un plan de servicio para ISP.")

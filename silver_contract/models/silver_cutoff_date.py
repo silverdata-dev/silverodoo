@@ -69,7 +69,6 @@ class SilverCutoffDate(models.Model):
     # Pestaña: Reconexiones
     is_aditional_preinvoice = fields.Boolean(string='Prefactura Adicional')
     reconnection_policy = fields.Selection([('full_payment', 'Pago Completo'), ('partial_payment', 'Pago Parcial')], string='Politica de Reconexión')
-    product_reconnection_id = fields.Many2one('product.product', string='Producto/Servicio Cortado')
     apply_reconnection = fields.Boolean(string='Activar Reconexion')
     is_reconnection_required = fields.Boolean(string='Reconexión obligatoria')
     is_not_apply_cutoff = fields.Boolean(string='No aplica cortados')
@@ -81,7 +80,6 @@ class SilverCutoffDate(models.Model):
     days_without_proration = fields.Boolean(string='Dias sin prorrateo')
     number_days_without_proration = fields.Integer(string='Rango reconexión prorrateo')
     reconnection_type = fields.Selection([('manual', 'Manual'), ('auto', 'Automática'), ('static', 'Estática')], string='Tipo de reconexión')
-    product_remove_reconnection_id = fields.Many2one('product.product', string='Producto/Servicio Lista de Retiro')
     day_reconnection_from = fields.Integer(string='Rango reconexión desde')
     day_reconnection_to = fields.Integer(string='Rango reconexión hasta')
     day_reconnection_rl_from = fields.Integer(string='Rango reconexión desde')

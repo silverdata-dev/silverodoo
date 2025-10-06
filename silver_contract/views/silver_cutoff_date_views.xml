@@ -137,14 +137,14 @@
                                 <group>
                                     <field name="is_aditional_preinvoice" widget="boolean_toggle"/>
                                     <field name="reconnection_policy" required="(apply_reconnection == True) or (is_aditional_preinvoice == True)" invisible="(is_aditional_preinvoice == False) and (apply_reconnection == False)"/>
-                                    <field name="product_reconnection_id" required="(apply_reconnection == True) or (is_aditional_preinvoice == True)" invisible="(is_aditional_preinvoice == False) and (apply_reconnection == False)" options="{'no_create': True, 'no_create_edit':True}" domain="[('detailed_type','=','service')]"/>
+                                    <!--field name="product_reconnection_id" required="(apply_reconnection == True) or (is_aditional_preinvoice == True)" invisible="(is_aditional_preinvoice == False) and (apply_reconnection == False)" options="{'no_create': True, 'no_create_edit':True}" domain="[('detailed_type','=','service')]"/-->
                                     <field name="apply_reconnection" widget="boolean_toggle"/>
                                     <field name="is_reconnection_required" widget="boolean_toggle" invisible="apply_reconnection == False"/>
                                     <field name="is_not_apply_cutoff" widget="boolean_toggle" invisible="apply_reconnection == False"/>
                                     <field name="is_proration_cutoff" widget="boolean_toggle" invisible="is_not_apply_cutoff == False"/>
                                     <field name="advance_invoice" widget="boolean_toggle" invisible="is_day_start == False"/>
                                 </group>
-                                <group invisible="apply_reconnection == False">
+                                <group invisible="apply_reconnection == False" name="reconnection_type">
                                     <group>
                                         <field name="charge_proration" widget="boolean_toggle"/>
                                         <field name="charge_reconection_portal" widget="boolean_toggle"/>
@@ -155,9 +155,7 @@
                                         <field name="reconnection_type" widget="selection"/>
                                     </group>
                                 </group>
-                                <group>
-                                    <field name="product_remove_reconnection_id" required="apply_reconnection == True" invisible="apply_reconnection == False" options="{'no_create': True, 'no_create_edit':True}" domain="[('detailed_type','=','service')]"/>
-                                </group>
+
                                 <group invisible="apply_reconnection == False">
                                     <group invisible="reconnection_type == 'static'">
                                         <label for="day_reconnection_from" string="Rango de mora"/>

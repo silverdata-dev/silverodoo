@@ -6,10 +6,11 @@
     'author': 'Gemini',
     'website': 'https://www.gemini.com',
     'category': 'Services/Telecommunications',
-    'depends': ['silver_network', 'silver_contract', 'silver_base'],
+    'depends': ['silver_network', 'silver_contract', 'silver_base', 'silver_product', 'stock'],
     'data': [
         'security/ir.model.access.csv',
-        'views/contract_views.xml',
+        'views/silver_contract_views.xml',
+        'views/silver_cutoff_date_views.xml',
         'views/silver_ap_views.xml',
         'views/silver_box_views.xml',
         'views/silver_splitter_views.xml',

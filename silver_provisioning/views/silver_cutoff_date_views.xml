@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="silver_cutoff_view_form_provisioning" model="ir.ui.view">
+            <field name="name">silver.cutoff.date.view.form.provisioning</field>
+            <field name="model">silver.cutoff.date</field>
+            <field name="inherit_id" ref="silver_contract.silver_cutoff_date_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='apply_reconnection']" position="before">
+                 <field name="product_reconnection_id" required="(apply_reconnection == True) or (is_aditional_preinvoice == True)" invisible="(is_aditional_preinvoice == False) and (apply_reconnection == False)" options="{'no_create': True, 'no_create_edit':True}" domain="[('detailed_type','=','service')]"/>
+                </xpath>
+
+                <xpath expr="//group[@name='reconnection_type']" position="after">
+                                                    <group>
+                                    <field name="product_remove_reconnection_id" required="apply_reconnection == True" invisible="apply_reconnection == False" options="{'no_create': True, 'no_create_edit':True}" domain="[('detailed_type','=','service')]"/>
+                                </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
