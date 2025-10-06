@@ -18,9 +18,9 @@
                     <field name="code"/>
                     <field name="name"/>
                     <field name="zone_id"/>
-                    <field name="country_id"/>
-                    <field name="state_id"/>
-                    <field name="street"/>
+                    <field name="silver_address_id"/>
+
+
                 </tree>
             </field>
         </record>
@@ -59,17 +59,16 @@
                             </h1>
                         </div>
                         <group><group>
-                        <field name="code" placeholder="Codigo del Nodo"/></group></group>
+                        <field name="code" placeholder="Codigo del Nodo"/>
+                        <field name="silver_address_id" />
+                        </group></group>
 
-                             <group string="Datos Ubicacion">
+                             <!--group string="Datos Ubicacion">
                                     <group>
                                         <field name="zone_id" required="True"/>
                                         <field name="country_id"/>
                                         <field name="state_id" domain="[('country_id','=', country_id)]"/>
-                                       <!--field name="zip"/-->
-                                        <!--field name="journal_id"/>
-                                        <field name="account_analytic_id"/>
-                                        <field name="account_cost_analytic_id"/-->
+
                                     </group>
                                     <group>
                                         <field name="phone"/>
@@ -89,7 +88,7 @@
                                         </div>
                                         <field name="distance"/>
                                     </group>
-                                </group>
+                                </group-->
 
                         <notebook name="related">
 

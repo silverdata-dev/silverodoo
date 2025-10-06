@@ -7,7 +7,7 @@
     'data': [
         'views/silver_map_views.xml',
         'views/menus.xml',
-        'views/silver_node_views.xml',
+  #      'views/silver_node_views.xml',
     ],
     'assets': {
         'web.assets_backend': [

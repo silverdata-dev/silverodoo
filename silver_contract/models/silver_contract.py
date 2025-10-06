@@ -26,25 +26,17 @@ class SilverContract(models.Model):
     # Campos de Cabecera y Cliente
     name = fields.Char(string="Número de Contrato", required=True, copy=False, readonly=True, default=lambda self: _('Nuevo'))
     partner_id = fields.Many2one('res.partner', string="Cliente", required=True, tracking=True)
-
-    address = fields.Char(string="Dirección de Instalación", required=True)
     phone = fields.Char(string="Teléfono", related='partner_id.phone', readonly=False)
 
     date_start = fields.Date(string="Fecha de Inicio", default=fields.Date.context_today, tracking=True)
     date_end = fields.Date(string="Fecha de Fin", tracking=True)
 
     # Campos de Configuración
-   # payment_type_id = fields.Many2one('silver.payment.type', string="Forma de Pago")
     service_type_id = fields.Many2one('silver.service.type', string="Tipo de Servicio", required=True)
     plan_type_id = fields.Many2one('silver.plan.type', string="Tipo de Plan", required=True)
     contract_term_id = fields.Many2one('silver.contract.term', string="Período de Permanencia")
     cutoff_date_id = fields.Many2one('silver.cutoff.date', string="Periodo de Consumo")
-    tag_ids = fields.Many2many('silver.contract.tag', string="Etiquetas")  # TODO: Crear modelo silver.contract.tag
-
-    # Campos de Servicio (reemplazan a los anteriores)
- #   service_plan_id = fields.Many2one('product.product', string="Plan de Servicio", required=True, domain="[('is_silver_plan', '=', True)]")
- #   monthly_fee = fields.Float(string="Tarifa Mensual", related='service_plan_id.list_price', readonly=False)
-
+    tag_ids = fields.Many2many('silver.contract.tag', string="Etiquetas")
 
     state = fields.Selection([
         ('draft', 'Borrador'), ('open', 'En Proceso'), ('done', 'Realizado'),
@@ -55,14 +47,15 @@ class SilverContract(models.Model):
         ('suspended', 'Suspendido'), ('removal_list', 'En Lista de Retiro'), ('removed', 'Retirado'),
     ], string="Estado del Servicio", default='inactive', tracking=True)
 
+    # --- Pestaña: Ubicación (NUEVO) ---
+    silver_address_id = fields.Many2one('silver.address', string='Dirección de Instalación')
+
     # --- Pestaña: Servicios Recurrentes ---
     recurring_invoice_type = fields.Selection([('post', 'Postpago'), ('pre', 'Prepago')], string="Tipo de Consumo")
     recurring_invoicing_type = fields.Selection([('recurrent', 'Recurrente'), ('one_time', 'Una sola vez')], string="Tipo de facturación")
     line_ids = fields.One2many('silver.contract.line', 'contract_id', string='Líneas de Servicio Recurrente', domain=[('line_type', '=', 'recurring')])
     line_debit_ids = fields.One2many('silver.contract.line', 'contract_id', string='Líneas de Cargo Único', domain=[('line_type', '=', 'one_time')])
     payment_type_id = fields.Many2one('silver.payment.type', string="Forma de Pago")
-  #  date_start = fields.Date(string="Fecha de Inicio", default=fields.Date.context_today, tracking=True)
-   # date_end = fields.Date(string="Fecha de Fin", tracking=True)
     type_journal_invoice = fields.Selection([('invoice', 'Factura'), ('receipt','Nota de entrega/Recibo' )], 'Tipo de Documento')
     recurring_invoices = fields.Boolean(string='Recurrencia')
     is_recurring_invoicing_type = fields.Boolean(string="ES tipo de facturacion")
@@ -74,6 +67,7 @@ class SilverContract(models.Model):
     is_extra_value = fields.Boolean(string="¿Ya facturo valores extra?")
     is_extra_value_active = fields.Boolean(string="¿Esta activo facturar valores extra?")
     payment_type_code = fields.Char(related='payment_type_id.code')
+    
     # --- Pestaña: Descuentos/Promociones ---
     discount_plan_id = fields.Many2one('silver.discount.plan', string="Plan de Descuento")
     discount_line_ids = fields.One2many('silver.contract.discount.line', 'contract_id', string='Líneas de Descuento')
@@ -86,27 +80,11 @@ class SilverContract(models.Model):
     disability_percentage = fields.Float(string="Porcentaje de Discapacidad")
     is_senior = fields.Boolean(string="Tercera Edad?")
     has_promotion_foreign_currency = fields.Boolean(string="Tiene Promoción Pago en Divisa")
-    #foreign_currency_line_ids = fields.One2many('foreign.currency.line', 'contract_id', string="Lineas de Descuento")
-    stock_line_ids = fields.One2many('silver.contract.stock.line', 'contract_id', string='Líneas de Materiales')
     payment_promise_ids = fields.One2many('silver.payment.promise', 'contract_id', string="Promesas de Pago")
     anticipated_payment_line_ids = fields.One2many('silver.contract.anticipated.payment.line', 'contract_id', string='Líneas de Pago Anticipado')
     referred_line_ids = fields.One2many('silver.referred.contact', 'contract_id', string='Líneas de Referidos')
-    # line_debit_ids = fields.One2many('silver.contract.debit.line', 'contract_id', string='Líneas de Débito/Valores Extra')
- 
-    # --- Pestaña: Ubicación ---
-    street = fields.Char(string='Calle')
-    street2 = fields.Char(string='Calle 2')
-    city = fields.Char(string='Ciudad')
-    state_id = fields.Many2one('res.country.state', string='Estado/Provincia')
-    country_id = fields.Many2one('res.country', string='País', default=lambda self: self._get_default_country())
-    zip = fields.Char(string='Código Postal')
-    contract_latitude = fields.Float(string='Latitud', digits=(10, 7))
-    contract_longitude = fields.Float(string='Longitud', digits=(10, 7))
 
     onuid = fields.Integer(string="ONU-id")
-
-
-
 
     # --- Pestaña: Otra Información ---
     user_id = fields.Many2one('res.users', string='Vendedor', default=lambda self: self.env.user)
@@ -118,9 +96,6 @@ class SilverContract(models.Model):
     is_other_partner_bank = fields.Boolean(string="Diferente propietario de cuenta?")
     partner_bank_id = fields.Many2one('res.partner', string="Propietario cuenta")
     res_partner_bank_id = fields.Many2one('res.partner.bank', string="Cuenta bancaria")
-
-  #  payment_type_code = fields.Char(string="Código forma de pago")
-
 
     # --- Pestaña: Documentación ---
     doc_vat_copy = fields.Binary(string="Copia de RIF/CI", attachment=True)
@@ -138,32 +113,24 @@ class SilverContract(models.Model):
     dont_send_notification_wp = fields.Boolean(string="No Enviar Notificaciones por WhatsApp")
     links_payment = fields.Char(string="Enlaces de Pago", compute="_compute_links_payment", readonly=True)
 
-    @api.onchange('contract_latitude', 'contract_longitude')
-    def _onchange_coordinates(self):
-        if self.contract_latitude and self.contract_longitude:
-            # Encuentra el nodo más cercano
-            nodes = self.env['isp.node'].search([])
-            closest_node = None
-            min_dist_node = float('inf')
-            for node in nodes:
-                if node.latitude and node.longitude:
-                    dist = haversine(self.contract_latitude, self.contract_longitude, node.latitude, node.longitude)
-                    if dist < min_dist_node:
-                        min_dist_node = dist
-                        closest_node = node
-            self.node_id = closest_node
+    @api.onchange('partner_id')
+    def _onchange_partner_id_silver(self):
+        if self.partner_id and self.partner_id.silver_address_id:
+            original_address = self.partner_id.silver_address_id
+            
+            # Prepara los datos para la copia
+            address_data = original_address.copy_data({
+                'parent_id': original_address.id,
+            })[0]
+            
+            # Crea la nueva dirección (la copia)
+            new_address = self.env['silver.address'].create(address_data)
+            
+            # Asigna la nueva dirección al contrato
+            self.silver_address_id = new_address
+        else:
+            self.silver_address_id = False
 
-            # Encuentra la caja NAP más cercana
-            boxes = self.env['isp.box'].search([])
-            closest_box = None
-            min_dist_box = float('inf')
-            for box in boxes:
-                if box.latitude and box.longitude:
-                    dist = haversine(self.contract_latitude, self.contract_longitude, box.latitude, box.longitude)
-                    if dist < min_dist_box:
-                        min_dist_box = dist
-                        closest_box = box
-            self.box_id = closest_box
 
     @api.onchange('box_id')
     def _onchange_box_id(self):
@@ -182,6 +149,7 @@ class SilverContract(models.Model):
         if vals.get('name', _('Nuevo')) == _('Nuevo'):
             vals['name'] = self.env['ir.sequence'].next_by_code('silver.contract.sequence') or _('Nuevo')
         return super(SilverContract, self).create(vals)
+
 
     def action_open(self):
         return None

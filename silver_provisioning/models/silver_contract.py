@@ -276,16 +276,19 @@ class IspContract(models.Model):
     def action_change_ont_service(self):
         pass
 
-    @api.onchange('contract_latitude', 'contract_longitude')
-    def _onchange_coordinates(self):
-        if self.contract_latitude and self.contract_longitude:
+    @api.onchange('silver_address_id')
+    def _onchange_silver_address_id(self):
+        if self.silver_address_id and self.silver_address_id.latitude and self.silver_address_id.longitude:
+            lat = self.silver_address_id.latitude
+            lon = self.silver_address_id.longitude
+
             # Encuentra el nodo más cercano
             nodes = self.env['silver.node'].search([])
             closest_node = None
             min_dist_node = float('inf')
             for node in nodes:
                 if node.latitude and node.longitude:
-                    dist = haversine(self.contract_latitude, self.contract_longitude, node.latitude, node.longitude)
+                    dist = haversine(lat, lon, node.latitude, node.longitude)
                     if dist < min_dist_node:
                         min_dist_node = dist
                         closest_node = node
@@ -297,11 +300,14 @@ class IspContract(models.Model):
             min_dist_box = float('inf')
             for box in boxes:
                 if box.latitude and box.longitude:
-                    dist = haversine(self.contract_latitude, self.contract_longitude, box.latitude, box.longitude)
+                    dist = haversine(lat, lon, box.latitude, box.longitude)
                     if dist < min_dist_box:
                         min_dist_box = dist
                         closest_box = box
             self.box_id = closest_box
+        else:
+            self.node_id = False
+            self.box_id = False
 
     @api.onchange('box_id')
     def _onchange_box_id(self):

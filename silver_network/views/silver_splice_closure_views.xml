@@ -13,6 +13,7 @@
                             <field name="name"/>
                             <field name="code"/>
                             <field name="node_id"/>
+                            <field name="silver_address_id"/>
                             <field name="zone_id"/>
                             </group>
                             <group>
@@ -25,17 +26,7 @@
                             </group>
                         </group>
                         <notebook>
-                            <page string="Location">
-                                <group>
-                                    <field name="street"/>
-                                    <field name="street2"/>
-                                    <!--field name="zip"/-->
-                                    <field name="state_id"/>
-                                    <field name="country_id"/>
-                                    <field name="gps_lat"/>
-                                    <field name="gps_lon"/>
-                                </group>
-                            </page>
+
                             <page string="Notes">
                                 <field name="notes"/>
                             </page>

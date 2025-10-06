@@ -27,11 +27,13 @@
                             <group string="Geographic Location">
                                 <field name="zone_id"/>
                                 <field name="country_id"/>
-                                <field name="state_id"/>
-                                <field name="municipality_id"/>
-                                <field name="city_id"/>
-                                <field name="parish_id"/>
+                                <field name="state_id" domain="[('country_id', '=', country_id)]"/>
+                                <field name="city_id" domain="[('state_id', '=', state_id)]"/>
+                                <field name="municipality_id" domain="[('city_id', '=', city_id)]"/>
+                                <field name="parish_id" domain="[('municipality_id', '=', municipality_id)]"/>
                             </group>
+                        </group>
+                        <group>
                             <group string="Detailed Address">
                                 <field name="street"/>
                                 <field name="building"/>

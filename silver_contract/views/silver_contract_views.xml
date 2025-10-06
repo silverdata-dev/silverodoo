@@ -61,7 +61,7 @@
                                 <field name="is_extra_value" invisible="1"/>
                                 <field name="state_service" invisible="1"/>
                                 <field name="partner_id" readonly="state != 'draft'"/>
-                                <field name="address"/>
+                                <field name="silver_address_id" context="{'show_address': 1}" options='{"always_reload": True, "no_quick_create": False}'/>
                                 <field name="phone"/>
                             </group>
                             <group>

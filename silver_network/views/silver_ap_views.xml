@@ -54,6 +54,8 @@
                                 <field name="core_id"/>
                                 <field name="node_ids" widget="many2many_tags" invisible="1" can_create="true"
                                        can_write="true" readonly="1"/>
+
+                                <field name="silver_address_id" />
                             </group>
   <group name="core_conexion" string="Datos Conexion">
 
@@ -106,11 +108,11 @@
                                 <field name="is_mgn_mac_onu" widget="boolean_toggle"/>
                             </group>
                         </group>
- <group string="Datos Ubicacion">
+ <!--group string="Datos Ubicacion">
                                     <group>
                                         <field name="country_id" can_create="false" can_write="false"/>
                                         <field name="state_id" can_create="true" can_write="true"/>
-                                        <!--field name="zip"/-->
+
                                     </group>
                                     <group>
                                         <field name="street"/>
@@ -130,7 +132,7 @@
                                             <field name="date_localization" nolabel="1" class="oe_inline"/>
                                         </div>
                                     </group>
-                                </group>
+                                </group-->
                              </page>
 
                         </notebook>

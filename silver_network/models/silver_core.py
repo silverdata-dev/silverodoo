@@ -70,7 +70,7 @@ class SilverCore(models.Model):
     password_nass = fields.Char(string='Password Nass')
     key_pppoe = fields.Char(string='Password PPPoE')
 
-    port = fields.Char(string='Puerto de Conexión', related="netdev_id.port", readonly=False, default=2100)
+    port = fields.Char(string='Puerto de Conexión', related="netdev_id.port", readonly=False, default=21000)
     port_coa = fields.Char(string='Puerto COA')
     ip = fields.Char(string='IP de Conexión', related="netdev_id.ip", readonly=False)
 

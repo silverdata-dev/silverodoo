@@ -37,6 +37,8 @@ class SilverNode(models.Model):
     #splice_closure_ids = fields.One2many('silver.splice_closure', 'node_id', string='Splice Closures')
 
 
+    silver_address_id = fields.Many2one('silver.address', string='Dirección')
+
 
 
     asset_type = fields.Selection(
@@ -47,22 +49,22 @@ class SilverNode(models.Model):
     )
 
 
-    @api.model
-    def create(self, vals):
-        if vals.get('gps_lon') and vals.get('gps_lat'):
-            vals['date_localization'] =  datetime.now()
-        return super(SilverNode, self).create(vals)
+   # @api.model
+   # def create(self, vals):
+   #     if vals.get('gps_lon') and vals.get('gps_lat'):
+   #         vals['date_localization'] =  datetime.now()
+   #     return super(SilverNode, self).create(vals)
 
-    @api.model
-    def write(self, vals):
-        if vals.get('gps_lon') and vals.get('gps_lat'):
-            vals['date_localization'] = datetime.now()
+   # @api.model
+   # def write(self, vals):
+   #     if vals.get('gps_lon') and vals.get('gps_lat'):
+   #         vals['date_localization'] = datetime.now()
 
-        for record in self:
-            if (vals.get('gps_lon') or vals.get('gps_lat')):
-                record.date_localization =  datetime.now()
-                print(("record", record, record.date_localization))
-        return super(SilverNode, self).write(vals)
+   #     for record in self:
+   #         if (vals.get('gps_lon') or vals.get('gps_lat')):
+   #             record.date_localization =  datetime.now()
+   #             print(("record", record, record.date_localization))
+   #     return super(SilverNode, self).write(vals)
 
 
     def _compute_counts(self):
