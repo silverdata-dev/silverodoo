@@ -1,0 +1,7 @@
+.o_form_view .o_coordinate_picker_map {
+    height: 400px !important;
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    margin-top: 5px;
+}

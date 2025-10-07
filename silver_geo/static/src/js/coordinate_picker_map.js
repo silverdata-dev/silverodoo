@@ -1,114 +1,97 @@
 /** @odoo-module **/
 
 import { registry } from "@web/core/registry";
-import { useService } from "@web/core/utils/hooks";
-import { loadJS } from "@web/core/assets";
-import { CharField } from "@web/views/fields/char/char_field";
+import { useRecordObserver } from "@web/model/relational_model/utils";
 
-const { Component, onWillStart, onMounted, useState, useRef } = owl;
+const { Component, onMounted, onWillUnmount, useRef } = owl;
 
-// This is the component that will be rendered inside the modal
 export class CoordinatePickerMap extends Component {
-    static template = "silver_geo.CoordinatePickerMap";
-
     setup() {
-        this.orm = useService("orm");
-        this.mapContainer = useRef("map-container");
-        this.state = useState({
-            lat: this.props.lat || -17.3894997, // Default to Cochabamba
-            lon: this.props.lon || -66.1568000,
-        });
+        this.map = null;
+        this.marker = null;
+        this.mapContainer = useRef("mapContainer");
+        this.latField = this.props.latitude_field;
+        this.lngField = this.props.longitude_field;
+        this.record = this.props.record;
 
-        onWillStart(async () => {
-            await loadJS("https://openlayers.org/en/v6.5.0/build/ol.js");
+        useRecordObserver(() => {
+            const newLat = this.record.data[this.latField];
+            const newLng = this.record.data[this.lngField];
+            this.updateMarkerPosition(newLng, newLat);
         });
 
         onMounted(() => {
-            this.initMap();
-        });
-    }
-
-    initMap() {
-        const initialCoords = [this.state.lon, this.state.lat];
-        const transformedCoords = ol.proj.fromLonLat(initialCoords);
-
-        this.markerSource = new ol.source.Vector();
-        const markerStyle = new ol.style.Style({
-            image: new ol.style.Icon({
-                anchor: [0.5, 1],
-                src: '/silver_geo/static/src/img/map_icons/cto.png',
-                scale: 0.08,
-            }),
+            setTimeout(() => this.initializeMap(), 0);
         });
 
-        this.marker = new ol.Feature({
-            geometry: new ol.geom.Point(transformedCoords),
-        });
-        this.markerSource.addFeature(this.marker);
-
-        this.map = new ol.Map({
-            target: this.mapContainer.el,
-            layers: [
-                new ol.layer.Tile({ source: new ol.source.OSM() }),
-                new ol.layer.Vector({ source: this.markerSource, style: markerStyle }),
-            ],
-            view: new ol.View({ center: transformedCoords, zoom: 15 }),
-        });
-
-        this.map.on("singleclick", (evt) => {
-            const coords = ol.proj.toLonLat(evt.coordinate);
-            this.state.lon = coords[0];
-            this.state.lat = coords[1];
-            this.marker.getGeometry().setCoordinates(evt.coordinate);
-        });
-    }
-
-    async onSave() {
-        await this.orm.write("silver.node", [this.props.resId], {
-            gps_lat: this.state.lat,
-            gps_lon: this.state.lon,
-        });
-        this.props.close(); // Close the dialog
-    }
-
-    onCancel() {
-        this.props.close(); // Close the dialog
-    }
-}
-
-// This is the new Field Widget that will be placed on the form view
-export class CoordinatePickerWidget extends Component {
-    static template = xml`
-        <button t-on-click="openMap" class="btn btn-link o_icon_button fa fa-map-marker" aria-label="Seleccionar Coordenadas"/>
-    `;
-
-    setup() {
-        this.dialog = useService("dialog");
-        this.orm = useService("orm");
-    }
-
-    async openMap() {
-        const recordData = await this.orm.read(
-            this.props.record.resModel,
-            [this.props.record.resId],
-            ["gps_lat", "gps_lon"]
-        );
-
-        this.dialog.add(CoordinatePickerMap, {
-            title: "Seleccionar Coordenadas",
-            resId: this.props.record.resId,
-            lat: recordData[0].gps_lat,
-            lon: recordData[0].gps_lon,
-        }, {
-            onClose: () => {
-                // This will reload the view to show the new coordinates
-                this.props.record.load();
+        onWillUnmount(() => {
+            if (this.map) {
+                this.map.remove();
             }
         });
     }
+
+    initializeMap() {
+        if (!this.mapContainer.el) return;
+
+        const initialLat = this.record.data[this.latField] || 9.02497;
+        const initialLng = this.record.data[this.lngField] || -66.41375;
+        
+        this.map = L.map(this.mapContainer.el, { maxZoom: 19 }).setView([initialLat, initialLng], 6);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(this.map);
+
+        this.marker = L.marker([initialLat, initialLng], { 
+            // Only allow dragging if the form is NOT readonly
+            draggable: !this.props.readonly,
+        }).addTo(this.map);
+
+        // Only attach event listeners if the form is NOT readonly
+        if (!this.props.readonly) {
+            this.marker.on('dragend', (event) => {
+                const position = this.marker.getLatLng();
+                this.record.update({
+                    [this.lngField]: position.lng,
+                    [this.latField]: position.lat,
+                });
+            });
+
+            this.map.on('click', (event) => {
+                const position = event.latlng;
+                this.marker.setLatLng(position);
+                console.log(["lng", position.lng, "lat", position.lat, this.lngField, this.latField, this.record]);
+
+                this.record.update({
+                    [this.lngField]: position.lng,
+                    [this.latField]: position.lat,
+                });
+            });
+        }
+    }
+
+    updateMarkerPosition(lng, lat) {
+        const newLatLng = L.latLng(lat || 0, lng || 0);
+        if (this.map && this.marker && !this.marker.getLatLng().equals(newLatLng)) {
+            this.marker.setLatLng(newLatLng);
+            this.map.panTo(newLatLng);
+        }
+    }
 }
 
-// Register the new widget in the field registry
-registry.category("fields").add("coordinate_picker_widget", {
-    component: CoordinatePickerWidget,
+CoordinatePickerMap.template = "silver_geo.CoordinatePickerMap";
+CoordinatePickerMap.props = {
+    record: { type: Object },
+    readonly: { type: Boolean, optional: true },
+    latitude_field: { type: String },
+    longitude_field: { type: String },
+};
+
+registry.category("view_widgets").add("coordinate_picker_map", {
+    component: CoordinatePickerMap,
+    extractProps: ({ attrs }) => ({
+        latitude_field: attrs.latitude_field,
+        longitude_field: attrs.longitude_field,
+    }),
 });

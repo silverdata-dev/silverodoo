@@ -40,7 +40,7 @@
                                 <field name="floor"/>
                                 <field name="house_number"/>
                             </group>
-                            <group string="Coordinates">
+                            <group string="Coordinates" name="coordinates_group">
                                 <field name="latitude"/>
                                 <field name="longitude"/>
                             </group>

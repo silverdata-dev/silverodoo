@@ -4,7 +4,7 @@
         <record id="view_silver_node_form_inherit_geo" model="ir.ui.view">
             <field name="name">silver.node.form.inherit.geo</field>
             <field name="model">silver.node</field>
-            <field name="inherit_id" ref="silver_network.view_silver_node_form"/>
+            <field name="inherit_id" ref="silver_geo.view_silver_node_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@name='geolocalize']" position="inside">
                     <field name="name" widget="coordinate_picker_widget" readonly="1" nolabel="1"/>

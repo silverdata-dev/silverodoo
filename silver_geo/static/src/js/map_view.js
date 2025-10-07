@@ -8,7 +8,7 @@ import { standardFieldProps } from "@web/views/fields/standard_field_props";
 import { Component, onMounted, onWillStart, useRef, useState } from "@odoo/owl";
 
 export class AssetMapView extends Component {
-    static template = "silver_network.AssetMapView";
+    static template = "silver_geo.AssetMapView";
     static props = {
         
         ...standardFieldProps,
@@ -141,7 +141,7 @@ export class AssetMapView extends Component {
 
     async _loadAssets(nodeId) {
         const response = await this.rpc(
-            "/silver_network/get_assets",
+            "/silver_geo/get_assets",
             { node_id: nodeId }
         );
 
@@ -218,7 +218,7 @@ export class AssetMapView extends Component {
 
     _getFeatureStyle(asset) {
         var model = asset.model.replaceAll(".", "_");
-        const iconPath = `/silver_network/static/src/img/map_icons/${model}.png`;
+        const iconPath = `/silver_geo/static/src/img/map_icons/${model}.png`;
         return new ol.style.Style({
             image: new ol.style.Icon({
                 anchor: [0.5, 1],
@@ -345,4 +345,4 @@ export class AssetMapView extends Component {
     }
 }
 
-registry.category("actions").add("silver_network.map_view", AssetMapView);
+registry.category("actions").add("silver_geo.map_view", AssetMapView);
