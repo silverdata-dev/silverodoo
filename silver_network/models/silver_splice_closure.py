@@ -16,7 +16,9 @@ class SilverSpliceClosure(models.Model):
     node_id = fields.Many2one('silver.node', string='Nodo')
 
     zone_id = fields.Many2one('silver.zone', string="Zona", related="asset_id.zone_id", readonly=False)
-    
+
+    silver_address_id = fields.Many2one('silver.address', string='Dirección')
+
 
 
     closure_type = fields.Selection([

@@ -30,7 +30,7 @@ class SilverNetdev(models.Model):
     netdev_type = fields.Selection([
         ('ap', 'AP'),
         ('core', 'Core'),
-        ('cto', 'CTO'),
+        ('nap', 'NAP'),
         ('olt', 'OLT'),
         ('port', 'Port'),
         ('radius', 'Radius'),
@@ -278,29 +278,36 @@ class SilverNetdev(models.Model):
             return
 
         try:
-            interfaces = tuple(api.path('/interface'))
-            print(("interfaces", interfaces))
-            interface_names = [iface.get('name') for iface in interfaces]
-
-            # Monitor the interfaces to get traffic data
-            traffic_data = api.path('/interface/monitor-traffic').call('monitor-traffic', {
-                'numbers': ",".join(interface_names),
-                'once': ''
-            })
-
-            
-        #    traffic_map = {item['name']: item for item in traffic_data}
-            traffic_map = {}
-
             wizard = self.env['silver.netdev.interface.wizard'].create({
-                'router_id': self.id,
                 'netdev_id': self.id
             })
+
+            # Helper function to create records to avoid repetition
+            def create_lines(model_name, data, mapping):
+                model = self.env[model_name]
+                for item in data:
+                    vals = {'wizard_id': wizard.id}
+                    for odoo_field, mikrotik_field in mapping.items():
+                        vals[odoo_field] = item.get(mikrotik_field)
+                    model.create(vals)
+
+            # 1. General Interfaces (Main Tab)
+            interfaces = tuple(api.path('/interface'))
+            interface_names = [iface.get('name') for iface in interfaces]
+            
+            # MikroTik's monitor-traffic has a limit on the number of interfaces.
+            # We process them in chunks to avoid the error.
+            traffic_map = {}
+            chunk_size = 90  # A safe limit below 100
+            for i in range(0, len(interface_names), chunk_size):
+                chunk = interface_names[i:i + chunk_size]
+                traffic_chunk_data = api.path('/interface')('monitor-traffic', interface=",".join(chunk), once='')
+                for item in traffic_chunk_data:
+                    traffic_map[item['name']] = item
 
             for interface in interfaces:
                 name = interface.get('name')
                 traffic = traffic_map.get(name, {})
-                
                 self.env['silver.netdev.interface.wizard.line'].create({
                     'wizard_id': wizard.id,
                     'name': name,
@@ -313,13 +320,66 @@ class SilverNetdev(models.Model):
                     'tx_speed': _format_speed(traffic.get('tx-bits-per-second', 0)),
                 })
 
+            # 2. Ethernet
+            ethernet_data = tuple(api.path('/interface/ethernet'))
+            create_lines('silver.netdev.interface.ethernet.line', ethernet_data, {
+                'name': 'name', 'mac_address': 'mac-address', 'mtu': 'mtu', 
+                'l2mtu': 'l2mtu', 'arp': 'arp', 'disabled': 'disabled', 'comment': 'comment'
+            })
+
+            # 3. EoIP Tunnels
+            eoip_data = tuple(api.path('/interface/eoip'))
+            create_lines('silver.netdev.interface.eoip.line', eoip_data, {
+                'name': 'name', 'remote_address': 'remote-address', 'tunnel_id': 'tunnel-id',
+                'mac_address': 'mac-address', 'mtu': 'mtu', 'disabled': 'disabled', 'comment': 'comment'
+            })
+
+            # 4. GRE Tunnels
+            gre_data = tuple(api.path('/interface/gre'))
+            create_lines('silver.netdev.interface.gre.line', gre_data, {
+                'name': 'name', 'remote_address': 'remote-address', 'local_address': 'local-address',
+                'mtu': 'mtu', 'disabled': 'disabled', 'comment': 'comment'
+            })
+
+            # 5. VLANs
+            vlan_data = tuple(api.path('/interface/vlan'))
+            create_lines('silver.netdev.interface.vlan.line', vlan_data, {
+                'name': 'name', 'vlan_id': 'vlan-id', 'interface': 'interface',
+                'mtu': 'mtu', 'arp': 'arp', 'disabled': 'disabled', 'comment': 'comment'
+            })
+
+            # 6. VRRP
+            vrrp_data = tuple(api.path('/interface/vrrp'))
+            create_lines('silver.netdev.interface.vrrp.line', vrrp_data, {
+                'name': 'name', 'interface': 'interface', 'vrid': 'vrid', 'priority': 'priority',
+                'interval': 'interval', 'disabled': 'disabled', 'comment': 'comment'
+            })
+
+            # 7. Bonding
+            bonding_data = tuple(api.path('/interface/bonding'))
+            create_lines('silver.netdev.interface.bonding.line', bonding_data, {
+                'name': 'name', 'slaves': 'slaves', 'mode': 'mode', 
+                'link_monitoring': 'link-monitoring', 'mtu': 'mtu', 'disabled': 'disabled', 'comment': 'comment'
+            })
+
+            # 8. LTE
+            lte_data = tuple(api.path('/interface/lte'))
+            create_lines('silver.netdev.interface.lte.line', lte_data, {
+                'name': 'name', 'mac_address': 'mac-address', 'mtu': 'mtu',
+                'imei': 'imei', 'pin': 'pin-status', 'disabled': 'disabled', 'comment': 'comment'
+            })
+
             return {
                 'name': 'Router Interfaces',
                 'type': 'ir.actions.act_window',
                 'res_model': 'silver.netdev.interface.wizard',
                 'view_mode': 'form',
+                'view_id': self.env.ref('silver_network.view_silver_router_interface_wizard_form').id,
                 'res_id': wizard.id,
                 'target': 'new',
+                'context': {
+                    'default_netdev_id': self.id,
+                }
             }
         finally:
             api.close()

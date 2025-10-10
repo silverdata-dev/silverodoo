@@ -238,7 +238,7 @@ export class AssetMapView extends Component {
                 let isVisible = true;
                 if (asset.model === 'post') {
                     isVisible = zoom >= 15;
-                } else if (asset.model === 'cto') {
+                } else if (asset.model === 'nap') {
                     isVisible = zoom > 13;
                 }
                 

@@ -28,6 +28,13 @@ access_silver_radius_user,access.silver.radius.user,model_silver_radius_user,bas
 
 access_silver_netdev_interface_wizard,access.silver.netdev.interface.wizard,model_silver_netdev_interface_wizard,base.group_user,1,1,1,1
 access_silver_netdev_interface_wizard_line,access.silver.netdev.interface.wizard.line,model_silver_netdev_interface_wizard_line,base.group_user,1,1,1,1
+access_silver_netdev_interface_ethernet_line,access.silver.netdev.interface.ethernet.line,model_silver_netdev_interface_ethernet_line,base.group_user,1,1,1,1
+access_silver_netdev_interface_eoip_line,access.silver.netdev.interface.eoip.line,model_silver_netdev_interface_eoip_line,base.group_user,1,1,1,1
+access_silver_netdev_interface_gre_line,access.silver.netdev.interface.gre.line,model_silver_netdev_interface_gre_line,base.group_user,1,1,1,1
+access_silver_netdev_interface_vlan_line,access.silver.netdev.interface.vlan.line,model_silver_netdev_interface_vlan_line,base.group_user,1,1,1,1
+access_silver_netdev_interface_vrrp_line,access.silver.netdev.interface.vrrp.line,model_silver_netdev_interface_vrrp_line,base.group_user,1,1,1,1
+access_silver_netdev_interface_bonding_line,access.silver.netdev.interface.bonding.line,model_silver_netdev_interface_bonding_line,base.group_user,1,1,1,1
+access_silver_netdev_interface_lte_line,access.silver.netdev.interface.lte.line,model_silver_netdev_interface_lte_line,base.group_user,1,1,1,1
 access_silver_netdev_route_wizard,access.silver.netdev.route.wizard,model_silver_netdev_route_wizard,base.group_user,1,1,1,1
 access_silver_netdev_route_wizard_line,access.silver.netdev.route.wizard.line,model_silver_netdev_route_wizard_line,base.group_user,1,1,1,1
 access_silver_netdev_ppp_active_wizard,access.silver.netdev.ppp.active.wizard,model_silver_netdev_ppp_active_wizard,base.group_user,1,1,1,1

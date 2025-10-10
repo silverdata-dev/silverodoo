@@ -2,6 +2,7 @@
 
 import { registry } from "@web/core/registry";
 import { useRecordObserver } from "@web/model/relational_model/utils";
+import { useService } from "@web/core/utils/hooks";
 
 const { Component, onMounted, onWillUnmount, useRef } = owl;
 
@@ -10,6 +11,8 @@ export class CoordinatePickerMap extends Component {
         this.map = null;
         this.marker = null;
         this.mapContainer = useRef("mapContainer");
+        this.rpc = useService("rpc"); // RPC service for calling the controller
+
         this.latField = this.props.latitude_field;
         this.lngField = this.props.longitude_field;
         this.record = this.props.record;
@@ -31,24 +34,22 @@ export class CoordinatePickerMap extends Component {
         });
     }
 
-    initializeMap() {
+    async initializeMap() {
         if (!this.mapContainer.el) return;
 
         const initialLat = this.record.data[this.latField] || 9.02497;
         const initialLng = this.record.data[this.lngField] || -66.41375;
         
-        this.map = L.map(this.mapContainer.el, { maxZoom: 19 }).setView([initialLat, initialLng], 6);
+        this.map = L.map(this.mapContainer.el, { maxZoom: 19 }).setView([initialLat, initialLng], 13); // Zoom in a bit more
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+         //   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(this.map);
 
         this.marker = L.marker([initialLat, initialLng], { 
-            // Only allow dragging if the form is NOT readonly
             draggable: !this.props.readonly,
         }).addTo(this.map);
 
-        // Only attach event listeners if the form is NOT readonly
         if (!this.props.readonly) {
             this.marker.on('dragend', (event) => {
                 const position = this.marker.getLatLng();
@@ -61,13 +62,37 @@ export class CoordinatePickerMap extends Component {
             this.map.on('click', (event) => {
                 const position = event.latlng;
                 this.marker.setLatLng(position);
-                console.log(["lng", position.lng, "lat", position.lat, this.lngField, this.latField, this.record]);
-
                 this.record.update({
                     [this.lngField]: position.lng,
                     [this.latField]: position.lat,
                 });
             });
+        }
+
+        // Load and display assets on the map
+        await this.loadAssetsOnMap();
+    }
+
+    async loadAssetsOnMap() {
+        const response = await this.rpc('/silver_geo/get_assets', {});
+        const assets = response.assets || [];
+        
+        // Optional: Define different icons for different asset types
+        const icons = {
+            node: L.icon({ iconUrl: '/web/static/src/img/markers/marker-gold.png', shadowUrl: '/web/static/src/img/markers/marker-shadow.png', iconSize: [25, 41], iconAnchor: [12, 41] }),
+            box: L.icon({ iconUrl: '/web/static/src/img/markers/marker-green.png', shadowUrl: '/web/static/src/img/markers/marker-shadow.png', iconSize: [25, 41], iconAnchor: [12, 41] }),
+            default: L.icon({ iconUrl: '/web/static/src/img/markers/marker-blue.png', shadowUrl: '/web/static/src/img/markers/marker-shadow.png', iconSize: [25, 41], iconAnchor: [12, 41] })
+        };
+
+        for (const asset of assets) {
+                 var model = asset.model.replaceAll(".", "_");
+            if (asset.latitude && asset.longitude && ['box', 'node'].includes(model)) {
+                const icon = L.icon({iconUrl:`/silver_geo/static/src/img/map_icons/${model}.png`,  iconSize: [25, 41], iconAnchor: [12, 41] });
+                //const icon = icons[asset.model] || icons.default;
+                L.marker([asset.latitude, asset.longitude], { icon: icon, opacity: 0.7 })
+                    .bindPopup(`<b>${asset.model.toUpperCase()}:</b><br/>${asset.name}`)
+                    .addTo(this.map);
+            }
         }
     }
 

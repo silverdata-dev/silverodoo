@@ -2,12 +2,13 @@
 <odoo>
     <data>
         <!-- IspRouterInterfaceWizard -->
-        <record id="view_silver_router_interface_wizard_tree" model="ir.ui.view">
+        <record id="view_silver_netdev_interface_wizard_tree" model="ir.ui.view">
             <field name="name">silver.netdev.interface.wizard.tree</field>
             <field name="model">silver.netdev.interface.wizard</field>
             <field name="arch" type="xml">
-                <tree string="Router Interfaces">
-
+                <tree>
+                    <!-- This view is not directly used but must be valid. -->
+                    <!-- The fields are in the one2many list inside the form view. -->
                 </tree>
             </field>
         </record>
@@ -18,18 +19,112 @@
             <field name="arch" type="xml">
                 <form>
                     <field name="netdev_id" invisible="1"/>
-                    <field name="line_ids">
-                        <tree js_class="interface_list_view">
-                            <field name="name"/>
-                            <field name="type"/>
-                            <field name="mac_address"/>
-                            <field name="running"/>
-                            <field name="disabled"/>
-                            <field name="comment"/>
-                            <field name="rx_speed" widget="realtime_speed"/>
-                            <field name="tx_speed" widget="realtime_speed"/>
-                        </tree>
-                    </field>
+                    <notebook>
+                        <page string="Interface">
+                            <field name="line_ids" nolabel="1">
+                                <tree create="false" delete="false">
+                                    <field name="name"/>
+                                    <field name="type"/>
+                                    <field name="mac_address"/>
+                                    <field name="running"/>
+                                    <field name="disabled"/>
+                                    <field name="comment"/>
+                                    <field name="rx_speed"/>
+                                    <field name="tx_speed"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Ethernet">
+                            <field name="ethernet_line_ids" nolabel="1">
+                                <tree create="false" delete="false">
+                                    <field name="name"/>
+                                    <field name="mac_address"/>
+                                    <field name="mtu"/>
+                                    <field name="l2mtu"/>
+                                    <field name="arp"/>
+                                    <field name="disabled"/>
+                                    <field name="comment"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="EoIP Tunnel">
+                            <field name="eoip_line_ids" nolabel="1">
+                                <tree create="false" delete="false">
+                                    <field name="name"/>
+                                    <field name="remote_address"/>
+                                    <field name="tunnel_id"/>
+                                    <field name="mac_address"/>
+                                    <field name="mtu"/>
+                                    <field name="disabled"/>
+                                    <field name="comment"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="GRE Tunnel">
+                            <field name="gre_line_ids" nolabel="1">
+                                <tree create="false" delete="false">
+                                    <field name="name"/>
+                                    <field name="remote_address"/>
+                                    <field name="local_address"/>
+                                    <field name="mtu"/>
+                                    <field name="disabled"/>
+                                    <field name="comment"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="VLAN">
+                            <field name="vlan_line_ids" nolabel="1">
+                                <tree create="false" delete="false">
+                                    <field name="name"/>
+                                    <field name="vlan_id"/>
+                                    <field name="interface"/>
+                                    <field name="mtu"/>
+                                    <field name="arp"/>
+                                    <field name="disabled"/>
+                                    <field name="comment"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="VRRP">
+                            <field name="vrrp_line_ids" nolabel="1">
+                                <tree create="false" delete="false">
+                                    <field name="name"/>
+                                    <field name="interface"/>
+                                    <field name="vrid"/>
+                                    <field name="priority"/>
+                                    <field name="interval"/>
+                                    <field name="disabled"/>
+                                    <field name="comment"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Bonding">
+                            <field name="bonding_line_ids" nolabel="1">
+                                <tree create="false" delete="false">
+                                    <field name="name"/>
+                                    <field name="slaves"/>
+                                    <field name="mode"/>
+                                    <field name="link_monitoring"/>
+                                    <field name="mtu"/>
+                                    <field name="disabled"/>
+                                    <field name="comment"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="LTE">
+                            <field name="lte_line_ids" nolabel="1">
+                                <tree create="false" delete="false">
+                                    <field name="name"/>
+                                    <field name="mac_address"/>
+                                    <field name="mtu"/>
+                                    <field name="imei"/>
+                                    <field name="pin"/>
+                                    <field name="disabled"/>
+                                    <field name="comment"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                 </form>
             </field>
         </record>
@@ -37,7 +132,8 @@
         <record id="action_silver_router_interface_wizard" model="ir.actions.act_window">
             <field name="name">Router Interfaces</field>
             <field name="res_model">silver.netdev.interface.wizard</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
         </record>
 
 

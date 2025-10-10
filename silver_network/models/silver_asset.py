@@ -13,7 +13,7 @@ class SilverAsset(models.Model):
     asset_type = fields.Selection([
         ('olt', 'OLT'),
         ('splitter', 'Splitter'),
-        ('cto', 'CTO'),
+        ('nap', 'NAP'),
         ('core', 'Core'),
         ('node', 'Nodo'),
         ('onu', 'ONU'),

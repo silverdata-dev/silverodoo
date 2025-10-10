@@ -2,59 +2,86 @@
 
 import { registry } from "@web/core/registry";
 import { listView } from "@web/views/list/list_view";
-import { ListRenderer } from "@web/views/list/list_renderer";
-import { useInterval } from "@web/core/utils/timing";
-import { jsonrpc } from "@web/core/network/rpc_service";
-import { onWillUnmount, onMounted, useState } from "@odoo/owl";
+import { ListController } from "@web/views/list/list_controller";
+import { useService } from "@web/core/utils/hooks";
+import { onWillStart, onMounted, onWillUnmount } from "@odoo/owl";
 
-export class InterfaceListRenderer extends ListRenderer {
+console.log("Realtime Interface JS File Loaded");
+
+class RealtimeInterfaceListController extends ListController {
     setup() {
         super.setup();
-        this.state = useState({
-            trafficData: {},
+        console.log("RealtimeInterfaceListController setup initiated.");
+
+        this.rpc = useService("rpc");
+        this.updateInterval = null;
+
+        // Get netdev_id from the form's record data
+        this.netdevId = this.props.context.default_netdev_id || this.props.context.active_id;
+        console.log(`netdev_id found: ${this.netdevId}`);
+
+        onMounted(() => {
+            console.log("Component Mounted. Starting polling.");
+            this.startPolling();
         });
 
-        // Update every 3 seconds
-        useInterval(() => this.fetchTrafficData(), 3000);
-
-        onMounted(() => this.fetchTrafficData());
+        onWillUnmount(() => {
+            console.log("Component Will Unmount. Stopping polling.");
+            this.stopPolling();
+        });
     }
 
-    get netdevId() {
-        // Find the netdev_id from the form's context
-        return this.props.list.context.active_id;
-    }
-
-    async fetchTrafficData() {
-        const interfaceNames = this.props.list.records.map(rec => rec.data.name);
-        if (!interfaceNames.length) {
-            return;
+    startPolling() {
+        if (this.updateInterval) {
+            clearInterval(this.updateInterval);
         }
-
-        const data = await jsonrpc('/silver_network/get_interface_stats', {
-            netdev_id: this.netdevId,
-            interface_names: interfaceNames,
-        });
-
-        if (data && !data.error) {
-            this.state.trafficData = data;
-            // Update the records in place to trigger re-render
-            for (const record of this.props.list.records) {
-                const ifaceName = record.data.name;
-                if (this.state.trafficData[ifaceName]) {
-                    record.data.rx_speed = this.state.trafficData[ifaceName].rx_speed;
-                    record.data.tx_speed = this.state.trafficData[ifaceName].tx_speed;
-                }
+        // Poll every 3 seconds
+        this.updateInterval = setInterval(async () => {
+            console.log("Polling for new interface data...");
+            if (!this.netdevId || this.model.root.records.length === 0) {
+                console.log("Skipping poll: No netdev_id or no records.");
+                return;
             }
-        } else if (data.error) {
-            console.error("Error fetching interface stats:", data.error);
+
+            const interfaceNames = this.model.root.records.map(rec => rec.data.name);
+            if (interfaceNames.length === 0) {
+                return;
+            }
+
+            try {
+                const trafficData = await this.rpc("/silver_network/get_interface_stats", {
+                    netdev_id: this.netdevId,
+                    interface_names: interfaceNames,
+                });
+
+                if (trafficData && !trafficData.error) {
+                    // This is the key part: we reload the model, which will
+                    // automatically trigger a re-render of the view.
+                    await this.model.load();
+                } else if (trafficData && trafficData.error) {
+                    console.error("Error fetching interface stats:", trafficData.error);
+                    this.stopPolling(); // Stop on error
+                }
+            } catch (e) {
+                console.error("RPC call failed:", e);
+                this.stopPolling();
+            }
+        }, 3000);
+    }
+
+    stopPolling() {
+        if (this.updateInterval) {
+            clearInterval(this.updateInterval);
+            this.updateInterval = null;
+            console.log("Polling stopped.");
         }
     }
 }
 
-export const InterfaceListView = {
+export const RealtimeInterfaceListView = {
     ...listView,
-    Renderer: InterfaceListRenderer,
+    Controller: RealtimeInterfaceListController,
 };
 
-registry.category("views").add("interface_list_view", InterfaceListView);
+console.log("Registering 'realtime_interface_list' view.");
+registry.category("views").add("realtime_interface_list", RealtimeInterfaceListView);

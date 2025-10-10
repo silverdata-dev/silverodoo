@@ -46,7 +46,7 @@
                                     <group invisible="link_type == 'lan'">
                                         <field name="node_id" readonly="state != 'draft'"/>
                                         <field name="box_id" readonly="state != 'draft'" invisible="link_type not in ['fiber', 'fttb']"/>
-                                        <field name="port_nap" readonly="state != 'draft'" invisible="link_type not in ['fiber', 'fttb']"/>
+                                        <!--field name="port_nap" readonly="state != 'draft'" invisible="link_type not in ['fiber', 'fttb']"/-->
                                         <field name="ap_id" readonly="state != 'draft'" invisible="link_type != 'wifi'"/>
                                     </group>
                                     <group>

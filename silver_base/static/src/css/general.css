@@ -51,3 +51,10 @@ div [name=ppp_speed_chart],div [name=isp_radius_ids],div [name=ip_address_pool_i
     display: inline-block !important;
     width: 100% !important;
 }
+
+.o_field_system_info_chart[name=netdev_id] {
+    position: absolute !important;
+    right: 100px;
+    top: 100px;
+}
+

@@ -91,6 +91,31 @@ class SilverAddress(models.Model):
             self.latitude = self.parent_id.latitude
             self.longitude = self.parent_id.longitude
 
+    @api.onchange('latitude', 'longitude')
+    def _onchange_coordinates(self):
+        if self.latitude and self.longitude:
+            # Definir el rango de búsqueda
+            lat_min, lat_max = self.latitude - 0.0002, self.latitude + 0.0002
+            lng_min, lng_max = self.longitude - 0.0002, self.longitude + 0.0002
+
+            # El ID del registro actual, si existe
+            current_id = self._origin.id if isinstance(self.id, models.NewId) else self.id
+
+            # Buscar una dirección cercana que no sea la misma
+            domain = [
+                ('latitude', '>=', lat_min),
+                ('latitude', '<=', lat_max),
+                ('longitude', '>=', lng_min),
+                ('longitude', '<=', lng_max),
+            ]
+            if current_id:
+                domain.append(('id', '!=', current_id))
+            
+            potential_parent = self.search(domain, limit=1)
+
+            if potential_parent:
+                self.parent_id = potential_parent
+
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
         """

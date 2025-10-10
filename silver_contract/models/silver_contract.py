@@ -49,6 +49,7 @@ class SilverContract(models.Model):
 
     # --- Pestaña: Ubicación (NUEVO) ---
     silver_address_id = fields.Many2one('silver.address', string='Dirección de Instalación')
+    box_id = fields.Many2one('silver.box', string='Caja NAP')
 
     # --- Pestaña: Servicios Recurrentes ---
     recurring_invoice_type = fields.Selection([('post', 'Postpago'), ('pre', 'Prepago')], string="Tipo de Consumo")
@@ -131,15 +132,24 @@ class SilverContract(models.Model):
         else:
             self.silver_address_id = False
 
+    @api.onchange('silver_address_id')
+    def _onchange_silver_address_id(self):
+        if self.silver_address_id and self.silver_address_id.latitude and self.silver_address_id.longitude:
+            addr_lat = self.silver_address_id.latitude
+            addr_lon = self.silver_address_id.longitude
 
-    @api.onchange('box_id')
-    def _onchange_box_id(self):
-        if self.box_id:
-            self.core_id = self.box_id.core_id
-            self.olt_id = self.box_id.olt_id
+            closest_box = self.env['silver.box'].search([
+                ('asset_type', '=', 'nap'),
+                ('latitude', '!=', 0),
+                ('longitude', '!=', 0)
+            ]).sorted(key=lambda b: (b.latitude - addr_lat)**2 + (b.longitude - addr_lon)**2)
+
+            if closest_box:
+                self.box_id = closest_box[0]
+            else:
+                self.box_id = False
         else:
-            self.core_id = False
-            self.olt_id = False
+            self.box_id = False
 
     def _get_default_country(self):
         return self.env['res.country'].search([('code', '=', 'VE')], limit=1)

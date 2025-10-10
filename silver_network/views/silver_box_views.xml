@@ -6,7 +6,24 @@
             <field name="name">Cajas NAP</field>
             <field name="res_model">silver.box</field>
             <field name="view_mode">tree,form</field>
+
+            <field name="context">{'search_default_group_by_node_id': 1}</field>
         </record>
+
+
+    <record id="view_box_search" model="ir.ui.view">
+        <field name="name">silver.box.search.view</field>
+        <field name="model">silver.box</field>
+        <field name="arch" type="xml">
+            <search string="Cajas NAP">
+                <field name="name"/>
+                <field name="node_id" />
+                <group expand="1" string="Group By">
+                    <filter name="group_by_node_id" string="Nodo" domain="[]"  context="{'group_by':'node_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
 
         <record id="view_silver_box_tree" model="ir.ui.view">
             <field name="name">silver.box.tree</field>
@@ -40,8 +57,8 @@
                                 <field name="port_splitter_secondary" />
                                 <field name="splitter_id" readonly="1" on_change="1" can_create="true" can_write="true"
                                        modifiers="{&quot;readonly&quot;: true}"/>
-                                <field name="node_id" invisible="1" can_create="true" can_write="true"
-                                       modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                <field name="node_id" can_create="true" can_write="true"
+                                       />
                                 <field name="silver_address_id" />
                             </group>
                             <group string="Capacidad NAP">
