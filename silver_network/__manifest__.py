@@ -60,6 +60,8 @@
             'silver_network/static/src/js/node_network_widget.js',
             'silver_network/static/src/js/system_info_chart_widget.js',
             'silver_network/static/src/js/realtime_speed_widget.js',
+            'silver_network/static/src/xml/interface_speed_updater.xml',
+            'silver_network/static/src/js/interface_speed_updater.js',
             'silver_network/static/src/js/interface_list_view.js',
         ],
         'web.assets_qweb': [

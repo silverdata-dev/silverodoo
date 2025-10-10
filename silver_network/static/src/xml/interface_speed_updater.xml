@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <!-- 
+        This is an empty template for the InterfaceSpeedUpdater widget.
+        OWL requires every component to have a template, even if it renders nothing.
+        This file satisfies that requirement, allowing the component's JavaScript logic
+        (like onMounted) to execute without rendering any visible element.
+    -->
+    <t t-name="silver_network.InterfaceSpeedUpdater" owl="1">
+             <div class="hola">shit</div>
+    </t>
+</templates>

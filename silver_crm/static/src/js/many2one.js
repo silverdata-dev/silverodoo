@@ -51,5 +51,3 @@ export const myMany2oneModal = {
 
 // Registramos el widget con el nombre que usarás en el XML
 registry.category("fields").add("many2one_modal", myMany2oneModal);
-
-console.log("holaaaa");

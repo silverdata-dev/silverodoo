@@ -18,10 +18,13 @@
             <field name="model">silver.netdev.interface.wizard</field>
             <field name="arch" type="xml">
                 <form>
-                    <field name="netdev_id" invisible="1"/>
+
+
+                            <field name="line_ids" widget="interface_speed_updater" r="line_ids"  options="{'r': 'interface'}"/>
                     <notebook>
-                        <page string="Interface">
-                            <field name="line_ids" nolabel="1">
+                        <page string="Interface" class="speed-update-tab">
+                             <!--widget name="interface_speed_updater" r="line_ids" options="{'r': 'interface'}"/-->
+                            <field name="line_ids" nolabel="1"  widget="f" rx_speed="hola" options="{'r': 'interface'}">>
                                 <tree create="false" delete="false">
                                     <field name="name"/>
                                     <field name="type"/>
@@ -34,7 +37,8 @@
                                 </tree>
                             </field>
                         </page>
-                        <page string="Ethernet">
+                        <page string="Ethernet" class="speed-update-tab">
+                             <!--widget name="interface_speed_updater" r="ethernet_line_ids"/-->
                             <field name="ethernet_line_ids" nolabel="1">
                                 <tree create="false" delete="false">
                                     <field name="name"/>
@@ -49,8 +53,10 @@
                                 </tree>
                             </field>
                         </page>
-                        <page string="EoIP Tunnel">
+                        <page string="EoIP Tunnel" class="speed-update-tab">
+                              <!--widget name="interface_speed_updater" r="eoip_line_ids"/-->
                             <field name="eoip_line_ids" nolabel="1">
+
                                 <tree create="false" delete="false">
                                     <field name="name"/>
                                     <field name="remote_address"/>
@@ -64,8 +70,10 @@
                                 </tree>
                             </field>
                         </page>
-                        <page string="GRE Tunnel">
+                        <page string="GRE Tunnel" class="speed-update-tab">
+                            <!--widget name="interface_speed_updater" r="gre_line_ids"/-->
                             <field name="gre_line_ids" nolabel="1">
+
                                 <tree create="false" delete="false">
                                     <field name="name"/>
                                     <field name="remote_address"/>
@@ -78,7 +86,8 @@
                                 </tree>
                             </field>
                         </page>
-                        <page string="VLAN">
+                        <page string="VLAN" class="speed-update-tab">
+                            <!--widget name="interface_speed_updater" r="vlan_line_ids"/-->
                             <field name="vlan_line_ids" nolabel="1">
                                 <tree create="false" delete="false">
                                     <field name="name"/>
@@ -93,7 +102,8 @@
                                 </tree>
                             </field>
                         </page>
-                        <page string="VRRP">
+                        <page string="VRRP" class="speed-update-tab">
+                            <!--widget name="interface_speed_updater" r="vrrp_line_ids"/-->
                             <field name="vrrp_line_ids" nolabel="1">
                                 <tree create="false" delete="false">
                                     <field name="name"/>
@@ -108,7 +118,8 @@
                                 </tree>
                             </field>
                         </page>
-                        <page string="Bonding">
+                        <page string="Bonding" class="speed-update-tab">
+                             <!--widget name="interface_speed_updater" r="bonding_line_ids"/-->
                             <field name="bonding_line_ids" nolabel="1">
                                 <tree create="false" delete="false">
                                     <field name="name"/>
@@ -123,7 +134,8 @@
                                 </tree>
                             </field>
                         </page>
-                        <page string="LTE">
+                        <page string="LTE" class="speed-update-tab">
+                            <!--widget name="interface_speed_updater" r="lte_line_ids"/-->
                             <field name="lte_line_ids" nolabel="1">
                                 <tree create="false" delete="false">
                                     <field name="name"/>

@@ -53,25 +53,38 @@ class SystemStatsController(http.Controller):
         if not api:
             return {'error': 'Connection failed'}
 
-        try:
+      #  try:
+        if 1:
             # Convert string of names to list
             if isinstance(interface_names, str):
                 interface_names = interface_names.split(',')
 
-            traffic_data = api.path('/interface/monitor-traffic')({
-                'numbers': ",".join(interface_names),
-                'once': ''
-            })
-            
             stats = {}
-            for item in traffic_data:
+            traffic_map = {}
+
+            chunk_size = 90  # A safe limit below 100
+            for i in range(0, len(interface_names), chunk_size):
+                chunk = interface_names[i:i + chunk_size]
+                traffic_chunk_data = api.path('/interface')('monitor-traffic', interface=",".join(chunk), once='')
+                for item in traffic_chunk_data:
+                    traffic_map[item['name']] = item
+
+            #print(("chunk", chunk, traffic_chunk_data, traffic_map))
+
+            for name in interface_names:
+            #    name = interface.get('name')
+                item = traffic_map.get(name, {})
+
                 stats[item['name']] = {
                     'rx_speed': _format_speed(item.get('rx-bits-per-second', 0)),
                     'tx_speed': _format_speed(item.get('tx-bits-per-second', 0)),
                 }
+
+
+
             return stats
-        except Exception as e:
-            return {'error': str(e)}
-        finally:
-            if api:
-                api.close()
+      #  except Exception as e:
+      #      return {'error': str(e)}
+      #  finally:
+      #      if api:
+      #          api.close()
