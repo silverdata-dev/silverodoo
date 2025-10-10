@@ -283,12 +283,20 @@ class SilverNetdev(models.Model):
             })
 
             # Helper function to create records to avoid repetition
-            def create_lines(model_name, data, mapping):
+            def create_lines(model_name, data, mapping, traffic_map):
                 model = self.env[model_name]
                 for item in data:
                     vals = {'wizard_id': wizard.id}
                     for odoo_field, mikrotik_field in mapping.items():
                         vals[odoo_field] = item.get(mikrotik_field)
+                    
+                    # Add traffic data by looking up the interface name
+                    name = item.get('name')
+                    if name in traffic_map:
+                        traffic = traffic_map[name]
+                        vals['rx_speed'] = _format_speed(traffic.get('rx-bits-per-second', 0))
+                        vals['tx_speed'] = _format_speed(traffic.get('tx-bits-per-second', 0))
+                    
                     model.create(vals)
 
             # 1. General Interfaces (Main Tab)
@@ -325,49 +333,49 @@ class SilverNetdev(models.Model):
             create_lines('silver.netdev.interface.ethernet.line', ethernet_data, {
                 'name': 'name', 'mac_address': 'mac-address', 'mtu': 'mtu', 
                 'l2mtu': 'l2mtu', 'arp': 'arp', 'disabled': 'disabled', 'comment': 'comment'
-            })
+            }, traffic_map)
 
             # 3. EoIP Tunnels
             eoip_data = tuple(api.path('/interface/eoip'))
             create_lines('silver.netdev.interface.eoip.line', eoip_data, {
                 'name': 'name', 'remote_address': 'remote-address', 'tunnel_id': 'tunnel-id',
                 'mac_address': 'mac-address', 'mtu': 'mtu', 'disabled': 'disabled', 'comment': 'comment'
-            })
+            }, traffic_map)
 
             # 4. GRE Tunnels
             gre_data = tuple(api.path('/interface/gre'))
             create_lines('silver.netdev.interface.gre.line', gre_data, {
                 'name': 'name', 'remote_address': 'remote-address', 'local_address': 'local-address',
                 'mtu': 'mtu', 'disabled': 'disabled', 'comment': 'comment'
-            })
+            }, traffic_map)
 
             # 5. VLANs
             vlan_data = tuple(api.path('/interface/vlan'))
             create_lines('silver.netdev.interface.vlan.line', vlan_data, {
                 'name': 'name', 'vlan_id': 'vlan-id', 'interface': 'interface',
                 'mtu': 'mtu', 'arp': 'arp', 'disabled': 'disabled', 'comment': 'comment'
-            })
+            }, traffic_map)
 
             # 6. VRRP
             vrrp_data = tuple(api.path('/interface/vrrp'))
             create_lines('silver.netdev.interface.vrrp.line', vrrp_data, {
                 'name': 'name', 'interface': 'interface', 'vrid': 'vrid', 'priority': 'priority',
                 'interval': 'interval', 'disabled': 'disabled', 'comment': 'comment'
-            })
+            }, traffic_map)
 
             # 7. Bonding
             bonding_data = tuple(api.path('/interface/bonding'))
             create_lines('silver.netdev.interface.bonding.line', bonding_data, {
                 'name': 'name', 'slaves': 'slaves', 'mode': 'mode', 
                 'link_monitoring': 'link-monitoring', 'mtu': 'mtu', 'disabled': 'disabled', 'comment': 'comment'
-            })
+            }, traffic_map)
 
             # 8. LTE
             lte_data = tuple(api.path('/interface/lte'))
             create_lines('silver.netdev.interface.lte.line', lte_data, {
                 'name': 'name', 'mac_address': 'mac-address', 'mtu': 'mtu',
                 'imei': 'imei', 'pin': 'pin-status', 'disabled': 'disabled', 'comment': 'comment'
-            })
+            }, traffic_map)
 
             return {
                 'name': 'Router Interfaces',

@@ -6,28 +6,13 @@ class IspRouterInterfaceWizard(models.TransientModel):
 
     netdev_id = fields.Many2one('silver.netdev', string='Router', required=True)
     
-    # Tab: Interface
     line_ids = fields.One2many('silver.netdev.interface.wizard.line', 'wizard_id', string='Interfaces')
-    
-    # Tab: Ethernet
     ethernet_line_ids = fields.One2many('silver.netdev.interface.ethernet.line', 'wizard_id', string='Ethernet')
-    
-    # Tab: EoIP
     eoip_line_ids = fields.One2many('silver.netdev.interface.eoip.line', 'wizard_id', string='EoIP Tunnels')
-
-    # Tab: GRE
     gre_line_ids = fields.One2many('silver.netdev.interface.gre.line', 'wizard_id', string='GRE Tunnels')
-
-    # Tab: VLAN
     vlan_line_ids = fields.One2many('silver.netdev.interface.vlan.line', 'wizard_id', string='VLANs')
-
-    # Tab: VRRP
     vrrp_line_ids = fields.One2many('silver.netdev.interface.vrrp.line', 'wizard_id', string='VRRP')
-
-    # Tab: Bonding
     bonding_line_ids = fields.One2many('silver.netdev.interface.bonding.line', 'wizard_id', string='Bonding')
-
-    # Tab: LTE
     lte_line_ids = fields.One2many('silver.netdev.interface.lte.line', 'wizard_id', string='LTE')
 
 
@@ -35,7 +20,7 @@ class IspRouterInterfaceWizardLine(models.TransientModel):
     _name = 'silver.netdev.interface.wizard.line'
     _description = 'Interface line for the wizard'
 
-    wizard_id = fields.Many2one('silver.netdev.interface.wizard')
+    wizard_id = fields.Many2one('silver.netdev.interface.wizard', string='Wizard')
     name = fields.Char(string='Name')
     type = fields.Char(string='Type')
     mac_address = fields.Char(string='MAC Address')
@@ -45,12 +30,11 @@ class IspRouterInterfaceWizardLine(models.TransientModel):
     rx_speed = fields.Char(string='RX Speed')
     tx_speed = fields.Char(string='TX Speed')
 
-# Model for Ethernet tab
 class IspRouterInterfaceEthernetLine(models.TransientModel):
     _name = 'silver.netdev.interface.ethernet.line'
     _description = 'Ethernet Interface line for the wizard'
 
-    wizard_id = fields.Many2one('silver.netdev.interface.wizard')
+    wizard_id = fields.Many2one('silver.netdev.interface.wizard', string='Wizard')
     name = fields.Char(string='Name')
     mac_address = fields.Char(string='MAC Address')
     mtu = fields.Char(string='MTU')
@@ -58,6 +42,97 @@ class IspRouterInterfaceEthernetLine(models.TransientModel):
     arp = fields.Char(string='ARP')
     disabled = fields.Boolean(string='Disabled')
     comment = fields.Char(string='Comment')
+    rx_speed = fields.Char(string='RX Speed')
+    tx_speed = fields.Char(string='TX Speed')
+
+class IspRouterInterfaceEoipLine(models.TransientModel):
+    _name = 'silver.netdev.interface.eoip.line'
+    _description = 'EoIP Tunnel line for the wizard'
+
+    wizard_id = fields.Many2one('silver.netdev.interface.wizard', string='Wizard')
+    name = fields.Char(string='Name')
+    remote_address = fields.Char(string='Remote Address')
+    tunnel_id = fields.Char(string='Tunnel ID')
+    mac_address = fields.Char(string='MAC Address')
+    mtu = fields.Char(string='MTU')
+    disabled = fields.Boolean(string='Disabled')
+    comment = fields.Char(string='Comment')
+    rx_speed = fields.Char(string='RX Speed')
+    tx_speed = fields.Char(string='TX Speed')
+
+class IspRouterInterfaceGreLine(models.TransientModel):
+    _name = 'silver.netdev.interface.gre.line'
+    _description = 'GRE Tunnel line for the wizard'
+
+    wizard_id = fields.Many2one('silver.netdev.interface.wizard', string='Wizard')
+    name = fields.Char(string='Name')
+    remote_address = fields.Char(string='Remote Address')
+    local_address = fields.Char(string='Local Address')
+    mtu = fields.Char(string='MTU')
+    disabled = fields.Boolean(string='Disabled')
+    comment = fields.Char(string='Comment')
+    rx_speed = fields.Char(string='RX Speed')
+    tx_speed = fields.Char(string='TX Speed')
+
+class IspRouterInterfaceVlanLine(models.TransientModel):
+    _name = 'silver.netdev.interface.vlan.line'
+    _description = 'VLAN Interface line for the wizard'
+
+    wizard_id = fields.Many2one('silver.netdev.interface.wizard', string='Wizard')
+    name = fields.Char(string='Name')
+    vlan_id = fields.Char(string='VLAN ID')
+    interface = fields.Char(string='Interface')
+    mtu = fields.Char(string='MTU')
+    arp = fields.Char(string='ARP')
+    disabled = fields.Boolean(string='Disabled')
+    comment = fields.Char(string='Comment')
+    rx_speed = fields.Char(string='RX Speed')
+    tx_speed = fields.Char(string='TX Speed')
+
+class IspRouterInterfaceVrrpLine(models.TransientModel):
+    _name = 'silver.netdev.interface.vrrp.line'
+    _description = 'VRRP Interface line for the wizard'
+
+    wizard_id = fields.Many2one('silver.netdev.interface.wizard', string='Wizard')
+    name = fields.Char(string='Name')
+    interface = fields.Char(string='Interface')
+    vrid = fields.Char(string='VRID')
+    priority = fields.Char(string='Priority')
+    interval = fields.Char(string='Interval')
+    disabled = fields.Boolean(string='Disabled')
+    comment = fields.Char(string='Comment')
+    rx_speed = fields.Char(string='RX Speed')
+    tx_speed = fields.Char(string='TX Speed')
+
+class IspRouterInterfaceBondingLine(models.TransientModel):
+    _name = 'silver.netdev.interface.bonding.line'
+    _description = 'Bonding Interface line for the wizard'
+
+    wizard_id = fields.Many2one('silver.netdev.interface.wizard', string='Wizard')
+    name = fields.Char(string='Name')
+    slaves = fields.Char(string='Slaves')
+    mode = fields.Char(string='Mode')
+    link_monitoring = fields.Char(string='Link Monitoring')
+    mtu = fields.Char(string='MTU')
+    disabled = fields.Boolean(string='Disabled')
+    comment = fields.Char(string='Comment')
+    rx_speed = fields.Char(string='RX Speed')
+    tx_speed = fields.Char(string='TX Speed')
+
+class IspRouterInterfaceLteLine(models.TransientModel):
+    _name = 'silver.netdev.interface.lte.line'
+    _description = 'LTE Interface line for the wizard'
+
+    wizard_id = fields.Many2one('silver.netdev.interface.wizard', string='Wizard')
+    name = fields.Char(string='Name')
+    mac_address = fields.Char(string='MAC Address')
+    mtu = fields.Char(string='MTU')
+    imei = fields.Char(string='IMEI')
+    pin = fields.Char(string='PIN')
+    disabled = fields.Boolean(string='Disabled')
+    comment = fields.Char(string='Comment')
+    rx_speed = fields.Char(string='RX Speed')
+    tx_speed = fields.Char(string='TX Speed')
 
 
 
@@ -79,34 +154,6 @@ class SilverRouterRouteWizardLine(models.Model):
     static = fields.Boolean(string='Static')
     comment = fields.Char(string='Comment')
     wizard_id = fields.Many2one('silver.netdev.route.wizard')
-
-
-# Model for EoIP Tunnel tab
-class IspRouterInterfaceEoipLine(models.TransientModel):
-    _name = 'silver.netdev.interface.eoip.line'
-    _description = 'EoIP Tunnel line for the wizard'
-
-    wizard_id = fields.Many2one('silver.netdev.interface.wizard')
-    name = fields.Char(string='Name')
-    remote_address = fields.Char(string='Remote Address')
-    tunnel_id = fields.Char(string='Tunnel ID')
-    mac_address = fields.Char(string='MAC Address')
-    mtu = fields.Char(string='MTU')
-    disabled = fields.Boolean(string='Disabled')
-    comment = fields.Char(string='Comment')
-
-# Model for GRE Tunnel tab
-class IspRouterInterfaceGreLine(models.TransientModel):
-    _name = 'silver.netdev.interface.gre.line'
-    _description = 'GRE Tunnel line for the wizard'
-
-    wizard_id = fields.Many2one('silver.netdev.interface.wizard')
-    name = fields.Char(string='Name')
-    remote_address = fields.Char(string='Remote Address')
-    local_address = fields.Char(string='Local Address')
-    mtu = fields.Char(string='MTU')
-    disabled = fields.Boolean(string='Disabled')
-    comment = fields.Char(string='Comment')
 
 
 class SilverRouterPppActiveWizard(models.Model):
@@ -136,6 +183,7 @@ class SilverRouterPppActiveWizard(models.Model):
 class SilverRouterPppActiveLine(models.TransientModel):
     _name = 'silver.netdev.ppp.active.line'
     ppp_speed_chart = fields.Text(string="PPP Speed Chart", readonly=True)
+    wizard_id = fields.Many2one('silver.netdev.ppp.active.wizard')
 
     def get_speed_data(self):
         # This is a placeholder. In a real implementation, you would fetch data from the router.
@@ -303,58 +351,5 @@ class SilverRouterQueueWizardLine(models.Model):
     comment = fields.Char(string='Comment')
     wizard_id = fields.Many2one('silver.netdev.queue.wizard')
 # Model for VLAN tab
-class IspRouterInterfaceVlanLine(models.TransientModel):
-    _name = 'silver.netdev.interface.vlan.line'
-    _description = 'VLAN Interface line for the wizard'
 
-    wizard_id = fields.Many2one('silver.netdev.interface.wizard')
-    name = fields.Char(string='Name')
-    vlan_id = fields.Char(string='VLAN ID')
-    interface = fields.Char(string='Interface')
-    mtu = fields.Char(string='MTU')
-    arp = fields.Char(string='ARP')
-    disabled = fields.Boolean(string='Disabled')
-    comment = fields.Char(string='Comment')
-
-# Model for VRRP tab
-class IspRouterInterfaceVrrpLine(models.TransientModel):
-    _name = 'silver.netdev.interface.vrrp.line'
-    _description = 'VRRP Interface line for the wizard'
-
-    wizard_id = fields.Many2one('silver.netdev.interface.wizard')
-    name = fields.Char(string='Name')
-    interface = fields.Char(string='Interface')
-    vrid = fields.Char(string='VRID')
-    priority = fields.Char(string='Priority')
-    interval = fields.Char(string='Interval')
-    disabled = fields.Boolean(string='Disabled')
-    comment = fields.Char(string='Comment')
-
-# Model for Bonding tab
-class IspRouterInterfaceBondingLine(models.TransientModel):
-    _name = 'silver.netdev.interface.bonding.line'
-    _description = 'Bonding Interface line for the wizard'
-
-    wizard_id = fields.Many2one('silver.netdev.interface.wizard')
-    name = fields.Char(string='Name')
-    slaves = fields.Char(string='Slaves')
-    mode = fields.Char(string='Mode')
-    link_monitoring = fields.Char(string='Link Monitoring')
-    mtu = fields.Char(string='MTU')
-    disabled = fields.Boolean(string='Disabled')
-    comment = fields.Char(string='Comment')
-
-# Model for LTE tab
-class IspRouterInterfaceLteLine(models.TransientModel):
-    _name = 'silver.netdev.interface.lte.line'
-    _description = 'LTE Interface line for the wizard'
-
-    wizard_id = fields.Many2one('silver.netdev.interface.wizard')
-    name = fields.Char(string='Name')
-    mac_address = fields.Char(string='MAC Address')
-    mtu = fields.Char(string='MTU')
-    imei = fields.Char(string='IMEI')
-    pin = fields.Char(string='PIN')
-    disabled = fields.Boolean(string='Disabled')
-    comment = fields.Char(string='Comment')
 

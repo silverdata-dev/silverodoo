@@ -44,6 +44,8 @@
                                     <field name="arp"/>
                                     <field name="disabled"/>
                                     <field name="comment"/>
+                                    <field name="rx_speed"/>
+                                    <field name="tx_speed"/>
                                 </tree>
                             </field>
                         </page>
@@ -57,6 +59,8 @@
                                     <field name="mtu"/>
                                     <field name="disabled"/>
                                     <field name="comment"/>
+                                    <field name="rx_speed"/>
+                                    <field name="tx_speed"/>
                                 </tree>
                             </field>
                         </page>
@@ -69,6 +73,8 @@
                                     <field name="mtu"/>
                                     <field name="disabled"/>
                                     <field name="comment"/>
+                                    <field name="rx_speed"/>
+                                    <field name="tx_speed"/>
                                 </tree>
                             </field>
                         </page>
@@ -82,6 +88,8 @@
                                     <field name="arp"/>
                                     <field name="disabled"/>
                                     <field name="comment"/>
+                                    <field name="rx_speed"/>
+                                    <field name="tx_speed"/>
                                 </tree>
                             </field>
                         </page>
@@ -95,6 +103,8 @@
                                     <field name="interval"/>
                                     <field name="disabled"/>
                                     <field name="comment"/>
+                                    <field name="rx_speed"/>
+                                    <field name="tx_speed"/>
                                 </tree>
                             </field>
                         </page>
@@ -108,6 +118,8 @@
                                     <field name="mtu"/>
                                     <field name="disabled"/>
                                     <field name="comment"/>
+                                    <field name="rx_speed"/>
+                                    <field name="tx_speed"/>
                                 </tree>
                             </field>
                         </page>
@@ -121,6 +133,8 @@
                                     <field name="pin"/>
                                     <field name="disabled"/>
                                     <field name="comment"/>
+                                    <field name="rx_speed"/>
+                                    <field name="tx_speed"/>
                                 </tree>
                             </field>
                         </page>
