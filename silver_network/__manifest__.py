@@ -63,8 +63,8 @@
             'silver_network/static/src/xml/interface_speed_updater.xml',
             'silver_network/static/src/js/interface_speed_updater.js',
             'silver_network/static/src/js/interface_list_view.js',
-        ],
-        'web.assets_qweb': [
+        #],
+        #'web.assets_qweb': [
             'silver_network/static/src/xml/ppp_speed_chart.xml',
             'silver_network/static/src/xml/system_info_chart_widget.xml',
             'silver_network/static/src/xml/ppp_line_speed_chart.xml',

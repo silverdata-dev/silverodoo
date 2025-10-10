@@ -404,5 +404,23 @@
             <field name="res_model">silver.netdev.queue.wizard</field>
             <field name="view_mode">tree,form</field>
         </record>
+
+        <!-- Wizard for Active Users -->
+        <record id="view_silver_netdev_active_users_wizard_form" model="ir.ui.view">
+            <field name="name">silver.netdev.active.users.wizard.form</field>
+            <field name="model">silver.netdev.active.users.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="line_ids" nolabel="1">
+                        <tree create="false" delete="false">
+                            <field name="name"/>
+                            <field name="address"/>
+                            <field name="via"/>
+                            <field name="uptime"/>
+                        </tree>
+                    </field>
+                </form>
+            </field>
+        </record>
     </data>
 </odoo>

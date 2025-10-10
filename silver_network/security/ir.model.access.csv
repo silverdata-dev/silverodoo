@@ -36,6 +36,8 @@ access_silver_netdev_interface_vrrp_line,access.silver.netdev.interface.vrrp.lin
 access_silver_netdev_interface_bonding_line,access.silver.netdev.interface.bonding.line,model_silver_netdev_interface_bonding_line,base.group_user,1,1,1,1
 access_silver_netdev_interface_lte_line,access.silver.netdev.interface.lte.line,model_silver_netdev_interface_lte_line,base.group_user,1,1,1,1
 access_silver_netdev_route_wizard,access.silver.netdev.route.wizard,model_silver_netdev_route_wizard,base.group_user,1,1,1,1
+access_silver_netdev_active_users_wizard,access.silver.netdev.active.users.wizard,model_silver_netdev_active_users_wizard,base.group_user,1,1,1,1
+access_silver_netdev_active_users_wizard_line,access.silver.netdev.active.users.wizard.line,model_silver_netdev_active_users_wizard_line,base.group_user,1,1,1,1
 access_silver_netdev_route_wizard_line,access.silver.netdev.route.wizard.line,model_silver_netdev_route_wizard_line,base.group_user,1,1,1,1
 access_silver_netdev_ppp_active_wizard,access.silver.netdev.ppp.active.wizard,model_silver_netdev_ppp_active_wizard,base.group_user,1,1,1,1
 access_silver_netdev_ppp_active_wizard_line,access.silver.netdev.ppp.active.wizard.line,model_silver_netdev_ppp_active_wizard_line,base.group_user,1,1,1,1

@@ -604,3 +604,7 @@ class SilverCore(models.Model):
 
     def button_view_queues(self):
         return self.netdev_id.button_view_queues()
+
+
+    def button_view_active_users(self):
+        return self.netdev_id.button_view_active_users()

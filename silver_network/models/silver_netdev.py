@@ -527,3 +527,34 @@ class SilverNetdev(models.Model):
         if self.env['silver.ap'].search([('netdev_id', '=', self.id)], limit=1):
             return self.env.ref('view_silver_ap_form').id
         return super().get_formview_id(access_uid=access_uid)
+
+    def button_view_active_users(self):
+        self.ensure_one()
+        api = self._get_api_connection()
+        if not api:
+            return
+
+        try:
+            active_users = tuple(api.path('/user/active'))
+            wizard = self.env['silver.netdev.active.users.wizard'].create({})
+            
+            for user in active_users:
+                self.env['silver.netdev.active.users.wizard.line'].create({
+                    'wizard_id': wizard.id,
+                    'name': user.get('name'),
+                    'address': user.get('address'),
+                    'via': user.get('via'),
+                    'uptime': user.get('uptime'),
+                })
+
+            return {
+                'name': 'Active Users',
+                'type': 'ir.actions.act_window',
+                'res_model': 'silver.netdev.active.users.wizard',
+                'view_mode': 'form',
+                'res_id': wizard.id,
+                'target': 'new',
+            }
+        finally:
+            if api:
+                api.close()

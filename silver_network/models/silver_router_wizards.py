@@ -350,6 +350,22 @@ class SilverRouterQueueWizardLine(models.Model):
     disabled = fields.Boolean(string='Disabled')
     comment = fields.Char(string='Comment')
     wizard_id = fields.Many2one('silver.netdev.queue.wizard')
+
+class SilverNetdevActiveUsersWizard(models.TransientModel):
+    _name = 'silver.netdev.active.users.wizard'
+    _description = 'Wizard to display active users on a network device'
+
+    line_ids = fields.One2many('silver.netdev.active.users.wizard.line', 'wizard_id', string='Active Users')
+
+class SilverNetdevActiveUsersWizardLine(models.TransientModel):
+    _name = 'silver.netdev.active.users.wizard.line'
+    _description = 'Line model for active users wizard'
+
+    wizard_id = fields.Many2one('silver.netdev.active.users.wizard', string='Wizard')
+    name = fields.Char(string='User')
+    address = fields.Char(string='From Address')
+    via = fields.Char(string='Via')
+    uptime = fields.Char(string='Uptime')
 # Model for VLAN tab
 
 
