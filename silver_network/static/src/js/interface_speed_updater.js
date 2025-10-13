@@ -52,7 +52,7 @@ export class InterfaceSpeedUpdater extends Component {
                  const nameCell = row.querySelector('td[name="name"]');
                 if (nameCell && nameCell.textContent) {
                     interfaceNames.add(nameCell.textContent);
-                }V
+                }
             })
 
         console.log(["interfaceNames ", interfaceNames]);
@@ -90,7 +90,7 @@ export class InterfaceSpeedUpdater extends Component {
                 }
             });
 
-        }, 3000); // Update every 3 seconds
+        }, 1500); // Update every 3 seconds
     }
 
     stopPolling() {

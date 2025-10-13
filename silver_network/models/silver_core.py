@@ -214,10 +214,13 @@ class SilverCore(models.Model):
         self.node_ids = [(6, 0, current_nodes_ids)]
 
 
-    @api.depends('name', 'company_id')
+    @api.depends('name', 'hostname_core', 'company_id')
     def _compute_display_name(self):
         for record in self:
-            record.display_name = f"{record.name} ({record.company_id.name})" if record.company_id else record.name
+            if record.hostname_core:
+                record.display_name = record.hostname_core
+            else:
+                record.display_name = f"{record.name} ({record.company_id.name})" if record.company_id else record.name
             
     @api.model
     def create(self, vals):

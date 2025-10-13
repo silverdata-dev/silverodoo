@@ -50,8 +50,8 @@
                                         <field name="ap_id" readonly="state != 'draft'" invisible="link_type != 'wifi'"/>
                                     </group>
                                     <group>
-                                        <field name="core_id" readonly="state != 'draft'"/>
-                                        <field name="olt_id" readonly="state != 'draft'" invisible="link_type not in ['fiber', 'fttb']"/>
+                                        <field name="core_id" readonly="state != 'draft'" options="{'no_create': True, 'no_open': True}"/>
+                                        <field name="olt_id" readonly="state != 'draft'" invisible="link_type not in ['fiber', 'fttb']" options="{'no_create': True, 'no_open': True}"/>
                                         <field name="olt_port_id" readonly="state != 'draft'" invisible="link_type not in ['fiber', 'fttb']"/>
                                         <field name="splitter_id" readonly="state != 'draft'" invisible="link_type not in ['fiber', 'fttb']"/>
                                     </group>

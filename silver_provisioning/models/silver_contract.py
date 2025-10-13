@@ -55,7 +55,7 @@ class IspContract(models.Model):
     serial_onu = fields.Char(string="Serial ONU")
     model_onu = fields.Char(string="Modelo ONU")
     is_bridge = fields.Boolean(string="ONU en modo Bridge")
-    ip_address = fields.Char(string="Dirección IP Asignada")
+    ip_address = fields.Many2one('silver.ip.address', string="Dirección IP Asignada", domain="[('status', '=', 'available')]")
     pppoe_user = fields.Char(string="Usuario PPPoE")
     pppoe_password = fields.Char(string="Contraseña PPPoE")
     mac_address_onu = fields.Char(string="MAC Address ONU")
@@ -311,9 +311,25 @@ class IspContract(models.Model):
 
     @api.onchange('box_id')
     def _onchange_box_id(self):
+        self.core_id = False
+        self.olt_id = False
+        domain = {'domain': {'core_id': []}}
         if self.box_id:
-            self.core_id = self.box_id.core_id
-            self.olt_id = self.box_id.olt_id
-        else:
-            self.core_id = False
-            self.olt_id = False
+            core_domain = [('node_id', '=', self.box_id.node_id.id)]
+            first_core = self.env['silver.core'].search(core_domain, limit=1)
+            if first_core:
+                self.core_id = first_core
+            domain = {'domain': {'core_id': core_domain}}
+        return domain
+
+    @api.onchange('core_id')
+    def _onchange_core_id(self):
+        self.olt_id = False
+        domain = {'domain': {'olt_id': []}}
+        if self.core_id:
+            olt_domain = [('id', 'in', self.core_id.olt_ids.ids)]
+            first_olt = self.env['silver.olt'].search(olt_domain, limit=1)
+            if first_olt:
+                self.olt_id = first_olt
+            domain = {'domain': {'olt_id': olt_domain}}
+        return domain
