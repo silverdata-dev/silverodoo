@@ -11,9 +11,9 @@
 
                     <field name="name"/>
                    <field name="gps_top"/>
-                                <field name="gps_left"/>
-                                <field name="gps_right"/>
-                                <field name="gps_bottom"/>
+                    <field name="gps_left"/>
+                    <field name="gps_right"/>
+                    <field name="gps_bottom"/>
                 </tree>
             </field>
         </record>
