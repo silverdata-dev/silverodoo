@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_company_form_electronic_invoice" model="ir.ui.view">
+        <field name="name">res.company.form.electronic.invoice</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Facturación Electrónica (VE)">
+                    <group>
+                        <group string="Credenciales API">
+                            <field name="l10n_ve_einvoice_api_url"/>
+                            <field name="l10n_ve_einvoice_api_token"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

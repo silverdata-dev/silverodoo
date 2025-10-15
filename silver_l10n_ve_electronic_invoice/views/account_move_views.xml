@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_form_electronic_invoice" model="ir.ui.view">
+        <field name="name">account.move.form.electronic.invoice</field>
+        <field name="model">account.move</field>
+        <!--
+            IMPORTANTE: Hereda de la vista del módulo puente anterior para asegurar el orden.
+        -->
+        <field name="inherit_id" ref="silver_l10n_ve_accounting.view_move_form_l10n_ve"/>
+        <field name="arch" type="xml">
+            <header>
+                <button name="action_send_electronic_invoice"
+                        string="Enviar Factura Electrónica"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['|', ('electronic_invoice_state', 'in', ['accepted']), ('state', '!=', 'posted')]}"/>
+            </header>
+            <xpath expr="//div[hasclass('oe_title')]" position="before">
+                <field name="electronic_invoice_state" widget="statusbar"
+                       statusbar_visible="draft,accepted,rejected"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Facturación Electrónica" name="electronic_invoice">
+                    <group>
+                        <group>
+                            <field name="electronic_invoice_cud"/>
+                            <field name="electronic_invoice_qr_code" widget="url"/>
+                        </group>
+                        <group>
+                            <field name="electronic_invoice_last_error"
+                                   attrs="{'invisible': [('electronic_invoice_last_error', '=', False)]}"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

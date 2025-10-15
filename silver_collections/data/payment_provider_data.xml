@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Secuencia para las referencias de transacciones -->
+        <record id="seq_payment_transaction" model="ir.sequence">
+            <field name="name">Secuencia de Transacción de Pago</field>
+            <field name="code">payment.transaction</field>
+            <field name="prefix">TX</field>
+            <field name="padding">8</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Proveedor de Pagos de Demostración -->
+        <record id="payment_provider_demo" model="payment.provider">
+            <field name="name">Banco de Pruebas (Agnóstico)</field>
+            <field name="code">TEST_BANK</field>
+            <field name="state">test</field>
+            <field name="api_url">https://api.testbank.com/payments</field>
+            <field name="api_token">dummy_token</field>
+            <!-- Asocia un diario bancario existente. Busca uno por XML ID. -->
+            <!-- Reemplaza 'account.journal_bank' si el ID de tu diario es diferente -->
+            <field name="journal_id" ref="account.bank_journal"/>
+        </record>
+    </data>
+</odoo>

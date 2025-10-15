@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_payment_provider,payment.provider,model_payment_provider,account.group_account_manager,1,1,1,1
+access_payment_transaction,payment.transaction,model_payment_transaction,account.group_account_user,1,1,1,0

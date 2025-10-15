@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_silver_contract_form_collections" model="ir.ui.view">
+        <field name="name">silver.contract.form.collections</field>
+        <field name="model">silver.contract</field>
+        <!-- Reemplaza 'silver_contract.view_silver_contract_form' con el ID de tu vista -->
+        <field name="inherit_id" ref="silver_contract.view_silver_contract_form"/>
+        <field name="arch" type="xml">
+            <header>
+                <button name="action_initiate_payment"
+                        string="Realizar Pago"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('payment_state', '=', 'paid')]}"/>
+                <field name="payment_state" widget="statusbar"
+                       statusbar_visible="unpaid,in_progress,paid"/>
+            </header>
+            <xpath expr="//notebook" position="inside">
+                <page string="Transacciones de Pago" name="payment_transactions">
+                    <field name="transaction_ids" readonly="1"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

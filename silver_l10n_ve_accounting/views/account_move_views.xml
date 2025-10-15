@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--
+            Este record hereda de la vista de facturas de silver_accounting.
+            IMPORTANTE: Debes reemplazar 'silver_accounting.view_move_form_silver'
+            con el ID externo real de tu vista de formulario de facturas.
+        -->
+        <record id="view_move_form_l10n_ve" model="ir.ui.view">
+            <field name="name">account.move.form.l10n.ve</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="silver_accounting.view_move_form_silver"/>
+            <field name="arch" type="xml">
+                <!--
+                    Agrega los campos fiscales venezolanos.
+                    Ajusta el 'expr' para que coincida con un campo existente en tu vista,
+                    como por ejemplo el campo 'journal_id' o 'invoice_date'.
+                -->
+                <xpath expr="//field[@name='journal_id']" position="after">
+                    <field name="nro_ctrl"
+                           attrs="{'invisible': ['|', ('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund')), ('l10n_ve_document_type', 'in', ('INVFC', 'INVFD', 'NCFC', 'NCFD', 'NDFC', 'NDFD'))]}"/>
+                    <field name="invoice_printer"
+                           attrs="{'invisible': ['|', ('move_type', 'not in', ('out_invoice', 'out_refund')), ('l10n_ve_document_type', 'in', ('INVFC', 'NCFC', 'NDFC'))]}"/>
+                    <field name="l10n_ve_document_type" invisible="1"/>
+                </xpath>
+
+                <!--
+                    Agrega la página de IGTF en el notebook de la factura.
+                    Ajusta el 'expr' para que apunte a tu <notebook>.
+                -->
+                <xpath expr="//notebook" position="inside">
+                    <page string="IGTF" name="igtf_info"
+                          attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'in_invoice'))]}">
+                        <group>
+                            <group>
+                                <field name="l10n_ve_igtf_amount" force_save="1"/>
+                            </group>
+                            <group>
+                                <field name="l10n_ve_igtf_account_id"/>
+                                <field name="l10n_ve_igtf_journal_id"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
