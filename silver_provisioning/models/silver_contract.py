@@ -70,6 +70,12 @@ class IspContract(models.Model):
     new_ip_address_id = fields.Many2one('silver.ip.pool.line', string="IP de Pool")
     consumption_ids = fields.One2many('silver.contract.consumption', 'contract_id', string="Registros de Consumo")
     radius_entry_ids = fields.One2many('silver.contract.radius.entry', 'contract_id', string="Entradas de RADIUS")
+    olt_status = fields.Selection([
+        ('unknown', 'Desconocido'),
+        ('online', 'Online'),
+        ('offline', 'Offline'),
+        ('los', 'LOS'),
+    ], string="Estado OLT", default='unknown', readonly=True, copy=False)
 
     #  serial_onu = fields.Many2one('stock.production.lot', string="Serial ONU")
     pppoe = fields.Char(string="PPPoe")
@@ -97,54 +103,58 @@ class IspContract(models.Model):
 
     def action_activate_service(self):
         for contract in self:
-            # 1. Validaciones
             if not contract.line_ids:
                 raise UserError(_("El contrato no tiene líneas de servicio (planes) definidos."))
 
-            if contract.link_type == 'fiber':
-                if not all([contract.olt_port_id, contract.serial_onu]):
-                    raise UserError(
-                        _("Para activar un servicio de fibra, se requiere un Puerto OLT y un Serial de ONU."))
+            # --- Lógica de Provisión para PPPoE en Mikrotik ---
+            if contract.pppoe_user and contract.core_id:
+                api = contract.core_id._get_api_connection()
+                if not api:
+                    raise UserError(_("No se pudo conectar al Core Router Mikrotik."))
+                try:
+                    plan_name = contract.line_ids[0].product_id.name
+                    secrets_path = api.path('/ppp/secret')
+                    
+                    # Verificar si el usuario ya existe
+                    existing = secrets_path.get(name=contract.pppoe_user)
+                    if existing:
+                        # Si existe, lo actualizamos y habilitamos
+                        secrets_path.set(
+                            id=existing[0]['.id'],
+                            password=contract.pppoe_password,
+                            service='pppoe',
+                            profile=plan_name,
+                            comment=f"Contrato: {contract.name}",
+                            disabled='no'
+                        )
+                    else:
+                        # Si no existe, lo creamos
+                        secrets_path.add(
+                            name=contract.pppoe_user,
+                            password=contract.pppoe_password,
+                            service='pppoe',
+                            profile=plan_name,
+                            comment=f"Contrato: {contract.name}"
+                        )
+                except Exception as e:
+                    raise UserError(_("Fallo al crear/actualizar el usuario PPPoE en el Core: %s") % e)
+                finally:
+                    api.close()
 
-            elif contract.link_type == 'wifi':
-                if not all([contract.ap_id, contract.mac_address_onu]):
-                    raise UserError(_("Para activar un servicio inalámbrico, se requiere un AP y una MAC Address."))
+            # --- Lógica de Provisión para OLT (Fibra Óptica) ---
+            elif contract.link_type == 'fiber':
+                # LÓGICA OLT: Esta sección requiere una integración específica con la marca de tu OLT (Huawei, ZTE, FiberHome, etc.)
+                # 1. Conectar a la OLT (self.olt_id) a través de su API (Telnet, SSH, SNMP, o una API REST si es moderna).
+                # 2. Autenticarse con las credenciales guardadas en el modelo de la OLT.
+                # 3. Ejecutar el comando para registrar y autorizar la ONU en el puerto especificado.
+                #    Ejemplo conceptual para una OLT Huawei (los comandos varían mucho):
+                #    ont add <puerto_olt> <serial_onu> <tipo_onu>
+                #    service-port <vlan> <puerto_olt> <serial_onu> inbound <perfil_trafico> outbound <perfil_trafico>
+                # Se recomienda crear un método en el modelo 'silver.olt' que encapsule esta lógica.
+                # Ejemplo: contract.olt_id.provision_service_on_port(...)
+                pass
 
-            # 2. Lógica de Provisión (Plantilla a adaptar)
-            try:
-                # --- EJEMPLO PARA FIBRA ÓPTICA ---
-                if contract.link_type == 'fiber':
-                    # Asumimos que tu modelo 'silver.olt' tiene un método para provisionar
-                    # Debes reemplazar 'provision_service_on_port' con el nombre real de tu función
-                    # y pasar los parámetros que necesite.
-                    plan = contract.line_ids[0].product_id
-                    result = contract.olt_id.provision_service_on_port(
-                        port=contract.olt_port_id,
-                        onu_serial=contract.serial_onu,
-                        customer_name=contract.partner_id.name,
-                        plan_name=plan.name,
-                        upload_speed=plan.upload_speed,  # Asumiendo que tienes estos campos en el producto
-                        download_speed=plan.download_speed  # Asumiendo que tienes estos campos en el producto
-                    )
-                    if not result.get('success'):
-                        raise UserError(_("Fallo al provisionar en la OLT: %s") % result.get('message'))
-
-                # --- EJEMPLO PARA PPPoE (Router Core) ---
-                if contract.pppoe_user and contract.core_id:
-                    # Asumimos que tu modelo 'silver.core' tiene un método para crear usuarios PPPoE
-                    # Debes reemplazar 'create_pppoe_user' con el nombre real de tu función
-                    result = contract.core_id.create_pppoe_user(
-                        username=contract.pppoe_user,
-                        password=contract.pppoe_password,
-                        plan_name=contract.line_ids[0].product_id.name
-                    )
-                    if not result.get('success'):
-                        raise UserError(_("Fallo al crear el usuario PPPoE en el Core: %s") % result.get('message'))
-
-            except Exception as e:
-                raise UserError(_("Ha ocurrido un error técnico al intentar activar el servicio: %s") % e)
-
-            # 3. Actualización de Estado
+            # Actualización de Estado
             contract.write({
                 'state_service': 'active',
                 'date_active': fields.Date.context_today(self)
@@ -156,32 +166,26 @@ class IspContract(models.Model):
             if contract.state_service != 'active':
                 raise UserError(_("El servicio no está activo, por lo tanto no se puede cortar."))
 
-            # Lógica de corte de servicio (Plantilla a adaptar)
-            try:
-                # --- EJEMPLO PARA FIBRA ÓPTICA ---
-                if contract.link_type == 'fiber' and contract.olt_port_id:
-                    # Asumimos que tu modelo 'silver.olt' tiene un método para cortar el servicio
-                    # Debes reemplazar 'cutoff_service_on_port' con el nombre real de tu función
-                    result = contract.olt_id.cutoff_service_on_port(
-                        port=contract.olt_port_id,
-                        onu_serial=contract.serial_onu
-                    )
-                    if not result.get('success'):
-                        raise UserError(_("Fallo al cortar el servicio en la OLT: %s") % result.get('message'))
+            # --- Lógica de Corte para PPPoE en Mikrotik ---
+            if contract.pppoe_user and contract.core_id:
+                api = contract.core_id._get_api_connection()
+                if not api:
+                    raise UserError(_("No se pudo conectar al Core Router Mikrotik."))
+                try:
+                    secrets_path = api.path('/ppp/secret')
+                    existing = secrets_path.get(name=contract.pppoe_user)
+                    if existing:
+                        secrets_path.set(id=existing[0]['.id'], disabled='yes')
+                except Exception as e:
+                    raise UserError(_("Fallo al deshabilitar el usuario PPPoE en el Core: %s") % e)
+                finally:
+                    api.close()
 
-                # --- EJEMPLO PARA PPPoE (Router Core) ---
-                if contract.pppoe_user and contract.core_id:
-                    # Asumimos que tu modelo 'silver.core' tiene un método para deshabilitar usuarios PPPoE
-                    # Debes reemplazar 'disable_pppoe_user' con el nombre real de tu función
-                    result = contract.core_id.disable_pppoe_user(
-                        username=contract.pppoe_user
-                    )
-                    if not result.get('success'):
-                        raise UserError(
-                            _("Fallo al deshabilitar el usuario PPPoE en el Core: %s") % result.get('message'))
-
-            except Exception as e:
-                raise UserError(_("Ha ocurrido un error técnico al intentar cortar el servicio: %s") % e)
+            # --- Lógica de Corte para OLT (Fibra Óptica) ---
+            elif contract.link_type == 'fiber':
+                # LÓGICA OLT: Conectar a la OLT y ejecutar el comando para desactivar o eliminar la ONU.
+                # Ejemplo conceptual: ont delete <puerto_olt> <serial_onu>
+                pass
 
             # Actualización de Estado
             contract.write({
@@ -195,35 +199,28 @@ class IspContract(models.Model):
             if contract.state_service not in ['disabled', 'suspended']:
                 raise UserError(_("El servicio no está cortado o suspendido, por lo tanto no se puede reconectar."))
 
-            # Lógica de reconexión de servicio (Plantilla a adaptar)
-            # A menudo, la reconexión utiliza la misma lógica que la activación.
-            try:
-                # --- EJEMPLO PARA FIBRA ÓPTICA ---
-                if contract.link_type == 'fiber' and contract.olt_port_id:
-                    # Puede que sea la misma función que la de activar, o una específica para reconectar.
-                    # Debes reemplazar 'reconnect_service_on_port' con el nombre real de tu función.
-                    plan = contract.line_ids[0].product_id
-                    result = contract.olt_id.reconnect_service_on_port(
-                        port=contract.olt_port_id,
-                        onu_serial=contract.serial_onu,
-                        plan_name=plan.name,
-                        upload_speed=plan.upload_speed,
-                        download_speed=plan.download_speed
-                    )
-                    if not result.get('success'):
-                        raise UserError(_("Fallo al reconectar el servicio en la OLT: %s") % result.get('message'))
+            # --- Lógica de Reconexión para PPPoE en Mikrotik ---
+            if contract.pppoe_user and contract.core_id:
+                api = contract.core_id._get_api_connection()
+                if not api:
+                    raise UserError(_("No se pudo conectar al Core Router Mikrotik."))
+                try:
+                    secrets_path = api.path('/ppp/secret')
+                    existing = secrets_path.get(name=contract.pppoe_user)
+                    if existing:
+                        # Al reconectar, nos aseguramos que tenga el plan correcto y esté habilitado
+                        plan_name = contract.line_ids[0].product_id.name
+                        secrets_path.set(id=existing[0]['.id'], disabled='no', profile=plan_name)
+                except Exception as e:
+                    raise UserError(_("Fallo al habilitar el usuario PPPoE en el Core: %s") % e)
+                finally:
+                    api.close()
 
-                # --- EJEMPLO PARA PPPoE (Router Core) ---
-                if contract.pppoe_user and contract.core_id:
-                    # Debes reemplazar 'enable_pppoe_user' con el nombre real de tu función
-                    result = contract.core_id.enable_pppoe_user(
-                        username=contract.pppoe_user
-                    )
-                    if not result.get('success'):
-                        raise UserError(_("Fallo al habilitar el usuario PPPoE en el Core: %s") % result.get('message'))
-
-            except Exception as e:
-                raise UserError(_("Ha ocurrido un error técnico al intentar reconectar el servicio: %s") % e)
+            # --- Lógica de Reconexión para OLT (Fibra Óptica) ---
+            elif contract.link_type == 'fiber':
+                # LÓGICA OLT: Es similar a la activación. Conectar a la OLT y volver a autorizar la ONU.
+                # Ejemplo conceptual: ont add ... (o un comando específico de 'ont activate')
+                pass
 
             # Actualización de Estado
             contract.write({
@@ -232,26 +229,96 @@ class IspContract(models.Model):
             })
         return True
 
+    def action_suspend_service(self):
+        for contract in self:
+            if contract.state_service != 'active':
+                raise UserError(_("El servicio no está activo, por lo tanto no se puede suspender."))
+
+            # --- Lógica de Suspensión para PPPoE en Mikrotik ---
+            if contract.pppoe_user and contract.core_id:
+                api = contract.core_id._get_api_connection()
+                if not api:
+                    raise UserError(_("No se pudo conectar al Core Router Mikrotik."))
+                try:
+                    secrets_path = api.path('/ppp/secret')
+                    existing = secrets_path.get(name=contract.pppoe_user)
+                    if existing:
+                        # La suspensión se maneja cambiando el perfil a uno de "Suspendido"
+                        # Este perfil debe existir en el Mikrotik con velocidad limitada o redirección.
+                        secrets_path.set(id=existing[0]['.id'], profile='suspendido')
+                except Exception as e:
+                    raise UserError(_("Fallo al suspender el usuario PPPoE en el Core: %s") % e)
+                finally:
+                    api.close()
+
+            # --- Lógica de Suspensión para OLT (Fibra Óptica) ---
+            elif contract.link_type == 'fiber':
+                # LÓGICA OLT: Algunas OLTs permiten cambiar el perfil de servicio de la ONU a uno de "corte" o "suspensión".
+                # Ejemplo conceptual: service-port <vlan> ... inbound <perfil_suspendido> outbound <perfil_suspendido>
+                pass
+
+            contract.write({'state_service': 'suspended'})
+        return True
+
+    def action_terminate_service(self):
+        for contract in self:
+            if contract.state == 'closed':
+                raise UserError(_("Este contrato ya ha sido dado de baja."))
+
+            # --- Lógica de Terminación para PPPoE en Mikrotik ---
+            if contract.pppoe_user and contract.core_id:
+                api = contract.core_id._get_api_connection()
+                if not api:
+                    raise UserError(_("No se pudo conectar al Core Router Mikrotik."))
+                try:
+                    secrets_path = api.path('/ppp/secret')
+                    existing = secrets_path.get(name=contract.pppoe_user)
+                    if existing:
+                        secrets_path.remove(id=existing[0]['.id'])
+                except Exception as e:
+                    raise UserError(_("Fallo al eliminar el usuario PPPoE en el Core: %s") % e)
+                finally:
+                    api.close()
+
+            # --- Lógica de Terminación para OLT (Fibra Óptica) ---
+            elif contract.link_type == 'fiber':
+                # LÓGICA OLT: Eliminar completamente la configuración de la ONU.
+                # Ejemplo conceptual: ont delete <puerto_olt> <serial_onu>
+                pass
+
+            contract.write({
+                'state': 'closed',
+                'date_end': fields.Date.context_today(self)
+            })
+        return True
+
     def action_ping_service(self):
         self.ensure_one()
-        if not self.ip_address:
+        if not self.ip_address or not self.ip_address.name:
             raise UserError(_("No hay ninguna dirección IP asignada a este contrato para hacer ping."))
+        if not self.core_id:
+            raise UserError(_("No se ha configurado un router principal (Core) para ejecutar el ping."))
 
-        ping_result = ""
+        ping_result_str = ""
         try:
-            # --- Lógica de PING (Plantilla a adaptar) ---
-            # Asumimos que un dispositivo central (como el Core) puede ejecutar el ping.
-            # Debes reemplazar 'execute_ping' con tu función real.
-            if self.core_id:
-                ping_result = self.core_id.execute_ping(self.ip_address)
-            else:
-                ping_result = "No se ha configurado un router principal (Core) para ejecutar el ping desde allí."
+            api = self.core_id._get_api_connection()
+            if not api:
+                raise UserError(_("No se pudo conectar al Core Router Mikrotik."))
+            
+            try:
+                # El comando ping en la API de Mikrotik devuelve un iterador.
+                ping_results = api(cmd='/ping', address=self.ip_address.name, count='5')
+                for result in ping_results:
+                    ping_result_str += f"{result}\n"
+            except Exception as e:
+                 ping_result_str = _("Fallo la ejecución del ping: %s") % e
+            finally:
+                api.close()
 
         except Exception as e:
-            ping_result = _("Fallo la ejecución del ping: %s") % e
+            ping_result_str = _("Error de conexión: %s") % e
 
-        # --- Abrir el asistente con el resultado ---
-        wizard = self.env['silver.ping.wizard'].create({'ping_output': ping_result})
+        wizard = self.env['silver.ping.wizard'].create({'ping_output': ping_result_str})
         return {
             'name': _('Resultado de Ping'),
             'type': 'ir.actions.act_window',
@@ -262,19 +329,44 @@ class IspContract(models.Model):
         }
 
     def action_status_olt(self):
-        pass
+        # LÓGICA OLT: Esta acción es puramente para OLTs.
+        # 1. Conectar a la OLT (self.olt_id) vía Telnet, SSH, etc.
+        # 2. Ejecutar el comando para ver el estado óptico de la ONU.
+        #    Ejemplo conceptual: display ont optical-info <puerto> <serial>
+        # 3. Parsear la respuesta para obtener valores como la potencia de recepción (Rx Power).
+        # 4. Mostrar esta información en un asistente (wizard) en Odoo.
+        raise UserError("Función no implementada. Requiere integración con la API de la OLT.")
 
     def action_test_speed_service(self):
-        pass
+        # LÓGICA TEST DE VELOCIDAD:
+        # Esta es una función compleja. La API de Mikrotik ('/tool/bandwidth-test') requiere un cliente
+        # de BTest en el otro extremo, lo cual no es estándar en los equipos de cliente.
+        # Alternativas:
+        # 1. Instalar un servidor Speedtest (Ookla) en tu red y tener un agente en el CPE del cliente.
+        # 2. Usar protocolos como TR-069 para instruir al CPE que realice un test de velocidad.
+        # 3. Integrarse con una plataforma externa de monitoreo de red.
+        raise UserError("Función no implementada. Requiere una infraestructura de test de velocidad dedicada.")
 
     def action_remove_service(self):
-        pass
+        # Este botón parece redundante con "Dar de Baja". Si la intención es diferente,
+        # se debería clarificar el propósito. Por ahora, lo dejamos sin implementación.
+        raise UserError("Función no implementada.")
 
     def action_contract_reboot_onu(self):
-        pass
+        # LÓGICA OLT: Esta acción es para OLTs.
+        # 1. Conectar a la OLT (self.olt_id).
+        # 2. Ejecutar el comando para reiniciar la ONU.
+        #    Ejemplo conceptual: ont reboot <puerto> <serial>
+        raise UserError("Función no implementada. Requiere integración con la API de la OLT.")
 
     def action_change_ont_service(self):
-        pass
+        # LÓGICA DE PROCESO: Esta acción es más un proceso de Odoo que una interacción directa.
+        # 1. Abrir un asistente (wizard) que pida el número de serie de la nueva ONU.
+        # 2. El asistente podría crear una tarea en el proyecto de soporte técnico para que un técnico
+        #    realice el cambio físico.
+        # 3. Una vez que el técnico confirma, se actualiza el campo 'serial_onu' en el contrato.
+        # 4. Luego se podría llamar a la lógica de (re)provisión para la nueva ONU en la OLT.
+        raise UserError("Función no implementada. Se recomienda implementarla como un asistente de Odoo.")
 
     @api.onchange('silver_address_id')
     def _onchange_silver_address_id(self):
@@ -333,3 +425,21 @@ class IspContract(models.Model):
                 self.olt_id = first_olt
             domain = {'domain': {'olt_id': olt_domain}}
         return domain
+
+    def action_check_olt_status(self):
+        self.ensure_one()
+        # LÓGICA OLT: Esta acción es puramente para OLTs.
+        # 1. Conectar a la OLT (self.olt_id) vía Telnet, SSH, etc.
+        # 2. Ejecutar el comando para ver el estado óptico de la ONU.
+        #    Ejemplo conceptual: display ont optical-info <puerto> <serial>
+        # 3. Parsear la respuesta para obtener valores como la potencia de recepción (Rx Power).
+        # 4. Basado en la respuesta, actualizar el campo 'olt_status'.
+        #    - Si hay respuesta y la potencia es buena: self.olt_status = 'online'
+        #    - Si la ONU aparece con "Loss of Signal": self.olt_status = 'los'
+        #    - Si no se puede conectar o no se encuentra la ONU: self.olt_status = 'offline'
+        # 5. Por ahora, esta función solo muestra un aviso.
+        raise UserError("Función no implementada. Requiere integración con la API de la OLT para actualizar el estado.")
+        # Ejemplo de cómo se vería al final:
+        # status = self.olt_id.get_onu_status(self.olt_port_id, self.serial_onu)
+        # self.write({'olt_status': status})
+        return True

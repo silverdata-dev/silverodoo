@@ -1,0 +1,424 @@
+Cliente/Nombre,correo
+Sergio Velásquez Zeballos, scitelhta@gmail.com
+Luis Mora,luismora@gmail.com
+Cliente/Nombre,correo
+Jor El Camilo Molliex Silveira,jorelmolliex@gmail.com
+Grecia Yuvi Calderon Merchan,gmerchan5@hotmail.com
+Angela Santa losacco de Romero,aslosacco@gmail.com
+Jose Gregorio Brito Hernandez,josephbrito26@hotmail.com
+Dulce Angelica Depablos Faneite,dadf2109@gmail.com
+Irma Hernandez Alarcon,ihernandez1962@hotmail.com
+Melanie Maythaler Betania Garcia Calderon,melanimaithalerg2000@gmail.com
+William Eduardo Errada Gallardo,william301273@gmail.com
+Maria Eugenia Barroso Perdomo,icteamvenezuela@gmail.com
+JUAN GABRIEL GARCIA SILVA,thecatsound33@gmail.com
+NAHOMY ALESSANDRA URDANETA RODRIGUEZ,nahomyurdaneta7@gmail.com
+GREY LEANDRO HERNANDEZ GONZALEZ,greyleh@gmail.com
+YEREMI JUAN HERRERA CARMELO,jheremy0422@gmail.com
+FREYTES ALEXANDER BLANCO REYES,freytesreyes10@gmail.com
+JHONNAIKER JOSE BIELOSTORZKY CARRENO,jhonnaikercarreno11@gmail.com
+JOSE GREGORIO LINDARTE ZAMBRANO,Jglindarte@hotmail.com
+FRANCISCO MIGUEL FERNANDEZ GUTIERREZ,framkysdj2610@hotmail.com
+JHOJAN ROLANDO RODRIGUEZ TIBATA,jhojanrrt06@gmail.com
+ROYNER JOSUE CHIRINO MENDEZ,royner8586@gmail.com
+JACKELINE ACEVEDO DE RAMOS,jackelineacevedo062@gmail.com
+DEYANIRA MARIA SILVA DE RAMOS,deyanira72@gmail.com
+CARMEN MARLENE SERRANO,emily8marino@gmail.com
+NILEIDYS DEL VALLE RIVEROS ORTEGANO,nileidysriveros@gmail.com
+BRIGIDA DEL CARMEN SUAREZ BRICENO,suarezbcarmen@gmail.com
+MARGOT QUINTERO MENESES,Margotquintero@gmail.com
+JULIO CESAR LEON LOZADA,ll_juliocesar@hotmail.com
+JOHANNA MARIAN HAYDEE WILLIMAN RAVELO,johannawilliman1@gmail.com
+ABELARDO JOSE BRAVO SALDIVIA,abelardobravosa@gmail.com
+AZAEL MEZA GARCIA,azaelmeza96@gmail.com
+ADRIANA CECILIA GARCIA RAVELO,gadrianacecilia@ymail.com
+JESUS ALBERTO PINANGO BORGES,apinango794@gmail.com
+JOSE DANIEL LUGO VISCAYA,adriellugo599@gmail.com
+YAREMI DEL CARMEN CARIPE,yarecaripe7@gmail.com
+FREYANNIS DE JESUS CASTILLO ESCABRICES,freecastillo@gmail.com
+MIGUEL AUGUSTO ALDANA BEJARANO,miguel.bejarano939@gmail.com
+MAGGE BERLYS ALBORNOZ MOYA,goitivan510@gmail.com
+MOISES ALEXANDER ESPINOZA MEZA,evenproescoltas366@gmail.com
+JOSE DE JESUS VELASQUEZ HERNANDEZ,prof.velasquez07@gmail.com
+ROBERT ALEXANDER VIRGUEZ HERNANDEZ,rvirguez@arturos.com.ve
+MARIA FERNANDA DURAN DE VARELA,mfdvarela19@gmail.com
+YOJAIMI URIMAR GARCIA GONZALEZ,yugg2548@gmail.com
+LEYDA COROMOTO MATA MORA,leyda.mata@gmail.com
+JIMMY ALBERTO BARRERA PEREZ,jimmynew567@gmail.com
+EDGAR ALEXANDER PARRA DELGADO,alexanderedgar99@gmail.com
+GILARY KATTERIN MARTINEZ RODRIGUEZ,gilarykmr@gmail.com
+NANCY NAYIBE REYES DE DA SILVA,ojedanancy2014@gmail.com
+MIGUEL RAMON RAMIREZ MARCANO,miguelramirezm31@gmail.com
+RAFAEL ANDRES MAGALLANES NARANJO,ramn16011987@gmail.com
+LEONOR ALEXANDRA PEREZ NAVARRO,leonorp578@gmail.com
+JUAN RAMON ROA MENESES,jeimarsuleikar@gmail.com
+JOLBERT JESUS DAZA REYES,jolbertdaza@gmail.com
+JUAN JOSE CENTENO,jujocen@gmail.com
+ALEXANDER REINALDO QUIJADA TORREALBA,aquijada33@protonmail.com
+ADRIAN HERNANDEZ MORENO,hernandezadrian85@gmail.com
+HEISY DAYANA CARDENAS MACHADO,cardenasheisy@gmail.com
+ROXELYS AYARI MEZA SUAREZ,roxe0311@gmail.com
+JOSE ALFREDO RAMOS ONTIVEROS,folklore.nacional.v@gmail.com
+ELIMER YISELTH MEDINA LOYO,johanneli1204@gmail.com
+NINOSKA DEL CARMEN RIVAS GOMEZ,rivasgomezninoska@gmail.com
+FRANK ENRIQUE RANGEL HERRERA,frankrange@gmail.com
+OLIVER DAVID YANEZ HERNANDEZ,olivbber@gmail.com
+MONICA ALEJANDRA LANDAETA COLINA,monicalandaeta77@gmail.com
+FRANK RAMON JIMENEZ DIAZ,frankleonardo19@gmail.com
+MARIA CAROLINA JAIMES MANCIPE,cjaimes1985@gmail.com
+JOSE LEONARDO RADA CISNEROS,radajose667@gmail.com
+ALFREDO ALEJANDRO VECINO PAZ,fredovecino@gmail.com
+GERARDO ENRIQUE TELLECHEA MENDEZ,gerardotell97@gmail.com
+YOFERLEN RICARDO PASCUAL HIDALGO,yoferlenpascual87@gmail.com
+FREDDY ALEXANDER COLLAZOS BERRIO,falex84@gmail.com
+ABRAHAM ISRAEL BENCHIMOL,bramisrael@gmail.com
+JORGE ELIESER COLLAZOS PEREZ,j.collazosp@gmail.com
+ANDREINA DEL CARMEN PANNACCI PLAZA,andreina.pannacci@gmail.com
+MARA DEL CARMEN FERNANDEZ FERNANDEZ,leonardo28pedroza@gmail.com
+VERONICA ALEXANDRA SUBERO PEREZ,veronicasubero1998@gmail.com
+ANDRES JOSE GONZALEZ PLAZA,andresgplaza7@gmail.com
+YITZE JOHARA DEL VALLE RAMIREZ FERNANDEZ,ytzramirezf@gmail.com
+CESAR ARNALDO CHARRIS BARRAZA,cesararnaldoch@gmail.com
+MARITZA SORLINA CHIRINOS DE MEDINA,Maritzachirino13@gmail.com
+REBECA PATINO MEDINA,rgahelsanchez@gmail.com
+YORGE SEBASTIAN HERNANDEZ ALDANA,sh29686943@gmail.com
+YESSEILY KENYA VASQUEZ ESCOBAR,vasquezyesseily@gmail.com
+EDGAR JOSE QUINONEZ COVARRUBIO,edqcov@gmail.com
+ENRIQUE ANGEL DE JESUS RODRIGUEZ TORRES,rodriguezenrique2044@gmail.com
+NANCY LOVERA DE RAMIREZ,Danielyskarina@hotmail.com
+KERVYNS RHANYERD ECHEZURIA ANGULO,Kr.23angulo@gmail.com
+YOENDRY HIANA GAMARRA RODRIGUEZ,yoe1608@gmail.com
+JORGE RAFAEL GOMEZ SOLORZANO,jorgerafael1@hotmail.com
+CELIO ANTONIO GONZALEZ ANANGURE,celiocrf450@gmail.com
+MORELA ROSARIO RAMIREZ PIMENTEL,Suarezmorela09@gmail.com
+MARIA ADELAIDA CARNERO OTERO,mariacarnero020812@gmail.com
+ESTEFANI ALTAGRACIA PERALTA,peraltaestefani596@gmail.com
+NERIO JOSE MALDONADO MATHEUS,neriomaldonado18@gmail.com
+FRANCO EFRAIN MATAMOROS ZAMBRANO,ficezz01@gmail.com
+NANCY MARIELA MORA CADIZ,marielafrancys@gmail.com
+YETZY CAROLINA MENDOZA DELGADO,myetzycarolina@gmail.com
+DANIA JOSEFINA RODRIGUEZ ROMERO,dniarodriguez@gmail.com
+DANIELA ALEJANDRA VELANDIA HERNANDEZ,inagaeduin6@gmail.com
+ROSA BEATRIZ ZAMORA SANS,zamorarosa230@gmail.com
+SEBASTIAN SILVA GESTOSO,erksper@gmail.com
+BERBELYN GISELA RIVERO BASTARDO,berbelyn.rivero@gmail.com
+VICTOR HUGO DIAZ MOYA,victorhugodiaz94@gmail.com
+MAURY JOSEFINA BARRENA SILVA,maurybarrena@gmail.com
+YELITZA NAZARETH CAMPOS RODRIGUEZ,nazarethyivanna@gmail.com
+ZONIA DEL CARMEN FERNANDEZ,zoniafernandez45@gmail.com
+GIRBELIS GILMAR DELGADO SARMIENTO,gilmargirbelis@gmail.com
+JOSE GABRIEL RAMOS MAYO,josegrm66@gmail.com
+ROSEIDY DEL VALLE SANCHEZ MARQUEZ,rose.jdjl.rs@gmail.com
+GABRIEL MOISES CARDENAS MORALES,gabocm21@gmail.com
+KARIANI DANIELA NIERIZ MARCANO,Knieriz95@gmail.com
+OSWALDO JOSE NAVARRO BUSTAMANTE,oswaldo3g9@gmail.com
+ROGER ALEJANDRO MEZA SUAREZ,rogeralejandro2204@gmail.com
+AILEEN ALEXANDRA GUERRERO MARQUEZ,aileenbdv@gmail.com
+MEESHELL ESTHER CORREA ROJAS,Michi637@gmail.com
+ELIANA ESTHER BADILLO SOTO,geronimojg22@gmail.com
+MARIA TEREZA SAABEDRA MELENDEZ,mariasaabredam@gmail.com
+EUTMAR ALEXANDER GARCIA MOLINA,eutmargm@gmail.com
+LUIS ENRIQUE CUEVAS ARIAS,luisenriquecuevasarias@gmail.com
+YRMA JOSEFINA ESCALONA,yrmaescalona@gmail.com
+LUIS EDUARDO DE LIMA LOZADA,elflacodelima@gmail.com
+ANDREINA RAMIREZ VARGAS,andreinaramirez2424@gmail.com
+ABRAHAN JOSE VALERA TERAN,abrahanvarela2@gmail.com
+ERMIS EMERSON GARCIA MARCANO,garciaermis498@gmail.com
+LERVIS YADGLEMO BRITO SAMBRANO,lervisyadglemobrito@gmail.com
+ADRIANA VINCES ZAMORA,adrianavinces85@gmail.com
+KATHERINE STHEPANY SOLANO PALACIOS,katherinesolano7@gmail.com
+JHONY JOSE RANGEL GIL,jhonyjoserangel83@gmail.com
+YEMELY YOAIDRY GALUE QUINTERO,galueyemely7@gmail.com
+RIGO ALBERTO MARQUEZ VIVAS,rigoalber2503@gmail.com
+LEIDY ESTHER CASTILLO GONZALEZ,leidycastillo2@gmail.com
+YASKARI SUSANA QUEZADA ABREU,yaskarisusanaquezadaabreu@gmail.com
+Colegio Tirso de Molina,Tirsomolina123@gmail.com
+JOSE ESTEVAN RUIZ PEROZO,joseruizperozo@gmail.com
+RICHARD DE JESUS LIRA VALDESPINO,flizter@hotmail.com
+JUANA IRENE BLANCO RONDON,irenerondon02@gmail.com
+VICTOR JOSE MONTERO MADRIZ,rocoscruch29@gmail.com
+DAVID ERNESTO URBINA ASTUDILLO,belzefor@gmail.com
+WILLIAMS MOISES CASTRO MONAGREDO,wimocamo77@gmail.com
+RAUL ABELARDO URQUIA HENRIQUEZ,raulelchavista@gmail.com
+LUIS OSWALDO VARGAS ALVAREZ,luisv15174@gmail.com
+LUIS ALEXIS COURTOIS SANTOS,luisalexissantos12@gmail.com
+DARYEIGER MERCEDES LOPEZ QUINTANA,daryeigermercedeslopez@gmail.com
+NEISBEL YONEIDA ALONSO QUINTERO,neisbelalonzo9@gmail.com
+WITHOR WLADIMIR DIAZ CASTILLO,withordiaz@gmail.com
+YORVIS JESUS PINZON GIL,blinkpixel@gmail.com
+Silene Colina de De La Torre,silenedancestudio@gmail.com
+YOLEISA RAMOS DE GALLARDO,yoleisa199@gmail.com
+MIKI ROBER FRANCO PURROY,Roberfranco41@gmail.com
+JOSE DE JESUS SANCHEZ PALENCIA,pulpon77@gmail.com
+VALERY NATALIA SILVA PEREZ,silvavalery172@gmail.com
+FREDDY FERNANDO LINARES LOPEZ,freddyflinares@gmail.com
+VICTOR ALEXANDER VIELMA RODRIGUEZ,viictorvielma@gmail.com
+ROSBELY DE LA TRINIDAD GARCIA,rozbeligarcia1995@gmail.com
+OSCAR ANDRES CORREA MONTEROLA,oscarandrescorrea320@gmail.com
+JESSICA CARLINA VINASCO SUNIAGA,jessicasuniaga537@gmail.com
+HECTOR JOSE PESTANA VARELA,hectorpestana130@gmail.com
+MILEIDY JOSEFINA RIVAS FARIAS,mileidyrivas13@gmail.com
+CARLOS RAMON ALFONZO PEREIRA,calfonzo68@gmail.com
+ROMULO GERARDO CASTRO CACERES,romulocastrocaceres@gmail.com
+YELFERSON ENRIQUE APONTE GONZALEZ,yeiberthaponte9669@gmail.com
+ELIO RAFAEL GONZALEZ GARCIA,Eliogonzalez2912@gmail.com
+GILBERTO ANTONIO RIVAS QUINTERO,auryr623@gmail.com
+JOSE JOHAN ALBERT IZAIPE,albertccs1976@gmail.com
+OMAIRA ISABEL MEDINA DE MOTA,globotur@hotmail.com
+YULY ANA ESTEVES GONZALEZ,yulyesteves@gmail.com
+MARTA ROSA HERNANDEZ MORIN,Martozky@gmail.com
+WILMER ANDERSON SANTOS AVENDANO,wasa100378@gmail.com
+AYARI KARINA RIVAS VILLALBA,ayaririvas259@gmail.com
+JACKSON ORLANDO ALVARADO PINTO,jacksonalvarado26@gmail.com
+ANA GERTRUDIS MILLAN VALLENILLA,anamillanv@gmail.com
+EMMA CAROLINA RESTREPO GOMEZ,emma.restrepo6@gmail.com
+HELI ENRIQUE DIAZ ORTEGA,hdiaz4@gmail.com
+SALIM CHEHADE DAHDAH,chehadesalim55@gmail.com
+HEIDY LUCIA SILVA RIVAS,heidy.luciasr@gmail.com
+LUIS ALEXANDER BRACHO BRITO,luisbracho281@gmail.com
+ENMANUEL ANTONIO TREJO MEJIAS,enmatrejo@hotmail.com
+EDUARDO ANTONIO GARCIA MILANO,eduardomilano07@gmail.com
+GUILLERMO ENRIQUE PINO TOVAR,gept1991@gmail.com
+JOSE GREGORIO RICARDO TORRES,pr1276244@gmail.com
+RAIDES FRANCISCA SAEZ BRICENO,raidessaez7@gmail.com
+DANIEL ALEJANDRO HIDALGO PALACIOS,palacioshdaniel@gmail.com
+FUNDACION ESCUELA FEMINISTA DEL SUR ARGELIA LAYA,ogaffemsur@outlook.com
+LUCIMYR ALEJANDRA DE FREITAS DOS SANTOS,lafs.3791@gmail.com
+BLANCA IRIS DIAZ MENDOZA,irizd7748@gmail.com
+JESUS ARTURO LINARES HERNANDEZ,admipsopol@gmail.com
+JONATHAN HENRY AGUILERA MEJIA,jonathanaguileramejia@gmail.com
+MARIA EUGENIA VIZCAINO DE SOUSA,MEVSGOMERA@GMAIL.COM
+CARLOS JESUS MARTINEZ GONZALEZ,carlosgdm20@gmail.com
+EDDY JOSEFINA BARROSO GIL,barrosoeddy@gmail.com
+CARLOS BLANCO CASTANON,profesorcbc@gmail.com
+EDUARDO OSCAR ANTEZANA ISEA,antezanaisea@gmail.com
+ELENA LEBRUM DE RODRIGUEZ,mariolugor2187@gmail.com
+CARLOS GREGORIO MONDELLO AMEIJEIRAS,oto181529r@gmail.com
+KRISTEL DE LA COROMOTO VELAZQUEZ PENA,kristelpena1990@gmail.com
+LERRIN DARIO ALDANA PERDOMO,lerrin@gmail.com
+JOSE ANTONIO PENIN CENDON,Jpenin@gmail.com
+EUFRACIO SUSANO SILVA MARCANO,eufracio@gmail.com
+YOLIMAR DEL CARMEN ROJAS ROJAS,Yolimarrojas2@gmail.com
+YELITZA AMARILIS GUACARAN RIVAS,felianyelis@gmail.com
+DULCE ESMERALDA ALVAREZ LUNA,dulcea2629@gmail.com
+MARYCE ALEXANDRA PEREZ PATINO,maryce96@gmail.com
+AXEL NATHAN ALBO,axelalbo73@gmail.com
+JOSE LUIS LERMA BONILLA,joseluisl1975@gmail.com
+DIEGO ARMANDO GUERRA BLANCO,diego.guerra50@gmail.com
+PEDRO MIGUEL RIVAS GONZALEZ,pmrivasg@gmail.com
+KELYS DAMARIS CASIQUE GARCIA,kelysg24@gmail.com
+NORMA ELENA FERNANDEZ BARRIOS,normafernadez67@gmail.com
+EDGAR DAVID SAYAGO TORREALBA,edgarsayago10@gmail.com
+JOSE RAFAEL JIMENEZ COLMENARES,angijimenez76@gmail.com
+LEIDIMAR JARAMILLO AVENDANO,leidijaramillo@gmail.com
+WILMER MANUEL ESTEVES,wilmermanuelesteves17@gmail.com
+LUIS EDUARDO URBINA BRITO,jysustulon.23@gmail.com
+MARIA KIPSI SOTILLO TOVAR,Sotillomaria86@gmail.com
+ELIS NAYARITH MARTINEZ ALVAREZ,Elimarti81@gmail.com
+LUIS ENRIQUE ARGUETA BLANDIN,luisenriqueargueta646@gmail.com
+GUSTAVO ADOLFO WHILCHY MORALES,tazvo@hotmail.com
+CARLA EMILIA CORONEL MONTERO,carlacoronelmontero@gmail.com
+MILAGROS CAROLINA FELIBERTT GONZALEZ,carlosdanielpr@gmail.com
+JORGE GANTEAUME FEO,payainmuebles@gmail.com
+VICTOR EDUARDO QUIJADA PICO,v.quijada.pico@gmail.com
+CESAR AUGUSTO VAAMONDE DAVILA,vaamondeodont@gmail.com
+YULY GUADALUPE DAVILA VILLARREAL,yulydavila640@gmail.com
+MIREYA LETICIA SALCEDO VILLEGAS,mlsv78@hotmail.com
+DOMINGO ALEJANDRO APARICIO BORREGO,magaja2000@gmail.com
+GLENDA RAQUEL SULBARAN DE SUAREZ,glendasulba@gmail.com
+ALVARO ENRIQUE DE JESUS ALVAREZ LOPEZ,alvaro.alvarez.lopez@gmail.com
+SUSANA DIANORA PENA RODRIGUEZ,suandach@gmail.com
+ELIO JAVIER HERRERA CONVIT,eliojherrera@gmail.com
+GLENDA PEREZ MELO,gmelo40@gmail.com
+DAYANA ISABEL HERNANDEZ NIETO,Dayanahernandez75@gmail.com
+DARELIS NOHELYS GUILARTE SILVA,Darelis1836@gmail.com
+YECENIA DEL VALLE PALMAREZ DE ESCALONA,mashyiratorrealba5@gmail.com
+MILEIDY YAMILET MONSALVE VERGARA,monsalvevergaramileidyyamilet@gmail.com
+JENNIPHER IDIERID CONTRERAS AYALA,contrerasjennipher@gmail.com
+WENDY PAHOLA VARGAS NAVARRO,wendypahvargas@gmail.com
+NINOSKA VALVANERA SANABRIA BLANCO,laninosa@gmail.com
+LUISA NEDESCA BLANCO HERNANDEZ,valentinateresavs1999@gmail.com
+MANUEL JOHAN HERNANDEZ MARCONI,manu14hernandez67@gmail.com
+CRISTINA COROMOTO PARRA CHIRINOS,cristinap_27@hotmail.com
+HILARY WALESKA ORTEGA HUNG,hilaryortegawalezkahung12@gmail.com
+CESAR SEGUNDO SOLER VILLARREAL,cesarsoler896@gmail.com
+CARMEN PEREIRA PEREIRA,pereiracarmenlafragua@gmail.com
+YOJAIVER DAVID PALLERO BOLIVAR,Yojaiverdavid14@gmail.com
+PAULINO PEREZ VALVERDE,Pauper52@Gmail.com
+VANESSA ARELYS VINANZACA MOLINA,vm5556248@gmail.com
+WILMER JOSUE CARPIO COLMENARES,wilmerjcarpio@hotmail.com
+ANDRES ELOY TRUJILLO GOMEZ,aetrujillo@gmail.com
+ROGER ALBERTO MEZA SANCHEZ,rroger6492@gmail.com
+ESTHELA DEL VALLE RAMIREZ COLMENARES,esthela0374@gmail.com
+PEDRO ANTONIO MOREIRA FERNANDES,moreirap99@gmail.com
+KEVIN DAVID PINTO MOLINA,Kevin David Pinto Molina
+JOHENLY JANNETTE LEON CHIRINO,johenlyl@gmail.com
+JESUS ANTONIO RONDON DE SOUSA,jrondon96@gmail.com
+HECTOR JOSE CHIQUITO VARGAS,hectorjchiquitov@gmail.com
+BEATRIZ ELENA MOSQUERA DE RAMIREZ,bemos7@gmail.com
+JULIO CESAR OROZCO SANCHEZ,juliorozco3333@gmail.com
+ELIAS DAOUD SAID,eliasdaoud678@gmail.com
+RAUL RANIERO RUSSIAN REYES,r4raniero23@gmail.com
+MARIANELA GENTILE PLUCHINO,elena.gentile@hahoo.es
+MIRHJA BEATRIZ MOLLIEX SILVEIRA,mirmolliex@gmail.com
+GREGORY ISMAEL PLASENCIA RINCON,Gplasencia19@gmail.com
+EDGARD TOMAS VIVAS VALDERRAMA,EDGARDVIVAS@GMAIL.COM
+IRENE MANUELA REGUEIRO GONZALEZ,tolanena@gmail.com
+RAIZA CRISTINA SERRANO DE SUAREZ,raizaserrano25.04@gmail.com
+DIMAS ANTONIO RODRIGUEZ TOLOZA,dimasr.0653@gmail.com
+Hector Rafael Quijada Figueredo,hrquijada@yahoo.com
+KARINA ELIZABETH AVILA GONZALEZ,karinna834@hotmail.com
+MARIA LUISA NATERA VALLENILLA,mnateravallenilla@gmail.com
+BELKIS MARIA CARRILLO ZERPA,belkiscarrillo120@gmail.com
+WALTER ALFREDO ALFONSO PACHECO,barberhumboltshop@gmail.com
+IVAN DARIO BOOY SUESCUN,ibooy9696@gmail.com
+ROBERT ALBERTO MEZA SUAREZ,rams191188@gmail.com
+TONINO BENDICI CARADONNA,Toninobendcara@gmail.com
+MARANYELIS CAROLINA CARRILLO CHIRINOS,carrillomaranyelis@gmail.com
+DANNY RAFAEL CORONA PEREZ,dannycorona170489@gmail.com
+Raeld Mahmud Hamze,raeld@mac.com
+MARILYN BETANIA MOROCOIMA CALDERON,marilynmorocoima@gmail.com
+LUZ TERESA VLOKMAN SIMOZA,vlokmanluzteresa2@gmail.com
+JOSE VICENTE VASQUEZ RUEDA,ivanaah29@gmail.com
+DAIRELY MARYORI RODRIGUEZ BALZA,Dairely1@hotmail.com
+NIOVIS COROMOTO AYALA HERNANDEZ,Niocoro_27@hotmail.com
+NOHEMI YAZMIRA VIANA LIMA,noeyazmira@hotmail.com
+DORIS ALEJANDRINA MOYA ESPINOZA,lezama.johana@gmail.com
+GABRIEL ALEJANDRO AVILA MENDOZA,gabito3155@gmail.com
+JACKSON ALEXIS LEON BOLIVAR,jacksonleon877@gmail.com
+AMELI DAYMAR DE SOUSA FERNANDEZ,amelidesousa1@gmail.com
+MARIELA PINTO LOPEZ,marielapintolopez@gmail.com
+REINALDO ANTONIO GOMES FIGUEIRA,gomesfigueira.ra@gmail.com
+MELBA ORTIZ TRIANA,melbaortiztriana62@gmail.com
+MARIA GRACIA DE GOUVEIA,mariagracagouveia55@gmail.com
+LEIDA MARILIN COVA QUILARTE,Marilincova2022@gmail.com
+EDER GABRIEL SOLARTE ARRIOJA,darrioja03@gmail.com
+ANGEL LEONEL MASCARENO URE,Mascarenoangel70@gmail.com
+YANIRET BETRIZ LAYA AGUILERA,yaniretlaya2@gmail.com
+MARIA ALEJANDRA PANTOJA DE LOS SANTOS,mariapantoja411@gmail.com
+RAUL ALBERTO QUEREMEL FRANCO,ssi2013@gmail.com
+RONALD JESUS MALDONADO COLMENARES,lacombustionperfecta@gmail.com
+MILANGELA DEL CARMEN MARCANO MEDINA,marcanomilangela2@gmail.com
+ANGEL LUIS SANTOS DE LOS SANTOS,Angelluissantos80@gmail.com
+MARIA LAURA ASUAJE DE LOS SANTOS,Mariaasuaje34@gmail.com
+YOLANDA MARIBEL COVA QUILARTE,yolandamaribel41@gmail.com
+VICTORIA ANDREINA GARCIA SIFONTES,victoriacopre@gmail.com
+ZAIDA AKHTAR ALAM KARMODY,zaidalive@gmail.com
+JONATHAN ENRIQUE ALVAREZ ZAMBRANO,jonathanealvarezz@gmail.com
+SANTIAGA ELIZABETH LOVERA ORTEGA,yisbely.hidalgo@gmail.com
+DESIREE RODRIGUEZ DIAZ,desireepilates@gmail.com
+MANUEL BELLO DUBRA,manuelbellodub@gmail.com
+EDISON ENZO DANIEL GONZALEZ CICCONI,Edisongonzalez0499@gmail.com
+FREDDY RAMON CONTRERAS DIAZ,Marcialcontrerasdiaz@hotmail.com
+GLADYS MARTA RONDON,gladysmartha26@gmail.com
+JESUS ALBERTO PEREZ LOPEZ,jesusputagoras125@gmail.com
+RHOMILE GISELA GOMEZ JIMENEZ,Rhomilegomez@gmail.com
+RICHARD ALEXANDER SALAMANCA RONDON,richardsalamanca13@gmail.com
+FRANCIA ESTRELLA MARTINEZ COLMENARES,estrella-martinez@hotmail.com
+ZIOMAIRA EDITH GARCIA POLANCO,Francysdgp22@gmail.com
+ALEXANDER ABARCA NUNEZ,alexabar777@gmail.com
+CARMEN MAIGUALIDA SUAREZ DE GONZALEZ,csuarezdegonzalez@gmail.com
+CARMEN XIOMARA ALFONZO GARCIA,Africakeniamax@gmail.com
+LEON JESUS GARCIA LOPEZ,leongarcialopez82@gmail.com
+GREGORIA JUSTICIA MORENO MIJARES,myaidic6@gmail.com
+MARIA MERCEDES BARRIOS GALLIPOLI,angelicalonso@gmail.com
+ALIZAIDA SIRILEN MORALES MARCANO,Alizaida15morales@gmail.com
+FANNY JOSEFINA FLORES,fannyjosefina.1965@gmail.com
+CARLOS EDUARDO AGELVIS GONZALEZ,carlosagelvis8@gmail.com
+JUAN EVANGELISTA MEJIA BASTIDAS,juan50millons@hotmail.com
+CONTADORES VIP CA,contadoresvip1@gmail.com
+CARLA ANGELI BRICENO BARRIOS,karlaangelis25610@gmail.com
+AMANDA DEL PILAR BARBATO BULICICH,barbatoamanda@gmail.com
+LILIANA TERESA FRANCESKIN ZNIDAR,lilianatfz@gmail.com
+BETTY COROMOTO DAVILA RIVAS,bettydavila742@gmail.com
+CARLOS JOSE CACERES OROZCO,rvera@triplec.com.ve
+JORDAN SAID SUBRAJAGT RENGIFO GOMEZ,jssqueen@gmail.com
+MAYBEN ALEXANDRA ZAMORA SERRANO,maybenzamoras2921@gmail.com
+ROSELYN STEPHANNY SOTO MILT,roselynsoto22@gmail.com
+ALEJANDRA JOSE URBANEJA ESPIN,alejandraurbaneja18@gmail.com
+LUIVER ALEJANDRO FERMIN PEREZ,alex21071911@gmail.com
+HECTOR DANIEL VIVAS LAGO,daniellago8@gmail.com
+MARIA ESPERANZA OSUNA RUIZ,elizaandrea8@gmail.com
+LUIS FELIPE FRANCO HERNANDEZ,lfrancov@yahoo.com
+MARIA EUGENIA PEREZ PARRA,SofiaRomeroR@gmail.com
+CHRISTIAN ALEXANDER LAHESA TOLEDO,Tiendacompu@gmail.com
+WALTER BARBONE STERLING,valteriilgrande@gmail.com
+YERLYN DEL VALLE URDANETA MENDEZ,yerlynurdaneta11@gmail.com
+ANGELICA ROSARIO URBINA SERRANO,angelicaurbina8@gmail.com
+BRIAN JEFFREY COULTHARD ALBUTT,Bjcoulthard@gmail.com
+JOSE GREGORIO REBOLLO CEREZO,rebollojose790@Gmail.com
+MARCO ANTONIO RODRIGUEZ BARRAEZ,Marbarraez@gmail.com
+ROMIR JOSE PEREZ ARENAS,romirperez@gmail.com
+GABRIELA GOMEZ,gabrielagomezc68@gmail.com
+JOHANNA ROSALI PAEZ ONATE,bayabayaventas@gmail.com
+ROSA MARIA DEL CARMEN GARCIA CASTILLO,rmgarcia.seguros@gmail.com
+MARIA DOLORES SUAREZ GURDIEL,lolysugu@gmail.com
+YERIS MARIANA MONTILLA BARRETO,jericomontilla23@gmail.com
+MARIELA ALEJANDRA URIBE NAVAS,johamana29@gmail.com
+SERGIO RENE ELENA ROMERO,vivianacarballo@hotmail.com
+JESUS ANTONIO VELASQUEZ ORDAZ,jesus.velasquez.o@gmail.com
+ALEJANDRA IDALY BAYONA ZAPATA,Alejandrabayona0608@gmail.com
+ANTONIETA HERMOSO DE PINEDA,Antonietahermoso@gmail.com
+JESUS ENRIQUE RODRIGUEZ MALDONADO,jesuserodri73@gmail.com
+TRINA MERCEDES ARENAS DE ABREU,johannyfreitesugma@gmail.com
+ENRIQUETA JULIKA HERNANDEZ KRAUSZ,yulikrausz@hotmail.com
+FRANCISCO JAVIER CHACON ANDRADE,javierchacon99@hotmail.com
+ASOPENA A C,pagosasop@gmail.com
+EVA ECHERMAN DE CUDISEVICH,evaecherman@gmail.com
+HENRY ALFONSO MONTANEZ PASTOR,henrymp@me.com
+WLADIMIR LEONARDO MORANTES ARTEAGA,wladimir.morantes@gmail.com
+GEIDY KARINA GONZALEZ PATINO,geidykarina_@hotmail.com
+GERALD PETER ROMER BETZ,geraldromer@gmail.com
+CONSEJO COMUNAL EL BUCARE DE LOS LANOS,mayerfer78@gmail.com
+ALAN JAIME STEINMETZ RISTINER,alansteinmetz7@gmail.com
+GUSTAVO JOSE PAEZ CARDENAS,Gusspaez@gmail.com
+ISABEL TERESA ABREU DE FUENTES,juvillarreal@gmail.com
+SOFIA ALEJANDRA ROMERO RODRIGUEZ,romerorsofia@gmail.com
+ANYELIS GABRIELA SANCHEZ GUTIERREZ,Anyelissanchez14@gmail.com
+CARMEN ARELIS RODRIGUEZ LIZCANO,impresionesjnd16@gmail.com
+FELIX EDGARDO PENA SOSA,phoenixwarriorps@gmail.com
+RICARDO RODOLFO VELANDIA MORENO,Ricardorodolfo360@gmail.com
+YASMINA ELENA PADILLA PAREJA,yasminaepadilla74@gmail.com
+MIGUEL JOSE HERNANDEZ MORENO,migueljobs17@gmail.com
+DIANA CAROLINA LOAIZA CONTRERAS,dianaloaiza4@gmail.com
+GUIRLENA DEL VALLE SALCEDO PEREZ,guilenasalcedo@gmail.com
+ENRIQUE JOSE BLANCHARD GUILARTE,blanchard36@gmail.com
+OMAR ROY RUSSO PEREZ,orusso65ip@gmail.com
+DUMELYZ MAILEN MOTA CASTRO,dumelyzmota@gmail.com
+JHOANY ESPERANZA OLIVEROS RODRIGUEZ,jhoany.oliveros@gmail.com
+MARIA DE LAS MERCEDES FRANJO RODRIGUEZ,Mercedesfranjo61@gmail.com
+DANIELLA FERREIRA DE LAMPARSKI,danisanguijuelas@gmail.com
+JOSE ERNESTO UZCATEGUI SANCHEZ,alondramoya380@gmail.com
+RAIZA ZORAYA SALAZAR AROCHA,raizor65@gmail.com
+MAURICIO JESUS RIVAS GIL,mjrivas@gmail.com
+GABRIEL ROMAN HIDALGO CHANG,gabriel@venezuelaturistica.com
+GHALEB AMER,ghaleb0928@gmail.com
+EMMANUEL ARTURO DE ARCO GARCIA,emmanueldearco@gmail.com
+SALO JOSE EGER LUTVAK,debicorp10@gmail.com
+PATRICIA ALEJANDRA ROMERO MARIN,patriciaromerom0605@gmail.com
+ERNESTO GABRIEL MEJIAS MEDINA,ernestomm1@gmail.com
+LISBETH DEL VALLE MORA SANCHEZ,lismora@gmail.com
+DRINGER KRISMAR MARIN GONZALEZ,Dringermarin@gmail.com
+KENYURLI CHACON PARRA,Chaconsaray726@gmail.com
+CARLOS JOSE CALOSSO CASTILLO,carloscalosso1@gmail.com
+NORVELIS ELENA HERNANDEZ VERENZUELA,hernandeznorvelys191@gmail.com
+MARCOS FIDEL AYALA PARRA,Marcosayalaparra34@gmail.com
+YOSUAN ELIESER MARQUEZ CARRASCO,juristacarrasco@gmail.com
+JOSEFINA DEL VALLE HERNANDEZ DE RUIZ,Josefinahernandez1923@gmail.com
+JOAN ALEJANDRO AZUAJE ISEA,joanazuaje5@gmail.com
+HECTOR LUIS FERNANDEZ GUILARTE,hlfg15094@gmail.com
+BRICEIDA MORALES MIJARES,mbriceida@hotmail.com
+JESUS DAVID PEREZ MERINO,david.perezm28@gmail.com
+JEAN MICHEL RAVEL GONZALEZ,jmravel@gmail.com
+ANA TERESA PERDOMO CASTILLO,anatejas7@gmail.com
+PEDRO ALONSO LOPEZ PEREZ,lopezgguerra049@gmail.com
+JUAN VICENTE DAGER KHABBAZ,dagerk10@gmail.com
+LIRIS RAMONA JIMENEZ NAVAS,Mary_2392@hotmail.com
+GUSTAVO SANCHEZ YACOUB,gsanchezyacoub@gmail.com
+CLAUDIA ASTOR MARTINEZ,claudiastor@gmail.com
+LUIS FRANCISCO VENTURINI PERDOMO,luisventurini1995@gmail.com
+ANGELICA DIOVERLYN RODRIGUEZ NIETO,ftange.28@gmail.com
+LADY KATHERINE PARDO MONTENEGRO,katherpar05@gmail.com
+ANGEL DAVID OJEDA CHIRINO,angelojeda1906@hotmail.com
+KARLA SOLSIREE MILENA GUTIERREZ ZAMBRANO,milenagutierrez940@gmail.com
+ANDERSON JONAIKER PURICA CASTILLO,anderspurica@gmail.com

@@ -10,11 +10,15 @@
     'version': '17.0.1.0.0',
     'depends': [
         'silver_base',
-        'l10n_ve_base'
+        'l10n_ve_base',
+        'l10n_ve_location',
     ],
     'data': [
+        'data/res_country_city_data.xml',
         # 'security/ir.model.access.csv',
-        # 'views/views.xml',
+        'views/res_partner_address_views.xml',
+        'views/silver_address_views.xml',
+        'views/res_country_municipality_views.xml',
     ],
     'installable': True,
     'application': False,

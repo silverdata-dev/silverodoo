@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_silver_address_form_l10n_ve" model="ir.ui.view">
+        <field name="name">silver.address.form.l10n.ve</field>
+        <field name="model">silver.address</field>
+        <field name="inherit_id" ref="silver_base.view_silver_address_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state_id']" position="after">
+                <field name="city_id" domain="[('state_id', '=', state_id)]"/>
+                <field name="municipality_id" domain="[('state_id', 'in', state_id)]"/>
+                <field name="parish_id" domain="[('municipality_id', '=', municipality_id)]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

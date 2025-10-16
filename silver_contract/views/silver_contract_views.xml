@@ -35,10 +35,10 @@
                                 invisible="state_service != 'disabled'"/>
                         <widget name="web_ribbon" title="Suspendido" bg_color="bg-warning"
                                 invisible="state_service != 'suspended'"/>
-                        <button name="action_open" type="object" string="Open" class="oe_highlight"
+                        <!--button name="action_open" type="object" string="Open" class="oe_highlight"
                                 invisible="state != 'draft'"/>
                         <button name="action_cancel" type="object" string="Cancel"
-                                invisible="state in ['cancel', 'done']"/>
+                                invisible="state in ['cancel', 'done']"/-->
                         <field name="state" widget="statusbar" statusbar_visible="draft,open,done"/>
 
                     </header>

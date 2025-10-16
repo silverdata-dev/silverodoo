@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_l10n_ve_address" model="ir.ui.view">
+        <field name="name">res.partner.form.l10n.ve.address</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_ve_contact.res_partner_l10n_ve_form_contacts"/>
+        <field name="arch" type="xml">
+            <!--
+                Añade los campos de localización venezolana dentro del
+                grupo de dirección existente.
+            -->
+
+
+            <!--
+                Asegura que el campo de ciudad también tenga el dominio correcto
+                para una mejor experiencia de usuario.
+            -->
+
+
+                     <!--xpath expr="//label[@for='vat']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath-->
+
+
+             <xpath expr="//field[@name='street']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='country_id']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='parish_id']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='state_id']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='zip']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
+

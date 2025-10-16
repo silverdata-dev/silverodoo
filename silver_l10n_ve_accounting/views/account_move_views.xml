@@ -9,7 +9,7 @@
         <record id="view_move_form_l10n_ve" model="ir.ui.view">
             <field name="name">account.move.form.l10n.ve</field>
             <field name="model">account.move</field>
-            <field name="inherit_id" ref="silver_accounting.view_move_form_silver"/>
+            <field name="inherit_id" ref="account.view_move_form"/>
             <field name="arch" type="xml">
                 <!--
                     Agrega los campos fiscales venezolanos.
@@ -18,9 +18,9 @@
                 -->
                 <xpath expr="//field[@name='journal_id']" position="after">
                     <field name="nro_ctrl"
-                           attrs="{'invisible': ['|', ('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund')), ('l10n_ve_document_type', 'in', ('INVFC', 'INVFD', 'NCFC', 'NCFD', 'NDFC', 'NDFD'))]}"/>
+                           invisible="move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund') or l10n_ve_document_type in ('INVFC', 'INVFD', 'NCFC', 'NCFD', 'NDFC', 'NDFD')"/>
                     <field name="invoice_printer"
-                           attrs="{'invisible': ['|', ('move_type', 'not in', ('out_invoice', 'out_refund')), ('l10n_ve_document_type', 'in', ('INVFC', 'NCFC', 'NDFC'))]}"/>
+                           invisible="move_type not in ('out_invoice', 'out_refund') or l10n_ve_document_type in ('INVFC', 'NCFC', 'NDFC')"/>
                     <field name="l10n_ve_document_type" invisible="1"/>
                 </xpath>
 
@@ -30,7 +30,7 @@
                 -->
                 <xpath expr="//notebook" position="inside">
                     <page string="IGTF" name="igtf_info"
-                          attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'in_invoice'))]}">
+                          invisible="move_type not in ('out_invoice', 'in_invoice')">
                         <group>
                             <group>
                                 <field name="l10n_ve_igtf_amount" force_save="1"/>

@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!--
+            State Name to XML ID Mapping from l10n_ve_location:
+            Distrito Capital -> res_country_state_1
+            Amazonas -> res_country_state_2
+            Anzoátegui -> res_country_state_3
+            Apure -> res_country_state_4
+            Aragua -> res_country_state_5
+            Barinas -> res_country_state_6
+            Bolívar -> res_country_state_7
+            Carabobo -> res_country_state_8
+            Cojedes -> res_country_state_9
+            Delta Amacuro -> res_country_state_10
+            Falcón -> res_country_state_11
+            Guárico -> res_country_state_12
+            Lara -> res_country_state_13
+            Mérida -> res_country_state_14
+            Miranda -> res_country_state_15
+            Monagas -> res_country_state_16
+            Nueva Esparta -> res_country_state_17
+            Portuguesa -> res_country_state_18
+            Sucre -> res_country_state_19
+            Táchira -> res_country_state_20
+            Trujillo -> res_country_state_21
+            La Guaira (Vargas) -> res_country_state_22
+            Yaracuy -> res_country_state_23
+            Zulia -> res_country_state_24
+        -->
+
+        <record id="city_ve_caracas" model="res.country.city">
+            <field name="name">Caracas</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_1"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.4806</field>
+            <field name="longitude">-66.9036</field>
+        </record>
+        <record id="city_ve_maracaibo" model="res.country.city">
+            <field name="name">Maracaibo</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_24"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.6333</field>
+            <field name="longitude">-71.6333</field>
+        </record>
+        <record id="city_ve_valencia" model="res.country.city">
+            <field name="name">Valencia</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_8"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.1833</field>
+            <field name="longitude">-68.0000</field>
+        </record>
+        <record id="city_ve_barquisimeto" model="res.country.city">
+            <field name="name">Barquisimeto</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_13"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.0636</field>
+            <field name="longitude">-69.3347</field>
+        </record>
+        <record id="city_ve_san_cristobal" model="res.country.city">
+            <field name="name">San Cristóbal</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_20"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">7.7667</field>
+            <field name="longitude">-72.2333</field>
+        </record>
+        <record id="city_ve_barinas" model="res.country.city">
+            <field name="name">Barinas</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_6"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">8.6333</field>
+            <field name="longitude">-70.2000</field>
+        </record>
+        <record id="city_ve_ciudad_guayana" model="res.country.city">
+            <field name="name">Ciudad Guayana</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_7"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">8.3667</field>
+            <field name="longitude">-62.6500</field>
+        </record>
+        <record id="city_ve_catia_la_mar" model="res.country.city">
+            <field name="name">Catia La Mar</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_22"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.6000</field>
+            <field name="longitude">-67.0333</field>
+        </record>
+        <record id="city_ve_ciudad_bolivar" model="res.country.city">
+            <field name="name">Ciudad Bolívar</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_7"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">8.1219</field>
+            <field name="longitude">-63.5500</field>
+        </record>
+        <record id="city_ve_santa_teresa" model="res.country.city">
+            <field name="name">Santa Teresa del Tuy</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_15"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.2333</field>
+            <field name="longitude">-66.6639</field>
+        </record>
+        <record id="city_ve_maturin" model="res.country.city">
+            <field name="name">Maturín</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_16"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">9.7500</field>
+            <field name="longitude">-63.1830</field>
+        </record>
+        <record id="city_ve_barcelona" model="res.country.city">
+            <field name="name">Barcelona</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_3"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.1403</field>
+            <field name="longitude">-64.6833</field>
+        </record>
+        <record id="city_ve_cumana" model="res.country.city">
+            <field name="name">Cumaná</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_19"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.4564</field>
+            <field name="longitude">-64.1675</field>
+        </record>
+        <record id="city_ve_petare" model="res.country.city">
+            <field name="name">Petare</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_15"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.4833</field>
+            <field name="longitude">-66.8167</field>
+        </record>
+        <record id="city_ve_cabimas" model="res.country.city">
+            <field name="name">Cabimas</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_24"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.4000</field>
+            <field name="longitude">-71.4500</field>
+        </record>
+        <record id="city_ve_puerto_la_cruz" model="res.country.city">
+            <field name="name">Puerto La Cruz</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_3"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.2000</field>
+            <field name="longitude">-64.6333</field>
+        </record>
+        <record id="city_ve_punto_fijo" model="res.country.city">
+            <field name="name">Punto Fijo</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_11"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">11.7167</field>
+            <field name="longitude">-70.1833</field>
+        </record>
+        <record id="city_ve_turmero" model="res.country.city">
+            <field name="name">Turmero</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_5"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.2283</field>
+            <field name="longitude">-67.4725</field>
+        </record>
+        <record id="city_ve_los_teques" model="res.country.city">
+            <field name="name">Los Teques</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_15"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.3333</field>
+            <field name="longitude">-67.0417</field>
+        </record>
+        <record id="city_ve_merida" model="res.country.city">
+            <field name="name">Mérida</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_14"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">8.4800</field>
+            <field name="longitude">-71.1900</field>
+        </record>
+        <record id="city_ve_baruta" model="res.country.city">
+            <field name="name">Baruta</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_15"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.4322</field>
+            <field name="longitude">-66.8739</field>
+        </record>
+        <record id="city_ve_san_felipe" model="res.country.city">
+            <field name="name">San Felipe</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_23"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.3406</field>
+            <field name="longitude">-68.7369</field>
+        </record>
+        <record id="city_ve_cua" model="res.country.city">
+            <field name="name">Cúa</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_15"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.1667</field>
+            <field name="longitude">-66.8833</field>
+        </record>
+        <record id="city_ve_la_victoria" model="res.country.city">
+            <field name="name">La Victoria</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_5"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.2278</field>
+            <field name="longitude">-67.3336</field>
+        </record>
+        <record id="city_ve_el_tigre" model="res.country.city">
+            <field name="name">El Tigre</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_3"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">8.8861</field>
+            <field name="longitude">-64.2611</field>
+        </record>
+        <record id="city_ve_puerto_cabello" model="res.country.city">
+            <field name="name">Puerto Cabello</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_8"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.4667</field>
+            <field name="longitude">-68.0167</field>
+        </record>
+        <record id="city_ve_guarenas" model="res.country.city">
+            <field name="name">Guarenas</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_15"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.4667</field>
+            <field name="longitude">-66.6167</field>
+        </record>
+        <record id="city_ve_la_guaira" model="res.country.city">
+            <field name="name">La Guaira</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_22"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.6000</field>
+            <field name="longitude">-66.9331</field>
+        </record>
+        <record id="city_ve_guacara" model="res.country.city">
+            <field name="name">Guacara</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_8"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.2536</field>
+            <field name="longitude">-67.9000</field>
+        </record>
+        <record id="city_ve_tocuyito" model="res.country.city">
+            <field name="name">Tocuyito</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_8"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.1144</field>
+            <field name="longitude">-68.0656</field>
+        </record>
+        <record id="city_ve_acarigua" model="res.country.city">
+            <field name="name">Acarigua</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_18"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">9.5597</field>
+            <field name="longitude">-69.2019</field>
+        </record>
+        <record id="city_ve_san_fernando" model="res.country.city">
+            <field name="name">San Fernando</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_4"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">7.8940</field>
+            <field name="longitude">-67.4730</field>
+        </record>
+        <record id="city_ve_guanare" model="res.country.city">
+            <field name="name">Guanare</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_18"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">9.0436</field>
+            <field name="longitude">-69.7489</field>
+        </record>
+        <record id="city_ve_valera" model="res.country.city">
+            <field name="name">Valera</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_21"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">9.3206</field>
+            <field name="longitude">-70.6078</field>
+        </record>
+        <record id="city_ve_araure" model="res.country.city">
+            <field name="name">Araure</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_18"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">9.5667</field>
+            <field name="longitude">-69.2167</field>
+        </record>
+        <record id="city_ve_guatire" model="res.country.city">
+            <field name="name">Guatire</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_15"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.4717</field>
+            <field name="longitude">-66.5406</field>
+        </record>
+        <record id="city_ve_san_diego" model="res.country.city">
+            <field name="name">San Diego</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_8"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.2540</field>
+            <field name="longitude">-68.0109</field>
+        </record>
+        <record id="city_ve_carupano" model="res.country.city">
+            <field name="name">Carúpano</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_19"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.6722</field>
+            <field name="longitude">-63.2403</field>
+        </record>
+        <record id="city_ve_santa_rita" model="res.country.city">
+            <field name="name">Santa Rita</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_5"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.2003</field>
+            <field name="longitude">-67.5514</field>
+        </record>
+        <record id="city_ve_calabozo" model="res.country.city">
+            <field name="name">Calabozo</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_12"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">8.9333</field>
+            <field name="longitude">-67.4333</field>
+        </record>
+        <record id="city_ve_anaco" model="res.country.city">
+            <field name="name">Anaco</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_3"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">9.4819</field>
+            <field name="longitude">-64.4917</field>
+        </record>
+        <record id="city_ve_palo_negro" model="res.country.city">
+            <field name="name">Palo Negro</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_5"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.1600</field>
+            <field name="longitude">-67.5582</field>
+        </record>
+        <record id="city_ve_ocumare_del_tuy" model="res.country.city">
+            <field name="name">Ocumare del Tuy</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_15"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.1136</field>
+            <field name="longitude">-66.7814</field>
+        </record>
+        <record id="city_ve_coro" model="res.country.city">
+            <field name="name">Coro</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_11"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">11.4170</field>
+            <field name="longitude">-69.6700</field>
+        </record>
+        <record id="city_ve_villa_de_cura" model="res.country.city">
+            <field name="name">Villa de Cura</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_5"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.0383</field>
+            <field name="longitude">-67.4892</field>
+        </record>
+        <record id="city_ve_yaritagua" model="res.country.city">
+            <field name="name">Yaritagua</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_23"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.0753</field>
+            <field name="longitude">-69.1283</field>
+        </record>
+        <record id="city_ve_los_guayos" model="res.country.city">
+            <field name="name">Los Guayos</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_8"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.1833</field>
+            <field name="longitude">-67.9333</field>
+        </record>
+        <record id="city_ve_tariba" model="res.country.city">
+            <field name="name">Táriba</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_20"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">7.8167</field>
+            <field name="longitude">-72.2167</field>
+        </record>
+        <record id="city_ve_guasdualito" model="res.country.city">
+            <field name="name">Guasdualito</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_4"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">7.2467</field>
+            <field name="longitude">-70.7292</field>
+        </record>
+        <record id="city_ve_machiques" model="res.country.city">
+            <field name="name">Machiques</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_24"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.0667</field>
+            <field name="longitude">-72.5667</field>
+        </record>
+        <record id="city_ve_cagua" model="res.country.city">
+            <field name="name">Cagua</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_5"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.1875</field>
+            <field name="longitude">-67.4611</field>
+        </record>
+        <record id="city_ve_ciudad_ojeda" model="res.country.city">
+            <field name="name">Ciudad Ojeda</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_24"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.2000</field>
+            <field name="longitude">-71.3000</field>
+        </record>
+        <record id="city_ve_porlamar" model="res.country.city">
+            <field name="name">Porlamar</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_17"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.9500</field>
+            <field name="longitude">-63.8500</field>
+        </record>
+        <record id="city_ve_san_carlos" model="res.country.city">
+            <field name="name">San Carlos</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_9"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">9.6500</field>
+            <field name="longitude">-68.5833</field>
+        </record>
+        <record id="city_ve_charallave" model="res.country.city">
+            <field name="name">Charallave</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_15"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.2431</field>
+            <field name="longitude">-66.8622</field>
+        </record>
+        <record id="city_ve_la_asuncion" model="res.country.city">
+            <field name="name">La Asunción</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_17"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">11.0333</field>
+            <field name="longitude">-63.8628</field>
+        </record>
+        <record id="city_ve_valle_de_la_pascua" model="res.country.city">
+            <field name="name">Valle de La Pascua</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_12"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">9.2033</field>
+            <field name="longitude">-66.0103</field>
+        </record>
+        <record id="city_ve_carora" model="res.country.city">
+            <field name="name">Carora</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_13"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.1711</field>
+            <field name="longitude">-70.0797</field>
+        </record>
+        <record id="city_ve_santa_lucia" model="res.country.city">
+            <field name="name">Santa Lucía</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_15"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.2606</field>
+            <field name="longitude">-66.6639</field>
+        </record>
+        <record id="city_ve_quibor" model="res.country.city">
+            <field name="name">Quíbor</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_13"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">9.9311</field>
+            <field name="longitude">-69.6247</field>
+        </record>
+        <record id="city_ve_socopo" model="res.country.city">
+            <field name="name">Socopó</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_6"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">8.2322</field>
+            <field name="longitude">-70.8206</field>
+        </record>
+        <record id="city_ve_tinaquillo" model="res.country.city">
+            <field name="name">Tinaquillo</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_9"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">9.9167</field>
+            <field name="longitude">-68.3000</field>
+        </record>
+        <record id="city_ve_ejido" model="res.country.city">
+            <field name="name">Ejido</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_14"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">8.3333</field>
+            <field name="longitude">-71.4000</field>
+        </record>
+        <record id="city_ve_el_limon" model="res.country.city">
+            <field name="name">El Limón</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_5"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.3003</field>
+            <field name="longitude">-67.6336</field>
+        </record>
+        <record id="city_ve_bocono" model="res.country.city">
+            <field name="name">Boconó</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_21"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">9.2461</field>
+            <field name="longitude">-70.2617</field>
+        </record>
+        <record id="city_ve_maracay" model="res.country.city">
+            <field name="name">Maracay</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_5"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">10.2469</field>
+            <field name="longitude">-67.5961</field>
+        </record>
+        <record id="city_ve_san_juan_de_los_morros" model="res.country.city">
+            <field name="name">San Juan de los Morros</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_12"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">9.9010</field>
+            <field name="longitude">-67.3540</field>
+        </record>
+        <record id="city_ve_tucupita" model="res.country.city">
+            <field name="name">Tucupita</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_10"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">9.0592</field>
+            <field name="longitude">-62.0681</field>
+        </record>
+        <record id="city_ve_puerto_ayacucho" model="res.country.city">
+            <field name="name">Puerto Ayacucho</field>
+            <field name="state_id" ref="l10n_ve_location.res_country_state_2"/>
+            <field name="country_id" ref="base.ve"/>
+            <field name="latitude">5.6631</field>
+            <field name="longitude">-67.6264</field>
+        </record>
+    </data>
+</odoo>

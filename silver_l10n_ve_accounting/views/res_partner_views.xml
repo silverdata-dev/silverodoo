@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_property_form_l10n_ve" model="ir.ui.view">
+        <field name="name">res.partner.property.form.l10n.ve</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <!-- Add accounting fields to the accounting page -->
+            <xpath expr="//page[@name='accounting']//group[1]" position="inside">
+                <group string="Asientos contables" name="account_accounts">
+                <field name="property_account_receivable_id"
+                       required="customer_rank > 0" 
+                       groups="account.group_account_user"/>
+                <field name="property_account_payable_id"
+                       required="supplier_rank > 0"
+                       groups="account.group_account_user"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

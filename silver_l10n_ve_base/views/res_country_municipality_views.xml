@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_country_municipality_form_l10n_ve" model="ir.ui.view">
+        <field name="name">res.country.municipality.form.l10n.ve</field>
+        <field name="model">res.country.municipality</field>
+        <!--
+            Asumo que el ID de la vista original es 'l10n_ve_location.view_country_municipality_form'.
+            Si es diferente, deberás ajustarlo.
+        -->
+        <field name="inherit_id" ref="l10n_ve_location.view_res_country_municipality_form"/>
+        <field name="arch" type="xml">
+            <field name="state_id" position="after">
+                <field name="city_id" domain="[('state_id', '=', state_id)]"/>
+            </field>
+        </field>
+    </record>
+</odoo>

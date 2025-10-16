@@ -8,9 +8,12 @@
             <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
           </mappings>
           <excludedPaths>
-            <excludedPath local="true" path="$PROJECT_DIR$/silver_network/.history" />
-            <excludedPath local="true" path="$PROJECT_DIR$/silver_network/.venv" />
             <excludedPath local="true" path="$PROJECT_DIR$/recuro" />
+            <excludedPath local="true" path="$PROJECT_DIR$/odoo-venezuela" />
+            <excludedPath local="true" path="$PROJECT_DIR$/silver_network/.venv" />
+            <excludedPath local="true" path="$PROJECT_DIR$/account-analytic" />
+            <excludedPath local="true" path="$PROJECT_DIR$/account-financial-tools" />
+            <excludedPath local="true" path="$PROJECT_DIR$/om" />
           </excludedPaths>
         </serverdata>
       </paths>

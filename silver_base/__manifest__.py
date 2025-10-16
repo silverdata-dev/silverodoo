@@ -13,7 +13,6 @@
     'data': [ 
         'security/ir.model.access.csv',
         'views/silver_zone_views.xml',
-        'views/silver_geo_views.xml',
         'views/silver_address_views.xml',
         'views/res_partner_views.xml',
         'views/res_config_settings_views.xml',
