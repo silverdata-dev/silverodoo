@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Menú Principal para el ISP -->
+        <menuitem 
+            id="menu_isp_root" 
+            name="Gestión ISP" 
+            sequence="10"/>
+
+        <!-- Menú para Contratos -->
+        <menuitem 
+            id="menu_isp_contracts" 
+            name="Contratos" 
+            parent="menu_isp_root" 
+            action="action_isp_contract" 
+            sequence="10"/>
+
+        <!-- Menú para Equipos -->
+        <menuitem 
+            id="menu_isp_equipments" 
+            name="Equipos" 
+            parent="menu_isp_root" 
+            action="action_isp_equipment" 
+            sequence="20"/>
+    </data>
+</odoo>

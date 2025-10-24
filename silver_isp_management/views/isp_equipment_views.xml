@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Vista de Lista (Tree) para Equipos -->
+        <record id="view_isp_equipment_tree" model="ir.ui.view">
+            <field name="name">isp.equipment.tree</field>
+            <field name="model">isp.equipment</field>
+            <field name="arch" type="xml">
+                <tree string="Equipos">
+                    <field name="name"/>
+                    <field name="serial_number"/>
+                    <field name="partner_id"/>
+                    <field name="contract_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Vista de Formulario para Equipos -->
+        <record id="view_isp_equipment_form" model="ir.ui.view">
+            <field name="name">isp.equipment.form</field>
+            <field name="model">isp.equipment</field>
+            <field name="arch" type="xml">
+                <form string="Equipo">
+                    <sheet>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="serial_number"/>
+                            <field name="contract_id"/>
+                            <field name="state"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Acción de Ventana para Equipos -->
+        <record id="action_isp_equipment" model="ir.actions.act_window">
+            <field name="name">Equipos de Clientes</field>
+            <field name="res_model">isp.equipment</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

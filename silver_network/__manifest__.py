@@ -10,6 +10,7 @@
     'website': "https://www.silverdale.com",
     'category': 'Industries',
     'version': '17.0.2.1',
+    'icon': 'static/description/icon.png',
     'depends': ['base', 'mail', 'stock', 'account', 'silver_base'],
     'data': [
         'views/silver_views.xml',

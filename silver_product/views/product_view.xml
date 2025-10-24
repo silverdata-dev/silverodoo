@@ -23,7 +23,7 @@
 
                 <!-- 1. Replace Header Buttons -->
                 <xpath expr="//header" position="inside">
-                        <button string="Imprimir etiquetas" type="object" name="action_open_label_layout"/>
+                        <button string="Imprimir etiquetaas" type="object" name="action_open_label_layout"/>
                         <button string="Actualizar la cantidad " type="object" name="action_update_quantity_on_hand" invisible="type != 'product'"/>
                         <button string="Reabastecer" type="action" name="355" context="{'default_product_tmpl_id': id}" invisible="type != 'product'"/>
                 </xpath>

@@ -2,7 +2,7 @@
     <data>
         <!-- Top menu item -->
         <menuitem name="Contratos"
-            id="silver_contract_menu_root"/>
+            id="silver_contract_menu_root" web_icon="silver_contract,static/description/icon.png"/>
 
         <!-- menu categories -->
         <menuitem name="Contratos"

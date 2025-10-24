@@ -23,3 +23,4 @@ from . import silver_netdev_radius_client_wizard
 from . import silver_radius_disconnect_wizard
 from . import silver_radius_user
 from . import silver_zone
+from . import olt_connection

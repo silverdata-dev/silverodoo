@@ -2,6 +2,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 import librouteros
 from odoo.http import request
+from ..models.olt_connection import OLTConnection
 
 import logging
 
@@ -119,6 +120,16 @@ class SilverNetdev(models.Model):
             _logger.error(f"Failed to connect to {self.ip}:{p} with user '{user_to_try}'. Error: {e}")
             self.write({'state': 'error'})
             return None
+
+    def _get_olt_connection(self):
+        self.ensure_one()
+        return OLTConnection(
+            host=self.ip,
+            port=self.port,
+            username=self.username,
+            password=self.password,
+            connection_type=self.type_connection
+        )
 
     def get_real_model_name_by_id(self):
         print("get real")

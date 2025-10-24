@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 from odoo.exceptions import UserError
 
+
 class SilverOlt(models.Model):
     _name = 'silver.olt'
     _description = 'Equipo OLT'
@@ -72,7 +73,7 @@ class SilverOlt(models.Model):
     is_custom_tcont = fields.Boolean(string='Custom Tcont')
     tcont = fields.Char(string='Tcont')
     is_custom_gempor = fields.Boolean(string='Custom Gemport')
-    gemport = fields.Char(string='Gemport')
+    gemport = fields.Char(string='Gemport', required=True)
     is_line_nap = fields.Boolean(string='Gestion Vlan NAP')
     is_gestion_pppoe = fields.Boolean(string='Gestión WAN ONU')
     is_extract_mac_onu = fields.Boolean(string='Extraer MAC ONU')
@@ -128,7 +129,7 @@ class SilverOlt(models.Model):
     wan_mode = fields.Selection([('router', 'Router'), ('bridge', 'Bridge')], string='WAN Mode')
     service_type = fields.Selection([('void', 'VOID'), ('internet', 'INTERNET')], string='Service Type')
     acquisition_mode = fields.Selection([('pppoe', 'PPPoE'), ('dhcp','DHCP'), ('static', 'IP estática')], string='IP Acquisition Mode')
-    vlan_id = fields.Char(string='VLAN ID')
+    vlan_id = fields.Char(string='VLAN ID', required=True)
     mtu = fields.Char(string='MTU')
     is_enable_nat = fields.Boolean(string='Enable NAT')
     is_disabled_dhcp_pv4 = fields.Boolean(string='Deshabilitar Dhcp IPv6')
@@ -314,16 +315,29 @@ class SilverOlt(models.Model):
 
     def action_connect_olt(self):
         self.ensure_one()
-        # Simulate connection test
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
-                'title': 'Connection Test',
-                'message': 'Connection to OLT was successful!',
-                'type': 'success',
+        netdev = self.netdev_id
+        if not netdev:
+            raise UserError("No network device configured for this OLT.")
+
+        try:
+            with netdev._get_olt_connection() as conn:
+                success, message = conn.connect()
+                if not success:
+                    raise ConnectionError(message)
+            
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': 'Éxito',
+                    'message': 'Conexión a la OLT exitosa!',
+                    'type': 'success',
+                }
             }
-        }
+        except (ConnectionError, UserError) as e:
+            raise UserError(f"Fallo en la conexión a la OLT: {e}")
+        except Exception as e:
+            raise UserError(f"Un error inesperado ocurrió: {e}")
 
     def action_create_profile_olt(self):
         self.ensure_one()
@@ -362,6 +376,101 @@ class SilverOlt(models.Model):
             'context': {'default_olt_id': self.id},
             'target': 'current',
         }
+
     def generar(self):
         for record in self:
             record.netdev_id.generar()
+
+    def action_disable_onu(self, pon_port, onu_id):
+        """
+        Deshabilita (corta) una ONU en una OLT V-SOL.
+        :param pon_port: El puerto PON (ej. '0/1').
+        :param onu_id: El ID numérico de la ONU a deshabilitar (ej. 1).
+        """
+        self.ensure_one()
+        if not all([pon_port, onu_id]):
+            raise UserError("Se requieren el Puerto PON y el ID de la ONU.")
+
+        commands = [
+            "enable",
+            "configure terminal",
+            f"interface gpon {pon_port}",
+            f"ont port {onu_id} 1 disable",
+            "exit",
+            "exit",
+            "write",
+        ]
+
+        netdev = self.netdev_id
+        if not netdev:
+            raise UserError("No hay dispositivo de red configurado para esta OLT.")
+
+        output_log = ""
+        try:
+            with netdev._get_olt_connection() as conn:
+                for command in commands:
+                    success, output = conn.execute_command(command)
+                    output_log += f"$ {command}\n{output}\n"
+                    if not success:
+                        raise UserError(f"Error ejecutando el comando '{command}':\n{output}")
+
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': 'Éxito',
+                    'message': f'ONU {onu_id} en puerto {pon_port} deshabilitada exitosamente.',
+                    'type': 'success',
+                }
+            }
+        except (ConnectionError, UserError) as e:
+            raise UserError(f"Fallo al deshabilitar la ONU:\n{e}\n\nLog:\n{output_log}")
+        except Exception as e:
+            raise UserError(f"Un error inesperado ocurrió: {e}\n\nLog:\n{output_log}")
+
+    def action_enable_onu(self, pon_port, onu_id):
+        """
+        Habilita (reconecta) una ONU en una OLT V-SOL.
+        :param pon_port: El puerto PON (ej. '0/1').
+        :param onu_id: El ID numérico de la ONU a habilitar (ej. 1).
+        """
+        self.ensure_one()
+        if not all([pon_port, onu_id]):
+            raise UserError("Se requieren el Puerto PON y el ID de la ONU.")
+
+        commands = [
+            "enable",
+            "configure terminal",
+            f"interface gpon {pon_port}",
+            f"ont port {onu_id} 1 enable",
+            "exit",
+            "exit",
+            "write",
+        ]
+
+        netdev = self.netdev_id
+        if not netdev:
+            raise UserError("No hay dispositivo de red configurado para esta OLT.")
+
+        output_log = ""
+        try:
+            with netdev._get_olt_connection() as conn:
+                for command in commands:
+                    success, output = conn.execute_command(command)
+                    output_log += f"$ {command}\n{output}\n"
+                    if not success:
+                        raise UserError(f"Error ejecutando el comando '{command}':\n{output}")
+
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': 'Éxito',
+                    'message': f'ONU {onu_id} en puerto {pon_port} habilitada exitosamente.',
+                    'type': 'success',
+                }
+            }
+        except (ConnectionError, UserError) as e:
+            raise UserError(f"Fallo al habilitar la ONU:\n{e}\n\nLog:\n{output_log}")
+        except Exception as e:
+            raise UserError(f"Un error inesperado ocurrió: {e}\n\nLog:\n{output_log}")

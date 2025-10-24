@@ -23,8 +23,8 @@ class SilverZone(models.Model):
 
     def _compute_gps(self):
         for record in self:
-            lats = [asset.gps_lat for asset in record.assets if asset.gps_lat]
-            lons = [asset.gps_lon for asset in record.assets if asset.gps_lon]
+            lats = [asset.latitude for asset in record.assets if asset.latitude]
+            lons = [asset.longitude for asset in record.assets if asset.longitude]
 
             if lats:
                 record.gps_top = min(lats)

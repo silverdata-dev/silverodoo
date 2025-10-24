@@ -31,6 +31,8 @@ class SilverContract(models.Model):
     date_start = fields.Date(string="Fecha de Inicio", default=fields.Date.context_today, tracking=True)
     date_end = fields.Date(string="Fecha de Fin", tracking=True)
 
+
+
     # Campos de Configuración
     service_type_id = fields.Many2one('silver.service.type', string="Tipo de Servicio", required=True)
     plan_type_id = fields.Many2one('silver.plan.type', string="Tipo de Plan", required=True)

@@ -22,8 +22,8 @@ class AssetMapController(http.Controller):
         if node_id:
             try:
                 node = request.env['silver.node'].browse(int(node_id))
-                if node.exists() and node.gps_lat and node.gps_lon:
-                    center_coords = {'lat': node.gps_lat, 'lon': node.gps_lon}
+                if node.exists() and node.asset_id.latitude and node.asset_id.longitude:
+                    center_coords = {'lat': node.asset_id.gps_lat, 'lon': node.asset_id.gps_lon}
                     root_id = node.asset_id.id
             except (ValueError, TypeError):
                 pass  # Ignorar si el node_id no es válido
@@ -57,8 +57,8 @@ class AssetMapController(http.Controller):
                     'id': asset.id,
                     'name': asset.name,
                     'model': asset.asset_type,
-                    'latitude': asset.gps_lat,
-                    'longitude': asset.gps_lon,
+                    'latitude': asset.latitude,
+                    'longitude': asset.longitude,
                 })
 
         print(("asset", count))

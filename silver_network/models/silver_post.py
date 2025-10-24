@@ -15,8 +15,8 @@ class SilverPost(models.Model):
     port_post = fields.Char(string='Puerto Post Primario')
     type_post = fields.Selection([('P', 'Poste')], string='Tipo', required=False, default="P")
 
-    gps_lat = fields.Float(string="Latitud", digits=(16, 7), related='asset_id.gps_lat', readonly=False, required=True)
-    gps_lon = fields.Float(string="Longitud", digits=(16, 7), related='asset_id.gps_lon', readonly=False, required=True)
+    latitude = fields.Float(string="Latitud", digits=(16, 7), related='asset_id.latitude', readonly=False, required=True)
+    longitude = fields.Float(string="Longitud", digits=(16, 7), related='asset_id.longitude', readonly=False, required=True)
 
 
     asset_type = fields.Selection(

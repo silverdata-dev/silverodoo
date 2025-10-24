@@ -6,13 +6,33 @@
             <field name="model">silver.olt</field>
             <field name="inherit_id" ref="silver_network.view_silver_olt_form"/>
             <field name="arch" type="xml">
+                <!-- Añadir el botón de sincronización en la cabecera -->
+                <xpath expr="//header" position="inside">
+                    <button name="action_open_sync_wizard"
+                            type="object"
+                            string="Sincronizar Cambios con ONUs"
+                            class="oe_highlight"
+                            invisible="not pending_changes_json"/>
+                </xpath>
 
-  <xpath expr="//page[1]" position="before">
-                      <page string="Contratos">
-                   <field name="contract_ids"/>
-                      </page>
+                <!-- Añadir el campo para controlar la visibilidad del botón (de forma invisible) -->
+                <xpath expr="//sheet" position="before">
+                    <field name="pending_changes_json" invisible="1"/>
+                </xpath>
+
+                <!-- Añadir la pestaña de Contratos -->
+                <xpath expr="//page[1]" position="before">
+                    <page string="Contratos">
+                        <field name="contract_ids"/>
+                    </page>
+                </xpath>
+
+                <!-- Añadir campo de Prioridad VLAN (PCP) a la configuración WAN existente -->
+                <xpath expr="//group[@name='pppoe_1']//field[@name='vlan_id']" position="after">
+                    <field name="vlan_priority"/>
                 </xpath>
             </field>
         </record>
     </data>
 </odoo>
+

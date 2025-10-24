@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_silver_olt_sync_wizard_form" model="ir.ui.view">
+            <field name="name">silver.olt.sync.wizard.form</field>
+            <field name="model">silver.olt.sync.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Sincronizar Cambios con ONUs">
+                    <sheet>
+                        <group>
+                            <field name="olt_id"/>
+                            <field name="contract_count"/>
+                        </group>
+                        <group string="Cambios a Aplicar">
+                            <p class="oe_grey">
+                                Se aplicarán los siguientes nuevos valores de la OLT a todos los contratos asociados.
+                                Solo se muestran los campos con nuevos valores detectados.
+                            </p>
+                            <field name="new_profile_dba" invisible="not new_profile_dba"/>
+                            <field name="new_tcont" invisible="not new_tcont"/>
+                            <field name="new_gemport" invisible="not new_gemport"/>
+                            <field name="new_service_port" invisible="not new_service_port"/>
+                        </group>
+                        <group>
+                             <p class="alert alert-warning" role="alert">
+                                <strong>¡Atención!</strong> Esta acción enviará comandos de reconfiguración a
+                                <field name="contract_count" class="oe_inline"/> ONUs activas.
+                                ¿Está seguro de que desea continuar?
+                            </p>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_apply_changes" string="Aplicar Cambios" type="object" class="btn-primary"/>
+                        <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

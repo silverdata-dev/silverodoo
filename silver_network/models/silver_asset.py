@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class SilverAsset(models.Model):
@@ -31,6 +31,9 @@ class SilverAsset(models.Model):
     silver_address_id = fields.Many2one('silver.address', string='Dirección')
 
     zone_id = fields.Many2one('silver.zone', string='Zona', related='silver_address_id.zone_id')
+
+
+
     #parent_id = fields.Many2one('silver.asset', string='Parent')
     #root_id = fields.Many2one('silver.asset', string='Root')
 
@@ -42,6 +45,17 @@ class SilverAsset(models.Model):
     #place = fields.Char(string='Edificio/Zona')
     gps_lat = fields.Float(string="Latitud", digits=(16, 7), readonly=False)
     gps_lon = fields.Float(string="Longitud", digits=(16, 7), readonly=False)
+
+    latitude = fields.Float(
+        string="Latitud Final",
+        compute='_compute_final_coords',
+        store=True  # ¡Clave! Fuerza el cálculo y guarda en DB
+    )
+    longitude = fields.Float(
+        string="Longitud Final",
+        compute='_compute_final_coords',
+        store=True  # ¡Clave! Fuerza el cálculo y guarda en DB
+    )
 
     n = fields.Char(string='Número')
     nn = fields.Char(string='Correlativo')
@@ -73,3 +87,16 @@ class SilverAsset(models.Model):
 
     def _get_default_country(self):
         return self.env['res.country'].search([('code', '=', 'VE')], limit=1)
+
+    @api.depends('silver_address_id.latitude', 'silver_address_id.longitude',
+                 'gps_lon', 'gps_lat')
+    def _compute_final_coords(self):
+        for record in self:
+            # Si tiene address_id y ese address tiene coordenadas...
+            if record.silver_address_id and record.silver_address_id.latitude and record.silver_address_id.longitude:
+                record.latitude = record.silver_address_id.latitude
+                record.longitude = record.silver_address_id.longitude
+            else:
+                # Si no tiene address_id, usa las coordenadas propias
+                record.latitude = record.gps_lat
+                record.longitude = record.gps_lon

@@ -49,11 +49,12 @@ class IspContract(models.Model):
     splitter_id = fields.Many2one('silver.splitter', string="Splitter")
     olt_id = fields.Many2one('silver.olt', string="OLT")
     olt_port_id = fields.Many2one('silver.olt.card.port', string="Puerto OLT")
+    onu_pon_id = fields.Integer(string="ID de ONU en PON")
     box_id = fields.Many2one('silver.box', string="Caja NAP")
     #port_nap = fields.Char(string="Puerto en CTO")
     onu_id = fields.Many2one('silver.netdev', string="ONU/CPE")
-    serial_onu = fields.Char(string="Serial ONU")
-    model_onu = fields.Char(string="Modelo ONU")
+#    serial_onu = fields.Char(string="Serial ONU", related="serial_number")
+#    model_onu = fields.Char(string="Modelo ONU", related="serial_number"))
     is_bridge = fields.Boolean(string="ONU en modo Bridge")
     ip_address = fields.Many2one('silver.ip.address', string="Dirección IP Asignada", domain="[('status', '=', 'available')]")
     pppoe_user = fields.Char(string="Usuario PPPoE")
@@ -65,6 +66,7 @@ class IspContract(models.Model):
     date_renovation = fields.Date(string="Fecha de Renovación", readonly=True)
     sssid = fields.Char(string="SSID (Nombre WiFi)")
     password = fields.Char(string="Contraseña WiFi")
+    wifi_line_ids = fields.One2many('silver.contract.wifi.line', 'contract_id', string="Redes WiFi")
     custom_channel_id = fields.Many2one('silver.wifi.channel.line', string="Canal WiFi")
     contract_mode_wan_ids = fields.One2many('silver.contract.wan.mode', 'contract_id', string="Configuración WAN")
     new_ip_address_id = fields.Many2one('silver.ip.pool.line', string="IP de Pool")
@@ -76,6 +78,33 @@ class IspContract(models.Model):
         ('offline', 'Offline'),
         ('los', 'LOS'),
     ], string="Estado OLT", default='unknown', readonly=True, copy=False)
+
+    @api.model
+    def create(self, vals):
+        """
+        Sobrescritura para generar las redes WiFi por defecto en la creación del contrato.
+        """
+        # Comprobar si se está creando un contrato con un cliente y sin líneas WiFi predefinidas
+        if vals.get('partner_id') and not vals.get('wifi_line_ids'):
+            partner = self.env['res.partner'].browse(vals['partner_id'])
+            if partner.vat:
+                # Generar las líneas WiFi por defecto
+                default_lines = [
+                    (0, 0, {
+                        'ssid_index': 1,
+                        'name': 'SILVERDATA',
+                        'password': partner.vat,
+                    }),
+                    (0, 0, {
+                        'ssid_index': 5,
+                        'name': 'SILVERDATA-5G',
+                        'password': partner.vat,
+                    }),
+                ]
+                # Añadirlas al diccionario de valores de creación
+                vals['wifi_line_ids'] = default_lines
+        
+        return super(IspContract, self).create(vals)
 
     #  serial_onu = fields.Many2one('stock.production.lot', string="Serial ONU")
     pppoe = fields.Char(string="PPPoe")
@@ -91,143 +120,167 @@ class IspContract(models.Model):
         string='Equipo (Serie/Lote)',
         related='netdev_id.stock_lot_id',
         readonly=False,
-        store=True,
+        store=False,
     )
-    brand_name = fields.Char(string='Marca', related='stock_lot_id.product_id.product_brand_id.name', readonly=True, store=True)
-    model_name = fields.Char(string='Modelo', related='stock_lot_id.product_id.model', readonly=True, store=True)
-    software_version = fields.Char(string='Versión de Software', related='stock_lot_id.software_version', readonly=True, store=True)
+    brand_name = fields.Char(string='Marca ONU', related='stock_lot_id.product_id.product_brand_id.name', readonly=True, store=False)
+    model_name = fields.Char(string='Modelo ONU', related='stock_lot_id.product_id.model', readonly=True, store=False)
+    software_version = fields.Char(string='Versión de Software ONU', related='stock_lot_id.software_version', readonly=True, store=False)
 
-    firmware_version = fields.Char(string='Firmware Version', related='stock_lot_id.firmware_version', readonly=True, store=True)
-    serial_number = fields.Char(string='Serial Number', related='stock_lot_id.serial_number', readonly=True, store=True)
+    firmware_version = fields.Char(string='Firmware Version ONU', related='stock_lot_id.firmware_version', readonly=True, store=False)
+    serial_number = fields.Char(string='Serial ONU', related='stock_lot_id.serial_number', readonly=True, store=False)
 
 
-    def action_activate_service(self):
-        for contract in self:
-            if not contract.line_ids:
-                raise UserError(_("El contrato no tiene líneas de servicio (planes) definidos."))
+    # --- Campos de Estado de Aprovisionamiento ---
+    wan_config_successful = fields.Boolean(string="Configuración WAN Exitosa", default=False, readonly=True, copy=False)
+    wifi_config_successful = fields.Boolean(string="Configuración WiFi Exitosa", default=False, readonly=True, copy=False)
 
-            # --- Lógica de Provisión para PPPoE en Mikrotik ---
-            if contract.pppoe_user and contract.core_id:
-                api = contract.core_id._get_api_connection()
-                if not api:
-                    raise UserError(_("No se pudo conectar al Core Router Mikrotik."))
-                try:
-                    plan_name = contract.line_ids[0].product_id.name
-                    secrets_path = api.path('/ppp/secret')
-                    
-                    # Verificar si el usuario ya existe
-                    existing = secrets_path.get(name=contract.pppoe_user)
-                    if existing:
-                        # Si existe, lo actualizamos y habilitamos
-                        secrets_path.set(
-                            id=existing[0]['.id'],
-                            password=contract.pppoe_password,
-                            service='pppoe',
-                            profile=plan_name,
-                            comment=f"Contrato: {contract.name}",
-                            disabled='no'
-                        )
-                    else:
-                        # Si no existe, lo creamos
-                        secrets_path.add(
-                            name=contract.pppoe_user,
-                            password=contract.pppoe_password,
-                            service='pppoe',
-                            profile=plan_name,
-                            comment=f"Contrato: {contract.name}"
-                        )
-                except Exception as e:
-                    raise UserError(_("Fallo al crear/actualizar el usuario PPPoE en el Core: %s") % e)
-                finally:
-                    api.close()
-
-            # --- Lógica de Provisión para OLT (Fibra Óptica) ---
-            elif contract.link_type == 'fiber':
-                # LÓGICA OLT: Esta sección requiere una integración específica con la marca de tu OLT (Huawei, ZTE, FiberHome, etc.)
-                # 1. Conectar a la OLT (self.olt_id) a través de su API (Telnet, SSH, SNMP, o una API REST si es moderna).
-                # 2. Autenticarse con las credenciales guardadas en el modelo de la OLT.
-                # 3. Ejecutar el comando para registrar y autorizar la ONU en el puerto especificado.
-                #    Ejemplo conceptual para una OLT Huawei (los comandos varían mucho):
-                #    ont add <puerto_olt> <serial_onu> <tipo_onu>
-                #    service-port <vlan> <puerto_olt> <serial_onu> inbound <perfil_trafico> outbound <perfil_trafico>
-                # Se recomienda crear un método en el modelo 'silver.olt' que encapsule esta lógica.
-                # Ejemplo: contract.olt_id.provision_service_on_port(...)
-                pass
-
-            # Actualización de Estado
-            contract.write({
+    def action_provision_base(self):
+        """Acción para ejecutar el aprovisionamiento base y activar el contrato."""
+        self.ensure_one()
+        if self.link_type == 'fiber' and self.olt_id:
+            self.olt_id.provision_onu_base(self)
+            self.write({
                 'state_service': 'active',
                 'date_active': fields.Date.context_today(self)
             })
         return True
 
-    def action_cutoff_service(self):
-        for contract in self:
-            if contract.state_service != 'active':
-                raise UserError(_("El servicio no está activo, por lo tanto no se puede cortar."))
-
-            # --- Lógica de Corte para PPPoE en Mikrotik ---
-            if contract.pppoe_user and contract.core_id:
-                api = contract.core_id._get_api_connection()
-                if not api:
-                    raise UserError(_("No se pudo conectar al Core Router Mikrotik."))
-                try:
-                    secrets_path = api.path('/ppp/secret')
-                    existing = secrets_path.get(name=contract.pppoe_user)
-                    if existing:
-                        secrets_path.set(id=existing[0]['.id'], disabled='yes')
-                except Exception as e:
-                    raise UserError(_("Fallo al deshabilitar el usuario PPPoE en el Core: %s") % e)
-                finally:
-                    api.close()
-
-            # --- Lógica de Corte para OLT (Fibra Óptica) ---
-            elif contract.link_type == 'fiber':
-                # LÓGICA OLT: Conectar a la OLT y ejecutar el comando para desactivar o eliminar la ONU.
-                # Ejemplo conceptual: ont delete <puerto_olt> <serial_onu>
-                pass
-
-            # Actualización de Estado
-            contract.write({
-                'state_service': 'disabled',
-                'date_cut': fields.Date.context_today(self)
-            })
+    def action_provision_wan(self):
+        """Acción para ejecutar la configuración WAN avanzada."""
+        self.ensure_one()
+        if self.link_type == 'fiber' and self.olt_id:
+            self.olt_id.provision_onu_wan(self)
+            self.write({'wan_config_successful': True})
         return True
+
+    def action_provision_wifi(self):
+        """Acción para ejecutar la configuración WiFi."""
+        self.ensure_one()
+        if self.link_type == 'fiber' and self.olt_id:
+            self.olt_id.provision_onu_wifi(self)
+            self.write({'wifi_config_successful': True})
+        return True
+
+    def write(self, vals):
+        # Si se modifican las líneas de WiFi, reseteamos el flag de éxito.
+        if 'wifi_line_ids' in vals:
+            vals['wifi_config_successful'] = False
+            
+        # Primero, ejecutar el write original para guardar los cambios en la BD
+        res = super(IspContract, self).write(vals)
+
+        # Campos que podemos actualizar en caliente en la OLT
+        updatable_fields = ['pppoe_user', 'pppoe_password', 'sssid', 'password']
+        
+        # Si alguno de los campos modificados está en nuestra lista, procedemos
+        if any(field in vals for field in updatable_fields):
+            for contract in self.filtered(lambda c: c.state_service == 'active' and c.link_type == 'fiber' and c.olt_id):
+                commands = []
+                
+                # --- Construcción de Comandos Específicos ---
+                # El contrato ya tiene los nuevos valores gracias al super() de arriba
+                
+                # Actualizar WAN PPPoE si cambiaron las credenciales
+                if 'pppoe_user' in vals or 'pppoe_password' in vals:
+                    if contract.pppoe_user and contract.pppoe_password and not contract.is_bridge:
+                        commands.append(f"onu {contract.onu_pon_id} wan ip-mode pppoe vlan {contract.vlan_id} username {contract.pppoe_user} password {contract.pppoe_password}")
+
+                # Actualizar WiFi si cambió el SSID o la contraseña
+                if 'sssid' in vals and contract.sssid and not contract.is_bridge:
+                    commands.append(f"onu {contract.onu_pon_id} wifi ssid {contract.sssid}")
+
+ # onu 32 pri wifi_ssid 5 name SILVERDATA hide disable auth_mode wpapsk/wpa2psk encrypt_type tkipaes shared_key 25867855##13592075 rekey_interval 0
+
+                if 'password' in vals and contract.password and not contract.is_bridge:
+                    commands.append(f"onu {contract.onu_pon_id} wifi key {contract.password}")
+
+                if commands:
+                    # Si hay comandos que ejecutar, los envolvemos en la secuencia de configuración
+                    full_sequence = [
+                        "configure terminal",
+                        f"interface gpon {contract.olt_port_id.name}",
+                    ] + commands + [
+                        "exit",
+                        "exit",
+                        "write",
+                    ]
+
+                    # --- Ejecución de Comandos ---
+                    netdev = contract.olt_id.netdev_id
+                    if not netdev:
+                        raise UserError(f"La OLT {contract.olt_id.name} no tiene un dispositivo de red configurado.")
+                    
+                    try:
+                        with netdev._get_olt_connection() as conn:
+                            for command in full_sequence:
+                                success, output = conn.execute_command(command)
+                                if not success:
+                                    # Si un comando falla, lo notificamos pero no detenemos el guardado
+                                    # El cambio ya está en Odoo, pero falló en la OLT
+                                    self.env.user.notify_warning(
+                                        message=f"El cambio se guardó en Odoo, pero falló la actualización en la OLT para el contrato {contract.name}.\nComando: {command}\nError: {output}"
+                                    )
+                                    break 
+                    except Exception as e:
+                        self.env.user.notify_warning(
+                            message=f"No se pudo conectar a la OLT para actualizar el contrato {contract.name}.\nError: {e}"
+                        )
+        return res
+
+    def action_activate_service(self):
+        self.ensure_one()
+        if self.link_type == 'fiber' and self.olt_id:
+            # Llamada directa al método de aprovisionamiento de la OLT
+            self.olt_id.action_provision_onu(self)
+            
+            # Si el método anterior no lanza una excepción, la provisión fue exitosa.
+            self.write({
+                'state_service': 'active',
+                'date_active': fields.Date.context_today(self)
+            })
+            
+            # Devolver una notificación de éxito al usuario
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Éxito'),
+                    'message': _('El servicio ha sido aprovisionado y activado correctamente.'),
+                    'type': 'success',
+                }
+            }
+        # Fallback to original PPPoE logic if not fiber
+        super(IspContract, self).action_activate_service()
+
+    def action_cutoff_service(self):
+        self.ensure_one()
+        if self.link_type == 'fiber' and self.olt_id:
+            wizard = self.env['silver.provisioning.wizard'].create({'contract_id': self.id})
+            return {
+                'name': _('Cortar Servicio OLT'),
+                'type': 'ir.actions.act_window',
+                'res_model': 'silver.provisioning.wizard',
+                'view_mode': 'form',
+                'res_id': wizard.id,
+                'target': 'new',
+                'context': {'action': 'cutoff', 'hide_serial': True}
+            }
+        super(IspContract, self).action_cutoff_service()
 
     def action_reconnection_service_button(self):
-        for contract in self:
-            if contract.state_service not in ['disabled', 'suspended']:
-                raise UserError(_("El servicio no está cortado o suspendido, por lo tanto no se puede reconectar."))
-
-            # --- Lógica de Reconexión para PPPoE en Mikrotik ---
-            if contract.pppoe_user and contract.core_id:
-                api = contract.core_id._get_api_connection()
-                if not api:
-                    raise UserError(_("No se pudo conectar al Core Router Mikrotik."))
-                try:
-                    secrets_path = api.path('/ppp/secret')
-                    existing = secrets_path.get(name=contract.pppoe_user)
-                    if existing:
-                        # Al reconectar, nos aseguramos que tenga el plan correcto y esté habilitado
-                        plan_name = contract.line_ids[0].product_id.name
-                        secrets_path.set(id=existing[0]['.id'], disabled='no', profile=plan_name)
-                except Exception as e:
-                    raise UserError(_("Fallo al habilitar el usuario PPPoE en el Core: %s") % e)
-                finally:
-                    api.close()
-
-            # --- Lógica de Reconexión para OLT (Fibra Óptica) ---
-            elif contract.link_type == 'fiber':
-                # LÓGICA OLT: Es similar a la activación. Conectar a la OLT y volver a autorizar la ONU.
-                # Ejemplo conceptual: ont add ... (o un comando específico de 'ont activate')
-                pass
-
-            # Actualización de Estado
-            contract.write({
-                'state_service': 'active',
-                'date_reconnection': fields.Date.context_today(self)
-            })
-        return True
+        self.ensure_one()
+        if self.link_type == 'fiber' and self.olt_id:
+            wizard = self.env['silver.provisioning.wizard'].create({'contract_id': self.id})
+            return {
+                'name': _('Reconectar Servicio OLT'),
+                'type': 'ir.actions.act_window',
+                'res_model': 'silver.provisioning.wizard',
+                'view_mode': 'form',
+                'res_id': wizard.id,
+                'target': 'new',
+                'context': {'action': 'reconnection', 'hide_serial': True}
+            }
+        super(IspContract, self).action_reconnection_service_button()
 
     def action_suspend_service(self):
         for contract in self:
@@ -379,8 +432,8 @@ class IspContract(models.Model):
             closest_node = None
             min_dist_node = float('inf')
             for node in nodes:
-                if node.latitude and node.longitude:
-                    dist = haversine(lat, lon, node.latitude, node.longitude)
+                if node.asset_id.latitude and node.asset_id.longitude:
+                    dist = haversine(lat, lon, node.asset_id.latitude, node.asset_id.longitude)
                     if dist < min_dist_node:
                         min_dist_node = dist
                         closest_node = node
@@ -391,8 +444,8 @@ class IspContract(models.Model):
             closest_box = None
             min_dist_box = float('inf')
             for box in boxes:
-                if box.latitude and box.longitude:
-                    dist = haversine(lat, lon, box.latitude, box.longitude)
+                if box.asset_id.latitude and box.asset_id.longitude:
+                    dist = haversine(lat, lon, box.asset_id.latitude, box.asset_id.longitude)
                     if dist < min_dist_box:
                         min_dist_box = dist
                         closest_box = box

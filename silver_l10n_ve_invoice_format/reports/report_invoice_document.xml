@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- 
+            Heredamos la plantilla principal de la factura de la localización.
+            El xpath busca un elemento específico dentro de la plantilla original
+            para añadir o modificar contenido.
+        -->
+        <template id="report_invoice_document_silver_inherit" inherit_id="l10n_ve_invoice.report_invoice_document_free_form">
+            
+            <!-- Ejemplo: Añadir un texto después del número de factura -->
+            <xpath expr="//div[@class='page']//h2" position="after">
+                <div>
+                    <p><strong>Este es un texto personalizado añadido desde el módulo Silver.</strong></p>
+                    <!-- Aquí puedes empezar a reorganizar los campos, cambiar estilos, etc. -->
+                </div>
+            </xpath>
+
+            <!-- 
+                Para encontrar los `expr` correctos, debes mirar el archivo original:
+                /odoo-venezuela/l10n_ve_invoice/report/report_invoice_free_form.xml
+                y usar la estructura de ese archivo para guiar tus xpath.
+            -->
+
+        </template>
+    </data>
+</odoo>

@@ -2,7 +2,7 @@
 <odoo>
     <data>
 
-        <menuitem id="menu_silver_network_root" name="Infraestructura" sequence="10"/>
+        <menuitem id="menu_silver_network_root" name="Infraestructura" sequence="10" web_icon="silver_network,static/description/icon.png"/>
 
 
                 <menuitem id="menu_isp_infrastructure" name="Infraestructura"   parent="menu_silver_network_root" sequence="10"/>

@@ -11,7 +11,7 @@
                         string="Realizar Pago"
                         type="object"
                         class="oe_highlight"
-                        attrs="{'invisible': [('payment_state', '=', 'paid')]}"/>
+                        invisible="payment_state=='paid'"/>
                 <field name="payment_state" widget="statusbar"
                        statusbar_visible="unpaid,in_progress,paid"/>
             </header>

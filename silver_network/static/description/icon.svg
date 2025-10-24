@@ -1,0 +1,13 @@
+<svg width="100px" height="100px" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <g stroke="#4A90E2" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Rack Frame -->
+        <rect x="20" y="15" width="60" height="70" rx="5"></rect>
+        <!-- Servers -->
+        <line x1="20" y1="30" x2="80" y2="30"></line>
+        <line x1="20" y1="45" x2="80" y2="45"></line>
+        <line x1="20" y1="60" x2="80" y2="60"></line>
+        <!-- Indicator Lights -->
+        <circle cx="30" cy="75" r="2" fill="#4A90E2" stroke="none"></circle>
+        <circle cx="38" cy="75" r="2" fill="#4A90E2" stroke="none"></circle>
+    </g>
+</svg>
