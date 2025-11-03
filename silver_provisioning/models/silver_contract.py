@@ -405,10 +405,14 @@ class IspContract(models.Model):
             self.olt_id.provision_onu_base(self)
             
             # 2. Si la base fue exitosa, activar el servicio en Odoo.
-            self.write({
+            d = {
+
                 'state_service': 'active',
                 'date_active': fields.Date.context_today(self)
-            })
+            }
+            if (self.state =='draft'):
+                d['state'] = 'open'
+            self.write(d)
 
             # 3. Intentar la configuración WAN. Si falla, solo notificar.
         #    try:

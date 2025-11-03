@@ -247,6 +247,71 @@ class SilverOlt(models.Model):
             # Si todo fue exitoso, reseteamos la bandera de cambios pendientes.
             self.sudo().write({'pending_changes': False})
 
+    def _check_and_create_onu_profile(self, conn, profile_name, output_log):
+        """
+        Verifica si un perfil de ONU existe en la OLT y lo crea si no.
+        """
+        command = "show profile onu"
+        print(("a"))
+        success, clean_response, full_output = conn.execute_command(command)
+        print(("b"))
+        output_log += f"\n$ {command}\n{full_output}\n"
+        if not success:
+            # No lanzamos un error, solo advertimos, ya que el aprovisionamiento podría continuar
+            # si el perfil se asume que existe. El siguiente comando fallará de todos modos.
+            print(("noprofile"))
+            output_log += f"ADVERTENCIA: No se pudo ejecutar 'show profile onu': {clean_response}\n"
+            return output_log
+
+
+
+        # Parsear la salida para encontrar perfiles existentes
+        # Usamos una expresión regular más robusta para manejar diferentes espaciados
+        profiles = re.findall(r"^\s*Name\s*:\s*(\S+)", full_output, re.MULTILINE)
+
+        print(("profile", profiles))
+
+        if profile_name in profiles:
+            output_log += f"INFO: El perfil '{profile_name}' ya existe en la OLT.\n"
+            return output_log
+
+        # Si el perfil no existe, encontrar el ID máximo para crear uno nuevo
+        output_log += f"INFO: El perfil '{profile_name}' no fue encontrado. Intentando crearlo...\n"
+        ids = [int(i) for i in re.findall(r"^\s*Id\s*:\s*(\d+)", full_output, re.MULTILINE)]
+        new_profile_id = max(ids) + 1 if ids else 1
+
+        create_command = f"profile onu id {new_profile_id} name {profile_name}"
+        success, clean_response, full_output = conn.execute_command(create_command)
+        print(("profonu ", full_output))
+        output_log += f"$ {create_command}\n{full_output}\n"
+        if not success:
+            # Si la creación del perfil falla, es un error crítico.
+            raise UserError(f"Error al crear el perfil de ONU '{profile_name}':\n{clean_response}")
+
+        output_log += f"ÉXITO: Perfil '{profile_name}' creado con ID {new_profile_id}.\n"
+
+        # Si la creación fue exitosa, el prompt cambiará. Hacemos commit y salimos.
+        # El prompt se ve como: gpon-olt-4-Silverdata(profile-onu:32)#
+        #if "(profile-onu:" in full_output:
+        if "success" in full_output:
+            output_log += "INFO: Saliendo del modo de configuración de perfil.\n"
+            
+            # 1. Commit
+            cmd_commit = "commit"
+            success, clean_response, full_output = conn.execute_command(cmd_commit)
+            output_log += f"$ {cmd_commit}\n{full_output}\n"
+            if not success:
+                raise UserError(f"Error al ejecutar 'commit' después de crear el perfil:\n{clean_response}")
+
+            # 2. Exit
+            cmd_exit = "exit"
+            success, clean_response, full_output = conn.execute_command(cmd_exit)
+            output_log += f"$ {cmd_exit}\n{full_output}\n"
+            if not success:
+                raise UserError(f"Error al ejecutar 'exit' después de crear el perfil:\n{clean_response}")
+
+        return output_log
+
     def _provision_onu_base(self, contract, conn, output_log):
         """Ejecuta los comandos base de aprovisionamiento de la ONU. Asume que ya se está en el modo de configuración de la interfaz GPON."""
         # --- Recopilación y Validación de Parámetros ---
@@ -390,12 +455,32 @@ class SilverOlt(models.Model):
 
             # --- Secuencia de Comandos ---
             pon_port_val = f"{contract.olt_card_id.num_card or contract.olt_port_id.olt_card_id.num_card}/{contract.olt_port_id.num_port}"
-            initial_commands = ["configure terminal", f"interface gpon {pon_port_val}"]
-            for command in initial_commands:
-                success, response, output = conn.execute_command(command)
-                output_log += f"$ {command}\n{output}\n"
-                if not success:
-                    raise UserError(f"Error en comando inicial '{command}':\n{output}")
+            
+            # 1. Entrar en modo de configuración
+            cmd_config_term = "configure terminal"
+            success, response, output = conn.execute_command(cmd_config_term)
+            output_log += f"$ {cmd_config_term}\n{output}\n"
+            if not success:
+                raise UserError(f"Error en comando inicial '{cmd_config_term}':\n{output}")
+
+            # 2. Paso 'prebase': Verificar y crear perfil de ONU si es necesario
+            is_base_provisioning = (isinstance(steps_or_commands, list) and
+                                    'base' in steps_or_commands and
+                                    steps_or_commands and steps_or_commands[0] in ['base', 'wifi', 'wan'])
+
+            if is_base_provisioning:
+                profile_name = contract.model_name
+                if profile_name:
+                    output_log = self._check_and_create_onu_profile(conn, profile_name, output_log)
+                else:
+                    output_log += "\nADVERTENCIA: No se pudo verificar/crear el perfil de la ONU porque el contrato no tiene un modelo (perfil) asignado.\n"
+
+            # 3. Entrar en la interfaz GPON
+            cmd_interface = f"interface gpon {pon_port_val}"
+            success, response, output = conn.execute_command(cmd_interface)
+            output_log += f"$ {cmd_interface}\n{output}\n"
+            if not success:
+                raise UserError(f"Error en comando inicial '{cmd_interface}':\n{output}")
 
             # --- Pasos de Aprovisionamiento o Comandos Directos ---
             if isinstance(steps_or_commands, list) and all(isinstance(i, str) for i in steps_or_commands):

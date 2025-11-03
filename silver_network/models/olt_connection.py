@@ -19,7 +19,7 @@ class OLTConnection:
         'login': re.compile(r"Login: ?$"),
         'password': re.compile(r"Password: ?$"),
         'user_mode': re.compile(r"([\w.-]+)> ?$"),          # Ej: OLT>
-        'config_mode': re.compile(r"([\w.-]+)\(config[^\)]*\)# ?$"), # Ej: OLT(config-if-gpon-0/1)#
+        'config_mode': re.compile(r"([\w.-]+)\([^\)]+\)# ?$"), # Ej: OLT(config-if-gpon-0/1)# or OLT(profile-onu:10)#
         'enable_mode': re.compile(r"([\w.-]+)# ?$"),         # Ej: OLT#
     }
     # ---------------------------------------------------------
@@ -166,7 +166,7 @@ class OLTConnection:
 
             # La logica de exito/fallo ahora se basara en si la salida contiene indicadores de error o exito.
             error_indicators = ['error', 'fail', 'invalid', 'incomplete command']
-            success_indicators = ['ok.', 'configuration saved', 'OltIndex']  # Indicadores de exito conocidos.
+            success_indicators = ['ok.', 'configuration saved', 'oltindex', '##onu profile##', 'success']  # Indicadores de exito conocidos.
 
             # La salida se considera "limpia" si no contiene el eco del comando.
             lines = output_before_prompt.replace('\r\n', '\n').split('\n')
@@ -175,21 +175,25 @@ class OLTConnection:
             else:
                 clean_response = "\n".join(lines).strip()
 
-            print(("outputcommand", output_before_prompt, prompt, command, clean_response))
+           # print(("outputcommand", output_before_prompt, prompt, command, clean_response))
 
+
+            # 3. Comprobar si la respuesta contiene un indicador de exito explicito.
+            if any(indicator in clean_response.lower() for indicator in success_indicators):
+                print("si")
+                return True, out, clean_response
 
             # 1. Comprobar si la respuesta limpia contiene algun indicador de error.
             if any(indicator in clean_response.lower() for indicator in error_indicators):
+                print("no")
                 return False, out, clean_response
 
             # 2. Si no hay errores, comprobar si la respuesta esta vacia (exito implicito).
             if not clean_response:
+                print("nsi")
                 return True, out, clean_response
 
-            # 3. Comprobar si la respuesta contiene un indicador de exito explicito.
-            if any(indicator in clean_response.lower() for indicator in success_indicators):
-                return True, out, clean_response
-
+            print("sno")
             # 4. Si hay respuesta, pero no es un indicador de exito conocido, se considera un fallo.
             return False, out, clean_response
 
