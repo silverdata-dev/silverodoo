@@ -59,6 +59,8 @@ class SilverNetdev(models.Model):
     username = fields.Char(string='Usuario')
     password = fields.Char(string='Password')
     type_connection = fields.Selection([("ssh","SSH"), ("telnet", "Telnet")], string='Tipo de Conexión')
+    port_telnet = fields.Char(string='Puerto telnet', default=23)
+    port_ssh = fields.Char(string='Puerto ssh', default=22)
 
     #api_hostname = fields.Char(string='Hostname/IP', required=True)
     api_port = fields.Integer(string='API Port', default=21000, required=True)
@@ -122,10 +124,10 @@ class SilverNetdev(models.Model):
         self.ensure_one()
         return OLTConnection(
             host=self.ip,
-            port=self.port,
+            port=(self.port_ssh if self.type_connection=='ssh'  else self.port_telnet),
             username=self.username,
             password=self.password,
-            connection_type=self.type_connection
+            connection_type=self.type_connection,
         )
 
     def get_real_model_name_by_id(self):

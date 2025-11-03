@@ -24,10 +24,10 @@ class OLTConnection:
     }
     # ---------------------------------------------------------
 
-    def __init__(self, host, username, password, port=22, connection_type='ssh'):
+    def __init__(self, host, username, password, port=None, connection_type='ssh'):
         self.host = host
        # self.port = int(port) if port else (23 if connection_type == 'telnet' else 22)
-        self.port =  (23 if connection_type == 'telnet' else 22)
+        self.port =  port or (23 if connection_type == 'telnet' else 22)
         self.username = username
         self.password = password
         self.connection_type = connection_type

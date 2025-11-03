@@ -31,6 +31,8 @@ class SilverOlt(models.Model):
     node_id = fields.Many2one('silver.node', string='Nodo')
     num_slot_olt = fields.Integer(string='Numero de Slots')
     num_ports1 = fields.Selection([
+        ('1', '1 Puerto'),
+        ('4', '4 Puertos'),
         ('8', '8 Puertos'),
         ('16', '16 Puertos'),
         ('32', '32 Puertos'),
@@ -39,24 +41,32 @@ class SilverOlt(models.Model):
 
         default="8")
     num_ports2 = fields.Selection([
+        ('1', '1 Puerto'),
+        ('4', '4 Puertos'),
         ('8', '8 Puertos'),
         ('16', '16 Puertos'),
         ('32', '32 Puertos'),
         ('64', '64 Puertos'),
     ], string='Slot 1', default="8")
     num_ports3 = fields.Selection([
+        ('1', '1 Puerto'),
+        ('4', '4 Puertos'),
         ('8', '8 Puertos'),
         ('16', '16 Puertos'),
         ('32', '32 Puertos'),
         ('64', '64 Puertos'),
     ], string='Slot 2', default="8")
     num_ports4 = fields.Selection([
+        ('1', '1 Puerto'),
+        ('4', '4 Puertos'),
         ('8', '8 Puertos'),
         ('16', '16 Puertos'),
         ('32', '32 Puertos'),
         ('64', '64 Puertos'),
     ], string='Slot 3', default="8")
     num_ports5 = fields.Selection([
+        ('1', '1 Puerto'),
+        ('4', '4 Puertos'),
         ('8', '8 Puertos'),
         ('16', '16 Puertos'),
         ('32', '32 Puertos'),
@@ -71,8 +81,8 @@ class SilverOlt(models.Model):
 
     g_name_service = fields.Char(string='Name Service')
 
-    tcont = fields.Char(string='Tcont')
-    gemport = fields.Char(string='Gemport', required=True)
+    tcont = fields.Char(string='Tcont', default=1)
+    gemport = fields.Char(string='Gemport', default=1, required=True)
 
     is_line_nap = fields.Boolean(string='Gestion Vlan NAP')
     is_gestion_pppoe = fields.Boolean(string='Gestión WAN ONU')
@@ -246,13 +256,41 @@ class SilverOlt(models.Model):
             # Consider raising a UserError or returning a warning to the UI
             raise UserError("El número de slots no puede ser mayor a 5. Se ha ajustado automáticamente a 5.")
 
-        num_ports_per_slot = [
+        num_ports_per_slot_config = [
             int(self.num_ports1 or 0), int(self.num_ports2 or 0),
             int(self.num_ports3 or 0), int(self.num_ports4 or 0),
             int(self.num_ports5 or 0)
         ]
 
-        # --- Creación de Tarjetas (si no existen) ---
+        # --- Lógica de Borrado ---
+        # 1. Borrar puertos sobrantes que no tengan contratos
+        all_cards = OltCard.search([('olt_id', '=', self.id)])
+        for i, card in enumerate(all_cards):
+
+            limit_ports = num_ports_per_slot_config[i]
+            ports_to_check = OltPort.search([
+                ('olt_card_id', '=', card.id),
+                ('num_port', '>=', limit_ports)
+            ])
+            # Filtramos para quedarnos solo con los que no tienen contratos
+            ports_to_delete = ports_to_check.filtered(lambda p: not p.contract_ids)
+            if ports_to_delete:
+                _logger.info(f"Borrando {len(ports_to_delete)} puertos sobrantes de la tarjeta {card.name}")
+                ports_to_delete.unlink()
+
+        # 2. Borrar tarjetas sobrantes que no tengan puertos
+        cards_to_check = OltCard.search([
+            ('olt_id', '=', self.id),
+            ('num_card', '>=', self.num_slot_olt)
+        ])
+        # Filtramos para quedarnos solo con las que no tienen puertos
+        cards_to_delete = cards_to_check.filtered(lambda c: not c.port_ids)
+        if cards_to_delete:
+            _logger.info(f"Borrando {len(cards_to_delete)} tarjetas sobrantes de la OLT {self.name}")
+            cards_to_delete.unlink()
+
+
+        # --- Lógica de Creación (existente) ---
         for i in range(self.num_slot_olt):
             # Buscar si la tarjeta ya existe
             card = OltCard.search([
@@ -269,7 +307,7 @@ class SilverOlt(models.Model):
                 })
 
             # --- Creación de Puertos (si no existen) ---
-            target_port_count = num_ports_per_slot[i]
+            target_port_count = num_ports_per_slot_config[i]
             for j in range(target_port_count):
                 port_num = j + 1
                 # Buscar si el puerto ya existe en esta tarjeta
@@ -289,15 +327,19 @@ class SilverOlt(models.Model):
                     })
         
         # Opcional: Notificar al usuario que el proceso terminó
-        return {
+        reload_action = {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+        return [{
             'type': 'ir.actions.client',
             'tag': 'display_notification',
             'params': {
                 'title': _('Éxito'),
-                'message': _('Estructura de tarjetas y puertos generada/verificada correctamente.'),
+                'message': _('Estructura de tarjetas y puertos actualizada correctamente.'),
                 'type': 'success',
             }
-        }
+        }, reload_action]
 
 
     def _compute_hostname(self):

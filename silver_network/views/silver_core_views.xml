@@ -17,7 +17,7 @@
                     <!--field name="port"/>
                     <field name="username"/-->
                     <field name="state" widget="badge" decoration-danger="state == 'down'"
-                           decoration-success="state == 'active'"/>
+                           decoration-success="state in [ 'active', 'connected']"/>
                 </tree>
             </field>
         </record>
@@ -106,7 +106,7 @@
                                 <field name="port" />
                                   <field name="radius_id" required="1"/>
                                  <field name="state" widget="badge" decoration-danger="state == 'down'"
-                           decoration-success="state == 'active'"/>
+                           decoration-success="state in [ 'active', 'connected']"/>
                                 <field name="hostname_core" invisible="state!='active'"/>
 
 
@@ -119,7 +119,7 @@
 
                                 <!--field name="type_connection" invisible="brand_description != 'hua'"/-->
                                 <!--field name="kex_algorithms_ids" invisible="brand_description != 'hua'" widget="many2many_tags"/-->
-
+<br/>
                                 <field name="username" invisible="askuser==False"/>
                                 <field name="password" password="True" invisible="askuser==False"/>
 

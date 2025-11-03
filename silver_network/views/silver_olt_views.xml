@@ -71,7 +71,7 @@
                         </div>
                         <group name="olt">
                             <group>
-                                <field name="hostname_olt"/>
+                                <!--field name="hostname_olt"/-->
                                 <field name="core_ids" widget="many2many_tags" invisible="1"/>
                                 <field name="node_id"/>
                                 <field name="core_id" domain="[('node_id', '=', node_id)]"/>/>
@@ -96,9 +96,12 @@
                                 <field name="ip"/>
                                 <field name="port" invisible="1"/>
                                 <field name="type_connection"/>
+                                <field name="port_ssh" invisible="type_connection!='ssh'" />
+                                <field name="port_telnet" invisible="type_connection=='ssh'" />
                                 <field name="kex_algorithms_ids" widget="many2many_tags" invisible="1"/>
 
                                 <field name="is_multi_user_olt" widget="boolean_toggle" invisible="1"/>
+
                                 <field name="username" invisible="is_multi_user_olt"/>
                                 <field name="password" password="True"/>
                                 <!--button class="oe_inline oe_link " name="action_send_password"
@@ -237,7 +240,6 @@
                                         <field name="acquisition_mode"/>
                                     </group>
                                     <group>
-                                        <field name="vlan_id"/>
                                         <field name="mtu"/>
                                         <field name="is_enable_nat" widget="boolean_toggle"/>
                                         <field name="is_disabled_dhcp_pv4" widget="boolean_toggle"/>
