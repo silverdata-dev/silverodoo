@@ -1,3 +1,4 @@
 # -*- coding: utf-8 -*-
 
-from . import silver_olt_sync_wizard
+from . import provisioning_wizard
+from . import silver_ping_wizard

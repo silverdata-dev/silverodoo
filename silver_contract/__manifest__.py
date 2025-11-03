@@ -33,6 +33,11 @@
     'demo': [
         'demo/demo_data.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'silver_contract/static/src/css/custom_styles.css',
+        ],
+    },
     'installable': True,
     'application': True,
     'license': 'LGPL-3',

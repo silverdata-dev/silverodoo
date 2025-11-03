@@ -6,22 +6,22 @@
             <field name="name">Equipos OLT</field>
             <field name="res_model">silver.olt</field>
             <field name="view_mode">tree,form</field>
-             <field name="context">{'search_default_group_by_node_id': 1}</field>
+            <field name="context">{'search_default_group_by_node_id': 1}</field>
         </record>
 
-    <record id="view_olt_search" model="ir.ui.view">
-        <field name="name">silver.olt.search.view</field>
-        <field name="model">silver.olt</field>
-        <field name="arch" type="xml">
-            <search string="Equipos OLT">
-                <field name="name"/>
-                <field name="node_id" />
-                <group expand="1" string="Group By">
-                    <filter name="group_by_node_id" string="Nodo" domain="[]"  context="{'group_by':'node_id'}"/>
-                </group>
-            </search>
-        </field>
-    </record>
+        <record id="view_olt_search" model="ir.ui.view">
+            <field name="name">silver.olt.search.view</field>
+            <field name="model">silver.olt</field>
+            <field name="arch" type="xml">
+                <search string="Equipos OLT">
+                    <field name="name"/>
+                    <field name="node_id"/>
+                    <group expand="1" string="Group By">
+                        <filter name="group_by_node_id" string="Nodo" domain="[]" context="{'group_by':'node_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
 
 
         <record id="view_silver_olt_tree" model="ir.ui.view">
@@ -47,7 +47,7 @@
             <field name="arch" type="xml">
                 <form string="Equipo OLT ISP">
                     <header>
-                        <button name="create_olt_card" string="Crear Tarjeta OLT" type="object"/>
+                        <!--button name="create_olt_card" string="Crear Tarjeta OLT" type="object"/-->
                     </header>
                     <sheet string="Equipo OLT ISP">
                         <div class="oe_button_box" name="button_box">
@@ -72,79 +72,86 @@
                         <group name="olt">
                             <group>
                                 <field name="hostname_olt"/>
-                                <field name="core_ids" widget="many2many_tags" />
-                                <field name="bridge_core_id" invisible="1"/>
-                                <field name="is_vsol_marca" invisible="1"/>
-                                <field name="is_brand_zte" invisible="1"/>
-                                <field name="core_id"/>
+                                <field name="core_ids" widget="many2many_tags" invisible="1"/>
                                 <field name="node_id"/>
+                                <field name="core_id" domain="[('node_id', '=', node_id)]"/>/>
 
                                 <!--field name="brand_id"/-->
 
                                 <field name="num_slot_olt"/>
-                                <field name="num_ports1" invisible="num_slot_olt&lt;1"/>
-                                <field name="num_ports2" invisible="num_slot_olt&lt;2"/>
-                                <field name="num_ports3" invisible="num_slot_olt&lt;3"/>
-                                <field name="num_ports4" invisible="num_slot_olt&lt;4"/>
-                                <field name="num_ports5" invisible="num_slot_olt&lt;5"/>
+                                <field name="num_ports1" required="num_slot_olt&gt;0" invisible="num_slot_olt&lt;1"/>
+                                <field name="num_ports2" required="num_slot_olt&gt;1" invisible="num_slot_olt&lt;2"/>
+                                <field name="num_ports3" required="num_slot_olt&gt;2" invisible="num_slot_olt&lt;3"/>
+                                <field name="num_ports4" required="num_slot_olt&gt;3" invisible="num_slot_olt&lt;4"/>
+                                <field name="num_ports5" required="num_slot_olt&gt;4" invisible="num_slot_olt&lt;5"/>
 
 
-<button name="action_generar" string="Generar" type="object" /><br/>
+                                <button name="action_generar" string="Generar" type="object"/>
+                                <br/>
 
 
                             </group>
                             <group name="core_conexion" string="Datos Conexion">
 
                                 <field name="ip"/>
-                                <field name="port"/>
+                                <field name="port" invisible="1"/>
                                 <field name="type_connection"/>
-                                <field name="kex_algorithms_ids" widget="many2many_tags"/>
+                                <field name="kex_algorithms_ids" widget="many2many_tags" invisible="1"/>
 
-                                <field name="is_multi_user_olt" widget="boolean_toggle"/>
+                                <field name="is_multi_user_olt" widget="boolean_toggle" invisible="1"/>
                                 <field name="username" invisible="is_multi_user_olt"/>
                                 <field name="password" password="True"/>
                                 <!--button class="oe_inline oe_link " name="action_send_password"
                                         string=" →Enviar Contraseña" type="object"/-->
-                                <field name="secret_olt"/>
-                                  <button name="action_connect_olt" type="object" class="oe_stat_button" icon="fa-signal"
-                                    string="Probar Conexion"/>
+                                <!--field name="secret_olt"/-->
+                                <!--button name="action_connect_olt" type="object" class="oe_stat_button" icon="fa-signal"
+                                  string="Probar Conexion"/-->
 
-                        </group>
+
+                                <field name="state" widget="badge" decoration-danger="state == 'down'"
+                                       decoration-success="state == 'active'"/>
+                                <field name="hostname_olt" invisible="state!='active'"/>
+
+
+                                <button name="action_connect_olt" type="object" string="Probar Conexión"
+                                        class="oe_highlight"/>
+                                <br/>
+
+                            </group>
                         </group>
 
                         <notebook colspan="4">
 
                             <page string="Puertos">
-                                   <field name="port_ids" >
-                <tree string="Puertos OLT ISP" default_order="name desc">
-                    <field name="name"/>
-                    <field name="num_port"/>
-                    <field name="olt_card_n"/>
-                    <field name="type_access_net"/>
-                </tree>
-            </field>
+                                <field name="port_ids">
+                                    <tree string="Puertos OLT ISP" default_order="name desc">
+                                        <field name="name"/>
+                                        <field name="num_port"/>
+                                        <field name="olt_card_n"/>
+                                        <field name="type_access_net"/>
+                                    </tree>
+                                </field>
                             </page>
 
                             <page name="ip_addresses" string="Direcciones IP">
 
-            <field name="ip_address_pool_ids" nolabel="1"  widget="one2many_list"  >
-                <tree multi_selectable="1"  colspan="2" editable="bottom">
-                          <field name="name" readonly="True"/>
-                    <field name="network"/>
-                    <field name="nmask"/>
+                                <field name="ip_address_pool_ids" nolabel="1" widget="one2many_list">
+                                    <tree multi_selectable="1" colspan="2" editable="bottom">
+                                        <field name="name" readonly="True"/>
+                                        <field name="network"/>
+                                        <field name="nmask"/>
 
-                     <field name="total_ips"/>
-                            <field name="used_ips"/>
-                            <field name="usage_percentage" widget="progressbar"/>
-                    </tree>
-                </field>
+                                        <field name="total_ips"/>
+                                        <field name="used_ips"/>
+                                        <field name="usage_percentage" widget="progressbar"/>
+                                    </tree>
+                                </field>
 
 
+                                <button name="generar" string="Generar IPs" type="object"/>
 
- <button name="generar" string="Generar IPs" type="object"/>
-
-                <field name="ip_address_ids" nolabel="1" >
-                     </field>
+                                <field name="ip_address_ids" nolabel="1">
+                                </field>
 
                             </page>
 
@@ -153,20 +160,28 @@
 
                                     <group id="config1">
 
-                                        <field name="is_pppoe" widget="boolean_toggle" on_change="1"/>
-                                        <field name="is_ipoe" widget="boolean_toggle" on_change="1"/>
-                                        <field name="is_mgn_service_port" widget="boolean_toggle"/>
-                                        <field name="ges_gemport" invisible="not is_mgn_service_port"/>
-                                        <field name="g_name_service" invisible="not is_mgn_service_port"/>
-                                        <field name="is_custom_tcont" widget="boolean_toggle"/>
-                                        <field name="tcont" invisible="not is_custom_tcont"/>
-                                        <field name="is_custom_gempor" widget="boolean_toggle"/>
-                                        <field name="gemport" invisible="not is_custom_gempor"/>
+
+                                        <field name="tcont"/>
+                                        <field name="gemport"/>
+
+                                        <field name="g_name_service"/>
 
                                         <field name="is_line_nap" widget="boolean_toggle"/>
-                                        <field name="is_gestion_pppoe" widget="boolean_toggle"/>
+
+
+                                        <field name="pending_changes" invisible="1"/>
+                                        <field name="service_port_internet"/>
+                                        <field name="is_enable_remote_access_onu"/>
+
+
                                     </group>
-                                    <group id="config2">
+                                    <group string="DNS">
+                                        <field name="primary_dns"/>
+                                        <field name="secondary_dns"/>
+
+                                    </group>
+
+                                    <!--group id="config2">
                                         <field name="is_extract_mac_onu" widget="boolean_toggle"/>
                                         <field name="is_control_mac_learn" widget="boolean_toggle"/>
                                         <field name="is_activation_bridge" widget="boolean_toggle"/>
@@ -180,42 +195,58 @@
                                         <field name="is_reduce_script" widget="boolean_toggle"/>
                                         <field name="is_redirect_srvport" widget="boolean_toggle"/>
                                         <field name="is_active_wan_onu" widget="boolean_toggle"/>
-                                    </group>
+                                    </group-->
                                 </group>
-                                <group>
+                                <!--group>
                                     <group id="config3">
 
-                                        <field name="ont_srvprofile"/>
-                                        <field name="ont_srvprofile_value" invisible="ont_srvprofile == 'idp'"/>
-                                        <field name="ont_lineprofile"/>
-                                        <field name="ont_lineprofile_value" invisible="ont_lineprofile != 'idu'"/>
-                                        <field name="send_srvprofile" widget="boolean_toggle"/>
+
                                         <field name="port_vlan" widget="boolean_toggle"
-                                               invisible="not is_vsol_marca"/>
+                                              />
                                         <field name="wan_maximum" widget="boolean_toggle"
-                                               invisible="not is_vsol_marca"/>
-                                        <field name="name_service" invisible="not is_vsol_marca"/>
+                                              />
+
                                     </group>
                                     <group id="config4">
                                         <field name="type_access_net" required="1"/>
                                         <field name="dhcp_custom_server" invisible="type_access_net != 'dhcp_leases'"/>
 
                                         <field name="traffic_table"/>
-                                        <field name="is_control_traffic_profile" widget="boolean_toggle"
-                                               invisible="not is_brand_zte"/>
+
                                         <field name="is_not_user_encap_ipoe" widget="boolean_toggle"/>
                                         <field name="is_uplink_port_vlan" widget="boolean_toggle"/>
                                         <field name="is_product_vlan" widget="boolean_toggle"/>
                                         <field name="is_custom_pon_vlan" widget="boolean_toggle"/>
-                                        <field name="service_port_internet" invisible="not is_vsol_marca"/>
+                                        <field name="service_port_internet" />
                                     </group>
-                                </group>
-                                <group string="Ancho de Banda" invisible="description != 'vsol'">
+                                </group-->
+                                <!--group string="Ancho de Banda" invisible="description != 'vsol'">
                                     <field name="description" invisible="1" readonly="1"/>
                                     <field name="is_control_bandwidth" widget="boolean_toggle"/>
                                     <field name="is_control_upstream" widget="boolean_toggle"
                                            invisible="not is_control_bandwidth"/>
+                                </group-->
+
+                                <group name="pppoe_1" string="Gesti&#243;n WAN ONU">
+                                    <group>
+                                        <field name="connection_wan"/>
+                                        <!-- <field name="protocol_mode"/> -->
+                                        <field name="protocol_type"/>
+                                        <field name="wan_mode"/>
+                                        <field name="service_type"/>
+                                        <field name="acquisition_mode"/>
+                                    </group>
+                                    <group>
+                                        <field name="vlan_id"/>
+                                        <field name="mtu"/>
+                                        <field name="is_enable_nat" widget="boolean_toggle"/>
+                                        <field name="is_disabled_dhcp_pv4" widget="boolean_toggle"/>
+                                        <field name="is_control_admin" widget="boolean_toggle"/>
+                                        <field name="admin_user" invisible="is_control_admin== False"/>
+                                        <field name="password_user" invisible="is_control_admin== False"/>
+                                    </group>
                                 </group>
+
                                 <group string="VSOL Profiles">
                                     <group>
                                         <field name="profile_onu_generic"/>
@@ -228,80 +259,49 @@
                                         <field name="is_serial_onu_ascii" widget="boolean_toggle" on_change="1"/>
                                     </group>
                                 </group>
-                                <group>
+                                <!--group>
                                     <group>
                                         <field name="is_virtual" widget="boolean_toggle"/>
                                     </group>
                                     <group>
-                                        <!--field name="brand_description" invisible="1" readonly="1"/-->
+
                                         <field name="silver_core_port_line_id"
                                                options="{'no_create': True,  'no_open': True}"
                                                 can_create="true"
                                                can_write="true"/>
                                     </group>
-                                </group>
-                                <group name="olt_tr">
-                                    <group string="TR-069">
-                                        <field name="is_active_tr" widget="boolean_toggle"/>
-                                    </group>
-                                    <group string="DNS" invisible="not is_v2_brand_zte">
-                                        <field name="is_v2_brand_zte" invisible="1" readonly="1"/>
-                                        <field name="primary_dns"/>
-                                        <field name="secondary_dns"/>
-                                    </group>
-                                </group>
-                                <group>
+                                </group-->
+                                <!--group>
                                     <group string="Configuracion OLT">
                                         <field name="is_write_olt" widget="boolean_toggle"/>
                                     </group>
                                     <group string="Configuracion ONT" invisible="description != 'zte'">
                                         <field name="is_enable_remote_access_onu" widget="boolean_toggle"/>
                                     </group>
-                                </group>
+                                </group-->
 
 
-<group name="pppoe_1" string="Gesti&#243;n WAN ONU" invisible="is_gestion_pppoe== False">
-<group>
-<field name="connection_wan" />
-<!-- <field name="protocol_mode"/> -->
-<field name="protocol_type" />
-<field name="wan_mode" />
-<field name="service_type" />
-<field name="acquisition_mode" />
-</group>
-<group>
-<field name="vlan_id" />
-<field name="mtu" />
-<field name="is_enable_nat" widget="boolean_toggle" />
-<field name="is_disabled_dhcp_pv4" widget="boolean_toggle" />
-<field name="is_control_admin" widget="boolean_toggle" />
-<field name="admin_user" invisible ="is_control_admin== False" />
-<field name="password_user" invisible="is_control_admin== False" />
-</group>
-</group>
-<group string="Binding Option">
-<div>
-<strong>LAN1 </strong> <field name="lan1" />
-<strong>LAN2 </strong> <field name="lan2" />
-<strong>LAN3 </strong> <field name="lan3" />
-<strong>LAN4 </strong> <field name="lan4" />
-</div> <br/>
-<div>
-<strong>SSID1 </strong> <field name="ssid1" />
-<strong>SSID2 </strong> <field name="ssid2" />
-<strong>SSID3 </strong> <field name="ssid3" />
-<strong>SSID4 </strong> <field name="ssid4" />
-<strong>SSID5 </strong> <field name="ssid5" />
-<strong>SSID6 </strong> <field name="ssid6" />
-<strong>SSID7 </strong> <field name="ssid7" />
-<strong>SSID8 </strong> <field name="ssid8" />
+                                <!--group string="Binding Option">
+                                <div>
+                                <strong>LAN1 </strong> <field name="lan1" />
+                                <strong>LAN2 </strong> <field name="lan2" />
+                                <strong>LAN3 </strong> <field name="lan3" />
+                                <strong>LAN4 </strong> <field name="lan4" />
+                                </div> <br/>
+                                <div>
+                                <strong>SSID1 </strong> <field name="ssid1" />
+                                <strong>SSID2 </strong> <field name="ssid2" />
+                                <strong>SSID3 </strong> <field name="ssid3" />
+                                <strong>SSID4 </strong> <field name="ssid4" />
+                                <strong>SSID5 </strong> <field name="ssid5" />
+                                <strong>SSID6 </strong> <field name="ssid6" />
+                                <strong>SSID7 </strong> <field name="ssid7" />
+                                <strong>SSID8 </strong> <field name="ssid8" />
 
-</div>
-</group>
+                                </div>
+                                </group-->
 
                             </page>
-
-
 
 
                         </notebook>

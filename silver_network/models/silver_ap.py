@@ -44,8 +44,13 @@ class SilverAp(models.Model):
         readonly=False
     )
 
-    state = fields.Selection([('down', 'Down'), ('active', 'Active')], string='Estado', default='down')
-
+   # state = fields.Selection([('down', 'Down'), ('active', 'Active')], string='Estado', default='down')
+    state = fields.Selection([('down', 'Down'), ('active', 'Active'), ('connected', 'Connected'),
+                      ('connecting', 'Connecting'),
+                      ('disconnected', 'Disconnected'),
+                      ('error', 'Error')],
+                     related="netdev_id.state",
+                     string='Estado', default='down')
 
     @api.model
     def create(self, vals):

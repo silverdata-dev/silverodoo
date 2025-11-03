@@ -7,6 +7,7 @@
             <field name="inherit_id" ref="silver_network.view_silver_core_form"/>
             <field name="arch" type="xml">
                <xpath expr="//field[@name='node_ids']"  position="after">
+                   <separator string="Equipo"/>
                     <field name="stock_lot_id"/>
                     <field name="brand_name"/>
                     <field name="model_name"/>

@@ -206,3 +206,23 @@ class SilverContract(models.Model):
     def _compute_links_payment(self):
         for rec in self:
             rec.links_payment = ''
+
+    def write(self, vals):
+        # GEMINI: Lógica para liberar la ONU descubierta cuando el servicio se desactiva.
+        if 'state_service' in vals:
+            deactivating_states = ['suspended', 'removal_list', 'removed']
+            if vals['state_service'] in deactivating_states:
+                for contract in self:
+                    # Buscamos si este contrato tiene una ONU descubierta asignada.
+                    # Es importante buscar en el modelo correcto.
+                    discovered_onu = self.env['silver.olt.discovered.onu'].search([
+                        ('contract_id', '=', contract.id)
+                    ], limit=1)
+                    
+                    if discovered_onu:
+                        # Si la encontramos, la "liberamos" para que pueda ser
+                        # seleccionada por otro contrato o eliminada en el próximo descubrimiento.
+                        # En este caso, la eliminamos directamente como se solicitó.
+                        discovered_onu.unlink()
+
+        return super(SilverContract, self).write(vals)

@@ -34,6 +34,7 @@ class OLTConnection:
         self.client = None
         self.shell = None
         self.current_prompt = None
+        self.hostname_olt = None
         self.terminal_length_set = False
         self.terminal_width_set = False
 
@@ -51,14 +52,21 @@ class OLTConnection:
             elif self.connection_type == 'telnet':
                 output += self.client.read_very_eager().decode('utf-8', errors='ignore')
 
+            print(("output", output))
+
             for prompt_name, pattern in self.PROMPT_PATTERNS.items():
                 match = pattern.search(output)
                 if match:
                     self.current_prompt = pattern
+                    # GEMINI: Capturar hostname si no lo hemos hecho ya
+                    if not self.hostname_olt and prompt_name in ['user_mode', 'enable_mode', 'config_mode']:
+                        self.hostname_olt = match.group(1)
+                        _logger.info(f"Hostname de OLT detectado: {self.hostname_olt}")
+
                     # Dividimos la salida en "antes del prompt" y "el prompt"
                     output_before_prompt = output[:match.start()]
                     prompt_text = match.group(0)  # El texto que coincide con el prompt
-                    return output_before_prompt.strip(), prompt_text.strip()
+                    return output_before_prompt.strip(), prompt_text.strip(), output
 
             time.sleep(0.1)  # Evitar busy-waiting
 
@@ -67,6 +75,7 @@ class OLTConnection:
     def connect(self):
         _logger.info(f"Conectando a {self.host}:{self.port} usando {self.connection_type}")
         try:
+        #if 1:
             if self.connection_type == 'ssh':
                 self.client = paramiko.SSHClient()
                 self.client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -89,8 +98,8 @@ class OLTConnection:
             last_output = ""
 
             for i in range(max_retries):
-                output_before_prompt, prompt = self._read_until_prompt()
-                print((f"outputlogin {i+1}", output_before_prompt, prompt))
+                output_before_prompt, prompt, out = self._read_until_prompt()
+                print((f"outputlogin {i+1}", output_before_prompt, prompt, out))
                 last_output = output_before_prompt + "\n" + prompt
 
                 current_prompt_obj = self.current_prompt
@@ -134,6 +143,7 @@ class OLTConnection:
             # Si el bucle termina sin una salida exitosa, es un error.
             raise ConnectionError(f"Fallo en el login o configuración después de {max_retries} intentos. Última salida:\n{last_output}")
 
+        #else:
         except Exception as e:
             _logger.error(f"Fallo al conectar a {self.host}: {e}")
             self.disconnect()  # Asegurarse de cerrar la conexión si falla el login
@@ -152,33 +162,41 @@ class OLTConnection:
         _logger.info(f"Ejecutando comando: {command}")
         try:
             self.shell.send(command + '\n')
-            output_before_prompt, prompt = self._read_until_prompt(timeout)
-            print(("outputcommand", output_before_prompt, prompt, command))
+            output_before_prompt, prompt, out = self._read_until_prompt(timeout)
 
-            # --- Limpieza de la Salida ---
-            # 1. Dividir la salida en líneas
+            # La logica de exito/fallo ahora se basara en si la salida contiene indicadores de error o exito.
+            error_indicators = ['error', 'fail', 'invalid', 'incomplete command']
+            success_indicators = ['ok.', 'configuration saved', 'OltIndex']  # Indicadores de exito conocidos.
+
+            # La salida se considera "limpia" si no contiene el eco del comando.
             lines = output_before_prompt.replace('\r\n', '\n').split('\n')
-
-            # 2. Eliminar la primera línea si es el eco del comando
-            # A veces el eco no es exacto, así que somos un poco flexibles.
             if lines and lines[0].strip().startswith(command.strip()):
-                lines = lines[1:]
-            clean_output = "\n".join(lines).strip()
-            _logger.info(f"Salida limpia del comando '{command}':\n{clean_output}")
+                clean_response = "\n".join(lines[1:]).strip()
+            else:
+                clean_response = "\n".join(lines).strip()
 
-            # --- Detección de Errores Basada en Salida Inesperada ---
-            # La "detección de errores" se basa en el contenido de la salida
-            # ya que los comandos de shell raramente devuelven un código de error.
+            print(("outputcommand", output_before_prompt, prompt, command, clean_response))
 
-            # Según el feedback, cualquier salida de texto para comandos de configuración
-            # se considera un error o un mensaje que debe detener el flujo.
-            if clean_output:
-                return False, clean_output  # Falla si hay cualquier salida
 
-            return True, clean_output  # Éxito solo si no hay ninguna salida
+            # 1. Comprobar si la respuesta limpia contiene algun indicador de error.
+            if any(indicator in clean_response.lower() for indicator in error_indicators):
+                return False, out, clean_response
+
+            # 2. Si no hay errores, comprobar si la respuesta esta vacia (exito implicito).
+            if not clean_response:
+                return True, out, clean_response
+
+            # 3. Comprobar si la respuesta contiene un indicador de exito explicito.
+            if any(indicator in clean_response.lower() for indicator in success_indicators):
+                return True, out, clean_response
+
+            # 4. Si hay respuesta, pero no es un indicador de exito conocido, se considera un fallo.
+            return False, out, clean_response
+
         except Exception as e:
             _logger.error(f"Fallo al ejecutar el comando '{command}' en {self.host}: {e}")
-            return False, str(e)
+            # Devolvemos el error y una salida vacia
+            return False, str(e), ""
 
     def __enter__(self):
         success, message = self.connect()

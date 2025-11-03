@@ -7,15 +7,13 @@
             <field name="inherit_id" ref="silver_contract.silver_contract_view_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//header" position="inside">
-                    <button name="action_provision_base" string="Aprovisionar Servicio" type="object" class="oe_highlight" invisible="state_service != 'inactive'"/>
+                    <!--button name="action_provision_base" string="Aprovisionar Servicio" type="object" class="oe_highlight" invisible="state_service != 'inactive'"/-->
 
-                    <button name="action_provision_wan" string="Configurar WAN" type="object" class="oe_highlight" invisible="not olt_id.is_gestion_pppoe or wan_config_successful or (state_service == 'inactive')"/>
-                    <button name="action_provision_wifi" string="Aplicar WiFi" type="object" class="oe_highlight" invisible="wifi_config_successful or (state_service == 'inactive')"/>
 
                     <button name="action_suspend_service" string="Suspender Servicio" type="object" class="oe_highlight" invisible="state_service != 'active'"/>
                     <button name="action_terminate_service" string="Dar de Baja" type="object" class="oe_highlight" invisible="(state != 'open') or (state_service not in ['active', 'suspended'])"/>
                     <button name="action_reconnection_service_button" type="object" class="oe_stat_button" icon="fa-rss" string="Restaurar Servicio" invisible="state_service not in ['disabled', 'suspended']"/>
-                    <button name="action_ping_service" type="object" class="oe_stat_button" icon="fa-feed" string="PING"/>
+                    <!--button name="action_ping_service" type="object" class="oe_stat_button" icon="fa-feed" string="PING"/-->
                     <button name="action_contract_reboot_onu" type="object" class="oe_stat_button" icon="fa-refresh" string="Reiniciar ONU"/>
                     <button name="action_change_ont_service" type="object" class="oe_stat_button" icon="fa-exchange" string="Cambiar ONU"/>
                 </xpath>
@@ -32,41 +30,52 @@
 
                 <xpath expr="//notebook" position="inside">
                     <page name="provisioning" string="Servicio Internet">
+                        <group>
 <field name="wan_config_successful" invisible="1"/>
                         <field name="wifi_config_successful" invisible="1"/>
                         <field name="state_service"/>
                         <field name="state"/>
-                                <group name="ips_networks_1">
-                                    <group>
-                                        <field name="link_type" readonly="state != 'draft'"/>
-                                    </group>
-                                    <group>
-                                        <field name="pppoe_user"/>
-                                        <field name="pppoe_password" password="True"/>
-                                         <field name="vlan_id"/>
-                                    </group>
-                                </group>
-                                <group name="ips_networks_2" string="Datos Red Externa Asignada">
-                                    <group invisible="link_type == 'lan'">
-                                        <field name="node_id" readonly="state != 'draft'"/>
+                             <field name="link_type" readonly="state != 'draft'"/>
+                          <field name="node_id" readonly="state != 'draft'"/>
                                         <field name="box_id" readonly="state != 'draft'" invisible="link_type not in ['fiber', 'fttb']"/>
                                         <field name="ap_id" readonly="state != 'draft'" invisible="link_type != 'wifi'"/>
-                                    </group>re
-                                    <group>
-                                        <field name="core_id" readonly="state != 'draft'" options="{'no_create': True, 'no_open': True}"/>
-                                        <field name="olt_id" readonly="state != 'draft'" invisible="link_type not in ['fiber', 'fttb']" options="{'no_create': True}"/>
+
+                        </group>
+   <group>
+                                <group name="ips_networks_2" string="Datos Red Externa Asignada" invisible="link_type == 'lan'">
+
+
+                                        <field name="olt_id" readonly="state != 'draft'"
+
+                                               invisible="(link_type not in ['fiber', 'fttb']) " options="{'no_create': True}"/>
+                                        <button name="action_open_onu_selector_wizard"
+                                                type="object"
+                                                string="Descubrir ONUS"
+                                                class="oe_highlight"
+                                                invisible="(not olt_id) or (state != 'draft')"/>
+                                        <field name="discovered_onu_id" invisible="(not olt_id) or (state != 'draft')" nolabel="1"/>
                         <field name="olt_port_id" />
                         <field name="onu_pon_id" />
-                        <field name="box_id" />
-                                        <div class="o_row" invisible="link_type not in ['fiber', 'fttb']">
-                                            <field name="olt_status" widget="badge" decoration-success="olt_status == 'online'" decoration-danger="olt_status in ('offline', 'los')" decoration-warning="olt_status == 'unknown'"/>
-                                            <button name="action_check_olt_status" type="object" icon="fa-question-circle" class="oe_link"/>
-                                        </div>
-                                        <field name="splitter_id" readonly="state != 'draft'" invisible="link_type not in ['fiber', 'fttb']"/>
+   <field name="vlan_id"/>
+ <field name="ip_address"/>
+                                        <field name="mac_address_onu"/>
+
+                                    <button name="action_provision_base"
+                                                type="object"
+                                                string="Aprovisionar Servicio"
+                                                class="oe_highlight"
+                                                invisible="(not olt_id) or (state != 'draft') or (onu_pon_id == None)"/>
+
+                                    <button name="action_check_olt_state"
+                                                type="object"
+                                                string="Comprobar conexión"
+                                                class="oe_highlight"
+                                                invisible="(not olt_id) or (state == 'draft')"/>
+                                        <field name="olt_state" invisible="(not olt_id) or (state == 'draft')" nolabel="1" widget="badge" decoration-danger="state == 'down'"
+                           decoration-success="state == 'active'"/>
+
                                     </group>
-                                </group>
-                                <group name="ips_networks_3">
-                                    <group string="Datos Equipos Asignados">
+         <group string="Equipo">
                                         <field name="stock_lot_id"/>
                     <field name="brand_name"/>
                     <field name="model_name"/>
@@ -75,12 +84,65 @@
 
                                         <field name="is_bridge" readonly="state != 'draft'"/>
                                     </group>
-                                    <group string="Datos Lógicos Asignados">
-                                        <field name="ip_address"/>
-                                        <field name="mac_address_onu"/>
-                                    </group>
-                                </group>
+                                    <!--group  invisible="link_type not in ['fiber', 'fttb']">
+                                        <div class="o_row" >
+                                            <field name="olt_status" widget="badge" decoration-success="olt_status == 'online'" decoration-danger="olt_status in ('offline', 'los')" decoration-warning="olt_status == 'unknown'"/>
+                                            <button name="action_check_olt_status" type="object" icon="fa-question-circle" class="oe_link"/>
+                                        </div>
+                                        <div class="o_row" >
+                                            <field name="olt_status" widget="badge" decoration-success="olt_status == 'online'" decoration-danger="olt_status in ('offline', 'los')" decoration-warning="olt_status == 'unknown'"/>
+                                            <button name="action_check_olt_status" type="object" icon="fa-question-circle" class="oe_link"/>
+                                        </div>
 
+                                        <field name="splitter_id" readonly="state != 'draft'" invisible="link_type not in ['fiber', 'fttb']"/>
+                                    </group-->
+                                </group>
+                                <group name="ips_networks_3">
+
+                                    <group string="Datos Asignados">
+
+                                        <field name="core_id" readonly="state != 'draft'" options="{'no_create': True, 'no_open': True}"/>
+
+                                        <field name="pppoe_user"/>
+                                        <field name="pppoe_password" password="True"/>
+                                            <button name="action_add_radius_access"
+                                                type="object"
+                                                string="Establecer usuario"
+                                                class="oe_highlight"
+                                                invisible="(state != 'draft') or (pppoe_user == None) or (pppoe_password == None)"/><br/>
+
+
+                                 <button name="action_check_radius_connection"
+                                                type="object"
+                                                string="Probar Conexión"
+                                                class="oe_highlight"
+                                                invisible="(state != 'draft') or (pppoe_user == None) or (pppoe_password == None)"/>
+                                 <field name="pppoe_state" widget="badge" decoration-danger="state == 'down'"
+                           decoration-success="state == 'active'"  nolabel="1" />
+                                    </group>
+
+                                     <group string="Credenciales WiFi">
+
+                                <field name="sssid" invisible="1"/>
+                                <field name="password" invisible="1" password="True"/>
+                             <field name="custom_channel_id" invisible="1"/>
+                                <!--field name="contract_mode_wan_ids"/-->
+                                <field name="wifi_line_ids">
+                                    <tree >
+                                        <field name="ssid_index"/>
+                                        <field name="name"/>
+                                        <field name="password" password="True"/>
+                                        <field name="is_hidden" invisible="1"/>
+                                        <field name="auth_mode" invisible="1"/>
+                                        <field name="encrypt_type" invisible="1"/>
+                                    </tree>
+                                </field>
+  <button name="action_provision_wan" string="Configurar WAN" type="object" class="oe_highlight" invisible="not olt_id.is_gestion_pppoe or (state_service == 'inactive')"/>
+
+                    <button name="action_provision_wifi" string="Aplicar WiFi" type="object" class="oe_highlight" invisible=" (state_service == 'inactive')"/>
+
+                            </group>
+                                </group>
 
                                 <group  name="other_info_internet" string="Fechas Programadas">
                                     <group name="ips_networks_start" string="Fechas Inicio">
@@ -88,32 +150,16 @@
                                         <field name="date_active"/>
                                         <field name="date_reconnection"/>
                                     </group>
-                                    <group name="ips_networks_cut" string="Fechas Corte">
+                                    <group name="ips_networks_cut" string="Fechas Corte"/>
                                         <field name="date_cut"/>
                                         <field name="date_renovation"/>
                                         <field name="date_end"/>
                                     </group>
-                                </group>
+
                              <group>
 
                         </group>
-                         <group string="Credenciales WiFi">
-                                <field name="sssid" invisible="1"/>
-                                <field name="password" invisible="1" password="True"/>
-                             <field name="custom_channel_id"/>
-                                <!--field name="contract_mode_wan_ids"/-->
-                                <field name="wifi_line_ids">
-                                    <tree editable="bottom">
-                                        <field name="ssid_index"/>
-                                        <field name="name"/>
-                                        <field name="password" password="True"/>
-                                        <field name="is_hidden"/>
-                                        <field name="auth_mode"/>
-                                        <field name="encrypt_type"/>
-                                    </tree>
-                                </field>
 
-                            </group>
                     </page>
                 </xpath>
             </field>

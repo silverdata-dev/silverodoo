@@ -1,0 +1,35 @@
+/* Estilos para la Píldora de Estado del Contrato */
+.contract-status-pill {
+    padding: 6px 14px;
+    border-radius: 999px; /* Forma de píldora */
+    font-size: 1rem; /* Tamaño de fuente ligeramente más grande */
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 12px; /* Espacio respecto al título */
+}
+
+/* Colores de fondo según el estado */
+.status-active {
+    background-color: #10B981; /* Verde Esmeralda */
+}
+
+.status-suspended {
+    background-color: #F59E0B; /* Ámbar */
+}
+
+.status-disabled {
+    background-color: #EF4444; /* Rojo */
+}
+
+.status-removed {
+    background-color: #8f3232; /* Rojo Oscuro */
+}
+
+.status-default {
+    background-color: #6B7280; /* Gris */
+}

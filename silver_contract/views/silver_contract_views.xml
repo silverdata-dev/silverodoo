@@ -11,7 +11,11 @@
                     <field name="date_start"/>
                     <field name="date_end"/>
                     <field name="state"/>
-                    <field name="state_service" invisible="1"/>
+                    <field name="state_service"
+                           widget="badge"
+                           decoration-success="state_service == 'active'"
+                           decoration-warning="state_service in ('suspended', 'disabled')"
+                           decoration-danger="state_service == 'removed'"/>
                 </tree>
             </field>
         </record>
@@ -23,7 +27,7 @@
             <field name="arch" type="xml">
                 <form string="Contrato">
                     <header>
-    <widget name="web_ribbon" title="Activo" bg_color="bg-success"
+    <!--widget name="web_ribbon" title="Activo" bg_color="bg-success"
                                 invisible="state_service != 'active'"/>
                         <widget name="web_ribbon" title="Inactivo" bg_color="bg-secondary"
                                 invisible="state_service != 'inactive'"/>
@@ -34,7 +38,7 @@
                         <widget name="web_ribbon" title="Cortado" bg_color="bg-warning"
                                 invisible="state_service != 'disabled'"/>
                         <widget name="web_ribbon" title="Suspendido" bg_color="bg-warning"
-                                invisible="state_service != 'suspended'"/>
+                                invisible="state_service != 'suspended'"/-->
                         <!--button name="action_open" type="object" string="Open" class="oe_highlight"
                                 invisible="state != 'draft'"/>
                         <button name="action_cancel" type="object" string="Cancel"
@@ -46,10 +50,27 @@
                         <div class="oe_avatar">
                             <field name="image" widget="image" class="oe_avatar"/>
                         </div>
-                        <div class="oe_title">
-                            <h1>
+                        <div class="oe_title d-flex align-items-center">
+                            <h1 class="d-inline-block mb-0">
                                 <field name="name" readonly="1"/>
                             </h1>
+                            <div>
+                                <div class="contract-status-pill status-active" invisible="state_service != 'active'">
+                                    <field name="state_service" readonly="1"/>
+                                </div>
+                                <div class="contract-status-pill status-suspended" invisible="state_service != 'suspended'">
+                                    <field name="state_service" readonly="1"/>
+                                </div>
+                                <div class="contract-status-pill status-disabled" invisible="state_service != 'disabled'">
+                                    <field name="state_service" readonly="1"/>
+                                </div>
+                                <div class="contract-status-pill status-removed" invisible="state_service != 'removed'">
+                                    <field name="state_service" readonly="1"/>
+                                </div>
+                                <div class="contract-status-pill status-default" invisible="state_service in ('active', 'suspended', 'disabled', 'removed')">
+                                    <field name="state_service" readonly="1"/>
+                                </div>
+                            </div>
                         </div>
 
                         <group>
@@ -108,7 +129,7 @@
                                     <field name="is_other_partner_bank" invisible="payment_type_code not in ['credit_card','debit']" readonly="state != 'draft'" widget="boolean_toggle" on_change="1" modifiers="{&quot;invisible&quot;: [[&quot;payment_type_code&quot;, &quot;not in&quot;, [&quot;credit_card&quot;, &quot;debit&quot;]]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]]}"/>
                                     <field name="partner_bank_id" invisible="is_other_partner_bank == False" required="is_other_partner_bank == True" readonly="state != 'draft'" options="{'no_create': True}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;is_other_partner_bank&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]], &quot;required&quot;: [[&quot;is_other_partner_bank&quot;, &quot;=&quot;, true]]}"/>
                                     <field name="res_partner_bank_id" invisible="payment_type_code not in ['credit_card','debit']" required="payment_type_code in ['credit_card','debit']" readonly="state != 'draft'" domain="['|',('partner_id','=',partner_id),('partner_id','=',partner_bank_id)]" widget="selection" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;payment_type_code&quot;, &quot;not in&quot;, [&quot;credit_card&quot;, &quot;debit&quot;]]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]], &quot;required&quot;: [[&quot;payment_type_code&quot;, &quot;in&quot;, [&quot;credit_card&quot;, &quot;debit&quot;]]]}"/>
-                                    <button name="action_generate_first_invoice" string="&#8658;Generar Primer AC" type="object" class="oe_link" invisible="is_first_invoice == True or (is_extra_value_active == True and is_extra_value == False)" readonly="state != 'draft'" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;is_first_invoice&quot;, &quot;=&quot;, true], &quot;&amp;&quot;, [&quot;is_extra_value_active&quot;, &quot;=&quot;, true], [&quot;is_extra_value&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]]}"/>
+                                    <button name="action_generate_first_invoice" string="&#8658;Generar Primer AC" type="object" class="oe_highlight" invisible="is_first_invoice == True or (is_extra_value_active == True and is_extra_value == False)" readonly="state != 'draft'" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;is_first_invoice&quot;, &quot;=&quot;, true], &quot;&amp;&quot;, [&quot;is_extra_value_active&quot;, &quot;=&quot;, true], [&quot;is_extra_value&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]]}"/>
                                     <button name="action_generate_first_ext_materials" string="&#8658;Generar AC Extras" type="object" class="oe_link" invisible="is_extra_value == True or is_extra_value_active == False" readonly="state != 'draft'" modifiers="{&quot;invisible&quot;: [&quot;|&quot;, [&quot;is_extra_value&quot;, &quot;=&quot;, true], [&quot;is_extra_value_active&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]]}"/>
                                 </group>
                                 <group name="invoice_fields1">

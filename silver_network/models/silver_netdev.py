@@ -67,17 +67,14 @@ class SilverNetdev(models.Model):
     state = fields.Selection([('down', 'Down'), ('active', 'Active'), ('connected', 'Connected'),
         ('connecting', 'Connecting'),
         ('disconnected', 'Disconnected'),
-        ('error', 'Error')], string='Estado', default='down')
+        ('error', 'Error')],
+
+                             string='Estado', default='down')
 
     # Fields for Radius Client Configuration
     radius_client_ip = fields.Char(string='Radius Server IP')
     radius_client_secret = fields.Char(string='Radius Shared Secret')
     radius_client_services = fields.Many2many('silver.radius.service', string='Radius Services') # Assuming a model silver.radius.service exists or will be created
-    configured = fields.Selection([
-        ('0', 'Not Configured'),
-        ('1', 'Local Auth OK'),
-        ('2', 'RADIUS Configured')
-    ], string='Configured State', default='0', required=True)
 
     #core_ids = fields.One2many('silver.core', 'netdev_id', string='Cores')
     #olt_ids = fields.One2many('silver.olt', 'netdev_id', string='OLTs')

@@ -8,7 +8,7 @@
 
 
 .o_form_button_save::after {
-    content: "Guardar";
+    _content: "Guardar";
     padding: 2px;
 
 }
@@ -21,7 +21,7 @@
 }
 
 .o_form_button_cancel::after {
-    content: "Descartar";
+    _content: "Descartar";
     padding: 2px;
 
 }

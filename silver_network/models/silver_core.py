@@ -19,6 +19,8 @@ class SilverCore(models.Model):
     asset_id = fields.Many2one('silver.asset', required=True, ondelete="cascade")
     netdev_id = fields.Many2one('silver.netdev', required=True, ondelete="cascade")
 
+    askuser = fields.Boolean(string='Pedir usuario')
+
 
     name = fields.Char(string='Nombre', required=True, default=lambda self: self._default_name(), readonly=False)
 
@@ -70,23 +72,23 @@ class SilverCore(models.Model):
     password_nass = fields.Char(string='Password Nass')
     key_pppoe = fields.Char(string='Password PPPoE')
 
-    port = fields.Char(string='Puerto de Conexión', related="netdev_id.port", readonly=False, default=21000)
+    port = fields.Char(string='Puerto Mikrotik', related="netdev_id.port", readonly=False, default=21000)
     port_coa = fields.Char(string='Puerto COA')
     ip = fields.Char(string='IP de Conexión', related="netdev_id.ip", readonly=False)
 
-    configured = fields.Selection([
-        ('0', 'Not Configured'),
-        ('1', 'Local Auth OK'),
-        ('2', 'RADIUS Configured')
-    ], string='Configurado', default='0', required=True,
-        related="netdev_id.configured")
 
     interface = fields.Char(string='Interface')
     cvlan = fields.Char(string='CVLAN')
     svlan = fields.Char(string='SVLAN')
 
     # --- Campos de Estado y Métricas (calculados) ---
-    state = fields.Selection([('draft', 'Borrador'), ('active', 'Activo'),  ('down', 'Down')], string='Status')
+    #state = fields.Selection([('draft', 'Borrador'), ('active', 'Activo'),  ('down', 'Down')], string='Status')
+    state = fields.Selection([('down', 'Down'), ('active', 'Active'), ('connected', 'Connected'),
+                      ('connecting', 'Connecting'),
+                      ('disconnected', 'Disconnected'),
+                      ('error', 'Error')],
+                             related = 'netdev_id.state',
+                             string='Estado', default='down')
     display_name = fields.Char(string='Display Name', compute='_compute_display_name')
 
     olt_count = fields.Integer(string='Conteo Equipo OLT', compute='_compute_counts')
@@ -245,10 +247,11 @@ class SilverCore(models.Model):
                 # For multiple updates, it iterates and assigns a unique incremental name to each.
                 base_count = self.search_count([('node_id', '=', node.id)])
 
-                print(("cocrewr1", record.asset_id.id, record.parent_id, vals))
+                #record.node_id = node
+               # print(("cocrewr1", record.asset_id.id, record.asset_id.parent_id, vals))
 
-                if (not record.parent_id ) or (record.parent_id.id != node.asset_id.id):
-                    record.parent_id = node.asset_id.id
+               # if (not record.asset_id.parent_id ) or (record.asset_id.parent_id.id != node.asset_id.id):
+               #     record.asset_id.parent_id = node.asset_id.id
 
 
                 record.asset_id.name = f"{node.code}/CR{base_count + i + 1}"
@@ -520,25 +523,28 @@ class SilverCore(models.Model):
         _logger.info(f"Successfully configured RADIUS for core {self.name}")
         return True
 
-    def button_reset_connection(self):
-        self.ensure_one()
-        netdev = self.netdev_id
-        if not netdev:
-            raise UserError(_("This core has no network device associated."))
-        netdev.configured = '0'
-        return self._show_notification('danger', _('Reset.'))
+    def button_test_connectionu(self):
+        return self.button_test_connection(True)
 
-    def button_test_connection(self):
+    def button_test_connection(self, u=False):
         self.ensure_one()
         netdev = self.netdev_id
         if not netdev:
             raise UserError(_("This core has no network device associated."))
 
+        reload_action = {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+        
         api = None
         try:
             # Connection test now requires local credentials to perform configuration
             _logger.info(f"Core {self.name}: Trying local credentials for connection and configuration.")
-            api = netdev._get_api_connection(username=self.username, password=self.password)
+            if u:
+                api = netdev._get_api_connection(username=self.username, password=self.password)
+            else:
+                api = netdev._get_api_connection()
 
             if api:
                 # Fetch and set the hostname first
@@ -548,18 +554,50 @@ class SilverCore(models.Model):
                     hostname = identity_resource[0].get('name')
                     if hostname:
                         _logger.info(f"Found hostname: {hostname}. Updating record.")
-                        self.write({'hostname_core': hostname})
+                        #self.write({'hostname_core': hostname})
+                        self.hostname_core = hostname
+
+
 
                 _logger.info("Local credential connection successful. Proceeding to configure RADIUS.")
-                self._configure_radius_on_device(api)
-                netdev.configured = '2'
+                if u:
+                    self._configure_radius_on_device(api)
+                self.askuser = False
                 self.state = 'active'
-                return self._show_notification('success', _('Local connection OK. RADIUS and NAS configured successfully!'))
+            #    return self._show_notification('success', _('RADIUS and NAS ya configurados'))
+
+                return [{
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': 'Éxito',
+                    'sticky': False,
+                    'message': 'Conexión al core  exitosa!',
+                    'type': 'success',
+                }
+
+            }, reload_action]
             else:
                 _logger.error("Local credential connection failed.")
+                #with self.env.registry.cursor() as new_cr:
                 self.state = 'down'
-                netdev.configured = '0'
-                raise UserError(_("Connection failed with local credentials. Cannot configure RADIUS."))
+                self.askuser = True
+                #new_cr.commit()
+
+
+                return [{
+    'type': 'ir.actions.client',
+    'tag': 'display_notification',
+    'params': {
+        'title': 'Error',
+        'sticky': False,
+        'message': f'Conexión al core fallida! ',
+        'type': 'danger',
+    }
+}, reload_action]
+
+            #    return self._show_notification('danger', _('Radius no conectado, ingrese usuario y contraseña locales'))
+                #raise UserError(_("Radius no conectado, ingrese usuario y contraseña locales"))
 
         except Exception as e:
             self.state = 'down'

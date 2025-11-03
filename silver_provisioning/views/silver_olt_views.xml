@@ -6,19 +6,25 @@
             <field name="model">silver.olt</field>
             <field name="inherit_id" ref="silver_network.view_silver_olt_form"/>
             <field name="arch" type="xml">
-                <!-- Añadir el botón de sincronización en la cabecera -->
+                <!-- Mover el botón de descubrir ONUs al lado del de probar conexión -->
+                <xpath expr="//button[@name='action_connect_olt']" position="after">
+                    <button name="action_discover_onus"
+                            type="object"
+                            string="Descubrir ONUs"
+                            class="oe_highlight"/>
+                </xpath>
+
+                <!-- Añadir el botón de sincronización en la cabecera (quitando el de descubrir) -->
                 <xpath expr="//header" position="inside">
-                    <button name="action_open_sync_wizard"
+                    <button name="action_sync_olt_manual"
                             type="object"
                             string="Sincronizar Cambios con ONUs"
                             class="oe_highlight"
-                            invisible="not pending_changes_json"/>
+                            invisible="not pending_changes"
+                            confirm="¿Está seguro de que desea aplicar los cambios guardados a todas las ONUs activas en esta OLT? Esta acción no se puede deshacer."/>
                 </xpath>
 
-                <!-- Añadir el campo para controlar la visibilidad del botón (de forma invisible) -->
-                <xpath expr="//sheet" position="before">
-                    <field name="pending_changes_json" invisible="1"/>
-                </xpath>
+
 
                 <!-- Añadir la pestaña de Contratos -->
                 <xpath expr="//page[1]" position="before">

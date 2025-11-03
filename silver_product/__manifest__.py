@@ -20,6 +20,11 @@
         'views/product_view_invisible.xml',
         'views/menus.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'silver_product/static/src/css/stock_lot.css',
+        ],
+    },
     'installable': True,
     'application': False,
 }

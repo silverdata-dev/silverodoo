@@ -21,7 +21,7 @@
                             <field name="capacity"/>
                             <!--field name="brand_id"/-->
                             <field name="model"/>
-                            <field name="astate"/>
+
 
                             </group>
                         </group>
@@ -54,7 +54,7 @@
 
                     <field name="closure_type"/>
                     <field name="capacity"/>
-                    <field name="astate"/>
+
                 </tree>
             </field>
         </record>

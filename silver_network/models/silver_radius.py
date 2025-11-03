@@ -76,7 +76,14 @@ class SilverRadius(models.Model):
 
 
 
-    state = fields.Selection([('down', 'Down'), ('active', 'Activo')], string='Estado', default='down', track_visibility='onchange')
+    #state = fields.Selection([('down', 'Down'), ('active', 'Activo')], string='Estado', default='down', track_visibility='onchange')
+
+    state = fields.Selection([('down', 'Down'), ('active', 'Active'), ('connected', 'Connected'),
+        ('connecting', 'Connecting'),
+        ('disconnected', 'Disconnected'),
+        ('error', 'Error')],
+                             related = 'netdev_id.state',
+                             string='Estado', default='down')
 
     type_radius = fields.Selection([("free_radius", "Free Radius Custom"), ("free_radius_ng", "Free Radius"), ("mk_radius", "Mikrotik Radius")], string='Tipo Radius', default="mk_radius")
     port_coa = fields.Char(string='Puerto COA')
@@ -142,8 +149,8 @@ class SilverRadius(models.Model):
     def action_pull_users_from_mikrotik(self):
         self.ensure_one()
         api = self._get_mikrotik_api()
-       # try:
-        if 1:
+        try:
+       # if 1:
             g = api.path('/user-manager/user')
             print(("gg", g, dir(g)))
             mikrotik_users = api.path('/user-manager/user')
@@ -176,10 +183,10 @@ class SilverRadius(models.Model):
                     'type': 'success',
                 }
             }
-        #except Exception as e:
-        #    raise UserError(_("Failed to pull users from MikroTik: %s") % e)
-        #finally:
-        #    api.close()
+        except Exception as e:
+            raise UserError(_("Failed to pull users from MikroTik: %s") % e)
+        finally:
+            api.close()
 
     def button_manage_nas_clients(self):
         self.ensure_one()

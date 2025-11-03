@@ -53,8 +53,8 @@ class SystemStatsController(http.Controller):
         if not api:
             return {'error': 'Connection failed'}
 
-      #  try:
-        if 1:
+        try:
+      #  if 1:
             # Convert string of names to list
             if isinstance(interface_names, str):
                 interface_names = interface_names.split(',')
@@ -83,8 +83,8 @@ class SystemStatsController(http.Controller):
 
 
             return stats
-      #  except Exception as e:
-      #      return {'error': str(e)}
-      #  finally:
-      #      if api:
-      #          api.close()
+        except Exception as e:
+            return {'error': str(e)}
+        finally:
+            if api:
+                api.close()

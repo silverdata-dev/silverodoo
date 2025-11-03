@@ -19,3 +19,8 @@ class SilverContractWifiLine(models.Model):
         ('tkipaes', 'TKIP+AES'),
         ('aes', 'AES'),
     ], string="Tipo de Cifrado", default='tkipaes', required=True)
+
+    _sql_constraints = [
+        ('unique_code1', 'unique (contract_id, ssid_index)', 'This value must be unique!'),
+        ('unique_code2', 'unique (contract_id, name)', 'This value must be unique!')
+    ]

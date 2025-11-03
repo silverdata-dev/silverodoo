@@ -1,5 +1,9 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import UserError
+import logging
+
+_logger = logging.getLogger(__name__)
+
 
 
 class SilverOlt(models.Model):
@@ -22,11 +26,7 @@ class SilverOlt(models.Model):
 
 
 
-    is_core_baudcom = fields.Boolean(string='Es Baudcom?')
     core_ids = fields.Many2many('silver.core', string='Equipos Core')
-    bridge_core_id = fields.Many2one('silver.core', string='Equipo b Core')
-    is_vsol_marca = fields.Boolean(string='Es VSOL Marca?')
-    is_brand_zte = fields.Boolean(string='Es Marca ZTE?')
     core_id = fields.Many2one('silver.core', string='Equipo Core')
     node_id = fields.Many2one('silver.node', string='Nodo')
     num_slot_olt = fields.Integer(string='Numero de Slots')
@@ -35,45 +35,45 @@ class SilverOlt(models.Model):
         ('16', '16 Puertos'),
         ('32', '32 Puertos'),
         ('64', '64 Puertos'),
-    ], string='Cantidad de Puertos 0', default="8")
+    ], string='Slot 0',
+
+        default="8")
     num_ports2 = fields.Selection([
         ('8', '8 Puertos'),
         ('16', '16 Puertos'),
         ('32', '32 Puertos'),
         ('64', '64 Puertos'),
-    ], string='Cantidad de Puertos 0', default="8")
+    ], string='Slot 1', default="8")
     num_ports3 = fields.Selection([
         ('8', '8 Puertos'),
         ('16', '16 Puertos'),
         ('32', '32 Puertos'),
         ('64', '64 Puertos'),
-    ], string='Cantidad de Puertos 0', default="8")
+    ], string='Slot 2', default="8")
     num_ports4 = fields.Selection([
         ('8', '8 Puertos'),
         ('16', '16 Puertos'),
         ('32', '32 Puertos'),
         ('64', '64 Puertos'),
-    ], string='Cantidad de Puertos 0', default="8")
+    ], string='Slot 3', default="8")
     num_ports5 = fields.Selection([
         ('8', '8 Puertos'),
         ('16', '16 Puertos'),
         ('32', '32 Puertos'),
         ('64', '64 Puertos'),
-    ], string='Cantidad de Puertos 0', default="8")
+    ], string='Slot 4', default="8")
 
     kex_algorithms_ids = fields.Many2many('silver.kex.algorithms', string='Kex Algorithms')
     is_multi_user_olt = fields.Boolean(string='Multiples Usuarios')
 
     secret_olt = fields.Char(string='Secret')
     is_pppoe = fields.Boolean(string='PPPoE')
-    is_ipoe = fields.Boolean(string='IPoE')
-    is_mgn_service_port = fields.Boolean(string='Puerto/IP para Gestion')
-    ges_gemport = fields.Char(string='gemport')
+
     g_name_service = fields.Char(string='Name Service')
-    is_custom_tcont = fields.Boolean(string='Custom Tcont')
+
     tcont = fields.Char(string='Tcont')
-    is_custom_gempor = fields.Boolean(string='Custom Gemport')
     gemport = fields.Char(string='Gemport', required=True)
+
     is_line_nap = fields.Boolean(string='Gestion Vlan NAP')
     is_gestion_pppoe = fields.Boolean(string='Gestión WAN ONU')
     is_extract_mac_onu = fields.Boolean(string='Extraer MAC ONU')
@@ -93,10 +93,9 @@ class SilverOlt(models.Model):
     send_srvprofile = fields.Boolean(string='Send Srvprofile')
     port_vlan = fields.Boolean(string='Port Vlan')
     wan_maximum = fields.Boolean(string='WAN Maxima')
-    name_service = fields.Char(string='Name Server')
     dhcp_custom_server = fields.Char(string='DHCP Leases')
     traffic_table = fields.Selection([('name', 'Name'), ('index', 'Index')], string='Traffic-Table(command)')
-    is_control_traffic_profile = fields.Boolean(string='Control por Traffic Profile')
+
     is_not_user_encap_ipoe = fields.Boolean(string='Disable Encapsulamiento IPOE/PPPOE')
     is_uplink_port_vlan = fields.Boolean(string='Uplink Port VLAN')
     is_product_vlan = fields.Boolean(string='Vlans-Profiles por Producto')
@@ -152,7 +151,13 @@ class SilverOlt(models.Model):
     vlan_mgn_tr069 = fields.Integer(string='Vlan Mgn_TR69')
 #    ip_address_pool_tr69_ids = fields.One2many('silver.ip.address.pool', 'olt_id', string='Direcciones IP', domain=[('is_tr_069', '=', True)])
 #    ip_address_tr69_ids = fields.One2many('silver.ip.address', 'olt_id', string='Direcciones IP', domain=[('is_tr_069', '=', True)])
-    state = fields.Selection([('down', 'Down'), ('active', 'Active')], string='Estado', default='down')
+    #state = fields.Selection([('down', 'Down'), ('active', 'Active')], string='Estado', default='down')
+    state = fields.Selection([('down', 'Down'), ('active', 'Active'), ('connected', 'Connected'),
+                      ('connecting', 'Connecting'),
+                      ('disconnected', 'Disconnected'),
+                      ('error', 'Error')],
+                             related='netdev_id.state',
+                             string='Estado', default='down')
     olt_card_count = fields.Integer(string='Conteo Slot OLT', compute='_compute_olt_card_count')
     #contracts_olt_count = fields.Integer(string='Conteo Olts', compute='_compute_contracts_olt_count')
     ip_range_count = fields.Integer(string='IP Ranges', compute='_compute_ip_range_count')
@@ -162,6 +167,8 @@ class SilverOlt(models.Model):
 
     olt_card_port_count = fields.Integer(string='Conteo Puertos', compute='_compute_counts')
 
+    pending_changes = fields.Boolean(string="Cambios Pendientes", default=False, readonly=True, copy=False,
+                                     help="Indica si hay cambios en los campos monitoreados que no se han sincronizado con las ONUs.")
 
     port_ids = fields.One2many('silver.olt.card.port', 'olt_id', string='Puertos')
     card_ids = fields.One2many('silver.olt.card', 'olt_id', string='Tarjetas')
@@ -229,52 +236,68 @@ class SilverOlt(models.Model):
 
 
 
-   # @api.onchange('num_slot_olt', 'num_ports1', 'num_ports2', 'num_ports3', 'num_ports4', 'num_ports5')
     def action_generar(self):
+        self.ensure_one()
+        OltCard = self.env['silver.olt.card']
+        OltPort = self.env['silver.olt.card.port']
+
         if self.num_slot_olt > 5:
             self.num_slot_olt = 5
-            return {
-                'warning': {
-                    'title': "Límite Excedido",
-                    'message': "El número de slots no puede ser mayor a 5. Se ha ajustado automáticamente a 5.",
-                }
-            }
+            # Consider raising a UserError or returning a warning to the UI
+            raise UserError("El número de slots no puede ser mayor a 5. Se ha ajustado automáticamente a 5.")
 
-        num_ports_fields = [int(self.num_ports1), int(self.num_ports2), int(self.num_ports3), int(self.num_ports4), int(self.num_ports5)]
+        num_ports_per_slot = [
+            int(self.num_ports1 or 0), int(self.num_ports2 or 0),
+            int(self.num_ports3 or 0), int(self.num_ports4 or 0),
+            int(self.num_ports5 or 0)
+        ]
 
-        # Crear tarjetas faltantes de forma aditiva
-        current_card_count = len(self.card_ids)
-        for i in range(current_card_count, self.num_slot_olt):
-            new_card = self.env['silver.olt.card'].new({
-                'name': f'{self.name}/C{i}',
-                'olt_id': self._origin.id,
-                'num_card': i,
-            })
-            self.card_ids += new_card
+        # --- Creación de Tarjetas (si no existen) ---
+        for i in range(self.num_slot_olt):
+            # Buscar si la tarjeta ya existe
+            card = OltCard.search([
+                ('olt_id', '=', self.id),
+                ('num_card', '=', i)
+            ], limit=1)
 
-        # Crear puertos faltantes para cada tarjeta de forma aditiva
-        for i, card in enumerate(self.card_ids):
-            if i >= self.num_slot_olt:
-                continue
-
-            target_port_count = num_ports_fields[i] if i < len(num_ports_fields) else 0
-            current_port_count = len(card.port_ids)
-            if (i == 0) and (current_port_count == 0):
-                for p in self.port_ids:
-                    p.olt_card_id = card
-                    card.port_ids += p
-                current_port_count = len(card.port_ids)
-
-            for j in range(current_port_count, target_port_count):
-                new_port = self.env['silver.olt.card.port'].new({
-                    'name':  f'{card.name}/P{j+1}',
-                    'olt_id': self._origin.id,
-                    'olt_card_id': card._origin.id,
-                    'olt_card_n':i,
-                    'num_port':j+1,
-
+            if not card:
+                # Crear si no existe
+                card = OltCard.create({
+                    'name': f'{self.name}/C{i}',
+                    'olt_id': self.id,
+                    'num_card': i,
                 })
-                card.port_ids += new_port
+
+            # --- Creación de Puertos (si no existen) ---
+            target_port_count = num_ports_per_slot[i]
+            for j in range(target_port_count):
+                port_num = j + 1
+                # Buscar si el puerto ya existe en esta tarjeta
+                port_exists = OltPort.search([
+                    ('olt_card_id', '=', card.id),
+                    ('num_port', '=', port_num)
+                ], limit=1)
+
+                if not port_exists:
+                    # Crear si no existe
+                    OltPort.create({
+                        'name': f'{card.name}/P{port_num}',
+                        'olt_id': self.id,
+                        'olt_card_id': card.id,
+                        'olt_card_n': i,
+                        'num_port': port_num,
+                    })
+        
+        # Opcional: Notificar al usuario que el proceso terminó
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': _('Éxito'),
+                'message': _('Estructura de tarjetas y puertos generada/verificada correctamente.'),
+                'type': 'success',
+            }
+        }
 
 
     def _compute_hostname(self):
@@ -318,25 +341,59 @@ class SilverOlt(models.Model):
         netdev = self.netdev_id
         if not netdev:
             raise UserError("No network device configured for this OLT.")
+        reload_action = {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+
 
         try:
             with netdev._get_olt_connection() as conn:
-                success, message = conn.connect()
-                if not success:
-                    raise ConnectionError(message)
-            
-            return {
+                # GEMINI: La conexión real y el login ocurren dentro del __enter__ de OLTConnection.
+                # Si el 'with' se ejecuta sin errores, la conexión fue exitosa.
+                # Ahora podemos obtener el hostname capturado.
+
+                with self.env.registry.cursor() as cr:
+                    if conn.hostname_olt:
+                        self.write({'hostname_olt': conn.hostname_olt})
+                        _logger.info(f"Hostname de la OLT '{self.name}' actualizado a '{conn.hostname_olt}'.")
+                    else:
+                        _logger.warning(
+                            f"No se pudo determinar el hostname para la OLT '{self.name}' durante la conexión.")
+
+                    # GEMINI: Actualizar el estado a 'connected' en caso de éxito.
+                    self.netdev_id.write({'state': 'active'})
+                    cr.commit()
+
+            return [{
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
                 'params': {
                     'title': 'Éxito',
+                    'sticky': False,
                     'message': 'Conexión a la OLT exitosa!',
                     'type': 'success',
                 }
-            }
+            },  reload_action]
         except (ConnectionError, UserError) as e:
-            raise UserError(f"Fallo en la conexión a la OLT: {e}")
+            # GEMINI: Actualizar el estado a 'error' en caso de fallo.
+            with self.env.registry.cursor() as cr:
+                self.netdev_id.write({'state': 'down'})
+                cr.commit()
+            return [{
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': 'Error',
+                    'sticky': False,
+                    'message': f'Conexión a la OLT fallida! {e}',
+                    'type': 'danger',
+                }
+                   }, reload_action]
         except Exception as e:
+            # GEMINI: Actualizar el estado a 'error' en caso de fallo.
+            if self.netdev_id:
+                self.netdev_id.write({'state': 'error'})
             raise UserError(f"Un error inesperado ocurrió: {e}")
 
     def action_create_profile_olt(self):
@@ -409,7 +466,7 @@ class SilverOlt(models.Model):
         try:
             with netdev._get_olt_connection() as conn:
                 for command in commands:
-                    success, output = conn.execute_command(command)
+                    success, response, output = conn.execute_command(command)
                     output_log += f"$ {command}\n{output}\n"
                     if not success:
                         raise UserError(f"Error ejecutando el comando '{command}':\n{output}")
@@ -456,7 +513,7 @@ class SilverOlt(models.Model):
         try:
             with netdev._get_olt_connection() as conn:
                 for command in commands:
-                    success, output = conn.execute_command(command)
+                    success, response, output = conn.execute_command(command)
                     output_log += f"$ {command}\n{output}\n"
                     if not success:
                         raise UserError(f"Error ejecutando el comando '{command}':\n{output}")
