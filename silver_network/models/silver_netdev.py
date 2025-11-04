@@ -224,6 +224,7 @@ class SilverNetdev(models.Model):
 
     @api.model
     def button_test_connection(self):
+        print("test")
         self.ensure_one()
         api = self._get_api_connection()
         if api:
@@ -461,6 +462,9 @@ class SilverNetdev(models.Model):
                 'view_mode': 'form',
                 'res_id': wizard.id,
                 'target': 'new',
+                'context': {
+                    'default_netdev_id': self.id,
+                }
             }
         finally:
             api.close()
@@ -526,6 +530,9 @@ class SilverNetdev(models.Model):
                 'view_mode': 'form',
                 'res_id': wizard.id,
                 'target': 'new',
+                'context': {
+                    'default_netdev_id': self.id,
+                }
             }
         finally:
             api.close()

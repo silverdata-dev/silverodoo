@@ -590,7 +590,16 @@ class IspContract(models.Model):
             'state_service': 'active',
             'date_reconnection': fields.Date.context_today(self)
         })
-        return True
+        return    {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': _('Éxito'),
+                'message': _('El servicio ha sido restaurado correctamente.'),
+                'type': 'success',
+            }
+        }
+      #  return True
 
     def action_suspend_service(self):
         self.ensure_one()
@@ -600,7 +609,15 @@ class IspContract(models.Model):
             'state_service': 'suspended',
             'date_reconnection': fields.Date.context_today(self)
         })
-        return True
+        return  {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Éxito'),
+                    'message': _('El servicio ha sido suspendido  correctamente.'),
+                    'type': 'success',
+                }
+            }
         """
         for contract in self:
             if contract.state_service != 'active':

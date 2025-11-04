@@ -289,7 +289,7 @@
                         </group>
                         <notebook>
                             <page string="Active Connections">
-                                 <field name="line_ids" widget="interface_speed_updater" r="line_ids"  options="{'r': 'interface'}"/>
+                                 <!--field name="line_ids" widget="interface_speed_updater" r="line_ids"  options="{'r': 'interface'}"/-->
                                 <field name="line_ids">
                                     <tree string="Active Connections" create="false" delete="false" readonly="1">
                                         <field name="name"/>
@@ -298,8 +298,8 @@
                                         <field name="caller_id"/>
                                         <field name="address"/>
 
-                                    <field name="rx_speed"/>
-                                    <field name="tx_speed"/>
+                                    <!--field name="rx_speed"/>
+                                    <field name="tx_speed"/-->
                                         <button name="action_open_speed_chart" type="object" icon="fa-area-chart"/>
                                     </tree>
                                 </field>
@@ -387,7 +387,7 @@
                         </group>
                         <notebook>
                             <page string="Queues">
-                                 <field name="line_ids" widget="interface_speed_updater" r="line_ids"  options="{'r': 'interface'}"/>
+                                 <!--field name="line_ids" widget="interface_speed_updater" r="line_ids"  options="{'r': 'interface'}"/-->
                                 <field name="line_ids" readonly="1">
                                     <tree string="Queues">
                                         <field name="name"/>
@@ -397,8 +397,8 @@
                                         <field name="disabled"/>
                                         <field name="comment"/>
 
-                                    <field name="rx_speed"/>
-                                    <field name="tx_speed"/>
+                                    <!--field name="rx_speed"/>
+                                    <field name="tx_speed"/-->
 
                                         <button name="action_open_speed_chart" type="object" icon="fa-area-chart"/>
                                     </tree>

@@ -53,8 +53,8 @@ class SystemStatsController(http.Controller):
         if not api:
             return {'error': 'Connection failed'}
 
-        try:
-      #  if 1:
+        #try:
+        if 1:
             # Convert string of names to list
             if isinstance(interface_names, str):
                 interface_names = interface_names.split(',')
@@ -65,6 +65,7 @@ class SystemStatsController(http.Controller):
             chunk_size = 90  # A safe limit below 100
             for i in range(0, len(interface_names), chunk_size):
                 chunk = interface_names[i:i + chunk_size]
+                print(("chunk", ",".join(chunk)))
                 traffic_chunk_data = api.path('/interface')('monitor-traffic', interface=",".join(chunk), once='')
                 for item in traffic_chunk_data:
                     traffic_map[item['name']] = item
@@ -83,8 +84,8 @@ class SystemStatsController(http.Controller):
 
 
             return stats
-        except Exception as e:
-            return {'error': str(e)}
-        finally:
-            if api:
-                api.close()
+        #except Exception as e:
+        #    return {'error': str(e)}
+        #finally:
+        #    if api:
+        #        api.close()
