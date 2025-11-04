@@ -1,0 +1,7 @@
+<templates>
+    <t t-name="silver_network.QueueSpeedChart" owl="1">
+        <div class="queue_speed_chart" style="position: relative; height:40vh; width:80vw">
+            <canvas t-ref="chart"/>
+        </div>
+    </t>
+</templates>

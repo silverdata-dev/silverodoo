@@ -209,6 +209,9 @@ class SilverRouterPppActiveWizardLine(models.Model):
     wizard_id = fields.Many2one('silver.netdev.ppp.active.wizard')
     ppp_speed_chart = fields.Text(string="PPP Speed Chart", readonly=True)
 
+    rx_speed = fields.Char(string='RX Speed')
+    tx_speed = fields.Char(string='TX Speed')
+
     def action_open_speed_chart(self):
         self.ensure_one()
         return {
@@ -350,6 +353,114 @@ class SilverRouterQueueWizardLine(models.Model):
     disabled = fields.Boolean(string='Disabled')
     comment = fields.Char(string='Comment')
     wizard_id = fields.Many2one('silver.netdev.queue.wizard')
+
+
+    rx_speed = fields.Char(string='RX Speed')
+    tx_speed = fields.Char(string='TX Speed')
+
+    queue_speed_chart = fields.Text(string="Queue Speed Chart", readonly=True)
+
+    def action_open_speed_chart(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': self._name,
+            'view_mode': 'form',
+            'res_id': self.id,
+            'target': 'new',
+            'name': 'Queue Connection Speed',
+        }
+
+    def _format_speed(self, bits_per_second):
+        if not isinstance(bits_per_second, (int, float)):
+            return "0 bps"
+        if bits_per_second > 1000000:
+            return f"{bits_per_second / 1000000:.2f} Mbps"
+        if bits_per_second > 1000:
+            return f"{bits_per_second / 1000:.2f} kbps"
+        return f"{bits_per_second} bps"
+
+    def update_speed_rates(self):
+        self.ensure_one()
+        speed_data = self.get_interface_speed(self.id)
+        upload_bps = speed_data.get('upload', 0)
+        download_bps = speed_data.get('download', 0)
+        self.write({
+            'rate_up': self._format_speed(upload_bps),
+            'rate_down': self._format_speed(download_bps),
+        })
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': self._name,
+            'view_mode': 'form',
+            'res_id': self.id,
+            'target': 'new',
+            'name': 'Queue Connection Speed',
+        }
+
+    @api.model
+    def get_interface_speed(self, line_id):
+        print(f"get_interface_speed called for line_id: {line_id}")
+        line = self.browse(line_id)
+        print(("linemmm", line))
+        if not line:
+            print("Line not found")
+            return {'upload': 0, 'download': 0}
+
+        router = line.wizard_id.router_id
+        print(f"Router: {line} {router}")
+
+        try:
+            api = router._get_api_connection()
+        except:
+            api = None
+        if not api:
+            print("Failed to get API connection")
+            return {'upload': 0, 'download': 0}
+
+        try:
+            # The PPP username (e.g., '4064')
+            ppp_user_name = line.name
+
+            # Construct the dynamic interface name based on the pattern provided by the user
+            interface_name_to_find = ppp_user_name # f"<pppoe-{ppp_user_name}>"
+
+            print(f"Constructed interface name to monitor: {interface_name_to_find}")
+
+            interface_path = api.path('/interface')
+
+            # Now, monitor traffic using the constructed interface name
+            traffic_generator = interface_path('monitor-traffic', interface=interface_name_to_find, once=True)
+
+            try:
+                traffic = next(traffic_generator, None)
+
+                print(f"Traffic result for '{interface_name_to_find}': {traffic}")
+            except:
+                traffic = None
+
+            if traffic:
+                tx_speed = traffic.get('tx-bits-per-second', 0)
+                rx_speed = traffic.get('rx-bits-per-second', 0)
+                print(f"Speeds: upload={tx_speed}, download={rx_speed}")
+                return {'upload': tx_speed, 'download': rx_speed}
+            else:
+                print(f"monitor-traffic returned no data for interface '{interface_name_to_find}'.")
+                return {'upload': 0, 'download': 0}
+
+        except Exception as e:
+            # The most likely error here is TrapError if the interface name is still not found.
+            print(f"An exception occurred in get_interface_speed: {e}")
+            import traceback
+            traceback.print_exc()
+            return {'upload': 0, 'download': 0}
+        finally:
+            if api:
+                api.close()
+                print("API connection closed.")
+
+        return {'upload': 0, 'download': 0}
+
 
 class SilverNetdevActiveUsersWizard(models.TransientModel):
     _name = 'silver.netdev.active.users.wizard'
