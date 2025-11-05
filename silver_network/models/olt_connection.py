@@ -33,7 +33,8 @@ class OLTConnection:
         self.connection_type = connection_type
         self.client = None
         self.shell = None
-        self.current_prompt = None
+        self.prompt_re = None  # Regex del prompt actual
+        self.prompt = None     # Texto del prompt actual
         self.hostname_olt = None
         self.terminal_length_set = False
         self.terminal_width_set = False
@@ -57,7 +58,8 @@ class OLTConnection:
             for prompt_name, pattern in self.PROMPT_PATTERNS.items():
                 match = pattern.search(output)
                 if match:
-                    self.current_prompt = pattern
+                    self.prompt_re = pattern
+                    self.prompt = match.group(0).strip() # Guardar el texto del prompt
                     # GEMINI: Capturar hostname si no lo hemos hecho ya
                     if not self.hostname_olt and prompt_name in ['user_mode', 'enable_mode', 'config_mode']:
                         self.hostname_olt = match.group(1)
@@ -65,8 +67,7 @@ class OLTConnection:
 
                     # Dividimos la salida en "antes del prompt" y "el prompt"
                     output_before_prompt = output[:match.start()]
-                    prompt_text = match.group(0)  # El texto que coincide con el prompt
-                    return output_before_prompt.strip(), prompt_text.strip(), output
+                    return output_before_prompt.strip(), self.prompt, output
 
             time.sleep(0.1)  # Evitar busy-waiting
 
@@ -102,7 +103,7 @@ class OLTConnection:
                 print((f"outputlogin {i+1}", output_before_prompt, prompt, out))
                 last_output = output_before_prompt + "\n" + prompt
 
-                current_prompt_obj = self.current_prompt
+                current_prompt_obj = self.prompt_re
 
                 if current_prompt_obj == self.PROMPT_PATTERNS['login']:
                     _logger.info(f"Enviando usuario: {self.username}")
@@ -162,7 +163,7 @@ class OLTConnection:
         _logger.info(f"Ejecutando comando: {command}")
         try:
             self.shell.send(command + '\n')
-            output_before_prompt, prompt, out = self._read_until_prompt(timeout)
+            output_before_prompt, prompt, full_output = self._read_until_prompt(timeout)
 
             # La logica de exito/fallo ahora se basara en si la salida contiene indicadores de error o exito.
             error_indicators = ['error', 'fail', 'invalid', 'incomplete command']
@@ -175,27 +176,30 @@ class OLTConnection:
             else:
                 clean_response = "\n".join(lines).strip()
 
-           # print(("outputcommand", output_before_prompt, prompt, command, clean_response))
+            # Determinar éxito o fallo
 
 
             # 3. Comprobar si la respuesta contiene un indicador de exito explicito.
             if any(indicator in clean_response.lower() for indicator in success_indicators):
                 print("si")
-                return True, out, clean_response
+                return True, full_output, clean_response
 
             # 1. Comprobar si la respuesta limpia contiene algun indicador de error.
             if any(indicator in clean_response.lower() for indicator in error_indicators):
                 print("no")
-                return False, out, clean_response
+                return False, full_output, clean_response
 
             # 2. Si no hay errores, comprobar si la respuesta esta vacia (exito implicito).
             if not clean_response:
                 print("nsi")
-                return True, out, clean_response
+                return True, full_output, clean_response
 
             print("sno")
             # 4. Si hay respuesta, pero no es un indicador de exito conocido, se considera un fallo.
-            return False, out, clean_response
+            return False, full_output, clean_response
+            #success = not any(indicator in clean_response.lower() for indicator in error_indicators)
+
+            return success, full_output, clean_response
 
         except Exception as e:
             _logger.error(f"Fallo al ejecutar el comando '{command}' en {self.host}: {e}")

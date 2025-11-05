@@ -98,12 +98,14 @@ class SilverNetdev(models.Model):
         pass_to_try = password or self.password or request.session.get('radius_password')
 
         if not user_to_try or not pass_to_try:
-            self.write({'state': 'error'})
+            #self.write({'state': 'error'})
+            self.state = 'error'
             _logger.error("Connection attempt failed: No username or password provided.")
             return None
 
         try:
-            self.write({'state': 'connecting'})
+            self.state = 'connecting'
+           # self.write({'state': 'connecting'})
             _logger.info(f"Attempting to connect to {self.ip}:{p} with user '{user_to_try}'")
             api = librouteros.connect(
                 host=self.ip,
@@ -113,11 +115,13 @@ class SilverNetdev(models.Model):
                 encoding='latin-1'
             )
             _logger.info(f"Successfully connected to {self.ip}")
-            self.write({'state': 'connected'})
+            #self.write({'state': 'connected'})
+            self.state = 'connected'
             return api
         except Exception as e:
             _logger.error(f"Failed to connect to {self.ip}:{p} with user '{user_to_try}'. Error: {e}")
-            self.write({'state': 'error'})
+            self.state = 'error'
+            #self.write({'state': 'error'})
             return None
 
     def _get_olt_connection(self):

@@ -265,9 +265,12 @@ class SilverOlt(models.Model):
         # --- Lógica de Borrado ---
         # 1. Borrar puertos sobrantes que no tengan contratos
         all_cards = OltCard.search([('olt_id', '=', self.id)])
+        print(("allcards", all_cards))
         for i, card in enumerate(all_cards):
 
             limit_ports = num_ports_per_slot_config[i]
+            if i >= self.num_slot_olt:
+                limit_ports = 0
             ports_to_check = OltPort.search([
                 ('olt_card_id', '=', card.id),
                 ('num_port', '>=', limit_ports)
@@ -299,6 +302,7 @@ class SilverOlt(models.Model):
             ], limit=1)
 
             if not card:
+                print(("create card", self.name))
                 # Crear si no existe
                 card = OltCard.create({
                     'name': f'{self.name}/C{i}',
@@ -318,7 +322,9 @@ class SilverOlt(models.Model):
 
                 if not port_exists:
                     # Crear si no existe
+                    print(("create port", card.name))
                     OltPort.create({
+
                         'name': f'{card.name}/P{port_num}',
                         'olt_id': self.id,
                         'olt_card_id': card.id,

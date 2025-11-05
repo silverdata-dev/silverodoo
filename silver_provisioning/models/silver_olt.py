@@ -251,9 +251,19 @@ class SilverOlt(models.Model):
         """
         Verifica si un perfil de ONU existe en la OLT y lo crea si no.
         """
+        # Si estamos en modo de configuración de interfaz, debemos salir para gestionar perfiles.
+        if conn.prompt and '(config-gpon-if)' in conn.prompt:
+            _logger.info("Saliendo del modo 'config-gpon-if' para gestionar perfiles.")
+            cmd_exit_interface = "exit"
+            success, full_output, clean_response = conn.execute_command(cmd_exit_interface)
+            output_log += f"$ {cmd_exit_interface}\n{full_output}\n"
+            if not success:
+                # Esto sería un problema, ya que no podemos asegurar el estado.
+                raise UserError(f"Error al intentar salir del modo de interfaz: {clean_response}")
+
         command = "show profile onu"
         print(("a"))
-        success, clean_response, full_output = conn.execute_command(command)
+        success, full_output, clean_response = conn.execute_command(command)
         print(("b"))
         output_log += f"\n$ {command}\n{full_output}\n"
         if not success:
@@ -322,7 +332,7 @@ class SilverOlt(models.Model):
         tcont = self.tcont
         dba_profile = self.profile_dba_internet
         gemport = self.gemport
-        vlan_id = contract.vlan_id or self.vlan_id
+        vlan_id = contract.vlan_id.name or self.vlan_id
         service_port = self.service_port_internet
         service_name = contract.service_type_id.name
         description = f"{contract.name}-{contract.partner_id.vat}-{contract.partner_id.name}".replace(" ", "_")
@@ -337,7 +347,7 @@ class SilverOlt(models.Model):
             raise UserError(f"Faltan parámetros requeridos: {', '.join(missing_params)}")
 
         base_commands = [
-            f"onu add {onu_id} profile {profile_name} sn {serial_number}",
+            f"onu add {onu_id} profile {profile_name}rr sn {serial_number}",
             f"onu {onu_id} tcont {tcont} dba {dba_profile}",
             f"onu {onu_id} gemport {gemport} tcont {tcont}",
             f"onu {onu_id} service {service_name or 'Internet'} gemport {gemport} vlan {vlan_id}",
@@ -347,14 +357,33 @@ class SilverOlt(models.Model):
         ]
 
         onu_created_on_olt = False
-        for command in base_commands:
-            success, clean_response, full_output = conn.execute_command(command)
-            output_log += f"\n{full_output}"
-            if not success:
-                raise UserError(f"Error ejecutando comando base '{command}':\n{clean_response}")
-            if f"onu add {onu_id}" in command:
-                onu_created_on_olt = True
-        
+        retry = 0
+        for retries in [0,1]:
+            if retry != retries: break
+            for command in base_commands:
+                success, clean_response, full_output = conn.execute_command(command)
+                output_log += f"\n{full_output}"
+
+                if not success:
+                    print(("not output", full_output))
+                    if "not found or it's not commited" in full_output:
+                        output_log += self._check_and_create_onu_profile(conn, profile_name, output_log)
+                        
+                        # Re-entrar al modo de interfaz, ya que la creación de perfil nos saca de él.
+                        _logger.info(f"Re-entrando a la interfaz 'gpon {pon_port}' después de crear el perfil.")
+                        cmd_reenter = f"interface gpon {pon_port}"
+                        s_re, fo_re, cr_re = conn.execute_command(cmd_reenter)
+                        output_log += f"\n{fo_re}"
+                        if not s_re:
+                            raise UserError(f"Fallo al re-entrar a la interfaz {pon_port} despues de crear el perfil: {cr_re}")
+
+                        retry = 1
+                        break
+
+                    raise UserError(f"Error ejecutando comando base '{command}':\n{clean_response}")
+                if f"onu add {onu_id}" in command:
+                    onu_created_on_olt = True
+
         return output_log, onu_created_on_olt, pon_port, vlan_id
 
     def _provision_onu_wifi(self, contract, conn, output_log):
@@ -468,12 +497,12 @@ class SilverOlt(models.Model):
                                     'base' in steps_or_commands and
                                     steps_or_commands and steps_or_commands[0] in ['base', 'wifi', 'wan'])
 
-            if is_base_provisioning:
-                profile_name = contract.model_name
-                if profile_name:
-                    output_log = self._check_and_create_onu_profile(conn, profile_name, output_log)
-                else:
-                    output_log += "\nADVERTENCIA: No se pudo verificar/crear el perfil de la ONU porque el contrato no tiene un modelo (perfil) asignado.\n"
+            #if is_base_provisioning:
+            #    profile_name = contract.model_name
+            #    if profile_name:
+            #        output_log = self._check_and_create_onu_profile(conn, profile_name, output_log)
+            #    else:
+            #        output_log += "\nADVERTENCIA: No se pudo verificar/crear el perfil de la ONU porque el contrato no tiene un modelo (perfil) asignado.\n"
 
             # 3. Entrar en la interfaz GPON
             cmd_interface = f"interface gpon {pon_port_val}"

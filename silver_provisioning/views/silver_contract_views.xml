@@ -19,7 +19,8 @@
                 </xpath>
 
                 <xpath expr="//field[@name='line_ids']/tree/field[@name='name']" position="before">
-                    <field name="product_id"/>
+                                                            <field name="product_id"
+                                               domain="[('type', '=', line_type == 'recurring' and 'service' or 'product')]"/>
                 </xpath>
 
 
@@ -53,7 +54,9 @@
                                                 string="Descubrir ONUS"
                                                 class="oe_highlight"
                                                 invisible="(not olt_id) or (state != 'draft')"/>
-                                        <field name="discovered_onu_id" invisible="(not olt_id) or (state != 'draft')" nolabel="1"/>
+                                        <field name="discovered_onu_id"
+                                               domain="[('olt_id', '=', olt_id)]"
+                                               invisible="(not olt_id) or (state != 'draft')" nolabel="1" />
                         <field name="olt_port_id" />
                         <field name="onu_pon_id" />
    <field name="vlan_id"/>

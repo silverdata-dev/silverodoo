@@ -13,7 +13,7 @@ class SilverContractLine(models.Model):
     @api.onchange('product_id')
     def _onchange_product_id(self):
         if self.product_id:
-            self.name = self.product_id.get_product_multiline_description_sale()
+            self.name = self.product_id.get_product_multiline_description_sale() or self.product_id.name
             self.price_unit = self.product_id.list_price
 
 

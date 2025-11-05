@@ -524,8 +524,8 @@ class SilverCore(models.Model):
         return True
 
     def button_test_connectionu(self):
-        r= self.button_test_connection(True)
-        print(( "test connectionu", r[0]))
+        r = self.button_test_connection(True)
+        _logger.info("test connectionu %s", r)
         return r
 
 
@@ -544,7 +544,7 @@ class SilverCore(models.Model):
                     'message': f'This core has no network device associated ',
                     'type': 'danger',
                 }
-            },
+            }
             #raise UserError(_("This core has no network device associated."))
 
         reload_action = {
@@ -553,13 +553,17 @@ class SilverCore(models.Model):
         }
         
         api = None
+        ostate = netdev.state
         try:
+
             # Connection test now requires local credentials to perform configuration
             _logger.info(f"Core {self.name}: Trying local credentials for connection and configuration.")
             if u:
                 api = netdev._get_api_connection(username=self.username, password=self.password)
             else:
                 api = netdev._get_api_connection()
+
+            print(("noapi", self.state))
 
             if api:
                 # Fetch and set the hostname first
@@ -577,38 +581,49 @@ class SilverCore(models.Model):
                 _logger.info("Local credential connection successful. Proceeding to configure RADIUS.")
                 if u:
                     self._configure_radius_on_device(api)
+
+                cambia = (self.state != 'active')
                 self.askuser = False
                 self.state = 'active'
             #    return self._show_notification('success', _('RADIUS and NAS ya configurados'))
 
-                return [{
-                'type': 'ir.actions.client',
-                'tag': 'display_notification',
-                'params': {
-                    'title': 'Éxito',
-                    'sticky': False,
-                    'message': 'Conexión al core  exitosa!',
-                    'type': 'success',
-                }
+                if (cambia):
+                    return True
 
-            }, reload_action]
+
+                return {
+                    'type': 'ir.actions.client',
+                    'tag': 'display_notification',
+                    'params': {
+                        'title': 'Éxito',
+                        'sticky': False,
+                        'message': 'Conexión al core  exitosa!',
+                        'type': 'success',
+           #             'next': reload_action,
+                    }
+                }
             #else:
             _logger.error("Local credential connection failed.")
             #with self.env.registry.cursor() as new_cr:
-            self.state = 'down'
+            #cambia = (self.state != 'down')
+            #self.state = 'down'
             self.askuser = True
             #new_cr.commit()
 
-            r = [{
-    'type': 'ir.actions.client',
-    'tag': 'display_notification',
-    'params': {
-        'title': 'Error',
-        'sticky': False,
-        'message': f'Conexión al core fallida! ',
-        'type': 'danger',
-    }
-}, reload_action]
+            if(ostate != netdev.state):
+                return True
+
+            r = {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': 'Error',
+                    'sticky': False,
+                    'message': f'Conexión al core fallida! ',
+                    'type': 'danger',
+            #        'next': reload_action,
+                }
+            }
             print(("test connectionn", r))
             return r
 
@@ -616,11 +631,14 @@ class SilverCore(models.Model):
                 #raise UserError(_("Radius no conectado, ingrese usuario y contraseña locales"))
 
         except Exception as e:
+            print("exepsion")
+            cambia = (self.state != 'down')
             self.state = 'down'
             _logger.error(f"An exception occurred during connection test: {e}")
+            if (cambia): return True
             # Re-raise as UserError to show it on the UI
             #raise UserError(e)
-            return [{
+            return {
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
                 'params': {
@@ -628,25 +646,13 @@ class SilverCore(models.Model):
                     'sticky': False,
                     'message': f'Exception en core: {e}',
                     'type': 'danger',
+           #         'next': reload_action,
                 }
-            } , reload_action]
+            }
         finally:
             if api:
                 api.close()
 
-    def _show_notification(self, type, message):
-        """Helper to show notifications on the UI."""
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
-                'title': _('Connection Test'),
-                'message': message,
-                'type': type,  # 'success', 'warning', 'danger'
-                'sticky': False,
-                'next': {'type': 'ir.actions.client', 'tag': 'reload'},
-            }
-        }
 
 
     def button_get_system_info(self):

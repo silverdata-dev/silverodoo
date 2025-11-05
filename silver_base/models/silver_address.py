@@ -116,5 +116,14 @@ class SilverAddress(models.Model):
                 res['country_id'] = parent_candidate.country_id.id
                 res['latitude'] = parent_candidate.latitude
                 res['longitude'] = parent_candidate.longitude
+            else:
+                # Si no se encuentra un candidato padre, usa el search_string como la calle
+                res['street'] = search_string
         
         return res
+
+
+    @api.model
+    def name_create(self, s):
+        res = self.create({ 'street': s })
+        return res.id, res.name
