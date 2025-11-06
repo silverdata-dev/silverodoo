@@ -104,8 +104,10 @@
 
                     <!--field name="port"/>
                     <field name="username"/-->
-                    <field name="state" widget="badge" decoration-danger="state == 'down'"
-                           decoration-success="state in ['active', 'connected']"/>
+                    <field name="state"
+                           decoration-success="state in ['active', 'connected']"
+                           decoration-warning="state in ('suspended', 'disabled')"
+                           decoration-danger="state in ['removed', 'down']"/>
 
                 </tree>
                                 </field>

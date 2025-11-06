@@ -74,7 +74,7 @@ class OLTConnection:
         raise TimeoutError(f"Timeout esperando un prompt conocido. Salida recibida:\n{output}")
 
     def connect(self):
-        _logger.info(f"Conectando a {self.host}:{self.port} usando {self.connection_type}")
+        _logger.info(f"Conectando a {self.host}:{self.port} usando {self.connection_type}, {self.username}")
         try:
         #if 1:
             if self.connection_type == 'ssh':

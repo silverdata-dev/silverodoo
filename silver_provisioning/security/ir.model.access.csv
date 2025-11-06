@@ -4,3 +4,4 @@ access_silver_access_point_user,Access Point User,model_silver_access_point,base
 access_silver_provisioning_wizard_user,Provisioning Wizrd,model_silver_provisioning_wizard,base.group_user,1,1,1,1
 access_silver_contract_wifi_line,access.silver.contract.wifi.line,model_silver_contract_wifi_line,base.group_user,1,1,1,1
 access_silver_contract_select_onu_wizard,access.silver.contract.select.onu.wizard,model_silver_contract_select_onu_wizard,base.group_user,1,1,1,1
+access_silver_display_info_wizard,access.silver.display.info.wizard,model_silver_display_info_wizard,base.group_user,1,1,1,1

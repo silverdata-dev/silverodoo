@@ -144,7 +144,7 @@ class SilverOlt(models.Model):
     is_disabled_dhcp_pv4 = fields.Boolean(string='Deshabilitar Dhcp IPv6')
     is_control_admin = fields.Boolean(string='Admin Control')
     admin_user = fields.Char(string='Admin User')
-    password_user = fields.Char(string='Password User')
+    admin_passwd = fields.Char(string='Admin Password')
     lan1 = fields.Boolean(string='Lan1')
     lan2 = fields.Boolean(string='Lan2')
     lan3 = fields.Boolean(string='Lan3')

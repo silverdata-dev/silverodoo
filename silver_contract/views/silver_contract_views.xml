@@ -10,12 +10,15 @@
                     <field name="partner_id"/>
                     <field name="date_start"/>
                     <field name="date_end"/>
-                    <field name="state"/>
+                    <field name="state"   widget="badge"
+                           decoration-success="state in ['active', 'connected']"
+                           decoration-warning="state in ('suspended', 'disabled')"
+                           decoration-danger="state in ['removed', 'down']"/>
                     <field name="state_service"
                            widget="badge"
-                           decoration-success="state_service == 'active'"
+                           decoration-success="state_service in ['active', 'connected']"
                            decoration-warning="state_service in ('suspended', 'disabled')"
-                           decoration-danger="state_service == 'removed'"/>
+                           decoration-danger="state_service in ['removed', 'down']"/>
                 </tree>
             </field>
         </record>
@@ -88,8 +91,8 @@
                             <group>
                                    <field name="service_type_id" readonly="state != 'draft'"/>
                             <field name="plan_type_id" readonly="state != 'draft'"/>
-                            <field name="cutoff_date_id" readonly="state != 'draft'"/>
-                            <field name="contract_term_id" readonly="state != 'draft'"/>
+                            <field name="cutoff_date_id" readonly="state != 'draft'" domain="[('plan_type_id', '=', plan_type_id)]"/>
+                            <field name="contract_term_id" readonly="state != 'draft'" />
                                 <!--field name="service_plan_id"/-->
                             </group>
 
@@ -124,7 +127,7 @@
                                 <group name="invoice_fields">
                                 <group name="invoice_fields2">
                                     <field name="is_recurring_invoicing_type" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
-                                    <field name="recurring_invoicing_type" readonly="1" force_save="1" string="Tipo de Consumo" on_change="1" modifiers="{&quot;readonly&quot;: true}"/>
+                                    <field name="recurring_invoicing_type" readonly="state != 'draft'"  string="Tipo de Consumo" on_change="1" modifiers="{&quot;readonly&quot;: true}"/>
                                     <field name="payment_type_id" options="{'no_create': True}" widget="selection" required="1" readonly="state != 'draft'" on_change="1" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]], &quot;required&quot;: true}"/>
                                     <field name="is_other_partner_bank" invisible="payment_type_code not in ['credit_card','debit']" readonly="state != 'draft'" widget="boolean_toggle" on_change="1" modifiers="{&quot;invisible&quot;: [[&quot;payment_type_code&quot;, &quot;not in&quot;, [&quot;credit_card&quot;, &quot;debit&quot;]]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]]}"/>
                                     <field name="partner_bank_id" invisible="is_other_partner_bank == False" required="is_other_partner_bank == True" readonly="state != 'draft'" options="{'no_create': True}" can_create="true" can_write="true" modifiers="{&quot;invisible&quot;: [[&quot;is_other_partner_bank&quot;, &quot;=&quot;, false]], &quot;readonly&quot;: [[&quot;state&quot;, &quot;!=&quot;, &quot;draft&quot;]], &quot;required&quot;: [[&quot;is_other_partner_bank&quot;, &quot;=&quot;, true]]}"/>
@@ -283,6 +286,15 @@
                     </searchpanel>
                 </search>
             </field>
+        </record>
+
+        <!-- Sequence for silver.contract -->
+        <record id="sequence_silver_contract" model="ir.sequence">
+            <field name="name">Contract Sequence</field>
+            <field name="code">silver.contract.sequence</field>
+            <field name="prefix">CT-</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
         </record>
     </data>
 </odoo>

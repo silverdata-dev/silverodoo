@@ -6,12 +6,15 @@
     'author': 'Gemini',
     'website': 'https://www.gemini.com',
     'category': 'Services/Telecommunications',
-    'depends': ['silver_network', 'silver_contract', 'silver_base', 'silver_product', 'stock'],
+    'depends': ['web', 'silver_network', 'silver_contract', 'silver_base', 'silver_product', 'stock'],
     'data': [
+# 'views/assets.xml',
+
         'security/ir.model.access.csv',
         'views/silver_olt_discovered_onu_views.xml',
         'wizards/provisioning_wizard_views.xml',
         'wizards/select_discovered_onu_views.xml',
+        'views/silver_display_info_wizard_views.xml',
         'views/silver_contract_views.xml',
         'views/silver_cutoff_date_views.xml',
         'views/silver_ap_views.xml',
@@ -26,6 +29,8 @@
     # only loaded in demonstration mode
         'views/silver_core_views.xml',
         'views/silver_node_views.xml',
+
+
     ],
     'installable': True,
     'application': False,

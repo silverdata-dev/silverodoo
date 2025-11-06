@@ -39,6 +39,7 @@ class SilverOlt(models.Model):
         if not netdev:
             raise UserError(_("La OLT no tiene un dispositivo de red configurado."))
 
+
        # command = "show onu auto-find detail-info"
 
         base_commands = [
@@ -252,7 +253,8 @@ class SilverOlt(models.Model):
         Verifica si un perfil de ONU existe en la OLT y lo crea si no.
         """
         # Si estamos en modo de configuración de interfaz, debemos salir para gestionar perfiles.
-        if conn.prompt and '(config-gpon-if)' in conn.prompt:
+        print(("preprofile", conn.prompt))
+        if conn.prompt and 'config-pon' in conn.prompt:
             _logger.info("Saliendo del modo 'config-gpon-if' para gestionar perfiles.")
             cmd_exit_interface = "exit"
             success, full_output, clean_response = conn.execute_command(cmd_exit_interface)
@@ -347,7 +349,7 @@ class SilverOlt(models.Model):
             raise UserError(f"Faltan parámetros requeridos: {', '.join(missing_params)}")
 
         base_commands = [
-            f"onu add {onu_id} profile {profile_name}rr sn {serial_number}",
+            f"onu add {onu_id} profile {profile_name} sn {serial_number}",
             f"onu {onu_id} tcont {tcont} dba {dba_profile}",
             f"onu {onu_id} gemport {gemport} tcont {tcont}",
             f"onu {onu_id} service {service_name or 'Internet'} gemport {gemport} vlan {vlan_id}",
@@ -392,48 +394,31 @@ class SilverOlt(models.Model):
         if not contract.is_bridge and contract.wifi_line_ids:
             use_simple_wifi_fallback = False
             # Intentamos ejecutar el comando avanzado con la primera línea de WiFi
-            try:
-                first_line = contract.wifi_line_ids[0]
-                hide_cmd = "enable" if first_line.is_hidden else "disable"
-                command = f"onu {onu_id} pri wifi_ssid {first_line.ssid_index} name {first_line.name} hide {hide_cmd} auth_mode {first_line.auth_mode} encrypt_type {first_line.encrypt_type} shared_key {first_line.password} rekey_interval 0"
-                success, clean_response, full_output = conn.execute_command(command)
-                output_log += f"\n{full_output}"
-                if not success:
-                    use_simple_wifi_fallback = True
-                    output_log += f"\n--- Comando WiFi avanzado falló ({clean_response}), intentando fallback a simple ---\\n"
-            except Exception as e:
-                use_simple_wifi_fallback = True
-                output_log += f"\n--- Excepción en comando WiFi avanzado ({e}), intentando fallback a simple ---\\n"
-
-            if not use_simple_wifi_fallback:
-                for line in contract.wifi_line_ids[1:]:
+            d=dict()
+            for line in contract.wifi_line_ids:
+                d[line.ssid_index] = line
+            for a in range(1, 9):
+                line = d.get(a)
+                if not line:
+                    command = f"onu {onu_id} pri wifi_ssid {a} disable"
+                else:
                     hide_cmd = "enable" if line.is_hidden else "disable"
                     command = f"onu {onu_id} pri wifi_ssid {line.ssid_index} name {line.name} hide {hide_cmd} auth_mode {line.auth_mode} encrypt_type {line.encrypt_type} shared_key {line.password} rekey_interval 0"
-                    success, clean_response, full_output = conn.execute_command(command)
-                    output_log += f"\n{full_output}"
-                    if not success:
-                        raise UserError(f"Error en config. WiFi avanzada '{command}':\n{clean_response}")
-            else:
-                first_line = contract.wifi_line_ids[0]
-                simple_commands = [
-                    f"onu {onu_id} wifi ssid {first_line.name}",
-                    f"onu {onu_id} wifi key {first_line.password}"
-                ]
-                for command in simple_commands:
-                    success, clean_response, full_output = conn.execute_command(command)
-                    output_log += f"\n{full_output}"
-                    if not success:
-                        raise UserError(f"Error en config. WiFi simple (fallback) '{command}':\n{clean_response}")
+                success, clean_response, full_output = conn.execute_command(command)
+                output_log += f"\n{full_output}"
         return output_log
 
     def _provision_onu_wan(self, contract, conn, output_log, vlan_id):
         """Provisiona la configuración WAN avanzada en la ONU. Asume que ya se está en el modo de configuración de la interfaz GPON."""
         onu_id = contract.onu_pon_id
-        if self.is_gestion_pppoe and not contract.is_bridge:
+        if 1:
+       # if self.is_gestion_pppoe and not contract.is_bridge:
             cmd_get_index = f"onu {onu_id} pri wan_adv add route"
             success, clean_response, full_output = conn.execute_command(cmd_get_index)
             output_log += f"\n{full_output}"
-            if not success:
+            #if not success:
+
+            if not "Msg:" in full_output:
                 raise UserError(f"Error al iniciar config. WAN avanzada:\n{clean_response}")
             
             match = re.search(r"number is (\d+)", clean_response) # Buscar en la respuesta limpia
@@ -441,8 +426,8 @@ class SilverOlt(models.Model):
                 raise UserError(f"No se pudo extraer el wan_index de la respuesta de la OLT:\n{clean_response}")
             wan_index = match.group(1)
 
-            admin_control_cmd = "enable" if self.is_control_admin else "disable"
-            user_control_cmd = "disable" if self.is_control_admin else "enable"
+            admin_control_cmd = f"enable {self.admin_user} {self.admin_passwd}" if self.is_control_admin else "disable"
+            user_control_cmd = "disable" #if self.is_control_admin else "enable"
             
             advanced_wan_commands = [
                 f"onu {onu_id} pri wan_adv index {wan_index} route mode internet mtu {self.mtu}",
@@ -450,11 +435,15 @@ class SilverOlt(models.Model):
                 f"onu {onu_id} pri wan_adv index {wan_index} route both client_address enable client_prifix enable",
                 f"onu {onu_id} pri wan_adv index {wan_index} vlan tag wan_vlan {vlan_id} {self.vlan_priority}",
                 f"onu {onu_id} pri wan_adv commit",
-                f"onu {onu_id} pri username admin_control {admin_control_cmd} admin {self.admin_user} user_control {user_control_cmd}",
+                f"onu {onu_id} pri username admin_control {admin_control_cmd} user_control {user_control_cmd}",
+
             ]
+
+            print(("comands", advanced_wan_commands))
             for command in advanced_wan_commands:
                 success, clean_response, full_output = conn.execute_command(command)
-                output_log += f"\n{full_output}"
+                output_log += f"\n{clean_response}"
+
                 if not success:
                     raise UserError(f"Error en config. WAN avanzada '{command}':\n{clean_response}")
         return output_log
@@ -475,6 +464,7 @@ class SilverOlt(models.Model):
         base_config_successful = False
         pon_port = None
 
+        print(("e1", steps_or_commands))
         #if 1:
         try:
             conn = netdev._get_olt_connection()
@@ -519,7 +509,7 @@ class SilverOlt(models.Model):
                     # para manejar la nueva tupla de retorno si llaman a execute_command directamente,
                     # pero por ahora nos centramos en el flujo principal)
                     steps = steps_or_commands
-                    vlan_id = contract.vlan_id or self.vlan_id
+                    vlan_id = contract.vlan_id.name or self.vlan_id
                     if 'base' in steps:
                         log, onu_created, p_port, v_id = self._provision_onu_base(contract, conn, "")
                         output_log += log
@@ -532,6 +522,8 @@ class SilverOlt(models.Model):
                     if 'wan' in steps:
                         if not vlan_id:
                             raise UserError("No se pudo determinar la VLAN para la configuración WAN.")
+
+                        print(("towan", conn))
                         output_log += self._provision_onu_wan(contract, conn, "", vlan_id)
                 else: # Es una lista de comandos directos
                     for command in steps_or_commands:

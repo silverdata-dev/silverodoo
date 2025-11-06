@@ -35,8 +35,10 @@
                     <field name="ip"/>
                     <field name="port"/>
                     <field name="username"/>
-                    <field name="state" widget="badge" decoration-danger="state == 'down'"
-                           decoration-success="state == 'active'"/>
+                    <field name="state"  widget="badge"
+                           decoration-success="state in ['active', 'connected']"
+                           decoration-warning="state in ('suspended', 'disabled')"
+                           decoration-danger="state in ['removed', 'down']"/>
                 </tree>
             </field>
         </record>
@@ -111,8 +113,10 @@
                                   string="Probar Conexion"/-->
 
 
-                                <field name="state" widget="badge" decoration-danger="state == 'down'"
-                                       decoration-success="state == 'active'"/>
+                                <field name="state"  widget="badge"
+                           decoration-success="state in ['active', 'connected']"
+                           decoration-warning="state in ('suspended', 'disabled')"
+                           decoration-danger="state in ['removed', 'down']"/>
                                 <field name="hostname_olt" invisible="state!='active'"/>
 
 
@@ -245,7 +249,7 @@
                                         <field name="is_disabled_dhcp_pv4" widget="boolean_toggle"/>
                                         <field name="is_control_admin" widget="boolean_toggle"/>
                                         <field name="admin_user" invisible="is_control_admin== False"/>
-                                        <field name="password_user" invisible="is_control_admin== False"/>
+                                        <field name="admin_passwd" invisible="is_control_admin== False"/>
                                     </group>
                                 </group>
 

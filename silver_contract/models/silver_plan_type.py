@@ -7,4 +7,5 @@ class SilverPlanType(models.Model):
     _order = 'name'
 
     name = fields.Char(string='Nombre', required=True)
+    code = fields.Char(string='Code', required=True)
     description = fields.Text(string='Descripción')

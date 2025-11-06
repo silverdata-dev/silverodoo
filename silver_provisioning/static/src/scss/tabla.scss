@@ -1,0 +1,38 @@
+.wan-data-table {
+    margin: 10px 0;
+    width: 100%;
+
+    // Sobrescribe el estilo de tabla base de Bootstrap
+    table {
+        border: 1px solid #dee2e6; // Borde exterior suave
+        border-radius: 6px;
+        overflow: hidden; // Ayuda a que los bordes redondeados se vean bien
+    }
+
+    // Estilo para el encabezado (clave) de la fila
+    .wan-key {
+        font-weight: bold;
+        background-color: #f8f9fa; // Fondo ligeramente gris para la clave
+        width: 35%; // Asegura que la columna de la clave tenga un ancho fijo
+        padding: 5px 10px !important;
+        border-right: 1px solid #dee2e6; // Separador entre clave y valor
+    }
+
+    // Estilo para el valor
+    .wan-value {
+        padding: 5px 10px !important;
+        // Evita saltos de línea extraños para las rutas largas
+        word-break: break-word;
+    }
+
+    // Estilo para las líneas de separación entre registros grandes (ej: el nwanNumber)
+    .wan-separator-row {
+        background-color: #e9ecef; // Un fondo más oscuro para títulos
+        td {
+            font-size: 1.1em;
+            font-weight: 600;
+            padding: 8px 10px !important;
+            border-top: 2px solid #adb5bd !important;
+        }
+    }
+}

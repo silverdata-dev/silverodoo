@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_silver_display_info_wizard_form" model="ir.ui.view">
+            <field name="name">silver.display.info.wizard.form</field>
+            <field name="model">silver.display.info.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Información del Dispositivo">
+                    <field name="info" nolabel="1" widget="html"/>
+                    <footer>
+                        <button string="Cerrar" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

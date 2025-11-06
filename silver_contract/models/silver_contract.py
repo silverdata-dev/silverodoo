@@ -34,8 +34,8 @@ class SilverContract(models.Model):
 
 
     # Campos de Configuración
-    service_type_id = fields.Many2one('silver.service.type', string="Tipo de Servicio", required=True)
-    plan_type_id = fields.Many2one('silver.plan.type', string="Tipo de Plan", required=True)
+    service_type_id = fields.Many2one('silver.service.type', string="Tipo de Servicio", required=True, default=lambda self: self._get_default_service_type_id())
+    plan_type_id = fields.Many2one('silver.plan.type', string="Tipo de Plan", required=True, default=lambda self: self._get_default_plan_type_id())
     contract_term_id = fields.Many2one('silver.contract.term', string="Período de Permanencia")
     cutoff_date_id = fields.Many2one('silver.cutoff.date', string="Periodo de Consumo")
     tag_ids = fields.Many2many('silver.contract.tag', string="Etiquetas")
@@ -54,8 +54,10 @@ class SilverContract(models.Model):
     box_id = fields.Many2one('silver.box', string='Caja NAP')
 
     # --- Pestaña: Servicios Recurrentes ---
-    recurring_invoice_type = fields.Selection([('post', 'Postpago'), ('pre', 'Prepago')], string="Tipo de Consumo")
-    recurring_invoicing_type = fields.Selection([('recurrent', 'Recurrente'), ('one_time', 'Una sola vez')], string="Tipo de facturación")
+    #recurring_invoice_type = fields.Selection([('post', 'Postpago'), ('pre', 'Prepago')], string="Tipo de Consumo")
+    #recurring_invoicing_type = fields.Selection([('recurrent', 'Recurrente'), ('one_time', 'Una sola vez')], string="Tipo de facturación")
+    recurring_invoicing_type = fields.Selection([('post', 'Postpago'), ('pre', 'Prepago')],
+                                                string="Tipo de facturación")
     line_ids = fields.One2many('silver.contract.line', 'contract_id', string='Líneas de Servicio Recurrente', domain=[('line_type', '=', 'recurring')])
     line_debit_ids = fields.One2many('silver.contract.line', 'contract_id', string='Líneas de Cargo Único', domain=[('line_type', '=', 'one_time')])
     payment_type_id = fields.Many2one('silver.payment.type', string="Forma de Pago")
@@ -156,10 +158,17 @@ class SilverContract(models.Model):
     def _get_default_country(self):
         return self.env['res.country'].search([('code', '=', 'VE')], limit=1)
 
+
+    def _get_default_plan_type_id(self):
+        return self.env['silver.plan.type'].search([('code', '=', 'residencial')], limit=1)
+
+    def _get_default_service_type_id(self):
+        return self.env['silver.service.type'].search([('code', '=', 'internet')], limit=1)
+
+
     @api.model
     def create(self, vals):
-        if vals.get('name', _('Nuevo')) == _('Nuevo'):
-            vals['name'] = self.env['ir.sequence'].next_by_code('silver.contract.sequence') or _('Nuevo')
+
         return super(SilverContract, self).create(vals)
 
 
@@ -225,4 +234,5 @@ class SilverContract(models.Model):
                         # En este caso, la eliminamos directamente como se solicitó.
                         discovered_onu.unlink()
 
+        print(("write0", vals))
         return super(SilverContract, self).write(vals)

@@ -67,16 +67,18 @@
                                                 type="object"
                                                 string="Aprovisionar Servicio"
                                                 class="oe_highlight"
-                                                invisible="(not olt_id) or (state != 'draft') or (onu_pon_id == None)"/>
+                                                invisible="(not olt_id) or (state == 'draft' )"/>
 
                                     <button name="action_check_olt_state"
                                                 type="object"
                                                 string="Comprobar conexión"
                                                 class="oe_highlight"
-                                                invisible="(not olt_id) or (state == 'draft')"/>
-                                        <field name="olt_state" invisible="(not olt_id) or (state == 'draft')" nolabel="1" widget="badge" decoration-danger="state == 'down'"
-                           decoration-success="state == 'active'"/>
-
+                                                invisible="(state != 'draft')"/>
+                                        <field name="olt_state"  nolabel="1"
+                                               widget="badge"
+                           decoration-success="olt_state in ['active', 'connected']"
+                           decoration-warning="olt_state in ('suspended', 'disabled')"
+                           decoration-danger="olt_state in ['removed', 'down']"/>
                                     </group>
          <group string="Equipo">
                                         <field name="stock_lot_id"/>
@@ -104,7 +106,7 @@
 
                                     <group string="Datos Asignados">
 
-                                        <field name="core_id" readonly="state != 'draft'" options="{'no_create': True, 'no_open': True}"/>
+                                        <field name="core_id" readonly="state != 'draft'" options="{'no_create': True}"/>
 
                                         <field name="pppoe_user"/>
                                         <field name="pppoe_password" password="True"/>
@@ -112,16 +114,22 @@
                                                 type="object"
                                                 string="Establecer usuario"
                                                 class="oe_highlight"
-                                                invisible="(state != 'draft') or (pppoe_user == None) or (pppoe_password == None)"/><br/>
+                                                invisible="(pppoe_user == None) or (pppoe_password == None)"/>
 
+   <field name="radius_state" widget="badge"
+                           decoration-success="radius_state in ['active', 'connected']"
+                           decoration-warning="radius_state in ('suspended', 'disabled')"
+                           decoration-danger="radius_state in ['removed', 'down']"  nolabel="1" />
 
                                  <button name="action_check_radius_connection"
                                                 type="object"
                                                 string="Probar Conexión"
                                                 class="oe_highlight"
-                                                invisible="(state != 'draft') or (pppoe_user == None) or (pppoe_password == None)"/>
-                                 <field name="pppoe_state" widget="badge" decoration-danger="state == 'down'"
-                           decoration-success="state == 'active'"  nolabel="1" />
+                                                invisible="(pppoe_user == None) or (pppoe_password == None)"/>
+                                 <field name="core_state"  widget="badge"
+                           decoration-success="core_state in ['active', 'connected']"
+                           decoration-warning="core_state in ('suspended', 'disabled')"
+                           decoration-danger="core_state in ['removed', 'down']"  nolabel="1" />
                                     </group>
 
                                      <group string="Credenciales WiFi">
@@ -130,20 +138,22 @@
                                 <field name="password" invisible="1" password="True"/>
                              <field name="custom_channel_id" invisible="1"/>
                                 <!--field name="contract_mode_wan_ids"/-->
-                                <field name="wifi_line_ids">
+
+                                <field name="wifi_line_ids" nolabel="1"  colspan="2">
                                     <tree >
                                         <field name="ssid_index"/>
                                         <field name="name"/>
-                                        <field name="password" password="True"/>
-                                        <field name="is_hidden" invisible="1"/>
+                                        <field name="password" />
+                                        <!--field name="is_hidden" invisible="1"/>
                                         <field name="auth_mode" invisible="1"/>
-                                        <field name="encrypt_type" invisible="1"/>
+                                        <field name="encrypt_type" invisible="1"/-->
                                     </tree>
                                 </field>
+
   <button name="action_provision_wan" string="Configurar WAN" type="object" class="oe_highlight" invisible="not olt_id.is_gestion_pppoe or (state_service == 'inactive')"/>
-
+<button name="button_get_wan_info" type="object" string="Info"/>
                     <button name="action_provision_wifi" string="Aplicar WiFi" type="object" class="oe_highlight" invisible=" (state_service == 'inactive')"/>
-
+<button name="button_get_wifi_info" type="object" string="Wifi"/>
                             </group>
                                 </group>
 

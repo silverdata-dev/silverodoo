@@ -14,3 +14,4 @@ from . import silver_contract_discount_line
 from . import silver_contract_stock_line
 from . import silver_cutoff_date
 from . import silver_contract_wifi_line
+from . import silver_display_info_wizard

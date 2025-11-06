@@ -529,6 +529,36 @@ class SilverCore(models.Model):
         return r
 
 
+    def check_and_configure_nas(self, username, password):
+        """
+        Punto de entrada público para verificar y configurar el Core como un cliente NAS en el RADIUS.
+        """
+        self.ensure_one()
+        api = None
+        try:
+            # Conectar al dispositivo Core usando las credenciales locales
+            _logger.info(f"Iniciando configuración NAS para {self.name} en el RADIUS {self.radius_id.name} con user {username}")
+            api = self.netdev_id._get_api_connection(username=username, password=password)
+            if not api:
+                return False
+                #raise UserError(_("No se pudo conectar al dispositivo Core para la configuración NAS."))
+
+            # Llamar a la lógica de configuración existente
+            self._configure_radius_on_device(api)
+
+            _logger.info(f"Configuración NAS para {self.name} completada exitosamente.")
+            return True #self._show_notification('success', _('El cliente NAS fue configurado exitosamente en el servidor RADIUS.'))
+
+        except Exception as e:
+            _logger.error(f"Fallo durante la configuración NAS para {self.name}: {e}")
+            # Re-lanza la excepción para que sea visible en la UI.
+            raise False #UserError(_("Fallo en la configuración NAS: %s") % e)
+        finally:
+            if api:
+                api.close()
+
+
+
 
     def button_test_connection(self, u=False):
         self.ensure_one()

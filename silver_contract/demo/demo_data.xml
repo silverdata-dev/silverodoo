@@ -2,10 +2,25 @@
     <data noupdate="1">
         <!-- Plan Types -->
         <record id="plan_type_residencial" model="silver.plan.type">
+            <field name="code">residencial</field>
             <field name="name">Residencial</field>
         </record>
+        <record id="plan_type_multicorporative" model="silver.plan.type">
+            <field name="code">multicorporative</field>
+            <field name="name">Multi-corporativo</field>
+        </record>
+        <record id="plan_type_corporative" model="silver.plan.type">
+            <field name="code">corporative</field>
+            <field name="name">Corporativo</field>
+        </record>
         <record id="plan_type_comercial" model="silver.plan.type">
+            <field name="code">comercial</field>
             <field name="name">Comercial</field>
+        </record>
+
+        <record id="plan_type_convenant" model="silver.plan.type">
+            <field name="code">convenant</field>
+            <field name="name">Convenio</field>
         </record>
 
         <!-- Cutoff Factors -->

@@ -80,9 +80,17 @@ class IspContract(models.Model):
                               ('connecting', 'Connecting'),
                               ('disconnected', 'Disconnected'),
                               ('error', 'Error')],
-                             related='olt_id.netdev_id.state',
                              string='Estado OLT', default='down')
-
+    radius_state = fields.Selection([('down', 'Down'), ('active', 'Active'), ('connected', 'Connected'),
+                              ('connecting', 'Connecting'),
+                              ('disconnected', 'Disconnected'),
+                              ('error', 'Error')],
+                             string='Estado Radius', default='down')
+    core_state = fields.Selection([('down', 'Down'), ('active', 'Active'), ('connected', 'Connected'),
+                              ('connecting', 'Connecting'),
+                              ('disconnected', 'Disconnected'),
+                              ('error', 'Error')],
+                             string='Estado Core', default='down')
 
     discovered_onu_id = fields.Many2one(
         'silver.olt.discovered.onu',
@@ -206,31 +214,65 @@ class IspContract(models.Model):
             }
         }
 
-    @api.model
-    def create(self, vals):
+
+
+    def inicializar(self, vals):
+
+
         """
         Sobrescritura para generar las redes WiFi por defecto en la creación del contrato.
         """
+        partner = vals.get('partner_id', self.partner_id)
+
+        try:
+            if (int(partner)==partner):
+                partner = self.env['res.partner'].browse(partner)
+        except:
+            pass
+
+        print(("partner2", partner))
         # Comprobar si se está creando un contrato con un cliente y sin líneas WiFi predefinidas
-        if vals.get('partner_id') and not vals.get('wifi_line_ids'):
-            partner = self.env['res.partner'].browse(vals['partner_id'])
+
+        if (not vals.get('pppoe_user')) and (vals.get('name', self.name)):
+            vals['pppoe_user'] = vals.get('name', self.name).split('-')[-1]
+        if (not vals.get('pppoe_password') and partner):
+            vals['pppoe_password'] = partner.vat
+
+
+        if partner and not vals.get('wifi_line_ids', self.wifi_line_ids):
+
             if partner.vat:
                 # Generar las líneas WiFi por defecto
                 default_lines = [
                     (0, 0, {
                         'ssid_index': 1,
-                        'name': 'SILVERDATA',
-                        'password': partner.vat,
+                        'name': partner.name.split(" ")[0],
+                        'password': max(partner.vat.split("-"), key=len),
                     }),
                     (0, 0, {
                         'ssid_index': 5,
-                        'name': 'SILVERDATA-5G',
-                        'password': partner.vat,
+                        'name': partner.name.split(" ")[0]+'-5G',
+                        'password': max(partner.vat.split("-"), key=len),
                     }),
                 ]
                 # Añadirlas al diccionario de valores de creación
                 vals['wifi_line_ids'] = default_lines
-        
+
+    @api.onchange('partner_id')
+    def onchange_partner_id(self):
+        vals = {}
+        self.inicializar(vals)
+        if (vals):
+            self.write(vals)
+
+    @api.model
+    def create(self, vals):
+        if vals.get('name', _('Nuevo')) == _('Nuevo'):
+            vals['name'] = self.env['ir.sequence'].next_by_code('silver.contract.sequence') or _('Nuevo')
+
+        if 'partner_id' in vals:
+            self.inicializar(vals)
+
         return super(IspContract, self).create(vals)
 
     #  serial_onu = fields.Many2one('stock.production.lot', string="Serial ONU")
@@ -256,12 +298,7 @@ class IspContract(models.Model):
     firmware_version = fields.Char(string='Firmware Version ONU', related='stock_lot_id.firmware_version', readonly=True, store=False)
     serial_number = fields.Char(string='Serial ONU', related='stock_lot_id.serial_number', readonly=True, store=False)
 
-    # GEMINI: Nuevo campo para el estado de conexión PPPoE
-    pppoe_state = fields.Selection([('down', 'Down'), ('active', 'Active'), ('connected', 'Connected'),
-                      ('connecting', 'Connecting'),
-                      ('disconnected', 'Disconnected'),
-                      ('error', 'Error')],
-                     string='Estado conexión PPPoE', default='down')
+
 
     # --- Campos de Estado de Aprovisionamiento ---
     wan_config_successful = fields.Boolean(string="Configuración WAN Exitosa", default=False, readonly=True, copy=False)
@@ -269,130 +306,77 @@ class IspContract(models.Model):
 
     def action_add_radius_access(self):
         """
-        Crea o actualiza el usuario en el User Manager de MikroTik.
+        Crea el usuario en el User Manager del RADIUS server asociado.
+        Utiliza la función centralizada en el modelo silver.radius.
         """
         self.ensure_one()
-        if not all([self.pppoe_user, self.pppoe_password, self.core_id, self.partner_id, self.plan_type_id]):
-            raise UserError(_("Se requiere Usuario PPPoE, Contraseña, Core Router, Cliente y Plan para continuar."))
+        if (not self.core_id ) or (not self.core_id.radius_id):
+            raise UserError(_("Este contrato no tiene un servidor RADIUS asociado."))
+        if not self.pppoe_user or not self.pppoe_password:
+            raise UserError(_("Se requiere un usuario y contraseña PPPoE en el contrato."))
 
-        api = None
-        try:
-            api = self.core_id.netdev_id._get_api_connection()
-            if not api:
-                self.pppoe_state = 'down'
-                # (El resto de tu lógica de notificación de error se mantiene aquí)
-                return { 'type': 'ir.actions.client', 'tag': 'display_notification', 'params': { 'title': 'Error', 'message': _("No se pudo conectar al Core Router Mikrotik."), 'type': 'danger', } }
-
-            user_path = api.path('/user-manager/user')
-
-            # Preparar datos del usuario para User Manager
-            user_data = {
-                'username': self.pppoe_user,
-                'password': self.pppoe_password,
-                'customer': self.partner_id.name,
-                'profile': self.plan_type_id.name,
-            }
-            if self.mac_address:
-                user_data['caller-id'] = self.mac_address
-
-            print(("user", user_data, tuple(user_path)))
-
-            existing = tuple(user_path('print', { 'username': self.pppoe_user}))
-
-            if existing:
-                # Actualizar existente
-                user_path.set(id=existing[0]['.id'], **user_data)
-                message = _("Usuario '%s' actualizado exitosamente en User Manager.") % self.pppoe_user
-            else:
-                # Crear nuevo
-                user_path.add(**user_data)
-                message = _("Usuario '%s' creado exitosamente en User Manager.") % self.pppoe_user
-
-            _logger.info(message)
-            self.pppoe_state = 'active'
-            # (El resto de tu lógica de notificación de éxito se mantiene aquí)
-            return { 'type': 'ir.actions.client', 'tag': 'display_notification', 'params': { 'title': 'Activo', 'message': message, 'type': 'success', } }
-
-        except Exception as e:
-            error_message = _("Fallo al gestionar el usuario en User Manager: %s") % e
-            _logger.error(error_message)
-            self.pppoe_state = 'down'
-            # (El resto de tu lógica de notificación de error se mantiene aquí)
-            return { 'type': 'ir.actions.client', 'tag': 'display_notification', 'params': { 'title': 'Error', 'message': error_message, 'type': 'danger', } }
-        finally:
-            if api:
-                api.close()
-
-    def action_check_radius_connection(self):
-        """
-        Verifica el estado de la conexión PPPoE del usuario en el MikroTik.
-        """
-        self.ensure_one()
-        if not self.pppoe_user or not self.core_id:
-            raise UserError(_("Se requiere Usuario PPPoE y Core Router configurados para verificar la conexión."))
+        # Llamar a la función centralizada en el modelo silver.radius
+        result = self.core_id.radius_id.create_user_manager_user(
+            username=self.pppoe_user,
+            password=self.pppoe_password,
+            customer=self.partner_id.name
+        )
 
 
-        api = None
-        status_message = ""
-        try:
-            api = self.core_id.netdev_id._get_api_connection()
-            if not api:
-                self.pppoe_state = 'down'
-                return {
-                    'type': 'ir.actions.client',
-                    'tag': 'display_notification',
-                    'params': {
-                        'title': 'Error',
-                        'message': _("No se pudo conectar al Core Router Mikrotik."),
-                        'type': 'danger',
-                    }
-                }
-                #raise UserError(_("No se pudo conectar al Core Router Mikrotik."))
+        print(("radius", result, self.radius_state))
+        if result.get('success'):
+            cambio = self.radius_state != 'active'
 
-            # GEMINI: Sintaxis moderna, tratando el recurso como callable y convirtiendo a tupla
-            active_sessions = tuple(api.path('/ppp/active')('print', **{'?name': self.pppoe_user}))
-
-            if active_sessions:
-                session_info = active_sessions[0]
-                status_message = _("Usuario PPPoE '%s' está ACTIVO.\nIP: %s\nUptime: %s") % (
-                    self.pppoe_user, session_info.get('address', 'N/A'), session_info.get('uptime', 'N/A')
-                )
-                self.pppoe_connection_status = "Activo"
-                self.env.user.notify_success(message=status_message)
-            else:
-                status_message = _("Usuario PPPoE '%s' está INACTIVO (sin sesión activa).") % self.pppoe_user
-                #self.pppoe_connection_status = "Inactivo"
-                #self.env.user.notify_info(message=status_message)
-                self.pppoe_state = 'connected'
-                return {
-                    'type': 'ir.actions.client',
-                    'tag': 'display_notification',
-                    'params': {
-                        'title': 'Conectado',
-                        'message': status_message,
-                        'type': 'success',
-                    }
-                }
-
-        except Exception as e:
-            status_message = _("Fallo al verificar la conexión PPPoE en MikroTik: %s") % e
-
-            self.pppoe_state = 'down'
+            return True
+            if cambio:
+                self.radius_state = 'active'
+                return True
             return {
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
                 'params': {
-                    'title': 'Error',
-                    'message': status_message,
-                    'type': 'danger',
+                    'title': _('Éxito'),
+                    'message': result.get('message'),
+                    'type': 'success',
                 }
             }
-            #self.pppoe_connection_status = f"Error: {e}"
-            #self.env.user.notify_warning(message=status_message)
-            #raise UserError(status_message)
-        finally:
-            if api:
-                api.close()
+        else:
+            cambio = self.radius_state != 'down'
+            self.radius_state = 'down'
+
+
+            if cambio:
+
+                return True
+            # Si la función falla, muestra el mensaje de error que retorna
+            raise UserError(result.get('message'))
+
+    def action_check_radius_connection(self):
+        """
+        Verifica y configura el Core asociado como un cliente NAS en el servidor RADIUS.
+        Utiliza la función centralizada en el modelo silver.core.
+        """
+        self.ensure_one()
+        if not self.core_id:
+            raise UserError(_("Este contrato no tiene un Core Router asociado."))
+
+        # Llama a la función en silver.core y retorna su resultado (una acción de notificación)
+        si = self.core_id.check_and_configure_nas(username = self.pppoe_user, password = self.pppoe_password)
+        if (si != (self.core_state == 'active')):
+            self.core_state = ('active' if si else 'down')
+            return True
+        if si:
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Éxito'),
+                    'message': f"Conectado al core con usuario {self.pppoe_user}",
+                    'type': 'success',
+                }
+            }
+        raise UserError(_("No se puede autenticar con el core."))
+
 
     def action_provision_base(self):
         """
@@ -455,6 +439,7 @@ class IspContract(models.Model):
         return True
 
     def write(self, vals):
+        print(("write1", vals))
         # Si se modifican las líneas de WiFi, reseteamos el flag de éxito.
         if 'wifi_line_ids' in vals:
             vals['wifi_config_successful'] = False
@@ -526,9 +511,15 @@ class IspContract(models.Model):
 
                     netdev = olt.netdev_id
                     if not netdev:
-                        self.env.user.notify_warning(
-                            message=f"La OLT {olt.name} no tiene un dispositivo de red configurado."
-                        )
+                        return {
+                            'type': 'ir.actions.client',
+                            'tag': 'display_notification',
+                            'params': {
+                                'title': _('Advertencia'),
+                                'message': f"La OLT {olt.name} no tiene un dispositivo de red configurado.",
+                                'type': 'warning',
+                            }
+                        }
                         continue
 
                     try:
@@ -536,14 +527,26 @@ class IspContract(models.Model):
                             for command in full_sequence:
                                 success, response, output = conn.execute_command(command)
                                 if not success:
-                                    self.env.user.notify_warning(
-                                        message=f"Un comando falló en la OLT para el contrato {contract.name}.\nComando: {command}\nError: {output}"
-                                    )
-                                    break  # Detener si un comando falla
+                                    return {
+                                        'type': 'ir.actions.client',
+                                        'tag': 'display_notification',
+                                        'params': {
+                                            'title': _('Error de OLT'),
+                                            'message': f"Un comando falló en la OLT para el contrato {contract.name}.\nComando: {command}\nError: {output}",
+                                            'type': 'warning',
+                                        }
+                                    }
+
                     except Exception as e:
-                        self.env.user.notify_warning(
-                            message=f"No se pudo conectar a la OLT para actualizar el contrato {contract.name}.\nError: {e}"
-                        )
+                        return {
+                            'type': 'ir.actions.client',
+                            'tag': 'display_notification',
+                            'params': {
+                                'title': _('Error de Conexión OLT'),
+                                'message': f"No se pudo conectar a la OLT para actualizar el contrato {contract.name}.\nError: {e}",
+                                'type': 'warning',
+                            }
+                        }
         return res
 
     def action_activate_service(self):
@@ -669,9 +672,15 @@ class IspContract(models.Model):
                         user_path.remove(id=existing[0]['.id'])
                 
                 except Exception as e:
-                    self.env.user.notify_warning(
-                        message=_("Fallo al eliminar el usuario de User Manager para el contrato %s: %s") % (contract.name, e)
-                    )
+                    return {
+                        'type': 'ir.actions.client',
+                        'tag': 'display_notification',
+                        'params': {
+                            'title': _('Error de RADIUS'),
+                            'message': _("Fallo al eliminar el usuario de User Manager para el contrato %s: %s") % (contract.name, e),
+                            'type': 'warning',
+                        }
+                    }
                 finally:
                     if api:
                         api.close()
@@ -822,21 +831,228 @@ class IspContract(models.Model):
             domain = {'domain': {'olt_id': olt_domain}}
         return domain
 
+
+
     def action_check_olt_state(self):
         self.ensure_one()
-        self.olt_id.action_connect_olt()
-        # LÓGICA OLT: Esta acción es puramente para OLTs.
-        # 1. Conectar a la OLT (self.olt_id) vía Telnet, SSH, etc.
-        # 2. Ejecutar el comando para ver el estado óptico de la ONU.
-        #    Ejemplo conceptual: display ont optical-info <puerto> <serial>
-        # 3. Parsear la respuesta para obtener valores como la potencia de recepción (Rx Power).
-        # 4. Basado en la respuesta, actualizar el campo 'olt_status'.
-        #    - Si hay respuesta y la potencia es buena: self.olt_status = 'online'
-        #    - Si la ONU aparece con "Loss of Signal": self.olt_status = 'los'
-        #    - Si no se puede conectar o no se encuentra la ONU: self.olt_status = 'offline'
-        # 5. Por ahora, esta función solo muestra un aviso.
-        #raise UserError("Función no implementada. Requiere integración con la API de la OLT para actualizar el estado.")
-        # Ejemplo de cómo se vería al final:
-        # status = self.olt_id.get_onu_status(self.olt_port_id, self.serial_onu)
-        # self.write({'olt_status': status})
+        if not self.olt_id or not self.onu_pon_id:
+            raise UserError(_("Por favor, asegúrese de que la OLT y el ID de ONU en PON estén configurados."))
+
+        netdev = self.olt_id.netdev_id
+        if not netdev:
+            self.olt_state = 'down'
+            raise UserError(_("La OLT no tiene un dispositivo de red configurado."))
+
+        pon_port = f"{self.olt_card_id.num_card or self.olt_port_id.olt_card_id.num_card}/{self.olt_port_id.num_port}"
+
+        commands = [
+            f"configure terminal",
+            f"interface gpon {pon_port}",
+            f"show onu info {self.onu_pon_id}"
+        ]
+
+        #try:
+        if 1:
+            with netdev._get_olt_connection() as conn:
+                full_output = ""
+                for command in commands:
+                    success, response, output = conn.execute_command(command)
+                    full_output += output
+
+
+                if "Onuindex" in full_output and "Model" in full_output:
+                    cambio = (self.olt_state != 'active')
+                    self.olt_state = 'active'
+                    if (cambio): return True
+                    # Extraer la información relevante para la notificación
+                    lline = full_output.strip().split('\n')[-1]
+                    message = f"Información de la ONU:\n{lline}"
+                    return {
+                        'type': 'ir.actions.client',
+                        'tag': 'display_notification',
+                        'params': {
+                            'title': _('ONU Conectada'),
+                            'message': message,
+                            'type': 'success',
+                        }
+                    }
+
+                    cambio = (self.olt_state != 'down')
+                    self.olt_state = 'down'
+                    if (cambio): return True
+                    raise UserError(_(f"Fallo al ejecutar el comando '{command}':\n{output}"))
+                else:
+                    cambio = (self.olt_state != 'down')
+                    self.olt_state = 'down'
+                    if (cambio): return True
+                    raise UserError(_("La ONU no parece estar conectada o no se encontró información."))
+
+        #except Exception as e:
+        #    self.olt_state = 'down'
+            # Usar notify_warning para no bloquear al usuario con un UserError si la conexión falla
+        #    self.env.user.notify_warning(
+        #        message=f"No se pudo conectar a la OLT o verificar el estado de la ONU.\nError: {e}"
+        #    )
+        
         return True
+
+    # La función clave: Transforma el texto crudo en HTML
+    def _format_data_to_html(self, raw_text):
+        if not raw_text:
+            return ""
+
+        # Divide las líneas y filtra las líneas de encabezado (las que tienen '***')
+        lines = [line.strip() for line in raw_text.split("\n") if line.strip() and '***' not in line]
+
+        html_content = "<div class='wan-data-table'>"
+        html_table = "<table class='table table-sm table-borderless'>"
+
+
+        for line in lines:
+            if ':' in line:
+                # Divide solo por la primera ocurrencia de ':'
+                key, value = line.split(':', 1)
+
+                # Agrega una fila a la tabla
+                html_table += f"""
+                    <tr>
+                        <td class='wan-key'>{key.strip()}</td>
+                        <td class='wan-value'>{value.strip()}</td>
+                    </tr>
+                """
+            else:
+                # Maneja el encabezado o líneas que no tienen ':' (como nwanNumber)
+                html_table += f"<tr class='wan-separator-row'><td><strong>{line}</strong></td></tr>"
+
+        html_table += "</table>"
+
+        print(("html", html_table))
+        return html_table
+
+    def button_get_wan_info(self):
+        self.ensure_one()
+
+        info_str = ""
+        if not self.olt_id or not self.onu_pon_id:
+            raise UserError(_("Por favor, asegúrese de que la OLT y el ID de ONU en PON estén configurados."))
+
+        netdev = self.olt_id.netdev_id
+        if not netdev:
+            raise UserError(_("La OLT no tiene un dispositivo de red configurado."))
+        pon_port = f"{self.olt_card_id.num_card or self.olt_port_id.olt_card_id.num_card}/{self.olt_port_id.num_port}"
+
+        commands = [
+            f"configure terminal",
+            f"interface gpon {pon_port}",
+            f"show onu {self.onu_pon_id} pri wan_adv"
+        ]
+
+        try:
+            with netdev._get_olt_connection() as conn:
+                # No es necesario entrar en 'configure terminal' o 'interface gpon' para este comando
+                # ya que 'show onu X pri wan_adv' es un comando de nivel superior en algunas OLTs.
+                # Si la OLT requiere un contexto específico, se debería ajustar aquí.
+                full_output = ""
+                for command in commands:
+                    success, response, output = conn.execute_command(command)
+                    full_output += output
+
+            #if success:
+
+                info_str = self._format_data_to_html(output)
+                print(("outpuuuu", output, info_str))
+            #else:
+            #    return {
+            ##        'type': 'ir.actions.client',
+            #       'tag': 'display_notification',
+            #        'params': {
+            #            'title': _('Error de Información WAN'),
+            #            'message': info_str,
+            #            'type': 'warning',
+            #        }
+            #    }
+
+        except Exception as e:
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Error de Conexión OLT'),
+                    'message': info_str,
+                    'type': 'warning',
+                }
+            }
+
+        wizard = self.env['silver.display.info.wizard'].create({
+            'info': info_str,
+        })
+
+        return {
+            'name': _('Información WAN de ONU'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.display.info.wizard',
+            'view_mode': 'form',
+            'res_id': wizard.id,
+            'target': 'new',
+        }
+    def button_get_wifi_info(self):
+        self.ensure_one()
+
+        info_str = ""
+        if not self.olt_id or not self.onu_pon_id:
+            raise UserError(_("Por favor, asegúrese de que la OLT y el ID de ONU en PON estén configurados."))
+
+        netdev = self.olt_id.netdev_id
+        if not netdev:
+            raise UserError(_("La OLT no tiene un dispositivo de red configurado."))
+
+        pon_port = f"{self.olt_card_id.num_card or self.olt_port_id.olt_card_id.num_card}/{self.olt_port_id.num_port}"
+
+        commands = [
+            f"configure terminal",
+            f"interface gpon {pon_port}",
+            #f"show onu {self.onu_pon_id} pri wan_adv"
+        ]
+        for a in range(1, 9):
+            commands.append(f"show onu {self.onu_pon_id} pri wifi_ssid {a}")
+
+        info_str = ''
+
+        try:
+            with netdev._get_olt_connection() as conn:
+                #success, full_output, clean_response = conn.execute_command(f"show onu {self.onu_pon_id} pri wifi_ssid 1")
+                full_output = ""
+
+                for command in commands:
+                    success, response, output = conn.execute_command(command)
+                    full_output += output
+                    if ('SSID' in output) and ( 'Enable' in output):
+                        info_str += output+ " \n"
+                
+
+
+        except Exception as e:
+            info_str = _(f"No se pudo conectar a la OLT para obtener información WiFi.\nError: {e}")
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Error de Conexión OLT'),
+                    'message': info_str,
+                    'type': 'warning',
+                }
+            }
+
+        wizard = self.env['silver.display.info.wizard'].create({
+            'info': self._format_data_to_html(info_str),
+        })
+
+        return {
+            'name': _('Información WiFi de ONU'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.display.info.wizard',
+            'view_mode': 'form',
+            'res_id': wizard.id,
+            'target': 'new',
+        }
+

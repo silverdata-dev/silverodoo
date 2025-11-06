@@ -1,6 +1,10 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 import librouteros
+import logging, string, secrets
+from librouteros.query import Key
+
+_logger = logging.getLogger(__name__)
 
 class SilverRadius(models.Model):
     _name = 'silver.radius'
@@ -135,6 +139,7 @@ class SilverRadius(models.Model):
         if not self.ip or not self.username or not self.password:
             raise UserError(_("RADIUS server IP, username, and password are required for MikroTik API connection."))
         try:
+            print(("mikro", self.username, self.password))
             api = librouteros.connect(
                 username=self.username,
                 password=self.password,
@@ -309,6 +314,51 @@ class SilverRadius(models.Model):
 
     def button_remove_radius_client(self):
         return self.netdev_id.button_remove_radius_client()
+
+    def create_user_manager_user(self, username, password, customer='admin'):
+        """
+        Crea un nuevo usuario en MikroTik User Manager.
+
+        :param username: El nombre de usuario a crear.
+        :param password: La contraseña para el nuevo usuario.
+        :param customer: El cliente/propietario del usuario en User Manager (default: 'admin').
+        :return: dict con {'success': bool, 'message': str}
+        """
+        self.ensure_one()
+        api = self._get_mikrotik_api()
+        try:
+            _logger.info(f"Intentando crear usuario '{username}' en User Manager de {self.netdev_id.ip}")
+            user_path = api.path('/user-manager/user')
+            name= Key("name")
+
+            # 1. Verificar si el usuario ya existe (sintaxis moderna de librouteros)
+            existing_user = tuple(user_path.select(Key(".id")).where(name==username))
+            print(("existing", existing_user))
+            if existing_user:
+                message = f"El usuario '{username}' ya existe en User Manager. {existing_user}"
+                e = existing_user[0]
+                e['password'] = password
+                e['comment'] = customer
+                user_path.update(**e)
+                _logger.warning(message)
+                return {'success': True, 'message': message}
+
+            # 2. Si no existe, crearlo
+            user_path.add(
+                name=username,
+                password=password,
+                comment=customer
+            )
+            message = f"Usuario '{username}' creado exitosamente en User Manager."
+            _logger.info(message)
+            return {'success': True, 'message': message}
+
+        except Exception as e:
+            _logger.error(f"Fallo al crear el usuario '{username}' en User Manager: {e}")
+            raise UserError(_("Ocurrió un error al crear el usuario en User Manager: %s") % e)
+        finally:
+            if api:
+                api.close()
 
 class SilverRadiusTable(models.Model):
     _name = 'silver.radius.table'
