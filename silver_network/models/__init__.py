@@ -11,7 +11,7 @@ from . import silver_post
 from . import silver_box
 from . import silver_ap
 from . import silver_radius
-from . import silver_radius_pyrad
+#from . import silver_radius_pyrad
 from . import silver_radius_wizards
 from . import silver_placeholder_models
 from . import silver_router_wizards

@@ -38,21 +38,6 @@ class SilverNetdev(models.Model):
         ('other', 'Other')
     ], default='other')
 
-    type_access_net = fields.Selection(
-        [('inactive', 'Inactivo'), ('dhcp', 'DHCP Leases'), ('manual', 'IP Asignada manualmente'),
-         ('system', 'IP Asiganada por el sistema')], default='inactive', string='Tipo Acceso', required=True)
-
-
-    dhcp_custom_server = fields.Char(string='DHCP Leases')
-    interface = fields.Char(string='Interface')
-    is_dhcp_static = fields.Boolean(string='Habilitar Dhcp Static')
-    dhcp_client = fields.Boolean(string='Profiles VSOL')
-
-
-    ip_address_pool_ids = fields.One2many('silver.ip.address.pool', 'netdev_id', string='Direcciones IP')
-    ip_address_ids = fields.One2many('silver.ip.address', 'netdev_id', string='Direcciones IP')
-
-
 
     ip = fields.Char(string='IP de Conexion')
     port = fields.Char(string='Puerto de Conexion')
@@ -79,11 +64,39 @@ class SilverNetdev(models.Model):
     radius_client_services = fields.Many2many('silver.radius.service', string='Radius Services') # Assuming a model silver.radius.service exists or will be created
 
     #core_ids = fields.One2many('silver.core', 'netdev_id', string='Cores')
-    #olt_ids = fields.One2many('silver.olt', 'netdev_id', string='OLTs')
+    olt_ids = fields.One2many('silver.olt', 'netdev_id', string='OLTs')
     #olt_card_port_ids = fields.One2many('silver.olt.card.port', 'netdev_id', string='OLT Card Ports')
     #box_ids = fields.One2many('silver.box', 'netdev_id', string='Boxes')
     #ap_ids = fields.One2many('silver.ap', 'netdev_id', string='APs')
     #radius_ids = fields.One2many('silver.radius', 'netdev_id', string='Radius Servers')
+    n_olt_id = fields.Many2one('silver.olt', string='OLT', compute='_compute_olt_id', store=False)
+
+
+
+    type_access_net = fields.Selection(
+        [('inactive', 'Inactivo'), ('dhcp', 'DHCP Leases'), ('manual', 'IP Asignada manualmente'),
+         ('system', 'IP Asiganada por el sistema')], default='inactive', string='Tipo Acceso', required=True)
+
+
+    dhcp_custom_server = fields.Char(string='DHCP Leases')
+    interface = fields.Char(string='Interface')
+    is_dhcp_static = fields.Boolean(string='Habilitar Dhcp Static')
+    dhcp_client = fields.Boolean(string='Profiles VSOL')
+
+
+    ip_address_pool_ids = fields.One2many('silver.ip.address.pool', 'netdev_id', string='Direcciones IP')
+    ip_address_ids = fields.One2many('silver.ip.address', 'netdev_id', string='Direcciones IP')
+
+
+    @api.depends('olt_ids')
+    def _compute_n_olt_id(self):
+        for netdev in self:
+            # Busca si existe una OLT que apunte a este netdev
+            olt = self.env['silver.olt'].search([('netdev_id', '=', netdev.id)], limit=1)
+            netdev.n_olt_id = olt or False
+
+
+
 
     def generar(self):
         for ret in self.ip_address_pool_ids:

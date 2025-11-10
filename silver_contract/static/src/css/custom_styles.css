@@ -18,6 +18,13 @@
     background-color: #10B981; /* Verde Esmeralda */
 }
 
+
+/* Colores de fondo según el estado */
+.status-open {
+    background-color: #101981; /* Azul */
+}
+
+
 .status-suspended {
     background-color: #F59E0B; /* Ámbar */
 }

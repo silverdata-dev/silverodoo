@@ -2,7 +2,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 import ipaddress
-
+import ipaddress
 
 
 
@@ -16,6 +16,9 @@ class SilverVlan(models.Model):
     _name = 'silver.vlan'
     _description = 'Placeholder for Silver VLAN'
     name = fields.Char('Name')
+    #olt_ids = fields.One2many('silver.olt', 'vlan_id', string='OLTs')
+    olt_id = fields.Many2one('silver.olt', string='OLT')
+
 
 class AddressListChannelLine(models.Model):
     _name = 'address.list.channel.line'
@@ -41,6 +44,9 @@ class SilverIpAddress(models.Model):
     is_tr_069 = fields.Boolean(string="Es069")
     used = fields.Boolean(string="Usado")
 
+    olt_id = fields.Many2one("silver.olt", string="OLT", related="line_id.olt_id")
+    olt_port_id = fields.Many2one("silver.olt.card.port", string="Puerto", domain="[('olt_id', '=', olt_id)]", related="line_id.olt_port_id")
+
     #assigned_to = fields.Reference(selection=[], string='Assigned To')
     description = fields.Text()
 
@@ -53,6 +59,17 @@ class SilverIpAddress(models.Model):
         ('used', 'Used'),
         ('reserved', 'Reserved')
     ], string='Status', default='available', required=True)
+
+    ip_int = fields.Integer(compute='_compute_ip_int', store=True, help="Technical field for sorting")
+
+    @api.depends('name')
+    def _compute_ip_int(self):
+        for record in self:
+            try:
+                record.ip_int = int(ipaddress.ip_address(record.name))
+            except ValueError:
+                record.ip_int = 0
+
 
 
 class SilverIpAddressLine(models.Model):
@@ -91,6 +108,9 @@ class SilverIpAddressLine(models.Model):
 
     ip_int = fields.Integer(compute='_compute_ip_int', store=True, help="Technical field for sorting")
 
+    olt_id = fields.Many2one("silver.olt", string= "OLT", related="netdev_id.n_olt_id", store=False)
+    olt_port_id = fields.Many2one( "silver.olt.card.port", string= "Puerto", domain="[('olt_id', '=', olt_id)]")
+
     @api.onchange('network')
     def _onchange_network(self):
         if self.network and '/' in self.network:
@@ -98,6 +118,11 @@ class SilverIpAddressLine(models.Model):
                 interface = ipaddress.ip_interface(self.network)
                 self.network = str(interface.ip)
                 self.nmask = interface.network.prefixlen
+
+
+                if (not self.name) or ipaddress.ip_network(self.name, strict=False):
+                    self.name = f"{self.network}/{self.nmask}"
+
             except ValueError:
                 # Fail silently on the onchange, the create/write will catch the error
                 pass
@@ -366,5 +391,5 @@ class SilverDeviceNetworks(models.Model):
     olt_id = fields.Many2one('silver.olt', string='OLT')
     card_id = fields.Many2one('silver.olt.card', string='Card')
     port_id = fields.Many2one('silver.olt.card.port', string='Port')
-    radius_id = fields.Many2one('silver.radius', string='Radius')
+    #radius_id = fields.Many2one('silver.radius', string='Radius')
     is_tr_069 = fields.Boolean('Is TR-069')

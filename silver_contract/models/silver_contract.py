@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
 import math
+from odoo.exceptions import UserError
 
 def haversine(lat1, lon1, lat2, lon2):
     """
@@ -36,17 +37,19 @@ class SilverContract(models.Model):
     # Campos de Configuración
     service_type_id = fields.Many2one('silver.service.type', string="Tipo de Servicio", required=True, default=lambda self: self._get_default_service_type_id())
     plan_type_id = fields.Many2one('silver.plan.type', string="Tipo de Plan", required=True, default=lambda self: self._get_default_plan_type_id())
+    payment_type_id = fields.Many2one('silver.payment.type', string="Forma de Pago",  default=lambda self: self._get_default_payment_type_id())
+
     contract_term_id = fields.Many2one('silver.contract.term', string="Período de Permanencia")
     cutoff_date_id = fields.Many2one('silver.cutoff.date', string="Periodo de Consumo")
     tag_ids = fields.Many2many('silver.contract.tag', string="Etiquetas")
 
     state = fields.Selection([
-        ('draft', 'Borrador'), ('open', 'En Proceso'), ('done', 'Realizado'),
-        ('cancel', 'Cancelado'), ('renewal', 'Renovación'),
-    ], string="Estado", default='draft', tracking=True)
+        ('draft', 'Borrador'),('open', 'Abierto'), ('closed', 'Cerrado')
+    ], string="Estado del Contrato", default='draft', tracking=True)
+
     state_service = fields.Selection([
-        ('inactive', 'Inactivo'), ('active', 'Activo'), ('disabled', 'Cortado'),
-        ('suspended', 'Suspendido'), ('removal_list', 'En Lista de Retiro'), ('removed', 'Retirado'),
+        ('inactive', 'Inactivo'), ('active', 'Activo'),
+        ('suspended', 'Suspendido'), ('terminated', 'De Baja'),
     ], string="Estado del Servicio", default='inactive', tracking=True)
 
     # --- Pestaña: Ubicación (NUEVO) ---
@@ -57,10 +60,9 @@ class SilverContract(models.Model):
     #recurring_invoice_type = fields.Selection([('post', 'Postpago'), ('pre', 'Prepago')], string="Tipo de Consumo")
     #recurring_invoicing_type = fields.Selection([('recurrent', 'Recurrente'), ('one_time', 'Una sola vez')], string="Tipo de facturación")
     recurring_invoicing_type = fields.Selection([('post', 'Postpago'), ('pre', 'Prepago')],
-                                                string="Tipo de facturación")
+                                                string="Tipo de facturación", default='pre')
     line_ids = fields.One2many('silver.contract.line', 'contract_id', string='Líneas de Servicio Recurrente', domain=[('line_type', '=', 'recurring')])
     line_debit_ids = fields.One2many('silver.contract.line', 'contract_id', string='Líneas de Cargo Único', domain=[('line_type', '=', 'one_time')])
-    payment_type_id = fields.Many2one('silver.payment.type', string="Forma de Pago")
     type_journal_invoice = fields.Selection([('invoice', 'Factura'), ('receipt','Nota de entrega/Recibo' )], 'Tipo de Documento')
     recurring_invoices = fields.Boolean(string='Recurrencia')
     is_recurring_invoicing_type = fields.Boolean(string="ES tipo de facturacion")
@@ -118,6 +120,12 @@ class SilverContract(models.Model):
     dont_send_notification_wp = fields.Boolean(string="No Enviar Notificaciones por WhatsApp")
     links_payment = fields.Char(string="Enlaces de Pago", compute="_compute_links_payment", readonly=True)
 
+    _sql_constraints = [
+        ('ip_address_id_unique',
+         'UNIQUE (ip_address_id)',
+         'Esta ip está siendo utilizada.')
+    ]
+
     @api.onchange('partner_id')
     def _onchange_partner_id_silver(self):
         if self.partner_id and self.partner_id.silver_address_id:
@@ -165,12 +173,27 @@ class SilverContract(models.Model):
     def _get_default_service_type_id(self):
         return self.env['silver.service.type'].search([('code', '=', 'internet')], limit=1)
 
+    def _get_default_payment_type_id(self):
+        return self.env['silver.payment.type'].search([('code', '=', 'cash')], limit=1)
 
     @api.model
     def create(self, vals):
-
+        #if (vals.get('name') in [None, 'Nuevo']):
+        #    vals['name'] = self.env['ir.sequence'].next_by_code('silver.contract.sequence')
+        print(("creae0", vals))
         return super(SilverContract, self).create(vals)
 
+
+    def init_contract(self):
+        for a in self:
+            if not a.line_ids:
+                raise UserError(_("Debe haber al menos un servicio"))
+
+            a.name = self.env['ir.sequence'].next_by_code('silver.contract.sequence')
+            a.state = 'open'
+
+            a.pppoe_user = a.name.split('-')[-1]
+        return True
 
     def action_open(self):
         return None
@@ -232,7 +255,7 @@ class SilverContract(models.Model):
                         # Si la encontramos, la "liberamos" para que pueda ser
                         # seleccionada por otro contrato o eliminada en el próximo descubrimiento.
                         # En este caso, la eliminamos directamente como se solicitó.
-                        discovered_onu.unlink()
+                        discovered_onu.write({'contract_id': None})
 
         print(("write0", vals))
         return super(SilverContract, self).write(vals)

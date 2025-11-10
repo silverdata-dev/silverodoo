@@ -27,7 +27,6 @@
         <menuitem id="silver_contract_holding_menu" name="Holdings de Contratos" parent="silver_contract_configuration_menu" action="silver_contract_holding_action" sequence="70"/>
         <menuitem id="silver_reception_channel_menu" name="Canales de Recepción" parent="silver_contract_configuration_menu" action="silver_reception_channel_action" sequence="80"/>
         <menuitem id="silver_contract_tag_menu" name="Etiquetas de Contrato" parent="silver_contract_configuration_menu" action="silver_contract_tag_action" sequence="90"/>
-        <menuitem id="silver_ip_pool_menu" name="Pools de IP" parent="silver_contract_configuration_menu" action="silver_ip_pool_action" sequence="100"/>
         <menuitem id="silver_wifi_channel_line_menu" name="Canales WiFi" parent="silver_contract_configuration_menu" action="silver_wifi_channel_line_action" sequence="110"/>
     </data>
 </odoo>

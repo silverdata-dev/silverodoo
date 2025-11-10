@@ -29,6 +29,7 @@
     # only loaded in demonstration mode
         'views/silver_core_views.xml',
         'views/silver_node_views.xml',
+        'views/silver_ip_address_views.xml',
 
 
     ],

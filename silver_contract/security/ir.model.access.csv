@@ -19,9 +19,6 @@ access_silver_payment_promise_user,access.silver.payment.promise.user,model_silv
 access_silver_anticipated_payment_line_user,access.silver.anticipated.payment.line.user,model_silver_contract_anticipated_payment_line,base.group_user,1,1,1,1
 access_silver_referred_contact_user,access.silver.referred.contact.user,model_silver_referred_contact,base.group_user,1,1,1,1
 access_silver_wifi_channel_line_user,access.silver.wifi.channel.line.user,model_silver_wifi_channel_line,base.group_user,1,1,1,1
-access_silver_contract_wan_mode_user,access.silver.contract.wan.mode.user,model_silver_contract_wan_mode,base.group_user,1,1,1,1
-access_silver_ip_pool_user,access.silver.ip.pool.user,model_silver_ip_pool,base.group_user,1,1,1,1
-access_silver_ip_pool_line_user,access.silver.ip.pool.line.user,model_silver_ip_pool_line,base.group_user,1,1,1,1
 access_silver_contract_consumption_user,access.silver.contract.consumption.user,model_silver_contract_consumption,base.group_user,1,1,1,1
 access_silver_contract_radius_entry_user,access.silver.contract.radius.entry.user,model_silver_contract_radius_entry,base.group_user,1,1,1,1
 access_silver_ping_wizard_user,access.silver.ping.wizard.user,model_silver_ping_wizard,base.group_user,1,1,1,1

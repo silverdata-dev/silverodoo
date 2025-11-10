@@ -6,7 +6,7 @@ class SilverRadiusUser(models.Model):
     _name = 'silver.radius.user'
     _description = 'RADIUS User'
 
-    radius_id = fields.Many2one('silver.radius', string='RADIUS Server', required=True, ondelete='cascade')
+    radius_id = fields.Many2one('silver.core', string='RADIUS Server', required=True, ondelete='cascade')
     username = fields.Char(string='Username', required=True)
     password = fields.Char(string='Password')
     profile = fields.Char(string='Profile')

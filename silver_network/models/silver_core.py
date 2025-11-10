@@ -51,7 +51,7 @@ class SilverCore(models.Model):
    # node_id = fields.Many2one('silver.node', string='Nodo')
     #brand_id = fields.Many2one('product.brand', string='Marca', index=True)
    # gateway = fields.Many2one('silver.ip.address', string='Gateway')
-    radius_id = fields.Many2one('silver.radius', string='Radius')
+    radius_id = fields.Many2one('silver.core', string='Radius')
     networks_device_id = fields.Many2many('silver.device.networks', string='Networks Device')
     company_id = fields.Many2one('res.company', string='Compañía', default=lambda self: self.env.company)
 
@@ -62,6 +62,23 @@ class SilverCore(models.Model):
 
     silver_vlans_ids = fields.Many2many('silver.vlan', string='Vlans')
     pooOnlyCore = fields.Boolean(string='Pool de IPs Único')
+
+
+
+
+    type_access_net = fields.Selection(
+        [('inactive', 'Inactivo'), ('dhcp', 'DHCP Leases'), ('manual', 'IP Asignada manualmente'),
+         ('system', 'IP Asiganada por el sistema')], default='inactive', string='Tipo Acceso', required=True)
+
+
+    dhcp_custom_server = fields.Char(string='DHCP Leases')
+    interface = fields.Char(string='Interface')
+    is_dhcp_static = fields.Boolean(string='Habilitar Dhcp Static')
+    dhcp_client = fields.Boolean(string='Profiles VSOL')
+
+
+    ip_address_pool_ids = fields.One2many('silver.ip.address.pool', 'netdev_id', string='Direcciones IP')
+    ip_address_ids = fields.One2many('silver.ip.address', 'netdev_id', string='Direcciones IP')
 
 
     # --- Campos de Conectividad y Acceso ---
@@ -263,7 +280,7 @@ class SilverCore(models.Model):
         print(("_compute_counts", self))
         for record in self:
             record.olt_count = self.env['silver.olt'].search_count([('core_id', '=', record.id)])
-            record.radius_count = self.env['silver.radius'].search_count([('core_id', '=', record.id)])
+            record.radius_count = self.env['silver.core'].search_count([('core_id', '=', record.id)])
             record.ap_count = self.env['silver.ap'].search_count([('node_ids', 'in', record.node_ids.ids)])
 
 
@@ -305,14 +322,15 @@ class SilverCore(models.Model):
 
     def create_radius(self):
         self.ensure_one()
-        new_radius = self.env['silver.radius'].create({
+        new_radius = self.env['silver.core'].create({
             #'name': f"Radius for {self.name}",
             'core_id': self.id,
+            'is_radius': True
         })
         return {
             'name': 'Radius Creado',
             'type': 'ir.actions.act_window',
-            'res_model': 'silver.radius',
+            'res_model': 'silver.core',
             'view_mode': 'form',
             'res_id': new_radius.id,
             'target': 'current',
@@ -400,7 +418,7 @@ class SilverCore(models.Model):
         return {
             'name': 'Radius',
             'type': 'ir.actions.act_window',
-            'res_model': 'silver.radius',
+            'res_model': 'silver.core',
             'view_mode': 'tree,form',
             'domain': [('core_id', '=', self.id)],
             'context': {'default_core_id': self.id},
@@ -427,7 +445,9 @@ class SilverCore(models.Model):
         self.ensure_one()
         _logger.info(f"Starting full RADIUS configuration for core {self.name}")
 
-        if not self.radius_id or not self.radius_id.ip:
+        radius_id = (self if self.is_radius else self.radius_id)
+
+        if not radius_id or not radius_id.ip:
             raise UserError(_("RADIUS Server is not assigned or does not have an IP address."))
 
         if self.netdev_id.radius_client_secret:
@@ -471,7 +491,7 @@ class SilverCore(models.Model):
             params = {
                 'secret': secret,
                 'service': 'login',
-                'address': self.radius_id.ip,
+                'address': radius_id.ip,
                 'src-address': self.netdev_id.ip,
             }
             print(("existing", existing_server))
@@ -482,7 +502,7 @@ class SilverCore(models.Model):
                 _logger.info(f"Updating existing RADIUS server entry {server_id} on Core device.")
             #    radius_resource.update(numbers=server_id, **params)
             else:
-                _logger.info(f"Adding new RADIUS server entry for {self.radius_id.ip} on Core device.")
+                _logger.info(f"Adding new RADIUS server entry for {radius_id.ip} on Core device.")
              #   radius_resource.add(**params)
         except Exception as e:
             raise UserError(_("Failed to configure RADIUS on Core device: %s") % e)
@@ -490,8 +510,8 @@ class SilverCore(models.Model):
         # 3. Configure the RADIUS server to accept the Core as a NAS client
         radius_api = None
         try:
-            _logger.info(f"Connecting to RADIUS server {self.radius_id.name} at {self.radius_id.ip} to configure NAS.")
-            radius_api = self.radius_id.netdev_id._get_api_connection()
+            _logger.info(f"Connecting to RADIUS server {radius_id.name} at {radius_id.ip} to configure NAS.")
+            radius_api = radius_id.netdev_id._get_api_connection()
             if not radius_api:
                 raise UserError(_("Could not connect to the RADIUS server."))
 
@@ -534,10 +554,12 @@ class SilverCore(models.Model):
         Punto de entrada público para verificar y configurar el Core como un cliente NAS en el RADIUS.
         """
         self.ensure_one()
+
+        radius_id = (self if self.is_radius else self.radius_id)
         api = None
         try:
             # Conectar al dispositivo Core usando las credenciales locales
-            _logger.info(f"Iniciando configuración NAS para {self.name} en el RADIUS {self.radius_id.name} con user {username}")
+            _logger.info(f"Iniciando configuración NAS para {self.name} en el RADIUS {radius_id.name} con user {username}")
             api = self.netdev_id._get_api_connection(username=username, password=password)
             if not api:
                 return False

@@ -9,6 +9,7 @@
     'category': 'Localization',
     'version': '17.0.1.0.0',
     'depends': [
+        'base_vat',
         'silver_base',
         'l10n_ve_base',
         'l10n_ve_location',

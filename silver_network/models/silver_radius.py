@@ -7,34 +7,12 @@ from librouteros.query import Key
 _logger = logging.getLogger(__name__)
 
 class SilverRadius(models.Model):
-    _name = 'silver.radius'
+    _inherit = 'silver.core'
     #_table = 'isp_radius'
     _description = 'Servidor Radius'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
 
 
-
-    _inherits = {
-                 'silver.netdev':'netdev_id'}
-
-
-    netdev_id = fields.Many2one('silver.netdev', required=True, ondelete="cascade")
-    netdev_type = fields.Selection(
-        related='netdev_id.netdev_type',
-        default='ap',
-        store=True,
-        readonly=False
-    )
-
-
-    name = fields.Char(string='Hostname', required=True, readonly=False, copy=False, default='New')
-#    ip_core_radius = fields.Char(string='IP Core Radius')
-#    port_core_radius = fields.Char(string='Puerto Core Radius')
-#    user_core_radius = fields.Char(string='Usuario Core Radius')
-#    password_core_radius = fields.Char(string='Password Core Radius')
-#    database = fields.Char(string='Database')
-#    core_id = fields.Many2one('silver.core', string='Core')
-    #nas_ids = fields.One2many('silver.radius.nas.wizard', 'radius_id', string='NAS')
+    is_radius = fields.Boolean('Es radius')
 
     core_ids = fields.One2many('silver.core', 'radius_id', string='Equipos Core')
 
@@ -82,16 +60,18 @@ class SilverRadius(models.Model):
 
     #state = fields.Selection([('down', 'Down'), ('active', 'Activo')], string='Estado', default='down', track_visibility='onchange')
 
-    state = fields.Selection([('down', 'Down'), ('active', 'Active'), ('connected', 'Connected'),
-        ('connecting', 'Connecting'),
-        ('disconnected', 'Disconnected'),
-        ('error', 'Error')],
-                             related = 'netdev_id.state',
-                             string='Estado', default='down')
+  #  state = fields.Selection([('down', 'Down'), ('active', 'Active'), ('connected', 'Connected'),
+  #      ('connecting', 'Connecting'),
+  #      ('disconnected', 'Disconnected'),
+  ##      ('error', 'Error')],
+  #                           related = 'netdev_id.state',
+  #                           string='Estado', default='down')
 
     type_radius = fields.Selection([("free_radius", "Free Radius Custom"), ("free_radius_ng", "Free Radius"), ("mk_radius", "Mikrotik Radius")], string='Tipo Radius', default="mk_radius")
     port_coa = fields.Char(string='Puerto COA')
     is_ipv6 = fields.Boolean(string='IPV6')
+
+
 
     silver_radius_ids = fields.One2many('silver.radius.line', 'radius_id', string='Radius Atributos')
     type_table = fields.Selection([], string='Tipo Tabla')
@@ -350,6 +330,7 @@ class SilverRadius(models.Model):
                 comment=customer
             )
             message = f"Usuario '{username}' creado exitosamente en User Manager."
+
             _logger.info(message)
             return {'success': True, 'message': message}
 
@@ -385,7 +366,7 @@ class SilverRadiusLine(models.Model):
     _name = 'silver.radius.line'
     _description = 'Silver Radius Line'
 
-    radius_id = fields.Many2one('silver.radius', string='Radius')
+    radius_id = fields.Many2one('silver.core', string='Radius')
     silver_radius_table_id = fields.Many2one('silver.radius.table', string="Tabla Radius")
     silver_radius_column_id = fields.Many2one('silver.radius.column', string="Campos BD")
     value_column = fields.Selection([

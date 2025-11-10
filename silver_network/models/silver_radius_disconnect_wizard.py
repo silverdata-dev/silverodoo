@@ -5,7 +5,7 @@ class SilverRadiusDisconnectWizard(models.TransientModel):
     _name = 'silver.radius.disconnect.wizard'
     _description = 'RADIUS Disconnect/CoA Wizard'
 
-    radius_id = fields.Many2one('silver.radius', string='RADIUS Server', required=True)
+    radius_id = fields.Many2one('silver.core', string='RADIUS Server', required=True)
     username = fields.Char(string='Username', required=True)
     nas_identifier = fields.Char(string='NAS Identifier', default='localhost')
     coa_attributes = fields.Text(string='CoA Attributes (JSON format)', help="Enter attributes in JSON format, e.g., {\"Session-Timeout\": 3600, \"Mikrotik-Rate-Limit\": \"1M/1M\"}")

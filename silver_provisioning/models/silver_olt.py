@@ -334,7 +334,7 @@ class SilverOlt(models.Model):
         tcont = self.tcont
         dba_profile = self.profile_dba_internet
         gemport = self.gemport
-        vlan_id = contract.vlan_id.name or self.vlan_id
+        vlan_id = contract.vlan_id.name or self.vlan_id.name
         service_port = self.service_port_internet
         service_name = contract.service_type_id.name
         description = f"{contract.name}-{contract.partner_id.vat}-{contract.partner_id.name}".replace(" ", "_")
@@ -397,13 +397,14 @@ class SilverOlt(models.Model):
             d=dict()
             for line in contract.wifi_line_ids:
                 d[line.ssid_index] = line
+            print(("lines", line))
             for a in range(1, 9):
                 line = d.get(a)
                 if not line:
                     command = f"onu {onu_id} pri wifi_ssid {a} disable"
                 else:
                     hide_cmd = "enable" if line.is_hidden else "disable"
-                    command = f"onu {onu_id} pri wifi_ssid {line.ssid_index} name {line.name} hide {hide_cmd} auth_mode {line.auth_mode} encrypt_type {line.encrypt_type} shared_key {line.password} rekey_interval 0"
+                    command = f"onu {onu_id} pri wifi_ssid {a} name {line.name} hide {hide_cmd} auth_mode {line.auth_mode} encrypt_type {line.encrypt_type} shared_key {line.password} rekey_interval 0"
                 success, clean_response, full_output = conn.execute_command(command)
                 output_log += f"\n{full_output}"
         return output_log
@@ -509,7 +510,7 @@ class SilverOlt(models.Model):
                     # para manejar la nueva tupla de retorno si llaman a execute_command directamente,
                     # pero por ahora nos centramos en el flujo principal)
                     steps = steps_or_commands
-                    vlan_id = contract.vlan_id.name or self.vlan_id
+                    vlan_id = contract.vlan_id.name or self.vlan_id.name
                     if 'base' in steps:
                         log, onu_created, p_port, v_id = self._provision_onu_base(contract, conn, "")
                         output_log += log
@@ -614,6 +615,13 @@ class SilverOlt(models.Model):
         """Reinicia la ONU."""
         commands = [f"onu {contract.onu_pon_id} reboot"]
         return self._execute_with_logging(contract, commands, "Registro de Reinicio de ONU")
+
+
+    def terminate_onu(self, contract):
+        """Termina la ONU."""
+        commands = [f"no onu {contract.onu_pon_id}"]
+        return self._execute_with_logging(contract, commands, "Terminación ONU")
+
 
     def action_view_contracts(self):
         return self.access_point_id.action_view_contracts()

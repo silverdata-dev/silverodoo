@@ -116,7 +116,7 @@ class SilverOlt(models.Model):
     is_control_upstream = fields.Boolean(string='Controlar Upstream')
     profile_onu_generic = fields.Char(string='Profile ONU Generico')
     profile_dba_gestion = fields.Char(string='Profile DBA de Gestion')
-    profile_dba_internet = fields.Char(string='Profile DBA de Internet')
+    profile_dba_internet = fields.Char(string='Profile DBA de Internet', default='max-band')
     dhcp_client = fields.Boolean(string='Profiles VSOL')
     is_serial_onu_hex = fields.Boolean(string='Serial Onu Hexadecimal')
     is_serial_onu_ascii = fields.Boolean(string='Serial Onu ASCII')
@@ -138,11 +138,13 @@ class SilverOlt(models.Model):
     wan_mode = fields.Selection([('router', 'Router'), ('bridge', 'Bridge')], string='WAN Mode')
     service_type = fields.Selection([('void', 'VOID'), ('internet', 'INTERNET')], string='Service Type')
     acquisition_mode = fields.Selection([('pppoe', 'PPPoE'), ('dhcp','DHCP'), ('static', 'IP estática')], string='IP Acquisition Mode')
-    vlan_id = fields.Char(string='VLAN ID', required=True)
+    #vlan_id = fields.Char(string='VLAN ID', required=True)
+    vlan_id = fields.Many2one('silver.vlan', string='VLAN')
+
     mtu = fields.Char(string='MTU')
     is_enable_nat = fields.Boolean(string='Enable NAT')
     is_disabled_dhcp_pv4 = fields.Boolean(string='Deshabilitar Dhcp IPv6')
-    is_control_admin = fields.Boolean(string='Admin Control')
+    is_control_admin = fields.Boolean(string='Admin Control', default=1)
     admin_user = fields.Char(string='Admin User')
     admin_passwd = fields.Char(string='Admin Password')
     lan1 = fields.Boolean(string='Lan1')
@@ -205,12 +207,12 @@ class SilverOlt(models.Model):
     )
 
 
-    type_access_net = fields.Selection(
+    #type_access_net = fields.Selection(
        
-        [('inactive', 'Inactivo'), ('dhcp', 'DHCP Leases'), ('manual', 'IP Asignada manualmente'),
-         ('system', 'IP Asignada por el sistema')], 
-          related='netdev_id.type_access_net',
-         default='inactive', string='Tipo Acceso', required=True)
+    #    [('inactive', 'Inactivo'), ('dhcp', 'DHCP Leases'), ('manual', 'IP Asignada manualmente'),
+    #     ('system', 'IP Asignada por el sistema')],
+    #      related='netdev_id.type_access_net',
+    #     default='inactive', string='Tipo Acceso', required=True)
 
 
     @api.model

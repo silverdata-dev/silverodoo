@@ -1,7 +1,7 @@
 from odoo import models, fields
 
 class SilverRadius(models.Model):
-    _inherit = 'silver.radius'
+    _inherit = 'silver.core'
 
     stock_lot_id = fields.Many2one(
         'stock.lot',

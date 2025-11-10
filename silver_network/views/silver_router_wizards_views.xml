@@ -91,7 +91,7 @@
                             <field name="vlan_line_ids" nolabel="1">
                                 <tree create="false" delete="false">
                                     <field name="name"/>
-                                    <field name="vlan_id"/>
+                                    <field name="vlan"/>
                                     <field name="interface"/>
                                     <field name="mtu"/>
                                     <field name="arp"/>

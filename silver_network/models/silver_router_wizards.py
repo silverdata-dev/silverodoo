@@ -80,7 +80,7 @@ class IspRouterInterfaceVlanLine(models.TransientModel):
 
     wizard_id = fields.Many2one('silver.netdev.interface.wizard', string='Wizard')
     name = fields.Char(string='Name')
-    vlan_id = fields.Char(string='VLAN ID')
+    vlan = fields.Char(string='VLAN ID')
     interface = fields.Char(string='Interface')
     mtu = fields.Char(string='MTU')
     arp = fields.Char(string='ARP')

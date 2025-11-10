@@ -1,49 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!-- isp.radius -->
-        <record id="action_silver_radius" model="ir.actions.act_window">
-            <field name="name">Servidores Radius</field>
-            <field name="res_model">silver.radius</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
-        <record id="view_silver_radius_tree" model="ir.ui.view">
-            <field name="name">silver.radius.tree</field>
-            <field name="model">silver.radius</field>
+        <record id="view_silver_core_cradius_inherit" model="ir.ui.view">
+            <field name="name">silver.core.cradius.inherit</field>
+            <field name="model">silver.core</field>
+            <field name="inherit_id" ref="silver_network.view_silver_core_form"/>
             <field name="arch" type="xml">
-                <tree string="Servidor Radius">
-                    <field name="name" string="Hostname"/>
-                    <field name="ip"/>
-                    <field name="port"/>
-                    <!--field name="user_core_radius"/-->
-                    <field name="state"  widget="badge"
-                           decoration-success="state in ['active', 'connected']"
-                           decoration-warning="state in ('suspended', 'disabled')"
-                           decoration-danger="state in ['removed', 'down']"/>
-                </tree>
-            </field>
-        </record>
 
-        <record id="view_silver_radius_form" model="ir.ui.view">
-            <field name="name">silver.radius.form</field>
-            <field name="model">silver.radius</field>
-            <field name="arch" type="xml">
-                <form string="Radius">
-                    <sheet string="Servidores Radius">
-                        <header>
+                <xpath expr="//field[@name='radius_id']" position="attributes">
+                    <attribute name="invisible">is_radius==True</attribute>
+                    <attribute name="domain">[('is_radius', '=', True)]</attribute>
+                </xpath>
+
+                <!--xpath expr="//header" position="inside">
+
                             <button name="button_test_connection" type="object" string="Test Connection"
-                                    class="oe_highlight"/>
-                            <button name="button_get_system_info" type="object" string="Get System Info"/>
-                            <button name="button_view_interfaces" type="object" string="View Interfaces"/>
-                            <button name="button_view_routes" type="object" string="View Routes"/>
-                            <button name="button_view_ppp_active" type="object" string="View PPP Active"/>
-                            <button name="button_view_firewall_rules" type="object" string="View Firewall Rules"/>
-                            <button name="button_view_queues" type="object" string="View Queues"/>
-                            <field name="state" widget="statusbar" statusbar_visible="down,active"/>
-                        </header>
+                                    class="oe_highlight" invisible="is_radius==False" />
+                            <button name="button_get_system_info" type="object" string="Get System Info"  invisible="is_radius==False" />
+                            <button name="button_view_interfaces" type="object" string="View Interfaces" invisible="is_radius==False" />
+                            <button name="button_view_routes" type="object" string="View Routes" invisible="is_radius==False" />
+                            <button name="button_view_ppp_active" type="object" string="View PPP Active" invisible="is_radius==False" />
+                            <button name="button_view_firewall_rules" type="object" string="View Firewall Rules" invisible="is_radius==False" />
+                            <button name="button_view_queues" type="object" string="View Queues" invisible="is_radius==False" />
+                            <field name="state" widget="statusbar" statusbar_visible="down,active" invisible="is_radius==False" />
 
-                        <div class="oe_button_box" name="button_box">
+                </xpath-->
+
+                <xpath expr="//header" position="after">
+                    <div class="oe_button_box" name="button_box"  invisible="is_radius==False" >
                             <button name="action_connect_radius" type="object" class="oe_stat_button" icon="fa-signal"
                                     string="Probar Conexion"/>
                             <button name="action_view_table" type="object" class="oe_stat_button" icon="fa-signal"
@@ -55,46 +39,16 @@
                             <button name="action_pull_users_from_mikrotik" type="object"
                                     string="Pull Users from MikroTik" class="oe_highlight"/>
                         </div>
-
-                        <widget name="web_ribbon" title="Active" invisible="state == 'down'"/>
-                        <widget name="web_ribbon" title="Down" bg_color="bg-danger" invisible="state == 'active'"/>
-                        <field name="state" invisible="1"/>
-                        <div class="oe_title">
-                            <h1>
-                                <field name="name" readonly="0"/>
-                            </h1>
-                        </div>
-                        <group name="radius" string="Base Radius">
-                            <group>
-                                <field name="ip"/>
-                                <field name="port"/>
-                                <!--field name="username"/-->
-                            </group>button_get_system_info
-                            <group>
-                                <!--field name="password" password="True"/>
-                                <field name="database" invisible="type_radius == 'mk_radius'"/>
-                                <field name="core_id" readonly="1"/ -->
-                                <field name="type_radius"/>
-                                <field name="is_ipv6" widget="boolean_toggle"/>
-                                  <field name="type_access_net"/>
+                </xpath>
+                <xpath expr="//group[@name='core']" position="inside">
+                     <group name="isradius">
+                                <field name="is_radius"/>
+                         <field name="type_radius" invisible="1"/>
                             </group>
-                        </group>
-                        <group string="Servidor Radius" invisible="type_radius == 'mk_radius'">
-                            <group>
-                                <field name="ip"/>
-                                <field name="port"/>
-                                <field name="port_coa"/>
+                </xpath>
 
-                            </group>
-                            <group>
-                                <field name="username"/>
-                                <field name="password" password="True"/>
-                            </group>
-                        </group>
-
-
-                        <notebook colspan="4">
-                            <page string="Equipos Core" name="cores">
+                <xpath expr="//page[@name='config']" position="before">
+                     <page string="Equipos Core" name="cores"  invisible="is_radius==False" >
                                 <field name="core_ids" nolabel="1">
                                     <tree>
                                         <field name="name"/>
@@ -104,7 +58,7 @@
                                 </field>
                             </page>
                             <page name="isp_radius_ids" string="Radius Atributos"
-                                  invisible="type_radius == 'mk_radius'">
+                                  invisible="type_radius == 'mk_radius' or is_radius==False" >
                                 <field name="silver_radius_ids" nolabel="1">
                                     <tree string="Líneas de Radius ISP" editable="bottom" colspan="4">
                                         <field name="silver_radius_table_id"/>
@@ -119,7 +73,7 @@
                                 </field>
                             </page>
                             <page name="isp_gestion_radius" string="Gestion Radius"
-                                  invisible="type_radius == 'mk_radius'">
+                                  invisible="type_radius == 'mk_radius' or is_radius==False">
                                 <group>
                                     <group>
                                         <field name="type_table"/>
@@ -131,7 +85,7 @@
                                 </group>
                             </page>
                             <page name="isp_mikrotik_radius_ids" string="MK Radius Atrib"
-                                  invisible="type_radius != 'mk_radius'">
+                                  invisible="type_radius != 'mk_radius' or is_radius==False">
                                 <group string="Metodo de conexi&#243;n">
                                     <field name="is_pppoe" widget="boolean_toggle"/>
                                     <field name="is_ipoe" widget="boolean_toggle"/>
@@ -158,7 +112,7 @@
                                 </group>
                             </page>
                             <page name="ip_address" string="Direcciones IP"
-                                  invisible="(type_access_net not in ['dhcp','dhcp_leases','dhcp_leases_vlan']) or (type_radius != 'mk_radius')">
+                                  invisible="is_radius==False or (type_access_net not in ['dhcp','dhcp_leases','dhcp_leases_vlan']) or (type_radius != 'mk_radius')">
 
 
                                 <field name="ip_address_pool_ids" nolabel="1" widget="one2many_list">
@@ -180,7 +134,7 @@
                                 </field>
 
                             </page>
-                            <page string="Nas" name="nas">
+                            <page string="Nas" name="nas" invisible="is_radius==False">
                                 <group name="mikrotik_nas_config" string="MikroTik NAS Configuration">
                                     <group>
                                         <field name="nas_address"/>
@@ -189,7 +143,7 @@
                                         <field name="radius_client_secret" password="True"/>
                                         <field name="radius_client_services" widget="many2many_tags"/>
                                     </group>
-                                    <group>
+                                    <!--group>
                                         <button name="button_manage_nas_clients" string="Manage NAS Clients"
                                                 type="object" class="oe_highlight"/>
                                         <button name="button_add_update_radius_client" string="Add/Update Radius Client"
@@ -198,20 +152,117 @@
                                                 type="object" class="oe_highlight"/>
                                         <button name="action_open_disconnect_wizard" string="Disconnect Session"
                                                 type="object" class="oe_highlight"/>
-                                    </group>
+                                    </group-->
                                 </group>
                             </page>
-                        </notebook>
+                </xpath>
+            </field>
+        </record>
 
+
+
+
+        <record id="action_silver_radius_table" model="ir.actions.act_window">
+            <field name="name">Tablas Radius</field>
+            <field name="res_model">silver.radius.table</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_silver_radius_table_tree" model="ir.ui.view">
+            <field name="name">silver.radius.table.tree</field>
+            <field name="model">silver.radius.table</field>
+            <field name="arch" type="xml">
+                <tree string="Tabla Radius">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_silver_radius_table_form" model="ir.ui.view">
+            <field name="name">silver.radius.table.form</field>
+            <field name="model">silver.radius.table</field>
+            <field name="arch" type="xml">
+                <form string="Columnas Radius">
+                    <sheet string="Servidores Radius">
+                        <group name="radius">
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                        <notebook colspan="4">
+                            <page name="isp_radius_columns" string="Radius Columnas">
+                                <field name="silver_radius_columns" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
                     </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids"/>
-                        <field name="activity_ids"/>
-                        <field name="message_ids"/>
-                    </div>
                 </form>
             </field>
         </record>
+
+        <!-- isp.radius.column -->
+        <record id="view_silver_radius_column_tree" model="ir.ui.view">
+            <field name="name">silver.radius.column.tree</field>
+            <field name="model">silver.radius.column</field>
+            <field name="arch" type="xml">
+                <tree string="Radius Column">
+                    <field name="name"/>
+                    <field name="radius_table_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_silver_radius_column_form" model="ir.ui.view">
+            <field name="name">silver.radius.column.form</field>
+            <field name="model">silver.radius.column</field>
+            <field name="arch" type="xml">
+                <form string="Radius Column">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="radius_table_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- isp.radius.attributes -->
+        <record id="action_silver_radius_attributes" model="ir.actions.act_window">
+            <field name="name">Atributos Radius</field>
+            <field name="res_model">silver.radius.attributes</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_silver_radius_attributes_tree" model="ir.ui.view">
+            <field name="name">silver.radius.attributes.tree</field>
+            <field name="model">silver.radius.attributes</field>
+            <field name="arch" type="xml">
+                <tree string="Atributos Radius">
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_silver_radius_attributes_form" model="ir.ui.view">
+            <field name="name">silver.radius.attributes.form</field>
+            <field name="model">silver.radius.attributes</field>
+            <field name="arch" type="xml">
+                <form string="Atributos Radius">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
 
     </data>
 </odoo>

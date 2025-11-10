@@ -39,3 +39,24 @@ class ResPartner(models.Model):
     def _onchange_municipality_id_l10n_ve(self):
         if self.municipality_id and self.parish_id.municipality_id != self.municipality_id:
             self.parish_id = False
+
+
+    @api.model
+    def simple_vat_check(self, country_code, vat_number):
+        print(("vat test1", vat_number))
+        return True
+
+    @api.constrains('vat', 'country_id')
+    def check_vat(self):
+
+
+        print(("vat test3", self.vat))
+        return True
+
+    @api.model
+    def _run_vat_test(self, vat_number, default_country, partner_is_company=True):
+        print(("vat test2", vat_number))
+        return True
+
+
+

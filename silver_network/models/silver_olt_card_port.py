@@ -6,12 +6,12 @@ class SilverOltCardPort(models.Model):
     #_table = 'isp_olt_card_port'
     _inherit = [ 'mail.thread', 'mail.activity.mixin']
 
-    _inherits = { 'silver.netdev': 'netdev_id'}
+    #_inherits = { 'silver.netdev': 'netdev_id'}
 
 
     name = fields.Char(string='Nombre')
 
-    netdev_id = fields.Many2one('silver.netdev', required=True, ondelete="cascade")
+    #netdev_id = fields.Many2one('silver.netdev', required=True, ondelete="cascade")
 
 
     num_port = fields.Integer(string='Numero Puerto')
@@ -30,9 +30,9 @@ class SilverOltCardPort(models.Model):
     ont_srvprofile = fields.Char(string='ont-srvprofile')
     is_line_profile = fields.Boolean(string='ONT Lineprofile')
     ont_lineprofile = fields.Char(string='ont-lineprofile')
-    type_access_net = fields.Selection(
-        [('inactive', 'Inactivo'), ('dhcp', 'DHCP Leases'), ('manual', 'IP Asignada manualmente'),
-         ('system', 'IP Asignada por el sistema')], default='inactive', string='Tipo Acceso', required=True, related='netdev_id.type_access_net',)
+    #type_access_net = fields.Selection(
+    #    [('inactive', 'Inactivo'), ('dhcp', 'DHCP Leases'), ('manual', 'IP Asignada manualmente'),
+    #     ('system', 'IP Asignada por el sistema')], default='inactive', string='Tipo Acceso', required=True, related='netdev_id.type_access_net',)
 
     dhcp_custom_server = fields.Char(string='DHCP Leases')
     interface = fields.Char(string='Interface')
@@ -49,12 +49,15 @@ class SilverOltCardPort(models.Model):
    # contracts_port_count = fields.Integer(string='Conteo Puerto Olt', compute='_compute_contracts_port_count')
 
 
-    netdev_type = fields.Selection(
-        related='netdev_id.netdev_type',
-        default='port',
-        store=True,
-        readonly=False
-    )
+    ip_address_pool_ids = fields.One2many('silver.ip.address.pool', 'olt_port_id', string='Pools de Direcciones IP')
+    ip_address_ids = fields.One2many('silver.ip.address', related='ip_address_pool_ids.address_ids', string='Direcciones IP')
+
+    #    netdev_type = fields.Selection(
+    #        related='netdev_id.netdev_type',
+    #        default='port',
+    #        store=True,
+    #        readonly=False
+    #    )
 
     def _compute_splitter1_count(self):
         for record in self:
@@ -127,6 +130,6 @@ class SilverOltCardPort(models.Model):
             'target': 'current',
         }
 
-    def generar(self):
-        for record in self:
-            record.netdev_id.generar()
+#    def generar(self):
+#        for record in self:
+#            record.netdev_id.generar()

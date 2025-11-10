@@ -26,7 +26,6 @@
         'views/silver_contract_holding_views.xml',
         'views/silver_reception_channel_views.xml',
         'views/silver_contract_tag_views.xml',
-        'views/silver_ip_pool_views.xml',
         'views/silver_wifi_channel_line_views.xml',
         'views/menus.xml',
     ],

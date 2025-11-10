@@ -25,6 +25,10 @@
                 </xpath>
 
 
+                <xpath expr="//field[@name='ip_address_ids']/tree/field[@name='olt_id']" position="after">
+                        <field name="contract_id"/>
+                </xpath>
+
 
                 <!-- Añadir la pestaña de Contratos -->
                 <xpath expr="//page[1]" position="before">

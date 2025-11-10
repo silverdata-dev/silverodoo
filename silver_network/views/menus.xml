@@ -37,7 +37,7 @@
             <menuitem id="menu_isp_ap" name="Equipos AP" parent="menu_isp_oltss" action="action_silver_ap" sequence="80"/>
 
 
-            <menuitem id="menu_isp_radius" name="Servidores Radius" parent="menu_isp_oltss" action="action_silver_radius" sequence="90"/>
+            <!--menuitem id="menu_isp_radius" name="Servidores Radius" parent="menu_isp_oltss" action="action_silver_radius" sequence="90"/-->
 
 
 

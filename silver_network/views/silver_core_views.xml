@@ -99,8 +99,13 @@
                             <group>
 
                                 <field name="node_id"  required="1"/>
-                                <field name="node_ids" widget="many2many_tags" invisible="1"/>
 
+                            </group>
+
+                        </group>
+                        <group>
+                            <group name="equipo">
+                                  <field name="node_ids" widget="many2many_tags" invisible="1"/>
                             </group>
                             <group name="core_conexion" string="Datos Conexion">
 

@@ -5,6 +5,7 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
+
             <xpath expr="//div[@class='o_address_format']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
@@ -24,4 +25,8 @@
             </xpath>
         </field>
     </record>
+
+
+
+
 </odoo>

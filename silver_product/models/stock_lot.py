@@ -13,6 +13,7 @@ class StockLot(models.Model):
 
     brand_name = fields.Char(string='Marca',  store=True)
     model_name = fields.Char(string='Modelo',  store=True)
+    mac_address = fields.Char(string='MAC Address', store=True)
 
 
 

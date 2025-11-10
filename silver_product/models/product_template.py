@@ -59,12 +59,12 @@ class ProductTemplate(models.Model):
     qty_extra_stock = fields.Float(string="Cantidad Cubierta")
     
     # IP Addressing
-    type_access_net = fields.Selection([('dhcp_leases', 'DHCP Leases')], string="Network Access Type")
-    dhcp_custom_server = fields.Char(string="DHCP Leases")
-    interface = fields.Char(string="Interface")
-    is_multiple_vlans = fields.Boolean(string="Habilitar multiples Vlans")
-    ip_address_line_ids = fields.One2many('product.ip.address.line', 'product_tmpl_id', string="IP Address Lines")
-    ip_address_ids = fields.One2many('product.ip.address', 'product_tmpl_id', string="IP Addresses")
+    #type_access_net = fields.Selection([('dhcp_leases', 'DHCP Leases')], string="Network Access Type")
+    #dhcp_custom_server = fields.Char(string="DHCP Leases")
+    #interface = fields.Char(string="Interface")
+    #is_multiple_vlans = fields.Boolean(string="Habilitar multiples Vlans")
+    #ip_address_line_ids = fields.One2many('product.ip.address.line', 'product_tmpl_id', string="IP Address Lines")
+    #ip_address_ids = fields.One2many('product.ip.address', 'product_tmpl_id', string="IP Addresses")
 
     # IPTV Data
     is_iptv = fields.Boolean(string="IPTV")

@@ -3,6 +3,7 @@ from odoo import models, fields, api, _
 import math
 from odoo.exceptions import UserError
 import logging
+from librouteros.query import Key
 
 _logger = logging.getLogger(__name__)
 
@@ -35,9 +36,9 @@ class IspContract(models.Model):
 
     access_point_id = fields.Many2one('silver.access_point', string='Punto de Acceso')
     mac_address = fields.Char(string='Dirección MAC')
-    vlan_id = fields.Many2one('silver.vlan', string='VLAN')
+    vlan_id = fields.Many2one('silver.vlan', string='VLAN')#, domain="[('olt_id', '=', olt_id)]")
     olt_card_id = fields.Many2one('silver.olt.card', string='Tarjeta OLT')
-    radius_id = fields.Many2one('silver.radius', string='Servidor Radius')
+    radius_id = fields.Many2one('silver.core', string='Servidor Radius')
     notes = fields.Text(string='Notas')
     company_id = fields.Many2one('res.company', string='Compañía', default=lambda self: self.env.company)
     active = fields.Boolean(default=True)
@@ -60,10 +61,10 @@ class IspContract(models.Model):
 #    serial_onu = fields.Char(string="Serial ONU", related="serial_number")
 #    model_onu = fields.Char(string="Modelo ONU", related="serial_number"))
     is_bridge = fields.Boolean(string="ONU en modo Bridge")
-    ip_address = fields.Many2one('silver.ip.address', string="Dirección IP Asignada", domain="[('status', '=', 'available')]" )
+    ip_address_id = fields.Many2one('silver.ip.address', string="Dirección IP Asignada", domain="['|', ('contract_id', '=', False), ('contract_id', '=', id)]" )
     pppoe_user = fields.Char(string="Usuario PPPoE")
     pppoe_password = fields.Char(string="Contraseña PPPoE")
-    mac_address_onu = fields.Char(string="MAC Address ONU")
+
     date_active = fields.Date(string="Fecha de Activación", readonly=True)
     date_reconnection = fields.Date(string="Fecha de Reconexión", readonly=True)
     date_cut = fields.Date(string="Fecha de Corte", readonly=True)
@@ -73,23 +74,17 @@ class IspContract(models.Model):
     wifi_line_ids = fields.One2many('silver.contract.wifi.line', 'contract_id', string="Redes WiFi")
     custom_channel_id = fields.Many2one('silver.wifi.channel.line', string="Canal WiFi")
     contract_mode_wan_ids = fields.One2many('silver.contract.wan.mode', 'contract_id', string="Configuración WAN")
-    new_ip_address_id = fields.Many2one('silver.ip.pool.line', string="IP de Pool")
+
     consumption_ids = fields.One2many('silver.contract.consumption', 'contract_id', string="Registros de Consumo")
     radius_entry_ids = fields.One2many('silver.contract.radius.entry', 'contract_id', string="Entradas de RADIUS")
-    olt_state = fields.Selection([('down', 'Down'), ('active', 'Active'), ('connected', 'Connected'),
-                              ('connecting', 'Connecting'),
-                              ('disconnected', 'Disconnected'),
-                              ('error', 'Error')],
+    olt_state = fields.Selection([('down', 'Down'), ('active', 'Activo'),
+                              ('disconnected', 'Disconnected')],
                              string='Estado OLT', default='down')
-    radius_state = fields.Selection([('down', 'Down'), ('active', 'Active'), ('connected', 'Connected'),
-                              ('connecting', 'Connecting'),
-                              ('disconnected', 'Disconnected'),
-                              ('error', 'Error')],
+    radius_state = fields.Selection([('down', 'Down'), ('active', 'Activo'),
+                              ('disconnected', 'Disconnected')],
                              string='Estado Radius', default='down')
-    core_state = fields.Selection([('down', 'Down'), ('active', 'Active'), ('connected', 'Connected'),
-                              ('connecting', 'Connecting'),
-                              ('disconnected', 'Disconnected'),
-                              ('error', 'Error')],
+    core_state = fields.Selection([('down', 'Down'), ('active', 'Activo'),
+                              ('disconnected', 'Disconnected')],
                              string='Estado Core', default='down')
 
     discovered_onu_id = fields.Many2one(
@@ -149,6 +144,8 @@ class IspContract(models.Model):
                 'company_id': self.company_id.id or self.env.company.id,
             })
 
+        print(("lot", lot, self.olt_id))
+
         # --- Parsear olt_index y buscar/crear Tarjeta y Puerto ---
         card = None
         port = None
@@ -164,6 +161,7 @@ class IspContract(models.Model):
                 onu_pon_id = int(pon_id_str)
 
                 card = OltCard.search([('olt_id', '=', self.olt_id.id), ('num_card', '=', card_index)], limit=1)
+                print(("card",card, self.olt_id.id, card_index, olt_index))
                 if not card:
                     card = OltCard.create({
                         'olt_id': self.olt_id.id, 'num_card': card_index,
@@ -198,7 +196,7 @@ class IspContract(models.Model):
         self.ensure_one()
         if not self.olt_id:
             raise UserError(_("Por favor, seleccione una OLT primero."))
-        
+
         # Primero, ejecuta el descubrimiento en segundo plano para asegurar que la lista está actualizada.
         self.olt_id.action_discover_onus()
 
@@ -216,62 +214,45 @@ class IspContract(models.Model):
 
 
 
-    def inicializar(self, vals):
 
-
-        """
-        Sobrescritura para generar las redes WiFi por defecto en la creación del contrato.
-        """
-        partner = vals.get('partner_id', self.partner_id)
-
-        try:
-            if (int(partner)==partner):
-                partner = self.env['res.partner'].browse(partner)
-        except:
-            pass
-
-        print(("partner2", partner))
-        # Comprobar si se está creando un contrato con un cliente y sin líneas WiFi predefinidas
-
-        if (not vals.get('pppoe_user')) and (vals.get('name', self.name)):
-            vals['pppoe_user'] = vals.get('name', self.name).split('-')[-1]
-        if (not vals.get('pppoe_password') and partner):
-            vals['pppoe_password'] = partner.vat
-
-
-        if partner and not vals.get('wifi_line_ids', self.wifi_line_ids):
-
-            if partner.vat:
-                # Generar las líneas WiFi por defecto
-                default_lines = [
-                    (0, 0, {
-                        'ssid_index': 1,
-                        'name': partner.name.split(" ")[0],
-                        'password': max(partner.vat.split("-"), key=len),
-                    }),
-                    (0, 0, {
-                        'ssid_index': 5,
-                        'name': partner.name.split(" ")[0]+'-5G',
-                        'password': max(partner.vat.split("-"), key=len),
-                    }),
-                ]
-                # Añadirlas al diccionario de valores de creación
-                vals['wifi_line_ids'] = default_lines
 
     @api.onchange('partner_id')
     def onchange_partner_id(self):
-        vals = {}
-        self.inicializar(vals)
-        if (vals):
-            self.write(vals)
+
+        print("chpartner")
+
+        for a in self:
+            if not a.partner_id: continue
+            a.pppoe_password = a.partner_id.vat
+
+
+
+            if not a.wifi_line_ids:
+
+
+                default_lines = [
+                    (0, 0, {
+                        'ssid_index': 1,
+                        'name': a.partner_id.name.split(" ")[0],
+                        'password': max(a.partner_id.vat.split("-"), key=len),
+                    }),
+                    (0, 0, {
+                        'ssid_index': 5,
+                        'name': a.partner_id.name.split(" ")[0]+'-5G',
+                        'password': max(a.partner_id.vat.split("-"), key=len),
+                    }),
+                ]
+                # Añadirlas al diccionario de valores de creación
+                a.wifi_line_ids = default_lines
+
+
+
 
     @api.model
     def create(self, vals):
-        if vals.get('name', _('Nuevo')) == _('Nuevo'):
-            vals['name'] = self.env['ir.sequence'].next_by_code('silver.contract.sequence') or _('Nuevo')
+        #if vals.get('name', _('Nuevo')) == _('Nuevo'):
+        #    vals['name'] = self.env['ir.sequence'].next_by_code('silver.contract.sequence')
 
-        if 'partner_id' in vals:
-            self.inicializar(vals)
 
         return super(IspContract, self).create(vals)
 
@@ -297,7 +278,7 @@ class IspContract(models.Model):
 
     firmware_version = fields.Char(string='Firmware Version ONU', related='stock_lot_id.firmware_version', readonly=True, store=False)
     serial_number = fields.Char(string='Serial ONU', related='stock_lot_id.serial_number', readonly=True, store=False)
-
+    mac_address_onu = fields.Char(string="MAC Address ONU", related='stock_lot_id.mac_address', readonly=True, store=False)
 
 
     # --- Campos de Estado de Aprovisionamiento ---
@@ -310,13 +291,17 @@ class IspContract(models.Model):
         Utiliza la función centralizada en el modelo silver.radius.
         """
         self.ensure_one()
-        if (not self.core_id ) or (not self.core_id.radius_id):
+        radius_id = None
+        if (not self.core_id ) :
+            raise UserError(_("No tiene un core configurado"))
+        radius_id = (self.core_id if self.core_id.is_radius else self.core_id.radius_id)
+        if not radius_id:
             raise UserError(_("Este contrato no tiene un servidor RADIUS asociado."))
         if not self.pppoe_user or not self.pppoe_password:
-            raise UserError(_("Se requiere un usuario y contraseña PPPoE en el contrato."))
+            raise UserError(_("Se requiere un us.uario y contraseña PPPoE en el contrato."))
 
         # Llamar a la función centralizada en el modelo silver.radius
-        result = self.core_id.radius_id.create_user_manager_user(
+        result = radius_id.create_user_manager_user(
             username=self.pppoe_user,
             password=self.pppoe_password,
             customer=self.partner_id.name
@@ -327,7 +312,7 @@ class IspContract(models.Model):
         if result.get('success'):
             cambio = self.radius_state != 'active'
 
-            return True
+            
             if cambio:
                 self.radius_state = 'active'
                 return True
@@ -384,19 +369,21 @@ class IspContract(models.Model):
         y luego intentar las configuraciones de WAN y WiFi sin fallar.
         """
         self.ensure_one()
+        if not self.core_id:
+            raise UserError(_("Debe seleccionar un Core Router antes de aprovisionar el servicio."))
+        #self.name = self.env['ir.sequence'].next_by_code('silver.contract.sequence')
+
         if self.link_type == 'fiber' and self.olt_id:
             # 1. Ejecutar el aprovisionamiento base. Este paso es crítico.
             self.olt_id.provision_onu_base(self)
             
             # 2. Si la base fue exitosa, activar el servicio en Odoo.
-            d = {
-
+            self.write({
+                'olt_state': 'active',
                 'state_service': 'active',
                 'date_active': fields.Date.context_today(self)
-            }
-            if (self.state =='draft'):
-                d['state'] = 'open'
-            self.write(d)
+            })
+
 
             # 3. Intentar la configuración WAN. Si falla, solo notificar.
         #    try:
@@ -434,7 +421,8 @@ class IspContract(models.Model):
         """Acción para ejecutar la configuración WiFi."""
         self.ensure_one()
         if self.link_type == 'fiber' and self.olt_id:
-            self.olt_id.provision_onu_wifi(self)
+            r = self.olt_id.provision_onu_wifi(self)
+            print((" wifi", r))
             self.write({'wifi_config_successful': True})
         return True
 
@@ -466,13 +454,13 @@ class IspContract(models.Model):
                 if any(field in vals for field in wan_fields) and olt.is_gestion_pppoe:
                     if contract.is_bridge and olt.is_activation_bridge:
                         # Modo Bridge: solo requiere VLAN
-                        commands.append(f"ont ipconfig {contract.olt_port_id.name} {contract.onu_pon_id} ip-index 1 dhcp-enable enable vlan-id {contract.vlan_id.name}")
+                        commands.append(f"ont ipconfig {contract.olt_port_id.name} {contract.onu_pon_id} ip-index 1 dhcp-enable enable vlan-id {contract.vlan_id.name or olt.vlan_id.name}")
                         commands.append(f"ont wan {contract.olt_port_id.name} {contract.onu_pon_id} ip-index 1 mode bridge")
 
                     elif not contract.is_bridge:
                         # Modo Router (asumimos PPPoE si hay credenciales)
                         if contract.pppoe_user and contract.pppoe_password:
-                            commands.append(f"ont ipconfig {contract.olt_port_id.name} {contract.onu_pon_id} ip-index 1 pppoe-enable enable username {contract.pppoe_user} password {contract.pppoe_password} vlan-id {contract.vlan_id.name}")
+                            commands.append(f"ont ipconfig {contract.olt_port_id.name} {contract.onu_pon_id} ip-index 1 pppoe-enable enable username {contract.pppoe_user} password {contract.pppoe_password} vlan-id {contract.vlan_id.name or olt.vlan_id.name}")
                             commands.append(f"ont wan {contract.olt_port_id.name} {contract.onu_pon_id} ip-index 1 mode pppoe")
 
                 # --- 2. Gestión de Cambio de Plan (Ancho de Banda) ---
@@ -579,7 +567,7 @@ class IspContract(models.Model):
         if self.link_type == 'fiber' and self.olt_id:
             self.olt_id.disable_onu(self)
             self.write({
-                'state_service': 'disabled',
+                'state_service': 'suspended',
                 'date_cut': fields.Date.context_today(self)
             })
             return True
@@ -587,12 +575,18 @@ class IspContract(models.Model):
 
     def action_reconnection_service_button(self):
         self.ensure_one()
+        if not self.core_id:
+            raise UserError(_("Debe seleccionar un Core Router antes de aprovisionar el servicio."))
+
         if self.link_type == 'fiber' and self.olt_id:
-            self.olt_id.enable_onu(self)
+            #self.olt_id.enable_onu(self)
+            self.olt_id.provision_onu_base(self)
         self.write({
+            'state': 'open',
             'state_service': 'active',
             'date_reconnection': fields.Date.context_today(self)
         })
+        return True
         return    {
             'type': 'ir.actions.client',
             'tag': 'display_notification',
@@ -612,6 +606,7 @@ class IspContract(models.Model):
             'state_service': 'suspended',
             'date_reconnection': fields.Date.context_today(self)
         })
+        return True
         return  {
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
@@ -654,8 +649,8 @@ class IspContract(models.Model):
 
     def action_terminate_service(self):
         for contract in self:
-            if contract.state == 'closed':
-                raise UserError(_("Este contrato ya ha sido dado de baja."))
+          #  if contract.state == 'closed':
+         #       raise UserError(_("Este contrato ya ha sido dado de baja."))
 
             # --- Lógica de Terminación para PPPoE en Mikrotik (User Manager) ---
             if contract.pppoe_user and contract.core_id:
@@ -666,40 +661,42 @@ class IspContract(models.Model):
                         raise UserError(_("No se pudo conectar al Core Router Mikrotik."))
                     
                     user_path = api.path('/user-manager/user')
-                    existing = tuple(user_path('print', **{'?name': contract.pppoe_user}))
+                    name = Key("name")
+                    existing_user = tuple(user_path.select(Key(".id")).where(name == contract.pppoe_user))
+                    #existing = tuple(user_path('print', **{'?name': contract.pppoe_user}))
                     
-                    if existing:
-                        user_path.remove(id=existing[0]['.id'])
-                
+                    if existing_user:
+                        user_path.remove(**existing_user)
+
+
                 except Exception as e:
-                    return {
-                        'type': 'ir.actions.client',
-                        'tag': 'display_notification',
-                        'params': {
-                            'title': _('Error de RADIUS'),
-                            'message': _("Fallo al eliminar el usuario de User Manager para el contrato %s: %s") % (contract.name, e),
-                            'type': 'warning',
-                        }
-                    }
+                    print("Falla core")
+
                 finally:
                     if api:
                         api.close()
 
             # --- Lógica de Terminación para OLT (Fibra Óptica) ---
-            elif contract.link_type == 'fiber':
-                # LÓGICA OLT: Eliminar completamente la configuración de la ONU.
-                # Ejemplo conceptual: ont delete <puerto_olt> <serial_onu>
-                pass
+            if contract.link_type == 'fiber':
+                self.olt_id.terminate_onu(self)
+
 
             contract.write({
+                'olt_state' : 'disconnected',
+                'core_state': 'disconnected',
+                'radius_state': 'disconnected',
+                'state_service': 'terminated',
                 'state': 'closed',
                 'date_end': fields.Date.context_today(self)
             })
+
+
+
         return True
 
     def action_ping_service(self):
         self.ensure_one()
-        if not self.ip_address or not self.ip_address.name:
+        if not self.ip_address_id or not self.ip_address_id.name:
             raise UserError(_("No hay ninguna dirección IP asignada a este contrato para hacer ping."))
         if not self.core_id:
             raise UserError(_("No se ha configurado un router principal (Core) para ejecutar el ping."))
@@ -712,7 +709,7 @@ class IspContract(models.Model):
             
             try:
                 # El comando ping en la API de Mikrotik devuelve un iterador.
-                ping_results = api(cmd='/ping', address=self.ip_address.name, count='5')
+                ping_results = api(cmd='/ping', address=self.ip_address_id.name, count='5')
                 for result in ping_results:
                     ping_result_str += f"{result}\n"
             except Exception as e:
@@ -733,29 +730,7 @@ class IspContract(models.Model):
             'target': 'new',
         }
 
-    def action_status_olt(self):
-        # LÓGICA OLT: Esta acción es puramente para OLTs.
-        # 1. Conectar a la OLT (self.olt_id) vía Telnet, SSH, etc.
-        # 2. Ejecutar el comando para ver el estado óptico de la ONU.
-        #    Ejemplo conceptual: display ont optical-info <puerto> <serial>
-        # 3. Parsear la respuesta para obtener valores como la potencia de recepción (Rx Power).
-        # 4. Mostrar esta información en un asistente (wizard) en Odoo.
-        raise UserError("Función no implementada. Requiere integración con la API de la OLT.")
 
-    def action_test_speed_service(self):
-        # LÓGICA TEST DE VELOCIDAD:
-        # Esta es una función compleja. La API de Mikrotik ('/tool/bandwidth-test') requiere un cliente
-        # de BTest en el otro extremo, lo cual no es estándar en los equipos de cliente.
-        # Alternativas:
-        # 1. Instalar un servidor Speedtest (Ookla) en tu red y tener un agente en el CPE del cliente.
-        # 2. Usar protocolos como TR-069 para instruir al CPE que realice un test de velocidad.
-        # 3. Integrarse con una plataforma externa de monitoreo de red.
-        raise UserError("Función no implementada. Requiere una infraestructura de test de velocidad dedicada.")
-
-    def action_remove_service(self):
-        # Este botón parece redundante con "Dar de Baja". Si la intención es diferente,
-        # se debería clarificar el propósito. Por ahora, lo dejamos sin implementación.
-        raise UserError("Función no implementada.")
 
     def action_contract_reboot_onu(self):
         self.ensure_one()
@@ -772,6 +747,35 @@ class IspContract(models.Model):
         # 3. Una vez que el técnico confirma, se actualiza el campo 'serial_onu' en el contrato.
         # 4. Luego se podría llamar a la lógica de (re)provisión para la nueva ONU en la OLT.
         raise UserError("Función no implementada. Se recomienda implementarla como un asistente de Odoo.")
+
+
+    @api.onchange('olt_id')
+    def _onchange_olt_id(self):
+        self.vlan_id = self.olt_id.vlan_id
+
+    @api.onchange('olt_port_id')
+    def _onchange_olt_port_id(self):
+        available_ips = []
+        if self.olt_port_id:
+            # Buscar pools de IPs asociados a este puerto OLT
+            available_ips = self.env['silver.ip.address'].search([('olt_port_id', '=', self.olt_port_id.id), ('contract_id', '=', False)
+                                                             ], order='ip_int asc')  # Ordenar por IP numericamente
+
+        print(("ips1", available_ips))
+        if (not available_ips):
+            available_ips = self.env['silver.ip.address'].search([('olt_id', '=', self.olt_id.id), ('olt_port_id', '=', None), ('contract_id', '=', False)
+            ], order='ip_int asc') # Ordenar por IP numericamente
+
+        print(("ips2", available_ips))
+
+        if available_ips:
+            # Asignar la primera IP disponible
+            self.ip_address_id = available_ips[0]
+        else:
+            # Si no hay IPs disponibles, limpiar el campo
+            self.ip_address_id = False
+
+
 
     @api.onchange('silver_address_id')
     def _onchange_silver_address_id(self):
@@ -814,10 +818,17 @@ class IspContract(models.Model):
         if self.box_id:
             core_domain = [('node_id', '=', self.box_id.node_id.id)]
             first_core = self.env['silver.core'].search(core_domain, limit=1)
-            if first_core:
-                self.core_id = first_core
+            #if first_core:
+            #    self.core_id = first_core
             domain = {'domain': {'core_id': core_domain}}
         return domain
+
+
+    @api.onchange('node_id')
+    def _onchange_node_id(self):
+        print(( "change node", self.box_id, self.node_id))
+        if self.box_id and (self.box_id.node_id != self.node_id):
+            self.box_id = None
 
     @api.onchange('core_id')
     def _onchange_core_id(self):
@@ -840,7 +851,7 @@ class IspContract(models.Model):
 
         netdev = self.olt_id.netdev_id
         if not netdev:
-            self.olt_state = 'down'
+            #self.olt_state = 'down'
             raise UserError(_("La OLT no tiene un dispositivo de red configurado."))
 
         pon_port = f"{self.olt_card_id.num_card or self.olt_port_id.olt_card_id.num_card}/{self.olt_port_id.num_port}"

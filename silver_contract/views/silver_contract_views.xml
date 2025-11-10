@@ -10,18 +10,23 @@
                     <field name="partner_id"/>
                     <field name="date_start"/>
                     <field name="date_end"/>
-                    <field name="state"   widget="badge"
-                           decoration-success="state in ['active', 'connected']"
-                           decoration-warning="state in ('suspended', 'disabled')"
-                           decoration-danger="state in ['removed', 'down']"/>
+
+                    <field name="state"
+                           widget="badge"
+                           decoration-success="state in ['open']"
+                           decoration-warning="state in ('draft')"
+                           decoration-danger="state in ['closed']"/>
+
                     <field name="state_service"
                            widget="badge"
-                           decoration-success="state_service in ['active', 'connected']"
-                           decoration-warning="state_service in ('suspended', 'disabled')"
-                           decoration-danger="state_service in ['removed', 'down']"/>
+                           decoration-success="state_service in ['active', 'open']"
+                           decoration-warning="state_service in ('suspended', 'inactive')"
+                           decoration-danger="state_service in ['terminated', 'disabled']"/>
                 </tree>
             </field>
         </record>
+
+
 
         <!-- silver.contract form view -->
         <record id="silver_contract_view_form" model="ir.ui.view">
@@ -30,23 +35,7 @@
             <field name="arch" type="xml">
                 <form string="Contrato">
                     <header>
-    <!--widget name="web_ribbon" title="Activo" bg_color="bg-success"
-                                invisible="state_service != 'active'"/>
-                        <widget name="web_ribbon" title="Inactivo" bg_color="bg-secondary"
-                                invisible="state_service != 'inactive'"/>
-                        <widget name="web_ribbon" title="Retirado" bg_color="bg-danger"
-                                invisible="state_service != 'removed'"/>
-                        <widget name="web_ribbon" title="En Lista de Retiro" bg_color="bg-warning"
-                                invisible="state_service != 'removal_list'"/>
-                        <widget name="web_ribbon" title="Cortado" bg_color="bg-warning"
-                                invisible="state_service != 'disabled'"/>
-                        <widget name="web_ribbon" title="Suspendido" bg_color="bg-warning"
-                                invisible="state_service != 'suspended'"/-->
-                        <!--button name="action_open" type="object" string="Open" class="oe_highlight"
-                                invisible="state != 'draft'"/>
-                        <button name="action_cancel" type="object" string="Cancel"
-                                invisible="state in ['cancel', 'done']"/-->
-                        <field name="state" widget="statusbar" statusbar_visible="draft,open,done"/>
+
 
                     </header>
                     <sheet>
@@ -61,6 +50,9 @@
                                 <div class="contract-status-pill status-active" invisible="state_service != 'active'">
                                     <field name="state_service" readonly="1"/>
                                 </div>
+                                    <div class="contract-status-pill status-open" invisible="state_service != 'open'">
+                                    <field name="state_service" readonly="1"/>
+                                </div>
                                 <div class="contract-status-pill status-suspended" invisible="state_service != 'suspended'">
                                     <field name="state_service" readonly="1"/>
                                 </div>
@@ -70,7 +62,7 @@
                                 <div class="contract-status-pill status-removed" invisible="state_service != 'removed'">
                                     <field name="state_service" readonly="1"/>
                                 </div>
-                                <div class="contract-status-pill status-default" invisible="state_service in ('active', 'suspended', 'disabled', 'removed')">
+                                <div class="contract-status-pill status-default" invisible="state_service in ('open', 'active', 'suspended', 'disabled', 'removed')">
                                     <field name="state_service" readonly="1"/>
                                 </div>
                             </div>

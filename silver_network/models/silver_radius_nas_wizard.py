@@ -10,7 +10,7 @@ class SilverRadiusNasWizard(models.TransientModel):
 
     name = fields.Char(string="Nombre")
 
-    radius_id = fields.Many2one('silver.radius', string='Radius Server', required=True)
+    radius_id = fields.Many2one('silver.core', string='Radius Server', required=True)
     nas_address = fields.Char(string='NAS Address', required=True)
     nas_secret = fields.Char(string='NAS Secret', required=True)
     nas_services = fields.Many2many('silver.radius.service', string='Services', default=lambda self: self.env['silver.radius.service'].search([('name', 'in', ['ppp', 'hotspot'])]))

@@ -135,7 +135,7 @@
                                         <field name="name"/>
                                         <field name="num_port"/>
                                         <field name="olt_card_n"/>
-                                        <field name="type_access_net"/>
+                                        <!--field name="type_access_net"/-->
                                     </tree>
                                 </field>
                             </page>
@@ -147,6 +147,8 @@
                                         <field name="name" readonly="True"/>
                                         <field name="network"/>
                                         <field name="nmask"/>
+                                        <field name="olt_port_id"/>
+                                        <field name="olt_id" column_invisible="1"/>
 
                                         <field name="total_ips"/>
                                         <field name="used_ips"/>
@@ -158,6 +160,13 @@
                                 <button name="generar" string="Generar IPs" type="object"/>
 
                                 <field name="ip_address_ids" nolabel="1">
+                                      <tree colspan="2" >
+                                    <field name="cidr"/>
+                            <field name="line_id"/>
+                            <field name="olt_port_id"/>
+                            <field name="olt_id" column_invisible="1"/>
+
+                                      </tree>
                                 </field>
 
                             </page>
