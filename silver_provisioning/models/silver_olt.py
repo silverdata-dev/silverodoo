@@ -406,7 +406,7 @@ class SilverOlt(models.Model):
                     hide_cmd = "enable" if line.is_hidden else "disable"
                     command = f"onu {onu_id} pri wifi_ssid {a} name {line.name} hide {hide_cmd} auth_mode {line.auth_mode} encrypt_type {line.encrypt_type} shared_key {line.password} rekey_interval 0"
                 success, clean_response, full_output = conn.execute_command(command)
-                output_log += f"\n{full_output}"
+                output_log += f"{clean_response}\n"
         return output_log
 
     def _provision_onu_wan(self, contract, conn, output_log, vlan_id):
@@ -443,7 +443,7 @@ class SilverOlt(models.Model):
             print(("comands", advanced_wan_commands))
             for command in advanced_wan_commands:
                 success, clean_response, full_output = conn.execute_command(command)
-                output_log += f"\n{clean_response}"
+                output_log += f"{clean_response}\n"
 
                 if not success:
                     raise UserError(f"Error en config. WAN avanzada '{command}':\n{clean_response}")
@@ -479,7 +479,7 @@ class SilverOlt(models.Model):
             # 1. Entrar en modo de configuración
             cmd_config_term = "configure terminal"
             success, response, output = conn.execute_command(cmd_config_term)
-            output_log += f"$ {cmd_config_term}\n{output}\n"
+            output_log += f"$ {cmd_config_term}\n{response}\n"
             if not success:
                 raise UserError(f"Error en comando inicial '{cmd_config_term}':\n{output}")
 
@@ -498,7 +498,7 @@ class SilverOlt(models.Model):
             # 3. Entrar en la interfaz GPON
             cmd_interface = f"interface gpon {pon_port_val}"
             success, response, output = conn.execute_command(cmd_interface)
-            output_log += f"$ {cmd_interface}\n{output}\n"
+            output_log += f"$ {cmd_interface}\n{response}\n"
             if not success:
                 raise UserError(f"Error en comando inicial '{cmd_interface}':\n{output}")
 
@@ -529,7 +529,7 @@ class SilverOlt(models.Model):
                 else: # Es una lista de comandos directos
                     for command in steps_or_commands:
                         success, clean_response, full_output = conn.execute_command(command)
-                        output_log += f"\n{full_output}"
+                        output_log += f"{clean_response}\n"
                         if not success:
                             raise UserError(f"Error ejecutando comando '{command}':\n{clean_response}")
 
@@ -537,7 +537,7 @@ class SilverOlt(models.Model):
             final_commands = ["exit", "exit", "write"]
             for command in final_commands:
                 success, clean_response, full_output = conn.execute_command(command)
-                output_log += f"\n{full_output}"
+                output_log += f"{clean_response}\n"
                 if not success:
                     output_log += f"\nADVERTENCIA: El comando final '{command}' falló con el mensaje: {clean_response}\n"
 
@@ -555,7 +555,7 @@ class SilverOlt(models.Model):
                 ]
                 for cmd in rollback_commands:
                     _success, _clean_response, _full_output = conn.execute_command(cmd)
-                    output_log += f"\n{_full_output}"
+                    output_log += f"{_clean_response}\n"
             # Re-lanzar la excepción para que Odoo la muestre al usuario
             raise UserError(f"Fallo en la operación OLT:\n{e}\n\nConsulte el historial del contrato para ver el log completo.\n{output_log}") from None
         

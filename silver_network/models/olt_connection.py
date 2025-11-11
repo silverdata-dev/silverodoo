@@ -181,20 +181,20 @@ class OLTConnection:
 
             # 3. Comprobar si la respuesta contiene un indicador de exito explicito.
             if any(indicator in clean_response.lower() for indicator in success_indicators):
-                print("si")
+                #print("si")
                 return True, full_output, clean_response
 
             # 1. Comprobar si la respuesta limpia contiene algun indicador de error.
             if any(indicator in clean_response.lower() for indicator in error_indicators):
-                print("no")
+               # print("no")
                 return False, full_output, clean_response
 
             # 2. Si no hay errores, comprobar si la respuesta esta vacia (exito implicito).
             if not clean_response:
-                print("nsi")
+              #  print("nsi")
                 return True, full_output, clean_response
 
-            print("sno")
+          #  print("sno")
             # 4. Si hay respuesta, pero no es un indicador de exito conocido, se considera un fallo.
             return False, full_output, clean_response
             #success = not any(indicator in clean_response.lower() for indicator in error_indicators)

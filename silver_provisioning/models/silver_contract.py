@@ -579,8 +579,10 @@ class IspContract(models.Model):
             raise UserError(_("Debe seleccionar un Core Router antes de aprovisionar el servicio."))
 
         if self.link_type == 'fiber' and self.olt_id:
-            #self.olt_id.enable_onu(self)
-            self.olt_id.provision_onu_base(self)
+            if (self.state_service == 'suspended' ):
+                self.olt_id.enable_onu(self)
+            else:
+                self.olt_id.provision_onu_base(self)
         self.write({
             'state': 'open',
             'state_service': 'active',
