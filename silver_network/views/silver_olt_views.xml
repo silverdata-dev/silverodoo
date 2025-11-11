@@ -147,7 +147,7 @@
                                         <field name="name" readonly="True"/>
                                         <field name="network"/>
                                         <field name="nmask"/>
-                                        <field name="olt_port_id"/>
+                                        <field name="olt_port_id" context="{'show_n': True}"/>
                                         <field name="olt_id" column_invisible="1"/>
 
                                         <field name="total_ips"/>

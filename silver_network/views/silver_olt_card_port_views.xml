@@ -73,6 +73,10 @@
                                         <field name="usage_percentage" widget="progressbar"/>
                                     </tree>
                                 </field>
+
+
+                                <button name="generar" string="Generar IPs" type="object"/>
+
                                 <field name="ip_address_ids" nolabel="1" readonly="1">
                                     <tree>
                                         <field name="name"/>

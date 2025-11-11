@@ -854,17 +854,17 @@ class IspContract(models.Model):
         if self.box_id and (self.box_id.node_id != self.node_id):
             self.box_id = None
 
-    @api.onchange('core_id')
-    def _onchange_core_id(self):
-        self.olt_id = False
-        domain = {'domain': {'olt_id': []}}
-        if self.core_id:
-            olt_domain = [('id', 'in', self.core_id.olt_ids.ids)]
-            first_olt = self.env['silver.olt'].search(olt_domain, limit=1)
-            if first_olt:
-                self.olt_id = first_olt
-            domain = {'domain': {'olt_id': olt_domain}}
-        return domain
+    #@api.onchange('core_id')
+    #def _onchange_core_id(self):
+    #    self.olt_id = False
+    #    domain = {'domain': {'olt_id': []}}
+    #    if self.core_id:
+    #        olt_domain = [('id', 'in', self.core_id.olt_ids.ids)]
+    #        first_olt = self.env['silver.olt'].search(olt_domain, limit=1)
+    #        if first_olt:
+    #            self.olt_id = first_olt
+    #        domain = {'domain': {'olt_id': olt_domain}}
+    #    return domain
 
 
 

@@ -223,6 +223,8 @@ class SilverIpAddressLine(models.Model):
         return super(SilverIpAddressLine, self).create(vals)
 
     def write(self, vals):
+
+        print(("poolwrite", vals))
         vals = self._process_network_field(vals)
         if not 'name' in vals:
             for record in self:

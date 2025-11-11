@@ -59,6 +59,16 @@ class SilverOltCardPort(models.Model):
     #        readonly=False
     #    )
 
+    @api.depends('name', 'num_port')
+    def _compute_display_name(self):
+        for a in self:
+            if self.env.context.get('show_n'):
+                a.display_name = f"{a.num_port}"
+            else:
+                a.display_name = f"{a.name}"
+
+
+
     def _compute_splitter1_count(self):
         for record in self:
             record.splitter1_count = self.env['silver.splitter'].search_count([('olt_port_id', '=', record.id), ('type_splitter', '=', '1')])
@@ -130,6 +140,6 @@ class SilverOltCardPort(models.Model):
             'target': 'current',
         }
 
-#    def generar(self):
-#        for record in self:
-#            record.netdev_id.generar()
+    def generar(self):
+        for record in self:
+            record.olt_id.netdev_id.generar()

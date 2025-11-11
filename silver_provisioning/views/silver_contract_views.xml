@@ -44,8 +44,11 @@
                                 <group name="ips_networks_2" string="Datos Red Externa Asignada" invisible="link_type == 'lan'">
 
 
+                                        <field name="core_id" readonly="(state_service == 'active') and (radius_state == 'active') and (core_state == 'active') " options="{'no_create': True}"
+                                        domain="[('node_id', '=', node_id)]"
+                                        />
                                         <field name="olt_id" readonly="state_service == 'active'"
-domain="[('node_id', '=', node_id)]"
+domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                                invisible="(link_type not in ['fiber', 'fttb']) " options="{'no_create': True}"/>
                                         <button name="action_open_onu_selector_wizard"
                                                 type="object"
@@ -59,7 +62,6 @@ domain="[('node_id', '=', node_id)]"
                         <field name="onu_pon_id" />
    <field name="vlan_id"/>
 
-                                         <field name="ip_address_id"/>
 
 
                                     <button name="action_provision_base"
@@ -116,10 +118,8 @@ domain="[('node_id', '=', node_id)]"
 
                                     <group string="Datos Asignados">
 
-                                        <field name="core_id" readonly="(state_service == 'active') and (radius_state == 'active') and (core_state == 'active') " options="{'no_create': True}"
-                                        domain="[('node_id', '=', node_id)]"
-                                        />
 
+                                         <field name="ip_address_id"/>
                                         <field name="pppoe_user"/>
                                         <field name="pppoe_password" password="True"/>
                                             <button name="action_add_radius_access"
