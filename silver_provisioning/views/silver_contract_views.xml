@@ -11,6 +11,7 @@
 
                     <button name="init_contract" type="object" class="oe_highlight"  string="Iniciar Contrato" invisible="state=='open'"/>
 
+
                 </xpath>
 
                 <xpath expr="//field[@name='line_ids']/tree/field[@name='name']" position="before">
@@ -25,9 +26,11 @@
 
 
                 <xpath expr="//notebook" position="inside">
-                    <page name="provisioning" string="Servicio Internet" invisible="state != 'open'">
+
+                    <page name="provisioning" string="Servicio Internet" invisible="state!= 'open' or service_type_code!='internet'" >
                         <group>
-<field name="wan_config_successful" invisible="1"/>
+
+                            <field name="wan_config_successful" invisible="1"/>
                         <field name="wifi_config_successful" invisible="1"/>
                         <field name="state_service" invisible="1"/>
                         <field name="state"  invisible="1"/>
@@ -161,8 +164,9 @@ domain="[('node_id', '=', node_id)]"
                                         <field name="encrypt_type" invisible="1"/-->
                                     </tree>
                                 </field>
-<field name="state_service"/>
-                                         <field name="olt_state"/>
+<field name="state_service" invisible="1"/>
+                                         <field name="olt_state" invisible="1" />
+                                         <field name="service_type_code" invisible="1"/>
   <button name="action_provision_wan" string="Configurar WAN" type="object" class="oe_highlight" invisible="(state_service == 'inactive') or (olt_state != 'active')"/>
 <button name="button_get_wan_info" type="object" string="Info"/>
                     <button name="action_provision_wifi" string="Aplicar WiFi" type="object" class="oe_highlight" invisible=" (state_service == 'inactive') or (olt_state != 'active')"/>

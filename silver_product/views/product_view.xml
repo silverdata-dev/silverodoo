@@ -229,6 +229,9 @@
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_tree_view"/>
             <field name="arch" type="xml">
+                <xpath expr="//field[@name='detailed_type']" position="after">
+                    <field name="service_type_id" invisible="detailed_type!='service'" required="detiled_type=='service'"/>
+                </xpath>
                 <xpath expr="//tree" position="replace">
                     <tree string="Product" multi_edit="1" sample="1">
                         <header>
@@ -246,7 +249,8 @@
                         <field name="list_price" string="Sales Price" widget="monetary" options="{'currency_field': 'currency_id'}" optional="show" decoration-muted="not sale_ok"/>
                         <field name="standard_price" widget="monetary" options="{'currency_field': 'cost_currency_id'}" optional="show" readonly="1"/>
                         <field name="categ_id" optional="hide"/>
-                        <field name="detailed_type" optional="hide" readonly="1"/>
+
+
                         <field name="type" invisible="1"/>
                         <field name="uom_id" readonly="1" optional="show" groups="uom.group_uom"/>
                         <field name="active" invisible="1"/>

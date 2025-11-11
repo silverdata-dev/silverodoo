@@ -82,9 +82,9 @@
                             </group>
                             <group>
                                    <field name="service_type_id" readonly="state != 'draft'"/>
-                            <field name="plan_type_id" readonly="state != 'draft'"/>
-                            <field name="cutoff_date_id" readonly="state != 'draft'" domain="[('plan_type_id', '=', plan_type_id)]"/>
-                            <field name="contract_term_id" readonly="state != 'draft'" />
+                            <field name="plan_type_id" readonly="state != 'draft'" domain="[('service_type_id', '=', service_type_id)]"  required="1"/>
+                            <field name="cutoff_date_id" readonly="state != 'draft'" domain="[('plan_type_id', '=', plan_type_id)]"  required="1"/>
+                            <field name="contract_term_id" readonly="state != 'draft'" required="1"/>
                                 <!--field name="service_plan_id"/-->
                             </group>
 

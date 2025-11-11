@@ -16,6 +16,8 @@ class ProductTemplate(models.Model):
     product_brand_id = fields.Many2one('product.brand', string='Marca')
     model = fields.Char(string='Modelo')
 
+    service_type_id = fields.Many2one('silver.service.type', string= "Tipo de Servicio")
+
 
     is_required_brand = fields.Boolean(string="Es numero serie unico?")
     number_list_partner = fields.Char(string="Nombre Plan Padre")

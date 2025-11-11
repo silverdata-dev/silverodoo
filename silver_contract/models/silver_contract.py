@@ -36,10 +36,11 @@ class SilverContract(models.Model):
 
     # Campos de Configuración
     service_type_id = fields.Many2one('silver.service.type', string="Tipo de Servicio", required=True, default=lambda self: self._get_default_service_type_id())
+    service_type_code = fields.Char(related='service_type_id.code', string="Código de Tipo de Servicio", store=False)
     plan_type_id = fields.Many2one('silver.plan.type', string="Tipo de Plan", required=True, default=lambda self: self._get_default_plan_type_id())
     payment_type_id = fields.Many2one('silver.payment.type', string="Forma de Pago",  default=lambda self: self._get_default_payment_type_id())
 
-    contract_term_id = fields.Many2one('silver.contract.term', string="Período de Permanencia")
+    contract_term_id = fields.Many2one('silver.contract.term', string="Período de Permanencia",  default=lambda self: self._get_default_contract_term_id())
     cutoff_date_id = fields.Many2one('silver.cutoff.date', string="Periodo de Consumo")
     tag_ids = fields.Many2many('silver.contract.tag', string="Etiquetas")
 
@@ -175,6 +176,9 @@ class SilverContract(models.Model):
 
     def _get_default_payment_type_id(self):
         return self.env['silver.payment.type'].search([('code', '=', 'cash')], limit=1)
+
+    def _get_default_contract_term_id(self):
+        return self.env['silver.contract.term'].search([('name', '=', '12')], limit=1)
 
     @api.model
     def create(self, vals):

@@ -9,3 +9,4 @@ class SilverPlanType(models.Model):
     name = fields.Char(string='Nombre', required=True)
     code = fields.Char(string='Code', required=True)
     description = fields.Text(string='Descripción')
+    service_type_id = fields.Many2one("silver.service.type", string="Tipo de Servicio")

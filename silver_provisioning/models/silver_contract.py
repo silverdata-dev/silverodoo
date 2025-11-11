@@ -223,6 +223,9 @@ class IspContract(models.Model):
 
         for a in self:
             if not a.partner_id: continue
+            if not a.partner_id.vat:
+                raise UserError(_("Cliente no tiene identificación"))
+
             a.pppoe_password = a.partner_id.vat
 
 
@@ -415,7 +418,17 @@ class IspContract(models.Model):
         if self.link_type == 'fiber' and self.olt_id:
             self.olt_id.provision_onu_wan(self)
             self.write({'wan_config_successful': True})
-        return True
+        return {
+        'type': 'ir.actions.client',
+        'tag': 'display_notification',
+        'params': {
+            'title': 'Success',
+            'message': 'WAN configurada',
+            'type': 'success',
+        }
+
+    }
+   #     return True
 
     def action_provision_wifi(self):
         """Acción para ejecutar la configuración WiFi."""
@@ -424,7 +437,16 @@ class IspContract(models.Model):
             r = self.olt_id.provision_onu_wifi(self)
             print((" wifi", r))
             self.write({'wifi_config_successful': True})
-        return True
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': 'Success',
+                    'message': 'WI-FI configurada',
+                    'type': 'success',
+                }
+            }
+        #return True
 
     def write(self, vals):
         print(("write1", vals))

@@ -1,26 +1,35 @@
 <odoo>
     <data noupdate="1">
+        <record id="service_type_internet" model="silver.service.type">
+            <field name="code">internet</field>
+            <field name="name">Internet</field>
+        </record>
         <!-- Plan Types -->
         <record id="plan_type_residencial" model="silver.plan.type">
             <field name="code">residencial</field>
             <field name="name">Residencial</field>
+            <field name="service_type_id" ref="service_type_internet"/>
         </record>
         <record id="plan_type_multicorporative" model="silver.plan.type">
             <field name="code">multicorporative</field>
             <field name="name">Multi-corporativo</field>
+            <field name="service_type_id" ref="service_type_internet"/>
         </record>
         <record id="plan_type_corporative" model="silver.plan.type">
             <field name="code">corporative</field>
             <field name="name">Corporativo</field>
+            <field name="service_type_id" ref="service_type_internet"/>
         </record>
         <record id="plan_type_comercial" model="silver.plan.type">
             <field name="code">comercial</field>
             <field name="name">Comercial</field>
+            <field name="service_type_id" ref="service_type_internet"/>
         </record>
 
         <record id="plan_type_convenant" model="silver.plan.type">
             <field name="code">convenant</field>
             <field name="name">Convenio</field>
+            <field name="service_type_id" ref="service_type_internet"/>
         </record>
 
         <!-- Cutoff Factors -->
