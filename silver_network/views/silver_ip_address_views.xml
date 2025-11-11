@@ -26,17 +26,12 @@
                         <h1><field name="name" placeholder="e.g. Public IPs Sector A"/></h1>
                     </div>
                     <group>
-                        <group>
                             <field name="cidr"/>
                             <field name="line_id"/>
                             <field  name="netdev_id" />
                             <field name="olt_port_id" invisible="1"/>
                             <field name="olt_id" invisible="1"/>
 
-                        </group>
-                        <group>
-
-                        </group>
                     </group>
 
                 </sheet>

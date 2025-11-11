@@ -63,13 +63,14 @@ class SilverNetdev(models.Model):
     radius_client_secret = fields.Char(string='Radius Shared Secret')
     radius_client_services = fields.Many2many('silver.radius.service', string='Radius Services') # Assuming a model silver.radius.service exists or will be created
 
-    #core_ids = fields.One2many('silver.core', 'netdev_id', string='Cores')
+    core_ids = fields.One2many('silver.core', 'netdev_id', string='Cores')
     olt_ids = fields.One2many('silver.olt', 'netdev_id', string='OLTs')
     #olt_card_port_ids = fields.One2many('silver.olt.card.port', 'netdev_id', string='OLT Card Ports')
     #box_ids = fields.One2many('silver.box', 'netdev_id', string='Boxes')
     #ap_ids = fields.One2many('silver.ap', 'netdev_id', string='APs')
     #radius_ids = fields.One2many('silver.radius', 'netdev_id', string='Radius Servers')
-    n_olt_id = fields.Many2one('silver.olt', string='OLT', compute='_compute_olt_id', store=False)
+    n_olt_id = fields.Many2one('silver.olt', string='OLT', compute='_compute_n_olt_id', store=False)
+    n_core_id = fields.Many2one('silver.core', string='Core', compute='_compute_n_core_id', store=False)
 
 
 
@@ -94,6 +95,14 @@ class SilverNetdev(models.Model):
             # Busca si existe una OLT que apunte a este netdev
             olt = self.env['silver.olt'].search([('netdev_id', '=', netdev.id)], limit=1)
             netdev.n_olt_id = olt or False
+
+
+    @api.depends('core_ids')
+    def _compute_n_core_id(self):
+        for netdev in self:
+            # Busca si existe una OLT que apunte a este netdev
+            core = self.env['silver.core'].search([('netdev_id', '=', netdev.id)], limit=1)
+            netdev.n_core_id = core or False
 
 
 
@@ -557,6 +566,7 @@ class SilverNetdev(models.Model):
     def get_formview_id(self, access_uid=None):
         self.ensure_one()
         if self.env['silver.core'].search([('netdev_id', '=', self.id)], limit=1):
+            print(( "escore", self.netdev_type, self.env['silver.core'].search([('netdev_id', '=', self.id)], limit=1)))
             return self.env.ref('view_silver_core_form').id
         if self.env['silver.ap'].search([('netdev_id', '=', self.id)], limit=1):
             return self.env.ref('view_silver_ap_form').id
