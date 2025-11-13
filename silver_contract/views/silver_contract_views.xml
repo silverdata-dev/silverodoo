@@ -13,7 +13,7 @@
 
                     <field name="state"
                            widget="badge"
-                           decoration-success="state in ['open']"
+                           decoration-success="state in ['active']"
                            decoration-warning="state in ('draft')"
                            decoration-danger="state in ['closed']"/>
 
