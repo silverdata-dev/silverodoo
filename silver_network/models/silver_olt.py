@@ -191,6 +191,9 @@ class SilverOlt(models.Model):
 
 
 
+    ip_address_pool_ids = fields.One2many('silver.ip.address.pool', 'olt_id', string='Pools de direcciones IP')
+    ip_address_ids = fields.One2many('silver.ip.address', related='ip_address_pool_ids.address_ids', string='Direcciones IP')
+
 
     asset_type = fields.Selection(
         related='asset_id.asset_type',
@@ -486,7 +489,10 @@ class SilverOlt(models.Model):
 
     def generar(self):
         for record in self:
-            record.netdev_id.generar()
+            for ret in record.ip_address_pool_ids:
+                print(("ret", ret))
+                ret.action_generate_ips()
+
 
     def action_disable_onu(self, pon_port, onu_id):
         """

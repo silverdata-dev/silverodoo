@@ -119,7 +119,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                         <field name="pppoe_password" password="True"/>
 </group>
                                         <group colspan="4">
-                                            <group colspan="2">
+                                            <group class="col-lg-9">
 
                                             <button name="action_add_radius_access"
                                                 type="object"
@@ -142,11 +142,12 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                            decoration-warning="core_state in ('suspended', 'disabled')"
                            decoration-danger="core_state in ['removed', 'down']"  nolabel="1" />
 
-</group>
-                                        <group colspan="1">
-             <!--button name="action_contract_reboot_onu" type="object" class="oe_stat_button" icon="fa-refresh" string="Reiniciar ONU"  invisible="(state not in ['open', 'active']) or ( state_service not in ['active', 'suspended']) "/> /-->
+</group> </group>
+                                        <group class="col-lg-3">
+
+             <button name="action_view_pppoe_traffic_chart" type="object" class="oe_stat_button" icon="fa-area-chart" string="Ver ONU" invisible="(state not in ['open', 'active']) or ( state_service not in ['active', 'suspended']) "/>
                                         </group>
-                                        </group>
+
 
                                     </group>
 

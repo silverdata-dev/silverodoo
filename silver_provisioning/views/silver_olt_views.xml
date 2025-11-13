@@ -24,10 +24,14 @@
                             confirm="¿Está seguro de que desea aplicar los cambios guardados a todas las ONUs activas en esta OLT? Esta acción no se puede deshacer."/>
                 </xpath>
 
+<xpath expr="//field[@name='ip_address_ids']//tree" position="inside">
+      <field name="contract_id" widget="button" action="action_view_contract"/>
 
-                <xpath expr="//field[@name='ip_address_ids']/tree/field[@name='olt_id']" position="after">
-                        <field name="contract_id"/>
-                </xpath>
+</xpath>
+<xpath expr="//field[@name='ip_address_ids']//tree" position="attributes">
+    <attribute name="default_order">contract_id asc, ip_int asc</attribute>
+</xpath>
+
 
 
                 <!-- Añadir la pestaña de Contratos -->

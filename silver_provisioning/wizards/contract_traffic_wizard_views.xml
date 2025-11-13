@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_silver_contract_traffic_wizard_form" model="ir.ui.view">
+            <field name="name">silver.contract.traffic.wizard.form</field>
+            <field name="model">silver.contract.traffic.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Real-Time Traffic">
+                    <sheet>
+                        <group>
+                            <field name="interface" readonly="1"/>
+                            <field name="core_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="rate_down"/>
+                            <field name="rate_up"/>
+                        </group>
+                        <field name="speed_chart" widget="speed_chart"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

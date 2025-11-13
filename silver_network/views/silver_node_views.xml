@@ -14,7 +14,7 @@
             <field name="name">silver.node.tree</field>
             <field name="model">silver.node</field>
             <field name="arch" type="xml">
-                <tree string="Nodos ISP" default_order="name desc">
+                <tree string="Nodos ISP" default_order="name asc">
                     <field name="code"/>
                     <field name="name"/>
                     <field name="zone_id"/>

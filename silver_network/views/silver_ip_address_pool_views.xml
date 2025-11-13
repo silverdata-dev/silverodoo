@@ -18,7 +18,7 @@
                     <field name="nmask"/>
                     <field name="gateway"/>
 
-                    <field name="netdev_id"/>
+
                     <field name="is_tr_069"/>
 
                      <field name="total_ips"/>
@@ -46,7 +46,7 @@
                     <field name="nmask"/>
                                      <field name="mask" readonly="True"/>
                     <field name="gateway" widget="ip_address"/>
-                    <field name="netdev_id"/>
+
                             <field name="is_tr_069"/>
                                           </group>
                             <group>

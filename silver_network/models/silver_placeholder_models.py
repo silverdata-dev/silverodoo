@@ -35,10 +35,10 @@ class SilverIpAddress(models.Model):
     name = fields.Char(string='Description', required=True)
     cidr = fields.Char(string='IP', required=True, help="e.g., 192.168.0.0/24")
 #    gateway = fields.Char(string='Gateway')
-    netdev_id = fields.Many2one('silver.netdev', string='Network Device')
-    core_id = fields.Many2one('silver.core', related='netdev_id.n_core_id', string='Core', store=True)
 
-    line_id = fields.Many2one('silver.ip.address.pool',  string='Rango')
+    core_id = fields.Many2one('silver.core', related='line_id.core_id', string='Core', store=True)
+
+    line_id = fields.Many2one('silver.ip.address.pool',  string='Pool')
 
 
 
@@ -46,7 +46,7 @@ class SilverIpAddress(models.Model):
     used = fields.Boolean(string="Usado")
 
     olt_id = fields.Many2one("silver.olt", string="OLT", related="line_id.olt_id")
-    olt_port_id = fields.Many2one("silver.olt.card.port", string="Puerto", domain="[('olt_id', '=', olt_id)]", related="line_id.olt_port_id")
+    olt_port_id = fields.Many2one("silver.olt.card.port", string="PON", domain="[('olt_id', '=', olt_id)]", related="line_id.olt_port_id")
 
     #assigned_to = fields.Reference(selection=[], string='Assigned To')
     description = fields.Text()
@@ -126,13 +126,15 @@ class SilverIpAddressLine(models.Model):
 
     address_ids = fields.One2many('silver.ip.address', 'line_id', string='IPs' )
 
-    netdev_id = fields.Many2one('silver.netdev', string='Network Device')
+
     is_tr_069 = fields.Boolean(string="Es069")
 
     ip_int = fields.Integer(compute='_compute_ip_int', store=True, help="Technical field for sorting")
 
-    olt_id = fields.Many2one("silver.olt", string= "OLT", related="netdev_id.n_olt_id", store=False)
-    olt_port_id = fields.Many2one( "silver.olt.card.port", string= "Puerto", domain="[('olt_id', '=', olt_id)]")
+    olt_id = fields.Many2one("silver.olt", string= "OLT")
+    olt_port_id = fields.Many2one( "silver.olt.card.port", string= "PON", domain="[('olt_id', '=', olt_id)]")
+    core_id = fields.Many2one("silver.core", string="Equipo Core")
+
 
     @api.onchange('network')
     def _onchange_network(self):
@@ -269,9 +271,11 @@ class SilverIpAddressLine(models.Model):
             record.usage_percentage = (used / total * 100) if total > 0 else 0.0
 
     def action_generate_ips(self):
+        print(("generate ips"))
         for record in self:
             try:
                 network = ipaddress.ip_network(f"{record.network}/{record.nmask}", strict=False)
+                print(("network", network))
               #  record.gateway = str(network.network + 1)
 
                 d = {x.cidr:1 for x in record.address_ids}
@@ -286,7 +290,8 @@ class SilverIpAddressLine(models.Model):
                         if not a.used:
                             a.unlink()
 
-                ip_vals = [{'name': str(ip), 'cidr': str(ip), 'line_id': record.id, 'netdev_id':record.netdev_id.id} for ip in network if not  d.get(str(ip))]
+                ip_vals = [{'name': str(ip), 'cidr': str(ip), 'line_id': record.id,
+                            } for ip in network if not  d.get(str(ip))]
                 print(("crear ips ", ip_vals, d, dd))
                 self.env['silver.ip.address'].create(ip_vals)
             except ValueError as e:

@@ -13,6 +13,8 @@ class SilverCore(models.Model):
         help="Registro de provisioning asociado a este Core."
     )
 
+
+    contract_ids = fields.One2many('silver.contract', 'core_id', string='Contratos')
     contract_count = fields.Integer(related='access_point_id.contract_count', string='Contratos', readonly=True, store=True)
 
 

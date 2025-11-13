@@ -65,7 +65,7 @@
                             <page name="ip_addresses" string="Direcciones IP">
                                 <field name="ip_address_pool_ids" nolabel="1">
                                     <tree editable="bottom">
-                                        <field name="name" readonly="1"/>
+                                        <field name="name"  readonly="not name"/>
                                         <field name="network"/>
                                         <field name="nmask"/>
                                         <field name="total_ips"/>
@@ -78,12 +78,13 @@
                                 <button name="generar" string="Generar IPs" type="object"/>
 
                                 <field name="ip_address_ids" nolabel="1" readonly="1">
-                                    <tree>
-                                        <field name="name"/>
-                                        <field name="cidr"/>
-                                        <field name="status"/>
+                                      <tree colspan="2" >
+                                    <field name="cidr"/>
+<field name="line_id"/>
+                                            <field name="ip_int" column_invisible="1"/>
+                            <field name="olt_id" column_invisible="1"/>
 
-                                    </tree>
+                                      </tree>
                                 </field>
                             </page>
                             <page name="config" string="Configuración">

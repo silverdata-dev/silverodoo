@@ -49,8 +49,12 @@ class SilverOltCardPort(models.Model):
    # contracts_port_count = fields.Integer(string='Conteo Puerto Olt', compute='_compute_contracts_port_count')
 
 
-    ip_address_pool_ids = fields.One2many('silver.ip.address.pool', 'olt_port_id', string='Pools de Direcciones IP')
+
+    ip_address_pool_ids = fields.One2many('silver.ip.address.pool', 'olt_port_id', string='Pools de direcciones IP')
     ip_address_ids = fields.One2many('silver.ip.address', related='ip_address_pool_ids.address_ids', string='Direcciones IP')
+
+    #ip_address_pool_ids = fields.One2many('silver.ip.address.pool', 'olt_port_id', string='Pools de Direcciones IP')
+    #ip_address_ids = fields.One2many('silver.ip.address', related='ip_address_pool_ids.address_ids', string='Direcciones IP')
 
     #    netdev_type = fields.Selection(
     #        related='netdev_id.netdev_type',
@@ -142,4 +146,6 @@ class SilverOltCardPort(models.Model):
 
     def generar(self):
         for record in self:
-            record.olt_id.netdev_id.generar()
+            for ret in record.ip_address_pool_ids:
+                print(("ret", ret))
+                ret.action_generate_ips()

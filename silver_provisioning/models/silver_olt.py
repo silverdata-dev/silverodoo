@@ -432,6 +432,8 @@ class SilverOlt(models.Model):
                 if not success:
                     raise UserError(f"Error en config. WIFI '{command}':\n{clean_response}")
 
+
+
         return output_log
 
     def _provision_onu_wan(self, contract, conn, output_log, vlan_id):
@@ -466,6 +468,7 @@ class SilverOlt(models.Model):
                 f"onu {onu_id} pri wan_adv index {wan_index} bind lan1 {' '.join(wifis)}",
                 f"onu {onu_id} pri wan_adv commit",
                 f"onu {onu_id} pri username admin_control {admin_control_cmd} user_control {user_control_cmd}",
+                f"onu {onu_id} pri wan_adv commit"
 
             ]
 

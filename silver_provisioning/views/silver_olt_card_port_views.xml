@@ -7,6 +7,14 @@
             <field name="inherit_id" ref="silver_network.view_silver_olt_card_port_form"/>
             <field name="arch" type="xml">
 
+                <xpath expr="//field[@name='ip_address_ids']//tree" position="inside">
+    <field name="contract_id" widget="button" action="action_view_contract"/>
+
+</xpath>
+<xpath expr="//field[@name='ip_address_ids']//tree" position="attributes">
+    <attribute name="default_order">contract_id desc, ip_int asc</attribute>
+</xpath>
+
   <xpath expr="//page[1]" position="before">
                       <page string="Contratos">
                    <field name="contract_ids"/>

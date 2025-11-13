@@ -156,7 +156,7 @@
 
                                 <field name="ip_address_pool_ids" nolabel="1" widget="one2many_list">
                                     <tree multi_selectable="1" colspan="2" editable="bottom">
-                                        <field name="name" readonly="True"/>
+                                        <field name="name"  readonly="not name"/>
                                         <field name="network"/>
                                         <field name="nmask"/>
 
@@ -170,6 +170,13 @@
                                 <button name="generar" string="Generar IPs" type="object"/>
 
                                 <field name="ip_address_ids" nolabel="1">
+                                        <tree colspan="2" >
+                                            <field name="cidr"/>
+
+                                            <field name="ip_int" column_invisible="1"/>
+
+
+                                      </tree>
                                 </field>
 
 

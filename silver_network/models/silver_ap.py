@@ -89,11 +89,6 @@ class SilverAp(models.Model):
 
 
 
-    def generar(self):
-        for record in self:
-            record.netdev_id.generar()
-
-
 
     @api.onchange('node_id')
     def _onchange_node_id(self):

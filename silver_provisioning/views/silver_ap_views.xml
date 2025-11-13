@@ -12,6 +12,8 @@
                         <field string="Contratos" name="contract_count" widget="statinfo"/>
                     </button>
                 </xpath-->
+
+
    <xpath expr="//page[1]" position="before">
 
                       <page string="Contratos">

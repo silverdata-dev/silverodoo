@@ -85,10 +85,6 @@ class SilverNetdev(models.Model):
     dhcp_client = fields.Boolean(string='Profiles VSOL')
 
 
-    ip_address_pool_ids = fields.One2many('silver.ip.address.pool', 'netdev_id', string='Direcciones IP')
-    ip_address_ids = fields.One2many('silver.ip.address', 'netdev_id', string='Direcciones IP')
-
-
     @api.depends('olt_ids')
     def _compute_n_olt_id(self):
         for netdev in self:
@@ -107,9 +103,6 @@ class SilverNetdev(models.Model):
 
 
 
-    def generar(self):
-        for ret in self.ip_address_pool_ids:
-            ret.action_generate_ips()
 
     def _get_api_connection(self, username=None, password=None):
         self.ensure_one()

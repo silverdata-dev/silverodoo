@@ -2,3 +2,4 @@
 
 from . import provisioning_wizard
 from . import select_discovered_onu
+from . import contract_traffic_wizard

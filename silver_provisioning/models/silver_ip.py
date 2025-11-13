@@ -13,6 +13,21 @@ class SilverIpAddress(models.Model):
         store=True
     )
 
+    def action_view_contract(self):
+        """
+        Opens the form view of the associated contract.
+        """
+        self.ensure_one()
+        if self.contract_id:
+            return {
+                'type': 'ir.actions.act_window',
+                'res_model': 'silver.contract',
+                'view_mode': 'form',
+                'res_id': self.contract_id.id,
+                'target': 'current',
+            }
+        return {'type': 'ir.actions.act_window_close'}
+
     @api.depends('contract_ids')
     def _compute_contract_id(self):
         """Calcula el Many2one tomando el primer (y único) registro del One2many."""

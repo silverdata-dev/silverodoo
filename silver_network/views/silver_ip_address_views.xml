@@ -8,7 +8,13 @@
             <tree string="IP Ranges">
                 <field name="name"/>
                 <field name="cidr"/>
+
+
+                                            <field name="ip_int" column_invisible="1"/>
                 <field name="line_id"/>
+                <field name="core_id"/>
+                <field name="olt_id"/>
+                <field name="olt_port_id"/>
 
 
             </tree>
@@ -26,11 +32,14 @@
                         <h1><field name="name" placeholder="e.g. Public IPs Sector A"/></h1>
                     </div>
                     <group>
+
+                                            <field name="ip_int" column_invisible="1"/>
                             <field name="cidr"/>
                             <field name="line_id"/>
-                            <field  name="netdev_id" />
-                            <field name="olt_port_id" invisible="1"/>
-                            <field name="olt_id" invisible="1"/>
+                <field name="core_id"/>
+                <field name="olt_id"/>
+                <field name="olt_port_id"/>
+
 
                     </group>
 

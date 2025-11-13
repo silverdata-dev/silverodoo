@@ -14,6 +14,7 @@
         'views/silver_olt_discovered_onu_views.xml',
         'wizards/provisioning_wizard_views.xml',
         'wizards/select_discovered_onu_views.xml',
+        'wizards/contract_traffic_wizard_views.xml',
         'views/silver_display_info_wizard_views.xml',
         'views/silver_contract_views.xml',
         'views/silver_cutoff_date_views.xml',

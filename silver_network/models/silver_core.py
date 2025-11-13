@@ -77,8 +77,10 @@ class SilverCore(models.Model):
     dhcp_client = fields.Boolean(string='Profiles VSOL')
 
 
-    ip_address_pool_ids = fields.One2many('silver.ip.address.pool', 'netdev_id', string='Direcciones IP')
-    ip_address_ids = fields.One2many('silver.ip.address', 'netdev_id', string='Direcciones IP')
+
+    ip_address_pool_ids = fields.One2many('silver.ip.address.pool', 'core_id', string='Pools de direcciones IP')
+    ip_address_ids = fields.One2many('silver.ip.address', related='ip_address_pool_ids.address_ids', string='Direcciones IP')
+
 
 
     # --- Campos de Conectividad y Acceso ---
@@ -183,6 +185,9 @@ class SilverCore(models.Model):
     type_access_net = fields.Selection([('wired', 'Cableado'), ('wireless', 'Inalámbrico'), ('inactivo', 'Inactivo'), ('dhcp', 'IP Asiganada por el sistema')], string='Tipo')
     type_connection = fields.Selection([('router', 'Router'), ('switch', 'Switch'), ('ssh', 'ssh'), ('telnet', 'Telnet')], string='Tipo de Conexión')
     type_manager_address_list = fields.Selection([], string='Tipos de Control')
+
+
+
 
     # --- Relacionado al mixin de asset ---
     asset_type = fields.Selection(
@@ -303,7 +308,10 @@ class SilverCore(models.Model):
 
     def generar(self):
         for record in self:
-            record.netdev_id.generar()
+            for ret in record.ip_address_pool_ids:
+                print(("ret", ret))
+                ret.action_generate_ips()
+
 
     def create_ap(self):
         self.ensure_one()

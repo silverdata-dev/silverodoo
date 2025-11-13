@@ -26,18 +26,19 @@
 
                 </xpath-->
 
-                <xpath expr="//header" position="after">
-                    <div class="oe_button_box" name="button_box"  invisible="is_radius==False" >
-                            <button name="action_connect_radius" type="object" class="oe_stat_button" icon="fa-signal"
-                                    string="Probar Conexion"/>
-                            <button name="action_view_table" type="object" class="oe_stat_button" icon="fa-signal"
-                                    string="Obtener Tabla"/>
-                            <button name="action_view_radius_users" type="object" class="oe_stat_button" icon="fa-users"
+                <xpath expr="//header" position="inside">
+                                                <!--button name="action_view_radius_users" type="object" class="oe_stat_button" icon="fa-users"
                                     string="RADIUS Users">
                                 <field name="radius_user_count" widget="statinfo" string="Users"/>
                             </button>
                             <button name="action_pull_users_from_mikrotik" type="object"
-                                    string="Pull Users from MikroTik" class="oe_highlight"/>
+                                    string="Pull Users from MikroTik" class="oe_highlight"/-->
+
+                    <div class="oe_button_box" name="button_box"  invisible="is_radius==False" >
+                            <!--button name="action_connect_radius" type="object" class="oe_stat_button" icon="fa-signal"
+                                    string="Probar Conexion"/>
+                            <button name="action_view_table" type="object" class="oe_stat_button" icon="fa-signal"
+                                    string="Obtener Tabla"/-->
                         </div>
                 </xpath>
                 <xpath expr="//group[@name='core']" position="inside">
@@ -111,29 +112,7 @@
                                     </group>
                                 </group>
                             </page>
-                            <page name="ip_address" string="Direcciones IP"
-                                  invisible="is_radius==False or (type_access_net not in ['dhcp','dhcp_leases','dhcp_leases_vlan']) or (type_radius != 'mk_radius')">
 
-
-                                <field name="ip_address_pool_ids" nolabel="1" widget="one2many_list">
-                                    <tree multi_selectable="1" colspan="2" editable="bottom">
-                                        <field name="name" readonly="True"/>
-                                        <field name="network"/>
-                                        <field name="nmask"/>
-
-                                        <field name="total_ips"/>
-                                        <field name="used_ips"/>
-                                        <field name="usage_percentage" widget="progressbar"/>
-                                    </tree>
-                                </field>
-
-
-                                <button name="generar" string="Generar IPs" type="object"/>
-
-                                <field name="ip_address_ids" nolabel="1">
-                                </field>
-
-                            </page>
                             <page string="Nas" name="nas" invisible="is_radius==False">
                                 <group name="mikrotik_nas_config" string="MikroTik NAS Configuration">
                                     <group>
@@ -155,6 +134,13 @@
                                     </group-->
                                 </group>
                             </page>
+
+                    <page string="Usuarios">
+                        <button name="action_pull_users_from_mikrotik" type="object"
+                                    string="Pull Users from MikroTik" class="oe_highlight"/>
+
+                        <field name="user_ids"/>
+                    </page>
                 </xpath>
             </field>
         </record>

@@ -196,9 +196,6 @@ class SilverRadius(models.Model):
 
 
 
-    def generar(self):
-        for record in self:
-            record.netdev_id.generar()
 
 
     @api.model
@@ -432,6 +429,3 @@ class SilverRadiusLine(models.Model):
         ("cutoff", "Cortar")
     ], string="Función")
 
-    def generar(self):
-        for record in self:
-            record.netdev_id.generar()

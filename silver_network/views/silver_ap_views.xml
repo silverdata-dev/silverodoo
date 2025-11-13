@@ -73,27 +73,6 @@
                         </group>
                         </group>
                                               <notebook colspan="4">
-  <page string="Direcciones IP" invisible="type_access_net not in ['dhcp', 'dhcp_leases']">
-
-                                <field name="ip_address_pool_ids" nolabel="1" widget="one2many_list">
-                                    <tree multi_selectable="1" colspan="2" editable="bottom">
-                                        <field name="name" readonly="True"/>
-                                        <field name="network"/>
-                                        <field name="nmask"/>
-
-                                        <field name="total_ips"/>
-                                        <field name="used_ips"/>
-                                        <field name="usage_percentage" widget="progressbar"/>
-                                    </tree>
-                                </field>
-
-
-                                <button name="generar" string="Generar IPs" type="object"/>
-
-                                <field name="ip_address_ids" nolabel="1">
-                                </field>
-
-                            </page>
 
                              <page string="Configuración general" name="config">
 

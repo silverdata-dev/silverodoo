@@ -669,6 +669,9 @@ class IspContract(models.Model):
 
     def action_suspend_service(self):
         self.ensure_one()
+        if self.ip_address_id:
+            self.ip_address_id.write({"contract_id":  None} )
+
         if self.link_type == 'fiber' and self.olt_id:
             self.olt_id.disable_onu(self)
         self.write({
@@ -824,6 +827,57 @@ class IspContract(models.Model):
         # 4. Luego se podría llamar a la lógica de (re)provisión para la nueva ONU en la OLT.
         raise UserError("Función no implementada. Se recomienda implementarla como un asistente de Odoo.")
 
+    def action_view_pppoe_traffic_chart(self):
+        """
+        Se conecta al Core, busca la sesión PPPoE activa por la dirección IP del contrato y,
+        si la encuentra, lanza un asistente para mostrar el gráfico de la interfaz correspondiente.
+        """
+        self.ensure_one()
+
+        if not self.core_id:
+            raise UserError(_("Este contrato no tiene un Core Router asociado."))
+        if not self.ip_address_id or not self.ip_address_id.name:
+            raise UserError(_("Este contrato no tiene una dirección IP asignada para buscar la sesión."))
+
+        api = None
+        try:
+            netdev = self.core_id.netdev_id
+            if not netdev:
+                raise UserError(_("El Core Router no tiene un dispositivo de red configurado para la conexión."))
+            
+            api = netdev._get_api_connection()
+            if not api:
+                raise UserError(_("No se pudo establecer la conexión con el Core Router."))
+
+            assigned_ip = self.ip_address_id.name
+            ppp_active_path = api.path('/ppp/active')
+            # Buscar la conexión activa usando la IP asignada en el campo 'address'
+            active_connections = tuple(ppp_active_path.select(Key("interface")).where(Key("address") == assigned_ip))
+            
+            if not active_connections:
+                raise UserError(_("No se encontró una sesión PPPoE activa para la dirección IP '%s'.") % assigned_ip)
+
+            interface_name = active_connections[0]['interface']
+
+            wizard = self.env['silver.contract.traffic.wizard'].create({
+                'core_id': self.core_id.id,
+                'interface': interface_name,
+            })
+
+            return {
+                'name': _('Gráfico de Tráfico en Tiempo Real'),
+                'type': 'ir.actions.act_window',
+                'res_model': 'silver.contract.traffic.wizard',
+                'view_mode': 'form',
+                'res_id': wizard.id,
+                'target': 'new',
+            }
+
+        except Exception as e:
+            raise UserError(_("Se produjo un error: %s") % e)
+        finally:
+            if api:
+                api.close()
 
     @api.onchange('onu_pon_id')
     def _onchange_onu_pon_id(self):
