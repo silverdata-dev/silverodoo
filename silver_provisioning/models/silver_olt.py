@@ -389,6 +389,19 @@ class SilverOlt(models.Model):
         return output_log, onu_created_on_olt, pon_port, vlan_id
 
     def _provision_onu_wifi(self, contract, conn, output_log):
+        def getwifiname(config_text):
+            for line in config_text.splitlines():
+                # 2. Identificar la línea que comienza con "Name"
+                if line.strip().startswith("Name"):
+                    # 3. Dividir la línea por el primer ':' (el separador campo-valor)
+                    # y tomar el segundo elemento (el valor).
+                    value = line.split(':', 1)[1]
+
+                    # 4. Limpiar el valor de cualquier espacio en blanco restante.
+                    # Esto convierte una cadena de solo espacios en "".
+                    return value.strip()
+            return None
+
         """Provisiona la configuración WiFi en la ONU. Asume que ya se está en el modo de configuración de la interfaz GPON."""
         onu_id = contract.onu_pon_id
         if not contract.is_bridge and contract.wifi_line_ids:
@@ -401,12 +414,24 @@ class SilverOlt(models.Model):
             for a in range(1, 9):
                 line = d.get(a)
                 if not line:
-                    command = f"onu {onu_id} pri wifi_ssid {a} disable"
+                    command = f"show onu {contract.onu_pon_id} pri wifi_ssid {a}"
+
+                    success, clean_response, full_output = conn.execute_command(command)
+                    print(("showed wifi ", full_output, clean_response))
+                    ssid_name = getwifiname(full_output)
+                    if not ssid_name: continue
+
+                    command = f"onu {onu_id} pri wifi_ssid {a} disable name {ssid_name}"
                 else:
                     hide_cmd = "enable" if line.is_hidden else "disable"
                     command = f"onu {onu_id} pri wifi_ssid {a} name {line.name} hide {hide_cmd} auth_mode {line.auth_mode} encrypt_type {line.encrypt_type} shared_key {line.password} rekey_interval 0"
                 success, clean_response, full_output = conn.execute_command(command)
+                #print(("wifioutput", full_output))
                 output_log += f"{clean_response}\n"
+
+                if not success:
+                    raise UserError(f"Error en config. WIFI '{command}':\n{clean_response}")
+
         return output_log
 
     def _provision_onu_wan(self, contract, conn, output_log, vlan_id):
@@ -429,12 +454,16 @@ class SilverOlt(models.Model):
 
             admin_control_cmd = f"enable {self.admin_user} {self.admin_passwd}" if self.is_control_admin else "disable"
             user_control_cmd = "disable" #if self.is_control_admin else "enable"
+
+            wifis = [f"ssid{c.ssid_index}" for c in contract.wifi_line_ids ]
+
             
             advanced_wan_commands = [
                 f"onu {onu_id} pri wan_adv index {wan_index} route mode internet mtu {self.mtu}",
                 f"onu {onu_id} pri wan_adv index {wan_index} route both pppoe proxy disable user {contract.pppoe_user} pwd {contract.pppoe_password} mode auto nat enable",
                 f"onu {onu_id} pri wan_adv index {wan_index} route both client_address enable client_prifix enable",
                 f"onu {onu_id} pri wan_adv index {wan_index} vlan tag wan_vlan {vlan_id} {self.vlan_priority}",
+                f"onu {onu_id} pri wan_adv index {wan_index} bind lan1 {' '.join(wifis)}",
                 f"onu {onu_id} pri wan_adv commit",
                 f"onu {onu_id} pri username admin_control {admin_control_cmd} user_control {user_control_cmd}",
 
@@ -557,9 +586,10 @@ class SilverOlt(models.Model):
                     _success, _clean_response, _full_output = conn.execute_command(cmd)
                     output_log += f"{_clean_response}\n"
             # Re-lanzar la excepción para que Odoo la muestre al usuario
-            raise UserError(f"Fallo en la operación OLT:\n{e}\n\nConsulte el historial del contrato para ver el log completo.\n{output_log}") from None
+            raise UserError(f"Fallo en la operación OLT:\n{e}\n\n{output_log}") from None
         
         finally:
+            print(("finaly", output_log))
             if conn:
                 conn.disconnect()
             # Publicar en el chatter SIEMPRE, al final de todo, en una transacción separada.
@@ -572,6 +602,7 @@ class SilverOlt(models.Model):
                         contract_in_new_env = new_env['silver.contract'].browse(contract.id)
                         # Publicar el mensaje.
                         o = html.escape(output_log).replace("\n", '<br/>')
+                        print(("message", o))
                         contract_in_new_env.message_post(body=f"{Markup('<strong>')}{o}{Markup('</strong>')}", subject=subject,
                                                          body_is_html=True,
                                                          #message_type='comment',
@@ -620,8 +651,13 @@ class SilverOlt(models.Model):
     def terminate_onu(self, contract):
         """Termina la ONU."""
         commands = [f"no onu {contract.onu_pon_id}"]
-        return self._execute_with_logging(contract, commands, "Terminación ONU")
+        if (contract.old_onu_pon_id and contract.old_onu_pon_id != contract.onu_pon_id):
+            commands.append(f"no onu {contract.old_onu_pon_id}")
+            print(("terminating", commands))
+        r = self._execute_with_logging(contract, commands, "Terminación ONU")
 
+        print(("terminated", r))
+        return True
 
     def action_view_contracts(self):
         return self.access_point_id.action_view_contracts()

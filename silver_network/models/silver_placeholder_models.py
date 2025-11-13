@@ -36,6 +36,7 @@ class SilverIpAddress(models.Model):
     cidr = fields.Char(string='IP', required=True, help="e.g., 192.168.0.0/24")
 #    gateway = fields.Char(string='Gateway')
     netdev_id = fields.Many2one('silver.netdev', string='Network Device')
+    core_id = fields.Many2one('silver.core', related='netdev_id.n_core_id', string='Core', store=True)
 
     line_id = fields.Many2one('silver.ip.address.pool',  string='Rango')
 
@@ -70,6 +71,28 @@ class SilverIpAddress(models.Model):
             except ValueError:
                 record.ip_int = 0
 
+
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        args = args or []
+        domain = []
+        if name:
+            domain = [('name', operator, name)]
+
+        print(("ipnamesearch", domain))
+        nodes = self.search(domain + args, limit=limit)
+        return nodes.name_get()
+
+    @api.model
+    def search(self,  domain=None, offset=0, limit=None, order=None):
+        ctx = self._context
+
+        if 'order_display' in ctx:
+            order = ctx['order_display']
+        print(("ipsearch,", order))
+        res = super(SilverIpAddress, self).search(
+            domain,  offset=offset, limit=limit, order=order)
+        return res
 
 
 class SilverIpAddressLine(models.Model):

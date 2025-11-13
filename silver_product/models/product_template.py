@@ -16,7 +16,7 @@ class ProductTemplate(models.Model):
     product_brand_id = fields.Many2one('product.brand', string='Marca')
     model = fields.Char(string='Modelo')
 
-    service_type_id = fields.Many2one('silver.service.type', string= "Tipo de Servicio")
+    service_type_id = fields.Many2one('silver.service.type', string= "Tipo de Servicio", default=lambda self: self._default_service_type())
 
 
     is_required_brand = fields.Boolean(string="Es numero serie unico?")
@@ -26,22 +26,20 @@ class ProductTemplate(models.Model):
     commission_percentage = fields.Float(string="Porcentaje de comisión")
 
     # ISP Data
-    is_internet = fields.Boolean(string="Internet")
-    uploaded_bandwidth = fields.Float(string="V. de Subida")
-    download_bandwidth = fields.Float(string="V. de Descarga")
-    is_speed_control = fields.Boolean(string="Control de velocidad")
-    sharing_bandwidth_a = fields.Integer(string="a")
-    sharing_bandwidth_b = fields.Integer(string="b")
-    configure_queue_burst = fields.Boolean(string="Configurar rafaga de cola")
-    product_upload_download = fields.Char(string="Producto subida bajada")
-    burst_limit_upload = fields.Char(string="Burst Limit Upload")
-    burst_limit_download = fields.Char(string="Burst Limit Download")
-    burst_threshold_upload = fields.Char(string="Burst Threshold Upload")
-    burst_threshold_download = fields.Char(string="Burst Threshold Download")
-    burst_time_upload = fields.Char(string="Burst Time Upload")
-    burst_time_download = fields.Char(string="Burst Time Download")
-    queue_priority_upload = fields.Char(string="Prioridad Subida")
-    queue_priority_download = fields.Char(string="Prioridad Bajada")
+    is_internet = fields.Boolean(string="Internet", compute="_compute_is_internet")
+    min_upload_bandwidth = fields.Float(string="V. Min. de Subida", default='1M')
+    min_download_bandwidth = fields.Float(string="V. Min. de Descarga", default='1M')
+    upload_bandwidth = fields.Float(string="V. de Subida", default='50')
+    download_bandwidth = fields.Float(string="V. de Descarga", default='100')
+    burst_limit_upload = fields.Float(string="Burst Limit Upload", default='0')
+    burst_limit_download = fields.Float(string="Burst Limit Download", default='0')
+    burst_threshold_upload = fields.Float(string="Burst Threshold Upload", default='0')
+    burst_threshold_download = fields.Float(string="Burst Threshold Download", default='0')
+    burst_time_upload = fields.Integer(string="Burst Time Upload", default='0')
+    burst_time_download = fields.Integer(string="Burst Time Download", default='0')
+    queue_priority = fields.Integer(string="Prioridad", default='8')
+
+
     is_custom_traffic_table = fields.Boolean(string="Custom Traffic Table")
     name_custom_traffic_table = fields.Char(string="Name Custom Traffic Table")
     is_custom_address_list = fields.Boolean(string="Custom AddresList")
@@ -72,6 +70,14 @@ class ProductTemplate(models.Model):
     is_iptv = fields.Boolean(string="IPTV")
     code_ott = fields.Char(string="Codigo OTT")
 
+    def _compute_is_internet(self):
+        for a in self:
+            a.is_internet = (a.service_type_id and a.service_type_id.code == 'internet')
+
+    def _default_service_type(self):
+
+
+        return self.env["silver.service.type"].search([('code', '=', 'internet')], limit=1)
 
     def action_open_label_layout(self):
         pass

@@ -29,8 +29,8 @@ class SilverContract(models.Model):
     partner_id = fields.Many2one('res.partner', string="Cliente", required=True, tracking=True)
     phone = fields.Char(string="Teléfono", related='partner_id.phone', readonly=False)
 
-    date_start = fields.Date(string="Fecha de Inicio", default=fields.Date.context_today, tracking=True)
-    date_end = fields.Date(string="Fecha de Fin", tracking=True)
+    date_start = fields.Date(string="Fecha de Inicio", default=fields.Date.context_today, tracking=True, readonly=True)
+    date_end = fields.Date(string="Fecha de Fin", tracking=True, readonly=True)
 
 
 
@@ -45,7 +45,7 @@ class SilverContract(models.Model):
     tag_ids = fields.Many2many('silver.contract.tag', string="Etiquetas")
 
     state = fields.Selection([
-        ('draft', 'Borrador'),('open', 'Abierto'), ('closed', 'Cerrado')
+        ('draft', 'Borrador'),('open', 'Abierto'), ('active', 'Activo'),('closed', 'Cerrado')
     ], string="Estado del Contrato", default='draft', tracking=True)
 
     state_service = fields.Selection([
@@ -188,6 +188,7 @@ class SilverContract(models.Model):
         return super(SilverContract, self).create(vals)
 
 
+
     def init_contract(self):
         for a in self:
             if not a.line_ids:
@@ -197,6 +198,19 @@ class SilverContract(models.Model):
             a.state = 'open'
 
             a.pppoe_user = a.name.split('-')[-1]
+        return True
+
+
+    def close_contract(self):
+        for a in self:
+            a.state = 'closed'
+
+        return True
+
+    def start_contract(self):
+        for a in self:
+            a.state = 'active'
+
         return True
 
     def action_open(self):

@@ -87,6 +87,9 @@ class IspContract(models.Model):
                               ('disconnected', 'Disconnected')],
                              string='Estado Core', default='down')
 
+    changed_onu = fields.Boolean(string="ONU Cambiada", default=False)
+    old_onu_pon_id = fields.Integer(string="ONU id vieja", default=0)
+
     discovered_onu_id = fields.Many2one(
         'silver.olt.discovered.onu',
         string='ONU Descubierta',
@@ -180,6 +183,7 @@ class IspContract(models.Model):
 
         # --- Devolver el diccionario de valores ---
         return {
+            'discovered_onu_id' : discovered_onu,
             'temp_onu_serial_display': serial_number,
             'serial_number': serial_number,
             'model_name': discovered_onu.model_name,
@@ -289,36 +293,59 @@ class IspContract(models.Model):
     wifi_config_successful = fields.Boolean(string="Configuración WiFi Exitosa", default=False, readonly=True, copy=False)
 
     def action_add_radius_access(self):
+        def tom(p):
+            if p<0.001: return "0"
+            r = f"{p}".strip("0").strip(".")
+            if not r: return "0"
+            return f"{r}M"
+
         """
-        Crea el usuario en el User Manager del RADIUS server asociado.
-        Utiliza la función centralizada en el modelo silver.radius.
+        Crea o actualiza el usuario en el User Manager del RADIUS server asociado,
+        incluyendo la IP asignada y el perfil de velocidad detallado.
         """
         self.ensure_one()
-        radius_id = None
-        if (not self.core_id ) :
-            raise UserError(_("No tiene un core configurado"))
-        radius_id = (self.core_id if self.core_id.is_radius else self.core_id.radius_id)
+        
+        if not self.core_id:
+            raise UserError(_("No tiene un core configurado."))
+        
+        radius_id = self.core_id.radius_id or self.core_id
         if not radius_id:
             raise UserError(_("Este contrato no tiene un servidor RADIUS asociado."))
+        
         if not self.pppoe_user or not self.pppoe_password:
-            raise UserError(_("Se requiere un us.uario y contraseña PPPoE en el contrato."))
+            raise UserError(_("Se requiere un usuario y contraseña PPPoE en el contrato."))
 
-        # Llamar a la función centralizada en el modelo silver.radius
+        # --- Construcción de Parámetros Adicionales ---
+        ip_address = self.ip_address_id.name if self.ip_address_id else None
+        rate_limit_str = None
+
+        # Buscar el producto de servicio principal en las líneas del contrato
+        service_product = self.line_ids.filtered(lambda l: l.product_id.service_type_id.code == 'internet')[:1].product_id
+        
+        if service_product:
+            # Construir el string de Mikrotik-Rate-Limit
+            # Formato: rx-rate[/tx-rate] [rx-burst-rate[/tx-burst-rate] [rx-burst-threshold[/tx-burst-threshold] [rx-burst-time[/tx-burst-time] [priority] [rx-rate-min[/tx-rate-min]]]]]
+            # Ejemplo: 1M/10M 2M/20M 1500k/15M 10/10 8 512k/1M
+            p = service_product.product_tmpl_id
+            rate_limit_str = f"{tom(p.upload_bandwidth)}/{tom(p.download_bandwidth)} {tom(p.burst_limit_upload)}/{tom(p.burst_limit_download)} {tom(p.burst_threshold_upload)}/{tom(p.burst_threshold_download)} {p.burst_time_upload}/{p.burst_time_download} {p.queue_priority} {tom(p.min_upload_bandwidth)}/{tom(p.min_download_bandwidth)}"
+            
+
+
+        # --- Llamada a la función centralizada ---
         result = radius_id.create_user_manager_user(
             username=self.pppoe_user,
             password=self.pppoe_password,
-            customer=self.partner_id.name
+            customer=self.partner_id.name,
+            ip_address=ip_address,
+            rate_limit=rate_limit_str
         )
 
-
-        print(("radius", result, self.radius_state))
         if result.get('success'):
-            cambio = self.radius_state != 'active'
-
-            
-            if cambio:
+            if self.radius_state != 'active':
                 self.radius_state = 'active'
+                # No retornar notificación si solo fue un cambio de estado para no ser muy verboso
                 return True
+            
             return {
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
@@ -331,7 +358,6 @@ class IspContract(models.Model):
         else:
             cambio = self.radius_state != 'down'
             self.radius_state = 'down'
-
 
             if cambio:
 
@@ -377,6 +403,10 @@ class IspContract(models.Model):
         #self.name = self.env['ir.sequence'].next_by_code('silver.contract.sequence')
 
         if self.link_type == 'fiber' and self.olt_id:
+            try:
+                self.olt_id.terminate_onu(self)
+            except:
+                pass
             # 1. Ejecutar el aprovisionamiento base. Este paso es crítico.
             self.olt_id.provision_onu_base(self)
             
@@ -417,7 +447,12 @@ class IspContract(models.Model):
         self.ensure_one()
         if self.link_type == 'fiber' and self.olt_id:
             self.olt_id.provision_onu_wan(self)
+            ya = self.wan_config_successful
             self.write({'wan_config_successful': True})
+
+
+            if (not ya): return True
+
         return {
         'type': 'ir.actions.client',
         'tag': 'display_notification',
@@ -436,7 +471,9 @@ class IspContract(models.Model):
         if self.link_type == 'fiber' and self.olt_id:
             r = self.olt_id.provision_onu_wifi(self)
             print((" wifi", r))
+            ya = self.wifi_config_successful
             self.write({'wifi_config_successful': True})
+            if (not ya): return True
             return {
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
@@ -601,12 +638,20 @@ class IspContract(models.Model):
             raise UserError(_("Debe seleccionar un Core Router antes de aprovisionar el servicio."))
 
         if self.link_type == 'fiber' and self.olt_id:
-            if (self.state_service == 'suspended' ):
-                self.olt_id.enable_onu(self)
-            else:
+            print(("aa", self.state_service, self.changed_onu))
+            if (self.state_service != 'suspended' ) or (self.changed_onu) :
+                self.changed_onu = False
+                print(("bb", self.state_service, self.old_onu_pon_id))
+                #if (self.old_onu_pon_id and (self.old_onu_pon_id != self.onu_pon_id)):
+                try:
+                    self.olt_id.terminate_onu(self)
+                except:
+                    pass
                 self.olt_id.provision_onu_base(self)
+            else:
+                self.olt_id.enable_onu(self)
         self.write({
-            'state': 'open',
+         #   'state': 'open',
             'state_service': 'active',
             'date_reconnection': fields.Date.context_today(self)
         })
@@ -627,6 +672,8 @@ class IspContract(models.Model):
         if self.link_type == 'fiber' and self.olt_id:
             self.olt_id.disable_onu(self)
         self.write({
+            'wifi_config_successful': False,
+            'wan_config_successful': False,
             'state_service': 'suspended',
             'date_reconnection': fields.Date.context_today(self)
         })
@@ -677,28 +724,30 @@ class IspContract(models.Model):
          #       raise UserError(_("Este contrato ya ha sido dado de baja."))
 
             # --- Lógica de Terminación para PPPoE en Mikrotik (User Manager) ---
-            if contract.pppoe_user and contract.core_id:
-                api = None
-                try:
-                    api = contract.core_id.netdev_id._get_api_connection()
-                    if not api:
-                        raise UserError(_("No se pudo conectar al Core Router Mikrotik."))
-                    
-                    user_path = api.path('/user-manager/user')
-                    name = Key("name")
-                    existing_user = tuple(user_path.select(Key(".id")).where(name == contract.pppoe_user))
-                    #existing = tuple(user_path('print', **{'?name': contract.pppoe_user}))
-                    
-                    if existing_user:
-                        user_path.remove(**existing_user)
+           # if contract.pppoe_user and contract.core_id:
+             #   api = None
+             #   try:
+            api = contract.core_id.netdev_id._get_api_connection()
+            if not api:
+                raise UserError(_("No se pudo conectar al Core Router Mikrotik."))
+
+            user_path = api.path('/user-manager/user')
+            name = Key("name")
+            existing_user = tuple((user_path.select(Key(".id")).where(name == contract.pppoe_user)))
+            #existing = tuple(user_path('print', **{'?name': contract.pppoe_user}))
+
+            print(("existing", existing_user))
+
+            if existing_user:
+                user_path.remove(existing_user[0][".id"])
 
 
-                except Exception as e:
-                    print("Falla core")
+           #     except Exception as e:
+            #        print("Falla core")
 
-                finally:
-                    if api:
-                        api.close()
+            #    finally:
+            #        if api:
+            #            api.close()
 
             # --- Lógica de Terminación para OLT (Fibra Óptica) ---
             if contract.link_type == 'fiber':
@@ -706,11 +755,14 @@ class IspContract(models.Model):
 
 
             contract.write({
+                'wifi_config_successful': False,
+                'wan_config_successful': False,
+
                 'olt_state' : 'disconnected',
                 'core_state': 'disconnected',
                 'radius_state': 'disconnected',
                 'state_service': 'terminated',
-                'state': 'closed',
+                #'state': 'closed',
                 'date_end': fields.Date.context_today(self)
             })
 
@@ -773,9 +825,22 @@ class IspContract(models.Model):
         raise UserError("Función no implementada. Se recomienda implementarla como un asistente de Odoo.")
 
 
+    @api.onchange('onu_pon_id')
+    def _onchange_onu_pon_id(self):
+        self.changed_onu = True
+        if self._origin:
+            self.old_onu_pon_id = self._origin.onu_pon_id
+        print(("changed", self.old_onu_pon_id, self.changed_onu))
+
     @api.onchange('olt_id')
     def _onchange_olt_id(self):
+        self.changed_onu = True
         self.vlan_id = self.olt_id.vlan_id
+
+    @api.onchange('stock_lot_id')
+    def _onchange_stock_lot_id(self):
+        self.changed_onu = True
+
 
     @api.onchange('olt_port_id')
     def _onchange_olt_port_id(self):
@@ -799,6 +864,7 @@ class IspContract(models.Model):
             # Si no hay IPs disponibles, limpiar el campo
             self.ip_address_id = False
 
+        self.changed_onu = True
 
 
     @api.onchange('silver_address_id')
@@ -853,6 +919,11 @@ class IspContract(models.Model):
         print(( "change node", self.box_id, self.node_id))
         if self.box_id and (self.box_id.node_id != self.node_id):
             self.box_id = None
+
+    @api.onchange('wifi_line_ids')
+    def _onchange_wifi_line_ids(self):
+        self.wifi_config_successful = False
+
 
     #@api.onchange('core_id')
     #def _onchange_core_id(self):

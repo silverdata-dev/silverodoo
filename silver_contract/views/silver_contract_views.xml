@@ -35,6 +35,9 @@
             <field name="arch" type="xml">
                 <form string="Contrato">
                     <header>
+                    <button name="init_contract" type="object" class="oe_highlight"  string="Iniciar Contrato" invisible="state in ['open', 'active']"/>
+                    <button name="close_contract" type="object" class="oe_highlight"  string="Cerrar Contrato" invisible="(state!='active') or (state_service=='active')"/>
+                    <button name="start_contract" type="object" class="oe_highlight"  string="Activar Contrato" invisible="(state!='open') or (state_service!='active')"/>
 
 
                     </header>
@@ -47,22 +50,33 @@
                                 <field name="name" readonly="1"/>
                             </h1>
                             <div>
-                                <div class="contract-status-pill status-active" invisible="state_service != 'active'">
+                                <div class="contract-status-pill status-disabled" invisible="state!='draft'">
+                                    <field name="state" readonly="1"/>
+                                </div>
+                                <div class="contract-status-pill status-removed" invisible="state!='closed'">
+                                    <field name="state" readonly="1"/>
+                                </div>
+
+                                <div class="contract-status-pill status-active" invisible="state!='active' or state_service != 'active'">
                                     <field name="state_service" readonly="1"/>
                                 </div>
-                                    <div class="contract-status-pill status-open" invisible="state_service != 'open'">
+                                <div class="contract-status-pill status-open" invisible="((state not in ['open']) or state_service not in ['active'])">
+                                    Abierto
+                                </div>
+                                <div class="contract-status-pill status-suspended" invisible="state not in ['open', 'active'] or state_service != 'suspended'">
+                                    <span invisible="state!='active'">(Activo) </span>
                                     <field name="state_service" readonly="1"/>
                                 </div>
-                                <div class="contract-status-pill status-suspended" invisible="state_service != 'suspended'">
+                                <div class="contract-status-pill status-disabled" invisible="state not in ['open', 'active'] or state_service != 'disabled'">
+                                    <span invisible="state!='active'">(Activo) </span>
                                     <field name="state_service" readonly="1"/>
                                 </div>
-                                <div class="contract-status-pill status-disabled" invisible="state_service != 'disabled'">
+                                <div class="contract-status-pill status-removed" invisible="state not in ['open', 'active'] or state_service != 'removed'">
+                                    <span invisible="state!='active'">(Activo) </span>
                                     <field name="state_service" readonly="1"/>
                                 </div>
-                                <div class="contract-status-pill status-removed" invisible="state_service != 'removed'">
-                                    <field name="state_service" readonly="1"/>
-                                </div>
-                                <div class="contract-status-pill status-default" invisible="state_service in ('open', 'active', 'suspended', 'disabled', 'removed')">
+                                <div class="contract-status-pill status-default" invisible="state not in ['open', 'active'] or state_service in ('open', 'active', 'suspended', 'disabled', 'removed')">
+                                    <span invisible="state!='active'">(Activo) </span>
                                     <field name="state_service" readonly="1"/>
                                 </div>
                             </div>

@@ -295,48 +295,74 @@ class SilverRadius(models.Model):
     def button_remove_radius_client(self):
         return self.netdev_id.button_remove_radius_client()
 
-    def create_user_manager_user(self, username, password, customer='admin'):
+    def create_user_manager_user(self, username, password, customer='admin', ip_address=None, rate_limit=None):
         """
-        Crea un nuevo usuario en MikroTik User Manager.
+        Crea o actualiza un usuario en MikroTik User Manager con atributos RADIUS.
 
-        :param username: El nombre de usuario a crear.
-        :param password: La contraseña para el nuevo usuario.
-        :param customer: El cliente/propietario del usuario en User Manager (default: 'admin').
+        :param username: El nombre de usuario a crear/actualizar.
+        :param password: La contraseña para el usuario.
+        :param customer: El cliente/propietario del usuario (default: 'admin').
+        :param ip_address: La dirección IP estática para asignar (Framed-IP-Address).
+        :param rate_limit: El límite de velocidad (Mikrotik-Rate-Limit).
         :return: dict con {'success': bool, 'message': str}
         """
         self.ensure_one()
         api = self._get_mikrotik_api()
         try:
-            _logger.info(f"Intentando crear usuario '{username}' en User Manager de {self.netdev_id.ip}")
+            _logger.info(f"Procesando usuario '{username}' en User Manager de {self.ip}")
             user_path = api.path('/user-manager/user')
-            name= Key("name")
+            name_key = Key("name")
 
-            # 1. Verificar si el usuario ya existe (sintaxis moderna de librouteros)
-            existing_user = tuple(user_path.select(Key(".id")).where(name==username))
-            print(("existing", existing_user))
+            # --- Datos base del usuario ---
+            user_data = {
+                'name': username,
+                'password': password,
+                'comment': customer,
+                'shared-users': '1',
+            }
+
+            # 1. Verificar si el usuario ya existe y crearlo o actualizarlo
+            existing_user = tuple(user_path.select(Key(".id")).where(name_key == username))
+            user_id = None
             if existing_user:
-                message = f"El usuario '{username}' ya existe en User Manager. {existing_user}"
-                e = existing_user[0]
-                e['password'] = password
-                e['comment'] = customer
-                user_path.update(**e)
-                _logger.warning(message)
-                return {'success': True, 'message': message}
+                user_id = existing_user[0]['.id']
+                user_data['.id'] = user_id
+                user_path.update(**user_data)
+                message = f"Usuario '{username}' actualizado. "
+            else:
+                # .id no es un parámetro válido para 'add', así que lo eliminamos si existe
+                user_data.pop('.id', None)
+                new_user = user_path.add(**user_data)
+                # The API returns a tuple, we need the '.id' from the first element
+                #user_id = new_user[0]['.id']
+                user_id = tuple(api.path('/user-manager/user').select(Key('.id')).where(name_key == username))[0]['.id']
+                message = f"Usuario '{username}' creado. "
 
-            # 2. Si no existe, crearlo
-            user_path.add(
-                name=username,
-                password=password,
-                comment=customer
-            )
-            message = f"Usuario '{username}' creado exitosamente en User Manager."
+            # 2. Construir y aplicar los atributos RADIUS
+            attributes = {}
+            if ip_address:
+                attributes['Framed-IP-Address'] = ip_address
+            if rate_limit:
+                attributes['Mikrotik-Rate-Limit'] = rate_limit
 
+            if attributes:
+                # CORRECCIÓN: Pasar los atributos como una LISTA de strings, no un solo string.
+                attribute_str = ",".join([f"{key}:{value}" for key, value in attributes.items()])
+                
+                # Aplicar los atributos al usuario usando su ID
+                user_path.update(**{
+                    '.id': user_id,
+                    'attributes': attribute_str
+                })
+                message += "Atributos RADIUS aplicados."
+            
             _logger.info(message)
             return {'success': True, 'message': message}
 
         except Exception as e:
-            _logger.error(f"Fallo al crear el usuario '{username}' en User Manager: {e}")
-            raise UserError(_("Ocurrió un error al crear el usuario en User Manager: %s") % e)
+            error_message = f"Fallo al procesar el usuario '{username}' en User Manager: {e}"
+            _logger.error(error_message)
+            return {'success': False, 'message': error_message}
         finally:
             if api:
                 api.close()

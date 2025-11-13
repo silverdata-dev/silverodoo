@@ -28,6 +28,12 @@
                         <button string="Reabastecer" type="action" name="355" context="{'default_product_tmpl_id': id}" invisible="type != 'product'"/>
                 </xpath>
 
+
+                                <xpath expr="//field[@name='detailed_type']" position="after">
+                                    <field name="is_internet" invisible="1"/>
+                    <field name="service_type_id" invisible="detailed_type!='service'" required="detailed_type=='service'"/>
+                </xpath>
+
                 <!-- 2. Replace the Stat Button Box -->
                 <xpath expr="//div[@name='button_box']" position="inside">
                         <button class="oe_stat_button" name="open_pricelist_rules" icon="fa-list-ul" type="object">
@@ -91,127 +97,37 @@
 
                 <!-- 8. Add new Notebook Pages -->
                 <xpath expr="//notebook" position="inside">
-                    <page name="fields_isp" string="Datos ISP">
-                        <div class="oe_button_box" name="button_box">
-                            <button name="action_create_group" type="object" class="oe_stat_button" icon="fa-signal" string="Crear Grupo" invisible="1"/>
-                        </div>
-   <group invisible="type =='service'">
-                            <group string="Es un servicio de Internet">
+                    <page name="fields_isp" string="Datos ISP" invisible="(not is_internet) or (detailed_type != 'service')">
 
-                                <field name="is_internet" widget="boolean_toggle"/>
-                            </group>
-                        </group>
-                        <group invisible="type != 'service'">
-                            <group string="Ancho de Banda">
-                                <field name="uploaded_bandwidth"/>
-                                <field name="download_bandwidth"/>
-                                <field name="is_speed_control" widget="boolean_toggle"/>
-                            </group>
-                            <group string="Comparticion">
+
+                            <group string="Ancho de Banda Descarga/Subida">
+                                <label for="burst_limit_upload" string="Límite" />
                                 <div>
-                                    <field name="sharing_bandwidth_a" class="oe_inline"/> -
-                                    <field name="sharing_bandwidth_b" class="oe_inline"/>
+                                    <field name="download_bandwidth" class="oe_inline"/>-<field name="upload_bandwidth" class="oe_inline"/>&amp;nbsp;Mbits/s
                                 </div>
-                            </group>
-                            <group string="Configure Queue">
-                                <field name="configure_queue_burst" widget="boolean_toggle"/>
-                                <label for="product_upload_download" string="" invisible="configure_queue_burst != True"/>
-                                <div invisible="configure_queue_burst != True">
-                                    <field name="product_upload_download" invisible="1" class="oe_inline"/>
-                                    UPLOAD-DOWNLOAD
+                                <label for="burst_limit_upload" string="Mínimos" />
+                                <div>
+                                    <field name="min_download_bandwidth" class="oe_inline"/>-<field name="min_upload_bandwidth" class="oe_inline"/>&amp;nbsp;Mbits/s
                                 </div>
-                                <label for="burst_limit_upload" string="Burst Limit" invisible="configure_queue_burst != True"/>
-                                <div invisible="configure_queue_burst != True">
-                                    <field name="burst_limit_upload" class="oe_inline" placeholder="unlimited"/>-<field name="burst_limit_download" placeholder="unlimited" class="oe_inline"/>&amp;nbsp;bits/s
-                                </div>
-                                <label for="burst_threshold_upload" string="Burst Threshold" invisible="configure_queue_burst != True"/>
-                                <div invisible="configure_queue_burst != True">
-                                    <field name="burst_threshold_upload" class="oe_inline" placeholder="unlimited"/>-<field name="burst_threshold_download" class="oe_inline" placeholder="unlimited"/> bits/s
-                                </div>
-                                <label for="burst_time_upload" string="Burst Time" invisible="configure_queue_burst != True"/>
-                                <div invisible="configure_queue_burst != True">
-                                    <field name="burst_time_upload" class="oe_inline" placeholder="0"/>-<field name="burst_time_download" class="oe_inline" placeholder="0"/> s
-                                </div>
-                                <label for="queue_priority_upload" string="Prioridad" invisible="configure_queue_burst != True"/>
-                                <div invisible="configure_queue_burst != True">
-                                    <field name="queue_priority_upload" placeholder="8" class="oe_inline"/>-<field name="queue_priority_download" class="oe_inline" placeholder="8"/>
-                                </div>
-                            </group>
-                        </group>
-                        <group invisible="type != 'service'">
-                            <group string="Custom Traffic Table">
-                                <field name="is_custom_traffic_table" widget="boolean_toggle"/>
-                                <field name="name_custom_traffic_table" invisible="is_custom_traffic_table != True"/>
-                            </group>
-                            <!--group string="Custom AddessList">
-                                <field name="is_custom_address_list" widget="boolean_toggle"/>
-                                <field name="name_address_list" invisible="is_custom_address_list != True"/>
-                                <field name="is_product_vlan" widget="boolean_toggle"/>
-                                <field name="s_vlan" invisible="is_product_vlan != True"/>
-                                <field name="c_vlan" invisible="is_product_vlan != True"/>
-                                <field name="name_custom_profile" invisible="is_product_vlan != True"/>
-                                <field name="traffic_profile_index"/>
-                            </group-->
-                        </group>
-                        <group invisible="type != 'service'">
-                            <group string="Attributes Radius">
-                                <field name="radius_id" string="Radius"/>
-                                <field name="radius_attributes_ids" widget="many2many_tags"/>
-                                <field name="profile_radius"/>
-                            </group>
-                            <group string="Custom TCON">
-                                <field name="is_custom_tcon_profile" widget="boolean_toggle"/>
-                                <field name="name_custom_tcon_profile" invisible="is_custom_tcon_profile != True"/>
-                            </group>
-                            <group string="Custom PPPoE Profile" name="custom_profile">
-                                <field name="is_custom_pppoe_profile" widget="boolean_toggle"/>
-                                <field name="name_custom_pppoe_profile" invisible="is_custom_pppoe_profile != True"/>
-                            </group>
-                        </group>
-                        <group invisible="[('type', '=', 'service')]">
-                            <group string="Stock Asumido por Instalacion">
-                                <field name="qty_extra_stock"/>
-                            </group>
-                            <group/>
-                        </group>
-                        <!--group name="ip_address" string="Direccionamiento IP">
-                            <group>
-                                <field name="type_access_net" required="1"/>
-                            </group>
-                            <group invisible="type_access_net != 'dhcp_leases'">
-                                <field name="dhcp_custom_server"/>
-                                <field name="interface"/>
-                                <field name="is_multiple_vlans" widget="boolean_toggle"/>
-                            </group>
-                        </group-->
-                        <!--notebook colspan="4">
-                            <page name="ip_address" string="Direcciones IP" invisible="type_access_net != 'dhcp_leases'"-->
-                              <!--group>
-        <group string="Pools" colspan="4">
-            <field name="ip_address_pool_ids" nolabel="1"  widget="one2many_list" colspan="4" >
-                <tree multi_selectable="1"  colspan="2" editable="bottom">
-                          <field name="name" readonly="True"/>
-                    <field name="network"/>
-                    <field name="nmask"/>
 
-                     <field name="total_ips"/>
-                            <field name="used_ips"/>
-                            <field name="usage_percentage" widget="progressbar"/>
-                    </tree>
-                </field>
+                                <label for="burst_limit_upload" string="Ráfaga" />
+                                <div>
+                                    <field name="burst_limit_download" class="oe_inline" placeholder="unlimited"/>-<field name="burst_limit_upload" placeholder="unlimited" class="oe_inline"/>&amp;nbsp;Mbits/s
+                                </div>
+                                <label for="burst_threshold_upload" string="Umbral de Ráfaga" />
+                                <div >
+                                    <field name="burst_threshold_download" class="oe_inline" placeholder="unlimited"/>-<field name="burst_threshold_upload" class="oe_inline" placeholder="unlimited"/> Mbits/s
+                                </div>
+                                <label for="burst_time_upload" string="Tiempo de Ráfaga" />
+                                <div >
+                                    <field name="burst_time_download" class="oe_inline" placeholder="0"/>-<field name="burst_time_upload" class="oe_inline" placeholder="0"/> s
+                                </div>
+                                    <field name="queue_priority" placeholder="8" class="oe_inline"/>
 
+                            </group>
 
-        </group>
- <button name="generar" string="Regenerar IPs" type="object"/>
-        <group  string="IPs" colspan="4">
-                <field name="ip_address_ids" nolabel="1"  colspan="4">
-                     </field>
-              </group>
-    </group-->
-                            <!--/page>
-                        </notebook-->
                     </page>
-                    <page name="fields_iptv" string="Datos IPTV">
+                    <!--page name="fields_iptv" string="Datos IPTV">
                         <group>
                             <group>
                                 <field name="is_iptv"/>
@@ -219,7 +135,7 @@
                             </group>
                             <group/>
                         </group>
-                    </page>
+                    </page-->
                 </xpath>
             </field>
         </record>
@@ -229,9 +145,7 @@
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_tree_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='detailed_type']" position="after">
-                    <field name="service_type_id" invisible="detailed_type!='service'" required="detiled_type=='service'"/>
-                </xpath>
+
                 <xpath expr="//tree" position="replace">
                     <tree string="Product" multi_edit="1" sample="1">
                         <header>
