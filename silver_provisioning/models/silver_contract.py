@@ -34,6 +34,13 @@ class IspContract(models.Model):
     netdev_id = fields.Many2one('silver.netdev', required=True, ondelete="cascade")
 
 
+    _sql_constraints = [
+        ('ip_address_id_unique',
+         'UNIQUE (ip_address_id)',
+         'Esta ip está siendo utilizada.')
+    ]
+
+
     access_point_id = fields.Many2one('silver.access_point', string='Punto de Acceso')
     mac_address = fields.Char(string='Dirección MAC')
     vlan_id = fields.Many2one('silver.vlan', string='VLAN')#, domain="[('olt_id', '=', olt_id)]")
@@ -61,7 +68,15 @@ class IspContract(models.Model):
 #    serial_onu = fields.Char(string="Serial ONU", related="serial_number")
 #    model_onu = fields.Char(string="Modelo ONU", related="serial_number"))
     is_bridge = fields.Boolean(string="ONU en modo Bridge")
-    ip_address_id = fields.Many2one('silver.ip.address', string="Dirección IP Asignada", domain="['|', ('contract_id', '=', False), ('contract_id', '=', id)]" )
+    ip_address_id = fields.Many2one('silver.ip.address', string="IP Principal", domain="['id', 'in', ip_address_ids)]" )
+    ip_address_ids = fields.One2many('silver.ip.address', 'contract_id',  string="Direcciones IPs",
+                                    domain="['|', ('contract_id', '=', False), ('contract_id', '=', id)]")
+    ip_address_count = fields.Integer(string="Cantidad de IPs", compute="_compute_ip_address_count", store=True)
+
+    @api.depends('ip_address_ids')
+    def _compute_ip_address_count(self):
+        for rec in self:
+            rec.ip_address_count = len(rec.ip_address_ids)
     pppoe_user = fields.Char(string="Usuario PPPoE")
     pppoe_password = fields.Char(string="Contraseña PPPoE")
 
@@ -513,7 +528,7 @@ class IspContract(models.Model):
                 if any(field in vals for field in wan_fields) and olt.is_gestion_pppoe:
                     if contract.is_bridge and olt.is_activation_bridge:
                         # Modo Bridge: solo requiere VLAN
-                        commands.append(f"ont ipconfig {contract.olt_port_id.name} {contract.onu_pon_id} ip-index 1 dhcp-enable enable vlan-id {contract.vlan_id.name or olt.vlan_id.name}")
+                        commands.append(f"ont ipconfig {contract.olt_port_id.name} {contract.onu_pon_id} ip-index 1 dhcp-enable enable vlan-id {contract.vlan_id.vlanid}")
                         commands.append(f"ont wan {contract.olt_port_id.name} {contract.onu_pon_id} ip-index 1 mode bridge")
 
                     elif not contract.is_bridge:
@@ -886,39 +901,111 @@ class IspContract(models.Model):
             self.old_onu_pon_id = self._origin.onu_pon_id
         print(("changed", self.old_onu_pon_id, self.changed_onu))
 
-    @api.onchange('olt_id')
-    def _onchange_olt_id(self):
-        self.changed_onu = True
-        self.vlan_id = self.olt_id.vlan_id
+    #@api.onchange('olt_id')
+    #def _onchange_olt_id(self):
+      #  self.changed_onu = True
+      #  self.vlan_id = self.olt_id.vlan_id
 
     @api.onchange('stock_lot_id')
     def _onchange_stock_lot_id(self):
         self.changed_onu = True
 
 
-    @api.onchange('olt_port_id')
-    def _onchange_olt_port_id(self):
+    @api.onchange('olt_port_id', 'core_id')
+    def _onchange_olt_port_core_id(self):
+        def filterip(ip):
+            print(("fip", ip.id, self.ip_address_id.id))
+            return ip.id != self.ip_address_id.id
+
+
+
+        if self.link_type=='wifi':
+            self.changed_onu = True
+            self.vlan_id = self.env['silver.vlan'].search([(self.olt_id, 'in', 'olt_ids')], limit=1)
+
+
+        # Asignación de IP
         available_ips = []
         if self.olt_port_id:
             # Buscar pools de IPs asociados a este puerto OLT
-            available_ips = self.env['silver.ip.address'].search([('olt_port_id', '=', self.olt_port_id.id), ('contract_id', '=', False)
+            available_ips = self.env['silver.ip.address'].search([('olt_port_id', '=', self.olt_port_id.id),
+                                                                  ('public', '=', False),
+                                                                  '|', ('contract_id', '=', False), ('contract_id', '=', self.id)
                                                              ], order='ip_int asc')  # Ordenar por IP numericamente
 
         print(("ips1", available_ips))
         if (not available_ips):
-            available_ips = self.env['silver.ip.address'].search([('olt_id', '=', self.olt_id.id), ('olt_port_id', '=', None), ('contract_id', '=', False)
+            available_ips = self.env['silver.ip.address'].search([('olt_id', '=', self.olt_id.id), ('olt_port_id', '=', None),
+                                                                  ('public', '=', False),
+                                                                  '|', ('contract_id', '=', False), ('contract_id', '=', self.id)
             ], order='ip_int asc') # Ordenar por IP numericamente
 
         print(("ips2", available_ips))
+        if (not available_ips):
+            available_ips = self.env['silver.ip.address'].search([('core_id', '=', self.core_id.id),
+                                                                  ('public', '=', False),
+                                                                  '|', ('contract_id', '=', False),
+                                                                  ('contract_id', '=', self.id)
+            ], order='ip_int asc') # Ordenar por IP numericamente
 
-        if available_ips:
-            # Asignar la primera IP disponible
-            self.ip_address_id = available_ips[0]
-        else:
-            # Si no hay IPs disponibles, limpiar el campo
-            self.ip_address_id = False
+        print(("ips3", available_ips))
+
+        public_ips = self.env['silver.ip.address'].search([ ('public', '=', True),
+                                                            '|', '|', ('zone_ids', 'in', self.node_id.zone_id.id), ('node_ids', 'in', self.node_id.id), ('core_ids', 'in', self.core_id.id)  ] )
+
+        dicips1 = {}
+        for a in available_ips:
+            dicips1[a.name] = a
+        dicips2 = {}
+        for a in public_ips:
+            dicips2[a.name] = a
+
+
+        # Store the current ip_address_ids
+        current_ips = self.ip_address_ids
+
+        print(("ips", available_ips, current_ips, len(available_ips), len(tuple(available_ips))))
+
+        # Remove the currently selected IP from the list if it exists
+
+        current_ips1 = (current_ips.filtered(lambda ip: dicips1.get(ip.name)) if current_ips and len(current_ips) else current_ips)
+        current_ips2 = (current_ips.filtered(lambda ip: dicips2.get(ip.name)) if current_ips and len(current_ips) else current_ips)
+        if (((not current_ips1) or (not len(current_ips1))) and available_ips and len(tuple(available_ips))):
+
+            current_ips1 = available_ips[0]
+
+
+
+
+        print(("ip3", current_ips.filtered(filterip) , current_ips1, current_ips2,  self.ip_address_id))
+
+        # Prepend available_ips and then add the rest of the existing ips
+        self.ip_address_ids = current_ips1+(current_ips2)
+
+        self.ip_address_id = current_ips1
+
+
+
+
+        self.vlan_id = False
+
+        # Lógica de cascada para VLAN
+        try:
+            self.vlan_id = self.core_id.vlan_ids[0]
+        except:
+            pass
+        try:
+            self.vlan_id = self.olt_id.vlan_ids[0]
+        except:
+            pass
+        try:
+            self.vlan_id = self.olt_port_id.vlan_ids[0]
+        except:
+            pass
 
         self.changed_onu = True
+
+
 
 
     @api.onchange('silver_address_id')
@@ -956,16 +1043,9 @@ class IspContract(models.Model):
 
     @api.onchange('box_id')
     def _onchange_box_id(self):
-        self.core_id = False
-        self.olt_id = False
-        domain = {'domain': {'core_id': []}}
-        if self.box_id:
-            core_domain = [('node_id', '=', self.box_id.node_id.id)]
-            first_core = self.env['silver.core'].search(core_domain, limit=1)
-            #if first_core:
-            #    self.core_id = first_core
-            domain = {'domain': {'core_id': core_domain}}
-        return domain
+        self.core_id = self.box_id.core_id
+        self.olt_id = self.box_id.olt_id
+        self.olt_port_id = self.box_id.olt_port_id
 
 
     @api.onchange('node_id')
@@ -977,19 +1057,6 @@ class IspContract(models.Model):
     @api.onchange('wifi_line_ids')
     def _onchange_wifi_line_ids(self):
         self.wifi_config_successful = False
-
-
-    #@api.onchange('core_id')
-    #def _onchange_core_id(self):
-    #    self.olt_id = False
-    #    domain = {'domain': {'olt_id': []}}
-    #    if self.core_id:
-    #        olt_domain = [('id', 'in', self.core_id.olt_ids.ids)]
-    #        first_olt = self.env['silver.olt'].search(olt_domain, limit=1)
-    #        if first_olt:
-    #            self.olt_id = first_olt
-    #        domain = {'domain': {'olt_id': olt_domain}}
-    #    return domain
 
 
 

@@ -121,12 +121,6 @@ class SilverContract(models.Model):
     dont_send_notification_wp = fields.Boolean(string="No Enviar Notificaciones por WhatsApp")
     links_payment = fields.Char(string="Enlaces de Pago", compute="_compute_links_payment", readonly=True)
 
-    _sql_constraints = [
-        ('ip_address_id_unique',
-         'UNIQUE (ip_address_id)',
-         'Esta ip está siendo utilizada.')
-    ]
-
     @api.onchange('partner_id')
     def _onchange_partner_id_silver(self):
         if self.partner_id and self.partner_id.silver_address_id:

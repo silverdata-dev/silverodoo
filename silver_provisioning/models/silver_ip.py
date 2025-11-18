@@ -7,11 +7,17 @@ import ipaddress
 class SilverIpAddress(models.Model):
     _inherit = 'silver.ip.address'
 
-    contract_ids = fields.One2many('silver.contract', 'ip_address_id', string="Contratos")
-    contract_id = fields.Many2one("silver.contract", string="Contrato", compute='_compute_contract_id',
-        inverse='_inverse_contract_id',
-        store=True
-    )
+    #contract_ids = fields.One2many('silver.contract', 'ip_address_id', string="Contratos")
+    contract_id = fields.Many2one("silver.contract", string="Contrato")
+
+    used = fields.Boolean(string="Usado", compute="_compute_used")
+
+    @api.depends("contract_id")
+    def _compute_used(self):
+        for s in self:
+            print(("used", s.used, s.contract_id))
+            s.used = (s.contract_id != None) and len(s.contract_id)>0
+
 
     def action_view_contract(self):
         """
@@ -28,21 +34,28 @@ class SilverIpAddress(models.Model):
             }
         return {'type': 'ir.actions.act_window_close'}
 
-    @api.depends('contract_ids')
-    def _compute_contract_id(self):
-        """Calcula el Many2one tomando el primer (y único) registro del One2many."""
-        for node in self:
-            # Como es un One2One simulado, solo tomamos el primer registro si existe.
-            node.contract_id = node.contract_ids[:1] or False
 
-    def _inverse_contract_id(self):
-        """Maneja la escritura del campo. Es la CLAVE para atar."""
-        for node in self:
-            if node.contract_id:
-                # Caso A: El usuario selecciona un contract_id existente.
-                # Lo vincula al node actual y desvincula los contract_ids anteriores (si los hay).
-                node.contract_ids = [(6, 0, [node.contract_id.id])]
-            else:
-                # Caso B: El usuario borra la selección.
-                # Desvincula todos los contract_ids asociados.
-                node.contract_ids = [(5, 0, 0)]
+
+
+
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        args = args or []
+        domain = []
+        if name:
+            domain = [('name', operator, name)]
+
+        print(("ipnamesearchh", domain))
+        nodes = self.search(domain + args, limit=limit)
+        return nodes.name_get()
+
+    @api.model
+    def search(self,  domain=None, offset=0, limit=None, order=None):
+        ctx = self._context
+
+        if 'order_display' in ctx:
+            order = ctx['order_display']
+        res = super(SilverIpAddress, self).search(
+            domain,  offset=offset, limit=limit, order=order)
+        print(("ipsearchh,", order, ctx, domain, res))
+        return res

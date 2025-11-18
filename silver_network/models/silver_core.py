@@ -60,7 +60,10 @@ class SilverCore(models.Model):
 
     kex_algorithms_ids = fields.Many2many('silver.kex.algorithms', string='Kex Algorithms')
 
-    silver_vlans_ids = fields.Many2many('silver.vlan', string='Vlans')
+    vlan_ids = fields.Many2many('silver.vlan', 'silver_mvlan_core', 'core_id', 'vlan_id', string='Vlans')
+
+
+
     pooOnlyCore = fields.Boolean(string='Pool de IPs Único')
 
 

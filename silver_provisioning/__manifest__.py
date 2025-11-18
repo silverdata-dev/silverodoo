@@ -25,6 +25,7 @@
         'views/silver_olt_views.xml',
         #'views/silver_olt_card_views.xml',
         'views/silver_olt_card_port_views.xml',
+        'views/silver_vlan.xml',
 
         #'views/templates.xml',
     # only loaded in demonstration mode

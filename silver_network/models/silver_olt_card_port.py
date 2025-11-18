@@ -20,16 +20,22 @@ class SilverOltCardPort(models.Model):
     olt_card_id = fields.Many2one('silver.olt.card', string='Tarjeta OLT', required=False, ondelete='cascade')
     capacity_port_pon = fields.Selection([("32","32"), ("64", "64"), ("128", "128"), ("256","256")], string='Total PON')
     capacity_usage_port_pon = fields.Integer(string='Usada PON', readonly=False)
-    s_vlan = fields.Integer(string='s-vlan')
-    c_vlan = fields.Integer(string='c-vlan')
-    is_management_vlan = fields.Boolean(string='Vlan de Gestion')
+    #s_vlan = fields.Integer(string='s-vlan')
+    #c_vlan = fields.Integer(string='c-vlan')
+    #is_management_vlan = fields.Boolean(string='Vlan de Gestion')
     is_extra_serviceport = fields.Boolean(string='Serviport Extra')
-    mgs_vlan = fields.Integer(string='gs-vlan')
-    mgc_vlan = fields.Integer(string='gc-vlan')
+    #mgs_vlan = fields.Integer(string='gs-vlan')
+    #mgc_vlan = fields.Integer(string='gc-vlan')
+
+    vlan_ids = fields.Many2many('silver.vlan', 'silver_mvlan_olt_port', 'olt_port_id', 'vlan_id', string='Vlans')
+
     is_srvprofile = fields.Boolean(string='ONT Srvprofile')
     ont_srvprofile = fields.Char(string='ont-srvprofile')
     is_line_profile = fields.Boolean(string='ONT Lineprofile')
     ont_lineprofile = fields.Char(string='ont-lineprofile')
+
+    #ont_srvprofile_value = fields.Char(string='Valor ont_srvprofile')
+
     #type_access_net = fields.Selection(
     #    [('inactive', 'Inactivo'), ('dhcp', 'DHCP Leases'), ('manual', 'IP Asignada manualmente'),
     #     ('system', 'IP Asignada por el sistema')], default='inactive', string='Tipo Acceso', required=True, related='netdev_id.type_access_net',)

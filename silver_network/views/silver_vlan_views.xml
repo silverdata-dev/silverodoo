@@ -14,6 +14,12 @@
             <field name="arch" type="xml">
                 <tree string="VLANs ISP">
                     <field name="name"/>
+                    <field name="vlanid"/>
+                    <field name="vtype"/>
+                    <field name="node_id"/>
+                    <field name="core_ids"/>
+                    <field name="olt_ids"/>
+                    <field name="olt_port_ids"/>
                 </tree>
             </field>
         </record>
@@ -24,9 +30,26 @@
             <field name="arch" type="xml">
                 <form string="VLAN ISP">
                     <sheet>
+                             <div class="oe_title">
+                            <h1>
+                                <field name="vlanid"/>
+                            </h1>
+                        </div>
                         <group>
-                            <field name="name"/>
+                            <group>
+                             <field name="name"/>
+                            <field name="vtype"/>
+                                </group>
+                            <group string="Relación">
+                            <field name="node_id"/>
+                            <field name="core_ids"  widget="many2many_tags" domain="[('node_id', '=', node_id)]"/>
+                            <field name="olt_ids"  widget="many2many_tags"  domain="[('node_id', '=', node_id)]"/>/>
+                            <field name="olt_port_ids" widget="many2many_tags"  domain="[('olt_id', 'in', olt_ids)]"/>/>
+                                </group>
                         </group>
+<notebook>
+
+</notebook>
                     </sheet>
                 </form>
             </field>

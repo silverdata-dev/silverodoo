@@ -54,13 +54,13 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                                 class="oe_highlight"
                                                 invisible="(not olt_id) or (state_service == 'active')"/>
                                         <field name="discovered_onu_id" colspan="1"
-                                               domain="[('olt_id', '=', olt_id)]"
+                                               domain="[('olt_id', '=', olt_id), '|', ('contract_id', '=', False), ('contract_id', '=', id)]"
                                                invisible="(not olt_id) or (state_service == 'active')" nolabel="1" />
                         <field name="olt_port_id" domain="[('olt_id', '=', olt_id)]"  readonly="state_service == 'active'"/>
                         <field name="onu_pon_id"  readonly="state_service == 'active'"/>
                                     <field name="changed_onu" invisible="1"/>
                                     <field name="old_onu_pon_id" invisible="1"/>
-   <field name="vlan_id"  readonly="state_service == 'active'"/>
+   <field name="vlan_id"  readonly="state_service == 'active'" domain="['|', ('olt_port_ids', 'in', olt_port_id), ('core_ids', 'in', core_id)]"/>
 
 
 
@@ -111,9 +111,21 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                         domain="[('node_id', '=', node_id)]"  invisible="link_type == 'fiber'"/>
                                         <field name="ap_id" readonly="state_service == 'active'" invisible="link_type != 'wifi'" domain="[('core_id', '=', core_id)]"/>
 
-                                    <field name="ip_address_id" domain="link_type == 'fiber' and [('olt_port_id', '=', olt_port_id)] or [('core_id', '=', core_id)]" order="ip_int asc"
-                                    context="{'order_display': 'ip_int asc'}"
+        <field name="ip_address_ids"
+    order="public asc,  ip_int asc" widget="many2many_tags"
+                       domain="['|',  ('olt_port_id', '=', olt_port_id),
+                                  '|', ('olt_id', '=', olt_id),
+                                     '|',('core_id', '=', core_id),
+                                         '|', ('node_ids', 'in', node_id), ('core_ids', 'in', core_id)]"
+    context="{'search_default_group_by_pool_id': 1, 'alala': 2}"
+    />
+    <field name="ip_address_count" invisible="1"/>
+                                    <field name="ip_address_id"
+                                             domain="[( 'id', 'in', ip_address_ids) ]"
+                                             invisible = "ip_address_count &lt;= 1"
+                                    context="{'order_display': 'public asc,ip_int asc'}"
                                     />
+
 
                                         <field name="pppoe_user"/>
                                         <field name="pppoe_password" password="True"/>

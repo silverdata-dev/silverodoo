@@ -9,3 +9,4 @@ from . import silver_ap
 #from . import silver_radius
 from . import stock_lot
 from . import product_product
+from . import silver_onu_profile

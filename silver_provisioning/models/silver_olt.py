@@ -248,7 +248,7 @@ class SilverOlt(models.Model):
             # Si todo fue exitoso, reseteamos la bandera de cambios pendientes.
             self.sudo().write({'pending_changes': False})
 
-    def _check_and_create_onu_profile(self, conn, profile_name, output_log):
+    def check_and_create_onu_profile(self, conn, profile, output_log):
         """
         Verifica si un perfil de ONU existe en la OLT y lo crea si no.
         """
@@ -262,6 +262,8 @@ class SilverOlt(models.Model):
             if not success:
                 # Esto sería un problema, ya que no podemos asegurar el estado.
                 raise UserError(f"Error al intentar salir del modo de interfaz: {clean_response}")
+
+        conn.execute_command("configure terminal")
 
         command = "show profile onu"
         print(("a"))
@@ -283,24 +285,59 @@ class SilverOlt(models.Model):
 
         print(("profile", profiles))
 
-        if profile_name in profiles:
-            output_log += f"INFO: El perfil '{profile_name}' ya existe en la OLT.\n"
+        if profile.name in profiles:
+            output_log += f"INFO: El perfil '{profile.name}' ya existe en la OLT.\n"
             return output_log
 
         # Si el perfil no existe, encontrar el ID máximo para crear uno nuevo
-        output_log += f"INFO: El perfil '{profile_name}' no fue encontrado. Intentando crearlo...\n"
+        output_log += f"INFO: El perfil '{profile.name}' no fue encontrado. Intentando crearlo...\n"
         ids = [int(i) for i in re.findall(r"^\s*Id\s*:\s*(\d+)", full_output, re.MULTILINE)]
         new_profile_id = max(ids) + 1 if ids else 1
 
-        create_command = f"profile onu id {new_profile_id} name {profile_name}"
-        success, clean_response, full_output = conn.execute_command(create_command)
+        commands = [
+
+            'configure terminal',
+            f"profile onu id {new_profile_id} name {profile.name}",
+            #'profile onu profile-name {}'.format(profile.name),
+            'description {}'.format(profile.description or profile.name),
+            'tcont-num {} gemport-num {}'.format(profile.tcont_num, profile.gemport_num),
+            'port-num eth {} pots {} iphost {} ipv6host {} veip {}'.format(
+                profile.port_num_eth, profile.pots, profile.iphost, profile.ipv6host, profile.veip),
+            # The service-ability command needs careful construction
+            'service-ability {} {} {} {} {} {}'.format(
+                'N:1', 'yes' if profile.service_ability_n_1 else 'no',
+                '1:P', 'yes' if profile.service_ability_1_p else 'no',
+                '1:M', 'yes' if profile.service_ability_1_m else 'no'
+            ),
+            'commit',
+            'exit',
+            'exit'
+        ]
+        try:
+
+            with self.netdev_id._get_olt_connection() as conn:
+                for command in commands:
+                    success, response, output = conn.execute_command(command)
+                    output_log += f"$ {command}\n{output}\n"
+                    if not success:
+                        # You might want to check for specific non-critical errors here
+                        # For now, any failure stops the process.
+                        raise UserError(f"Error executing command '{command}':\n{output}")
+            return output_log
+        except (ConnectionError, UserError) as e:
+            raise UserError(f"Operation failed:\n{e}\n\nLog:\n{output_log}")
+        except Exception as e:
+            # Catching unexpected errors
+            raise UserError(f"An unexpected error occurred: {e}\n\nLog:\n{output_log}")
+
+        #success, clean_response, full_output = conn.execute_command(create_command)
         print(("profonu ", full_output))
-        output_log += f"$ {create_command}\n{full_output}\n"
+       # output_log += f"$ {create_command}\n{full_output}\n"
         if not success:
             # Si la creación del perfil falla, es un error crítico.
-            raise UserError(f"Error al crear el perfil de ONU '{profile_name}':\n{clean_response}")
+            raise UserError(f"Error al crear el perfil de ONU '{profile.name}':\n{clean_response}")
 
-        output_log += f"ÉXITO: Perfil '{profile_name}' creado con ID {new_profile_id}.\n"
+        output_log += f"ÉXITO: Perfil '{profile.name}' creado con ID {new_profile_id}.\n"
 
         # Si la creación fue exitosa, el prompt cambiará. Hacemos commit y salimos.
         # El prompt se ve como: gpon-olt-4-Silverdata(profile-onu:32)#
@@ -334,7 +371,7 @@ class SilverOlt(models.Model):
         tcont = self.tcont
         dba_profile = self.profile_dba_internet
         gemport = self.gemport
-        vlan_id = contract.vlan_id.name or self.vlan_id.name
+        vlanid = contract.vlan_id.vlanid
         service_port = self.service_port_internet
         service_name = contract.service_type_id.name
         description = f"{contract.name}-{contract.partner_id.vat}-{contract.partner_id.name}".replace(" ", "_")
@@ -342,7 +379,7 @@ class SilverOlt(models.Model):
         required_params = {
             "Puerto PON": pon_port, "ID de ONU en PON": onu_id, "Serial ONU": serial_number,
             "Modelo de ONU (Profile)": profile_name, "Tcont": tcont, "DBA Profile": dba_profile,
-            "Gemport": gemport, "VLAN": vlan_id, "Service Port": service_port
+            "Gemport": gemport, "VLAN": vlanid, "Service Port": service_port
         }
         missing_params = [key for key, value in required_params.items() if not value]
         if missing_params:
@@ -352,11 +389,12 @@ class SilverOlt(models.Model):
             f"onu add {onu_id} profile {profile_name} sn {serial_number}",
             f"onu {onu_id} tcont {tcont} dba {dba_profile}",
             f"onu {onu_id} gemport {gemport} tcont {tcont}",
-            f"onu {onu_id} service {service_name or 'Internet'} gemport {gemport} vlan {vlan_id}",
-            f"onu {onu_id} service-port {service_port} gemport {gemport} uservlan {vlan_id} vlan {vlan_id}",
-            f"onu {onu_id} portvlan veip 1 mode tag vlan {vlan_id}",
+            f"onu {onu_id} service {service_name or 'Internet'} gemport {gemport} vlan {vlanid}",
+            f"onu {onu_id} service-port {service_port} gemport {gemport} uservlan {vlanid} vlan {vlanid}",
+            f"onu {onu_id} portvlan veip 1 mode tag vlan {vlanid}",
             f"onu {onu_id} desc {description}",
         ]
+
 
         onu_created_on_olt = False
         retry = 0
@@ -364,11 +402,11 @@ class SilverOlt(models.Model):
             if retry != retries: break
             for command in base_commands:
                 success, clean_response, full_output = conn.execute_command(command)
-                output_log += f"\n{full_output}"
+                output_log += f"\n{clean_response}"
 
                 if not success:
                     print(("not output", full_output))
-                    if "not found or it's not commited" in full_output:
+                    """if "not found or it's not commited" in full_output:
                         output_log += self._check_and_create_onu_profile(conn, profile_name, output_log)
                         
                         # Re-entrar al modo de interfaz, ya que la creación de perfil nos saca de él.
@@ -380,13 +418,13 @@ class SilverOlt(models.Model):
                             raise UserError(f"Fallo al re-entrar a la interfaz {pon_port} despues de crear el perfil: {cr_re}")
 
                         retry = 1
-                        break
+                        break"""
 
                     raise UserError(f"Error ejecutando comando base '{command}':\n{clean_response}")
                 if f"onu add {onu_id}" in command:
                     onu_created_on_olt = True
 
-        return output_log, onu_created_on_olt, pon_port, vlan_id
+        return output_log, onu_created_on_olt, pon_port, vlanid
 
     def _provision_onu_wifi(self, contract, conn, output_log):
         def getwifiname(config_text):
@@ -436,7 +474,7 @@ class SilverOlt(models.Model):
 
         return output_log
 
-    def _provision_onu_wan(self, contract, conn, output_log, vlan_id):
+    def _provision_onu_wan(self, contract, conn, output_log, vlanid):
         """Provisiona la configuración WAN avanzada en la ONU. Asume que ya se está en el modo de configuración de la interfaz GPON."""
         onu_id = contract.onu_pon_id
         if 1:
@@ -464,11 +502,11 @@ class SilverOlt(models.Model):
                 f"onu {onu_id} pri wan_adv index {wan_index} route mode internet mtu {self.mtu}",
                 f"onu {onu_id} pri wan_adv index {wan_index} route both pppoe proxy disable user {contract.pppoe_user} pwd {contract.pppoe_password} mode auto nat enable",
                 f"onu {onu_id} pri wan_adv index {wan_index} route both client_address enable client_prifix enable",
-                f"onu {onu_id} pri wan_adv index {wan_index} vlan tag wan_vlan {vlan_id} {self.vlan_priority}",
+                f"onu {onu_id} pri wan_adv index {wan_index} vlan tag wan_vlan {vlanid} {self.vlan_priority}",
                 f"onu {onu_id} pri wan_adv index {wan_index} bind lan1 {' '.join(wifis)}",
-                f"onu {onu_id} pri wan_adv commit",
+                #f"onu {onu_id} pri wan_adv commit",
                 f"onu {onu_id} pri username admin_control {admin_control_cmd} user_control {user_control_cmd}",
-                f"onu {onu_id} pri wan_adv commit"
+                #f"onu {onu_id} pri wan_adv commit"
 
             ]
 
@@ -542,22 +580,22 @@ class SilverOlt(models.Model):
                     # para manejar la nueva tupla de retorno si llaman a execute_command directamente,
                     # pero por ahora nos centramos en el flujo principal)
                     steps = steps_or_commands
-                    vlan_id = contract.vlan_id.name or self.vlan_id.name
+                    vlanid = contract.vlan_id.vlanid
                     if 'base' in steps:
                         log, onu_created, p_port, v_id = self._provision_onu_base(contract, conn, "")
                         output_log += log
                         onu_created_on_olt = onu_created
                         pon_port = p_port
-                        vlan_id = v_id
+                        vlanid = v_id
                         base_config_successful = True
                     if 'wifi' in steps:
                         output_log += self._provision_onu_wifi(contract, conn, "")
                     if 'wan' in steps:
-                        if not vlan_id:
+                        if not vlanid:
                             raise UserError("No se pudo determinar la VLAN para la configuración WAN.")
 
                         print(("towan", conn))
-                        output_log += self._provision_onu_wan(contract, conn, "", vlan_id)
+                        output_log += self._provision_onu_wan(contract, conn, "", vlanid)
                 else: # Es una lista de comandos directos
                     for command in steps_or_commands:
                         success, clean_response, full_output = conn.execute_command(command)

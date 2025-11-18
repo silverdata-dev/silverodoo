@@ -80,7 +80,7 @@
                                 <field name="ip_address_ids" nolabel="1" readonly="1">
                                       <tree colspan="2" >
                                     <field name="cidr"/>
-<field name="line_id"/>
+<field name="pool_id"/>
                                             <field name="ip_int" column_invisible="1"/>
                             <field name="olt_id" column_invisible="1"/>
 
@@ -89,6 +89,11 @@
                             </page>
                             <page name="config" string="Configuración">
                                 <group>
+                                <field name="vlan_ids" widget="many2many_tags" />
+                                <field name="ont_srvprofile"/>
+                                <field name="ont_lineprofile"/>
+                                </group>
+                                <!--group>
                                     <group name="capacity_port" string="Capacidad del Puerto">
                                         <field name="capacity_port_pon"/>
                                         <field name="capacity_usage_port_pon" readonly="1"/>
@@ -101,8 +106,8 @@
                                         <field name="mgs_vlan" invisible="not is_management_vlan and not is_extra_serviceport"/>
                                         <field name="mgc_vlan" invisible="not is_management_vlan and not is_extra_serviceport"/>
                                     </group>
-                                </group>
-                                <group>
+                                </group-->
+                                <!--group>
                                     <group name="srv_profile" string="ONT Srvprofile">
                                         <field name="is_srvprofile" widget="boolean_toggle"/>
                                         <field name="ont_srvprofile" invisible="not is_srvprofile"/>
@@ -118,10 +123,10 @@
                                         <field name="pri_onu_standar" invisible="not dhcp_client"/>
                                         <field name="pri_onu_bridge" invisible="not dhcp_client"/>
                                     </group>
-                                    <!--group string="Custom PPPoE Profile" name="port_custom_profile">
+                                    <group string="Custom PPPoE Profile" name="port_custom_profile">
                                         <field name="is_custom_pppoE_profile" widget="boolean_toggle"/>
                                         <field name="name_custom_pppoe_profile" invisible="not is_custom_pppoe_profile"/>
-                                    </group-->
+                                    </group>
                                 </group>
                                 <group name="port_radius" string="Radius">
                                     <group>
@@ -131,7 +136,7 @@
                                         <field name="is_reverse_onuid" widget="boolean_toggle"/>
                                         <field name="number_reverse" invisible="not is_reverse_onuid"/>
                                     </group>
-                                </group>
+                                </group-->
                             </page>
                         </notebook>
                     </sheet>

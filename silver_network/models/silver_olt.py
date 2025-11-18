@@ -139,7 +139,10 @@ class SilverOlt(models.Model):
     service_type = fields.Selection([('void', 'VOID'), ('internet', 'INTERNET')], string='Service Type')
     acquisition_mode = fields.Selection([('pppoe', 'PPPoE'), ('dhcp','DHCP'), ('static', 'IP estática')], string='IP Acquisition Mode')
     #vlan_id = fields.Char(string='VLAN ID', required=True)
-    vlan_id = fields.Many2one('silver.vlan', string='VLAN')
+    #vlan_id = fields.Many2one('silver.vlan', string='VLAN')
+
+    vlan_ids = fields.Many2many('silver.vlan', 'silver_mvlan_olt', 'olt_id', 'vlan_id', string= 'Vlans')
+
 
     mtu = fields.Char(string='MTU')
     is_enable_nat = fields.Boolean(string='Enable NAT')
@@ -161,6 +164,7 @@ class SilverOlt(models.Model):
     ssid8 = fields.Boolean(string='SSID8')
     silver_tr_069_id = fields.Many2one('silver.tr.069', string='Servidor TR-069')
     vlan_mgn_tr069 = fields.Integer(string='Vlan Mgn_TR69')
+
 #    ip_address_pool_tr69_ids = fields.One2many('silver.ip.address.pool', 'olt_id', string='Direcciones IP', domain=[('is_tr_069', '=', True)])
 #    ip_address_tr69_ids = fields.One2many('silver.ip.address', 'olt_id', string='Direcciones IP', domain=[('is_tr_069', '=', True)])
     #state = fields.Selection([('down', 'Down'), ('active', 'Active')], string='Estado', default='down')

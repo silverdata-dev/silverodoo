@@ -56,6 +56,8 @@
 
           <menuitem id="menu_isp_zone" name="Zonas" parent="menu_isp_config" action="silver_base.action_silver_zone" sequence="1"/>
 
+        <menuitem id="menu_isp_vlans" name="Vlans" parent="menu_isp_config" action="action_silver_vlan" sequence="20"/>
+
         <menuitem id="menu_isp_radius_table" name="Tablas Radius" parent="menu_isp_config" action="action_silver_radius_table" sequence="10"/>
         <menuitem id="menu_isp_radius_attributes" name="Atributos Radius" parent="menu_isp_config" action="action_silver_radius_attributes" sequence="20"/>
             <menuitem id="menu_isp_ip_ranges" name="Pools de IPs" parent="menu_isp_config" action="silver_ip_address_pool_action" sequence="10"/>

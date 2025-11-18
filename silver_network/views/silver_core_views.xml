@@ -182,6 +182,9 @@
 
                             </page>
                             <page name="config" string="Configuraciones Generales">
+                                <group>
+                                <field name="vlan_ids" widget="many2many_tags" />
+                                </group>
                                 <!--group string="Radius" invisible="not is_silver_radius">
 
                                     <field name="radius_id" invisible="not is_silver_radius"/>
@@ -194,7 +197,7 @@
                                     <field name="port_coa" invisible="not is_silver_radius"/>
                                 </group-->
 
-                                <group name="type_access_net" string="Pool de clientes">
+                                <!--group name="type_access_net" string="Pool de clientes">
                                     <group>
                                         <field name="type_access_net"/>
                                     </group>
@@ -209,7 +212,7 @@
                                         <field name="is_active_vlans" widget="boolean_toggle"/>
                                         <field name="cvlan" invisible="not is_active_vlans"/>
                                         <field name="svlan" invisible="not is_active_vlans"/>
-                                        <!--field name="brand_description" invisible="1"/-->
+
                                         <field name="silver_vlans_ids" widget="many2many_tags"/>
                                     </group>
                                     <group>
@@ -310,7 +313,7 @@
                                     <field name="silver_core_port_line_ids" nolabel="1"/>
                                 </group>
 
-                            </group>
+                            </group-->
                             </page>
 
 

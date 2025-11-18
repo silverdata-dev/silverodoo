@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_silver_vlan_form_inherit" model="ir.ui.view">
+              <field name="name">silver.vlan.form</field>
+            <field name="model">silver.vlan</field>
+            <field name="inherit_id" ref="silver_network.view_silver_vlan_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Contratos">
+                        <field name="contract_ids">
+
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

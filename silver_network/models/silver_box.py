@@ -16,6 +16,10 @@ class SilverBox(models.Model):
     port_splitter_secondary = fields.Integer(string='Puerto Splitter Secundario')
     splitter_id = fields.Many2one('silver.splitter', string='Spliter Secundario')
     node_id = fields.Many2one('silver.node', string='Nodo')
+    core_id = fields.Many2one( 'silver.core', string="Equipo Core", domain="[('node_id', '=', node_id)]")
+    olt_id = fields.Many2one( 'silver.olt', string= 'OLT', domain= "[('core_id', '=', core_id)]")
+    olt_port_id = fields.Many2one( 'silver.olt.card.port', string= 'PON', domain= "[('olt_id', '=', olt_id)]")
+
     capacity_nap = fields.Selection([("8","8"), ("16", "16"), ("24", "24"), ("32", "32")], string='Total NAP')
     capacity_usage_nap = fields.Integer(string='Usada NAP')
 
@@ -34,9 +38,9 @@ class SilverBox(models.Model):
     nbuffer = fields.Selection([("0","0"), ("1","1"), ("2","2"), ("3","3"),("4", "4"), ("T","T"),("na","N/A")], "N buffer")
     ndistro = fields.Char(string='N de distibución')
     nspliceclosure = fields.Char(string='N de manga')
-    olt = fields.Char(string="OLT")
-    pon = fields.Char(string='Pon')
-    odf = fields.Char(string='Odf')
+ #   olt = fields.Char(string="OLT")
+ #   pon = fields.Char(string='Pon')
+#    odf = fields.Char(string='Odf')
     note = fields.Char(string='Notas')
 
 

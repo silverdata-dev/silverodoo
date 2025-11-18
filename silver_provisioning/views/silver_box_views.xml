@@ -13,7 +13,7 @@
                     </button>
                 </xpath-->
 
-  <xpath expr="//notebook/page[1]" position="before">
+  <xpath expr="//notebook" position="inside">
                       <page string="Contratos">
                    <field name="contract_ids"/>
                       </page>

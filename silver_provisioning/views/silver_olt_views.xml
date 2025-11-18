@@ -29,7 +29,7 @@
 
 </xpath>
 <xpath expr="//field[@name='ip_address_ids']//tree" position="attributes">
-    <attribute name="default_order">contract_id asc, ip_int asc</attribute>
+    <attribute name="default_order">contract_id asc, public asc,ip_int asc</attribute>
 </xpath>
 
 

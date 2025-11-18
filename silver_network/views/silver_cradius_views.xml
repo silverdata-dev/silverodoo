@@ -135,7 +135,7 @@
                                 </group>
                             </page>
 
-                    <page string="Usuarios">
+                    <page string="Usuarios" invisible="is_radius==False">
                         <button name="action_pull_users_from_mikrotik" type="object"
                                     string="Pull Users from MikroTik" class="oe_highlight"/>
 

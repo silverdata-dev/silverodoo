@@ -163,7 +163,7 @@
                                       <tree colspan="2" >
                                     <field name="cidr"/>
                                            <field name="ip_int" column_invisible="1"/>
-                            <field name="line_id"/>
+                            <field name="pool_id"/>
                             <field name="olt_port_id"/>
                             <field name="olt_id" column_invisible="1"/>
 
@@ -180,6 +180,7 @@
 
                                         <field name="tcont"/>
                                         <field name="gemport"/>
+                                        <field name="vlan_ids" widget="many2many_tags"/>
 
                                         <field name="g_name_service"/>
 
@@ -317,6 +318,10 @@
                                 </div>
                                 </group-->
 
+                            </page>
+
+                            <page string="ONU Profiles">
+                                <field name="onu_profile_ids"/>
                             </page>
 
 

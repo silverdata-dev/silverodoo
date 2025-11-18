@@ -54,12 +54,15 @@
                         </div>
                         <group>
                             <group string="Datos">
-                                <field name="port_splitter_secondary" />
+                                <field name="port_splitter_secondary" invisible="1"/>
                                 <field name="splitter_id" readonly="1" on_change="1" can_create="true" can_write="true"
-                                       modifiers="{&quot;readonly&quot;: true}"/>
-                                <field name="node_id" can_create="true" can_write="true"
-                                       />
+                                       modifiers="{&quot;readonly&quot;: true}"  invisible="1"/>
                                 <field name="silver_address_id" />
+                                <field name="node_id"  required="1"/>
+                                <field name="core_id" required="1"/>
+                                <field name="olt_id" required="1"/>
+                                <field name="olt_port_id" required="1"/>
+
                             </group>
                             <group string="Capacidad NAP">
                                 <field name="capacity_nap" />
@@ -104,10 +107,10 @@
                         </group>
 
                         <notebook>
-                            <page string="Series Onu" colspan="4">
+                            <!--page string="Series Onu" colspan="4">
                                 <field name="onu_ids_silver" nolabel="1" >
                                 </field>
-                            </page>
+                            </page-->
                         </notebook>
                     </sheet>
                     <div class="o_attachment_preview"/>

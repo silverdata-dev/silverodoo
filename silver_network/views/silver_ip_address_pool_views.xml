@@ -16,10 +16,9 @@
                     <field name="name"/>
                     <field name="network"/>
                     <field name="nmask"/>
-                    <field name="gateway"/>
 
 
-                    <field name="is_tr_069"/>
+                    <field name="public"/>
 
                      <field name="total_ips"/>
                             <field name="used_ips"/>
@@ -40,20 +39,34 @@
                 </header>
                     <sheet>
                         <group>
-                                 <group>
+                                 <group string="Información básica">
+
                             <field name="name"/>
                                                 <field name="network" widget="ip_address"/>
                     <field name="nmask"/>
                                      <field name="mask" readonly="True"/>
-                    <field name="gateway" widget="ip_address"/>
 
-                            <field name="is_tr_069"/>
+
+                                      <field name="public"/>
+
                                           </group>
-                            <group>
+                            <group string="Usadas">
                                  <field name="total_ips"/>
                             <field name="used_ips"/>
                             <field name="usage_percentage" widget="progressbar"/>
                             </group>
+
+                            <group string="Relación">
+                                <field name="core_id" invisible="public"/>
+                                <field name="olt_id"  invisible="public"/>
+                                <field name="olt_port_id" domain="[('olt_id', '=', olt_id)]"  invisible="public"/>
+                                <field name="zone_ids" invisible="not public"  widget="many2many_tags"/>
+                                <field name="node_ids" invisible="not public"  widget="many2many_tags"/>
+                                <field name="core_ids" invisible="not public"  widget="many2many_tags"/>
+
+                            </group>
+
+
                         </group>
                         <notebook>
                              <page string="IPs">

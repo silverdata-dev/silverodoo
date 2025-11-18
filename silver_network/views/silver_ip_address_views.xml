@@ -5,13 +5,14 @@
         <field name="name">silver.ip.address.tree</field>
         <field name="model">silver.ip.address</field>
         <field name="arch" type="xml">
-            <tree string="IP Ranges">
+            <tree string="Direcciones IP" default_order="public asc, ip_int asc">
                 <field name="name"/>
                 <field name="cidr"/>
+                <field name="pool_id"/><field name="public"/>
 
 
                                             <field name="ip_int" column_invisible="1"/>
-                <field name="line_id"/>
+
                 <field name="core_id"/>
                 <field name="olt_id"/>
                 <field name="olt_port_id"/>
@@ -25,7 +26,7 @@
         <field name="name">silver.ip.address.form</field>
         <field name="model">silver.ip.address</field>
         <field name="arch" type="xml">
-            <form string="IP Range">
+            <form string="Dirección IP">
 
                 <sheet>
                     <div class="oe_title">
@@ -35,7 +36,7 @@
 
                                             <field name="ip_int" column_invisible="1"/>
                             <field name="cidr"/>
-                            <field name="line_id"/>
+                            <field name="pool_id"/>
                 <field name="core_id"/>
                 <field name="olt_id"/>
                 <field name="olt_port_id"/>
@@ -48,10 +49,32 @@
         </field>
     </record>
 
+
+
+
+        <record id="silver_ip_address_search" model="ir.ui.view">
+            <field name="name">silver.ip.address.search</field>
+             <field name="model">silver.ip.address</field>
+            <field name="arch" type="xml">
+                <search string="Direcciones Ip">
+                    <field name="name" string="Dirección"/>
+                    <field name="pool_id"/>
+ <filter name="group_by_pool_id" string="Pool"  context="{'group_by':'pool_id'}"/>
+
+
+                </search>
+            </field>
+        </record>
+
+
+
+
     <record id="silver_ip_address_action" model="ir.actions.act_window">
-        <field name="name">IP Ranges</field>
+        <field name="name">Direcciones IP</field>
         <field name="res_model">silver.ip.address</field>
         <field name="view_mode">tree,form</field>
+        <field name="context">{'group_by': 'pool_id'}</field>
     </record>
+
 
 </odoo>

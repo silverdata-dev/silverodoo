@@ -2,3 +2,5 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_product_ip_address_line_user,product.ip.address.line.user,model_product_ip_address_line,base.group_user,1,1,1,1
 access_product_ip_address_user,product.ip.address.user,model_product_ip_address,base.group_user,1,1,1,1
 access_product_brand_user,product.brand.user,model_product_brand,base.group_user,1,1,1,1
+
+access_silver_onu_profile_networks,access.silver.onu.profile,model_silver_onu_profile,base.group_user,1,1,1,1

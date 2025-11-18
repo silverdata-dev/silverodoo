@@ -1,0 +1,4 @@
+set sftp:auto-confirm yes
+set sftp:connect-program "ssh -a -x -i ~/odooprueba"
+mirror -Rne  --exclude-glob .git/ --exclude-glob recuro/ --exclude-glob om/ --exclude-glob odoo-venezuela/  . /var/lib/odoo/silverodoo
+quit

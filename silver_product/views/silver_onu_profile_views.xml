@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_silver_onu_profile_tree" model="ir.ui.view">
+            <field name="name">silver.onu.profile.tree</field>
+            <field name="model">silver.onu.profile</field>
+            <field name="arch" type="xml">
+                <tree string="ONU Profiles">
+                    <field name="name"/>
+                    <field name="onu_model"/>
+                    <field name="firmware_version"/>
+                    <field name="provisioning_status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_silver_onu_profile_form" model="ir.ui.view">
+            <field name="name">silver.onu.profile.form</field>
+            <field name="model">silver.onu.profile</field>
+            <field name="arch" type="xml">
+                <form string="ONU Profile">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="onu_model"/>
+                                <field name="firmware_version"/>
+                                <field name="provisioning_status"/>
+                            </group>
+                            <group string="Configuración">
+                                <field name="tcont_num"/>
+                                <field name="gemport_num"/>
+                                <field name="port_num_eth"/>
+                                <field name="pots"/>
+                                <field name="iphost"/>
+                                <field name="ipv6host"/>
+                                <field name="veip"/>
+                            </group>
+                        </group>
+                        <group string="Service Abilities">
+                            <field name="service_ability_n_1"/>
+                            <field name="service_ability_1_p"/>
+                            <field name="service_ability_1_m"/>
+                        </group>
+                    <notebook>
+                        <page string="OLTs">
+                            <field name="olt_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="ip"/>
+                                    <field name="state" widget="badge"
+                                           decoration-success="state in ['active', 'connected']"
+                                           decoration-warning="state in ('suspended', 'disabled')"
+                                           decoration-danger="state in ['removed', 'down']"/>
+                                    <button name="check_profile_on_olt" type="object" string="Check Profile" icon="fa-question-circle"/>
+                                    <button name="add_profile_to_olt" type="object" string="Add Profile to OLT" icon="fa-plus-square" class="oe_highlight"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="action_silver_onu_profile" model="ir.actions.act_window">
+            <field name="name">ONU Profiles</field>
+            <field name="res_model">silver.onu.profile</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

@@ -5,8 +5,8 @@
         <field name="model">silver.ip.address</field>
         <field name="inherit_id" ref="silver_network.silver_ip_address_view_tree"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='line_id']" position="after">
-                <field name="contract_id"/>
+            <xpath expr="//field[@name='pool_id']" position="after">
+                <field name="contract_id" />
             </xpath>
         </field>
     </record>
@@ -16,9 +16,25 @@
         <field name="model">silver.ip.address</field>
         <field name="inherit_id" ref="silver_network.silver_ip_address_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='line_id']" position="after">
-                <field name="contract_id"/>
+            <xpath expr="//field[@name='pool_id']" position="after">
+                <field name="contract_id" widget="button" action="action_view_contract"/>
             </xpath>
         </field>
     </record>
+
+    <record id="view_silver_ip_address_pool_form_inherit" model="ir.ui.view">
+              <field name="name">silver.ip.address.pool.form.inherit</field>
+            <field name="model">silver.ip.address.pool</field>
+     <field name="inherit_id" ref="silver_network.view_silver_ip_address_pool_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='address_ids']//field[@name='used']" position="replace">
+                    <field name="contract_id" widget="button" action="action_view_contract"/>
+                </xpath>
+                <xpath expr="//field[@name='address_ids']/tree" position="attributes">
+                    <attribute name="default_order">contract_id asc, public asc,ip_int asc</attribute>
+                </xpath>
+            </field>
+    </record>
+
+
 </odoo>

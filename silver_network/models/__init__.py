@@ -1,5 +1,7 @@
 from . import silver_asset
 from . import silver_netdev
+from . import silver_ip
+from . import silver_vlan
 from . import silver_node
 from . import silver_core
 from . import silver_olt
