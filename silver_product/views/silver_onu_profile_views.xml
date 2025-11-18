@@ -7,7 +7,7 @@
             <field name="arch" type="xml">
                 <tree string="ONU Profiles">
                     <field name="name"/>
-                    <field name="onu_model"/>
+                    <field name="hardware_model_ids" widget="many2many_tags"/>
                     <field name="firmware_version"/>
                     <field name="provisioning_status"/>
                 </tree>
@@ -24,11 +24,12 @@
                             <group>
                                 <field name="name"/>
                                 <field name="description"/>
-                                <field name="onu_model"/>
                                 <field name="firmware_version"/>
                                 <field name="provisioning_status"/>
+                                 <field name="hardware_model_ids" widget="many2many_tags"/>
+
                             </group>
-                            <group string="Configuración">
+                            <group string="Configuration">
                                 <field name="tcont_num"/>
                                 <field name="gemport_num"/>
                                 <field name="port_num_eth"/>
@@ -44,22 +45,20 @@
                             <field name="service_ability_1_m"/>
                         </group>
                     <notebook>
+
                         <page string="OLTs">
                             <field name="olt_ids">
                                 <tree>
                                     <field name="name"/>
                                     <field name="ip"/>
-                                    <field name="state" widget="badge"
-                                           decoration-success="state in ['active', 'connected']"
-                                           decoration-warning="state in ('suspended', 'disabled')"
-                                           decoration-danger="state in ['removed', 'down']"/>
+                                    <field name="state" widget="badge" decoration-success="state in ['active', 'connected']" decoration-warning="state in ('suspended', 'disabled')" decoration-danger="state in ['removed', 'down']"/>
                                     <button name="check_profile_on_olt" type="object" string="Check Profile" icon="fa-question-circle"/>
                                     <button name="add_profile_to_olt" type="object" string="Add Profile to OLT" icon="fa-plus-square" class="oe_highlight"/>
                                 </tree>
                             </field>
                         </page>
-                    </notebook>                    </sheet>
-
+                    </notebook>
+                    </sheet>
                 </form>
             </field>
         </record>

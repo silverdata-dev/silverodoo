@@ -18,8 +18,8 @@
                         <field name="applied_accounting_cost" widget="boolean_toggle"/>
                 </xpath>
                  <xpath expr="//field[@name='product_id']" position="after">
-                     <field name="brand_name" readonly="product_id!=False"/>
-                     <field name="model_name" readonly="product_id!=False"/>
+                     <field name="brand_id" readonly="product_id!=False"/>
+                     <field name="hardware_model_id" readonly="product_id!=False" domain="[('brand_id', '=', brand_id)]"/>
                      <field name="software_version" readonly="product_id!=False"/>
                      <field name="firmware_version" readonly="product_id!=False"/>
                      <field name="mac_address"/>

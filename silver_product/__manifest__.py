@@ -15,6 +15,7 @@
         'views/silver_ap_views.xml',
         'views/silver_olt_views.xml',
         'views/silver_onu_profile_views.xml',
+        'views/silver_hardware_model_views.xml',
     #    'views/silver_olt_card_port_views.xml',
 #        'views/silver_radius_views.xml',
         'views/product_brand_views.xml',

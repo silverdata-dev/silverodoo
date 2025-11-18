@@ -90,10 +90,17 @@ class SilverOlt(models.Model):
                 if not line.strip() or '------' in line: continue
                 parts = {h: line[start:end].strip() for h, (start, end) in slices.items()}
                 if parts.get('OltIndex') and parts.get('SN'):
+                    Model = self.env['silver.hardware.model'];
+                    model = Model.search(['name', '=', parts.get('Model', '')])
+                    if (not model) or (not len(model)):
+                        model = Model.create({'name': parts.get('Model', '')})
+
                     onu_vals_list.append({
                         'olt_index': parts.get('OltIndex', ''), 'serial_number': parts.get('SN', ''),
                         'password': parts.get('PW', ''), 'loid': parts.get('LOID', ''),
-                        'model_name': parts.get('Model', ''), 'version': parts.get('Ver', ''),
+                        'model_id': model,
+                       # 'model_name': parts.get('Model', ''),
+                        'version': parts.get('Ver', ''),
                         'loid_password': parts.get('LOIDPW', ''),
                     })
 
@@ -367,7 +374,7 @@ class SilverOlt(models.Model):
         pon_port = f"{contract.olt_card_id.num_card or contract.olt_port_id.olt_card_id.num_card}/{contract.olt_port_id.num_port}"
         onu_id = contract.onu_pon_id
         serial_number = contract.serial_number
-        profile_name = contract.model_name
+        profile_name = contract.hardware_model_id.onu_profile_id.name
         tcont = self.tcont
         dba_profile = self.profile_dba_internet
         gemport = self.gemport

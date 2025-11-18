@@ -19,7 +19,7 @@ class SilverOnuProfile(models.Model):
     service_ability_n_1 = fields.Boolean(string='Service Ability N:1')
     service_ability_1_p = fields.Boolean(string='Service Ability 1:P')
     service_ability_1_m = fields.Boolean(string='Service Ability 1:M')
-    onu_model = fields.Char(string='ONU Model')
+    hardware_model_ids = fields.One2many('silver.hardware.model', 'onu_profile_id', string='Hardware Models')
     firmware_version = fields.Char(string='Firmware Version')
     provisioning_status = fields.Selection([
         ('provisioned', 'Provisioned'),

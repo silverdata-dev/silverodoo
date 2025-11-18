@@ -8,8 +8,9 @@
             <field name="arch" type="xml">
                 <xpath expr="//group[@name='radius']/group[1]" position="inside">
                     <field name="stock_lot_id"/>
-                    <field name="brand_name"/>
-                    <field name="model_name"/>
+                    <field name="brand_id"/>
+                    <field name="hardware_model_id"/>
+
                     <field name="software_version"/>
                    <field name="firmware_version"/>
                     <!--field name="serial_number"/-->

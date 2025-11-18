@@ -127,7 +127,8 @@ class IspContract(models.Model):
             self.update({
                 'temp_onu_serial_display': False,
                 'serial_number': False,
-                'model_name': False,
+                'hardware_model_id': False,
+                #'model_name': False,
                 'stock_lot_id': False,
                 'olt_card_id': False,
                 'olt_port_id': False,
@@ -146,16 +147,23 @@ class IspContract(models.Model):
         StockLot = self.env['stock.lot']
         OltCard = self.env['silver.olt.card']
         OltPort = self.env['silver.olt.card.port']
+        Model = self.env['silver.hardware.model']
 
         serial_number = discovered_onu.serial_number
         olt_index = discovered_onu.olt_index
 
         # --- Buscar o crear Lote/Serial ---
         lot = StockLot.search([('name', '=', serial_number)], limit=1)
+        model = Model.search(['name', '=', discovered_onu.model_name])
+        if (not model) or (not len(model)):
+            model = Model.create({ 'name': discovered_onu.model_name})
+
         if not lot:
             lot = StockLot.create({
                 'name': serial_number,
-                'model_name': discovered_onu.model_name,
+                'hardware_model_id': model,
+                'brand_id': model.brand_id,
+               # 'model_name': discovered_onu.model_name,
                 'product_id': None,
                 'external_equipment': True,
                 'software_version': discovered_onu.version,
@@ -201,7 +209,8 @@ class IspContract(models.Model):
             'discovered_onu_id' : discovered_onu,
             'temp_onu_serial_display': serial_number,
             'serial_number': serial_number,
-            'model_name': discovered_onu.model_name,
+            'hardware_model_id': model,
+            #'model_name': discovered_onu.model_name,
             'stock_lot_id': lot.id,
             'olt_card_id': card.id if card else False,
             'olt_port_id': port.id if port else False,
@@ -294,8 +303,12 @@ class IspContract(models.Model):
         readonly=False,
         store=False,
     )
-    brand_name = fields.Char(string='Marca ONU', related='stock_lot_id.brand_name', readonly=True, store=False)
-    model_name = fields.Char(string='Modelo ONU', related='stock_lot_id.model_name', readonly=True, store=False)
+    #brand_name = fields.Char(string='Marca ONU', related='stock_lot_id.brand_name', readonly=True, store=False)
+    #model_name = fields.Char(string='Modelo ONU', related='stock_lot_id.model_name', readonly=True, store=False)
+    brand_id = fields.Many2one('product.brand', string="Marca", related='stock_lot_id.brand_id', readonly=True, store=True)
+    hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo', related='stock_lot_id.hardware_model_id', readonly=True, store=True)
+
+    profile_name = fields.Char(string='Perfil ONU', related='stock_lot_id.hardware_model_id.onu_profile_id.name', readonly=True, store=False)
     software_version = fields.Char(string='Versión de Software ONU', related='stock_lot_id.software_version', readonly=True, store=False)
 
     firmware_version = fields.Char(string='Firmware Version ONU', related='stock_lot_id.firmware_version', readonly=True, store=False)

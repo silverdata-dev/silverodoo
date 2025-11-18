@@ -14,7 +14,7 @@ class ProductTemplate(models.Model):
     # General
     recurring_invoices_ok = fields.Boolean(string="Para facturación recurrente?")
     product_brand_id = fields.Many2one('product.brand', string='Marca')
-    model = fields.Char(string='Modelo')
+    hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo')
 
     service_type_id = fields.Many2one('silver.service.type', string= "Tipo de Servicio", default=lambda self: self._default_service_type())
 

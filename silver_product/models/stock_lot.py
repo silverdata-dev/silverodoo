@@ -11,10 +11,12 @@ class StockLot(models.Model):
     software_version  = fields.Char(string='Versión software')
     firmware_version = fields.Char(string='Firmware Version', readonly=False)
 
-    brand_name = fields.Char(string='Marca',  store=True)
-    model_name = fields.Char(string='Modelo',  store=True)
+    brand_id = fields.Many2one('product.brand', string="Marca")
+    #brand_name = fields.Char(string='Marca',  store=True)
+    #model_name = fields.Char(string='Modelo',  store=True)
     mac_address = fields.Char(string='MAC Address', store=True)
-    onu_profile_id = fields.Many2one('silver.onu.profile', string='ONU Profile')
+    hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo')
+    #onu_profile_id = fields.Many2one('silver.onu.profile', string='ONU Profile')
 
 
 
@@ -28,8 +30,10 @@ class StockLot(models.Model):
     # Asumimos que product.product tiene campos 'brand_name' y 'model_name'
     def _onchange_product_id(self):
         if self.product_id:
-            self.brand_name = self.product_id.brand_name
-            self.model_name = self.product_id.model_name
+            self.brand_id = self.product_id.brand_id
+            self.hardware_model_id = self.product_id.hardware_model_id
+            #self.brand_name = self.product_id.brand_name
+            #self.model_name = self.product_id.model_name
         else:
             self.brand_name = False
             self.model_name = False

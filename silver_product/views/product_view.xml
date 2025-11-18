@@ -79,7 +79,7 @@
                 <!-- 6. Add custom fields to Standard Price group -->
                 <xpath expr="//page[@name='general_information']//group[@name='group_standard_price']" position="inside">
                     <field name="product_brand_id" required="is_required_brand == True" placeholder="Marca"/>
-                    <field name="model"/>
+                    <field name="hardware_model_id"/>
                     <field name="is_required_brand" invisible="1"/>
                     <field name="number_list_partner"/>
                     <field name="allow_negative_stock" invisible="type != 'product'"/>

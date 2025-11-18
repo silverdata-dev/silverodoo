@@ -24,7 +24,10 @@ class SilverOltDiscoveredOnu(models.Model):
     serial_number = fields.Char(string='Serial (SN)', readonly=True, index=True)
     password = fields.Char(string='Password (PW)', readonly=True)
     loid = fields.Char(string='LOID', readonly=True)
-    model_name = fields.Char(string='Modelo', readonly=True)
+    #model_name = fields.Char(string='Modelo', readonly=True)
+    #brand_id = fields.Many2one('product.brand', string="Marca", related='stock_lot_id.brand_id', readonly=True, store=True)
+    hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo',)
+
     version = fields.Char(string='Versión', readonly=True)
     loid_password = fields.Char(string='LOID Password', readonly=True)
 
@@ -42,10 +45,10 @@ class SilverOltDiscoveredOnu(models.Model):
         help="Contrato al que esta ONU ha sido asignada."
     )
 
-    @api.depends('olt_index', 'serial_number', 'model_name')
+    @api.depends('olt_index', 'serial_number', 'hardware_model_id')
     def _compute_display_name(self):
         for record in self:
-            record.name = f"[{record.olt_index or ''}] SN: {record.serial_number or ''} Modelo: {record.model_name or ''}"
+            record.name = f"[{record.olt_index or ''}] SN: {record.serial_number or ''} Modelo: {record.hardware_model_id.name or ''}"
 
     _sql_constraints = [
         ('olt_index_uniq', 'unique (olt_id, olt_index)',
