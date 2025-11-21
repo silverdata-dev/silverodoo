@@ -250,6 +250,34 @@ class SilverIpAddressLine(models.Model):
             record.used_ips = used
             record.usage_percentage = (used / total * 100) if total > 0 else 0.0
 
+    @api.constrains('network', 'nmask')
+    def _check_ip_pool_overlap(self):
+        for record in self:
+            if not record.network or not record.nmask:
+                continue
+            
+            try:
+                new_network = ipaddress.ip_network(f"{record.network}/{record.nmask}", strict=False)
+            except ValueError:
+                continue
+
+            # Buscar otros pools para comparar.
+            # Nota: Si hay miles de pools, esto podría optimizarse, pero para configuraciones típicas es rápido.
+            domain = [('id', '!=', record.id)]
+            other_pools = self.search(domain)
+            
+            for pool in other_pools:
+                if not pool.network or not pool.nmask:
+                    continue
+                try:
+                    existing_network = ipaddress.ip_network(f"{pool.network}/{pool.nmask}", strict=False)
+                    if new_network.overlaps(existing_network):
+                        raise ValidationError(_(
+                            "El rango de red %s se superpone con el pool existente '%s' (%s)."
+                        ) % (new_network, pool.name, existing_network))
+                except ValueError:
+                    continue
+
     def action_generate_ips(self):
         print(("generate ips"))
         for record in self:
@@ -293,7 +321,7 @@ class SilverIpAddressLine(models.Model):
         return True
 
     _sql_constraints = [
-        ('ip_range_uniq', 'unique (name, address_id)', 'This IP already exists in this range!')
+        ('network_nmask_uniq', 'unique (network, nmask)', 'Ya existe un pool con esta red y máscara.')
     ]
 
     @api.depends('name')

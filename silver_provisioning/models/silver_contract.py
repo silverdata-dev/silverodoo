@@ -917,6 +917,13 @@ class IspContract(models.Model):
 
 
 
+    def action_contract_reset_onu(self):
+        self.ensure_one()
+        if self.link_type == 'fiber' and self.olt_id:
+            self.olt_id.reset_onu(self)
+            return True
+        raise UserError("Función no implementada para este tipo de conexión.")
+
     def action_contract_reboot_onu(self):
         self.ensure_one()
         if self.link_type == 'fiber' and self.olt_id:

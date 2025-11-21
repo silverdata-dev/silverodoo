@@ -219,7 +219,10 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
 
                                              </group>
                                          <group>
-             <button name="action_contract_reboot_onu" type="object" class="oe_stat_button" icon="fa-refresh" string="Reiniciar ONU"  invisible="(state not in ['open', 'active']) or ( state_service not in ['active', 'suspended']) "/> />
+                                              <div>
+             <button name="action_contract_reboot_onu" type="object" class="oe_stat_button" icon="fa-refresh" string="Reiniciar"  invisible="(state not in ['open', 'active']) or ( state_service not in ['active', 'suspended']) "/>
+             <button name="action_contract_reset_onu" type="object" class="oe_stat_button" icon="fa-undo" string="Resetear"  invisible="(state not in ['open', 'active']) or ( state_service not in ['terminated', 'suspended']) "/>
+                                             </div>
 </group>
                             </group>
 

@@ -772,6 +772,11 @@ class SilverOlt(models.Model):
         return self._execute_with_logging(contract, commands, "Registro de Reinicio de ONU")
 
 
+    def reset_onu(self, contract):
+        """Reinicia la ONU."""
+        commands = [f"onu {contract.onu_pon_id} pri factory_reset"]
+        return self._execute_with_logging(contract, commands, "Registro de Reinicio de ONU")
+
     def terminate_onu(self, contract):
         """Termina la ONU."""
         commands = [f"no onu {contract.onu_pon_id}"]
