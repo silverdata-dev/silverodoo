@@ -40,3 +40,8 @@
 .status-default {
     background-color: #6B7280; /* Gris */
 }
+
+
+div:has(>div[name=discovered_onu_id]) {
+    width: 100% !important;
+}

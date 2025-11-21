@@ -349,6 +349,7 @@ class SilverRadius(models.Model):
                 # Aplicar los atributos al usuario usando su ID
                 user_path.update(**{
                     '.id': user_id,
+                    'group': 'Cliente',
                     'attributes': attribute_str
                 })
                 message += "Atributos RADIUS aplicados."

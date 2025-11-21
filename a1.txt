@@ -1,0 +1,23 @@
+onu add 1 profile vsol-v2802dac sn VSOL00EF6E6F
+onu 1 desc CT-00056-V-12345678-Luis_mora
+onu 1 tcont 1 dba max-band
+onu 1 gemport 1 tcont 1
+onu 1 service Internet gemport 1 vlan 9
+onu 1 service-port 6 gemport 1 uservlan 9 vlan 9
+onu 1 portvlan veip 1 mode tag vlan 9
+onu 1 pri equid VSOLV222
+onu 1 pri wan_adv add route
+onu 1 pri wan_adv index 1 route mode internet mtu 1492
+onu 1 pri wan_adv index 1 route both pppoe proxy disable user 00056 pwd V-12345678 mode auto nat enable slaac enable
+onu 1 pri wan_adv index 1 route both client_address disable client_prifix enable
+onu 1 pri wan_adv index 1 vlan tag wan_vlan 9 0
+onu 1 pri wan_adv index 1 bind lan1 ssid1 ssid5
+onu 1 pri wifi_ssid 1 name Luis hide disable auth_mode wpapsk/wpa2psk encrypt_type tkipaes shared_key 12345678 rekey_interval 0
+onu 1 pri wifi_ssid 2 disable name FTTH-1111
+onu 1 pri wifi_ssid 3 disable name FTTH-2222
+onu 1 pri wifi_ssid 4 disable name FTTH-3333
+onu 1 pri wifi_ssid 5 name Luis-5G hide disable auth_mode wpapsk/wpa2psk encrypt_type tkipaes shared_key 12345678 rekey_interval 0
+onu 1 pri wifi_ssid 6 disable name AP-1
+onu 1 pri wifi_ssid 7 disable name AP-2
+onu 1 pri wifi_ssid 8 disable name AP-3
+onu 1 pri username admin_control enable admin False user_control disable

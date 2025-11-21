@@ -78,7 +78,7 @@ class SilverIpAddressLine(models.Model):
     _name = 'silver.ip.address.pool'
     #_table = 'isp_ip_address_pool'
     _description = 'Silver IP Address Line'
-    _order = 'public asc,ip_int asc'
+    _order = 'public asc, olt_port_id desc, olt_id asc, ip_int asc'
 
     name = fields.Char(string='Alias', required=False)
 

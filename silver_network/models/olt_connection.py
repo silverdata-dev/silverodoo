@@ -178,10 +178,12 @@ class OLTConnection:
 
             # Determinar éxito o fallo
 
+            if command == 'exit':
+                return True, full_output, clean_response
 
             # 3. Comprobar si la respuesta contiene un indicador de exito explicito.
             if any(indicator in clean_response.lower() for indicator in success_indicators):
-                #print("si")
+                print("si")
                 return True, full_output, clean_response
 
             # 1. Comprobar si la respuesta limpia contiene algun indicador de error.
@@ -202,6 +204,9 @@ class OLTConnection:
             return success, full_output, clean_response
 
         except Exception as e:
+            if command == 'exit':
+                return True, "", ""
+
             _logger.error(f"Fallo al ejecutar el comando '{command}' en {self.host}: {e}")
             # Devolvemos el error y una salida vacia
             return False, str(e), ""

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
+import re
 import math
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 import logging
 from librouteros.query import Key
 
@@ -33,11 +34,27 @@ class IspContract(models.Model):
 
     netdev_id = fields.Many2one('silver.netdev', required=True, ondelete="cascade")
 
+   # @api.constrains('ip_address_id')
+    def _check_conditional_logic(self):
+        for record in self:
+            # Check the condition
+
+            if record.ip_address_id : #and record.state_service == 'active':
+                p = self.search([('ip_address_id', '=', record.ip_address_id.id), ('id', '!=', record.id), ('state_service', '=', 'active')])
+                # Apply the constraint only if the condition is True
+                print(("cond ip", p))
+                if p and len(p):
+                    raise ValidationError("La IP ya está ocupada")
 
     _sql_constraints = [
         ('ip_address_id_unique',
          'UNIQUE (ip_address_id)',
-         'Esta ip está siendo utilizada.')
+         'Esta ip está siendo utilizada.'),
+            (
+            "pononu_unique",
+            "unique (onupon)",
+            "ONU ocupada",
+        )
     ]
 
 
@@ -68,15 +85,18 @@ class IspContract(models.Model):
 #    serial_onu = fields.Char(string="Serial ONU", related="serial_number")
 #    model_onu = fields.Char(string="Modelo ONU", related="serial_number"))
     is_bridge = fields.Boolean(string="ONU en modo Bridge")
-    ip_address_id = fields.Many2one('silver.ip.address', string="IP Principal", domain="['id', 'in', ip_address_ids)]" )
+
+    onupon = fields.Char(string='onupon', compute="_computonupon",store=True)
+
+    ip_address_id = fields.Many2one('silver.ip.address', string="Dirección IP",)# domain="['id', 'in', ip_address_ids)]" )
     ip_address_ids = fields.One2many('silver.ip.address', 'contract_id',  string="Direcciones IPs",
                                     domain="['|', ('contract_id', '=', False), ('contract_id', '=', id)]")
     ip_address_count = fields.Integer(string="Cantidad de IPs", compute="_compute_ip_address_count", store=True)
 
-    @api.depends('ip_address_ids')
-    def _compute_ip_address_count(self):
-        for rec in self:
-            rec.ip_address_count = len(rec.ip_address_ids)
+    ppp_active = fields.Many2one('silver.netdev.ppp.active.wizard.line', string="PPP Active line")
+
+
+
     pppoe_user = fields.Char(string="Usuario PPPoE")
     pppoe_password = fields.Char(string="Contraseña PPPoE")
 
@@ -102,6 +122,8 @@ class IspContract(models.Model):
                               ('disconnected', 'Disconnected')],
                              string='Estado Core', default='down')
 
+    wan_state = fields.Selection([('connected', 'Conectado'), ('disconnected', 'Desconectado'), ('none', '')], string="Estado WAN", default='none')
+
     changed_onu = fields.Boolean(string="ONU Cambiada", default=False)
     old_onu_pon_id = fields.Integer(string="ONU id vieja", default=0)
 
@@ -113,27 +135,44 @@ class IspContract(models.Model):
 
     temp_onu_serial_display = fields.Char(string="Serial ONU Seleccionado", readonly=True)
 
+    @api.onchange('ip_address_id')
+    def _onchange_ip_address_id(self):
+        if self._origin.ip_address_id and (self._origin.ip_address_id.contract_id.id == self.id):
+            self._origin.ip_address_id.contract_id = None
+        self.ip_address_id.contract_id = self.id
+
+    @api.depends('olt_port_id', 'onu_pon_id', 'state')
+    def _computonupon(self):
+        for r in self:
+            r.onupon =  f"{r.olt_port_id,r.onu_pon_id}" if r.state in ['active', 'open'] else None
+
+    @api.depends('ip_address_ids')
+    def _compute_ip_address_count(self):
+        for rec in self:
+            rec.ip_address_count = len(rec.ip_address_ids)
+
     @api.onchange('discovered_onu_id')
     def _onchange_discovered_onu_id(self):
         """
         Al seleccionar una ONU descubierta, llama al método centralizado para obtener
         los valores y actualiza el formulario.
         """
-        if self.discovered_onu_id:
-            vals = self._prepare_contract_values_from_onu(self.discovered_onu_id)
-            self.update(vals)
-        else:
-            # Opcional: limpiar los campos si se deselecciona la ONU
-            self.update({
-                'temp_onu_serial_display': False,
-                'serial_number': False,
-                'hardware_model_id': False,
-                #'model_name': False,
-                'stock_lot_id': False,
-                'olt_card_id': False,
-                'olt_port_id': False,
-                'onu_pon_id': False,
-            })
+        for s in self:
+            if s.discovered_onu_id:
+                vals = s._prepare_contract_values_from_onu(s.discovered_onu_id)
+                s.update(vals)
+            else:
+                # Opcional: limpiar los campos si se deselecciona la ONU
+                s.update({
+                    'temp_onu_serial_display': False,
+                    'serial_number': False,
+                    'hardware_model_id': False,
+                    #'model_name': False,
+                    'stock_lot_id': False,
+                    'olt_card_id': False,
+                    'olt_port_id': False,
+                    'onu_pon_id': False,
+                })
 
     def _prepare_contract_values_from_onu(self, discovered_onu):
         """
@@ -154,15 +193,17 @@ class IspContract(models.Model):
 
         # --- Buscar o crear Lote/Serial ---
         lot = StockLot.search([('name', '=', serial_number)], limit=1)
-        model = Model.search(['name', '=', discovered_onu.model_name])
-        if (not model) or (not len(model)):
-            model = Model.create({ 'name': discovered_onu.model_name})
+        #model = Model.search([('name', '=', discovered_onu.model)], limit=1)
+        #if (not model) or (not len(model)):
+        #    model = Model.create({ 'name': discovered_onu.model})
+
+        print(("es modelo", discovered_onu.hardware_model_id))
 
         if not lot:
             lot = StockLot.create({
                 'name': serial_number,
-                'hardware_model_id': model,
-                'brand_id': model.brand_id,
+                'hardware_model_id': discovered_onu.hardware_model_id.id,
+                'brand_id': discovered_onu.hardware_model_id.brand_id.id,
                # 'model_name': discovered_onu.model_name,
                 'product_id': None,
                 'external_equipment': True,
@@ -175,7 +216,7 @@ class IspContract(models.Model):
         # --- Parsear olt_index y buscar/crear Tarjeta y Puerto ---
         card = None
         port = None
-        onu_pon_id = None
+        #onu_pon_id = None
         if olt_index and 'GPON' in olt_index and self.olt_id:
             try:
                 clean_index = olt_index.replace('GPON', '')
@@ -209,7 +250,7 @@ class IspContract(models.Model):
             'discovered_onu_id' : discovered_onu,
             'temp_onu_serial_display': serial_number,
             'serial_number': serial_number,
-            'hardware_model_id': model,
+            'hardware_model_id': discovered_onu.hardware_model_id,
             #'model_name': discovered_onu.model_name,
             'stock_lot_id': lot.id,
             'olt_card_id': card.id if card else False,
@@ -264,12 +305,12 @@ class IspContract(models.Model):
                 default_lines = [
                     (0, 0, {
                         'ssid_index': 1,
-                        'name': a.partner_id.name.split(" ")[0],
+                        'name': a.partner_id.name.split(" ")[0]+'-5G',
                         'password': max(a.partner_id.vat.split("-"), key=len),
                     }),
                     (0, 0, {
                         'ssid_index': 5,
-                        'name': a.partner_id.name.split(" ")[0]+'-5G',
+                        'name': a.partner_id.name.split(" ")[0],
                         'password': max(a.partner_id.vat.split("-"), key=len),
                     }),
                 ]
@@ -279,13 +320,15 @@ class IspContract(models.Model):
 
 
 
-    @api.model
+
     def create(self, vals):
-        #if vals.get('name', _('Nuevo')) == _('Nuevo'):
-        #    vals['name'] = self.env['ir.sequence'].next_by_code('silver.contract.sequence')
+        new_contract = super(IspContract, self).create(vals)
+        if new_contract.discovered_onu_id:
+            new_contract.discovered_onu_id.write({'contract_id': new_contract.id})
+        if new_contract.ip_address_id:
+            new_contract.ip_address_id.write({'contract_id': new_contract.id})
 
-
-        return super(IspContract, self).create(vals)
+        return new_contract
 
     #  serial_onu = fields.Many2one('stock.production.lot', string="Serial ONU")
     pppoe = fields.Char(string="PPPoe")
@@ -308,7 +351,7 @@ class IspContract(models.Model):
     brand_id = fields.Many2one('product.brand', string="Marca", related='stock_lot_id.brand_id', readonly=True, store=True)
     hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo', related='stock_lot_id.hardware_model_id', readonly=True, store=True)
 
-    profile_name = fields.Char(string='Perfil ONU', related='stock_lot_id.hardware_model_id.onu_profile_id.name', readonly=True, store=False)
+    profile_id = fields.Many2one('silver.onu.profile', string='Perfil ONU', related='stock_lot_id.hardware_model_id.onu_profile_id', readonly=True, store=False)
     software_version = fields.Char(string='Versión de Software ONU', related='stock_lot_id.software_version', readonly=True, store=False)
 
     firmware_version = fields.Char(string='Firmware Version ONU', related='stock_lot_id.firmware_version', readonly=True, store=False)
@@ -518,9 +561,43 @@ class IspContract(models.Model):
         # Si se modifican las líneas de WiFi, reseteamos el flag de éxito.
         if 'wifi_line_ids' in vals:
             vals['wifi_config_successful'] = False
-            
-        # Primero, ejecutar el write original para guardar los cambios en la BD
+
+        # Guardar la ONU original antes de que se realice el cambio
+        old_onu_map = {rec.id: rec.discovered_onu_id for rec in self if 'discovered_onu_id' in vals}
+        old_ip_map = {rec.id: rec.ip_address_id for rec in self if 'ip_address_id' in vals}
+
         res = super(IspContract, self).write(vals)
+
+        # Después de escribir, 'self' se actualiza con los nuevos valores.
+        # Iterar a través de los contratos que fueron modificados.
+        for contract in self:
+            if contract.id in old_ip_map:
+                old_ip = old_ip_map[contract.id]
+                new_ip = contract.ip_address_id
+
+                # Desvincular la ONU antigua si es diferente de la nueva
+                if old_ip and old_ip != new_ip:
+                    old_ip.write({'contract_id': False})
+
+                # Vincular la nueva ONU
+                if new_ip:
+                    # También es seguro reescribir si la ONU es la misma, asegura consistencia
+                    new_ip.write({'contract_id': contract.id})
+
+
+            if contract.id in old_onu_map:
+                old_onu = old_onu_map[contract.id]
+                new_onu = contract.discovered_onu_id
+
+                # Desvincular la ONU antigua si es diferente de la nueva
+                if old_onu and old_onu != new_onu:
+                    old_onu.write({'contract_id': False})
+
+                # Vincular la nueva ONU
+                if new_onu:
+                    # También es seguro reescribir si la ONU es la misma, asegura consistencia
+                    new_onu.write({'contract_id': contract.id})
+
 
         # --- Lógica de Aprovisionamiento en Caliente para OLT ---
         # Campos cuya modificación dispara una actualización en la OLT
@@ -555,8 +632,8 @@ class IspContract(models.Model):
                     new_product = self.env['product.product'].browse(vals['product_id'])
                     # Asumimos que el product.template tiene una referencia al perfil de tráfico
                     if new_product and hasattr(new_product, 'traffic_profile_id') and new_product.traffic_profile_id:
-                        profile_name = new_product.traffic_profile_id.name
-                        commands.append(f"ont traffic-profile {contract.olt_port_id.name} {contract.onu_pon_id} profile-name {profile_name}")
+                        tprofile_name = new_product.traffic_profile_id.name
+                        commands.append(f"ont traffic-profile {contract.olt_port_id.name} {contract.onu_pon_id} profile-name {tprofile_name}")
 
                 # --- 3. Gestión de Cambios en WiFi ---
                 if 'wifi_line_ids' in vals:
@@ -788,11 +865,12 @@ class IspContract(models.Model):
             contract.write({
                 'wifi_config_successful': False,
                 'wan_config_successful': False,
-
+                #'onu_pon_id': None,
                 'olt_state' : 'disconnected',
                 'core_state': 'disconnected',
                 'radius_state': 'disconnected',
                 'state_service': 'terminated',
+                'ip_address_id': None,
                 #'state': 'closed',
                 'date_end': fields.Date.context_today(self)
             })
@@ -868,7 +946,8 @@ class IspContract(models.Model):
             raise UserError(_("Este contrato no tiene una dirección IP asignada para buscar la sesión."))
 
         api = None
-        try:
+        if 1:
+       # try:
             netdev = self.core_id.netdev_id
             if not netdev:
                 raise UserError(_("El Core Router no tiene un dispositivo de red configurado para la conexión."))
@@ -878,14 +957,53 @@ class IspContract(models.Model):
                 raise UserError(_("No se pudo establecer la conexión con el Core Router."))
 
             assigned_ip = self.ip_address_id.name
-            ppp_active_path = api.path('/ppp/active')
+            #ppp_active_path = api.path('/ppp/active')
+
+            ppp_active = api.path('/ppp/active')
+
+            #for ppp in ppp_active:
             # Buscar la conexión activa usando la IP asignada en el campo 'address'
-            active_connections = tuple(ppp_active_path.select(Key("interface")).where(Key("address") == assigned_ip))
-            
+            #ppp_active_path
+            #active_connections = tuple(ppp_active_path.select(Key("interface")))
+
+
+            #   print(("active", ppp))
+            #active_connections = []
+
+            active_connections = ppp_active.select(Key("name"), Key("service"), Key("caller-id"), Key("address"), Key("uptime")).where(Key("address") == assigned_ip)
+
+          #  print(("active", ppp, tuple(active_connections)))
+
             if not active_connections:
                 raise UserError(_("No se encontró una sesión PPPoE activa para la dirección IP '%s'.") % assigned_ip)
 
-            interface_name = active_connections[0]['interface']
+            wizard = self.env['silver.netdev.ppp.active.wizard'].create({'router_id': self.core_id.netdev_id.id})
+            for ppp in active_connections:
+                r = self.env['silver.netdev.ppp.active.wizard.line'].create({
+                    'wizard_id': wizard.id,
+                    'name': ppp.get('name'),
+                    'service': ppp.get('service'),
+                    'caller_id': ppp.get('caller-id'),
+                    'address': ppp.get('address'),
+                    'uptime': ppp.get('uptime'),
+                })
+
+                return {
+                    'name': 'PPP Active Connections1',
+                    'type': 'ir.actions.act_window',
+                    'res_model': 'silver.netdev.ppp.active.wizard',
+                    'view_mode': 'form',
+                    'res_id': wizard.id,
+                    'target': 'new',
+                    'context': {
+                        'default_netdev_id': self.core_id.netdev_id.id,
+                    }
+                }
+
+            try:
+                interface_name = tuple(active_connections)[0]['name']
+            except:
+                 raise UserError(_("Error en sesión PPPoE para la dirección IP '%s'.") % assigned_ip)
 
             wizard = self.env['silver.contract.traffic.wizard'].create({
                 'core_id': self.core_id.id,
@@ -897,15 +1015,16 @@ class IspContract(models.Model):
                 'type': 'ir.actions.act_window',
                 'res_model': 'silver.contract.traffic.wizard',
                 'view_mode': 'form',
+                'view_id': self.env.ref('silver_provisioning.view_silver_contract_traffic_wizard_form_chart_only').id,
                 'res_id': wizard.id,
                 'target': 'new',
             }
 
-        except Exception as e:
-            raise UserError(_("Se produjo un error: %s") % e)
-        finally:
-            if api:
-                api.close()
+        #except Exception as e:
+        #    raise UserError(_("Se produjo un error: %s") % e)
+        #finally:
+         #   if api:
+         #       api.close()
 
     @api.onchange('onu_pon_id')
     def _onchange_onu_pon_id(self):
@@ -947,14 +1066,14 @@ class IspContract(models.Model):
                                                              ], order='ip_int asc')  # Ordenar por IP numericamente
 
         print(("ips1", available_ips))
-        if (not available_ips):
+        if (not available_ips) and (not len(available_ips)):
             available_ips = self.env['silver.ip.address'].search([('olt_id', '=', self.olt_id.id), ('olt_port_id', '=', None),
                                                                   ('public', '=', False),
                                                                   '|', ('contract_id', '=', False), ('contract_id', '=', self.id)
             ], order='ip_int asc') # Ordenar por IP numericamente
 
         print(("ips2", available_ips))
-        if (not available_ips):
+        if (not available_ips) and (not len(available_ips)):
             available_ips = self.env['silver.ip.address'].search([('core_id', '=', self.core_id.id),
                                                                   ('public', '=', False),
                                                                   '|', ('contract_id', '=', False),
@@ -964,38 +1083,40 @@ class IspContract(models.Model):
         print(("ips3", available_ips))
 
         public_ips = self.env['silver.ip.address'].search([ ('public', '=', True),
-                                                            '|', '|', ('zone_ids', 'in', self.node_id.zone_id.id), ('node_ids', 'in', self.node_id.id), ('core_ids', 'in', self.core_id.id)  ] )
+                                                            '|', '|', ('zone_ids', 'in', self.node_id.zone_id.id),
+                                                            ('node_ids', 'in', self.node_id.id), ('core_ids', 'in', self.core_id.id)  ] )
 
-        dicips1 = {}
-        for a in available_ips:
-            dicips1[a.name] = a
-        dicips2 = {}
-        for a in public_ips:
-            dicips2[a.name] = a
+        #dicips1 = {}
+        #for a in available_ips:
+        #    dicips1[a.name] = a
+        #dicips2 = {}
+        #for a in public_ips:
+        #    dicips2[a.name] = a
 
 
         # Store the current ip_address_ids
-        current_ips = self.ip_address_ids
+        #current_ips = self.ip_address_ids
 
-        print(("ips", available_ips, current_ips, len(available_ips), len(tuple(available_ips))))
+        #print(("ips", available_ips, current_ips, len(available_ips), len(tuple(available_ips))))
 
         # Remove the currently selected IP from the list if it exists
 
-        current_ips1 = (current_ips.filtered(lambda ip: dicips1.get(ip.name)) if current_ips and len(current_ips) else current_ips)
-        current_ips2 = (current_ips.filtered(lambda ip: dicips2.get(ip.name)) if current_ips and len(current_ips) else current_ips)
-        if (((not current_ips1) or (not len(current_ips1))) and available_ips and len(tuple(available_ips))):
+        #current_ips1 = (current_ips.filtered(lambda ip: dicips1.get(ip.name)) if current_ips and len(current_ips) else current_ips)
+        #current_ips2 = (current_ips.filtered(lambda ip: dicips2.get(ip.name)) if current_ips and len(current_ips) else current_ips)
+        #if (((not current_ips1) or (not len(current_ips1))) and available_ips and len(tuple(available_ips))):
 
-            current_ips1 = available_ips[0]
-
-
+         #   current_ips1 = available_ips[0]
 
 
-        print(("ip3", current_ips.filtered(filterip) , current_ips1, current_ips2,  self.ip_address_id))
+        self.ip_address_id = (available_ips[0] if (available_ips and len(available_ips)) else public_ips[0])
+
+
+        #print(("ip3", current_ips.filtered(filterip) , current_ips1, current_ips2,  self.ip_address_id))
 
         # Prepend available_ips and then add the rest of the existing ips
-        self.ip_address_ids = current_ips1+(current_ips2)
+        #self.ip_address_ids = current_ips1+(current_ips2)
 
-        self.ip_address_id = current_ips1
+        #self.ip_address_id = current_ips1
 
 
 
@@ -1088,44 +1209,63 @@ class IspContract(models.Model):
         commands = [
             f"configure terminal",
             f"interface gpon {pon_port}",
-            f"show onu info {self.onu_pon_id}"
+            f"show onu info {self.onu_pon_id}",
+            f"onu  {self.onu_pon_id} pri wan_conn show"
         ]
 
         #try:
         if 1:
+            old1 = self.olt_state
+            old2 = self.wan_state
             with netdev._get_olt_connection() as conn:
                 full_output = ""
                 for command in commands:
                     success, response, output = conn.execute_command(command)
                     full_output += output
 
+                    if 'show onu' in command:
+                        print(("show onu", full_output))
+                        if "Onuindex" in full_output and "Profile" in full_output :
+                            self.olt_state = 'active'
+                        else:
+                            self.olt_state = 'down'
+                            break
 
-                if "Onuindex" in full_output and "Model" in full_output:
-                    cambio = (self.olt_state != 'active')
-                    self.olt_state = 'active'
-                    if (cambio): return True
-                    # Extraer la información relevante para la notificación
-                    lline = full_output.strip().split('\n')[-1]
-                    message = f"Información de la ONU:\n{lline}"
-                    return {
-                        'type': 'ir.actions.client',
-                        'tag': 'display_notification',
-                        'params': {
-                            'title': _('ONU Conectada'),
-                            'message': message,
-                            'type': 'success',
-                        }
-                    }
+                    if ("pri wan" in command):
+                        #self.olt_state = 'down'
+                        self.wan_state = 'none'
 
-                    cambio = (self.olt_state != 'down')
-                    self.olt_state = 'down'
-                    if (cambio): return True
-                    raise UserError(_(f"Fallo al ejecutar el comando '{command}':\n{output}"))
-                else:
-                    cambio = (self.olt_state != 'down')
-                    self.olt_state = 'down'
-                    if (cambio): return True
+                        if "wanIndex" in full_output and "PPPOE" in full_output:
+                            self.olt_state = 'active'
+                            # Extraer wanStatus
+                            wan_status_match = re.search(r"wanStatus\s*:\s*(\w+)", full_output)
+                            print(("wan_status_noextracted", wan_status_match))
+                            cambio = False
+                            if wan_status_match:
+                                wan_status = wan_status_match.group(1).lower()
+                                print(("wan_status_extracted", wan_status))
+
+                                if wan_status in ['connected', 'disconnected']:
+                                    self.wan_state = wan_status
+
+                if self.olt_state != old1 or self.wan_state != old2:
+                    return True
+
+                if self.olt_state == 'down':
                     raise UserError(_("La ONU no parece estar conectada o no se encontró información."))
+
+                s = full_output.strip().split('\n')[-1]
+                message = f"Información de la ONU:\n{s}"
+                return {
+                    'type': 'ir.actions.client',
+                    'tag': 'display_notification',
+                    'params': {
+                        'title': _('ONU Conectada'),
+                        'message': message,
+                        'type': 'success',
+                    }
+                }
+
 
         #except Exception as e:
         #    self.olt_state = 'down'
@@ -1197,7 +1337,16 @@ class IspContract(models.Model):
                     success, response, output = conn.execute_command(command)
                     full_output += output
 
-            #if success:
+                self.wan_state = 'none'
+                wan_status_match = re.search(r"wanStatus\s*:\s*(\w+)", full_output)
+                if wan_status_match:
+                    wan_status = wan_status_match.group(1).lower()
+                    print(("wan_status_extracted", wan_status))
+                    if wan_status in ['connected', 'disconnected']:
+                        self.wan_state = wan_status
+
+
+                #if success:
 
                 info_str = self._format_data_to_html(output)
                 print(("outpuuuu", output, info_str))

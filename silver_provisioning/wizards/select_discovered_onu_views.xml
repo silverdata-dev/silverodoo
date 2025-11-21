@@ -10,7 +10,7 @@
                         <field name="contract_id" invisible="1"/>
                         <field name="olt_id" invisible="1"/>
                         <field name="discovered_onu_id"
-                               domain="[('olt_id', '=', olt_id)]"
+                               domain="[('olt_id', '=', olt_id), '|', ('contract_id', '=', False), ('contract_id', '=', contract_id)]"
                                context="{'default_olt_id': olt_id}"
                                options="{'no_create': True, 'no_open': True}"/>
                     </group>

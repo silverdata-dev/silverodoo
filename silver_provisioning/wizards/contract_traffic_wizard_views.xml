@@ -15,8 +15,21 @@
                             <field name="rate_down"/>
                             <field name="rate_up"/>
                         </group>
-                        <field name="speed_chart" widget="speed_chart"/>
+                        <field name="speed_chart" widget="ppp_line_speed_chart" nolabel="1"/>
                     </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_silver_contract_traffic_wizard_form_chart_only" model="ir.ui.view">
+            <field name="name">silver.contract.traffic.wizard.form.chart.only</field>
+            <field name="model">silver.contract.traffic.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Real-Time Traffic">
+                    <field name="speed_chart" widget="ppp_line_speed_chart" nolabel="1"/>
+                    <footer>
+                        <button string="Cerrar" class="btn-secondary" special="cancel"/>
+                    </footer>
                 </form>
             </field>
         </record>

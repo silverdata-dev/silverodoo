@@ -79,7 +79,9 @@ class SilverOlt(models.Model):
                 header_line = line
                 data_lines = lines[i+1:]
                 break
-        
+
+        DiscoveredOnu = self.env['silver.olt.discovered.onu']
+
         if header_line:
             headers = ['OltIndex', 'SN', 'PW', 'LOID', 'Model', 'Ver', 'LOIDPW']
             positions = {h: header_line.find(h) for h in headers if header_line.find(h) != -1}
@@ -91,37 +93,60 @@ class SilverOlt(models.Model):
                 parts = {h: line[start:end].strip() for h, (start, end) in slices.items()}
                 if parts.get('OltIndex') and parts.get('SN'):
                     Model = self.env['silver.hardware.model'];
-                    model = Model.search(['name', '=', parts.get('Model', '')])
+                    modelname = parts.get('Model', '')
+                    model = Model.search([('name', '=', modelname)], limit=1)
                     if (not model) or (not len(model)):
-                        model = Model.create({'name': parts.get('Model', '')})
+                        marcas = self.env['product.brand'].search([])
+                        marca_id = None
+                        for a in marcas:
+                            if a.name and a.name in modelname:
+                                marca_id = a
+                                break
+                       # print(("mmarca", marca_id))
+                        model = Model.create({'name': modelname, 'brand_id': marca_id.id})
+
+                    #print(("mmodel", model, model.brand_id))
 
                     onu_vals_list.append({
                         'olt_index': parts.get('OltIndex', ''), 'serial_number': parts.get('SN', ''),
                         'password': parts.get('PW', ''), 'loid': parts.get('LOID', ''),
-                        'model_id': model,
+                        'hardware_model_id': model.id,
                        # 'model_name': parts.get('Model', ''),
                         'version': parts.get('Ver', ''),
                         'loid_password': parts.get('LOIDPW', ''),
                     })
 
-        # Realizar el "Upsert"
-        # --- Lógica de Sincronización Mejorada ---
-        DiscoveredOnu = self.env['silver.olt.discovered.onu']
-        
+
+            # Realizar el "Upsert"
+            # --- Lógica de Sincronización Mejorada ---
+
         # 1. Obtener seriales de ONUs ya asignadas en esta OLT para no tocarlas
-        assigned_onus = DiscoveredOnu.search([('olt_id', '=', self.id), ('is_assigned', '=', True)])
-        assigned_serials = set(assigned_onus.mapped('serial_number'))
+        #assigned_onus = DiscoveredOnu.search([('olt_id', '=', self.id), ('is_assigned', '=', True)])
+
+        assigned_onus = DiscoveredOnu.search([('olt_id', '=', self.id), ('contract_id', '!=', False)])
+        assigned_indexes = set(assigned_onus.mapped('olt_index'))
 
         # 2. Eliminar todas las ONUs NO asignadas de esta OLT
-        unassigned_onus_to_delete = DiscoveredOnu.search([('olt_id', '=', self.id), ('is_assigned', '=', False)])
+        unassigned_onus_to_delete = DiscoveredOnu.search([('olt_id', '=', self.id), ('contract_id', '=', False)])
+
+        print(("todelete", unassigned_onus_to_delete, assigned_onus, assigned_indexes))
+
         if unassigned_onus_to_delete:
-            unassigned_onus_to_delete.unlink()
+            with self.env.registry.cursor() as cr:
+                for onu in unassigned_onus_to_delete:
+                    try:
+                        print(("deletin", onu))
+                        onu.unlink()
+                    except Exception as e:
+                        _logger.error("Error deleting discovered ONU %s: %s", onu.id, e)
+                cr.commit()
 
         # 3. Crear solo las ONUs descubiertas que no estén ya asignadas
         onus_to_create = []
         for vals in onu_vals_list:
-            if vals['serial_number'] not in assigned_serials:
+            if vals['olt_index'] not in assigned_indexes:
                 vals['olt_id'] = self.id
+                print(("append", vals['olt_index']))
                 onus_to_create.append(vals)
         
         if onus_to_create:
@@ -374,7 +399,7 @@ class SilverOlt(models.Model):
         pon_port = f"{contract.olt_card_id.num_card or contract.olt_port_id.olt_card_id.num_card}/{contract.olt_port_id.num_port}"
         onu_id = contract.onu_pon_id
         serial_number = contract.serial_number
-        profile_name = contract.hardware_model_id.onu_profile_id.name
+        profile_name = contract.profile_id.name
         tcont = self.tcont
         dba_profile = self.profile_dba_internet
         gemport = self.gemport
@@ -400,6 +425,7 @@ class SilverOlt(models.Model):
             f"onu {onu_id} service-port {service_port} gemport {gemport} uservlan {vlanid} vlan {vlanid}",
             f"onu {onu_id} portvlan veip 1 mode tag vlan {vlanid}",
             f"onu {onu_id} desc {description}",
+            f"exit", "exit", "exit"
         ]
 
 
@@ -476,6 +502,8 @@ class SilverOlt(models.Model):
 
                 if not success:
                     raise UserError(f"Error en config. WIFI '{command}':\n{clean_response}")
+            success, clean_response, full_output = conn.execute_command(f"onu {onu_id} pri wan_conn commit")
+            output_log += f"{clean_response}\n"
 
 
 
@@ -486,18 +514,64 @@ class SilverOlt(models.Model):
         onu_id = contract.onu_pon_id
         if 1:
        # if self.is_gestion_pppoe and not contract.is_bridge:
-            cmd_get_index = f"onu {onu_id} pri wan_adv add route"
-            success, clean_response, full_output = conn.execute_command(cmd_get_index)
-            output_log += f"\n{full_output}"
-            #if not success:
-
-            if not "Msg:" in full_output:
-                raise UserError(f"Error al iniciar config. WAN avanzada:\n{clean_response}")
+            wan_index = None
             
-            match = re.search(r"number is (\d+)", clean_response) # Buscar en la respuesta limpia
-            if not match:
-                raise UserError(f"No se pudo extraer el wan_index de la respuesta de la OLT:\n{clean_response}")
-            wan_index = match.group(1)
+            # 1. Check if WAN already exists
+            cmd_check_wan = f"onu {onu_id} pri wan_adv show"
+            success, clean_response, full_output = conn.execute_command(cmd_check_wan)
+            output_log += f"\n{full_output}"
+
+            print(("onu show", success, output_log))
+            
+            if "wanNumber" in output_log:
+                current_index = None
+                current_mode = None
+                current_type = None
+                current_vlan = None
+                
+                for line in clean_response.splitlines():
+                    line = line.strip()
+                    if line.startswith("WAN Index"):
+                        parts = line.split(":")
+                        if len(parts) > 1:
+                            current_index = parts[1].strip()
+                            # Reset per block
+                            current_mode = None
+                            current_type = None
+                            current_vlan = None
+                    elif line.startswith("WAN Mode"):
+                        parts = line.split(":")
+                        if len(parts) > 1:
+                            current_mode = parts[1].strip().lower()
+                    elif line.startswith("Connect Type"):
+                         parts = line.split(":")
+                         if len(parts) > 1:
+                            current_type = parts[1].strip().lower()
+                    elif line.startswith("VLAN ID"):
+                         parts = line.split(":")
+                         if len(parts) > 1:
+                            current_vlan = parts[1].strip()
+
+                   # print(("ll", current_index,  current_mode , current_type , current_vlan, vlanid))
+                    # Check match
+                    if current_index and current_mode == 'internet' and current_type == 'route': # and current_vlan == str(vlanid):
+                        wan_index = current_index
+                        output_log += f"\nINFO: Found existing WAN index {wan_index} matching configuration. Reusing it."
+                        break
+
+            if not wan_index:
+                cmd_get_index = f"onu {onu_id} pri wan_adv add route"
+                success, clean_response, full_output = conn.execute_command(cmd_get_index)
+                output_log += f"\n{full_output}"
+                #if not success:
+
+                if not "Msg:" in full_output:
+                    raise UserError(f"Error al iniciar config. WAN avanzada:\n{clean_response}")
+                
+                match = re.search(r"number is (\d+)", clean_response) # Buscar en la respuesta limpia
+                if not match:
+                    raise UserError(f"No se pudo extraer el wan_index de la respuesta de la OLT:\n{clean_response}")
+                wan_index = match.group(1)
 
             admin_control_cmd = f"enable {self.admin_user} {self.admin_passwd}" if self.is_control_admin else "disable"
             user_control_cmd = "disable" #if self.is_control_admin else "enable"
@@ -507,12 +581,12 @@ class SilverOlt(models.Model):
             
             advanced_wan_commands = [
                 f"onu {onu_id} pri wan_adv index {wan_index} route mode internet mtu {self.mtu}",
-                f"onu {onu_id} pri wan_adv index {wan_index} route both pppoe proxy disable user {contract.pppoe_user} pwd {contract.pppoe_password} mode auto nat enable",
-                f"onu {onu_id} pri wan_adv index {wan_index} route both client_address enable client_prifix enable",
+                f"onu {onu_id} pri wan_adv index {wan_index} route both pppoe proxy disable user {contract.pppoe_user} pwd {contract.pppoe_password} mode auto nat enable slaac enable",
+                f"onu {onu_id} pri wan_adv index {wan_index} route both client_address disable client_prifix enable",
                 f"onu {onu_id} pri wan_adv index {wan_index} vlan tag wan_vlan {vlanid} {self.vlan_priority}",
                 f"onu {onu_id} pri wan_adv index {wan_index} bind lan1 {' '.join(wifis)}",
-                #f"onu {onu_id} pri wan_adv commit",
                 f"onu {onu_id} pri username admin_control {admin_control_cmd} user_control {user_control_cmd}",
+                f"onu {onu_id} pri wan_adv commit",
                 #f"onu {onu_id} pri wan_adv commit"
 
             ]
@@ -523,6 +597,8 @@ class SilverOlt(models.Model):
                 output_log += f"{clean_response}\n"
 
                 if not success:
+                    if "wan_adv commit" in command:
+                        continue
                     raise UserError(f"Error en config. WAN avanzada '{command}':\n{clean_response}")
         return output_log
 
