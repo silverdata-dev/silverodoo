@@ -188,6 +188,8 @@ class IspContract(models.Model):
         OltPort = self.env['silver.olt.card.port']
         Model = self.env['silver.hardware.model']
 
+
+
         serial_number = discovered_onu.serial_number
         olt_index = discovered_onu.olt_index
 
@@ -225,7 +227,10 @@ class IspContract(models.Model):
 
                 card_index = int(card_str)
                 port_index = int(port_str)
-                onu_pon_id = int(pon_id_str)
+
+
+
+                #onu_pon_id = int(pon_id_str)
 
                 card = OltCard.search([('olt_id', '=', self.olt_id.id), ('num_card', '=', card_index)], limit=1)
                 print(("card",card, self.olt_id.id, card_index, olt_index))
@@ -255,7 +260,7 @@ class IspContract(models.Model):
             'stock_lot_id': lot.id,
             'olt_card_id': card.id if card else False,
             'olt_port_id': port.id if port else False,
-            'onu_pon_id': onu_pon_id,
+      #      'onu_pon_id': onu_pon_id,
         }
 
     def action_open_onu_selector_wizard(self):
@@ -1056,7 +1061,40 @@ class IspContract(models.Model):
             print(("fip", ip.id, self.ip_address_id.id))
             return ip.id != self.ip_address_id.id
 
+        card_index = self.olt_port_id.olt_card_id.num_card
+        port_index = self.olt_port_id.num_port
 
+        # 1. Búsqueda Local en Contratos
+        local_found = False
+        if self.olt_port_id:
+            # Buscar IDs usados en contratos existentes para este puerto
+            used_ids = self.env['silver.contract'].search([
+                ('olt_port_id', '=', self.olt_port_id.id),
+                ('id', '!=', self.id._origin.id if isinstance(self.id, models.NewId) else self.id) # Excluirse a sí mismo si ya existe
+            ]).mapped('onu_pon_id')
+            
+            used_set = set()
+            for uid in used_ids:
+                try:
+                    used_set.add(int(uid))
+                except (ValueError, TypeError):
+                    pass
+
+            for i in range(1, 129):
+                if i not in used_set:
+                    self.onu_pon_id = i
+                    local_found = True
+                    print(f"Found local free ONU ID: {i}")
+                    break
+        
+        # 2. Fallback a OLT si no se encontró localmente (o si se prefiere verificar siempre)
+        # La instrucción dice "antes de buscar en...", implicando que si se encuentra, no se busca fuera.
+       # if not local_found:
+        try:
+            self.onu_pon_id = int(self.olt_id.get_next_free_onu_id(f"{card_index}/{port_index}") or "1")
+            print(("ponid", card_index, port_index, self.onu_pon_id))
+        except Exception as e:
+            print(("error en pon", card_index, port_index))
 
         if self.link_type=='wifi':
             self.changed_onu = True

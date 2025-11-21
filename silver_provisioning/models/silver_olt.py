@@ -515,13 +515,15 @@ class SilverOlt(models.Model):
         if 1:
        # if self.is_gestion_pppoe and not contract.is_bridge:
             wan_index = None
-            
+            #"""
             # 1. Check if WAN already exists
             cmd_check_wan = f"onu {onu_id} pri wan_adv show"
             success, clean_response, full_output = conn.execute_command(cmd_check_wan)
             output_log += f"\n{full_output}"
 
             print(("onu show", success, output_log))
+
+
             
             if "wanNumber" in output_log:
                 current_index = None
@@ -558,48 +560,55 @@ class SilverOlt(models.Model):
                         wan_index = current_index
                         output_log += f"\nINFO: Found existing WAN index {wan_index} matching configuration. Reusing it."
                         break
+            #"""
+            for a in [0, 1]:
+                if not wan_index:
+                    cmd_get_index = f"onu {onu_id} pri wan_adv add route"
+                    success, clean_response, full_output = conn.execute_command(cmd_get_index)
+                    output_log += f"\n{full_output}"
+                    #if not success:
 
-            if not wan_index:
-                cmd_get_index = f"onu {onu_id} pri wan_adv add route"
-                success, clean_response, full_output = conn.execute_command(cmd_get_index)
-                output_log += f"\n{full_output}"
-                #if not success:
+                    if not "Msg:" in full_output:
+                        raise UserError(f"Error al iniciar config. WAN avanzada:\n{clean_response}")
 
-                if not "Msg:" in full_output:
-                    raise UserError(f"Error al iniciar config. WAN avanzada:\n{clean_response}")
-                
-                match = re.search(r"number is (\d+)", clean_response) # Buscar en la respuesta limpia
-                if not match:
-                    raise UserError(f"No se pudo extraer el wan_index de la respuesta de la OLT:\n{clean_response}")
-                wan_index = match.group(1)
+                    match = re.search(r"number is (\d+)", clean_response) # Buscar en la respuesta limpia
+                    if not match:
+                        raise UserError(f"No se pudo extraer el wan_index de la respuesta de la OLT:\n{clean_response}")
+                    wan_index = match.group(1)
 
-            admin_control_cmd = f"enable {self.admin_user} {self.admin_passwd}" if self.is_control_admin else "disable"
-            user_control_cmd = "disable" #if self.is_control_admin else "enable"
+                admin_control_cmd = f"enable {self.admin_user} {self.admin_passwd}" if self.is_control_admin else "disable"
+                user_control_cmd = "disable" #if self.is_control_admin else "enable"
 
-            wifis = [f"ssid{c.ssid_index}" for c in contract.wifi_line_ids ]
+                wifis = [f"ssid{c.ssid_index}" for c in contract.wifi_line_ids ]
 
-            
-            advanced_wan_commands = [
-                f"onu {onu_id} pri wan_adv index {wan_index} route mode internet mtu {self.mtu}",
-                f"onu {onu_id} pri wan_adv index {wan_index} route both pppoe proxy disable user {contract.pppoe_user} pwd {contract.pppoe_password} mode auto nat enable slaac enable",
-                f"onu {onu_id} pri wan_adv index {wan_index} route both client_address disable client_prifix enable",
-                f"onu {onu_id} pri wan_adv index {wan_index} vlan tag wan_vlan {vlanid} {self.vlan_priority}",
-                f"onu {onu_id} pri wan_adv index {wan_index} bind lan1 {' '.join(wifis)}",
-                f"onu {onu_id} pri username admin_control {admin_control_cmd} user_control {user_control_cmd}",
-                f"onu {onu_id} pri wan_adv commit",
-                #f"onu {onu_id} pri wan_adv commit"
 
-            ]
+                advanced_wan_commands = [
+                    f"onu {onu_id} pri wan_adv index {wan_index} route mode internet mtu {self.mtu}",
+                    f"onu {onu_id} pri wan_adv index {wan_index} route both pppoe proxy disable user {contract.pppoe_user} pwd {contract.pppoe_password} mode auto nat enable slaac enable",
+                    f"onu {onu_id} pri wan_adv index {wan_index} route both client_address disable client_prifix enable",
+                    f"onu {onu_id} pri wan_adv index {wan_index} vlan tag wan_vlan {vlanid} {self.vlan_priority}",
+                    f"onu {onu_id} pri wan_adv index {wan_index} bind lan1 {' '.join(wifis)}",
+                    f"onu {onu_id} pri username admin_control {admin_control_cmd} user_control {user_control_cmd}",
+                    f"onu {onu_id} pri wan_adv commit",
+                    #f"onu {onu_id} pri wan_adv commit"
 
-            print(("comands", advanced_wan_commands))
-            for command in advanced_wan_commands:
-                success, clean_response, full_output = conn.execute_command(command)
-                output_log += f"{clean_response}\n"
+                ]
 
-                if not success:
-                    if "wan_adv commit" in command:
+
+
+                print(("comands", advanced_wan_commands))
+                for command in advanced_wan_commands:
+                    success, clean_response, full_output = conn.execute_command(command)
+                    output_log += f"{clean_response}\n"
+
+                    if success or  "wan_adv commit" in command:
                         continue
+                    if not a:
+                        wan_index = None
+                        break
                     raise UserError(f"Error en config. WAN avanzada '{command}':\n{clean_response}")
+                if wan_index: break
+                output_log += f"not wan {a}"
         return output_log
 
     def _execute_with_logging(self, contract, steps_or_commands, subject):
@@ -787,6 +796,74 @@ class SilverOlt(models.Model):
 
         print(("terminated", r))
         return True
+
+    def get_next_free_onu_id(self, pon_port_name):
+        """
+        Se conecta a la OLT, revisa las ONUs existentes en el puerto PON dado
+        y devuelve el menor ID libre (1-128).
+        :param pon_port_name: Nombre del puerto, ej: "0/1" o el formato que espere la OLT
+        """
+        self.ensure_one()
+        netdev = self.netdev_id
+        if not netdev:
+            raise UserError(_("La OLT no tiene un dispositivo de red configurado."))
+
+        used_ids = set()
+
+        try:
+            with netdev._get_olt_connection() as conn:
+                # 1. Entrar en modo configuración
+                conn.execute_command("configure terminal")
+
+                # 2. Entrar a la interfaz GPON
+                # Asumimos que pon_port_name viene limpio, ej: "0/1"
+                cmd_interface = f"interface gpon {pon_port_name}"
+                success, clean_response, full_output = conn.execute_command(cmd_interface)
+                
+                if not success:
+                    raise UserError(f"Error al entrar a la interfaz {pon_port_name}:\n{full_output}")
+
+                # 3. Obtener información de ONUs
+                cmd_show = "show onu info"
+                success, clean_response, full_output = conn.execute_command(cmd_show)
+
+                if "Onuindex" in full_output:
+                #if success:
+                    # Parsear salida. Buscamos líneas que contengan 'GPON' y un ID.
+                    # Ejemplo: GPON0/4:1  VA64 ...
+                    # Extraemos '1'
+                    for line in full_output.split("\n"):
+                        line = line.strip()
+
+                        print(("line", line))
+
+                        if not line or 'GPON' not in line: 
+                            continue
+
+                        parts = line.split()
+                        if parts and ':' in parts[0]:
+                            try:
+                                onu_id_str = parts[0].split(':')[-1]
+                                used_ids.add(int(onu_id_str))
+                            except ValueError:
+                                # Ignore lines where the last part after ':' is not a valid integer
+                                pass
+
+                # 4. Salir limpiamente (opcional pero recomendado)
+                conn.execute_command("exit")
+                conn.execute_command("exit")
+
+        except Exception as e:
+            raise UserError(_("Fallo al obtener ID libre en OLT: %s") % e)
+
+        print(("used ids", used_ids))
+        # Buscar el primer ID libre en el rango estándar GPON (1-128)
+        for i in range(1, 129):
+            if i not in used_ids:
+                print(("i", i))
+                return i
+
+        raise UserError(_("No hay IDs de ONU libres en el puerto %s (Lleno).") % pon_port_name)
 
     def action_view_contracts(self):
         return self.access_point_id.action_view_contracts()
