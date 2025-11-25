@@ -7,6 +7,12 @@
     'category': 'Sales/CRM',
     'depends': [
         'crm',
+        'silver_base',
+        'silver_crm',
+        'silver_network',
+        'silver_contract',
+        'silver_provisioning',
+
     ],
     'data': [
         'security/ir.model.access.csv',

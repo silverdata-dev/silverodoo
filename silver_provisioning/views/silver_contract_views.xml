@@ -78,7 +78,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                         <field name="olt_state"  nolabel="1"
                                                widget="badge"  invisible="(state not in ['open', 'active']) or (state_service != 'active')"
                            decoration-success="olt_state in ['active', 'connected']"
-                           decoration-warning="olt_state in ('suspended', 'disabled')"
+                           decoration-warning="olt_state in ('suspended', 'disabled', 'waiting')"
                            decoration-danger="olt_state in ['removed', 'down']"/>
 
 
@@ -161,12 +161,13 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                            decoration-warning="radius_state in ('suspended', 'disabled')"
                            decoration-danger="radius_state in ['removed', 'down']"  nolabel="1" />
 
-                                 <button name="action_check_radius_connection"
+                                 <!--button name="action_check_radius_connection"
                                                 type="object"
                                                 string="Probar Conexión"
                                                 class="oe_highlight"
-                                                invisible="(pppoe_user == None) or (pppoe_password == None)"/>
+                                                invisible="(pppoe_user == None) or (pppoe_password == None)"/-->
                                  <field name="core_state"  widget="badge"
+                                         invisible="1"
                            decoration-success="core_state in ['active', 'connected']"
                            decoration-warning="core_state in ('suspended', 'disabled')"
                            decoration-danger="core_state in ['removed', 'down']"  nolabel="1" />
@@ -183,8 +184,11 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
 
 
                                     </group>
+     <group invisible="manual != True">
+<field name="manual" />
+         </group>
 
-                                     <group string="Credenciales WiFi" invisible="link_type != 'fiber'">
+                                     <group string="Credenciales WiFi" invisible="(link_type != 'fiber') or (manual == True)">
 
                                 <field name="sssid" invisible="1"/>
                                 <field name="password" invisible="1" password="True"/>

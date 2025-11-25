@@ -8,6 +8,7 @@ class SilverContractLine(models.Model):
 
     contract_id = fields.Many2one('silver.contract', string='Contrato', required=True, ondelete='cascade')
     #product_id = fields.Many2one('product.product', string='Producto/Servicio', required=True)
+    product_id = fields.Many2one('product.product', string='Producto/Servicio') # Added product_id field
 
     line_type = fields.Selection([
         ('recurring', 'Recurrente'),
@@ -21,6 +22,8 @@ class SilverContractLine(models.Model):
     price_subtotal = fields.Monetary(string='Subtotal', compute='_compute_price_subtotal', store=True)
     #currency_id = fields.Many2one(related='contract_id.partner_id.currency_id', store=True)
     currency_id = fields.Many2one('res.currency')
+    
+    invoiced = fields.Boolean(string='Facturado', default=False) # Nuevo campo para marcar si la línea ya fue facturada
 
 
     @api.depends('quantity', 'price_unit')

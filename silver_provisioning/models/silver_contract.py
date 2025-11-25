@@ -113,6 +113,7 @@ class IspContract(models.Model):
     consumption_ids = fields.One2many('silver.contract.consumption', 'contract_id', string="Registros de Consumo")
     radius_entry_ids = fields.One2many('silver.contract.radius.entry', 'contract_id', string="Entradas de RADIUS")
     olt_state = fields.Selection([('down', 'Down'), ('active', 'Activo'),
+                                  ('waiting', 'Espera'),
                               ('disconnected', 'Disconnected')],
                              string='Estado OLT', default='down')
     radius_state = fields.Selection([('down', 'Down'), ('active', 'Activo'),
@@ -363,6 +364,7 @@ class IspContract(models.Model):
     serial_number = fields.Char(string='Serial ONU', related='stock_lot_id.serial_number', readonly=True, store=False)
     mac_address_onu = fields.Char(string="MAC Address ONU", related='stock_lot_id.mac_address', readonly=True, store=False)
 
+    manual = fields.Boolean(string="Configuración Manual", related='stock_lot_id.manual', readonly=True, store=False)
 
     # --- Campos de Estado de Aprovisionamiento ---
     wan_config_successful = fields.Boolean(string="Configuración WAN Exitosa", default=False, readonly=True, copy=False)
@@ -488,7 +490,7 @@ class IspContract(models.Model):
             
             # 2. Si la base fue exitosa, activar el servicio en Odoo.
             self.write({
-                'olt_state': 'active',
+                'olt_state': 'waiting',
                 'state_service': 'active',
                 'date_active': fields.Date.context_today(self)
             })
@@ -1070,7 +1072,7 @@ class IspContract(models.Model):
             # Buscar IDs usados en contratos existentes para este puerto
             used_ids = self.env['silver.contract'].search([
                 ('olt_port_id', '=', self.olt_port_id.id),
-                ('id', '!=', self.id._origin.id if isinstance(self.id, models.NewId) else self.id) # Excluirse a sí mismo si ya existe
+                ('id', '!=', self._origin.id) # Excluirse a sí mismo si ya existe
             ]).mapped('onu_pon_id')
             
             used_set = set()
@@ -1255,7 +1257,8 @@ class IspContract(models.Model):
             f"configure terminal",
             f"interface gpon {pon_port}",
             f"show onu info {self.onu_pon_id}",
-            f"onu  {self.onu_pon_id} pri wan_conn show"
+            f"onu  {self.onu_pon_id} pri wan_conn show",
+            f"onu {self.onu_pon_id} pri wan_adv commit",
         ]
 
         #try:
@@ -1267,6 +1270,9 @@ class IspContract(models.Model):
                 for command in commands:
                     success, response, output = conn.execute_command(command)
                     full_output += output
+
+                    if "wan_adv commit" in command:
+                        continue
 
                     if 'show onu' in command:
                         print(("show onu", full_output))

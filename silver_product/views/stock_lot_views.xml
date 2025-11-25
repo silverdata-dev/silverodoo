@@ -25,6 +25,9 @@
                      <field name="mac_address"/>
 
                         <field name="serial_number" invisible="1"/>
+
+                        <field name="etype"/>
+                            <field name="manual"/>
                  </xpath>
                 <field name="product_id" position="attributes">
                     <attribute name="required">external_equipment != True</attribute>

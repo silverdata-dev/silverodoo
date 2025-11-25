@@ -51,25 +51,25 @@ class SilverOlt(models.Model):
 
 
         output_log = ""
+        last_command_output = ""
         try:
             with netdev._get_olt_connection() as conn:
-
-
                 onu_created_on_olt = False
                 for command in base_commands:
-                    success, clean_response, full_output = conn.execute_command(command)
-                    output_log += f"\n{full_output}"
-                    if f"show onu" in command:
-                        break
-                        #onu_created_on_olt = True
-                    print(("ooutputt", 'a', output_log, success, clean_response))
-
+                    success, clean_response, cmd_output = conn.execute_command(command)
+                    output_log += f"\n{cmd_output}"
+                    
                     if not success:
-                        raise UserError(_("Error al ejecutar el comando en la OLT: %s") % full_output)
+                        raise UserError(_("Error al ejecutar el comando en la OLT: %s") % cmd_output)
+
+                    if "show onu" in command:
+                        last_command_output = cmd_output
+                        break
         except Exception as e:
             raise UserError(_("Fallo la conexión con la OLT: %s") % e)
 
         # --- Lógica de Procesamiento de Salida ---
+        full_output = last_command_output
         lines = full_output.strip().splitlines()
         header_line = None
         onu_vals_list = []
@@ -102,10 +102,8 @@ class SilverOlt(models.Model):
                             if a.name and a.name in modelname:
                                 marca_id = a
                                 break
-                       # print(("mmarca", marca_id))
-                        model = Model.create({'name': modelname, 'brand_id': marca_id.id})
-
-                    #print(("mmodel", model, model.brand_id))
+                        
+                        model = Model.create({'name': modelname, 'brand_id': marca_id.id if marca_id else False})
 
                     onu_vals_list.append({
                         'olt_index': parts.get('OltIndex', ''), 'serial_number': parts.get('SN', ''),
@@ -129,24 +127,14 @@ class SilverOlt(models.Model):
         # 2. Eliminar todas las ONUs NO asignadas de esta OLT
         unassigned_onus_to_delete = DiscoveredOnu.search([('olt_id', '=', self.id), ('contract_id', '=', False)])
 
-        print(("todelete", unassigned_onus_to_delete, assigned_onus, assigned_indexes))
-
         if unassigned_onus_to_delete:
-            with self.env.registry.cursor() as cr:
-                for onu in unassigned_onus_to_delete:
-                    try:
-                        print(("deletin", onu))
-                        onu.unlink()
-                    except Exception as e:
-                        _logger.error("Error deleting discovered ONU %s: %s", onu.id, e)
-                cr.commit()
+            unassigned_onus_to_delete.unlink()
 
         # 3. Crear solo las ONUs descubiertas que no estén ya asignadas
         onus_to_create = []
         for vals in onu_vals_list:
             if vals['olt_index'] not in assigned_indexes:
                 vals['olt_id'] = self.id
-                print(("append", vals['olt_index']))
                 onus_to_create.append(vals)
         
         if onus_to_create:
@@ -425,6 +413,7 @@ class SilverOlt(models.Model):
             f"onu {onu_id} service-port {service_port} gemport {gemport} uservlan {vlanid} vlan {vlanid}",
             f"onu {onu_id} portvlan veip 1 mode tag vlan {vlanid}",
             f"onu {onu_id} desc {description}",
+            f"onu {onu_id} pri wan_adv commit",
             f"exit", "exit", "exit"
         ]
 
@@ -438,6 +427,8 @@ class SilverOlt(models.Model):
                 output_log += f"\n{clean_response}"
 
                 if not success:
+                    if "wan_adv commit" in command:
+                        continue
                     print(("not output", full_output))
                     """if "not found or it's not commited" in full_output:
                         output_log += self._check_and_create_onu_profile(conn, profile_name, output_log)
@@ -583,6 +574,7 @@ class SilverOlt(models.Model):
 
 
                 advanced_wan_commands = [
+                 #   f"onu {onu_id} pri factory_reset",
                     f"onu {onu_id} pri wan_adv index {wan_index} route mode internet mtu {self.mtu}",
                     f"onu {onu_id} pri wan_adv index {wan_index} route both pppoe proxy disable user {contract.pppoe_user} pwd {contract.pppoe_password} mode auto nat enable slaac enable",
                     f"onu {onu_id} pri wan_adv index {wan_index} route both client_address disable client_prifix enable",

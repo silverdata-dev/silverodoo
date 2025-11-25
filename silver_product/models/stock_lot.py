@@ -18,6 +18,8 @@ class StockLot(models.Model):
     hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo')
     #onu_profile_id = fields.Many2one('silver.onu.profile', string='ONU Profile')
 
+    etype = fields.Selection([('core', 'Core'), ('olt', 'OLT'), ('onu', 'ONU'), ('ap', 'AP'), ('ecp', 'ECP'), ('splitter', 'Splitter'), ('box', 'NAP'), ], string='Tipo de equipo', related="hardware_model_id.etype")
+    manual = fields.Boolean(string='Configuración Manual', related="hardware_model_id.manual")
 
 
     product_id = fields.Many2one(

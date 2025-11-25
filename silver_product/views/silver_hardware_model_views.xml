@@ -8,6 +8,7 @@
                 <tree string="Hardware Models">
                     <field name="name"/>
                     <field name="brand_id"/>
+                                                <field name="etype"/>
                 </tree>
             </field>
         </record>
@@ -21,6 +22,8 @@
                         <group>
                             <field name="name"/>
                             <field name="brand_id"/>
+                            <field name="etype"/>
+                            <field name="manual"/>
                             <field name="onu_profile_id"/>
                             <field name="active"/>
                         </group>

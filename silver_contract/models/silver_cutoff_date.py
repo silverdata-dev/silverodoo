@@ -152,6 +152,7 @@ class SilverCutoffDate(models.Model):
         for record in self:
             record.contract_actives = self.env['silver.contract'].search_count([('cutoff_date_id', '=', record.id), ('state', '=', 'open')])
 
+    @api.depends('day_cut', 'day_consumption', 'name', 'day_invoice', 'recurring_invoicing_type')
     def _compute_display_name(self):
         for record in self:
             r = []

@@ -28,6 +28,8 @@
         'views/silver_contract_tag_views.xml',
         'views/silver_wifi_channel_line_views.xml',
         'views/menus.xml',
+        'data/contract_cron.xml',
+        'data/silver_contract_cron.xml',
     ],
     'demo': [
         'demo/demo_data.xml',

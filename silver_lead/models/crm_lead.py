@@ -9,7 +9,7 @@ class CrmLead(models.Model):
     _inherit = 'crm.lead'
 
     x_id_cliente = fields.Char('ID Cliente')
-    x_zona_id = fields.Many2one('silverlead.zona', string='Zona')
+    x_zona_id = fields.Many2one('silver.zone', string='Zona')
     x_instalador_id = fields.Many2one('res.partner', string='Instalador', domain="[('supplier_rank', '>', 0)]")
     x_is_supervisor = fields.Boolean('Supervisor')
     x_is_instalado = fields.Boolean('Instalado')
@@ -50,9 +50,9 @@ class CrmLead(models.Model):
             if not vendedor:
                 _logger.warning(f"Vendedor no encontrado: '{vendedor_name}'. Se omitirá.")
 
-            zona = self.env['silverlead.zona'].search([('name', '=', zona_name)], limit=1)
+            zona = self.env['silver.zone'].search([('name', '=', zona_name)], limit=1)
             if not zona and zona_name:
-                zona = self.env['silverlead.zona'].create({'name': zona_name})
+                zona = self.env['silver.zone'].create({'name': zona_name})
 
             instalador = self.env['res.partner'].search([('name', '=', instalador_name), ('supplier_rank', '>', 0)], limit=1)
             if not instalador and instalador_name:

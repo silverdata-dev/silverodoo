@@ -76,9 +76,9 @@ class ResPartner(models.Model):
                 #_logger.warning(f"Vendedor no encontrado: '{vendedor_name}'. Se omitirá.")
                 print(("no vendedor", vendedor_name))
 
-            zona = self.env['silverlead.zona'].search([('name', '=', zona_name)], limit=1)
+            zona = self.env['silver.zone'].search([('name', '=', zona_name)], limit=1)
             if not zona and zona_name:
-                zona = self.env['silverlead.zona'].create({'name': zona_name})
+                zona = self.env['silver.zone'].create({'name': zona_name})
 
             instalador = self.env['res.partner'].search([('name', '=', instalador_name), ('supplier_rank', '>', 0)], limit=1)
             if not instalador and instalador_name:
