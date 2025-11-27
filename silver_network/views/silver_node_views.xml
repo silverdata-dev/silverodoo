@@ -60,7 +60,7 @@
                         </div>
                         <group><group>
                         <field name="code" placeholder="Codigo del Nodo"/>
-                        <field name="silver_address_id" />
+                        <field name="silver_address_id"  context="{'show_coordinates': True}"/>
                         </group></group>
 
                              <!--group string="Datos Ubicacion">
@@ -118,10 +118,13 @@
                             <page name="Cajas NAP" >
                                 <field name="box_ids"/>
                             </page>
-                            <!--page string="Network Graph" name="network_graph">
+                            <page name="map_view" string="Mapa">
+                                <field name="id" class="map-field" widget="node_map"/>
+                            </page>
+                            <page string="Network Graph" name="network_graph">
                                 <field name="id" class="map-field" widget="node_network"/>
-                            </page-->
-                        </notebook> 
+                            </page>
+                        </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids"/>

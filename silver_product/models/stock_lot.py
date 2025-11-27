@@ -12,6 +12,7 @@ class StockLot(models.Model):
     firmware_version = fields.Char(string='Firmware Version', readonly=False)
 
     brand_id = fields.Many2one('product.brand', string="Marca")
+    brand_logo = fields.Binary(related='brand_id.logo', string='Logo de la Marca')
     #brand_name = fields.Char(string='Marca',  store=True)
     #model_name = fields.Char(string='Modelo',  store=True)
     mac_address = fields.Char(string='MAC Address', store=True)

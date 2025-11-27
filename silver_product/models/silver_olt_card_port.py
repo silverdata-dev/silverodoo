@@ -11,6 +11,7 @@ class SilverOltCardPort(models.Model):
         store=True,
     )
     brand_id = fields.Many2one('product.brand', string="Marca", related='stock_lot_id.brand_id', readonly=True, store=True)
+    brand_logo = fields.Binary(related='brand_id.logo', string='Logo de la Marca')
     hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo', related='stock_lot_id.hardware_model_id', readonly=True, store=True)
 
 #    brand_name = fields.Char(string='Marca', related='stock_lot_id.brand_name', readonly=True, store=True)

@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!-- Herencia para la vista de Formulario para añadir la pestaña ISP -->
+        <record id="crm_lead_view_form_inherit_silver" model="ir.ui.view">
+            <field name="name">crm.lead.form.inherit.silver</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+
+                <!--xpath expr="//group[@name='lead_info']" position="inside">
+                        <field name="silver_address_id" />
+                </xpath-->
+
+                <xpath expr="//page[@name='extra']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+
+                <xpath expr="//page[@name='internal_notes']" position="before">
+                    <page string="ISP" name="contract_service">
+                        <group>
+                            <group string="Datos del Servicio">
+                                <field name="plan_type_id" options="{'no_create': True}"/>
+                                <field name="type_service_id" options="{'no_create': True}"/>
+                                <field name="product_id" options="{'no_create': True}"/>
+                            </group>
+                            <group string="Datos de Red y Factibilidad">
+
+                                    <button  class="oe_highlight" name="action_open_find_node_wizard"
+                                             string="Nodo" type="object" invisible="not silver_address_id"/>
+                                    <field name="node_id"  nolabel="1"/>
+
+                                    <button name="action_open_nap_map" string="Caja Nap" type="object" class="oe_link" invisible="not node_id"/>
+
+                                    <field name="box_id" nolabel="1"/>
+
+                            </group>
+                            <group string="Datos de Instalación">
+                                <field name="silver_address_id" placeholder="Buscar o crear dirección..." context="{'show_address': 1}" options='{"always_reload": True}'/>
+                                <button name="action_copy_address" string="Crear Sub-Dirección (ej. Otro Apto)" type="object" class="oe_link" invisible="not silver_address_id"/>
+                            </group>
+                            <group string="Contrato Asociado">
+                                <field name="contract_id" readonly="1" options="{'no_create': True}"/>
+                                <button name="%(silver_contract.silver_contract_action)d" string="⇒ Ver Contrato" type="action" class="oe_link" invisible="not contract_id"/>
+                                <button name="action_create_contract" string="Crear Contrato" type="object" class="oe_highlight" invisible="contract_id"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
         <!-- Herencia para la vista Kanban (botón en la tarjeta) -->
         <record id="crm_lead_view_kanban_inherit_silver" model="ir.ui.view">
             <field name="name">crm.lead.kanban.inherit.silver</field>
@@ -8,37 +58,12 @@
             <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@class='o_kanban_record_subtitle']/following-sibling::div[1]" position="replace">
-<div>
-                                        <span class="o_text_overflow" t-if="record.partner_id.value" t-esc="record.partner_id.value"/>
-    <span class="o_text_overflow" t-if="record.partner_id.value" t-esc="record.partner_id.vat"/>
-                                    </div>
-
+                    <div>
+                        <span class="o_text_overflow" t-if="record.partner_id.value" t-esc="record.partner_id.value"/>
+                        <span class="o_text_overflow" t-if="record.partner_id.value" t-esc="record.partner_id.vat"/>
+                    </div>
                 </xpath>
             </field>
         </record>
-        <!--record id="silver_crm_quick_create_opportunity_form" model="ir.ui.view">
-            <field name="name">crm.lead.create.oportunity</field>
-            <field name="model">crm.lead</field>
-            <field name="inherit_id" ref="crm.quick_create_opportunity_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='partner_id']" position="replace">
-                  <field name="partner_id" widget="res_partner_many2one" class="o_field_highlight"
-                  string="Organization / Contact"
-                  context="{                             'res_partner_search_mode': type == 'opportunity' and 'customer' or False,                             'default_name': contact_name or partner_name,                             'default_is_company': type == 'opportunity' and contact_name == False,                             'default_company_name': type == 'opportunity' and partner_name,                             'default_type': 'contact',                             'default_phone': phone,                             'default_email': email_from,                             'default_user_id': user_id,                             'default_team_id': team_id,                             'show_vat': True}"/>
-
-
-                      <field name="partner_id"    widget="many2one_modal"
-       class="oe_link"  icon="fa-external-link" target='new'
-                             string="Organization / Contact" context="{                             'res_partner_search_mode': type == 'opportunity' and 'customer' or False,                             'default_name': contact_name or partner_name,                             'default_is_company': type == 'opportunity' and contact_name == False,                             'default_company_name': type == 'opportunity' and partner_name,                             'default_phone': phone,                             'default_email': email_from,                             'default_user_id': user_id,                             'default_team_id': team_id,                             'show_vat': True}"/>
- <button name="action_open_partner"
-                            type="object"
-                            icon="fa-external-link"
-                            class="oe_link"
-                            invisible="partner_id == False"
-                            aria-label="Abrir cliente"
-                            title="Abrir cliente"/>
-                </xpath>
-            </field>
-        </record-->
     </data>
 </odoo>

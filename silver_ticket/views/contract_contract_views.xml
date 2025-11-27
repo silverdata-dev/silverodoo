@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="contract_contract_view_form_inherit_silver_ticket" model="ir.ui.view">
+            <field name="name">silver.contract.form.inherit.silver.ticket</field>
+            <field name="model">silver.contract</field>
+            <field name="inherit_id" ref="silver_provisioning.silver_contract_view_form_provisioning"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Tickets">
+                        <field name="ticket_ids">
+                            <tree string="Tickets">
+                                <field name="name"/>
+                                <field name="ticket_type"/>
+                                <field name="stage_id"/>
+                                <field name="create_date"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -25,8 +25,10 @@ class SilverAddress(models.Model):
             
     @api.depends('street', 'building', 'house_number', 'zone_id.name', 'parish_id.name')
     def _compute_display_address(self):
+
         # Sobreescribimos el cómputo para incluir la parroquia
         for rec in self:
+            print(("compute", rec))
             parts = [rec.street, rec.building, rec.house_number, rec.zone_id.name, rec.parish_id.name]
             rec.name = ", ".join(filter(None, parts))
 

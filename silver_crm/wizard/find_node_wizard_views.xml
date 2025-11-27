@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="crm_find_node_wizard_form_view" model="ir.ui.view">
+            <field name="name">crm.find.node.wizard.form</field>
+            <field name="model">crm.find.node.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Asistente para Encontrar Nodos Cercanos">
+                    <field name="lead_id" invisible="1"/>
+                    <p>
+                        Mostrando los nodos más cercanos a la dirección de instalación.
+                        Haga clic en "Seleccionar" para asignar un nodo a la oportunidad.
+                    </p>
+                    <field name="line_ids" nolabel="1">
+                        <tree create="false" edit="false">
+                            <field name="node_id"/>
+                            <field name="distance" string="Distancia (mts)"/>
+                            <button name="action_select_node" type="object" string="Seleccionar" class="oe_highlight"/>
+                        </tree>
+                    </field>
+                    <footer>
+                        <button string="Cerrar" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_crm_find_node_wizard" model="ir.actions.act_window">
+            <field name="name">Encontrar Nodos Cercanos</field>
+            <field name="res_model">crm.find.node.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

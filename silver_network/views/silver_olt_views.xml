@@ -320,9 +320,6 @@
 
                             </page>
 
-                            <page string="ONU Profiles">
-                                <field name="onu_profile_ids"/>
-                            </page>
 
 
                         </notebook>

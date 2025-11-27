@@ -14,6 +14,7 @@ class ProductTemplate(models.Model):
     # General
     recurring_invoices_ok = fields.Boolean(string="Para facturación recurrente?")
     product_brand_id = fields.Many2one('product.brand', string='Marca')
+    product_brand_logo = fields.Binary(related='product_brand_id.logo', string='Logo de la Marca')
     hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo')
 
     service_type_id = fields.Many2one('silver.service.type', string= "Tipo de Servicio", default=lambda self: self._default_service_type())
@@ -130,4 +131,3 @@ class ProductIpAddress(models.Model):
     _description = 'Product IP Address'
     product_tmpl_id = fields.Many2one('product.template')
     name = fields.Char("Name")
-

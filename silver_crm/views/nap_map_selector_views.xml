@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- 1. Acción de Cliente para abrir el mapa de selección -->
+        <record id="action_nap_map_selector" model="ir.actions.client">
+            <field name="name">Seleccionar Caja NAP en Mapa</field>
+            <field name="tag">silver_crm.nap_map_selector</field>
+        </record>
+
+        <!-- 2. Plantilla para la página del mapa (heredada de silver_geo) -->
+        <template id="nap_map_selector_template" name="NAP Map Selector Page">
+            <head>
+                <title>Seleccionar Caja NAP</title>
+                <script type="text/javascript" src="/web/assets/debug/web.assets_backend.js"></script>
+                <link rel="stylesheet" type="text/css" href="/web/assets/debug/web.assets_backend.css"/>
+                <script type="module" src="/silver_crm/static/src/js/nap_map_selector_view.js"></script>
+            </head>
+            <body>
+                <div class="o_action_manager">
+                    <div class="o_action o_view_controller">
+                        <div class="o_content">
+                            <div id="map-container" class="w-100 h-100">
+                                <!-- El componente se renderizará aquí -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </body>
+        </template>
+    </data>
+</odoo>

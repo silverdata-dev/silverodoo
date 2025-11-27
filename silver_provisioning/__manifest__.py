@@ -35,6 +35,12 @@
 
 
     ],
+
+    'assets': {
+        'web.assets_backend': [
+    'silver_provisioning/static/src/css/cosas.css',
+        ],
+    },
     'installable': True,
     'application': False,
 }

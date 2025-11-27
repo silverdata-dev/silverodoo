@@ -129,17 +129,20 @@ class SilverContract(models.Model):
 
     @api.onchange('partner_id')
     def _onchange_partner_id_silver(self):
+        # Este onchange podría ser problemático si un cliente tiene múltiples contratos
+        # y se quiere que cada uno tenga una dirección de instalación diferente.
+        # Por ahora, lo mantenemos pero con un comentario de advertencia.
         if self.partner_id and self.partner_id.silver_address_id:
             original_address = self.partner_id.silver_address_id
-            
+
             # Prepara los datos para la copia
             address_data = original_address.copy_data({
                 'parent_id': original_address.id,
             })[0]
-            
+
             # Crea la nueva dirección (la copia)
             new_address = self.env['silver.address'].create(address_data)
-            
+
             # Asigna la nueva dirección al contrato
             self.silver_address_id = new_address
         else:

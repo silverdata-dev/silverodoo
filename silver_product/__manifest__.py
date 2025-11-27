@@ -5,7 +5,7 @@
     'author': 'SilverData',
     'website': 'https://www.silverdata.org',
     'category': 'Sales',
-    'depends': ['product', 'stock', 'silver_network', 'silver_base'],
+    'depends': ['product', 'stock', 'silver_network', 'silver_base', 'crm'],
     'data': [
         'security/ir.model.access.csv',
         'views/product_view.xml',

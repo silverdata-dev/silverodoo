@@ -6,10 +6,23 @@
             <field name="model">silver.olt</field>
             <field name="inherit_id" ref="silver_network.view_silver_olt_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+
+                            <page string="ONU Profiles">
+                                <field name="onu_profile_ids"/>
+                            </page>
+                </xpath>
                 <xpath expr="//group[@name='olt']/group[1]" position="inside">
                     <separator string="Equipo"/>
                     <field name="stock_lot_id"/>
-                    <field name="brand_id"/>
+
+                                        <label for="brand_id" />
+                    <div class="o_row d-flex align-items-center">
+                        <field name="brand_id"  nolabel="1"/>
+                        <field name="brand_logo" widget="image" class="ms-2" style="width: 24px; height: 24px;" invisible="not brand_id"/>
+                    </div>
+
+
                     <field name="hardware_model_id"/>
 
                     <!--field name="software_version"/>

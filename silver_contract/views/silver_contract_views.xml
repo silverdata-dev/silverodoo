@@ -7,7 +7,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
-                    <field name="partner_id"/>
+                    <field name="partner_id"  widget="many2one_avatar_user"/>
                     <field name="date_start"/>
                     <field name="date_end"/>
 
@@ -90,7 +90,7 @@
                                 <field name="is_extra_value_active" invisible="1"/>
                                 <field name="is_extra_value" invisible="1"/>
                                 <field name="state_service" invisible="1"/>
-                                <field name="partner_id" readonly="state != 'draft'"/>
+                                <field name="partner_id" readonly="state != 'draft'"  widget="many2one_avatar_user"/>
                                 <field name="silver_address_id" context="{'show_address': 1}" options='{"always_reload": True, "no_quick_create": False}'/>
                                 <field name="phone"/>
                             </group>
@@ -190,7 +190,7 @@
 
                             <page name="other_info" string="Otra Información">
 
-                                    <group name="general" string="General">
+
                                         <group>
                                             <group string="Marketing">
                                                 <field name="reception_channel_id"/>
@@ -200,13 +200,7 @@
                                             <group string="Firma">
                                                 <field name="signature" widget="signature"/>
                                             </group>
-                                        </group>
-                                        <group string="Términos y Condiciones">
-                                            <field name="description_contract" nolabel="1"/>
-                                        </group>
-                                    </group>
-                                <group string="Cargar Documentación">
-                                    <group>
+                                            <group string="Cargar Documentación">
                                         <field name="doc_vat_copy" widget="binary"
                                                filename="'doc_vat_copy_filename'"/>
                                         <field name="installation_request" widget="binary"
@@ -215,11 +209,15 @@
                                                filename="'service_contract_filename'"/>
                                         <field name="basic_service_sheet" widget="binary"
                                                filename="'basic_service_sheet_filename'"/>
-                                    </group>
-                                    <group>
+
                                         <field name="is_validated"/>
                                     </group>
-                                </group>
+                                             <group string="Términos y Condiciones">
+                                            <field name="description_contract" nolabel="1"/>
+                                        </group>
+                                        </group>
+
+
                                     <group name="related_records" string="Registros Relacionados">
                                         <field name="referred_line_ids" mode="tree">
                                             <tree editable="bottom">

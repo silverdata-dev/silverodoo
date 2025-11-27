@@ -57,7 +57,11 @@
                                 <field name="port_splitter_secondary" invisible="1"/>
                                 <field name="splitter_id" readonly="1" on_change="1" can_create="true" can_write="true"
                                        modifiers="{&quot;readonly&quot;: true}"  invisible="1"/>
-                                <field name="silver_address_id" />
+                                <field name="silver_address_id" context="{'show_coordinates': True}"/>
+                                <!--label for="latitude" string="Coordenadas" invisible="not context.get('show_coordinates')"/>
+                                <div invisible="not context.get('show_coordinates')">
+                                    <field name="latitude" class="oe_inline"/>, <field name="longitude" class="oe_inline"/>
+                                </div-->
                                 <field name="node_id"  required="1"/>
                                 <field name="core_id" required="1"/>
                                 <field name="olt_id" required="1"/>

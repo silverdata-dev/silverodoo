@@ -39,7 +39,7 @@
 
                         </group>
    <group>
-                                <group name="ips_networks_2" string="Datos Red Externa Asignada" invisible="link_type != 'fiber'">
+                                <group name="ips_networks_2" string="Datos de Acceso" invisible="link_type != 'fiber'">
 
 
                                         <field name="core_id" readonly="(state_service == 'active')  " options="{'no_create': True}"
@@ -51,7 +51,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                         <button name="action_open_onu_selector_wizard"
                                                 type="object"
                                                 string="Descubrir ONUS"
-                                                class="oe_highlight"
+                                                class="oe_highlight oe200"
                                                 invisible="(not olt_id) or (state_service == 'active')"/>
                                         <field name="discovered_onu_id" colspan="1"
                                                domain="[('olt_id', '=', olt_id), '|', ('contract_id', '=', False), ('contract_id', '=', id)]"
@@ -67,13 +67,13 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                     <button name="action_provision_base"
                                                 type="object"
                                                 string="Aprovisionar Servicio"
-                                                class="oe_highlight"
+                                                class="oe_highlight  oe200"
                                                 invisible="(not olt_id) or(state not in ['open', 'active']) or (state_service != 'inactive') "/>
 
                                     <button name="action_check_olt_state"
                                                 type="object"
                                                 string="Comprobar conexión"
-                                                class="oe_highlight"
+                                                class="oe_highlight  oe200"
                                                 invisible="(state not in ['open', 'active']) or (state_service != 'active')"/>
                                         <field name="olt_state"  nolabel="1"
                                                widget="badge"  invisible="(state not in ['open', 'active']) or (state_service != 'active')"
@@ -82,9 +82,9 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                            decoration-danger="olt_state in ['removed', 'down']"/>
 
 
-                                                        <button name="action_suspend_service" string="Suspender Servicio" type="object" class="oe_highlight" invisible="(state not in ['open', 'active']) or (state_service != 'active')"/>
-                    <button name="action_terminate_service" string="Dar de Baja" type="object" class="oe_highlight" invisible="(state not in ['open', 'active']) or (state_service not in ['suspended'])"/>
-                    <button name="action_reconnection_service_button" type="object" class="oe_highlight" string="Restaurar Servicio" invisible="(state not in ['open', 'active']) or ( state_service not in ['terminated', 'suspended']) "/>
+                                                        <button name="action_suspend_service" string="Suspender Servicio" type="object" class="oe_highlight  oe200" invisible="(state not in ['open', 'active']) or (state_service != 'active')"/>
+                    <button name="action_terminate_service" string="Dar de Baja" type="object" class="oe_highlight  oe200" invisible="(state not in ['open', 'active']) or (state_service not in ['suspended'])"/>
+                    <button name="action_reconnection_service_button" type="object" class="oe_highlight  oe200" string="Restaurar Servicio" invisible="(state not in ['open', 'active']) or ( state_service not in ['terminated', 'suspended']) "/>
 
                                     <field name="wan_state"  nolabel="1"
                                                widget="badge"  invisible="(state not in ['open', 'active']) or (state_service != 'active')"
@@ -93,9 +93,19 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
 
                                     </group>
 
-         <group string="Equipo" invisible="link_type != 'fiber'">
+         <group string="Equipo del Cliente" invisible="link_type != 'fiber'">
+                                <group class="col-lg-9">
+
                                         <field name="stock_lot_id" readonly="state_service == 'active'"/>
-                    <field name="brand_id"/>
+
+                                 <label for="brand_id" />
+                    <div class="o_row d-flex align-items-center">
+                        <field name="brand_id"  nolabel="1"/>
+                        <field name="brand_logo" widget="image" class="ms-2" style="width: 24px; height: 24px;" invisible="not brand_id"/>
+                    </div>
+
+
+
                     <field name="hardware_model_id"/>
              <field name="profile_id"/>
                     <!--field name="software_version"/>
@@ -106,11 +116,22 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
 
 
                                     </group>
+                                <group>
+                                    <button name="action_contract_reboot_onu" type="object" class="btn-secondary  oe200"
+                                            icon="fa-refresh" string="Reiniciar ONU"
+                                            invisible="(state not in ['open', 'active']) or ( state_service not in ['active', 'suspended']) "/>
+                                    <button name="action_contract_reset_onu" type="object" class="btn-secondary  oe200"
+                                            icon="fa-undo" string="Factory ONU"
+                                            invisible="(state not in ['open', 'active']) or ( state_service not in ['terminated', 'active', 'suspended']) "/>
+                                </group>
+
+
+                            </group>
 
    </group>
 <group>
 
-                                    <group string="Datos Asignados">
+                                    <group string="Datos del Radius">
 <group colspan="4">
 
                                         <field name="core_id" readonly="(state_service == 'active') and (radius_state == 'active') and (core_state == 'active') " options="{'no_create': True}"
@@ -132,7 +153,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                     context="{'order_display': 'public asc,ip_int asc'}"
                                     /-->
   <field name="ip_address_id"
-                                             domain="[
+                                             domain="[('used', '=', False),
                                              '|',
                                               '&amp;',
                                              ('public', '=', False),
@@ -153,8 +174,9 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                             <button name="action_add_radius_access"
                                                 type="object"
                                                 string="Establecer usuario"
-                                                class="oe_highlight"
+                                                class="oe_highlight  oe200"
                                                 invisible="(pppoe_user == None) or (pppoe_password == None)"/>
+
 
    <field name="radius_state" widget="badge"
                            decoration-success="radius_state in ['active', 'connected']"
@@ -174,12 +196,18 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
 
 </group> </group>
                                         <group>
+                                    <button name="get_radius_user_info"
+                                            type="object"
+                                            string="Obtener Información"
+                                            class="btn-secondary  oe200"
+                                            invisible="(pppoe_user == None)"/>
+
                                              <button name="action_view_pppoe_traffic_chart"
                                                      type="object"
-                                                    
+                                                    class=" oe200 btn-secondary"
                                                      icon="fa-area-chart"
                                                      string="PPP"
-                                                     invisible="(state_service != 'active') or (core_state not in ('active', 'connected'))"/>
+                                                     invisible="(state_service != 'active') "/>
                                         </group>
 
 
@@ -188,7 +216,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
 <field name="manual" />
          </group>
 
-                                     <group string="Credenciales WiFi" invisible="(link_type != 'fiber') or (manual == True)">
+                                     <group string="Configuración WAN" invisible="(link_type != 'fiber') or (manual == True)">
 
                                 <field name="sssid" invisible="1"/>
                                 <field name="password" invisible="1" password="True"/>
@@ -196,7 +224,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                 <!--field name="contract_mode_wan_ids"/-->
 
                                 <field name="wifi_line_ids" nolabel="1"  colspan="2">
-                                    <tree >
+                                    <tree>
                                         <field name="ssid_index"/>
                                         <field name="name"/>
                                         <field name="password" />
@@ -209,30 +237,37 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                          <field name="olt_state" invisible="1" />
                                          <field name="service_type_code" invisible="1"/>
                                          <group>
-  <button name="action_provision_wan" string="Configurar WAN" type="object" class="oe_highlight" invisible="(state_service == 'inactive') or (olt_state != 'active')"/>
-<button name="button_get_wan_info" type="object" string="Info" invisible="wan_config_successful==True"
+  <button name="action_provision_wan" string="Configurar WAN" type="object" class="oe_highlight oe200" invisible="(state_service == 'inactive') or (olt_state != 'active')"/>
+<button name="button_get_wan_info" type="object" string="Info" class=" oe200  btn-secondary" invisible="wan_config_successful==True" icon="fa-info-circle"
                                 />
-<button name="button_get_wan_info" type="object" string="Info"  invisible="wan_config_successful!=True" class="btn-success"
+<button name="button_get_wan_info" type="object" string="Info" invisible="wan_config_successful!=True" class="btn-success oe200" icon="fa-info-circle"
                                 />
 
-                    <button name="action_provision_wifi" string="Aplicar WiFi" type="object" class="oe_highlight" invisible=" (state_service == 'inactive') or (olt_state != 'active')"/>
-<button name="button_get_wifi_info" type="object" string="Wifi" invisible="wifi_config_successful==True"
+                    <button name="action_provision_wifi" string="Aplicar WiFi" type="object" class="oe_highlight oe200" invisible=" (state_service == 'inactive') or (olt_state != 'active')"/>
+<button name="button_get_wifi_info" type="object" string="Wifi" invisible="wifi_config_successful==True" icon="fa-wifi" class=" oe200 btn-secondary"
 />
-<button name="button_get_wifi_info" type="object" string="Wifi" invisible="wifi_config_successful!=True"  class="btn-success"
+<button name="button_get_wifi_info" type="object" string="Wifi" invisible="wifi_config_successful!=True"  class="btn-success oe200" icon="fa-wifi"
 />
 
                                              </group>
                                          <group>
-                                              <div>
-             <button name="action_contract_reboot_onu" type="object" class="oe_stat_button" icon="fa-refresh" string="Reiniciar"  invisible="(state not in ['open', 'active']) or ( state_service not in ['active', 'suspended']) "/>
-             <button name="action_contract_reset_onu" type="object" class="oe_stat_button" icon="fa-undo" string="Resetear"  invisible="(state not in ['open', 'active']) or ( state_service not in ['terminated', 'suspended']) "/>
-                                             </div>
 </group>
                             </group>
 
-     <group string="Equipo" invisible="link_type == 'fiber'">
+
+                            <group string="Equipo del Cliente" invisible="link_type == 'fiber'">
+                                <group class="col-lg-9">
+
                                         <field name="stock_lot_id" readonly="state_service == 'active'"/>
-                    <field name="brand_id"/>
+
+                             <label for="brand_id" />
+                    <div class="o_row d-flex align-items-center">
+                        <field name="brand_id"  nolabel="1"/>
+                        <field name="brand_logo" widget="image" class="ms-2" style="width: 24px; height: 24px;" invisible="not brand_id"/>
+                    </div>
+
+
+
                     <field name="hardware_model_id"/>
          <field name="profile_id"/>
                     <!--field name="software_version"/>
@@ -240,8 +275,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                 <field name="mac_address_onu"/>
 
                                         <field name="is_bridge" readonly="state_service == 'active'"/>
-
-
+                                </group>
 
                                     </group>
 

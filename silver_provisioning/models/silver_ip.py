@@ -7,14 +7,15 @@ import ipaddress
 class SilverIpAddress(models.Model):
     _inherit = 'silver.ip.address'
 
-    #contract_ids = fields.One2many('silver.contract', 'ip_address_id', string="Contratos")
+    contract_ids = fields.One2many('silver.contract', 'ip_address_id', string="Contratos")
     contract_id = fields.Many2one("silver.contract", string="Contrato")
 
     used = fields.Boolean(string="Usado", compute="_compute_used")
 
-    @api.depends("contract_id")
+    @api.depends("contract_ids")
     def _compute_used(self):
         for s in self:
+            s.contract_id = s.contract_ids[0] if s.contract_ids and len(s.contract_ids) else None
             print(("used", s.used, s.contract_id))
             s.used = (s.contract_id != None) and len(s.contract_id)>0
 

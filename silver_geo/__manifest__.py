@@ -24,6 +24,10 @@
             'silver_geo/static/src/css/coordinate_picker.css',
             'silver_geo/static/src/js/coordinate_picker_map.js',
             'silver_geo/static/src/xml/coordinate_picker_map.xml',
+
+            # Node Map Widget
+            'silver_geo/static/src/js/node_map_widget.js',
+            'silver_geo/static/src/xml/node_map_widget.xml',
         ],
     },
     'installable': True,

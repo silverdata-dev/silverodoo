@@ -1,0 +1,54 @@
+div[name=wifi_line_ids] tbody>:last-child> td:not([class]) {
+    display: none !important;
+}
+
+
+
+.oe200 {
+	width: 150px !important;
+}
+
+
+.badge.rounded-pill {
+	width: 120px !important;
+  height: 30px;
+  padding-top: 8px;
+  display: inline-block;
+  position: absolute;
+}
+
+
+.wan-data-table {
+	margin: 10px 0;
+	width: 100%;
+}
+
+.wan-data-table table {
+	border: 1px solid #dee2e6;
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+.wan-data-table .wan-key {
+	font-weight: bold;
+	background-color: #f8f9fa;
+	width: 35%;
+	padding: 5px 10px !important;
+	border-right: 1px solid #dee2e6;
+}
+
+.wan-data-table .wan-value {
+	padding: 5px 10px !important;
+	word-break: break-word;
+}
+
+.wan-data-table .wan-separator-row {
+	background-color: #e9ecef;
+}
+
+.wan-data-table .wan-separator-row td {
+	font-size: 1.1em;
+	font-weight: 600;
+	padding: 8px 10px !important;
+	border-top: 2px solid #adb5bd !important;
+}

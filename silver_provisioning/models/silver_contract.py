@@ -5,6 +5,8 @@ import math
 from odoo.exceptions import UserError, ValidationError
 import logging
 from librouteros.query import Key
+from datetime import datetime
+from dateutil.relativedelta import relativedelta # Necesitas 'python-dateutil'
 
 _logger = logging.getLogger(__name__)
 
@@ -355,6 +357,7 @@ class IspContract(models.Model):
     #brand_name = fields.Char(string='Marca ONU', related='stock_lot_id.brand_name', readonly=True, store=False)
     #model_name = fields.Char(string='Modelo ONU', related='stock_lot_id.model_name', readonly=True, store=False)
     brand_id = fields.Many2one('product.brand', string="Marca", related='stock_lot_id.brand_id', readonly=True, store=True)
+    brand_logo = fields.Binary(related='brand_id.logo', string='Logo de la Marca')
     hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo', related='stock_lot_id.hardware_model_id', readonly=True, store=True)
 
     profile_id = fields.Many2one('silver.onu.profile', string='Perfil ONU', related='stock_lot_id.hardware_model_id.onu_profile_id', readonly=True, store=False)
@@ -1360,6 +1363,117 @@ class IspContract(models.Model):
         print(("html", html_table))
         return html_table
 
+    def _format_dict_to_html(self, data_dict):
+        """
+        Helper function to format a dictionary into a simple HTML table.
+        Reuses the same styling as _format_data_to_html.
+        """
+        if not data_dict:
+            return ""
+
+        html_table = "<table class='table table-sm table-borderless'>"
+        for key, value in data_dict.items():
+            # Clean up the key name (e.g., '.id' -> 'ID')
+            clean_key = key.replace('.', '').replace('-', ' ').title()
+            html_table += f"""
+                <tr>
+                    <td class='wan-key'>{clean_key}</td>
+                    <td class='wan-value'>{value}</td>
+                </tr>
+            """
+        html_table += "</table>"
+        return html_table
+
+    def get_radius_user_info(self):
+        """
+        Connects to the User Manager on the RADIUS server and retrieves
+        information about the user and their active sessions.
+        """
+        self.ensure_one()
+
+        if not self.core_id:
+            raise UserError(_("No tiene un core configurado para consultar el RADIUS."))
+        
+        radius_server = self.core_id.radius_id or self.core_id
+        if not radius_server:
+            raise UserError(_("El core no tiene un servidor RADIUS (User Manager) asociado."))
+            
+        if not self.pppoe_user:
+            raise UserError(_("No hay un usuario PPPoE definido en el contrato."))
+
+        netdev = radius_server.netdev_id
+        if not netdev:
+            raise UserError(_("El servidor RADIUS no tiene un dispositivo de red (netdev) configurado para la conexión."))
+
+        user_info_html = "<h3>Usuario no encontrado</h3>"
+        session_info_html = "<h3>No hay sesiones activas</h3>"
+        api = None
+
+       # try:
+        if 1:
+            api = netdev._get_api_connection()
+            if not api:
+                raise ConnectionError("No se pudo establecer la conexión con el servidor RADIUS.")
+
+            # --- Get User Info ---
+            user_path = api.path('/user-manager/user')
+            user_data = tuple(user_path.select().where(Key('name') == self.pppoe_user))
+
+            print(("udata", user_data))
+
+
+            if user_data:
+                # user_data is a tuple of dicts, we want the first one
+                user_info_html = "<h3>Detalles del Usuario</h3>" + self._format_dict_to_html(user_data[0])
+
+            start_of_last_month = datetime.now().replace(day=1, hour=0, minute=0, second=0,
+                                                         microsecond=0) - relativedelta(months=1)
+
+            # 2. Fin: Primer día del mes actual a las 00:00:00 (que es el límite superior 'menor que')
+            start_of_this_month = datetime.now().replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+
+            # El formato que Mikrotik usa típicamente es "MMM/DD/YYYY HH:MM:SS"
+            # Ejemplo: "Nov/27/2025 00:00:00"
+            start_date_str = start_of_last_month.strftime("%b/%d/%Y %H:%M:%S")
+            end_date_str = start_of_this_month.strftime("%b/%d/%Y %H:%M:%S")
+
+            # --- Get Session Info ---
+            #session_path = api.path('/user-manager/session')
+            #session_data = tuple(session_path.select().where(Key('user') == self.pppoe_user,
+            #                                                 Key('start-time') > start_date_str,
+            #                                                 # Nota: el ' ' después de > es crucial
+            #                                                 # 2. Que el tiempo de inicio sea MENOR que el inicio del mes actual
+            #                                                 Key('start-time') < end_date_str
+            #                                                 ))
+            session_data = None
+            print(("sdata", session_data))
+
+            if session_data:
+                session_info_html = "<h3>Sesiones Activas</h3>"
+                for session in session_data:
+                    session_info_html += self._format_dict_to_html(session) + "<hr/>"
+
+        #except Exception as e:
+        #    raise UserError(_("Error al consultar el User Manager: %s") % e)
+        #finally:
+            if api:
+                api.close()
+                
+        full_html = user_info_html + "<br/>" + session_info_html
+
+        wizard = self.env['silver.display.info.wizard'].create({
+            'info': full_html,
+        })
+
+        return {
+            'name': _('Información de Usuario RADIUS'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.display.info.wizard',
+            'view_mode': 'form',
+            'res_id': wizard.id,
+            'target': 'new',
+        }
+
     def button_get_wan_info(self):
         self.ensure_one()
 
@@ -1495,4 +1609,3 @@ class IspContract(models.Model):
             'res_id': wizard.id,
             'target': 'new',
         }
-

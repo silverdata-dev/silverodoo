@@ -9,6 +9,7 @@ export class NodeNetworkWidget extends Component {
 
     setup() {
         this.rpc = useService("rpc");
+        this.action = useService("action");
         this.graphRef = useRef("graph");
 
         onWillStart(async () => {
@@ -62,7 +63,30 @@ export class NodeNetworkWidget extends Component {
                 stabilization: { iterations: 150 },
             },
         };
-        new vis.Network(container, network_data, options);
+        const network = new vis.Network(container, network_data, options);
+
+        network.on('hoverNode', function (params) {
+  // Set the cursor to a pointer when hovering over a node
+  network.canvas.body.container.style.cursor = 'pointer';
+});
+
+        network.on("doubleClick", (params) => {
+            console.log(("params", params))
+            if (params.nodes.length > 0) {
+                const nodeId = params.nodes[0];
+                const [model, resId] = nodeId.split('_');
+                console.log(("model", model, resId))
+                if (model && resId) {
+                    this.action.doAction({
+                        type: 'ir.actions.act_window',
+                        res_model: "silver."+model,
+                        res_id: parseInt(resId),
+                        views: [[false, 'form']],
+                        target: 'current',
+                    });
+                }
+            }
+        });
     }
 }
 

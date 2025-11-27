@@ -8,8 +8,11 @@ _logger = logging.getLogger(__name__)
 class CrmLead(models.Model):
     _inherit = 'crm.lead'
 
+
+
+
     x_id_cliente = fields.Char('ID Cliente')
-    x_zona_id = fields.Many2one('silver.zone', string='Zona')
+    zone_id = fields.Many2one('silver.zone', string='Zona')
     x_instalador_id = fields.Many2one('res.partner', string='Instalador', domain="[('supplier_rank', '>', 0)]")
     x_is_supervisor = fields.Boolean('Supervisor')
     x_is_instalado = fields.Boolean('Instalado')
@@ -78,7 +81,7 @@ class CrmLead(models.Model):
                 'description': str(row.get('NOTAS', '')).strip(),
                 'x_is_supervisor': str(row.get('SUPERVISOR', '')).strip().upper() == 'SI',
                 'x_is_instalado': str(row.get('INSTALADO', '')).strip().upper() == 'SI',
-                'x_zona_id': zona.id if zona else False,
+                'zone_id': zona.id if zona else False,
                 'user_id': vendedor.id if vendedor else False,
                 'x_instalador_id': instalador.id if instalador else False,
             }

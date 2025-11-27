@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api
+import re
+from math import radians, sin, cos, sqrt, atan2
 
 class SilverAddress(models.Model):
     _name = 'silver.address'
     _description = 'Dirección Silver'
-    _order = 'name'
+    _order = 'display_name'
+    _rec_name = 'display_name' # Para que este sea el campo que se muestra en los Many2one
 
     def _get_default_country(self):
         return self.env['res.country'].search([('code', '=', 'VE')], limit=1)
 
-    name = fields.Char(string="Dirección Completa", compute='_compute_display_address', store=True)
+    name = fields.Char(string='Dirección',compute='_compute_display_name', store=False)
+    display_name = fields.Char(string="Dirección Completa", compute='_compute_display_name', store=False)
     
     parent_id = fields.Many2one('silver.address', string='Dirección Padre')
     
@@ -28,11 +32,13 @@ class SilverAddress(models.Model):
     latitude = fields.Float(string='Latitud', digits=(10, 7))
     longitude = fields.Float(string='Longitud', digits=(10, 7))
 
-    @api.depends('street', 'building', 'house_number', 'zone_id.name')
-    def _compute_display_address(self):
+    @api.depends('street', 'building', 'house_number', 'zone_id.name', 'latitude', 'longitude')
+    def _compute_display_name(self):
         for rec in self:
-            parts = [rec.street, rec.building, rec.house_number, rec.zone_id.name]
-            rec.name = ", ".join(filter(None, parts))
+            print(("show ad", self.env.context, rec.latitude, rec.longitude))
+            rec.display_name = rec.get_name()
+            rec.name = rec.display_name
+
 
     def _onchange_zone_id(self):
         if self.zone_id:
@@ -75,18 +81,28 @@ class SilverAddress(models.Model):
             if potential_parent:
                 self.parent_id = potential_parent
 
+    def get_name(self):
+        parts = [self.street, self.building, self.house_number, self.zone_id.name]
+        base_name = ", ".join(filter(None, parts))
+
+        if self.env.context.get('show_coordinates') and self.latitude and self.longitude:
+           return f"{self.latitude:.5f}, {self.longitude:.5f}"
+        return base_name
+
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
         """
         Permite buscar direcciones por calle, edificio o nombre de la zona.
         """
+        
         args = args or []
         domain = []
         if name:
             domain = ['|', '|', ('street', operator, name), ('building', operator, name), ('zone_id.name', operator, name)]
         
         records = self.search(domain + args, limit=limit)
-        return records.name_get()
+
+        return [(r.id, r.get_name()) for r in records]
 
     @api.model
     def default_get(self, fields_list):
@@ -123,7 +139,55 @@ class SilverAddress(models.Model):
         return res
 
 
+    def _haversine_distance(self, lat1, lon1, lat2, lon2):
+        R = 6371000  # Radio de la Tierra en metros
+        lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
+
+        dlon = lon2 - lon1
+        dlat = lat2 - lat1
+
+        a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
+        c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+        distance = R * c
+        return distance
+
     @api.model
-    def name_create(self, s):
-        res = self.create({ 'street': s })
-        return res.id, res.name
+    def name_create(self, name):
+        # Expresión regular para detectar coordenadas (con o sin signo)
+        coord_pattern = r"^\s*(-?\d+\.\d+)\s*,\s*(-?\d+\.\d+)\s*$"
+        match = re.match(coord_pattern, name)
+
+        if match:
+            lat, lon = float(match.group(1)), float(match.group(2))
+            
+            # Buscar direcciones cercanas
+            nearby_addresses = self.search([])
+            closest_address = None
+            min_distance = float('inf')
+
+            for address in nearby_addresses:
+                if address.latitude and address.longitude:
+                    distance = self._haversine_distance(lat, lon, address.latitude, address.longitude)
+                    if distance < min_distance:
+                        min_distance = distance
+                        closest_address = address
+            
+            vals = {'latitude': lat, 'longitude': lon}
+            if closest_address and min_distance <= 20:
+                # Si se encuentra una dirección a 20 metros o menos, copiar sus datos
+                vals.update({
+                    'street': closest_address.street,
+                    'building': closest_address.building,
+                    'zone_id': closest_address.zone_id.id,
+                    'state_id': closest_address.state_id.id,
+                    'country_id': closest_address.country_id.id,
+                    'parent_id': closest_address.id,
+                })
+
+            new_address = self.create(vals)
+        else:
+            # Comportamiento original si no son coordenadas
+            new_address = self.create({'street': name})
+            
+        return new_address.id, new_address.display_name
