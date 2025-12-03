@@ -574,6 +574,7 @@ class SilverCore(models.Model):
             _logger.info(f"Iniciando configuración NAS para {self.name} en el RADIUS {radius_id.name} con user {username}")
             api = self.netdev_id._get_api_connection(username=username, password=password)
             if not api:
+                self.askuser = True
                 return False
                 #raise UserError(_("No se pudo conectar al dispositivo Core para la configuración NAS."))
 

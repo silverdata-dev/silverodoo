@@ -115,6 +115,7 @@ class SilverNetdev(models.Model):
         if not user_to_try or not pass_to_try:
             #self.write({'state': 'error'})
             self.state = 'error'
+
             _logger.error("Connection attempt failed: No username or password provided.")
             return None
 
