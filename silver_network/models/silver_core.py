@@ -556,6 +556,7 @@ class SilverCore(models.Model):
         return True
 
     def button_test_connectionu(self):
+        self.askuser = True
         r = self.button_test_connection(True)
         _logger.info("test connectionu %s", r)
         return r
