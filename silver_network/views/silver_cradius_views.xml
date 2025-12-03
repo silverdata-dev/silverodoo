@@ -11,7 +11,10 @@
                     <attribute name="invisible">is_radius==True</attribute>
                     <attribute name="domain">[('is_radius', '=', True)]</attribute>
                 </xpath>
-
+<xpath expr="//field[@name='radius_admin_id']" position="attributes">
+                    <attribute name="invisible">is_radius==True</attribute>
+                    <attribute name="domain">[('is_radius', '=', True)]</attribute>
+                </xpath>
                 <!--xpath expr="//header" position="inside">
 
                             <button name="button_test_connection" type="object" string="Test Connection"

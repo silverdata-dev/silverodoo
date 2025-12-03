@@ -252,11 +252,11 @@ class SilverCore(models.Model):
             
     @api.model
     def create(self, vals):
-        if vals.get('node_id'):
-            node = self.env['silver.node'].browse(vals['node_id'])
-            if node.exists() and node.code:
+        #if vals.get('node_id'):
+          #  node = self.env['silver.node'].browse(vals['node_id'])
+           # if node.exists() and node.code:
 
-                vals['parent_id'] = node.asset_id.id
+           #     vals['parent_id'] = node.asset_id.id
         return super(SilverCore, self).create(vals)
 
 
