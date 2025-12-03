@@ -566,6 +566,7 @@ class SilverCore(models.Model):
         Punto de entrada público para verificar y configurar el Core como un cliente NAS en el RADIUS.
         """
         self.ensure_one()
+        self.askuser = True
 
         radius_id = (self if self.is_radius else self.radius_id)
         api = None
@@ -648,7 +649,7 @@ class SilverCore(models.Model):
                     self._configure_radius_on_device(api)
 
                 cambia = (self.state != 'active')
-                self.askuser = False
+              #  self.askuser = False
                 self.state = 'active'
             #    return self._show_notification('success', _('RADIUS and NAS ya configurados'))
 
