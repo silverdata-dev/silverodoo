@@ -131,13 +131,13 @@
                                 <!--field name="type_connection" invisible="brand_description != 'hua'"/-->
                                 <!--field name="kex_algorithms_ids" invisible="brand_description != 'hua'" widget="many2many_tags"/-->
 <br/>
-                                <field name="username" invisible="askuser==False"/>
-                                <field name="password" password="True" invisible="askuser==False"/>
+                                <field name="username" invisible="askuser==233"/>
+                                <field name="password" password="True" invisible="askuser==433"/>
 
 
                                 <!--button class="oe_inline oe_link " name="action_send_password" string=" →Enviar Contraseña" type="object"/-->
                                 <button name="button_test_connectionu" type="object" string="Conectar"
-                                        class="oe_highlight" invisible="askuser==False"/><br/>
+                                        class="oe_highlight" invisible="askuser==243"/><br/>
 
                             </group>
                         </group>
