@@ -263,11 +263,11 @@ class SilverRadius(models.Model):
                     'title': _('Connection Test'),
                     'message': _('Connection to Radius server was successful!'),
                     'type': 'success',
-                    'next': {'type': 'ir.actions.client', 'tag': 'reload'},
+                  #  'next': {'type': 'ir.actions.client', 'tag': 'reload'},
                 }
             }
         # If the connection fails, we still reload to show the 'down' state.
-        return {'type': 'ir.actions.client', 'tag': 'reload'}
+        return True #{'type': 'ir.actions.client', 'tag': 'reload'}
 
     def button_get_system_info(self):
         return self.netdev_id.button_get_system_info()
