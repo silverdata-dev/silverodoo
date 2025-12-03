@@ -16,6 +16,9 @@ class ProductTemplate(models.Model):
     product_brand_id = fields.Many2one('product.brand', string='Marca')
     product_brand_logo = fields.Binary(related='product_brand_id.logo', string='Logo de la Marca')
     hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo')
+    etype = fields.Selection(
+        [('core', 'Core'), ('olt', 'OLT'), ('onu', 'ONU'), ('ap', 'AP'), ('ecp', 'ECP'), ('splitter', 'Splitter'),
+         ('box', 'NAP'), ], string='Tipo de equipo')
 
     service_type_id = fields.Many2one('silver.service.type', string= "Tipo de Servicio", default=lambda self: self._default_service_type())
 
@@ -28,8 +31,8 @@ class ProductTemplate(models.Model):
 
     # ISP Data
     is_internet = fields.Boolean(string="Internet", compute="_compute_is_internet")
-    min_upload_bandwidth = fields.Float(string="V. Min. de Subida", default='1M')
-    min_download_bandwidth = fields.Float(string="V. Min. de Descarga", default='1M')
+    min_upload_bandwidth = fields.Float(string="V. Min. de Subida", default='1')
+    min_download_bandwidth = fields.Float(string="V. Min. de Descarga", default='1')
     upload_bandwidth = fields.Float(string="V. de Subida", default='50')
     download_bandwidth = fields.Float(string="V. de Descarga", default='100')
     burst_limit_upload = fields.Float(string="Burst Limit Upload", default='0')

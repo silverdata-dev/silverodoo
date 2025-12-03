@@ -14,6 +14,55 @@
             </field>
          </record-->
 
+        <record id="product_product_inherit_silver"  model="ir.ui.view">
+            <field name="name">product.product.form.inherit.silver</field>
+            <field name="model">product.product</field>
+  <field name="priority">32</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+
+ <xpath expr="//notebook/page[1]" position="before">
+                    <page string="Resumen">
+                        <group>
+                              <group>
+                    <field name="detailed_type"/>
+                                <field name="uom_id"/>
+                                <field name="etype" invisible="detailed_type=='service'"/>
+                                  <label for="product_brand_id" invisible="detailed_type=='service'"/>
+                    <div class="o_row d-flex align-items-center" invisible="detailed_type=='service'">
+                        <field name="product_brand_id"  nolabel="1"/>
+                        <field name="product_brand_logo" widget="image" class="ms-2" style="width: 24px; height: 24px;" invisible="not product_brand_id"/>
+                    </div>
+                                <field name="hardware_model_id"
+                                       context="{'default_etype':etype, 'default_brand_id':product_brand_id}"
+                                       domain="[('etype','=',etype),('brand_id','=',product_brand_id)]"
+                                       invisible="detailed_type=='service'" options="{'no_create_edit': False, 'no_quick_create': True}"/>
+<field name="service_type_id" invisible="detailed_type!='service'" />
+                            </group>
+
+
+                            <group>
+                        <field name="list_price"/>
+                                <field name="categ_id"/>
+                                <field name="property_stock_inventory"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                                <xpath expr="//field[@name='detailed_type']" position="after">
+                                    <field name="is_internet" invisible="1"/>
+                    <field name="service_type_id" invisible="detailed_type!='service'" required="detailed_type=='service'"/>
+                </xpath>
+
+
+                <xpath expr="//page[@name='general_information']" position="attributes">
+                    <attribute name="string">Información</attribute>
+                </xpath>
+
+            </field>
+
+        </record>
+
         <record id="product_template_form_view_inherit_silver" model="ir.ui.view">
             <field name="name">product.template.form.inherit.silver</field>
             <field name="model">product.template</field>
@@ -21,9 +70,38 @@
             <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
             <field name="arch" type="xml">
 
+                  <xpath expr="//notebook/page[1]" position="before">
+                    <page string="Resumen">
+                        <group>
+                            <group>
+                    <field name="detailed_type"/>
+                                <field name="uom_id"/>
+                                <field name="etype" invisible="detailed_type=='service'"/>
+                                  <label for="product_brand_id" invisible="detailed_type=='service'"/>
+                    <div class="o_row d-flex align-items-center" invisible="detailed_type=='service'">
+                        <field name="product_brand_id"  nolabel="1"/>
+                        <field name="product_brand_logo" widget="image" class="ms-2" style="width: 24px; height: 24px;" invisible="not product_brand_id"/>
+                    </div>
+                                <field name="hardware_model_id"
+                                       context="{'default_etype':etype}"
+                                       domain="[('etype','=',etype)]"
+                                       invisible="detailed_type=='service'" options="{'no_create_edit': False, 'no_quick_create': True}"/>
+<field name="service_type_id" invisible="detailed_type!='service'" />
+                            </group>
+
+                            <group>
+                        <field name="list_price"/>
+                                <field name="categ_id"/>
+                                <field name="property_stock_inventory"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+
+
                 <!-- 1. Replace Header Buttons -->
                 <xpath expr="//header" position="inside">
-                        <button string="Imprimir etiquetaas" type="object" name="action_open_label_layout"/>
+                        <button string="Imprimir etiquetas" type="object" name="action_open_label_layout"/>
                         <button string="Actualizar la cantidad " type="object" name="action_update_quantity_on_hand" invisible="type != 'product'"/>
                         <button string="Reabastecer" type="action" name="355" context="{'default_product_tmpl_id': id}" invisible="type != 'product'"/>
                 </xpath>
@@ -54,6 +132,10 @@
 
                 </xpath>
 
+
+                <xpath expr="//page[@name='general_information']" position="attributes">
+                    <attribute name="string">Información</attribute>
+                </xpath>
 
 
                 <!-- 3. Add Priority to Title -->

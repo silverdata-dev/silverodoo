@@ -19,7 +19,7 @@ class SilverSplitter(models.Model):
     olt_card_port_id = fields.Many2one('silver.olt.card.port', string='Puerto Tarjeta OLT', required=True, ondelete='cascade')
 
 
-    silver_address_id = fields.Many2one('silver.address', string='Dirección')
+    silver_address_id = fields.Many2one('silver.address', string='Dirección', related="asset_id.silver_address_id")
 
 
     box_count = fields.Integer(string='Conteo Cajas', compute='_compute_box_count')

@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                <xpath expr="//field[@name='node_ids']"  position="after">
                    <separator string="Equipo"/>
-                    <field name="stock_lot_id"/>
+                    <field name="stock_lot_id" context="{'default_etype':'core'}" domain="[('etype','=','core')]" options="{'no_create_edit': False, 'no_quick_create': True}"/>
                                         <label for="brand_id" />
                     <div class="o_row d-flex align-items-center">
                         <field name="brand_id"  nolabel="1"/>

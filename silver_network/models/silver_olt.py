@@ -22,14 +22,14 @@ class SilverOlt(models.Model):
 
 
     hostname_olt = fields.Char(string='Hostname')
-    name = fields.Char('Nombre', related='asset_id.name', compute='_compute_hostname', store=True, readonly=True)
+    name = fields.Char('Nombre',  compute='_compute_hostname', store=False)
 
 
 
     core_ids = fields.Many2many('silver.core', string='Equipos Core')
     core_id = fields.Many2one('silver.core', string='Equipo Core')
     node_id = fields.Many2one('silver.node', string='Nodo')
-    num_slot_olt = fields.Integer(string='Numero de Slots')
+    num_slot_olt = fields.Integer(string='Numero de Slots', default=1)
     num_ports1 = fields.Selection([
         ('1', '1 Puerto'),
         ('4', '4 Puertos'),
@@ -357,8 +357,11 @@ class SilverOlt(models.Model):
         }, reload_action]
 
 
+    @api.depends('node_id')
     def _compute_hostname(self):
+        print(('h1', self))
         for olt in self:
+            print(("h2", olt))
             if olt.node_id:
                 # Contamos los OLTs existentes para este nodo
                 # Esto es la clave para el incremental por nodo
@@ -366,7 +369,8 @@ class SilverOlt(models.Model):
 
                 # Construimos el código.
                 # Si el campo 'code' del nodo es 'u', y ya tiene 2 OLTs, el nuevo será 'u/2'
-                olt.name = f"{olt.node_id.code}/{olt.node_id.node}{olt_count}"
+                olt.name = f"{olt.node_id.code}/OLT{olt_count}"
+                print(("h3", olt.name))
             else:
                 olt.name = False
 

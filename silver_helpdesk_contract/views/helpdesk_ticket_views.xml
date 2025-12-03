@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_helpdesk_ticket_form_inherit_contract" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.form.inherit.contract</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_form"/>
+            <field name="arch" type="xml">
+                
+                <button name="assign_to_me" position="after">
+                    <button name="action_invoice_ticket_service" string="Facturar Servicios" type="object" invisible="is_invoice_service or code_category_id == 'CPr'"/>
+                </button>
+                
+                <field name="number" position="before">
+                    <field name="state_service" invisible="1"/>
+                    <widget name="web_ribbon" title="Inactivo" bg_color="bg-info" invisible="state_service != 'inactive'"/>
+                    <widget name="web_ribbon" title="Activo" invisible="state_service != 'active'"/>
+                    <widget name="web_ribbon" title="Cortado" bg_color="bg-danger" invisible="state_service != 'disabled'"/>
+                    <widget name="web_ribbon" title="Suspendido" bg_color="bg-info" invisible="state_service != 'suspended'"/>
+                    <widget name="web_ribbon" title="Lista de Retiro" bg_color="bg-warning" invisible="state_service != 'removal_list'"/>
+                    <widget name="web_ribbon" title="Retirado" bg_color="bg-danger" invisible="state_service != 'remove'"/>
+                    <widget name="web_ribbon" title="Anulado" bg_color="bg-danger" invisible="state_service != 'cancel'"/>
+                </field>
+
+                <xpath expr="//field[@name='partner_email']" position="after">
+                    <field name="contract_id" domain="[('partner_id', '=', partner_id)]"/>
+                    <field name="period" options="{'no_open': True}" readonly="1"/>
+                    <field name="address_contract"/>
+                    <field name="address_ref_contract"/>
+                    <field name="phone_contract"/>
+                    <field name="code_category_id" invisible="1"/>
+                </xpath>
+
+                <page name="description" position="after">
+                    <page name="solution" string="Solucion">
+                        <group>
+                            <field name="solution_id" string="Solucion" options="{'no_create':True,'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+                        </group>
+                        <field name="solution"/>
+                        <group string="Facturacion" name="invoice_tcket">
+                            <field name="is_invoice_service"/>
+                        </group>
+                    </page>
+                    
+                    <!-- Placeholder pages for Commercial Processes (Detailed implementation requires all fields) -->
+                    <page string="Cambio Plan" name="change_product" invisible="code_category_id != 'CPr'">
+                        <!-- Content to be added/refined -->
+                        <group>
+                            <field name="is_change_product_id"/>
+                        </group>
+                    </page>
+                    
+                    <page string="Cambio Suspensión" name="change_suspencion" invisible="code_category_id != 'SP'">
+                        <group>
+                             <field name="is_change_suspension"/>
+                        </group>
+                    </page>
+                </page>
+
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -20,10 +20,18 @@
     'assets': {
         'web.assets_backend': [
             'silver_base/static/src/css/general.css',
+            # Librerías Externas (Leaflet + Geosearch)
+            'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
+            'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
+            'https://unpkg.com/leaflet-geosearch@3.11.0/dist/geosearch.css',
+            'https://unpkg.com/leaflet-geosearch@3.11.0/dist/bundle.min.js',
+            
+            # Tu Widget
+            'silver_base/static/src/components/silver_map_widget/silver_map_widget.xml',
+            'silver_base/static/src/components/silver_map_widget/silver_map_widget.js',
         ],
     },
     'installable': True,
     'application': False,
     'auto_install': False,
 }
-

@@ -5,7 +5,13 @@
     background-color: white;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
+.o_field_widget.o_field_silver_address_map {
+    width: 100% !important;
 
+}
+.leaflet-control-attribution.leaflet-control {
+    display: none !important;
+}
 
 .o_form_button_save::after {
     _content: "Guardar";

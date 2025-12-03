@@ -35,9 +35,9 @@ class SilverNode(models.Model):
     olt_ids = fields.One2many('silver.olt', 'node_id', string='OLTs')
     box_ids = fields.One2many('silver.box', 'node_id', string='Boxes')
     #splice_closure_ids = fields.One2many('silver.splice_closure', 'node_id', string='Splice Closures')
+    zone_id = fields.Many2one('silver.zone', string="Zona", related="asset_id.zone_id", store=False)
 
-
-    silver_address_id = fields.Many2one('silver.address', string='Dirección')
+    #silver_address_id = fields.Many2one('silver.address', string='Dirección', related="asset_id.silver_address_id", store=False)
 
 
 

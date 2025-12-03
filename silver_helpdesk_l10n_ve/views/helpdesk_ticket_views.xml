@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_helpdesk_ticket_form_inherit_l10n_ve" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.form.inherit.l10n.ve</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="silver_helpdesk_contract.view_helpdesk_ticket_form_inherit_contract"/>
+            <field name="arch" type="xml">
+                
+                <xpath expr="//page[@name='change_address']" position="before">
+                    <page string="Cambio Dirección CT" name="change_direction_CT" invisible="code_category_id != 'CDCT'">
+                        <br/>
+                        <div class="oe_button_box" name="button_ct_change_address">
+                            <button name="action_change_direction_ct" invisible="is_change_address_ct" class="oe_stat_button" string="Cambiar Datos" type="object" icon="fa-exchange"/>
+                        </div>
+                        <group name="group_change_direction">
+                            <group string="Datos Actuales">
+                                <field name="address_contract" readonly="1"/>
+                                <field name="phone_contract" readonly="1"/>
+                                <field name="street_contract" readonly="1"/>
+                                <field name="street2_contract" readonly="1"/>
+                                <field name="address_ref_contract" readonly="1"/>
+                                <field name="country_contract" readonly="1"/>
+                                <field name="state_id_contract" readonly="1"/>
+                                <field name="city_contract" readonly="1"/>
+                                <field name="zip_contract" readonly="1"/>
+                            </group>
+                            <group string="Datos Nuevos">
+                                <field name="address_contract_new" required="code_category_id == 'CDCT'"/>
+                                <field name="phone_contract_new"/>
+                                <field name="street" required="code_category_id == 'CDCT'"/>
+                                <field name="street2_contract_new"/>
+                                <field name="address_ref_contract_new"/>
+                                <field name="country_id" required="code_category_id == 'CDCT'"/>
+                                <field name="state_id" required="code_category_id == 'CDCT'"/>
+                                <field name="city_contract_new" required="code_category_id == 'CDCT'"/>
+                                <field name="zip" required="code_category_id == 'CDCT'"/>
+                                <div>
+                                    <span>Lat : </span>
+                                    <field name="contract_latitude" nolabel="1" class="oe_inline"/>
+                                    <span>, Long: </span>
+                                    <field name="contract_longitude" nolabel="1" class="oe_inline"/>
+                                    <br/>
+                                    <span invisible="not date_localization">Actualizado en: </span>
+                                    <field name="date_localization" nolabel="1" class="oe_inline"/>
+                                    <span class="oe_inline">
+                                        <button string="(refresh)" name="geo_localize_change" class="btn btn-link" type="object"/>
+                                    </span>
+                                </div>
+                            </group>
+                        </group>
+                    </page>
+                    
+                    <page name="location" string="Ubicación">
+                        <group name="location_main">
+                            <group name="location_main_1">
+                                <field name="street_contract"/>
+                                <field name="street2_contract"/>
+                                <field name="address_ref_contract"/>
+                                <field name="extra_ref_contract" widget="boolean_toggle"/>
+                                <field name="floor_level_ct" widget="selection" invisible="not extra_ref_contract"/>
+                                <field name="building_material_type_ct" widget="selection" invisible="not extra_ref_contract"/>
+                                <field name="ownership_type_ct" widget="selection" invisible="not extra_ref_contract"/>                                               
+                            </group>
+                            <group name="location_main_2">
+                                <field name="country_contract" placeholder="País" class="o_address_country" options="{'no_open': True, 'no_create': True}"/>
+                                <field name="state_id_contract" class="o_address_state" placeholder="Estado" options="{'no_open': True, 'no_quick_create': True}" context="{'country_id': country_contract}"/>
+                                <field name="ote_id_contract" string="Sector"/>
+                                <field name="city_contract" placeholder="Ciudad" class="o_address_city"/>
+                                <field name="zip_zone" placeholder="ZIP" class="o_address_zip"/>
+                            </group>
+                        </group>
+                        <group name="geo_location">
+                            <div>
+                                <span>Lat : </span>
+                                <field name="contract_latitude_zone" nolabel="1" class="oe_inline"/>
+                                <span>, Long: </span>
+                                <field name="contract_longitude_zone" nolabel="1" class="oe_inline"/>
+                            </div>
+                        </group>
+                    </page>
+                    
+                </xpath>
+                
+            </field>
+        </record>
+    </data>
+</odoo>

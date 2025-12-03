@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+        <record id="silver_assignment_view_tree" model="ir.ui.view">
+            <field name="name">silver.assignment.view.tree</field>
+            <field name="model">silver.assignment</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="zone_ids" widget="many2many_tags"/>
+                    <field name="node_ids" widget="many2many_tags"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="silver_assignment_action" model="ir.actions.act_window">
+            <field name="name">Asignaciones</field>
+            <field name="res_model">silver.assignment</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

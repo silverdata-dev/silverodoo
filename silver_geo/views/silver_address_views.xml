@@ -6,9 +6,10 @@
         <field name="inherit_id" ref="silver_base.view_silver_address_form"/>
         <field name="arch" type="xml">
             <xpath expr="//group[@name='coordinates_group']" position="after">
-                <widget name="coordinate_picker_map"
+ <field name="parent_id" invisible="1"/>
+                <!--widget name="coordinate_picker_map"
                         latitude_field="latitude"
-                        longitude_field="longitude"/>
+                        longitude_field="longitude"/-->
             </xpath>
         </field>
     </record>

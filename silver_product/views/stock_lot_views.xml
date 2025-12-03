@@ -31,17 +31,18 @@
                      <field name="hardware_model_id" readonly="product_id!=False" domain="[('brand_id', '=', brand_id)]"/>
                      <!--field name="software_version" readonly="product_id!=False"/>
                      <field name="firmware_version" readonly="product_id!=False"/-->
-                     <field name="mac_address"/>
 
                         <field name="serial_number" invisible="1"/>
 
                         <field name="etype"/>
-                            <field name="manual"/>
+                            <field name="manual" invisible="etype!='olt'"/>
+                     <field name="mac_address"/>
                  </xpath>
                 <field name="product_id" position="attributes">
                     <attribute name="required">external_equipment != True</attribute>
-                    <attribute name="context">{'open_product_template': True}</attribute>
+                    <attribute name="context">{'open_product_template': True, 'default_etype':context.get('default_etype')}</attribute>
                     <attribute name="on_change">1</attribute>
+                    <attribute name="options">{'no_create_edit': False, 'no_quick_create': True}</attribute>
                 </field>
                 <xpath expr="//form" position="attributes">
                     <attribute name="class" add="form_stocklot"/>

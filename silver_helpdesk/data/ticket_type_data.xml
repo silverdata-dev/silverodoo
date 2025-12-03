@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- ======================================================== -->
+        <!-- 1. Etapas de Helpdesk (Base) para el Flujo               -->
+        <!-- ======================================================== -->
+        
+        <record id="stage_cp_draft" model="helpdesk.ticket.stage">
+            <field name="name">Solicitud Cambio Plan</field>
+            <field name="sequence">10</field>
+        </record>
+
+        <record id="stage_cp_progress" model="helpdesk.ticket.stage">
+            <field name="name">Validación Técnica</field>
+            <field name="sequence">20</field>
+        </record>
+
+        <record id="stage_cp_billing" model="helpdesk.ticket.stage">
+            <field name="name">Facturación y Prorrateo</field>
+            <field name="sequence">30</field>
+        </record>
+        
+        <record id="stage_cp_done" model="helpdesk.ticket.stage">
+            <field name="name">Plan Cambiado</field>
+            <field name="sequence">100</field>
+            <field name="closed">True</field>
+        </record>
+
+
+        <!-- ======================================================== -->
+        <!-- 2. Server Actions (Scripts de Automatización)            -->
+        <!-- ======================================================== -->
+
+        <!-- Acción 1: Calcular Prorrateo y Pagos -->
+        <record id="action_script_cp_billing" model="ir.actions.server">
+            <field name="name">Script: Calcular Prorrateo Cambio Plan</field>
+            <field name="model_id" ref="model_silver_ticket"/>
+            <field name="state">code</field>
+            <field name="code">
+# Contexto: record = silver.ticket
+ticket = record
+contract = ticket.contract_id
+new_plan = ticket.new_plan_id
+
+if not contract:
+    raise UserError("El ticket no tiene un contrato asociado.")
+
+if not new_plan:
+    raise UserError("Debe seleccionar el 'Nuevo Plan Solicitado' antes de pasar a facturación.")
+
+# --- Lógica Placeholder de Facturación ---
+# Aquí iría la lógica real:
+# 1. Calcular días restantes del ciclo actual.
+# 2. Calcular diferencia de precio.
+# 3. Generar factura (account.move) por la diferencia o nota de crédito.
+
+msg = f"Iniciando proceso de facturación para cambio al plan: {new_plan.name}.\n"
+msg += "TODO: Implementar lógica de prorrateo en este script (ir.actions.server)."
+
+# Log en el chatter
+ticket.message_post(body=msg)
+
+# Opcional: Bloquear si hay deuda pendiente
+# if contract.partner_id.credit > 0:
+#     raise UserError("El cliente tiene deuda pendiente.")
+            </field>
+        </record>
+
+        <!-- Acción 2: Aplicar Cambio en Contrato -->
+        <record id="action_script_cp_apply" model="ir.actions.server">
+            <field name="name">Script: Aplicar Cambio de Plan en Contrato</field>
+            <field name="model_id" ref="model_silver_ticket"/>
+            <field name="state">code</field>
+            <field name="code">
+# Contexto: record = silver.ticket
+ticket = record
+contract = ticket.contract_id
+new_plan = ticket.new_plan_id
+
+if not contract:
+    raise UserError("El ticket no tiene un contrato asociado.")
+if not new_plan:
+    raise UserError("No hay un plan nuevo definido.")
+
+# Guardar plan anterior para historial
+old_plan_name = contract.product_id.name if contract.product_id else 'Indefinido'
+
+# --- Actualizar Contrato ---
+# Esto disparará la lógica de aprovisionamiento en silver.contract.write()
+# que actualiza la OLT (Traffic Profile)
+contract.write({
+    'product_id': new_plan.id,
+    'notes': f"{contract.notes or ''}\n[System] Plan cambiado de {old_plan_name} a {new_plan.name} por Ticket {ticket.name}"
+})
+
+ticket.message_post(body=f"ÉXITO: El contrato ha sido actualizado al plan {new_plan.name}. Se han enviado los comandos a la OLT.")
+            </field>
+        </record>
+
+
+        <!-- ======================================================== -->
+        <!-- 3. Definición del Tipo de Proceso (Orquestador)          -->
+        <!-- ======================================================== -->
+
+        <record id="ticket_type_cambio_plan" model="silver.ticket.type">
+            <field name="name">Cambio de Plan</field>
+            <field name="code">CAMBIO_PLAN</field>
+            <field name="description">Flujo automatizado para cambios de plan (Upgrade/Downgrade) con validación técnica y financiera.</field>
+        </record>
+
+
+        <!-- ======================================================== -->
+        <!-- 4. Configuración del Flujo (Pasos)                       -->
+        <!-- ======================================================== -->
+
+        <!-- Paso 1: Solicitud (Borrador) -->
+        <record id="conf_stage_cp_1" model="silver.ticket.stage.config">
+            <field name="name">1. Solicitud y Selección de Plan</field>
+            <field name="type_id" ref="ticket_type_cambio_plan"/>
+            <field name="sequence">10</field>
+            <field name="helpdesk_stage_id" ref="stage_cp_draft"/>
+            <!-- Sin acción, es el inicio -->
+        </record>
+
+        <!-- Paso 2: Validación Técnica (En Progreso) -->
+        <record id="conf_stage_cp_2" model="silver.ticket.stage.config">
+            <field name="name">2. Validación Técnica (Instalación)</field>
+            <field name="type_id" ref="ticket_type_cambio_plan"/>
+            <field name="sequence">20</field>
+            <field name="helpdesk_stage_id" ref="stage_cp_progress"/>
+            <!-- Aquí podría ir un rol técnico si se desea restringir -->
+            <!-- <field name="group_id" ref="silver_base.group_technical"/> -->
+        </record>
+
+        <!-- Paso 3: Facturación (Script de Cálculos) -->
+        <record id="conf_stage_cp_3" model="silver.ticket.stage.config">
+            <field name="name">3. Procesamiento Financiero</field>
+            <field name="type_id" ref="ticket_type_cambio_plan"/>
+            <field name="sequence">30</field>
+            <field name="helpdesk_stage_id" ref="stage_cp_billing"/>
+            <field name="action_id" ref="action_script_cp_billing"/> <!-- Ejecuta script de facturación -->
+            <!-- Rol de finanzas -->
+            <field name="group_id" ref="account.group_account_invoice"/>
+        </record>
+
+        <!-- Paso 4: Finalizado (Aplicar Cambio) -->
+        <record id="conf_stage_cp_4" model="silver.ticket.stage.config">
+            <field name="name">4. Aplicación de Cambio (Final)</field>
+            <field name="type_id" ref="ticket_type_cambio_plan"/>
+            <field name="sequence">40</field>
+            <field name="helpdesk_stage_id" ref="stage_cp_done"/>
+            <field name="action_id" ref="action_script_cp_apply"/> <!-- Ejecuta script de cambio de plan -->
+        </record>
+
+    </data>
+</odoo>

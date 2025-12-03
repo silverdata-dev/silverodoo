@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_helpdesk_ticket_form_inherit_stock" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.form.inherit.stock</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="silver_helpdesk_contract.view_helpdesk_ticket_form_inherit_contract"/>
+            <field name="arch" type="xml">
+                
+                <div name="button_box" position="inside">
+                    <button class="oe_stat_button" type="object" name="action_open_stock_picking" icon="fa-arrows-v">
+                        <field string="Movimientos" name="stock_count" widget="statinfo"/>
+                    </button>
+                </div>
+
+                <page name="change_suspencion" position="after">
+                     <page string="Materiales Asignados" name="stock_helpdesk">
+                        <field name="stock_line_ids">
+                            <tree editable="bottom">
+                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                <field name="qty_stock"/>
+                                <field name="lot_id"/>
+                                <field name="is_done"/>
+                            </tree>
+                        </field>
+                    </page>
+                    
+                    <page string="Remover Equipos Extras" name="extra_equipment" invisible="code_category_id != 'REQ'">
+                        <div class="oe_button_box" name="button_filter_contract">
+                            <button name="action_remove_extra_equipment" type="object" class="oe_stat_button" icon="fa-filter" string="Remover Equipos Extras" invisible="is_remove_extra_equipment"/>
+                        </div>
+                        <field name="is_remove_extra_equipment" invisible="1"/>
+                        <field name="device_extra_line_ids">
+                            <tree editable="bottom" create="false" delete="false">
+                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                <field name="qty_stock"/>
+                                <field name="lot_id"/>
+                                <field name="is_done"/>
+                                <field name="is_remove_materials"/>
+                            </tree>
+                        </field>
+                    </page>
+                    
+                    <page string="Cambio de Equipos Asignados Extras" name="change_stock_equipment_extra" invisible="code_category_id != 'CSCE'">
+                        <field name="is_change_stock_equipment" invisible="1"/>
+                        <field name="computed_domain_previous_lot" invisible="1"/>
+                        <br/>
+                            <div class="oe_button_box" name="button_box_change_address">
+                                <button name="action_change_equipment_extra" class="oe_stat_button" string="Cambiar" type="object" icon="fa-exchange" invisible="is_change_stock_equipment"/>
+                            </div>
+                        <group>
+                            <group>
+                                <field name="is_change_extra_equipment" widget="boolean_toggle" string="¿Cambiar Equipos?" invisible="is_add_extra_equipment" readonly="is_change_stock_equipment"/>
+                                <field name="is_add_extra_equipment" widget="boolean_toggle" string="¿Agregar Equipos?" invisible="is_change_extra_equipment" readonly="is_change_stock_equipment"/>
+                            </group>
+
+                            <group colspan="2" invisible="not is_change_extra_equipment">
+                                <group string="Datos Anteriores">
+                                    <field name="previous_lot_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                </group>
+                                <group string="Datos Nuevos">
+                                    <field name="new_lot_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                </group>
+                            </group>
+
+                            <field name="new_stock_equipment_line_ids" readonly="0" context="{'default_is_extra_material_line': True, 'default_qty_stock': 1}" invisible="not is_add_extra_equipment" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="product_id" domain="[('tracking', '=', 'serial')]" options="{'no_create': True, 'no_create_edit':True}"/>
+                                    <field name="qty_stock" readonly="1" force_save="1"/>
+                                    <field name="lot_id"/>
+                                    <field name="is_done" optional="hide"/>
+                                    <field name="is_invoice_covered" optional="hide"/>
+                                    <field name="is_promotion" invisible="1"/>
+                                    <field name="is_extra_material_line" invisible="1"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </page>
+                
+            </field>
+        </record>
+    </data>
+</odoo>

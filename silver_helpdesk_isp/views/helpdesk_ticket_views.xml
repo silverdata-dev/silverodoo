@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_helpdesk_ticket_form_inherit_isp" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.form.inherit.isp</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="silver_helpdesk_contract.view_helpdesk_ticket_form_inherit_contract"/>
+            <field name="arch" type="xml">
+                
+                <xpath expr="//page[@name='change_address']/group" position="inside">
+                     <group string="Datos Técnicos">
+                        <group>
+                            <field name="node_id" readonly="is_change_address" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="box_id" readonly="is_change_address" invisible="link_type == 'wifi'" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="port_nap_id" readonly="is_change_address" options="{'no_create': True, 'no_create_edit':True}" invisible="link_type == 'wifi'"/>
+                            <field name="port_nap" readonly="is_change_address" invisible="1" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="ap_id" readonly="is_change_address" invisible="link_type == 'fiber'" options="{'no_create': True, 'no_create_edit':True}"/>
+                        </group>
+                        <group>
+                            <field name="core_id" readonly="is_change_address" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="is_used_dynamic_pool" invisible="1"/>
+                            <field name="olt_id" readonly="is_change_address" invisible="link_type == 'wifi'" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="olt_card_id" readonly="is_change_address" invisible="link_type == 'wifi'" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="olt_port_id" readonly="is_change_address" invisible="link_type == 'wifi'" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="service_port" readonly="0" force_save="1" invisible="link_type in ['wifi','fttb']"/>
+                            <field name="onuid" readonly="0" force_save="1" invisible="link_type in ['wifi','fttb']"/>
+                            <field name="ip_address" readonly="0" force_save="1" invisible="is_used_dynamic_pool"/>
+                            <field name="new_pool_ip_contract" readonly="is_add_ip_contract"/>
+                            
+                            <field name="service_port_mgn" readonly="1" force_save="1" invisible="not is_mgn_service_port"/>
+                            <field name="ip_address_mgn" readonly="0" force_save="1" invisible="not is_mgn_service_port"/>
+                            <field name="is_password_odoo" widget="boolean_toggle" invisible="1"/>
+                        </group>
+                    </group>
+                </xpath>
+
+                <xpath expr="//page[@name='change_address']" position="after">
+                    <page string="Cambio Equipos Asignados" name="change_onu" invisible="code_category_id != 'CONU'">
+                        <br/>
+                        <div class="oe_button_box" name="button_box_change_product">
+                             <button name="action_change_device" type="object" class="oe_stat_button" icon="fa-exchange" string="Cambio Equipo" invisible="is_change_device"/>
+                        </div>
+                        <group name="fiber_device" invisible="link_type != 'fiber'">
+                            <group string="Valores Actuales">
+                                <field name="is_device_external" invisible="1" force_save="1" widget="boolean_toggle"/>
+                                <field name="is_change_new_bridge" invisible="1" force_save="1" widget="boolean_toggle"/>
+                                <field name="is_change_onu" force_save="1" widget="boolean_toggle"/>
+                                <field name="serial_onu_back" force_save="1" invisible="not is_change_onu or is_device_external"/>
+                                <field name="external_serial_onu_old" force_save="1" invisible="not is_change_onu or not is_device_external"/>
+                                <field name="model_onu_type_old_id" force_save="1" invisible="not is_change_onu"/>
+                            </group>
+                            <group string="Valores Nuevos">
+                                <field name="new_mac" force_save="1" invisible="not is_change_mac"/>
+                                <field name="serial_onu_new" force_save="1" invisible="not is_change_onu or is_device_external_ticket"/>
+                                <field name="product_serial_id" invisible="1"/>
+                                <field name="model_onu_type_id" force_save="1" invisible="not is_change_onu or is_device_external_ticket"/>
+                                <field name="external_serial_onu_new" force_save="1" invisible="not is_change_onu or not is_device_external_ticket"/>
+                                <field name="external_model_onu_type_id" force_save="1" invisible="not is_change_onu or not is_device_external_ticket"/>
+                                <field name="is_device_external_ticket" widget="boolean_toggle"/>
+                            </group>
+                            <group>
+                                <field name="is_change_bridge" force_save="1" widget="boolean_toggle"/> 
+                                <field name="is_device_extra" widget="boolean_toggle"/>
+                            </group>
+                        </group>
+                        
+                        <group invisible="link_type != 'wifi'">
+                            <group string="Valores Actuales">
+                                <field name="is_device_external" invisible="1" force_save="1" widget="boolean_toggle"/>
+                                <field name="is_change_antena" force_save="1" widget="boolean_toggle"/>
+                                <field name="serial_antena_back" force_save="1" invisible="not is_change_antena or is_device_external"/>
+                                <field name="model_antena_back" force_save="1" invisible="not is_change_antena or is_device_external"/>
+                                <field name="external_serial_antena_back" force_save="1" invisible="not is_change_antena or not is_device_external"/>
+                                <field name="external_model_antena_back" force_save="1" invisible="not is_change_antena or not is_device_external"/>
+                            </group>
+                            <group string="Valores Nuevos">
+                                <field name="serial_antena_new" force_save="1" invisible="not is_change_antena or is_device_external"/>
+                                <field name="model_antena_new" force_save="1" invisible="not is_change_antena or is_device_external"/>
+                                <field name="external_serial_antena_new" force_save="1" invisible="not is_change_antena or not is_device_external"/>
+                                <field name="external_model_antena_new" force_save="1" invisible="not is_change_antena or not is_device_external"/>
+                                <field name="new_antena_mac" force_save="1" invisible="not is_change_antena_mac"/>
+                            </group>
+                            <group>
+                                <field name="is_change_router" force_save="1" widget="boolean_toggle"/>
+                                <field name="serial_router_back" force_save="1" invisible="not is_change_router"/>
+                                <field name="model_router_back" force_save="1" invisible="not is_change_router"/>
+                            </group>
+                            <group>
+                                <field name="serial_router_new" force_save="1" invisible="not is_change_router"/>
+                                <field name="model_router_new" force_save="1" invisible="not is_change_router"/>
+                                <field name="is_equipment_external_wifi" widget="boolean_toggle"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

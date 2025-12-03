@@ -11,80 +11,48 @@ class AssetMapController(http.Controller):
 
     @http.route('/silver_geo/get_assets', type='json', auth='user')
     def get_assets(self, node_id=None, **kw):
-        # Lista de modelos que heredan de 'silver.asset' y tienen coordenadas
-        asset_models = [
-            'silver.node', 'silver.box', 'silver.splice_closure', 'silver.core',
-            'silver.splitter', 'silver.olt', 'silver.ap'
-        ]
+        asset_models = {
+            'silver.node': [('id', '=', int(node_id))] if node_id else [],
+            'silver.box': [('node_id', '=', int(node_id))] if node_id else [],
+            'silver.core': [('node_id', '=', int(node_id))] if node_id else [],
+            'silver.olt': [('node_id', '=', int(node_id))] if node_id else [],
+            'silver.ap': [('node_id', '=', int(node_id))] if node_id else [],
+        }
 
-        root_id = None
-        # Si se proporciona un node_id, busca sus coordenadas para centrar el mapa
-        if node_id:
-            try:
-                node = request.env['silver.node'].browse(int(node_id))
-                if node.exists() and node.asset_id.latitude and node.asset_id.longitude:
-                    center_coords = {'lat': node.asset_id.gps_lat, 'lon': node.asset_id.gps_lon}
-                    root_id = node.asset_id.id
-            except (ValueError, TypeError):
-                pass  # Ignorar si el node_id no es válido
         all_assets = []
         center_coords = None
 
-        print(("get_assets", node_id, root_id))
-
-        # """
-
-        domain = ['|', '|', ('line_string_wkt', '!=', ''), ('gps_lat', '!=', 0), ('gps_lon', '!=', 0)]
-        if root_id:
-            domain.extend(['|', '|', ('parent_id', '=', root_id), ('root_id', '=', root_id), ('id', '=', root_id)])
-
-        assets = request.env["silver.asset"].search(domain)
-
-        count = {}
-
-        for asset in assets:
-            count[asset.asset_type] = count.get(asset.asset_type, 0) + 1
-            if (asset.line_string_wkt):
-                all_assets.append({
-                    'id': asset.id,
-                    'name': asset.name,
-                    'model': asset.asset_type,
-                    'line_string_wkt': asset.line_string_wkt,
-                    'color': asset.color,
-                })
-            else:
-                all_assets.append({
-                    'id': asset.id,
-                    'name': asset.name,
-                    'model': asset.asset_type,
-                    'latitude': asset.latitude,
-                    'longitude': asset.longitude,
-                })
-
-        print(("asset", count))
-        """
-        for model_name in asset_models:
+        for model_name, domain in asset_models.items():
             if model_name not in request.env:
                 continue
+            
+            # Asegurarse de que solo se buscan registros con una dirección y coordenadas válidas
+            full_domain = domain + [('silver_address_id', '!=', False), ('silver_address_id.latitude', '!=', 0), ('silver_address_id.longitude', '!=', 0)]
+            
+            records = request.env[model_name].search(full_domain)
+            print((" records" , records, model_name, full_domain))
 
-            domain = [('gps_lat', '!=', 0), ('gps_lon', '!=', 0)]
-
-            # TODO: Implementar la lógica de filtrado de assets si se proporciona un node_id.
-            # Ejemplo: si quieres mostrar solo el nodo actual, descomenta la siguiente línea.
-            # if node_id and model_name == 'silver.node':
-            #     domain.append(('id', '=', int(node_id)))
-
-            assets = request.env[model_name].search(domain)
-
-            for asset in assets:
+            for record in records:
                 all_assets.append({
-                    'id': asset.id,
-                    'name': asset.name,
+                    'id': record.id,
+                    'name': record.name,
                     'model': model_name,
-                    'latitude': asset.gps_lat,
-                    'longitude': asset.gps_lon,
+                    'latitude': record.silver_address_id.latitude,
+                    'longitude': record.silver_address_id.longitude,
                 })
-                """
+
+        # Centrar el mapa en el nodo principal si se proporciona
+        if node_id:
+            try:
+                node = request.env['silver.node'].browse(int(node_id))
+                if node.exists() and node.silver_address_id:
+                    center_coords = {
+                        'lat': node.silver_address_id.latitude,
+                        'lon': node.silver_address_id.longitude
+                    }
+            except (ValueError, TypeError):
+                pass  # Ignorar si el node_id no es válido
+
         return {
             'assets': all_assets,
             'center_on': center_coords

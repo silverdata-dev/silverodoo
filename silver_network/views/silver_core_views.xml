@@ -49,6 +49,7 @@
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_silver_core_tree"/>
             <field name="context">{'search_default_group_by_node_id': 1}</field>
+            <field name="target">current</field>
         </record>
 
 
@@ -112,6 +113,7 @@
                                 <field name="ip"  required="1"/>
                                 <field name="port" />
                                   <field name="radius_id" required="1"/>
+                                <field name="radius_admin_id" />
                                  <field name="state" widget="badge"
                            decoration-success="state in ['active', 'connected']"
                            decoration-warning="state in ('suspended', 'disabled')"

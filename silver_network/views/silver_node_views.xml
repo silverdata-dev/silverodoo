@@ -55,7 +55,7 @@
                         </div>
                         <div class="oe_title">
                             <h1>
-                                <field name="name" placeholder="Nombre del Nodo"/>
+                                <field name="name" placeholder="Nombre del Nodo" />
                             </h1>
                         </div>
                         <group><group>
@@ -93,10 +93,13 @@
                         <notebook name="related">
 
                             <page name="Equipos Core" >
-                                <field name="core_ids">
+                                <field name="core_ids" >
                                      <tree string="Equipos Core Silver" default_order="name desc" >
-                    <field name="name"/>
-                    <field name="hostname_core"/>
+                    <field name="name" />
+
+                    <field name="hostname_core" />
+
+
 
                     <!--field name="brand_id"/-->
                     <field name="model"/>
@@ -104,7 +107,7 @@
 
                     <!--field name="port"/>
                     <field name="username"/-->
-                    <field name="state"
+                 <field name="state" widget="badge"
                            decoration-success="state in ['active', 'connected']"
                            decoration-warning="state in ('suspended', 'disabled')"
                            decoration-danger="state in ['removed', 'down']"/>
@@ -119,6 +122,7 @@
                                 <field name="box_ids"/>
                             </page>
                             <page name="map_view" string="Mapa">
+                                <field name="id"/>
                                 <field name="id" class="map-field" widget="node_map"/>
                             </page>
                             <page string="Network Graph" name="network_graph">

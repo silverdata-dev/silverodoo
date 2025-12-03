@@ -1,0 +1,90 @@
+<odoo>
+    <data>
+
+        <!-- Form View Extension to show Schedule fields -->
+        <record id="view_crm_lead_form_schedule" model="ir.ui.view">
+            <field name="name">crm.lead.form.schedule</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='opportunity_partner']/field[@name='partner_id']" position="after">
+                    <field name="zone_id" readonly="1"/>
+                </xpath>
+                <xpath expr="//page[@name='internal_notes']" position="before">
+                     <page string="Agendamiento" name="schedule_page">
+                        <group>
+                            <group>
+                                <field name="schedule_start"/>
+                                <field name="schedule_stop"/>
+                            </group>
+                            <group>
+                                <field name="assignment_id" string="Asignación" domain="['|', '|', ('node_ids', 'in', node_id), ('zone_ids', 'in', zone_id), '&amp;', ('node_ids', '=', False), ('zone_ids', '=', False)]"/>
+                            </group>
+                        </group>
+                     </page>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Search View Extension -->
+        <record id="view_crm_lead_search_unms" model="ir.ui.view">
+            <field name="name">crm.lead.search.unms</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="inside">
+                    <filter string="Instalador (Asignación)" name="groupby_assignment_id" context="{'group_by': 'assignment_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Timeline View Definition -->
+        <record id="view_crm_lead_timeline_unms" model="ir.ui.view">
+            <field name="name">crm.lead.timeline.unms</field>
+            <field name="model">crm.lead</field>
+            <field name="arch" type="xml">
+                <timeline date_start="schedule_start"
+                          date_stop="schedule_stop"
+                          default_group_by="assignment_id"
+                          mode="week"
+                          event_open_popup="true"
+                          can_create="true" 
+                          can_write="true"
+                          can_delete="true"
+                          colors="#2EC9D9:probability == 100;#F44336:probability == 0;#FF9800:probability &lt; 100;">
+
+                    <field name="assignment_id"/>
+                    <field name="name"/>
+                    <field name="probability"/>
+
+                    <templates>
+                        <t t-name="timeline-item">
+                            <div class="o_timeline_item" style="font-size: 11px; line-height: 1.2;">
+                                <t t-esc="record.name"/>
+                            </div>
+                        </t>
+                    </templates>
+                </timeline>
+            </field>
+        </record>
+
+        <!-- Action for the Calendar -->
+        <record id="action_unms_calendar" model="ir.actions.act_window">
+            <field name="name">Calendario de Instalaciones</field>
+            <field name="res_model">crm.lead</field>
+            <field name="view_mode">timeline,tree,form</field>
+            <field name="view_id" ref="view_crm_lead_timeline_unms"/>
+            <field name="domain">[('type', '=', 'opportunity')]</field>
+            <field name="context">{'default_type': 'opportunity', 'search_default_groupby_assignment_id': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No hay instalaciones agendadas.
+                </p>
+                <p>
+                    Arrastra una oportunidad para agendarla o crea una nueva.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

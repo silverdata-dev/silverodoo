@@ -1,0 +1,1342 @@
+helpdesk_mgmt.ticket_view_form:
+<form string="Helpdesk Ticket">
+                <header>
+                    <button string="Assign to me" name="assign_to_me" type="object" invisible="user_id"/>
+                    <button string="Mark as duplicate" name="action_open_duplicate_wizard" type="object" invisible="duplicate_id or duplicate_ids or not duplicate_tracking_enabled"/>
+                    <field name="stage_id" widget="statusbar_duration" options="{'clickable': '1', 'fold_field': 'fold'}"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" invisible="active"/>
+                    <widget name="web_ribbon" title="Duplicate" bg_color="bg-danger" invisible="not duplicate_id"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="action_view_duplicates" icon="fa-clone" invisible="duplicate_count == 0">
+                            <field string="Duplicates" name="duplicate_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <div class="alert alert-info oe_edit_only" role="alert" name="warning_duplicate" invisible="not duplicate_id"> This ticket is a
+                            duplicate of <field name="duplicate_id" readonly="stage_id.closed"/>
+                        </div>
+                        <h1 class="oe_title">
+                            <field name="number"/>
+                        </h1>
+                        <h2 class="o_row">
+                            <field name="name"/>
+                        </h2>
+                    </div>
+                    <group name="main">
+                        <group>
+                            <field name="active" invisible="1"/>
+                            <field name="duplicate_tracking_enabled" invisible="1"/>
+                            <field name="team_id" options="{&quot;always_reload&quot;: True}"/>
+                            <field name="user_ids" invisible="1" readonly="1"/>
+                            <field name="user_id" options="{&quot;always_reload&quot;: True}" widget="many2one_avatar_user"/>
+                            <field name="priority" widget="priority"/>
+                            <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                            <field name="create_date" readonly="1"/>
+                            <field name="channel_id"/>
+                        </group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="partner_name"/>
+                            <field name="partner_email"/>
+                            <field name="category_id"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'no_create_edit': True, 'color_field': 'color',}"/>
+                            <field name="sequence" groups="base.group_no_one"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description" name="description">
+                            <field name="description" widget="html"/>
+                        </page>
+                        <page string="Other Information" name="other_info">
+                            <group>
+                                <field name="last_stage_update" readonly="1"/>
+                                <field name="assigned_date" readonly="1"/>
+                                <field name="closed_date" readonly="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+            
+helpdesk_mgmt_sale.ticket_view_form:            
+            
+            
+            <data><header position="inside">
+                <button name="action_open_link_sale_order" type="object" string="Link Sale Orders" class="btn-secondary"/>
+            </header>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_sale_orders" type="object" class="oe_stat_button" icon="fa-dollar" groups="sales_team.group_sale_salesman">
+                    <field string="Sale Orders" name="so_count" widget="statinfo"/>
+                </button>
+            </xpath>
+        </data>
+        
+        
+        
+contract_helpdesk.view_helpdesk_ticket_contract_form:
+
+<data><button name="assign_to_me" position="after">
+                <button name="action_invoice_ticket_service" string="Facturar Servicios" type="object" invisible="is_invoice_service or code_category_id == 'CPr'"/>
+                <!-- <button name="785" string="Diferir Valores" type="object" /> -->
+                <button name="785" string="⇒ Diferir Valores" type="action" class="oe_link"/>
+            </button>
+            <field name="number" position="before">
+                <field name="state_service" invisible="1"/>
+                <!-- Service status for cts -->
+                <widget name="web_ribbon" title="Inactivo" bg_color="bg-info" invisible="state_service != 'inactive'"/>
+                <widget name="web_ribbon" title="Activo" invisible="state_service != 'active'"/>
+                <widget name="web_ribbon" title="Cortado" bg_color="bg-danger" invisible="state_service != 'disabled'"/>
+                <widget name="web_ribbon" title="Suspendido" bg_color="bg-info" invisible="state_service != 'suspended'"/>
+                <widget name="web_ribbon" title="Lista de Retiro" bg_color="bg-warning" invisible="state_service != 'removal_list'"/>
+                <widget name="web_ribbon" title="Retirado" bg_color="bg-danger" invisible="state_service != 'remove'"/>
+                <widget name="web_ribbon" title="Anulado" bg_color="bg-danger" invisible="state_service != 'cancel'"/>
+            </field>
+
+            <xpath expr="//field[@name='team_id']" position="attributes">
+                <attribute name="required">True</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="required">True</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='category_id']" position="replace">
+                <field name="category_id" options="{'no_open': True, 'no_create': True}" required="True"/>
+            </xpath>
+
+             <xpath expr="//field[@name='channel_id']" position="attributes">
+                <attribute name="required">True</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_email']" position="after">
+                <field name="contract_id" domain="[('partner_id', '=', partner_id)]"/>
+                <field name="contract_infraestructure_id" invisible="1"/>
+                <field name="period" options="{'no_open': True}" readonly="1"/>
+                <field name="address_contract"/>
+                <field name="address_ref_contract"/>
+                <field name="phone_contract"/>
+            </xpath>
+
+            <xpath expr="//field[@name='description']" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_ping_service" type="object" class="oe_stat_button" icon="fa-rss" string="PING Servicio" groups="contract_manager.group_contract_technical"/>
+	                <button name="action_status_olt" type="object" class="oe_stat_button" icon="fa-rss" string="Status OLT" groups="contract_manager.group_contract_technical"/>
+                </div>
+            </xpath>
+
+            <page name="description" position="after">
+                <page name="solution" string="Solucion">
+                    <group>
+                        <field name="solution_id" string="Solucion" options="{'no_create':True,'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+                    </group>
+                    <field name="solution"/>
+                    <group string="Facturacion" name="invoice_tcket">
+                        <field name="is_invoice_service"/>
+                    </group>
+                </page>
+            </page>
+
+           <xpath expr="//page[@name='other_info']" position="before">
+                <!--invisible fields-->
+                <field name="is_mgn_service_port" invisible="1"/>
+                <field name="is_free_ip" invisible="1"/>
+                <field name="is_assign_ip" invisible="1"/>
+                <field name="is_change_onu" invisible="1"/>
+                <field name="link_type" invisible="1"/>
+                <field name="is_change_product_iptv_id" invisible="1"/>
+                <field name="is_change_product_id" invisible="1"/>
+                <field name="is_change_address" invisible="1"/>                
+                <field name="is_change_partner" invisible="1"/>
+                 <field name="is_change_equiment" invisible="1"/>
+                <field name="is_change_device" invisible="1"/>
+                <field name="is_change_done" invisible="1"/>
+                <field name="code_category_id" invisible="1"/>
+                <field name="link_type" invisible="1"/>
+                <field name="type_access_net" invisible="1"/>
+                <!--field name="is_ip_public" invisible="1"/-->
+                <field name="is_change_date" invisible="1"/>
+                <field name="type_cut" invisible="1"/>
+                <field name="is_change_date_id" invisible="1"/>
+                <field name="is_change_net" invisible="1"/>
+                <field name="is_change_password" invisible="1"/>
+                <field name="is_add_iptv_id" invisible="1"/>
+                <field name="is_change_day_cut" invisible="1"/>
+                <field name="is_change_mac" invisible="1"/>
+                <field name="is_change_antena_mac" invisible="1"/>
+                <field name="is_change_cuttoff_date" invisible="1"/>
+                <field name="is_add_public_ip" invisible="1"/>
+                <field name="is_remove_public_ip" invisible="1"/>
+                <field name="is_remove_public_service" invisible="1"/>
+                <field name="is_change_suspension" invisible="1"/>
+                <field name="is_change_bridge_new" invisible="1"/>
+                <field name="is_active_service_bridge" invisible="1"/>
+                <field name="is_change_remove_bridge_service" invisible="1"/>
+                <field name="is_change_month_recurring" invisible="1"/>
+                <field name="is_active_desactive_catv" invisible="1"/>
+                <field name="is_active_core_radius" invisible="1"/>
+                <field name="is_remove_nat" invisible="1"/>
+                <field name="is_change_nat" invisible="1"/>
+                <field name="is_active_nat" invisible="1"/>
+                <field name="is_remove_ip" invisible="1"/>
+                <field name="is_active_ip" invisible="1"/>
+                <field name="is_add_ip_contract" invisible="1"/>
+                <field name="is_active_new_contract" invisible="1"/>
+                <field name="is_filter_contracts" invisible="1"/>
+                <field name="is_vsol_remove" invisible="1"/>
+                <field name="is_vsol_activate" invisible="1"/>
+                <field name="is_vsol_state_remove" invisible="1"/>
+                <field name="is_vsol_state_activate" invisible="1"/>
+                <field name="is_update_core" invisible="1"/>
+                <field name="is_change_recurring_invoice" invisible="1"/>
+                <field name="is_get_recurring_invoice" invisible="1"/>
+                <field name="is_synchronize_update_contract" invisible="1"/>
+                <field name="is_action_remove_service_wifi" invisible="1"/>
+                <field name="is_view_remove_olt" invisible="1"/>
+                <field name="is_pool_product" invisible="1"/>
+                <field name="is_remove_ip_contract" invisible="1"/>
+                <field name="default_assignment_ip" invisible="1"/>
+                <field name="is_add_ip_tr069_contract" invisible="1"/>
+                <field name="is_active_tr" invisible="1"/>
+                <field name="is_tr069" invisible="1"/>
+                <field name="is_exists_ip_tr069" invisible="1"/>
+				<field name="is_sync_tr069" invisible="1"/>
+                <page string="Cambio Domicilio" name="change_address" invisible="code_category_id != 'CA'">
+                    <br/>
+                    <div class="oe_button_box" name="button_box_change_address">
+                        <button name="action_change_address" invisible="is_change_address" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" string="Cambiar Datos" type="object" icon="fa-exchange"/>
+                    </div>
+                    <group>
+                        <group invisible="1">
+                            <field name="address_old" force_save="1"/>
+                            <field name="street_old" force_save="1"/>
+                            <field name="secundary_street_old" force_save="1"/>
+                            <field name="address_ref_old" force_save="1"/>
+                            <field name="node_id_old" force_save="1" string="Nodo"/>
+                            <field name="box_id_old" invisible="link_type == 'wifi'" force_save="1" string="Caja NAP"/>
+                            <field name="port_nap_old" invisible="link_type == 'wifi'" force_save="1" string="Puerto NAP"/>
+                            <field name="ap_id_old" invisible="link_type == 'fiber'" force_save="1"/>
+                            <field name="core_id_old" force_save="1" string="Equipo Core"/>
+                            <field name="olt_id_old" invisible="link_type == 'wifi'" force_save="1" string="Equipo OLT"/>
+                            <field name="olt_card_id_old" invisible="link_type == 'wifi'" force_save="1" string="Tarjeta OLT"/>
+                            <field name="olt_port_id_old" invisible="link_type == 'wifi'" force_save="1" string="Puerto OLT"/>
+                            <!-- <field name="splitter_id_old" invisible="link_type == 'wifi'" force_save="1" string="Splitter Secundario"/> -->
+                            <field name="service_port_old" invisible="link_type == 'wifi'" force_save="1" string="Service Port"/>
+                            <field name="onuid_old" invisible="link_type == 'wifi'" force_save="1" string="ONU-id"/>
+                            <field name="ip_address_old" force_save="1"/>
+                            <button class="oe_inline oe_link " name="action_free_ip_address" string="⇒Liberar IP" type="object" confirm="Está seguro de liberar la IP?" invisible="not is_free_ip or type_access_net == 'dhcp_static'"/>
+                            <field name="service_port_mgn_old" readonly="1" force_save="1" invisible="not is_mgn_service_port"/>
+                            <field name="ip_address_mgn_old" readonly="1" force_save="1" invisible="not is_mgn_service_port"/>
+                        </group>
+                        <group string="Datos Ubicación">
+                            <field name="address" readonly="is_change_address" required="code_category_id == 'CA'"/>
+                            <field name="country_id" placeholder="País" class="o_address_country" options="{'no_open': True, 'no_create': True}" readonly="is_change_address" required="code_category_id == 'CA'"/>
+                            <field name="state_id" class="o_address_state" placeholder="Estado" options="{'no_open': True, 'no_quick_create': True}" context="{'country_id': country_id, 'default_country_id': country_id, 'zip': zip}" readonly="is_change_address" required="code_category_id == 'CA'"/>
+                            <field name="street"/>
+                            <field name="secundary_street_new" force_save="1"/>
+                            <field name="address_ref_new" force_save="1"/>
+                            <field name="zip" placeholder="ZIP" class="o_address_zip" readonly="is_change_address" required="code_category_id == 'CA'"/>
+                            <div>
+                                <span>Lat : </span>
+                                <field name="contract_latitude" nolabel="1" class="oe_inline"/>
+                                <span>, Long: </span>
+                                <field name="contract_longitude" nolabel="1" class="oe_inline"/>
+                                <br/>
+                                <span invisible="not date_localization">Actualizado en: </span>
+                                <field name="date_localization" nolabel="1" class="oe_inline"/>
+                                <span class="oe_inline">
+                                    <button string="(refresh)" name="geo_localize_change" class="btn btn-link" type="object"/>
+                                </span>
+                            </div>
+                        </group>
+                    </group>
+                    <group string="Datos Técnicos">
+                        <group>
+                            <field name="node_id" readonly="is_change_address" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="box_id" readonly="is_change_address" invisible="link_type == 'wifi'" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="port_nap_id" readonly="is_change_address" options="{'no_create': True, 'no_create_edit':True}" invisible="link_type == 'wifi'"/>
+                            <field name="port_nap" readonly="is_change_address" invisible="1" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="ap_id" readonly="is_change_address" invisible="link_type == 'fiber'" options="{'no_create': True, 'no_create_edit':True}"/>
+                        </group>
+                        <group>
+                            <field name="core_id" readonly="is_change_address" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="is_used_dynamic_pool" invisible="1"/>
+                            <field name="olt_id" readonly="is_change_address" invisible="link_type == 'wifi'" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="olt_card_id" readonly="is_change_address" invisible="link_type == 'wifi'" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="olt_port_id" readonly="is_change_address" invisible="link_type == 'wifi'" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <!-- <field name="splitter_id" readonly="is_change_address" invisible="link_type == 'wifi'" options="{'no_create': True, 'no_create_edit':True}"/> -->
+                            <field name="service_port" readonly="0" force_save="1" invisible="link_type in ['wifi','fttb']"/>
+                            <field name="onuid" readonly="0" force_save="1" invisible="link_type in ['wifi','fttb']"/>
+                            <field name="ip_address" readonly="0" force_save="1" invisible="is_used_dynamic_pool"/>
+                            <field name="new_pool_ip_contract" readonly="is_add_ip_contract"/>
+                            <!-- <button class="oe_inline oe_link " name="action_assign_ip_address" string="⇒Asignar IP" type="object" invisible="is_assign_ip"/> -->
+                            <field name="service_port_mgn" readonly="1" force_save="1" invisible="not is_mgn_service_port"/>
+                            <field name="ip_address_mgn" readonly="0" force_save="1" invisible="not is_mgn_service_port"/>
+                            <field name="is_password_odoo" widget="boolean_toggle" invisible="1"/>
+                            <!-- <button class="oe_inline oe_link " name="action_unlink_values_pppoe" string="(Actualizar Valores PPPoe)" type="object" invisible="is_password_odoo" confirm="Este proceso no tiene retroceso, esta seguro de enviar datos de usuario, contraseña de odoo"/>                           -->
+                            <!--label for="ip_assigned" string="IP Asignada" attrs="{'invisible':[('is_change_address','!=', True)]}"/-->
+                            <!--div attrs="{'invisible':[('is_change_address','!=', True)]}">
+                                <span>
+                                    <field name="ip_assigned" attrs="{'invisible': ['|',('is_ip_public','=',True),('type_access_net','!=','ip_fija')]}"  class="oe_inline" />
+                                    <field name="contract_ip_address_id" attrs="{'invisible': ['|',('is_ip_public','=',True),('type_access_net','!=','dhcp')]}" readonly="1" class="oe_inline" nolabel="0"/>
+                                    <button class="oe_inline oe_link " name="action_assign_ip_address" string="⇒Asignar IP" type="object" attrs="{'invisible': ['|',('contract_ip_address_id','!=',False), ('type_access_net','!=','dhcp')]}"/>
+                                    <button class="oe_inline oe_link " name="action_free_ip_address" string="⇒Liberar IP" type="object" attrs="{'invisible': ['|',('contract_ip_address_id','=',False), ('type_access_net','!=','dhcp')]}" confirm="Está seguro de liberar la IP?"/>
+                                </span>
+                            </div-->
+                        </group>
+                    </group>
+                </page>
+
+                <page string="Cambio Plan" name="change_product" invisible="code_category_id != 'CPr'">
+                    <br/>
+                    <div class="oe_button_box" name="button_box_change_product">
+                        <field name="is_remove_data_plan" invisible="1"/>
+                        <field name="is_active_data_plan" invisible="1"/>
+                        <field name="is_remove_service_queue" invisible="1"/>
+                        <field name="is_active_service_queue" invisible="1"/>
+                        <field name="is_gestion_queue_parent" invisible="1"/>
+                        <field name="is_invoice_plan_service" invisible="1"/>
+                        <field name="is_assing_ip_multiple_vlan" invisible="1"/>
+                        <field name="is_planned_change_product_id" invisible="1"/>
+                        <button name="action_remove_service_queue" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-circle" string="Eliminar Servicio" invisible="is_remove_service_queue or not is_gestion_queue_parent"/>
+                        <button name="action_remove_data_plan" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-circle" string="Eliminar Servicio" invisible="is_remove_data_plan or not is_plan_baudcom or is_equal_vlans_ips"/>
+                        <button name="action_change_product_id" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-exchange" string="Cambio Plan" invisible="is_change_product_id or is_plan_change_product_id"/>
+                        <button name="action_active_core_plan" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-circle" string="Activar Servicio" invisible="is_active_data_plan or not is_plan_baudcom or is_equal_vlans_ips"/>
+                        <button name="action_active_service_queue" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-circle" string="Activar Servicio" invisible="is_active_service_queue or not is_gestion_queue_parent"/>
+                        <button name="action_invoice_service" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-list" string="Facturar Servicio" invisible="is_invoice_plan_service or not is_change_product_id or not is_invoice_services"/>
+                        <button name="action_plan_change_product_id" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-list" string="Planificar Cambio de Plan" invisible="is_planned_change_product_id or not is_plan_change_product_id"/>
+                    </div>
+                    <group>
+                        <group string="">
+                            <field name="is_plan_change_product_id" string="Planificar" readonly="is_change_product_id or is_planned_change_product_id" widget="boolean_toggle"/>
+                        </group>
+                        <group string="">
+                            <field name="date_plan_change" invisible="not is_plan_change_product_id" required="is_plan_change_product_id" readonly="is_planned_change_product_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Plan Actual">
+                            <field name="is_plan_baudcom" invisible="1"/>
+                            <field name="amount_recurrent_line_before" readonly="1" force_save="1"/>
+                            <field name="new_ip_address_olt_id" readonly="1" force_save="1" invisible="not is_active_product_ips"/>
+                            <field name="is_speed_control" readonly="1" invisible="1"/>
+                            <field name="contract_line_id" invisible="is_change_product_id" required="code_category_id == 'CPr'" widget="selection" string="Plan actual"/>
+                            <field name="product_id_old" invisible="not is_change_product_id" readonly="is_change_product_id"/>
+                            <field name="ip_address_plan_old" invisible="not is_plan_baudcom or is_equal_vlans_ips"/>
+                            <field name="free_ip_plan" invisible="1"/>
+                            <field name="assing_ip_plan" invisible="1"/>
+                            <field name="recurring_amount_old" invisible="not is_speed_control"/>
+                            <button class="oe_inline oe_link " name="action_free_ip_address_removed" string="⇒Liberar IP" type="object" confirm="Está seguro de liberar la IP?" invisible="free_ip_plan or not is_plan_baudcom or is_equal_vlans_ips"/>
+                            <button class="oe_inline oe_link " name="action_remove_ip_contract" string="⇒Liberar IP" type="object" confirm="Está seguro de liberar la IP?" invisible="is_remove_ip_contract or not is_active_product_ips"/>
+
+                        </group>
+                        <group string="Plan Nuevo">
+                            <field name="new_ip_address_id" invisible="1" readonly="1"/>
+                            <field name="is_active_product_ips" invisible="1"/>
+                            <field name="new_pool_ip_contract" invisible="not is_active_product_ips" readonly="is_change_product_id"/>
+                            <field name="product_id" readonly="is_change_product_id" required="code_category_id == 'CPr'" domain="[('recurring_invoices_ok','=',True)]" options="{'no_create': True}"/>
+                            <field name="is_invoice_services" widget="boolean_toggle" invisible="1"/>
+                            <field name="ip_address" readonly="0" invisible="not is_plan_baudcom or is_equal_vlans_ips"/>
+                            <button class="oe_inline oe_link " name="action_assign_ip_address_plan" string="⇒Asignar IP" type="object" invisible="not assing_ip_plan or is_assing_ip_multiple_vlan or is_equal_vlans_ips"/>
+                            <!-- Valores para controlar la visibilidad de los botons cuando tienen la misma vlan -->
+                            <field name="is_equal_vlans_ips" widget="boolean_toggle" invisible="1"/>
+                            <field name="old_vlan" invisible="1"/>
+                            <field name="amount_recurrent_line_new" invisible="not is_speed_control"/>
+                            <field name="recurring_amount_new" invisible="not is_speed_control"/>
+                        </group>
+                    </group>
+                </page>
+
+                <page string="Cambio Suspensión" name="change_suspencion" invisible="code_category_id != 'SP'">
+                    <br/>
+                     <div class="oe_button_box" name="button_box_change_address">
+                        <button name="action_change_suspension" class="oe_stat_button" string="Planificar" type="object" icon="fa-exchange" invisible="is_change_suspension"/>
+                    </div>
+                    <group>
+                        <group string="Datos">
+                            <field name="date_creation_suspencion"/>
+                            <field name="date_suspencion" readonly="is_change_suspension"/>
+                            <field name="date_reconnection" readonly="is_change_suspension"/>
+                        </group>
+                    </group>
+
+
+                </page>
+                <page string="Renovación CT" name="change_period_stay" invisible="code_category_id != 'CPSC'">
+                    <br/>
+                     <div class="oe_button_box" name="button_box_change_address">
+                        <button name="action_change_date_finish_contract" class="oe_stat_button" string="Renovar" type="object" icon="fa-exchange" invisible="is_change_period_stay"/>
+                    </div>
+                    <group>
+                        <group string="Datos Actuales">
+                            <field name="is_change_period_stay" invisible="1"/>
+                            <field name="plan_type_id_old" readonly="1" force_save="1"/>
+                            <field name="old_date_end" readonly="1" force_save="1"/>
+                        </group>
+                        <group string="Datos Nuevos">
+                            <field name="stay_period_id" domain="[('plan_type_id','=',plan_type_id_old)]" widget="selection"/>
+                            <field name="new_date_end" readonly="1"/>
+                        </group>
+                    </group>
+
+
+                </page>
+
+                <page string="Soporte" name="change_support" invisible="code_category_id != 'SO'">
+                    <br/>
+                    <div class="oe_button_box" name="button_box_change_address">
+                        <button name="change_date_contract" class="oe_stat_button" string="Cambiar Fecha" type="object" icon="fa-exchange"/>
+                    </div>
+                    <group>
+                        <group string="Cambio Fecha">
+                            <field name="date_start_old" force_save="1" string="Actual fecha de inicio"/>
+                            <field name="new_date_start" readonly="is_change_date_id"/>
+                        </group>
+                    </group>
+                </page>
+
+                <page string="Migrar Enlace" name="change_migrate" invisible="code_category_id != 'ME'">
+                    <br/>
+                    <div class="oe_button_box" name="button_box_create_contact">
+                        <button name="action_remove_service_wifi" class="oe_stat_button" string="Eliminar Servicio" type="object" icon="fa-circle" invisible="is_action_remove_service_wifi or link_type != 'wifi'"/>                                                                          
+                        <button name="action_create_contact" class="oe_stat_button" string="Liberar y Crear Contrato" type="object" icon="fa-exchange"/>
+                    </div>
+                    <group>
+                        <group string="Datos">
+                            <field name="debt"/>
+                        </group>
+                    </group>
+                </page>
+
+                <page string="Activar Servicio" name="active_service" invisible="code_category_id != 'AS'">
+                    <br/>
+                    <div class="oe_button_box" name="button_box_reconnect_contract">
+                        <button name="action_reconnect_service" class="oe_stat_button" string="Rec. Servicio" type="object" icon="fa-circle"/>
+                    </div>
+                    <group>
+                        <group string="Prepago y Postpago">
+                            <field name="is_delete_amount_debt"/>
+                            <field name="amount_debt"/>
+                        </group>
+                    </group>
+                </page>
+
+                <page string="Cambio Propietario" name="change_partner" invisible="code_category_id != 'CPa'">
+                    <div class="oe_button_box" name="button_box_change_partner">
+                        <button name="action_change_partner_id" type="object" class="oe_stat_button" icon="fa-exchange" string="Cambio Propietario" invisible="is_change_partner"/>
+                        <button name="action_change_equiment_id" type="object" class="oe_stat_button" icon="fa-exchange" string="Actualizar Equipos" invisible="is_change_equiment"/>
+                    </div>
+                    <group>
+                        <group string="Cliente Actual">
+                            <field name="partner_id_old" force_save="1" string="Cliente"/>
+                        </group>
+                        <group string="Cliente Nuevo">
+                            <field name="partner_id_new" readonly="is_change_partner" required="code_category_id == 'CPa'"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Cambio Fecha Contrato" name="change_date" invisible="code_category_id != 'CD'">
+                    <group>
+                        <group string="Valores Actuales">
+                            <field name="plan_type_id_old" force_save="1" string="Tipo de plan"/>
+                            <field name="day_cut_old" force_save="1" invisible="type_cut != 'days'" string="Día de corte"/>
+                            <field name="date_cut_old" force_save="1" string="Fecha de corte"/>
+                            <field name="date_start_old" force_save="1" string="Fecha de inicio"/>
+                            <field name="is_type_cut_ticket" invisible="1"/>
+                        </group>
+                        <group string="Valores Nuevos">
+                            <field name="plan_type_id" widget="selection"/>
+                            <field name="day_cut" invisible="type_cut == 'date'" required="type_cut == 'days' and code_category_id == 'CD'" readonly="is_change_date"/>
+                            <field name="contract_cuttoff_date_id" invisible="type_cut != 'date'" required="type_cut == 'date' and code_category_id == 'CD'" domain="[('plan_type_id','=',plan_type_id)]" widget="selection"/>
+                            <field name="date_cut" readonly="1" force_save="1"/>
+                            <field name="is_mont_recurring" widget="boolean_toggle"/>
+                            <field name="new_months_recurring" invisible="not is_mont_recurring"/>
+                        </group>
+                    </group>
+                    <div class="oe_button_box" name="button_box_change_date">
+						<button name="action_change_date" invisible="is_change_date" class="oe_highlight" string="Cambiar Fecha" type="object" icon="fa-exchange"/>
+                        <button name="cange_month_recurring" invisible="is_change_month_recurring or not is_mont_recurring" class="oe_highlight" string="Cambiar Meses" type="object" icon="fa-exchange"/>
+                    </div>
+                </page>
+
+                <page string="Cambio Dia" name="change_date" invisible="code_category_id != 'CDC'">
+                    <group>
+                        <group string="Valores Nuevos">
+                            <field name="day_start"/>
+                        </group>
+                    </group>
+                    <div class="oe_button_box" name="button_box_change_day">
+						<button name="action_change_day_cut" invisible="is_change_day_cut" class="oe_highlight" string="Cambiar Fecha" type="object" icon="fa-exchange"/>
+					</div>
+                </page>
+
+
+
+
+                <page string="Cambio Equipos Asignados" name="change_onu" invisible="code_category_id != 'CONU'">
+                    <br/>
+                    <div class="oe_button_box" name="button_box_change_product">
+                        <button name="action_remove_bridge_back" type="object" class="oe_stat_button" icon="fa-circle" string="Eliminar Servicio" invisible="not is_view_remove_olt or is_change_remove_bridge_service"/>
+                        <!-- <button name="action_remove_ticket_olt_zt" type="object" class="oe_stat_button" icon="fa-circle" string="Elimina Equ. Olt" invisible="not is_vsol_remove or is_vsol_state_remove or is_change_new_bridge"></button> -->
+                        <button name="action_remove_ticket_olt_zt" type="object" class="oe_stat_button" icon="fa-circle" string="Elimina Equ. Olt" invisible="1"/>
+                        <button name="action_change_device" type="object" class="oe_stat_button" icon="fa-exchange" string="Cambio Equipo" invisible="is_change_device"/>
+                        <button name="action_activate_ticket_olt_zt" type="object" class="oe_stat_button" icon="fa-circle" string="Activar Servicio" invisible="not is_vsol_activate or is_vsol_state_activate"/>
+                        <button name="action_activate_service_bridge" type="object" class="oe_stat_button" icon="fa-circle" string="Activar Servicio" invisible="not is_active_service_bridge"/>
+                        <!-- <button name="action_active_core" type="object" class="oe_stat_button" icon="fa-circle" string="Activar Core" invisible="not is_change_new_bridge or not is_active_core_radius"></button> -->
+                        <button name="action_active_core" type="object" class="oe_stat_button" icon="fa-circle" string="Activar Core" invisible="1"/>
+                    </div>
+                    <group name="fiber_device" invisible="link_type != 'fiber'">
+                        <group string="Valores Actuales">
+                            <field name="is_device_external" invisible="1" force_save="1" widget="boolean_toggle"/>
+                            <field name="is_change_new_bridge" invisible="1" force_save="1" widget="boolean_toggle"/>
+                            <field name="is_change_onu" force_save="1" widget="boolean_toggle"/>
+                            <field name="serial_onu_back" force_save="1" invisible="not is_change_onu or is_device_external"/>
+                            <field name="external_serial_onu_old" force_save="1" invisible="not is_change_onu or not is_device_external"/>
+                            <field name="model_onu_type_old_id" force_save="1" invisible="not is_change_onu"/>
+                            <!-- <field name="model_onu_back" force_save="1" invisible="not is_change_onu"/> -->
+                        </group>
+                        <group string="Valores Nuevos">
+                            <field name="new_mac" force_save="1" invisible="not is_change_mac"/>
+                            <field name="serial_onu_new" force_save="1" invisible="not is_change_onu or is_device_external_ticket"/>
+                            <field name="product_serial_id" invisible="1"/>
+                            <field name="model_onu_type_id" force_save="1" invisible="not is_change_onu or is_device_external_ticket"/>
+                            <field name="external_serial_onu_new" force_save="1" invisible="not is_change_onu or not is_device_external_ticket"/>
+                            <field name="external_model_onu_type_id" force_save="1" invisible="not is_change_onu or not is_device_external_ticket"/>
+                            <field name="is_device_external_ticket" widget="boolean_toggle"/>
+                        </group>
+                       <!--  <group>
+                            <field name="is_change_bridge" force_save="1" widget="boolean_toggle"/>
+                            <field name="serial_bridge_back" force_save="1" invisible="not is_change_bridge"/>
+                            <field name="model_bridge_back" force_save="1" invisible="not is_change_bridge"/>
+                        </group>-->
+                         <!--<group>
+                               
+                            <field name="serial_bridge_new" force_save="1" invisible="not is_change_bridge"/>
+                            <field name="model_bridge_new" force_save="1" invisible="not is_change_bridge"/>
+                            <field name="is_equipment_external"  widget="boolean_toggle"/>
+                            <field name="income_equipment_external" invisible="not is_equipment_external" widget="boolean_toggle"/>
+                        </group> -->
+                        <group>
+
+                            <field name="is_change_bridge" force_save="1" widget="boolean_toggle"/> 
+                            <field name="is_device_extra" widget="boolean_toggle"/>
+                        </group>
+
+                    </group>
+                    <group invisible="link_type != 'wifi'">
+                        <group string="Valores Actuales">
+                            <field name="is_device_external" invisible="1" force_save="1" widget="boolean_toggle"/>
+                            <field name="is_change_antena" force_save="1" widget="boolean_toggle"/>
+                            <field name="serial_antena_back" force_save="1" invisible="not is_change_antena or is_device_external"/>
+                            <field name="model_antena_back" force_save="1" invisible="not is_change_antena or is_device_external"/>
+                            <field name="external_serial_antena_back" force_save="1" invisible="not is_change_antena or not is_device_external"/>
+                            <field name="external_model_antena_back" force_save="1" invisible="not is_change_antena or not is_device_external"/>
+                        </group>
+                        <group string="Valores Nuevos">
+                            <field name="serial_antena_new" force_save="1" invisible="not is_change_antena or is_device_external"/>
+                            <field name="model_antena_new" force_save="1" invisible="not is_change_antena or is_device_external"/>
+                            <field name="external_serial_antena_new" force_save="1" invisible="not is_change_antena or not is_device_external"/>
+                            <field name="external_model_antena_new" force_save="1" invisible="not is_change_antena or not is_device_external"/>
+                            <field name="new_antena_mac" force_save="1" invisible="not is_change_antena_mac"/>
+
+                        </group>
+                        <group>
+                            <field name="is_change_router" force_save="1" widget="boolean_toggle"/>
+                            <field name="serial_router_back" force_save="1" invisible="not is_change_router"/>
+                            <field name="model_router_back" force_save="1" invisible="not is_change_router"/>
+                        </group>
+
+                        <group>
+                            <field name="serial_router_new" force_save="1" invisible="not is_change_router"/>
+                            <field name="model_router_new" force_save="1" invisible="not is_change_router"/>
+                            <field name="is_equipment_external_wifi" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+                </page>
+
+                <page string="Cambio de NAT" name="nat" invisible="code_category_id != 'CTN'">
+
+                    <br/>
+                    <div class="oe_button_box" name="button_box_change_product">
+                        <button name="action_remove_nat" type="object" class="oe_stat_button" icon="fa-circle" string="Eliminar Servicio" invisible="is_remove_nat"/>
+                        <button name="action_change_nat" type="object" class="oe_stat_button" icon="fa-exchange" string="Cambiar NAT" invisible="not is_remove_nat or not is_remove_ip or is_change_nat"/>
+                        <button name="action_activate_nat" type="object" class="oe_stat_button" icon="fa-rss" string="Activar Servicio" invisible="not is_active_ip or is_active_nat"/>
+                    </div>
+                    <group>
+
+                        <group string="IP Actual" invisible="not is_remove_nat">
+                            <field name="ip_address_nat"/>
+                            <button class="oe_inline oe_link " name="action_remove_ip_nat" string="⇒Liberar IP" type="object" confirm="Está seguro de liberar la IP?" invisible="is_remove_ip"/>
+                        </group>
+                        <group string="Nueva IP" invisible="not is_remove_nat">
+                            <field name="new_ip_address_nat" readonly="is_active_ip"/>
+                            <button class="oe_inline oe_link " name="action_add_ip_nat" string="⇒Asignar IP" type="object" invisible="is_active_ip or not is_change_nat"/>
+                        </group>
+                        <group string="Core" invisible="not is_remove_ip">
+                            <field name="node_nat_id" string="Nodo" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="core_nat_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                        </group>
+                    </group>
+                </page>
+
+                <page string="Mantenimiento Interno" name="internal" invisible="code_category_id != 'CIN'">
+                    <group>
+                        <field name="node_id" readonly="is_change_address" options="{'no_create': True, 'no_create_edit':True}"/>
+                        <field name="core_id" readonly="is_change_address" options="{'no_create': True, 'no_create_edit':True}"/>
+                        <field name="ap_id" readonly="is_change_address" invisible="link_type == 'fiber'" options="{'no_create': True, 'no_create_edit':True}"/>
+                        <field name="olt_id" readonly="is_change_address" invisible="link_type == 'wifi'" options="{'no_create': True, 'no_create_edit':True}"/>
+                        <field name="olt_card_id" readonly="is_change_address" invisible="link_type == 'wifi'" options="{'no_create': True, 'no_create_edit':True}"/>
+                        <field name="olt_port_id" readonly="is_change_address" invisible="link_type == 'wifi'" options="{'no_create': True, 'no_create_edit':True}"/>
+                        <field name="splitter_id" readonly="is_change_address" invisible="link_type == 'wifi'" options="{'no_create': True, 'no_create_edit':True}"/>
+                        <field name="box_id" readonly="is_change_address" invisible="link_type == 'wifi'" options="{'no_create': True, 'no_create_edit':True}"/>
+                    </group>
+                </page>
+                <page string="Retirar Servicio" name="retire" invisible="code_category_id != 'RSERVICE'">
+                    <div class="oe_button_box" name="button_box_change_address">
+                        <br/>
+                        <button name="action_remove_device" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-exchange" string="Ingresar Equipos" invisible="is_change_device"/>
+                        <button name="action_done_contract" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-times" string="Liberar Datos" invisible="is_change_done"/>
+                        <br/>
+                    </div>
+                    <group string="">
+                    </group>
+                    <group>
+                        <field name="had_collection" readonly="1"/>
+                        <field name="state_contract" widget="badge" decoration-danger="state_contract == 'done'" decoration-warning="state_contract == 'renewal'" decoration-success="state_contract == 'open'" decoration-info="state_contract == 'draft'"/>
+                        <field string="Monto vencido" name="account_invoice" widget="statinfo"/>
+                        <button class="oe_inline oe_link " name="action_create_helpdesk_ticket_account" string="Ticket Cobranza" type="object" invisible="not had_collection"/>
+
+                    </group>
+                </page>
+                <page string="Cobranzas" name="retire" invisible="code_category_id != 'COBRA'">
+                    <div class="oe_button_box" name="button_box_change_product">
+                        <button name="calculate_amount_invoice_real" type="object" class="oe_stat_button" icon="fa-filter" string="Valor facturas consumidas"/>
+                        <button name="calculate_account_invoice_real" type="object" class="oe_stat_button" icon="fa-filter" string="Calcular Valor x dias"/>
+                        <button name="action_create_invoice" type="object" class="oe_stat_button" icon="fa-money" string="Crear Prefactura"/>
+                    </div>
+                    <group>
+                        <field string="Monto Facturas a considerar" name="amount_invoice_real" widget="statinfo"/>
+                        <field string="Monto real de pago" name="account_invoice_real" widget="statinfo"/>
+                    </group>
+                </page>
+
+             <!--####################################################################################################################-->
+
+
+                <page string="Cambio Contraseña" name="password" invisible="code_category_id != 'CPW'">
+						<div class="oe_button_box" name="button_box_change_product">
+                            <button name="action_change_pass" type="object" class="oe_stat_button" icon="fa-exchange" string="Continue....." invisible="is_change_password or is_active_tr"/>
+                            <button name="action_activate_tr069" type="object" class="oe_stat_button" icon="fa-repeat" string="Enable TR069" invisible="not is_active_tr or is_tr069"/>
+                            <button name="action_sync_wifi_lan" type="object" class="oe_stat_button" icon="fa-repeat" string="Sync Wifi TR069" invisible="not is_active_tr or is_sync_tr069"/>
+                            <button name="action_disable_tr069" type="object" class="oe_stat_button" icon="fa-repeat" string="Disable TR069" invisible="not is_active_tr or not is_tr069"/>
+                        </div>
+						<group>
+							<group string="Valores Actuales">
+								<field name="old_password" force_save="1" readonly="1"/>
+							</group>
+							<group string="Valores Nuevos">
+								<field name="new_password" readonly="is_change_password" required="code_category_id == 'CPW'"/>
+                                <field name="new_ip_address_tr69_id" invisible="not is_active_tr or is_exists_ip_tr069"/>
+                                <button class="oe_inline oe_link " name="action_register_ip_tr069" string="⇒Asignar IP TR069" invisible="not is_active_tr or is_exists_ip_tr069" type="object"/>
+							</group>
+						</group>
+
+				</page>
+
+                <page string="Cambio de Nombre de Red" name="net" invisible="code_category_id != 'CNN'">
+
+						<div class="oe_button_box" name="button_box_change_product">
+                            <button name="action_network_name" type="object" class="oe_stat_button" icon="fa-exchange" string="Continue....." invisible="is_change_net"/>
+                        </div>
+						<group>
+							<group string="Valores Actuales">
+								<field name="old_net" force_save="1" readonly="is_change_net" required="code_category_id == 'CNN'"/>
+							</group>
+							<group string="Valores Nuevos">
+								<field name="new_net" readonly="is_change_net" required="code_category_id == 'CNN'"/>
+							</group>
+						</group>
+				</page>
+
+                <page string="Cambio Período de Consumo" name="change_cuttoff_date" invisible="code_category_id != 'CPC'">
+                    <div class="oe_button_box" name="button_box_change_cutoff_date">
+                        <button name="action_change_cuttoff_date_id" type="object" class="oe_stat_button" icon="fa-exchange" string="Cambio Período" invisible="is_change_cuttoff_date"/>
+                    </div>
+                    <group>
+                        <group string="Período Actual">
+                            <field name="cuttoff_date_id_old" force_save="1" string="Período"/>
+                            <field name="cuttoff_date_cut_old" force_save="1" string="Fecha corte"/>
+                            <field name="cuttoff_date_invoice_old" force_save="1" string="Fecha facturación"/>
+                        </group>
+                        <group string="Período Nuevo">
+                            <field name="plan_type_id" readonly="is_change_cuttoff_date" required="code_category_id == 'CPC'"/>
+                            <field name="cuttoff_date_id_new" readonly="is_change_cuttoff_date" required="code_category_id == 'CPC'" options="{'no_create': True}" domain="[('plan_type_id', '=', plan_type_id)]"/>
+                            <field name="corporative_parent_id" invisible="plan_type_name != 'Multi Corporativo'"/>
+                            <field name="residential_parent_id" invisible="plan_type_name != 'Multi Residencial'"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Cambio de Mac" name="change_change_mac" invisible="code_category_id != 'CM'">
+                    <div class="oe_button_box" name="button_box_change_cutoff_date">
+                        <button name="change_mac_address" type="object" class="oe_stat_button" icon="fa-exchange" string="Cambio de Mac" invisible="is_change_dhcp_mac"/>
+                    </div>
+                    <group>
+                        <group string="MAC Actual">
+                            <field name="is_change_dhcp_mac" invisible="1"/>
+                            <field name="old_mac"/>
+                        </group>
+                        <group string="MAC Nuevo">
+                            <field name="new_mac_dhcp"/>
+                        </group>
+                    </group>
+                </page>
+
+                <page string="Internet + Television" name="change_catv" invisible="code_category_id != 'ITC'">
+                    <div class="oe_button_box" name="button_box_change_cutoff_date">
+                        <button name="action_catv" type="object" class="oe_stat_button" icon="fa-circle" invisible="is_active_desactive_catv" string="Act/Des CATV"/>
+                    </div>
+                    <group>
+                        <group string="Activar/Desactivar">
+                            <field name="activate_deactivate_service_catv" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+                </page>
+
+
+                <page string="Gestion Ip" name="managment_public" invisible="code_category_id != 'MPI'">
+                    <div class="oe_button_box" name="button_box_change_cutoff_date">
+                        <button name="remove_service_public" type="object" class="oe_stat_button" icon="fa-circle" string="Eliminar Servicio" invisible="is_remove_public_service or not ip_gestion_public"/>
+                        <button name="remove_service_gestion_ip" type="object" class="oe_stat_button" icon="fa-circle" string="Eliminar Servicio" invisible="not is_private_public_ip or is_remove_public_service"/>
+                        <button name="remove_service_gestion_ip" type="object" class="oe_stat_button" icon="fa-circle" string="Eliminar Servicio" invisible="not is_public_private_ip or is_remove_public_service"/>
+                        <button name="action_add_public_ip" type="object" class="oe_stat_button" icon="fa-exchange" string="Agregar Ip Publica" invisible="is_add_public_ip or not ip_gestion_public"/>
+                        <button name="action_remove_public_ip" type="object" class="oe_stat_button" icon="fa-circle" string="Remover Ip Equipo Core" invisible="is_remove_public_ip or not ip_gestion_private"/>
+                        <button name="action_add_ip" type="object" class="oe_stat_button" icon="fa-rss" string="Activar Servicio" invisible="not is_add_ip_contract or is_active_new_contract"/>
+                    </div>
+                    <group>
+                        <group string="IP Pública">
+                            <field name="ip_gestion_public" widget="boolean_toggle"/>
+                            <field name="is_active_ip_public" invisible="1"/>
+                            <field name="public_ip" invisible="not ip_gestion_public"/>
+                        </group>
+
+                        <group string="IP Privada">
+                            <field name="ip_gestion_private" widget="boolean_toggle"/>
+                            <field name="is_private_ip" invisible="1"/>
+                            <field name="old_ip_contract" invisible="not ip_gestion_private or is_private_ip or is_active_ip_public"/>
+                            <field name="new_ip_contract" invisible="not ip_gestion_private"/>
+                            <button class="oe_inline oe_link " name="action_free_private_ip" string="⇒Liberar IP" type="object" invisible="is_active_ip_public or not ip_gestion_private or is_private_ip or not is_remove_public_ip"/>
+                            <!-- Asigna ip privada despues de eliminar -->
+                            <button class="oe_inline oe_link " name="action_add_ip_contract" string="⇒Asignar IP" type="object" invisible="not is_private_ip or is_add_ip_contract"/>
+                             <!-- Asigna ip publica -->
+                            <button class="oe_inline oe_link " name="action_add_ip_public_contract" string="⇒Asignar IP" type="object" invisible="not is_active_ip_public or not is_remove_public_ip or not ip_gestion_private"/>
+                        </group>
+                        <group string="IP Pública a Privada">
+                            <field name="is_public_private_ip" widget="boolean_toggle"/>
+                            <field name="old_public_radius_ip" force_save="1" invisible="not is_public_private_ip"/>
+                            <field name="new_ip_contract" invisible="not is_public_private_ip"/>
+                            <button class="oe_inline oe_link " name="action_free_private_ip" string="⇒Liberar IP" type="object" invisible="is_private_ip or not is_public_private_ip or not is_remove_public_service"/>
+                            <button class="oe_inline oe_link " name="action_add_ip_contract" string="⇒Asignar IP" type="object" invisible="not is_public_private_ip or is_add_ip_contract or not is_private_ip"/>
+                        </group>
+                        <group string="IP Privada a Pública">
+                            <field name="is_private_public_ip" widget="boolean_toggle"/>                            
+                            <field name="old_ip_contract" invisible="not is_private_public_ip"/>
+                            <field name="public_ip" invisible="not is_private_public_ip"/>
+                            <button class="oe_inline oe_link " name="action_free_private_ip" string="⇒Liberar IP" type="object" invisible="is_private_ip or not is_private_public_ip or not is_remove_public_service"/>
+                            <button class="oe_inline oe_link " name="action_add_ip_contract" string="⇒Asignar IP" type="object" invisible="not is_private_public_ip or is_add_ip_contract or not is_private_ip"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Actualizar IP Core" name="update_ip" invisible="code_category_id != 'AIP'">
+                    <div class="oe_button_box" name="button_box_change_cutoff_date">
+                        <button name="action_update_core" type="object" class="oe_stat_button" icon="fa-circle" string="Actualizar Equipo Core" invisible="(not is_add_ip_contract and not is_add_public_ip and not is_assign_manual_ip) or is_update_core"/>
+                    </div>
+                    <group>
+                        <group string="IP Pública">
+                            <field name="ip_gestion_public" widget="boolean_toggle" readonly="is_add_public_ip or is_add_ip_contract"/>
+                            <field name="old_public_ip_contract" force_save="1" invisible="not ip_gestion_public"/>
+                            <field name="public_ip" invisible="not ip_gestion_public" readonly="is_add_public_ip"/>
+                            <button class="oe_inline oe_link " name="action_assing_public_ip" string="⇒Asignar IP" type="object" invisible="is_add_public_ip or not ip_gestion_public"/>
+                        </group>
+
+                        <group string="IP Privada">
+                            <field name="ip_gestion_private" widget="boolean_toggle" readonly="is_add_ip_contract or is_add_public_ip"/>
+                            <field name="old_private_ip_contract" force_save="1" invisible="not ip_gestion_private"/>
+                            <field name="new_pool_ip_contract" invisible="not ip_gestion_private" readonly="is_add_ip_contract"/>
+                            <!-- Eliminar IP -->
+                            <button class="oe_inline oe_link " name="action_free_private_ip" string="⇒Remover IP" type="object" invisible="not ip_gestion_private or is_private_ip"/>
+                            <!-- Asigna ip privada despues de eliminar -->
+                            <button class="oe_inline oe_link " name="action_register_ip" string="⇒Asignar IP" type="object" invisible="not ip_gestion_private or not is_private_ip or is_add_ip_contract"/>
+                        </group>
+
+                        <group string="Ip Manual">
+                            <field name="is_ip_manual" widget="boolean_toggle" readonly="is_assign_manual_ip"/>
+                            <field name="old_ip_address_manual" invisible="not is_ip_manual" force_save="1"/>
+                            <field name="ip_address_manual" readonly="is_assign_manual_ip" invisible="not is_ip_manual"/>
+                            <button class="oe_inline oe_link " name="action_assing_manual_ip" string="⇒Actualizar IP Manual" type="object" invisible="is_assign_manual_ip or not is_ip_manual"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Contratos" name="filter" invisible="code_category_id != 'SM'">
+                    <div class="oe_button_box" name="button_filter_contract">
+                        <button name="filter_contract" type="object" class="oe_stat_button" icon="fa-filter" string="Filtrar" invisible="is_filter_contracts"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="new_node_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="new_box_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="new_core_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="new_olt_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="new_olt_card_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="new_olt_port_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="new_splitter_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="new_ap_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                        </group>
+                    </group>
+                    <br/>
+                    <field name="filter_contracts_ids">
+                        <list readonly="1" delete="true" create="false">
+                            <field name="contract_id"/>
+                            <field name="state_service"/>
+                            <field name="email"/>
+                            <field name="partner_id"/>
+                        </list>
+                    </field>
+                </page>
+                <page string="Prueba de Equipos" name="test_device" invisible="code_category_id != 'PE'">
+                    <group name="group_device">
+                        <group string="Datos Red Externa Asignada" name="external_data">
+                            <field name="node_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="core_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="olt_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="olt_card_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="olt_port_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="splitter_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                        </group>
+                        <group string="Datos Logicos Asignados">
+                            <field name="onuid"/>
+                            <field name="service_port"/>
+                            <field name="type_access_net_ticket" invisible="1"/>
+                            <label for="ip_address_url" string="IP Asignada"/>
+                            <div>
+                                <span>
+                                    <field name="ip_address_url" widget="url"/>
+                                    <field name="ip_address_id" invisible="type_access_net != 'ip_fija'" class="oe_inline"/>
+                                    <!-- is_ip_public -->
+                                    <!-- <field name="new_ip_address_id" attrs="{'invisible': ['|',('is_ip_public','=',True),('type_access_net','!=','ip_fija')]}"  class="oe_inline"/> -->
+                                    <field name="is_assing_address_pool" invisible="1"/>
+                                    <field name="is_free_address_pool" invisible="1"/>
+                                    <field name="ip_address" invisible="type_access_net != 'ip_fija'" class="oe_inline"/>
+                                    <button class="oe_inline oe_link " name="action_assing_ip_ticket" string="⇒Asignar IP" type="object" invisible="is_assing_address_pool or type_access_net not in ['dhcp','dhcp_leases','dhcp_leases_vlan']"/>
+                                    <button class="oe_inline oe_link " name="action_free_ip_ticket" string="⇒Liberar IP" type="object" invisible="not is_assing_address_pool or is_free_address_pool" confirm="Está seguro de liberar la IP?"/>
+                                    <!-- <button class="oe_inline oe_link " name="action_free_ip_ticket" string="⇒Liberar IP" type="object"   attrs="{'invisible': [('type_access_net','not in',['dhcp','dhcp_leases','dhcp_leases_vlan'])]}" confirm="Está seguro de liberar la IP?"/> -->
+                                </span>
+                            </div>
+                            <field name="is_ip_public" widget="boolean_toggle" invisible="link_type == 'idts'"/>
+                            <field name="ip_public" invisible="not is_ip_public"/>
+                            <field name="is_extract_mac_onu" invisible="1"/>
+                            <field name="mac_address_onu" invisible="not is_extract_mac_onu"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Datos CT">
+                            <field name="is_gestion_wifi" invisible="1"/>
+                            <field name="serial_onu"/>
+                            <field name="model_onu"/>
+                            <field name="product_id"/>
+                            <field name="sssid" invisible="not is_gestion_wifi"/>
+                            <field name="password" invisible="not is_gestion_wifi"/>
+                            <field name="is_bridge" widget="boolean_toggle"/>
+                            <field name="type_service_id"/>
+                            
+                        </group>
+                    </group>
+                </page>          
+                <page string="Edición Facturación Recurrente" name="recurrent_invoice" invisible="code_category_id != 'FREC'">
+                    <div class="oe_button_box" name="button_filter_contract">
+                        <button name="action_get_recurring_invoice" type="object" class="oe_stat_button" icon="fa-exchange" string="Obtener Información" invisible="is_get_recurring_invoice"/>
+                        <button name="action_change_recurring_invoice" type="object" class="oe_stat_button" icon="fa-exchange" string="Aplicar Cambios" invisible="not is_get_recurring_invoice or is_change_recurring_invoice"/>
+                    </div>
+                    <group name="group_device">
+                        <group string="Valores Antiguos" name="old_values_invoice">
+                        </group>
+                        <field name="ticket_line_ids" options="{'no_create': True}" readonly="1">
+                            <list create="true" delete="true" editable="top">
+                                <field name="product_id" domain="[('recurring_invoices_ok','=',True)]" options="{'no_create': True}"/>
+                                <field name="name"/>
+                                <field name="quantity"/>
+                                <field name="price_unit"/>
+                                <field name="price_subtotal" sum="price_subtotal"/>
+                                <field name="no_invoice" invisible="1"/>
+                            </list>
+                        </field>
+                    </group>
+                    <group>
+                        <group string="Valores Nuevos">
+                        </group>
+                        <field name="new_line_ids" options="{'no_create': True}" readonly="is_change_recurring_invoice">
+                            <list create="true" delete="true" editable="top">
+                                <field name="product_id" domain="[('recurring_invoices_ok','=',True)]" options="{'no_create': True}"/>
+                                <field name="name"/>
+                                <field name="quantity"/>
+                                <field name="price_unit"/>
+                                <field name="price_subtotal" sum="price_subtotal" readonly="1"/>
+                                <field name="no_invoice" invisible="1"/>
+                            </list>
+                        </field> 
+                    </group>
+                </page>
+                <page string="Resincronizar Equipos" name="synchronize_equipment" invisible="code_category_id != 'RE'">
+                    <notebook name="ticket_networks" colspan="4">
+                        <page string="Datos Técnicos" name="technical_data">
+                            <div class="oe_button_box">
+                                <button name="action_update_data_contract" type="object" class="oe_stat_button" icon="fa-exchange" string="Actualizar Datos" invisible="is_synchronize_update_contract"/>
+                            </div>
+                            <group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="synchronize_service_port"/>
+                                    <field name="synchronize_onu_id"/>
+                                </group>
+                                <group string="Radius" invisible="1">
+                                    <button class="oe_inline oe_link " name="action_unlink_values_pppoe" string="(Actualizar Valores PPPoe)" type="object" invisible="is_password_odoo" confirm="Este proceso no tiene retroceso, esta seguro de enviar datos de usuario, contraseña de odoo"/>  
+                                </group>
+                            </group>    
+                        </page>
+                    </notebook>
+                </page>
+                <page string="Cambio Forma de Pago" name="change_onu" invisible="code_category_id != 'CFP'">
+                    <field name="is_change_payment_method" invisible="1"/>
+                    <field name="payment_type_code" invisible="1"/>
+                    <br/>
+                    <div class="oe_button_box" name="button_box_change_payment_method">
+                        <button name="action_change_paymethod" type="object" class="oe_stat_button" icon="fa-exchange" string="Cambio Método de Pago" invisible="is_change_payment_method"/>
+                        <br/>
+                    </div>
+                    <group name="invoice_fields">
+                        <group name="invoice_fields2">
+                            <field name="payment_type_id" options="{'no_create': True}" required="code_category_id == 'CFP'" readonly="is_change_payment_method" widget="selection"/>
+                            <field name="is_other_partner_bank" invisible="payment_type_code not in ['credit_card','debit']" readonly="is_change_payment_method" widget="boolean_toggle"/>
+                            <field name="partner_bank_id" invisible="not is_other_partner_bank" readonly="is_change_payment_method" options="{'no_create': True}"/>
+                            <field name="res_partner_bank_id" invisible="payment_type_code not in ['credit_card','debit']" readonly="is_change_payment_method" domain="['|',('partner_id','=',partner_id),('partner_id','=',partner_bank_id)]" widget="selection"/>
+                            <!-- <field name="payment_id" attrs="{'invisible':[('payment_type_code','not in',['recurrent'])],'readonly': [('is_change_payment_method', '=', True)]}" widget ="selection" groups="contract_manager.group_contract_technical,sales_team.group_sale_manager,base.group_user"/>  -->
+                            <field name="payment_id" invisible="payment_type_code not in ['recurrent']" readonly="is_change_payment_method" widget="selection"/> 
+                            <!-- <field name="is_recurrent" widget="boolean_toggle"  attrs="{'invisible':[('payment_type_code','not in',['recurrent'])]}" readonly="1" />  -->
+                        </group>
+                    </group>
+                
+                </page>  
+            </xpath>
+        </data>
+        
+        
+contract_helpdesk.view_contract_helpdesk_form_inherit:
+
+<xpath expr="//field[@name='closed_date']" position="after">
+                <field name="sla_active"/>
+                <field name="sla_date"/>
+                <field name="sla_tiempo_tran" widget="float_time"/>
+                <field name="sla_tiempo_res" widget="float_time"/>
+			</xpath>
+			
+			
+			
+			
+contract_stock.view_contract_helpdesk_form
+
+<data><div class="oe_button_box" name="button_box"> 
+                <button class="oe_stat_button" type="object" name="action_open_stock_picking" icon="fa-arrows-v">
+                    <field string="Movimientos" name="stock_count" widget="statinfo"/>
+                </button>
+            </div>
+            <page name="other_info" position="after">
+                <page string="Materiales Asignados" name="stock_helpdesk">
+                    <field name="stock_line_ids">
+                        <list editable="bottom">
+                            <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="qty_stock"/>
+                            <field name="lot_id"/>
+                            <field name="is_done"/>
+                        </list>
+                    </field>
+                </page>
+            </page>
+            <page name="other_info" position="after">
+                <page string="Remover Equipos Extras" name="extra_equipment" invisible="code_category_id != 'REQ'">
+                    <div class="oe_button_box" name="button_filter_contract">
+                        <button name="action_remove_extra_equipment" type="object" class="oe_stat_button" icon="fa-filter" string="Remover Equipos Extras" invisible="is_remove_extra_equipment"/>
+                    </div>
+                    <field name="is_remove_extra_equipment" invisible="1"/>
+                    <field name="device_extra_line_ids">
+                        <list editable="bottom" create="false" delete="false">
+                            <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="qty_stock"/>
+                            <field name="lot_id"/>
+                            <field name="is_done"/>
+                            <field name="is_remove_materials"/>
+                        </list>
+                    </field>
+                </page>
+            </page>
+            <page name="other_info" position="after">
+                
+                <field name="is_change_stock_equipment" invisible="1"/>
+                <field name="computed_domain_previous_lot" invisible="1"/>
+                <page string="Cambio de Equipos Asignados Extras" name="change_stock_equipment_extra" invisible="code_category_id != 'CSCE'">
+                    <br/>
+                        <div class="oe_button_box" name="button_box_change_address">
+                            <button name="action_change_equipment_extra" class="oe_stat_button" string="Cambiar" type="object" icon="fa-exchange" invisible="is_change_stock_equipment"/>
+                        </div>
+                    <group>
+                        <!-- Switches uno debajo del otro -->
+                        <group>
+                            <field name="is_change_extra_equipment" widget="boolean_toggle" string="¿Cambiar Equipos?" invisible="is_add_extra_equipment" readonly="is_change_stock_equipment"/>
+                            <field name="is_add_extra_equipment" widget="boolean_toggle" string="¿Agregar Equipos?" invisible="is_change_extra_equipment" readonly="is_change_stock_equipment"/>
+                        </group>
+
+                        <!-- Layout en columnas: Anterior a la izquierda, Nuevo a la derecha -->
+                        <group colspan="2" invisible="not is_change_extra_equipment">
+                            <group string="Datos Anteriores">
+                                <field name="previous_lot_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                            </group>
+                            <group string="Datos Nuevos">
+                                <field name="new_lot_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                            </group>
+                        </group>
+
+                        <!-- Tabla de nuevos materiales -->
+                        <field name="new_stock_equipment_line_ids" readonly="0" context="{'default_is_extra_material_line': True, 'default_qty_stock': 1}" invisible="not is_add_extra_equipment" nolabel="1">
+                            <list editable="bottom">
+                                <field name="product_id" domain="[('tracking', '=', 'serial')]" options="{'no_create': True, 'no_create_edit':True}"/>
+                                <field name="qty_stock" readonly="1" force_save="1"/>
+                                <field name="lot_id"/>
+                                <field name="is_done" optional="hide"/>
+                                <field name="is_invoice_covered" optional="hide"/>
+                                <field name="is_promotion" invisible="1"/>
+                                <field name="is_extra_material_line" invisible="1"/>
+                            </list>
+                        </field>
+                    </group>
+                </page>
+            </page>
+            <field name="synchronize_onu_id" position="after">
+                <field name="synchronize_serial_onu" invisible="is_device_external"/>
+                <field name="synchronize_model_onu_type_id" invisible="is_device_external"/>
+                <field name="external_synchronize_serial_onu" invisible="not is_device_external"/>
+                <field name="external_synchronize_model_onu_id" invisible="not is_device_external"/>
+                <!-- <field name="synchronize_serial_bridge" invisible="is_bridge == False"/> -->
+            </field>
+        </data>
+        
+        
+contract_integration_equipment.view_integration_helpdesk_form:
+
+<data><field name="address_old" position="before">
+        		<field name="is_remove_service" invisible="1"/>
+        		<field name="is_active_service" invisible="1"/>
+				<field name="is_extract_mac" invisible="1"/>
+				<field name="is_active_core" invisible="1"/>
+				<field name="is_assing_mac" invisible="1"/>
+				<field name="is_synchronize_active_core" invisible="1"/>		
+				<field name="is_synchronize_remove_core" invisible="1"/>		
+				<field name="is_synchronize_active_olt" invisible="1"/>		
+				<field name="is_synchronize_remove_olt" invisible="1"/>
+				<field name="is_gestion_wifi" invisible="1"/>
+				<field name="is_brand_all_olt" invisible="1"/>
+				<field name="is_brand_olt_vsol" invisible="1"/>
+				<field name="is_brand_olt_zte" invisible="1"/>
+				<field name="olt_brand_description" invisible="1"/>
+				<field name="is_extract_onu_card" invisible="1"/>
+				<field name="is_synchronize_shutdown_onu_port" invisible="1"/>
+	
+        	</field>	
+			<field name="is_change_new_bridge" position="before">
+				<field name="is_extract_mac_contract" invisible="1"/>
+			</field>
+        	<button name="action_change_address" position="before">
+            	<button name="action_remove_service" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-circle" string="Eliminar Servicio" invisible="is_remove_service == True"/> 
+            </button>                        		
+            <button name="action_change_address" position="after">
+				<!-- <button name="action_activate_service" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-rss" string="Activar" invisible="is_active_service == True"></button> -->
+				<button name="action_activate_service" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-rss" string="Activar" invisible="1"/>
+				<button name="action_activate_core" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-circle" string="Activar Core" invisible="1"/>
+				<button name="action_assign_mac" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-circle" string="Asignar Mac" invisible="default_assignment_ip != 'automatic_dhcp' or is_assing_mac"/>
+				<button name="action_search_series" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-search-plus" string="Buscar Series"/>
+            </button>
+			<button name="action_active_core" position="after">
+				<button name="action_assign_mac" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-circle" string="Asignar Mac" invisible="not is_extract_mac_contract or is_assing_mac"/>
+			</button>
+			<button name="action_change_product_id" position="after">
+				<button name="action_extract_onu_card_ticket" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-rss" string="Extraer Tarjetas Onu" invisible="olt_brand_description != 'alcatel' or is_extract_onu_card == True or is_change_product_id == False"/>
+			</button>
+			<button name="action_change_device" position="after">
+				<button name="action_extract_onu_card_ticket" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-rss" string="Extraer Tarjetas Onu" invisible="olt_brand_description != 'alcatel' or is_extract_onu_card == True or is_change_device == False"/>
+				<button name="action_assign_mac" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-circle" string="Asignar Mac" invisible="default_assignment_ip != 'automatic_dhcp' or is_assing_mac"/>
+			</button>
+			<field name="node_id" position="after">
+				<field name="is_channel_ticket" invisible="1"/>
+				<field name="channel_ticket_id" invisible="is_channel_ticket == False"/>
+			</field>
+
+			<field name="node_id_old" position="after">
+				<field name="is_channel_ticket_old" invisible="1"/>
+				<field name="channel_ticket_id_old" invisible="is_channel_ticket_old == False"/>
+			</field>
+
+            <!--Boton para remover servicio al termonar el contrato-->
+			<button name="action_remove_device" position="before">
+            	<button name="action_remove_service" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-circle" string="Eliminar Servicio" invisible="is_remove_service == True"/> 
+            </button>  
+			<group name="group_device" position="before">
+				<div class="oe_button_box" name="button_filter_contract">
+					<field name="is_active_service_ticket" invisible="1"/>
+					<field name="is_reconnect_service_ticket" invisible="1"/>
+					<button name="action_active_test" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-circle" string="Activar" invisible="is_active_service_ticket == True"/>
+					<button name="action_reconnect_ct" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-circle" string="Reconectar" invisible="is_reconnect_service_ticket == True"/>
+				</div>
+			</group>
+			<xpath expr="//notebook[@name='ticket_networks']" position="inside">
+				<page string="Activaciones" name="page_active_equipment">
+					<div class="oe_button_box" name="buttons_synchronize_contract">
+						<button name="action_synchronize_active_core" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-circle" string="Activar Core" invisible="is_synchronize_active_core or not is_synchronize_remove_core"/>
+						<button name="action_synchronize_remove_core" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-rss" string="Eliminar Core" invisible="is_synchronize_remove_core"/>
+						<button name="action_synchronize_active_olt" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-circle" string="Activar Olt" invisible="is_synchronize_active_olt or not is_synchronize_remove_olt"/>
+						<button name="action_synchronize_remove_olt" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-rss" string="Eliminar Olt" invisible="is_synchronize_remove_olt"/>
+					</div>
+				</page>
+				<page string="Gestión ONU" name="page_gestion_onu">
+					<div class="oe_button_box" name="buttons_synchronize_contract">
+						<button name="action_synchronize_config_wifi" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-rss" string="Config. WIFI" invisible="olt_brand_description not in ['vsol','fiberhome']"/>
+						<!-- <button name="action_synchronize_conf_pppoe" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-rss" string="Conf. PPPoE" invisible="is_brand_olt_vsol == False"></button> -->
+						<button name="action_synchronize_reboot" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-rss" string="Reboot"/>
+						<button name="action_synchronize_shutdown_onu_port" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-rss" string="ShutDown Port ONU" invisible="olt_brand_description != 'zte' or is_synchronize_shutdown_onu_port"/>
+						<button name="action_synchronize_activate_onu_port" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-rss" string="Activate Port ONU" invisible="not is_synchronize_shutdown_onu_port or olt_brand_description != 'zte'"/> 
+					</div>
+					<field name="olt_brand_description" invisible="1"/>
+				</page>
+				
+			</xpath>
+     	</data>
+     	
+contract_iptv.view_helpdesk_iptv_form:
+
+<page name="description" position="after">
+        		<page name="install_iptv" string="Instalar IPTV" invisible="code_category_id != 'INPTV'">
+                    <br/>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_actiavte_iptv" type="object" class="oe_stat_button" icon="fa-circle" string="Activar IPTV" invisible="state_service_ott not in 'inactive'"/>
+                    </div> 
+                        <group name="iptv_networks_1">
+                            <field name="action_addcustomer" invisible="1"/>
+                            <field name="action_addottlogin" invisible="1"/>
+                            <field name="action_addservice" invisible="1"/>
+                            <field name="action_listcustomerservices" invisible="1"/>
+                            <field name="equipments_ott_ids" widget="many2many_tags"/>
+                            <field name="assigned_equipments"/>
+                            <field name="state_service_ott" widget="badge" decoration-success="state_service_ott == 'active'" decoration-info="state_service_ott == 'inactive'" decoration-danger="state_service_ott == 'disabled'" decoration-warning="state_service_ott == 'suspended'"/>
+                        </group>     
+                </page>
+                <page name="promotion_iptv" string="Promoción IPTV" invisible="for_promotion_iptv == False">  
+                    <br/>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_suscription_iptv" type="object" class="oe_stat_button" icon="fa-circle" string="Subscribir IPTV/OTT" invisible="state_service_ott != 'active'"/>
+                    </div> 
+                    <group name="iptv_promotion_1">
+                        <field name="subscription_iptv" widget="boolean_toggle" readonly="1"/>
+                        <field name="for_promotion_iptv" widget="boolean_toggle" invisible="1"/>
+                        <field name="product_promotion_iptv_id"/>
+                        <field name="date_init_promotion_iptv"/>
+                        <field name="date_finish_promotion_iptv"/>
+                        <field name="finish_promotion_iptv" widget="boolean_toggle" invisible="1"/>
+                    </group>  
+                </page>
+                <page string="Agregar Plan IPTV" name="change_product" invisible="code_category_id != 'AD'">   
+                    <br/>
+
+                    <div class="oe_button_box" name="button_box_change_product"> 	
+                        <button name="action_add_plan_iptv_id" type="object" class="oe_stat_button" icon="fa-exchange" string="Agregar Plan IPTV" invisible="is_add_iptv_id == True"/>
+                    </div>	                 
+                    <group>
+                        
+                        <group string="Plan IPTV">
+                            <field name="product_iptv_add_id" string="Plan IPTV" domain="[('is_iptv','=',True)]"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Cambio Plan IPTV" name="change_product" invisible="code_category_id != 'CIPTV'">   
+                    <br/>
+                    <div class="oe_button_box" name="button_box_change_product"> 	
+                        <button name="action_change_product_iptv_id" type="object" class="oe_stat_button" icon="fa-exchange" string="Cambio Plan IPTV" invisible="is_change_product_iptv_id == True"/>
+                    </div>	                 
+                    <group>
+                        <group string="Plan IPTV Actual">
+                            <field name="contract_line_iptv_id" invisible="is_change_product_iptv_id == True" required="code_category_id == 'CIPTV'" widget="selection" string="Plan IPTV Actual"/>
+                            <field name="product_iptv_id_old" invisible="is_change_product_iptv_id != True" readonly="is_change_product_iptv_id == True"/>
+                        </group>
+                        <group string="Plan IPTV Nuevo">
+                            <field name="product_iptv_id" readonly="is_change_product_iptv_id == True" required="code_category_id == 'CIPTV'" domain="[('recurring_invoices_ok','=',True)]" options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Eliminar Servicio IPTV" name="delete_service_iptv" invisible="code_category_id != 'DIPTV'">   
+                    <br/>
+                    <div class="oe_button_box" name="button_box_change_product"> 	
+                        <button name="action_delete_service" type="object" class="oe_stat_button" icon="fa-ban" string="Eliminar Plan IPTV" invisible="is_delete_product_iptv == True"/>
+                    </div>	                 
+                    <group>
+                        <group string="Plan IPTV ">
+                            <field name="state_service_ott_related" widget="badge" decoration-success="state_service_ott == 'active'" decoration-info="state_service_ott == 'inactive'" decoration-danger="state_service_ott == 'disabled'" decoration-warning="state_service_ott == 'suspended'"/>
+                            <field name="is_delete_product_iptv" invisible="1"/>
+
+                        </group>
+
+                    </group>
+                </page>
+        	</page>
+        	
+l10n_ve_contract.view_helpdesk_ticket_l10n_ve_form:
+
+<data><xpath expr="//page[@name='other_info']" position="before">
+                <field name="is_change_address_ct" invisible="1"/>
+                <page string="Cambio Dirección CT" name="change_direction_CT" invisible="code_category_id != 'CDCT'">
+                    <br/>
+                    <div class="oe_button_box" name="button_ct_change_address">
+                        <button name="action_change_direction_ct" invisible="is_change_address_ct" class="oe_stat_button" string="Cambiar Datos" type="object" icon="fa-exchange"/>
+                    </div>
+                    <group name="group_change_direction">
+                        <group string="Datos Actuales">
+                            <field name="address_contract" readonly="1"/>
+                            <field name="phone_contract" readonly="1"/>
+                            <field name="street_contract" readonly="1"/>
+                            <field name="street2_contract" readonly="1"/>
+                            <field name="address_ref_contract" readonly="1"/>
+                            <field name="country_contract" readonly="1"/>
+                            <field name="state_id_contract" readonly="1"/>
+                            <field name="city_contract" readonly="1"/>
+                            <field name="zip_contract" readonly="1"/>
+                        </group>
+                        <group string="Datos Nuevos">
+                            <field name="address_contract_new" required="code_category_id == 'CDCT'"/>
+                            <field name="phone_contract_new"/>
+                            <field name="street" required="code_category_id == 'CDCT'"/>
+                            <field name="street2_contract_new"/>
+                            <field name="address_ref_contract_new"/>
+                            <field name="country_id" required="code_category_id == 'CDCT'"/>
+                            <field name="state_id" required="code_category_id == 'CDCT'"/>
+                            <field name="city_contract_new" required="code_category_id == 'CDCT'"/>
+                            <field name="zip" required="code_category_id == 'CDCT'"/>
+                            <div>
+                                <span>Lat : </span>
+                                <field name="contract_latitude" nolabel="1" class="oe_inline"/>
+                                <span>, Long: </span>
+                                <field name="contract_longitude" nolabel="1" class="oe_inline"/>
+                                <br/>
+                                <span invisible="not date_localization">Actualizado en: </span>
+                                <field name="date_localization" nolabel="1" class="oe_inline"/>
+                                <span class="oe_inline">
+                                    <button string="(refresh)" name="geo_localize_change" class="btn btn-link" type="object"/>
+                                </span>
+                            </div>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//page[@name='other_info']" position="before">
+                    <page name="location" string="Ubicación">
+                        <group name="location_main">
+                            <group name="location_main_1">
+                                <field name="street_contract"/>
+                                <field name="street2_contract"/>
+                                <field name="address_ref_contract"/>
+                                <field name="extra_ref_contract" widget="boolean_toggle"/>
+                                <field name="floor_level_ct" widget="selection" invisible="not extra_ref_contract"/>
+                                <field name="building_material_type_ct" widget="selection" invisible="not extra_ref_contract"/>
+                                <field name="ownership_type_ct" widget="selection" invisible="not extra_ref_contract"/>                                               
+                            </group>
+                            <group name="location_main_2">
+                                <field name="country_contract" placeholder="País" class="o_address_country" options="{'no_open': True, 'no_create': True}"/>
+                                <field name="state_location_id" class="o_address_state" placeholder="Estado" options="{'no_open': True, 'no_quick_create': True}" context="{'country_id': country_id, 'default_country_id': country_id, 'zip': zip}"/>
+                                <field name="ote_id_contract" string="Sector"/>
+                                <field name="city" placeholder="Ciudad" class="o_address_city"/>
+                                <field name="zip_zone" placeholder="ZIP" class="o_address_zip"/>
+                            </group>
+                        </group>
+                        <group name="geo_location">
+                            <div>
+                                <span>Lat : </span>
+                                <field name="contract_latitude_zone" nolabel="1" class="oe_inline"/>
+                                <span>, Long: </span>
+                                <field name="contract_longitude_zone" nolabel="1" class="oe_inline"/>
+                            </div>
+                        </group>
+                    </page>
+                </xpath>
+        </data>
+        
+contract_stock.view_contract_invoice_helpdesk_form:
+
+<data><button name="action_invoice_ticket_service" position="after">
+                <button name="action_invoice_ticket_materials" string="Facturar Materiales" type="object" invisible="is_invoice_materials == True"/>
+                <button name="action_move_done" string="Egreso Materiales" type="object" invisible="is_egress"/>
+                <button name="action_register_active" string="Registrar Activos" type="object" invisible="code_category_id != 'CIN'"/>
+            </button>
+            <field name="is_invoice_service" position="before">
+                <field name="is_invoice_materials"/>        
+            </field>
+            <group name="fiber_device" position="after">
+                <field name="helpdesk_stock_ids" invisible="not is_device_extra" domain="[('helpdesk_id', '=', id), ('is_extra_material_line', '=', True)]">
+                    <list editable="bottom">
+                        <field name="product_id" domain="[('type', '=', 'consu'),('id', '=', product_ticket_ids),('tracking', '=', 'serial')]" options="{'no_create': True, 'no_create_edit':True}"/>
+                        <!-- <field name="product_id" domain="[('type', '=', 'consu'),('id', '=', product_ticket_ids)]" options="{'no_create': True, 'no_create_edit':True}"/>                        -->
+                        <field name="qty_stock"/>
+                        <field name="helpdesk_id"/>
+                        <field name="qty_covered_stock" readonly="1" force_save="1"/>
+                        <field name="qty_extra_stock" readonly="1" force_save="1"/>
+                        <field name="lot_id" domain="domain_helpdesk_lot" optional="hide"/>
+                        <field name="is_done" optional="hide"/>
+                        <field name="is_invoice_covered" optional="hide"/>
+                        <field name="is_promotion" invisible="1"/>
+                    </list>
+                </field> 
+            </group>
+        </data>
+        
+contract_integration_equipment_v4.view_integration_helpdesk_v4_form:
+
+<data><button name="action_change_address" position="attributes">
+				<attribute name="invisible">is_change_address or not is_remove_service</attribute>      
+			</button>
+            <button name="action_change_address" position="after">
+				<field name="is_activate_service_core" widget="boolean_toggle" invisible="1"/>
+				<field name="is_activate_service_olt" widget="boolean_toggle" invisible="1"/>			
+				<button name="action_activate_service_olt" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-rss" string="Activar Olt" invisible="is_activate_service_olt or not is_change_address or link_type == 'wifi'"/>
+				<button name="action_activate_service_core" type="object" class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0" icon="fa-rss" string="Activar Core" invisible="is_activate_service_core or not is_change_address"/>
+			</button>
+
+            <field name="olt_port_id" position="after">
+                <field name="is_manual_vlan" invisible="1"/>
+				<field name="manual_cvlans" invisible="not is_manual_vlan"/>
+				<field name="manual_svlans" invisible="not is_manual_vlan"/>
+				<field name="attached_vlan_id" invisible="is_manual_vlan"/>
+				<field name="attached_svlan_id" invisible="is_manual_vlan"/>
+			</field>
+            <field name="is_device_external_ticket" position="attributes">
+				<attribute name="invisible">not is_enable_external_device</attribute>      
+			</field>
+     	</data>
+     	
+
+     	
+contract_helpdesk.view_helpdesk_ticket_sale_contract_form:
+
+<xpath expr="//button[@name='action_view_sale_orders']" position="before">    
+                <button name="action_open_contract_contract_ticket_form" type="object" icon="fa-link" class="oe_stat_button" context="{'default_id': contract_id.id}">
+                <field string="Contrato" name="contract_contract_ticket_count" widget="statinfo"/>
+                </button>
+                <button name="action_open_contract_infraestructure_ticket_form" type="object" icon="fa-sitemap" class="oe_stat_button" context="{'default_contract_id': id}">
+                <field string="CTIF" name="contract_infraestructure_ticket_count" widget="statinfo"/>
+                </button>
+            </xpath>
+            

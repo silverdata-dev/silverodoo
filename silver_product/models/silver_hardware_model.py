@@ -19,3 +19,20 @@ class SilverHardwareModel(models.Model):
     _sql_constraints = [
         ('name_brand_uniq', 'unique (name, brand_id)', 'The model name must be unique per brand!')
     ]
+
+    @api.model
+    def name_create(self, name):
+
+        vals = {'name':name}
+
+        print(("create", name, self.env.context))
+
+        return self.create(vals).name_get()[0]
+
+    @api.model
+    def default_get(self, fields):
+        res = super(SilverHardwareModel, self).default_get(fields)
+
+        print(("createedit", fields, res, self.env.context))
+
+        return res

@@ -33,7 +33,6 @@ class SilverAsset(models.Model):
     zone_id = fields.Many2one('silver.zone', string='Zona', related='silver_address_id.zone_id')
 
 
-
     #parent_id = fields.Many2one('silver.asset', string='Parent')
     #root_id = fields.Many2one('silver.asset', string='Root')
 

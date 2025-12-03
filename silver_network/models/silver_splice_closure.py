@@ -17,7 +17,7 @@ class SilverSpliceClosure(models.Model):
 
     zone_id = fields.Many2one('silver.zone', string="Zona", related="asset_id.zone_id", readonly=False)
 
-    silver_address_id = fields.Many2one('silver.address', string='Dirección')
+    silver_address_id = fields.Many2one('silver.address', string='Dirección', related="asset_id.silver_address_id")
 
 
 

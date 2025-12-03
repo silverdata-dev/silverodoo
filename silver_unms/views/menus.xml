@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+        <!-- Top Level Menu -->
+        <menuitem id="menu_silver_unms_root"
+                  name="Calendario"
+                  sequence="20"/>
+
+
+        <!-- Sub Menu -->
+        <menuitem id="menu_unms_calendar_view"
+                  name="Agenda de Instalaciones"
+                  parent="menu_silver_unms_root"
+                  action="action_unms_calendar"
+                  sequence="1"/>
+
+        <menuitem id="menu_silver_assignment"
+                  name="Asignaciones"
+                  parent="menu_silver_unms_root"
+                  action="silver_assignment_action"
+                  sequence="10"/>
+                  
+    </data>
+</odoo>

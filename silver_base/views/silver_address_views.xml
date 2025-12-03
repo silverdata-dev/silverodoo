@@ -20,27 +20,41 @@
                 <form>
                     <sheet>
                         <group>
-                            <group string="Parent">
-                                <field name="parent_id"/>
+                            <label for="raw_address_search" string="Dirección"/>
+                            <div class="o_row">
+                                <field name="raw_address_search" placeholder="Ej: Av Bolivar, Torre Silver, Valencia, Venezuela"/>
+                                <button name="action_parse_and_geolocate" type="object" string="Buscar" class="btn-primary" icon="fa-magic"/>
+                            </div>
+                        </group>
+                        <group>
+                         <group string="Detalles">
+                                <field name="street"/>
+                                <field name="street2"/> <!-- Campo street2 hecho visible -->
+                                <field name="building"/>
+                                <field name="floor"/>
+                                <field name="house_number"/>
+                                <field name="zip" invisible="1"/>
                             </group>
-                            <group string="Geographic Location">
+                            <group string="Geografía">
                                 <field name="zone_id"/>
                                 <field name="country_id"/>
                                 <field name="state_id" domain="[('country_id', '=', country_id)]"/>
                             </group>
                         </group>
                         <group>
-                            <group string="Detailed Address">
-                                <field name="street"/>
-                                <field name="building"/>
-                                <field name="floor"/>
-                                <field name="house_number"/>
+
+                            <group string="Coordinadas" name="coordinates_group">
+                                <field name="lat_long_display" placeholder="Ej: 10.4806, -66.9036"/>
+                                <field name="latitude" invisible="1"/>
+                                <field name="longitude" invisible="1"/>
                             </group>
-                            <group string="Coordinates" name="coordinates_group">
-                                <field name="latitude"/>
-                                <field name="longitude"/>
+                               <group string="Parent">
+                                <field name="parent_id"/>
                             </group>
                         </group>
+                        <!-- EL MAPA CON EL BUSCADOR -->
+                        <!-- Se coloca el widget en uno de los campos, ocupará el ancho disponible -->
+                        <field name="latitude" widget="silver_address_map" nolabel="1" colspan="2"/>
                     </sheet>
                 </form>
             </field>

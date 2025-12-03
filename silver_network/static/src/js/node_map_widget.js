@@ -26,6 +26,7 @@ export class NodeMapWidget extends Component {
         }    ;
 
     get nodeId() {
+        console.log((" resid", this.props.record.resId));
         return this.props.record.resId;
     }
 }

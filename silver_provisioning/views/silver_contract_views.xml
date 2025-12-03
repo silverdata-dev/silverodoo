@@ -96,7 +96,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
          <group string="Equipo del Cliente" invisible="link_type != 'fiber'">
                                 <group class="col-lg-9">
 
-                                        <field name="stock_lot_id" readonly="state_service == 'active'"/>
+                                        <field name="stock_lot_id" readonly="state_service == 'active'" context="{'default_etype':'onu'}" domain="[('etype','=','onu')]" options="{'no_create_edit': False, 'no_quick_create': True}"/>
 
                                  <label for="brand_id" />
                     <div class="o_row d-flex align-items-center">
@@ -163,6 +163,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                        '&amp;',  ('public', '=', True), '|', ('node_ids', 'in', node_id), ('core_ids', 'in', core_id)
                                        ]"
     context="{'search_default_group_by_pool_id': 1, 'alala': 2, 'order_display': 'public asc, olt_port_id desc, olt_id asc, ip_int asc'}"
+
                                             />
 
                                         <field name="pppoe_user"/>
@@ -258,7 +259,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                             <group string="Equipo del Cliente" invisible="link_type == 'fiber'">
                                 <group class="col-lg-9">
 
-                                        <field name="stock_lot_id" readonly="state_service == 'active'"/>
+                                        <field name="stock_lot_id" readonly="state_service == 'active'" context="{'default_etype':'onu'}" domain="[('etype','=','onu')]" options="{'no_create_edit': False, 'no_quick_create': True}"/>
 
                              <label for="brand_id" />
                     <div class="o_row d-flex align-items-center">

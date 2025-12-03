@@ -51,7 +51,8 @@ class SilverCore(models.Model):
    # node_id = fields.Many2one('silver.node', string='Nodo')
     #brand_id = fields.Many2one('product.brand', string='Marca', index=True)
    # gateway = fields.Many2one('silver.ip.address', string='Gateway')
-    radius_id = fields.Many2one('silver.core', string='Radius')
+    radius_id = fields.Many2one('silver.core', string='Radius Servicios')
+    radius_admin_id = fields.Many2one('silver.core', string='Radius Admin')
     networks_device_id = fields.Many2many('silver.device.networks', string='Networks Device')
     company_id = fields.Many2one('res.company', string='Compañía', default=lambda self: self.env.company)
 

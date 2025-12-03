@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_helpdesk_ticket_form_inherit_iptv" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.form.inherit.iptv</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="silver_helpdesk_contract.view_helpdesk_ticket_form_inherit_contract"/>
+            <field name="arch" type="xml">
+                
+                <page name="description" position="after">
+                    <page name="install_iptv" string="Instalar IPTV" invisible="code_category_id != 'INPTV'">
+                        <br/>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_actiavte_iptv" type="object" class="oe_stat_button" icon="fa-circle" string="Activar IPTV" invisible="state_service_ott not in 'inactive'"/>
+                        </div> 
+                            <group name="iptv_networks_1">
+                                <field name="equipments_ott_ids" widget="many2many_tags"/>
+                                <field name="assigned_equipments"/>
+                                <field name="state_service_ott" widget="badge" decoration-success="state_service_ott == 'active'" decoration-info="state_service_ott == 'inactive'" decoration-danger="state_service_ott == 'disabled'" decoration-warning="state_service_ott == 'suspended'"/>
+                            </group>     
+                    </page>
+                    
+                    <page name="promotion_iptv" string="Promoción IPTV" invisible="for_promotion_iptv == False">  
+                        <br/>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_suscription_iptv" type="object" class="oe_stat_button" icon="fa-circle" string="Subscribir IPTV/OTT" invisible="state_service_ott != 'active'"/>
+                        </div> 
+                        <group name="iptv_promotion_1">
+                            <field name="subscription_iptv" widget="boolean_toggle" readonly="1"/>
+                            <field name="for_promotion_iptv" widget="boolean_toggle" invisible="1"/>
+                            <field name="product_promotion_iptv_id"/>
+                            <field name="date_init_promotion_iptv"/>
+                            <field name="date_finish_promotion_iptv"/>
+                            <field name="finish_promotion_iptv" widget="boolean_toggle" invisible="1"/>
+                        </group>  
+                    </page>
+                    
+                    <page string="Agregar Plan IPTV" name="add_iptv" invisible="code_category_id != 'AD'">   
+                        <br/>
+                        <div class="oe_button_box" name="button_box_change_product"> 	
+                            <button name="action_add_plan_iptv_id" type="object" class="oe_stat_button" icon="fa-exchange" string="Agregar Plan IPTV" invisible="is_add_iptv_id == True"/>
+                        </div>	                 
+                        <group>
+                            <group string="Plan IPTV">
+                                <field name="product_iptv_add_id" string="Plan IPTV" domain="[('is_iptv','=',True)]"/>
+                            </group>
+                        </group>
+                    </page>
+                    
+                    <page string="Cambio Plan IPTV" name="change_product_iptv" invisible="code_category_id != 'CIPTV'">   
+                        <br/>
+                        <div class="oe_button_box" name="button_box_change_product"> 	
+                            <button name="action_change_product_iptv_id" type="object" class="oe_stat_button" icon="fa-exchange" string="Cambio Plan IPTV" invisible="is_change_product_iptv_id == True"/>
+                        </div>	                 
+                        <group>
+                            <group string="Plan IPTV Actual">
+                                <field name="contract_line_iptv_id" invisible="is_change_product_iptv_id == True" required="code_category_id == 'CIPTV'" widget="selection" string="Plan IPTV Actual"/>
+                                <field name="product_iptv_id_old" invisible="is_change_product_iptv_id != True" readonly="is_change_product_iptv_id == True"/>
+                            </group>
+                            <group string="Plan IPTV Nuevo">
+                                <field name="product_iptv_id" readonly="is_change_product_iptv_id == True" required="code_category_id == 'CIPTV'" domain="[('recurring_invoices_ok','=',True)]" options="{'no_create': True}"/>
+                            </group>
+                        </group>
+                    </page>
+                    
+                    <page string="Eliminar Servicio IPTV" name="delete_service_iptv" invisible="code_category_id != 'DIPTV'">   
+                        <br/>
+                        <div class="oe_button_box" name="button_box_change_product"> 	
+                            <button name="action_delete_service" type="object" class="oe_stat_button" icon="fa-ban" string="Eliminar Plan IPTV" invisible="is_delete_product_iptv == True"/>
+                        </div>	                 
+                        <group>
+                            <group string="Plan IPTV ">
+                                <field name="state_service_ott_related" widget="badge" decoration-success="state_service_ott == 'active'" decoration-info="state_service_ott == 'inactive'" decoration-danger="state_service_ott == 'disabled'" decoration-warning="state_service_ott == 'suspended'"/>
+                                <field name="is_delete_product_iptv" invisible="1"/>
+                            </group>
+                        </group>
+                    </page>
+                </page>
+
+            </field>
+        </record>
+    </data>
+</odoo>

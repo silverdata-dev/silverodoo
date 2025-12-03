@@ -32,6 +32,7 @@ class CrmLead(models.Model):
     product_id = fields.Many2one('product.product', string='Servicio', domain="[('service_type_id', '=', type_service_id)]", tracking=True)
     node_id = fields.Many2one('silver.node', string='Nodo', tracking=True)
     box_id = fields.Many2one('silver.box', string='Caja NAP', tracking=True)
+    zone_id = fields.Many2one('silver.zone', string='Zona', related="node_id.zone_id")
 
     def action_open_find_node_wizard(self):
         """

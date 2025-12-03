@@ -41,6 +41,7 @@ export class NodeMapWidget extends Component {
         const data = await this.rpc('/silver_geo/get_assets', {
             node_id: this.props.record.resId,
         });
+        console.log((" getassets", this.props.record));
 
         const container = this.mapRef.el;
         const map = L.map(container).setView([10.50, -66.91], 13); // Default view
@@ -50,11 +51,11 @@ export class NodeMapWidget extends Component {
         }).addTo(map);
 
         data.assets.forEach(asset => {
-            if (asset.latitude && asset.longitude) {
+          //  if (asset.latitude && asset.longitude) {
                 L.marker([asset.latitude, asset.longitude])
                     .addTo(map)
                     .bindPopup(`<b>${asset.name}</b><br>${asset.model}`);
-            }
+           // }
         });
 
         if (data.center_on) {

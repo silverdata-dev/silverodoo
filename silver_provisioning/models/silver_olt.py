@@ -103,7 +103,7 @@ class SilverOlt(models.Model):
                                 marca_id = a
                                 break
                         
-                        model = Model.create({'name': modelname, 'brand_id': marca_id.id if marca_id else False})
+                        model = Model.create({'name': modelname, 'etype':'onu', 'brand_id': marca_id.id if marca_id else False})
 
                     onu_vals_list.append({
                         'olt_index': parts.get('OltIndex', ''), 'serial_number': parts.get('SN', ''),

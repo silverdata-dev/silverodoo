@@ -23,8 +23,8 @@
                             <field name="name"/>
                             <field name="brand_id"/>
                             <field name="etype"/>
-                            <field name="manual"/>
-                            <field name="onu_profile_id"/>
+                            <field name="manual" invisible="etype!='olt'"/>
+                            <field name="onu_profile_id" required="etype=='olt'" invisible="etype!='olt'"/>
                             <field name="active"/>
                         </group>
                         <notebook>

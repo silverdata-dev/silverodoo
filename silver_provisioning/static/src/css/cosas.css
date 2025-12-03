@@ -9,7 +9,7 @@ div[name=wifi_line_ids] tbody>:last-child> td:not([class]) {
 }
 
 
-.badge.rounded-pill {
+.o_field_badge .badge.rounded-pill {
 	width: 120px !important;
   height: 30px;
   padding-top: 8px;

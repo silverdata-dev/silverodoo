@@ -11,12 +11,12 @@ class StockLot(models.Model):
     software_version  = fields.Char(string='Versión software')
     firmware_version = fields.Char(string='Firmware Version', readonly=False)
 
-    brand_id = fields.Many2one('product.brand', string="Marca")
+    brand_id = fields.Many2one('product.brand', string="Marca", related='product_id.product_brand_id')
     brand_logo = fields.Binary(related='brand_id.logo', string='Logo de la Marca')
     #brand_name = fields.Char(string='Marca',  store=True)
     #model_name = fields.Char(string='Modelo',  store=True)
     mac_address = fields.Char(string='MAC Address', store=True)
-    hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo')
+    hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo',related='product_id.hardware_model_id')
     #onu_profile_id = fields.Many2one('silver.onu.profile', string='ONU Profile')
 
     etype = fields.Selection([('core', 'Core'), ('olt', 'OLT'), ('onu', 'ONU'), ('ap', 'AP'), ('ecp', 'ECP'), ('splitter', 'Splitter'), ('box', 'NAP'), ], string='Tipo de equipo', related="hardware_model_id.etype")
