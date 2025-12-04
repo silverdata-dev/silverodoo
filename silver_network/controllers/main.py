@@ -9,13 +9,15 @@ class SystemStatsController(http.Controller):
     @http.route('/silver_network/get_system_stats', type='json', auth='user')
     def get_system_stats(self, netdev_id, **kw):
         try:
-            netdev = request.env['silver.netdev'].browse(int(netdev_id))
+            print(("netdev", netdev_id))
+            #netdev = request.env['silver.netdev'].browse(int(netdev_id))
+            netdev = request.env['silver.core'].search([("id",'=', netdev_id)]) #int(netdev_id))
             if not netdev.exists():
                 return {'error': 'Device not found'}
 
-            api = netdev._get_api_connection()
+            api, e = netdev._get_api_connection()
             if not api:
-                return {'error': 'Connection failed'}
+                return {'error': f'Connection failed: {e}'}
 
             try:
                 resource = tuple(api.path('/system/resource'))
@@ -46,12 +48,14 @@ class SystemStatsController(http.Controller):
     @http.route('/silver_network/get_interface_stats', type='json', auth='user')
     def get_interface_stats(self, netdev_id, interface_names, **kw):
         netdev = request.env['silver.netdev'].browse(int(netdev_id))
+        print(("netdev", netdev_id))
+        netdev = request.env['silver.core'].search([("id", '=', netdev_id)] ) # int(netdev_id))
         if not netdev.exists():
             return {'error': 'Device not found'}
 
-        api = netdev._get_api_connection()
+        api,e = netdev._get_api_connection()
         if not api:
-            return {'error': 'Connection failed'}
+            return {'error': f'Connection failed: {e}'}
 
         #try:
         if 1:

@@ -30,8 +30,9 @@ class ContractTrafficWizard(models.TransientModel):
 
         api = None
         try:
-            api = wizard.core_id.netdev_id._get_api_connection()
+            api,e = wizard.core_id._get_api_connection()
             if not api:
+                print((f"error core:{e}"))
                 return {'upload': 0, 'download': 0}
 
             interface_path = api.path('/interface')

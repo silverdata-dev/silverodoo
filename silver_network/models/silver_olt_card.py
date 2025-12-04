@@ -36,7 +36,7 @@ class SilverOltCard(models.Model):
             olt = self.env['silver.olt'].browse(vals['olt_id'])
             if olt.exists():
                 card_count = self.search_count([('olt_id', '=', olt.id)])
-                vals['name'] = f"{olt.name}/C{card_count + 1}"
+                vals['name'] = f"{olt.name}/C{card_count}"
         return super(SilverOltCard, self).create(vals)
 
     def write(self, vals):
@@ -47,7 +47,7 @@ class SilverOltCard(models.Model):
                 for record in self:
                     # We need to count the cards in the new OLT to get the next number
                     card_count = self.search_count([('olt_id', '=', new_olt.id)])
-                    record.name = f"{new_olt.name}/C{card_count + 1}"
+                    record.name = f"{new_olt.name}/C{card_count}"
         return super(SilverOltCard, self).write(vals)
 
     def _compute_olt_card_port_count(self):
@@ -59,7 +59,7 @@ class SilverOltCard(models.Model):
         ports_to_create = []
         for i in range(int(self.port_card)):
             ports_to_create.append({
-                'name': f"{self.name}/port/{i+1}",
+                'name': f"{self.name}/P{i+1}",
                 'olt_card_id': self.id,
             })
         self.env['silver.olt.card.port'].create(ports_to_create)

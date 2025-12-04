@@ -21,7 +21,7 @@ class SilverRadiusNasWizard(models.TransientModel):
         if not radius_server.netdev_id:
             raise UserError(_("The selected Radius server is not linked to a Network Device."))
 
-        api = radius_server.netdev_id._get_api_connection()
+        api,e = radius_server._get_api_connection()
         if api:
             try:
                 existing_nas = api.path('/radius').get(address=self.nas_address)
@@ -53,7 +53,7 @@ class SilverRadiusNasWizard(models.TransientModel):
             finally:
                 api.close()
         else:
-            raise UserError(_("Could not connect to the MikroTik router."))
+            raise UserError(_("Could not connect to the MikroTik router: %s")%e)
 
     def action_remove_nas_client(self):
         self.ensure_one()
@@ -61,7 +61,7 @@ class SilverRadiusNasWizard(models.TransientModel):
         if not radius_server.netdev_id:
             raise UserError(_("The selected Radius server is not linked to a Network Device."))
 
-        api = radius_server.netdev_id._get_api_connection()
+        api,e = radius_server._get_api_connection()
         if api:
             try:
                 existing_nas = api.path('/radius').get(address=self.nas_address)
@@ -85,7 +85,7 @@ class SilverRadiusNasWizard(models.TransientModel):
             finally:
                 api.close()
         else:
-            raise UserError(_("Could not connect to the MikroTik router."))
+            raise UserError(_("Could not connect to the MikroTik router: %s")%e)
 
     def action_view_nas_clients(self):
         self.ensure_one()
@@ -93,7 +93,7 @@ class SilverRadiusNasWizard(models.TransientModel):
         if not radius_server.netdev_id:
             raise UserError(_("The selected Radius server is not linked to a Network Device."))
 
-        api = radius_server.netdev_id._get_api_connection()
+        api,e = radius_server._get_api_connection()
         if api:
             try:
                 nas_clients = api.path('/radius').get()
@@ -116,4 +116,4 @@ class SilverRadiusNasWizard(models.TransientModel):
             finally:
                 api.close()
         else:
-            raise UserError(_("Could not connect to the MikroTik router."))
+            raise UserError(_("Could not connect to the MikroTik router: %s")%e)

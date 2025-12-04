@@ -6,12 +6,12 @@
             <field name="model">silver.olt</field>
             <field name="inherit_id" ref="silver_network.view_silver_olt_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//notebook" position="inside">
+                <!--xpath expr="//notebook" position="inside">
 
                             <page string="ONU Profiles">
                                 <field name="onu_profile_ids"/>
                             </page>
-                </xpath>
+                </xpath-->
                 <xpath expr="//group[@name='olt']/group[1]" position="inside">
                     <separator string="Equipo"/>
                     <field name="stock_lot_id" context="{'default_etype':'olt'}" domain="[('etype','=','olt')]" options="{'no_create_edit': False, 'no_quick_create': True}"/>

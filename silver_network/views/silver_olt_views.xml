@@ -62,8 +62,8 @@
                                     icon="fa-arrows-v" string="Crear Perfiles"/-->
 
                         </div>
-                        <widget name="web_ribbon" title="Active" invisible="state == 'down'"/>
-                        <widget name="web_ribbon" title="Down" bg_color="bg-danger" invisible="state == 'active'"/>
+                        <!--widget name="web_ribbon" title="Active" invisible="state == 'down'"/>
+                        <widget name="web_ribbon" title="Down" bg_color="bg-danger" invisible="state == 'active'"/-->
                         <field name="state" invisible="1"/>
                         <div class="oe_title">
                             <h1>
@@ -105,7 +105,24 @@
                                 <field name="is_multi_user_olt" widget="boolean_toggle" invisible="1"/>
 
                                 <field name="username" invisible="is_multi_user_olt"/>
-                                <field name="password" password="True"/>
+
+
+
+                                <div class="o_row" colspan="2" name="password" >
+    <label for="password" decoration-bf="1"/>
+                                <field name="password" password="True"
+                                     />
+
+
+
+                                      <button name="action_connect_olt" type="object" string="Probar" invisible="state!='pending'"
+                                        class="oe_highlight" />
+                                    <button name="action_connect_olt" type="object" string="Down" invisible="state!='down'"
+                                        class="oe_highlight status-disabled" />
+                                    <button name="action_connect_olt" type="object" string="Activo" invisible="state!='active' and state!='connected'"
+                                        class="oe_highlight status-active" />
+</div>
+
                                 <!--button class="oe_inline oe_link " name="action_send_password"
                                         string=" →Enviar Contraseña" type="object"/-->
                                 <!--field name="secret_olt"/-->
@@ -113,15 +130,15 @@
                                   string="Probar Conexion"/-->
 
 
-                                <field name="state"  widget="badge"
+                                <!--field name="state"  widget="badge"
                            decoration-success="state in ['active', 'connected']"
                            decoration-warning="state in ('suspended', 'disabled')"
-                           decoration-danger="state in ['removed', 'down']"/>
+                           decoration-danger="state in ['removed', 'down']"/-->
                                 <field name="hostname_olt" invisible="state!='active'"/>
 
 
-                                <button name="action_connect_olt" type="object" string="Probar Conexión"
-                                        class="oe_highlight"/>
+                                <!--button name="action_connect_olt" type="object" string="Probar Conexión"
+                                        class="oe_highlight"/-->
                                 <br/>
 
                             </group>

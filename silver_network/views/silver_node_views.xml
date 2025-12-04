@@ -94,7 +94,7 @@
 
                             <page name="Equipos Core" >
                                 <field name="core_ids" >
-                                     <tree string="Equipos Core Silver" default_order="name desc" >
+                                     <tree string="Equipos Core" default_order="name desc" >
                     <field name="name" />
 
                     <field name="hostname_core" />

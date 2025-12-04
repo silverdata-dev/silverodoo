@@ -64,3 +64,42 @@ div [name=ppp_speed_chart],div [name=isp_radius_ids],div [name=ip_address_pool_i
     top: 100px;
 }
 
+
+
+
+/* Colores de fondo según el estado */
+.status-active {
+    background-color: #10B981; /* Verde Esmeralda */
+}
+
+
+/* Colores de fondo según el estado */
+.status-open {
+    background-color: #101981; /* Azul */
+}
+
+
+.status-suspended {
+    background-color: #F59E0B; /* Ámbar */
+}
+
+.status-disabled {
+    background-color: #EF4444; /* Rojo */
+}
+
+.status-removed {
+    background-color: #8f3232; /* Rojo Oscuro */
+}
+
+.status-default {
+    background-color: #6B7280; /* Gris */
+}
+
+
+div:has(>div[name=discovered_onu_id]) {
+    width: 100% !important;
+}
+
+label{
+    font-weight: bold !important;
+}

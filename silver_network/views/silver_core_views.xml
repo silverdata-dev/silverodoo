@@ -6,7 +6,7 @@
             <field name="name">silver.core.tree</field>
             <field name="model">silver.core</field>
             <field name="arch" type="xml">
-                <tree string="Equipos Core Silver" default_order="name desc" expand="1">
+                <tree string="Equipos Core" default_order="name desc" expand="1">
                     <field name="name"/>
                     <field name="hostname_core"/>
                     <field name="node_id"/>
@@ -18,7 +18,7 @@
                     <field name="username"/-->
                     <field name="state" widget="badge"
                            decoration-success="state in ['active', 'connected']"
-                           decoration-warning="state in ('suspended', 'disabled')"
+                           decoration-warning="state in ('pending', 'disabled')"
                            decoration-danger="state in ['removed', 'down']"/>
                 </tree>
             </field>
@@ -44,7 +44,7 @@
 
         <!-- Accion y Menu para silver.core -->
         <record id="action_silver_core" model="ir.actions.act_window">
-            <field name="name">Equipos Core Silver</field>
+            <field name="name">Equipos Core</field>
             <field name="res_model">silver.core</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_silver_core_tree"/>
@@ -58,7 +58,7 @@
             <field name="name">silver.core.form</field>
             <field name="model">silver.core</field>
             <field name="arch" type="xml">
-                <form string="Equipo Core Silver">
+                <form string="Equipo Core">
                     <header>
                         <!--button name="create_ap" string="Crear Equipo AP" type="object"/-->
                         <!--button name="create_radius" string="Crear Radius" type="object" invisible="not is_silver_radius"/-->
@@ -66,12 +66,12 @@
                         <button name="button_view_interfaces" type="object" string="Interfaces"/>
                         <button name="button_view_routes" type="object" string="Rutas"/>
                         <button name="button_view_ppp_active" type="object" string="PPP Activos"/>
-                        <button name="button_view_firewall_rules" type="object" string="Firewall"/>
+                        <!--button name="button_view_firewall_rules" type="object" string="Firewall"/-->
                         <button name="button_view_active_users" type="object" string="Usuarios Activos"/>
                         <button name="button_view_queues" type="object" string="Queues"/>
                         <!--field name="state" widget="statusbar" statusbar_visible="down,active"/-->
                     </header>
-                    <sheet string="Equipo Core Silver">
+                    <sheet string="Equipo Core">
                         <div class="oe_button_box" name="button_box">
                             <!--button class="oe_stat_button" type="object" name="action_view_olts" icon="fa-arrows-v">
                                 <field string="Equipos OLT" name="olt_count" widget="statinfo"/>
@@ -109,59 +109,63 @@
                                   <field name="node_ids" widget="many2many_tags" invisible="1"/>
                             </group>
                             <group name="core_conexion" string="Datos Conexion">
-                                <field name="ip"  required="1"/>
+
+
+
+<div class="o_row" colspan="2" name="ip">
+    <label for="ip" decoration-bf="1"/>
+                                <field name="ip"
+ required="1"
+                                     />
+
+                                    <button name="button_test_connection" type="object" string="Probar" invisible="state!='pending'"
+                                        class="oe_highlight" />
+                                    <button name="button_test_connection" type="object" string="Down" invisible="state!='down'"
+                                        class="oe_highlight status-disabled" />
+                                    <button name="button_test_connection" type="object" string="Activo" invisible="state!='active' and state!='connected'"
+                                        class="oe_highlight status-active" />
+</div>
+
 <field name="port" />
                                   <field name="radius_id" options="{'no_create_edit': False, 'no_quick_create': True}"/>
 
-
-<div class="o_row" colspan="2" name="radius_id">
-    <label for="radius_id"/>
-                                <field name="radius_id"
+<field name="radius_admin_id"
 
                                        options="{'no_create_edit': False, 'no_quick_create': True}"/>
 
-                                    <button name="button_test_connection" type="object" string="Probar "
-                                        class="oe_highlight" />
-</div>
 
-<div class="o_row" colspan="2" name="radius_admin_id">
-    <label for="radius_admin_id"/>
-                                <field name="radius_admin_id"
-
-                                       options="{'no_create_edit': False, 'no_quick_create': True}"/>
-
-                                    <button name="button_test_connection" type="object" string="Probar "
-                                             decoration-success="state in ['active', 'connected']"
-                           decoration-warning="state in ('suspended', 'disabled')"
-                           decoration-danger="state in ['removed', 'down']"
-                                        class="oe_highlight" />
-</div>
-
-
-                                 <field name="state" widget="badge"
+                                 <field name="state" widget="badge" invisible="1"
                            decoration-success="state in ['active', 'connected']"
                            decoration-warning="state in ('suspended', 'disabled')"
                            decoration-danger="state in ['removed', 'down']"/>
+
                                 <field name="hostname_core" invisible="state!='active'"/>
 
 
-                                    <button name="button_test_connection" type="object" string="Probar Conexión"
-                                        class="oe_highlight"  invisible="askuser==True"/>
-                                <br/>
+                                    <!--button name="button_test_connection" type="object" string="Probar Conexión"
+                                        class="oe_highlight"  invisible="askuser==True"/-->
+
 
 <field name="askuser" invisible="1"/>
+                                <field name="retries" invisible="1"/>
 
 
                                 <!--field name="type_connection" invisible="brand_description != 'hua'"/-->
                                 <!--field name="kex_algorithms_ids" invisible="brand_description != 'hua'" widget="many2many_tags"/-->
-<br/>
-                                <field name="username" invisible="askuser==False"/>
-                                <field name="password" password="True" invisible="askuser==False"/>
+
+                                <field name="username" invisible="askuser==False and retries&lt;4"/>
 
 
-                                <!--button class="oe_inline oe_link " name="action_send_password" string=" →Enviar Contraseña" type="object"/-->
-                                <button name="button_test_connection" type="object" string="Conectar" context="{'u':1}"
-                                        class="oe_highlight" invisible="askuser==False"/><br/>
+                                <div class="o_row" colspan="2" name="password" invisible="askuser==False  and retries&lt;4">
+    <label for="password" decoration-bf="1"/>
+                                <field name="password" password="True"
+                                     />
+
+                                    <button name="button_test_connection" type="object" string="Conectar" context="{'u':1}"
+                                        class="oe_highlight" />
+</div>
+
+
 
                             </group>
                         </group>

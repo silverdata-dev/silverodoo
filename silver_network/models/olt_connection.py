@@ -149,6 +149,7 @@ class OLTConnection:
             _logger.error(f"Fallo al conectar a {self.host}: {e}")
             self.disconnect()  # Asegurarse de cerrar la conexión si falla el login
             return False, str(e)
+
     def disconnect(self):
         if self.client:
             self.client.close()
@@ -212,6 +213,7 @@ class OLTConnection:
             return False, str(e), ""
 
     def __enter__(self):
+        print(("enter"))
         success, message = self.connect()
         if not success:
             raise ConnectionError(message)

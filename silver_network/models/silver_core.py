@@ -1,10 +1,12 @@
+import ipaddress
 from odoo import models, fields, api, _
 from odoo.http import request
 from odoo.exceptions import UserError
 import logging, string, secrets
 import re
 import librouteros
-
+from librouteros.query import Key
+from odoo.addons.silver_network.models.silver_netdev import _format_speed
 
 _logger = logging.getLogger(__name__)
 
@@ -97,7 +99,7 @@ class SilverCore(models.Model):
     password_nass = fields.Char(string='Password Nass')
     key_pppoe = fields.Char(string='Password PPPoE')
 
-    port = fields.Char(string='Puerto Mikrotik', related="netdev_id.port", readonly=False, default=21000)
+    port = fields.Integer(string='Puerto Mikrotik', related="netdev_id.port", readonly=False, default=21000)
     port_coa = fields.Char(string='Puerto COA')
     ip = fields.Char(string='IP de Conexión', related="netdev_id.ip", readonly=False)
 
@@ -108,12 +110,9 @@ class SilverCore(models.Model):
 
     # --- Campos de Estado y Métricas (calculados) ---
     #state = fields.Selection([('draft', 'Borrador'), ('active', 'Activo'),  ('down', 'Down')], string='Status')
-    state = fields.Selection([('down', 'Down'), ('active', 'Active'), ('connected', 'Connected'),
-                      ('connecting', 'Connecting'),
-                      ('disconnected', 'Disconnected'),
-                      ('error', 'Error')],
-                             related = 'netdev_id.state',
-                             string='Estado', default='down')
+    state = fields.Selection([('down', 'Down'), ('active', 'Active'), ('pending', 'Probar')],
+                           #  related = 'netdev_id.state',
+                             string='Estado', default='pending')
     display_name = fields.Char(string='Display Name', compute='_compute_display_name')
 
     olt_count = fields.Integer(string='Conteo Equipo OLT', compute='_compute_counts')
@@ -192,7 +191,7 @@ class SilverCore(models.Model):
     type_connection = fields.Selection([('router', 'Router'), ('switch', 'Switch'), ('ssh', 'ssh'), ('telnet', 'Telnet')], string='Tipo de Conexión')
     type_manager_address_list = fields.Selection([], string='Tipos de Control')
 
-
+    retries = fields.Integer(string="Reintentos")
 
 
     # --- Relacionado al mixin de asset ---
@@ -209,8 +208,41 @@ class SilverCore(models.Model):
         readonly=False
     )
 
+    @api.constrains('ip')
+    def _check_valid_ip(self):
+        """Valida que la dirección IP sea IPv4 o IPv6 válida."""
+        for record in self:
+            if record.ip:
+                try:
+                    # Intenta crear un objeto IPv4 o IPv6. Si falla, lanza ValueError.
+                    ipaddress.ip_address(record.ip)
+                except ValueError:
+                    raise ValidationError(
+                        ("La dirección IP '%s' no es válida. Por favor, ingrese un formato IPv4 o IPv6 correcto.")
+                        % record.ip
+                    )
 
-    @api.onchange('node_id')
+    @api.onchange('ip')
+    def _onchange_direccion_ip(self):
+        if self.ip:
+            try:
+                # Si es inválida, forzamos un UserError (lo convierte en un Warning)
+                ipaddress.ip_address(self.ip)
+            except ValueError:
+                self.env['bus.bus']._sendone(
+                    # El canal es el usuario actual, por lo que solo él la verá
+                    self.env.user.partner_id,
+
+                    'simple_notification',  # Tipo de notificación
+
+                    {
+                        'type': 'danger',  # Rojo para error
+                        'title': 'Error de Formato IP',
+                        'message': f"La dirección '{self.ip}' no es una IP válida. ¡Hay que corregirla!",
+                        'sticky': False,  # Para que no se quite sola
+                    }
+                )
+
     def _onchange_node_id(self):
         # --- Actualización del nombre en tiempo real ---
 
@@ -471,15 +503,17 @@ class SilverCore(models.Model):
         user_to_try = username or self.username or request.session.get('radius_user')
         pass_to_try = password or self.password or request.session.get('radius_password')
 
+        print(("getapi", user_to_try, pass_to_try, self.id))
+
         if not user_to_try or not pass_to_try:
             #self.write({'state': 'error'})
-            self.state = 'error'
+            self.state = 'down'
 
             _logger.error("Connection attempt failed: No username or password provided.")
-            return None
+            return (None, 'No usuario o contraseña')
 
         try:
-            self.state = 'connecting'
+           # self.state = 'connecting'
            # self.write({'state': 'connecting'})
             _logger.info(f"Attempting to connect to {self.ip}:{p} with user '{user_to_try}'")
             api = librouteros.connect(
@@ -491,13 +525,13 @@ class SilverCore(models.Model):
             )
             _logger.info(f"Successfully connected to {self.ip}")
             #self.write({'state': 'connected'})
-            self.state = 'connected'
-            return api
+            self.state = 'active'
+            return (api, None)
         except Exception as e:
             _logger.error(f"Failed to connect to {self.ip}:{p} with user '{user_to_try}'. Error: {e}")
-            self.state = 'error'
+            self.state = 'down'
             #self.write({'state': 'error'})
-            return None
+            return (None, f"{e}")
 
     def _configure_radius_on_device(self, core_api):
         """
@@ -573,9 +607,9 @@ class SilverCore(models.Model):
         radius_api = None
         try:
             _logger.info(f"Connecting to RADIUS server {radius_id.name} at {radius_id.ip} to configure NAS.")
-            radius_api = radius_id._get_api_connection()
+            radius_api,e = radius_id._get_api_connection()
             if not radius_api:
-                raise UserError(_("Could not connect to the RADIUS server."))
+                raise UserError(_("Could not connect to the RADIUS server: %s")%f"{e}")
 
             # In MikroTik User Manager, NAS clients are called "routers"
             nas_resource = radius_api.path('/user-manager/router')
@@ -619,9 +653,9 @@ class SilverCore(models.Model):
         try:
             # Conectar al dispositivo Core usando las credenciales locales
             _logger.info(f"Iniciando configuración NAS para {self.name} en el RADIUS {radius_id.name} con user {username}")
-            api = self._get_api_connection(username=username, password=password)
+            api,e = self._get_api_connection(username=username, password=password)
             if not api:
-
+                print(("notapi", e))
                 return False
                 #raise UserError(_("No se pudo conectar al dispositivo Core para la configuración NAS."))
 
@@ -671,17 +705,19 @@ class SilverCore(models.Model):
             # Connection test now requires local credentials to perform configuration
             _logger.info(f"Core {self.name}: Trying local credentials for connection and configuration.")
             if self.env.context.get('u'):
-                api = netdev._get_api_connection(username=self.username, password=self.password)
+                api,e = netdev._get_api_connection(username=self.username, password=self.password)
             else:
-                api = netdev._get_api_connection()
+                api,e = netdev._get_api_connection()
 
-            print(("noapi", self.state))
+            print(("noapi", self.state, ostate, api, e))
+            cambia = False
 
             if api:
                 # Fetch and set the hostname first
                 _logger.info("Fetching system identity from Core device.")
                 identity_resource = tuple(api.path('/system/identity'))
-                if identity_resource:
+                if identity_resource and self.hostname_core != identity_resource[0].get('name'):
+                    cambia = True
                     hostname = identity_resource[0].get('name')
                     if hostname:
                         _logger.info(f"Found hostname: {hostname}. Updating record.")
@@ -694,9 +730,10 @@ class SilverCore(models.Model):
                 if self.env.context.get('u'):
                     self._configure_radius_on_device(api)
 
-                cambia = (self.state != 'active')
+                cambia = cambia or (ostate != 'active')
                 self.askuser = False
                 self.state = 'active'
+                self.retries = 0
             #    return self._show_notification('success', _('RADIUS and NAS ya configurados'))
 
                 if (cambia):
@@ -717,12 +754,15 @@ class SilverCore(models.Model):
             #else:
             _logger.error("Local credential connection failed.")
             #with self.env.registry.cursor() as new_cr:
-            #cambia = (self.state != 'down')
-            #self.state = 'down'
-            self.askuser = True
+            cambia = (ostate != 'down') or (self.retries == 3)
+            if (self.state != 'down'):
+                self.state = 'down'
+            if "auth" in f"{e}":
+                self.askuser = True
+            self.retries = self.retries + 1
             #new_cr.commit()
 
-            if(ostate != netdev.state):
+            if cambia :
                 return True
 
             r = {
@@ -731,7 +771,7 @@ class SilverCore(models.Model):
                 'params': {
                     'title': 'Error',
                     'sticky': False,
-                    'message': f'Conexión al core fallida! ',
+                    'message': f'Conexión al core fallida: {e}',
                     'type': 'danger',
             #        'next': reload_action,
                 }
@@ -744,7 +784,7 @@ class SilverCore(models.Model):
 
         except Exception as e:
             print("exepsion")
-            cambia = (self.state != 'down')
+            cambia = (ostate != 'down')
             self.state = 'down'
             _logger.error(f"An exception occurred during connection test: {e}")
             if (cambia): return True
@@ -843,7 +883,7 @@ class SilverCore(models.Model):
         if not self.ip:  # or not self.radius_client_secret:
             raise UserError(("Radius Server IP and Shared Secret are required."))
 
-        api = self._get_api_connection()
+        api,e = self._get_api_connection()
         if api:
             try:
                 # Check if Radius client for this IP already exists
@@ -876,7 +916,7 @@ class SilverCore(models.Model):
                     )
                     message = "Radius client added successfully!"
 
-                self.write({'state': 'connected'})
+                self.write({'state': 'active'})
                 return {
                     'type': 'ir.actions.client',
                     'tag': 'display_notification',
@@ -892,14 +932,14 @@ class SilverCore(models.Model):
             finally:
                 api.close()
         else:
-            raise UserError(_("Could not connect to the MikroTik router."))
+            raise UserError(_("Could not connect to the MikroTik router: %s")%f"{e}")
 
     def button_remove_radius_client(self):
         self.ensure_one()
         if not self.radius_client_ip:
             raise UserError(_("Radius Server IP is required to remove the client."))
 
-        api = self._get_api_connection()
+        api,e = self._get_api_connection()
         if api:
             try:
                 existing_client = api.path('/radius').get(address=self.radius_client_ip)
@@ -909,7 +949,7 @@ class SilverCore(models.Model):
                 else:
                     message = "Radius client not found for this IP."
 
-                self.write({'state': 'connected'})
+                self.write({'state': 'active'})
                 return {
                     'type': 'ir.actions.client',
                     'tag': 'display_notification',
@@ -925,13 +965,13 @@ class SilverCore(models.Model):
             finally:
                 api.close()
         else:
-            raise UserError(_("Could not connect to the MikroTik router."))
+            raise UserError(_("Could not connect to the MikroTik router:%s")%f"{e}")
 
     def button_get_system_info(self):
         self.ensure_one()
-        api = self._get_api_connection()
+        api,e = self._get_api_connection()
         if not api:
-            raise UserError(_("Could not connect to the device."))
+            raise UserError(_("Could not connect to the device: %s")%f"{e}")
 
         info_str = ""
         try:
@@ -979,9 +1019,9 @@ class SilverCore(models.Model):
 
     def button_view_interfaces(self):
         self.ensure_one()
-        api = self._get_api_connection()
+        api,e = self._get_api_connection()
         if not api:
-            return
+            return UserError(_("Failed to fetch system interfaces: %s") % e)
 
         try:
             wizard = self.env['silver.netdev.interface.wizard'].create({
@@ -1058,7 +1098,7 @@ class SilverCore(models.Model):
             # 5. VLANs
             vlan_data = tuple(api.path('/interface/vlan'))
             create_lines('silver.netdev.interface.vlan.line', vlan_data, {
-                'name': 'name', 'vlan_id': 'vlan-id', 'interface': 'interface',
+                'name': 'name', 'vlan': 'vlan-id', 'interface': 'interface',
                 'mtu': 'mtu', 'arp': 'arp', 'disabled': 'disabled', 'comment': 'comment'
             }, traffic_map)
 
@@ -1098,12 +1138,12 @@ class SilverCore(models.Model):
         finally:
             api.close()
 
-    @api.model
+
     def button_view_routes(self):
         self.ensure_one()
-        api = self._get_api_connection()
+        api,e = self._get_api_connection()
         if not api:
-            return
+            return UserError(_("Failed to fetch system routes: %s") % e)
 
         try:
             routes = tuple(api.path('/ip/route'))
@@ -1130,12 +1170,12 @@ class SilverCore(models.Model):
         finally:
             api.close()
 
-    @api.model
+    #@api.model
     def button_view_ppp_active(self):
         self.ensure_one()
-        api = self._get_api_connection()
+        api, e = self._get_api_connection()
         if not api:
-            return
+            return UserError(_("Failed to fetch ppp: %s") % e)
 
         try:
             ppp_active = tuple(api.path('/ppp/active'))
@@ -1164,12 +1204,12 @@ class SilverCore(models.Model):
         finally:
             api.close()
 
-    @api.model
+
     def button_view_firewall_rules(self):
         self.ensure_one()
-        api = self._get_api_connection()
+        api,e = self._get_api_connection()
         if not api:
-            return
+            return UserError(_("Failed to fetch firewall: %s") % e)
 
         try:
             firewall_rules = tuple(api.path('/ip/firewall/filter'))
@@ -1197,12 +1237,11 @@ class SilverCore(models.Model):
         finally:
             api.close()
 
-    @api.model
     def button_view_queues(self):
         self.ensure_one()
-        api = self._get_api_connection()
+        api,e = self._get_api_connection()
         if not api:
-            return
+            return UserError(_("Failed to fetch queues: %s") % e)
 
         try:
             queues = tuple(api.path('/queue/simple'))
@@ -1234,9 +1273,9 @@ class SilverCore(models.Model):
 
     def button_view_active_users(self):
         self.ensure_one()
-        api = self._get_api_connection()
+        api, e = self._get_api_connection()
         if not api:
-            return
+            return UserError(_("Failed to fetch system info: %s") % e)
 
         try:
             active_users = tuple(api.path('/user/active'))
@@ -1263,137 +1302,3 @@ class SilverCore(models.Model):
             if api:
                 api.close()
 
-
-    @api.model
-    def button_view_routes(self):
-        self.ensure_one()
-        api = self._get_api_connection()
-        if not api:
-            return
-
-        try:
-            routes = tuple(api.path('/ip/route'))
-            wizard = self.env['silver.netdev.route.wizard'].create({'router_id': self.id})
-            for route in routes:
-                self.env['silver.netdev.route.wizard.line'].create({
-                    'wizard_id': wizard.id,
-                    'dst_address': route.get('dst-address'),
-                    'gateway': route.get('gateway'),
-                    'distance': route.get('distance'),
-                    'active': route.get('active'),
-                    'static': route.get('static'),
-                    'comment': route.get('comment'),
-                })
-
-            return {
-                'name': 'Router Routes',
-                'type': 'ir.actions.act_window',
-                'res_model': 'silver.netdev.route.wizard',
-                'view_mode': 'form',
-                'res_id': wizard.id,
-                'target': 'new',
-            }
-        finally:
-            api.close()
-
-    @api.model
-    def button_view_ppp_active(self):
-        self.ensure_one()
-        api = self._get_api_connection()
-        if not api:
-            return
-
-        try:
-            ppp_active = tuple(api.path('/ppp/active'))
-            wizard = self.env['silver.netdev.ppp.active.wizard'].create({'router_id': self.id})
-            for ppp in ppp_active:
-                self.env['silver.netdev.ppp.active.wizard.line'].create({
-                    'wizard_id': wizard.id,
-                    'name': ppp.get('name'),
-                    'service': ppp.get('service'),
-                    'caller_id': ppp.get('caller-id'),
-                    'address': ppp.get('address'),
-                    'uptime': ppp.get('uptime'),
-                })
-
-            return {
-                'name': 'PPP Active Connections1',
-                'type': 'ir.actions.act_window',
-                'res_model': 'silver.netdev.ppp.active.wizard',
-                'view_mode': 'form',
-                'res_id': wizard.id,
-                'target': 'new',
-                'context': {
-                    'default_netdev_id': self.id,
-                }
-            }
-        finally:
-            api.close()
-
-    @api.model
-    def button_view_firewall_rules(self):
-        self.ensure_one()
-        api = self._get_api_connection()
-        if not api:
-            return
-
-        try:
-            firewall_rules = tuple(api.path('/ip/firewall/filter'))
-            wizard = self.env['silver.netdev.firewall.wizard'].create({'router_id': self.id})
-            for rule in firewall_rules:
-                self.env['silver.netdev.firewall.wizard.line'].create({
-                    'wizard_id': wizard.id,
-                    'chain': rule.get('chain'),
-                    'action': rule.get('action'),
-                    'src_address': rule.get('src-address'),
-                    'dst_address': rule.get('dst-address'),
-                    'protocol': rule.get('protocol'),
-                    'comment': rule.get('comment'),
-                    'disabled': rule.get('disabled'),
-                })
-
-            return {
-                'name': 'Firewall Rules',
-                'type': 'ir.actions.act_window',
-                'res_model': 'silver.netdev.firewall.wizard',
-                'view_mode': 'form',
-                'res_id': wizard.id,
-                'target': 'new',
-            }
-        finally:
-            api.close()
-
-    @api.model
-    def button_view_queues(self):
-        self.ensure_one()
-        api = self._get_api_connection()
-        if not api:
-            return
-
-        try:
-            queues = tuple(api.path('/queue/simple'))
-            wizard = self.env['silver.netdev.queue.wizard'].create({'router_id': self.id})
-            for queue in queues:
-                self.env['silver.netdev.queue.wizard.line'].create({
-                    'wizard_id': wizard.id,
-                    'name': queue.get('name'),
-                    'target': queue.get('target'),
-                    'max_limit': queue.get('max-limit'),
-                    'burst_limit': queue.get('burst-limit'),
-                    'disabled': queue.get('disabled'),
-                    'comment': queue.get('comment'),
-                })
-
-            return {
-                'name': 'Queues',
-                'type': 'ir.actions.act_window',
-                'res_model': 'silver.netdev.queue.wizard',
-                'view_mode': 'form',
-                'res_id': wizard.id,
-                'target': 'new',
-                'context': {
-                    'default_netdev_id': self.id,
-                }
-            }
-        finally:
-            api.close()

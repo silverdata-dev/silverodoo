@@ -222,6 +222,43 @@ class SilverOlt(models.Model):
     #     default='inactive', string='Tipo Acceso', required=True)
 
 
+
+    @api.constrains('ip')
+    def _check_valid_ip(self):
+        """Valida que la dirección IP sea IPv4 o IPv6 válida."""
+        for record in self:
+            if record.ip:
+                try:
+                    # Intenta crear un objeto IPv4 o IPv6. Si falla, lanza ValueError.
+                    ipaddress.ip_address(record.ip)
+                except ValueError:
+                    raise ValidationError(
+                        ("La dirección IP '%s' no es válida. Por favor, ingrese un formato IPv4 o IPv6 correcto.")
+                        % record.ip
+                    )
+
+    @api.onchange('ip')
+    def _onchange_direccion_ip(self):
+        if self.ip:
+            try:
+                # Si es inválida, forzamos un UserError (lo convierte en un Warning)
+                ipaddress.ip_address(self.ip)
+            except ValueError:
+                self.env['bus.bus']._sendone(
+                    # El canal es el usuario actual, por lo que solo él la verá
+                    self.env.user.partner_id,
+
+                    'simple_notification',  # Tipo de notificación
+
+                    {
+                        'type': 'danger',  # Rojo para error
+                        'title': 'Error de Formato IP',
+                        'message': f"La dirección '{self.ip}' no es una IP válida. ¡Hay que corregirla!",
+                        'sticky': False,  # Para que no se quite sola
+                    }
+                )
+
+
     @api.model
     def create(self, vals):
         print(("createee", vals))
@@ -304,15 +341,19 @@ class SilverOlt(models.Model):
 
         # --- Lógica de Creación (existente) ---
         for i in range(self.num_slot_olt):
+            print(("ci", i))
             # Buscar si la tarjeta ya existe
             card = OltCard.search([
                 ('olt_id', '=', self.id),
                 ('num_card', '=', i)
             ], limit=1)
 
+            print(("cc",card))
+
             if not card:
                 print(("create card", self.name))
                 # Crear si no existe
+
                 card = OltCard.create({
                     'name': f'{self.name}/C{i}',
                     'olt_id': self.id,
@@ -407,6 +448,8 @@ class SilverOlt(models.Model):
             'tag': 'reload',
         }
 
+        ostate = self.state
+        ohostname = self.hostname_olt
 
         try:
             with netdev._get_olt_connection() as conn:
@@ -414,17 +457,21 @@ class SilverOlt(models.Model):
                 # Si el 'with' se ejecuta sin errores, la conexión fue exitosa.
                 # Ahora podemos obtener el hostname capturado.
 
-                with self.env.registry.cursor() as cr:
-                    if conn.hostname_olt:
-                        self.write({'hostname_olt': conn.hostname_olt})
-                        _logger.info(f"Hostname de la OLT '{self.name}' actualizado a '{conn.hostname_olt}'.")
-                    else:
-                        _logger.warning(
-                            f"No se pudo determinar el hostname para la OLT '{self.name}' durante la conexión.")
+               # with self.env.registry.cursor() as cr:
+                   # if conn.hostname_olt:
+                      #  self.write({'hostname_olt': conn.hostname_olt})
+                   #     _logger.info(f"Hostname de la OLT '{self.name}' actualizado a '{conn.hostname_olt}'.")
+                  #  else:
+                   #     _logger.warning(
+                   #         f"No se pudo determinar el hostname para la OLT '{self.name}' durante la conexión.")
 
                     # GEMINI: Actualizar el estado a 'connected' en caso de éxito.
-                    self.netdev_id.write({'state': 'active'})
-                    cr.commit()
+                    #self.netdev_id.write({'state': 'active'})
+                    #cr.commit()
+                self.state = 'active'
+                self.hostname_olt = conn.hostname_olt
+                if (ostate != 'active') or (ohostname != conn.hostname_olt):
+                    return True
 
             return [{
                 'type': 'ir.actions.client',
@@ -437,10 +484,14 @@ class SilverOlt(models.Model):
                 }
             },  reload_action]
         except (ConnectionError, UserError) as e:
+            print(("noe",e))
             # GEMINI: Actualizar el estado a 'error' en caso de fallo.
-            with self.env.registry.cursor() as cr:
-                self.netdev_id.write({'state': 'down'})
-                cr.commit()
+            #with self.env.registry.cursor() as cr:
+            #    self.netdev_id.write({'state': 'down'})
+            #    cr.commit()
+            self.state = 'down'
+            if (ostate != 'down'):
+                return True
             return [{
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
@@ -452,10 +503,22 @@ class SilverOlt(models.Model):
                 }
                    }, reload_action]
         except Exception as e:
+            if (ostate != 'down'):
+                self.state = 'down'
+                return True
             # GEMINI: Actualizar el estado a 'error' en caso de fallo.
-            if self.netdev_id:
-                self.netdev_id.write({'state': 'error'})
-            raise UserError(f"Un error inesperado ocurrió: {e}")
+            #if self.netdev_id:
+            #    self.netdev_id.write({'state': 'error'})
+           # raise UserError(f"Un error inesperado ocurrió: {e}")
+            return [{
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': 'Error',
+                    'sticky': False,
+                    'message': f'Error en la OLT fallida! {e}',
+                    'type': 'danger', }
+                   }, reload_action]
 
     def action_create_profile_olt(self):
         self.ensure_one()

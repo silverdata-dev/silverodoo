@@ -7,6 +7,6 @@
         (like onMounted) to execute without rendering any visible element.
     -->
     <t t-name="silver_network.InterfaceSpeedUpdater" owl="1">
-             <div class="hola">shit</div>
+             <div class="hola"></div>
     </t>
 </templates>

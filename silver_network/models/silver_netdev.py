@@ -39,7 +39,7 @@ class SilverNetdev(models.Model):
 
 
     ip = fields.Char(string='IP de Conexion')
-    port = fields.Char(string='Puerto de Conexion')
+    port = fields.Integer(string='Puerto de Conexion')
     username = fields.Char(string='Usuario')
     password = fields.Char(string='Password')
     type_connection = fields.Selection([("ssh","SSH"), ("telnet", "Telnet")], string='Tipo de Conexión')

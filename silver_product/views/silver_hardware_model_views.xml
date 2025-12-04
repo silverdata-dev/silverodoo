@@ -24,7 +24,7 @@
                             <field name="brand_id"/>
                             <field name="etype"/>
                             <field name="manual" invisible="etype!='olt'"/>
-                            <field name="onu_profile_id" required="etype=='olt'" invisible="etype!='olt'"/>
+                            <field name="onu_profile_id" required="etype=='onu'" invisible="etype!='onu'"/>
                             <field name="active"/>
                         </group>
                         <notebook>

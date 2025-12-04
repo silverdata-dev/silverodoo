@@ -29,7 +29,7 @@
             <field name="name">silver.box.tree</field>
             <field name="model">silver.box</field>
             <field name="arch" type="xml">
-                <tree string="Cajas NAP Silver" default_order="name desc">
+                <tree string="Cajas NAP" default_order="name desc">
                     <field name="name"/>
                     <field name="capacity_nap"/>
                     <field name="capacity_usage_nap"/>
@@ -42,8 +42,8 @@
             <field name="name">silver.box.form</field>
             <field name="model">silver.box</field>
             <field name="arch" type="xml">
-                <form string="Caja Nap Silver">
-                    <sheet string="Caja NAP Silver">
+                <form string="Caja Nap">
+                    <sheet string="Caja NAP">
                         <div class="oe_button_box" name="button_box">
                         </div>
 

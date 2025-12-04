@@ -15,11 +15,11 @@ class SilverNetdevRadiusClientWizard(models.TransientModel):
 
     def action_add_update_radius_client(self):
         self.ensure_one()
-        netdev = self.netdev_id
+        netdev = self#.netdev_id
         if not netdev:
             raise UserError(_("Network Device not linked."))
 
-        api = netdev._get_api_connection()
+        api,e = netdev._get_api_connection()
         if api:
             try:
                 existing_client = api.path('/radius').get(address=self.radius_client_ip)
@@ -60,15 +60,15 @@ class SilverNetdevRadiusClientWizard(models.TransientModel):
             finally:
                 api.close()
         else:
-            raise UserError(_("Could not connect to the MikroTik router."))
+            raise UserError(_("Could not connect to the MikroTik router : %s")% f"{e}", )
 
     def action_remove_radius_client(self):
         self.ensure_one()
-        netdev = self.netdev_id
+        netdev = self#.netdev_id
         if not netdev:
             raise UserError(_("Network Device not linked."))
 
-        api = netdev._get_api_connection()
+        api,e = netdev._get_api_connection()
         if api:
             try:
                 existing_client = api.path('/radius').get(address=self.radius_client_ip)
@@ -94,11 +94,11 @@ class SilverNetdevRadiusClientWizard(models.TransientModel):
             finally:
                 api.close()
         else:
-            raise UserError(_("Could not connect to the MikroTik router."))
+            raise UserError(_("Could not connect to the MikroTik router: %s.")%e)
 
     def action_view_radius_clients(self):
         self.ensure_one()
-        netdev = self.netdev_id
+        netdev = self#.netdev_id
         if not netdev:
             raise UserError(_("Network Device not linked."))
 

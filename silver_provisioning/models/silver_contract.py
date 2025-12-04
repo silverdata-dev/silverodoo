@@ -115,9 +115,8 @@ class IspContract(models.Model):
     consumption_ids = fields.One2many('silver.contract.consumption', 'contract_id', string="Registros de Consumo")
     radius_entry_ids = fields.One2many('silver.contract.radius.entry', 'contract_id', string="Entradas de RADIUS")
     olt_state = fields.Selection([('down', 'Down'), ('active', 'Activo'),
-                                  ('waiting', 'Espera'),
-                              ('disconnected', 'Disconnected')],
-                             string='Estado OLT', default='down')
+                                  ('pending', 'Prueba'),],
+                             string='Estado OLT', default='pending')
     radius_state = fields.Selection([('down', 'Down'), ('active', 'Activo'),
                               ('disconnected', 'Disconnected')],
                              string='Estado Radius', default='down')
@@ -845,9 +844,10 @@ class IspContract(models.Model):
            # if contract.pppoe_user and contract.core_id:
              #   api = None
              #   try:
-            api = contract.core_id.netdev_id._get_api_connection()
+            api, e = contract.core_id._get_api_connection()
             if not api:
-                raise UserError(_("No se pudo conectar al Core Router Mikrotik."))
+                raise UserError(_("Could not connect to the MikroTik router: %s") % e)
+#                raise UserError(_("No se pudo conectar al Core Router Mikrotik."))
 
             user_path = api.path('/user-manager/user')
             name = Key("name")
@@ -876,9 +876,9 @@ class IspContract(models.Model):
                 'wifi_config_successful': False,
                 'wan_config_successful': False,
                 #'onu_pon_id': None,
-                'olt_state' : 'disconnected',
-                'core_state': 'disconnected',
-                'radius_state': 'disconnected',
+                'olt_state' : 'down',
+                'core_state': 'down',
+                'radius_state': 'down',
                 'state_service': 'terminated',
                 'ip_address_id': None,
                 #'state': 'closed',
@@ -898,9 +898,9 @@ class IspContract(models.Model):
 
         ping_result_str = ""
         try:
-            api = self.core_id._get_api_connection()
+            api,e = self.core_id._get_api_connection()
             if not api:
-                raise UserError(_("No se pudo conectar al Core Router Mikrotik."))
+                raise UserError(_("Could not connect to the MikroTik router: %s")%e)
             
             try:
                 # El comando ping en la API de Mikrotik devuelve un iterador.
@@ -965,13 +965,13 @@ class IspContract(models.Model):
         api = None
         if 1:
        # try:
-            netdev = self.core_id.netdev_id
+            netdev = self.core_id#.netdev_id
             if not netdev:
                 raise UserError(_("El Core Router no tiene un dispositivo de red configurado para la conexión."))
             
-            api = netdev._get_api_connection()
+            api, e = netdev._get_api_connection()
             if not api:
-                raise UserError(_("No se pudo establecer la conexión con el Core Router."))
+                raise UserError(_("Could not connect to the MikroTik router: %s")%e)
 
             assigned_ip = self.ip_address_id.name
             #ppp_active_path = api.path('/ppp/active')
@@ -994,7 +994,7 @@ class IspContract(models.Model):
             if not active_connections:
                 raise UserError(_("No se encontró una sesión PPPoE activa para la dirección IP '%s'.") % assigned_ip)
 
-            wizard = self.env['silver.netdev.ppp.active.wizard'].create({'router_id': self.core_id.netdev_id.id})
+            wizard = self.env['silver.netdev.ppp.active.wizard'].create({'router_id': self.core_id.id})
             for ppp in active_connections:
                 r = self.env['silver.netdev.ppp.active.wizard.line'].create({
                     'wizard_id': wizard.id,
@@ -1249,9 +1249,14 @@ class IspContract(models.Model):
         if not self.olt_id or not self.onu_pon_id:
             raise UserError(_("Por favor, asegúrese de que la OLT y el ID de ONU en PON estén configurados."))
 
+        reload_action = {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+        ostate = self.olt_state
         netdev = self.olt_id.netdev_id
         if not netdev:
-            #self.olt_state = 'down'
+            self.olt_state = 'down'
             raise UserError(_("La OLT no tiene un dispositivo de red configurado."))
 
         pon_port = f"{self.olt_card_id.num_card or self.olt_port_id.olt_card_id.num_card}/{self.olt_port_id.num_port}"
@@ -1264,8 +1269,8 @@ class IspContract(models.Model):
             f"onu {self.onu_pon_id} pri wan_adv commit",
         ]
 
-        #try:
-        if 1:
+        try:
+        #if 1:
             old1 = self.olt_state
             old2 = self.wan_state
             with netdev._get_olt_connection() as conn:
@@ -1321,8 +1326,20 @@ class IspContract(models.Model):
                 }
 
 
-        #except Exception as e:
-        #    self.olt_state = 'down'
+        except Exception as e:
+            self.olt_state = 'down'
+            if self.olt_state != old1 or self.wan_state != old2:
+                return True
+            return [{
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': 'Error',
+                    'sticky': False,
+                    'message': f'Conexión a la OLT falla: {e}',
+                    'type': 'warning',
+                }
+            }, reload_action]
             # Usar notify_warning para no bloquear al usuario con un UserError si la conexión falla
         #    self.env.user.notify_warning(
         #        message=f"No se pudo conectar a la OLT o verificar el estado de la ONU.\nError: {e}"
@@ -1401,7 +1418,7 @@ class IspContract(models.Model):
         if not self.pppoe_user:
             raise UserError(_("No hay un usuario PPPoE definido en el contrato."))
 
-        netdev = radius_server.netdev_id
+        netdev = radius_server#.netdev_id
         if not netdev:
             raise UserError(_("El servidor RADIUS no tiene un dispositivo de red (netdev) configurado para la conexión."))
 
@@ -1411,9 +1428,9 @@ class IspContract(models.Model):
 
        # try:
         if 1:
-            api = netdev._get_api_connection()
+            api,e = netdev._get_api_connection()
             if not api:
-                raise ConnectionError("No se pudo establecer la conexión con el servidor RADIUS.")
+                raise UserError(_("Could not connect to the MikroTik router: %s")%e)
 
             # --- Get User Info ---
             user_path = api.path('/user-manager/user')

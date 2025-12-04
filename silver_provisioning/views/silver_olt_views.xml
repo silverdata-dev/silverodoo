@@ -7,11 +7,15 @@
             <field name="inherit_id" ref="silver_network.view_silver_olt_form"/>
             <field name="arch" type="xml">
                 <!-- Mover el botón de descubrir ONUs al lado del de probar conexión -->
-                <xpath expr="//button[@name='action_connect_olt']" position="after">
+                <xpath expr="//notebook" position="inside">
+                    <page string="ONUs">
                     <button name="action_discover_onus"
                             type="object"
                             string="Descubrir ONUs"
                             class="oe_highlight"/>
+
+                        <field name="discovered_onu_ids"></field>
+                    </page>
                 </xpath>
 
                 <!-- Añadir el botón de sincronización en la cabecera (quitando el de descubrir) -->
