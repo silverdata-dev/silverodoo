@@ -184,29 +184,20 @@ class SilverRadius(models.Model):
             'context': {'default_radius_id': self.id},
         }
 
-    @api.model
-    def create(self, vals):
-        if vals.get('core_id'):
-            core = self.env['silver.core'].browse(vals['core_id'])
-            if core.exists():
-                radius_count = self.search_count([('core_id', '=', core.id)])
-                vals['name'] = f"{core.name}/RADIUS{radius_count + 1}"
-        return super(SilverRadius, self).create(vals)
+    #@api.model
+    #def create(self, vals):
+    #    if vals.get('core_id'):
+    #        core = self.env['silver.core'].browse(vals['core_id'])
+    #        if core.exists():
+    #            radius_count = self.search_count([('core_id', '=', core.id)])
+    #            vals['name'] = f"{core.name}/RADIUS{radius_count + 1}"
+    #    return super(SilverRadius, self).create(vals)
 
 
 
 
 
 
-    @api.model
-    def write(self, vals):
-        if 'core_id' in vals:
-            new_core = self.env['silver.core'].browse(vals['core_id'])
-            if new_core.exists():
-                for record in self:
-                    radius_count = self.search_count([('core_id', '=', new_core.id)])
-                    record.name = f"{new_core.name}/RADIUS{radius_count + 1}"
-        return super(SilverRadius, self).write(vals)
 
     def action_connect_radius(self):
         self.ensure_one()
@@ -239,131 +230,9 @@ class SilverRadius(models.Model):
         for record in self:
             record.ip_range_count = self.env['silver.ip.address'].search_count([('radius_id', '=', record.id)])
 
-    def button_test_connection(self):
-        si = False
-        for core in self:
-            if core.netdev_id:
-                try:
-                    is_successful = core.netdev_id.button_test_connection()
-                    if is_successful:
-                        core.state = 'active'
-                        si = True
-                    else:
-                        core.state = 'down'
-                except Exception:
-                    core.state = 'down'
-            else:
-                core.state = 'down'
-        
-        if si:
-            return {
-                'type': 'ir.actions.client',
-                'tag': 'display_notification',
-                'params': {
-                    'title': _('Connection Test'),
-                    'message': _('Connection to Radius server was successful!'),
-                    'type': 'success',
-                  #  'next': {'type': 'ir.actions.client', 'tag': 'reload'},
-                }
-            }
-        # If the connection fails, we still reload to show the 'down' state.
-        return True #{'type': 'ir.actions.client', 'tag': 'reload'}
-
-    def button_get_system_info(self):
-        return self.netdev_id.button_get_system_info()
-
-    def button_view_interfaces(self):
-        return self.netdev_id.button_view_interfaces()
-
-    def button_view_routes(self):
-        return self.netdev_id.button_view_routes()
-
-    def button_view_ppp_active(self):
-        return self.netdev_id.button_view_ppp_active()
-    def button_view_firewall_rules(self):
-        return self.netdev_id.button_view_firewall_rules()
-    def button_view_queues(self):
-        return self.netdev_id.button_view_queues()
-
-    def button_add_update_radius_client(self):
-        return self.netdev_id.button_add_update_radius_client()
 
 
-    def button_remove_radius_client(self):
-        return self.netdev_id.button_remove_radius_client()
 
-    def create_user_manager_user(self, username, password, customer='admin', ip_address=None, rate_limit=None):
-        """
-        Crea o actualiza un usuario en MikroTik User Manager con atributos RADIUS.
-
-        :param username: El nombre de usuario a crear/actualizar.
-        :param password: La contraseña para el usuario.
-        :param customer: El cliente/propietario del usuario (default: 'admin').
-        :param ip_address: La dirección IP estática para asignar (Framed-IP-Address).
-        :param rate_limit: El límite de velocidad (Mikrotik-Rate-Limit).
-        :return: dict con {'success': bool, 'message': str}
-        """
-        self.ensure_one()
-        api = self._get_mikrotik_api()
-        try:
-            _logger.info(f"Procesando usuario '{username}' en User Manager de {self.ip}")
-            user_path = api.path('/user-manager/user')
-            name_key = Key("name")
-
-            # --- Datos base del usuario ---
-            user_data = {
-                'name': username,
-                'password': password,
-                'comment': customer,
-                'shared-users': '1',
-            }
-
-            # 1. Verificar si el usuario ya existe y crearlo o actualizarlo
-            existing_user = tuple(user_path.select(Key(".id")).where(name_key == username))
-            user_id = None
-            if existing_user:
-                user_id = existing_user[0]['.id']
-                user_data['.id'] = user_id
-                user_path.update(**user_data)
-                message = f"Usuario '{username}' actualizado. "
-            else:
-                # .id no es un parámetro válido para 'add', así que lo eliminamos si existe
-                user_data.pop('.id', None)
-                new_user = user_path.add(**user_data)
-                # The API returns a tuple, we need the '.id' from the first element
-                #user_id = new_user[0]['.id']
-                user_id = tuple(api.path('/user-manager/user').select(Key('.id')).where(name_key == username))[0]['.id']
-                message = f"Usuario '{username}' creado. "
-
-            # 2. Construir y aplicar los atributos RADIUS
-            attributes = {}
-            if ip_address:
-                attributes['Framed-IP-Address'] = ip_address
-            if rate_limit:
-                attributes['Mikrotik-Rate-Limit'] = rate_limit
-
-            if attributes:
-                # CORRECCIÓN: Pasar los atributos como una LISTA de strings, no un solo string.
-                attribute_str = ",".join([f"{key}:{value}" for key, value in attributes.items()])
-                
-                # Aplicar los atributos al usuario usando su ID
-                user_path.update(**{
-                    '.id': user_id,
-                    'group': 'Cliente',
-                    'attributes': attribute_str
-                })
-                message += "Atributos RADIUS aplicados."
-            
-            _logger.info(message)
-            return {'success': True, 'message': message}
-
-        except Exception as e:
-            error_message = f"Fallo al procesar el usuario '{username}' en User Manager: {e}"
-            _logger.error(error_message)
-            return {'success': False, 'message': error_message}
-        finally:
-            if api:
-                api.close()
 
 class SilverRadiusTable(models.Model):
     _name = 'silver.radius.table'

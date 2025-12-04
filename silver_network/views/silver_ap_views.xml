@@ -68,7 +68,7 @@
                                 <field name="password" password="True"/>
                             <!--button name="action_connect_ap" type="object" class="oe_stat_button" icon="fa-signal"
                                     string="Probar Conexion"/-->
-  <button name="button_test_connection" type="object" string="Test Connection" class="oe_highlight"/>
+
 
                         </group>
                         </group>

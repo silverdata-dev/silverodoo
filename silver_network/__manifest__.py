@@ -58,7 +58,7 @@
             'silver_network/static/src/js/ppp_line_speed_chart.js',
 'silver_network/static/src/js/queue_speed_chart.js',
 'silver_network/static/src/js/queue_line_speed_chart.js',
-            'silver_network/static/src/js/m2o_widget.js',
+
             'silver_network/static/src/js/ip_widget.js',
             'silver_network/static/src/js/node_map_widget.js',
             'silver_network/static/src/js/node_network_widget.js',

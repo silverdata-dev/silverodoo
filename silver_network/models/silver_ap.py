@@ -113,33 +113,3 @@ class SilverAp(models.Model):
 
         # Asignar la lista final de IDs al campo many2many usando el comando (6,0,...)
         self.node_ids = [(6, 0, current_nodes_ids)]
-
-    def button_test_connection(self):
-        si = False
-        for core in self:
-            if core.netdev_id:
-                try:
-                    is_successful = core.netdev_id.button_test_connection()
-                    if is_successful:
-                        core.state = 'active'
-                        si = True
-                    else:
-                        core.state = 'down'
-                except Exception:
-                    core.state = 'down'
-            else:
-                core.state = 'down'
-
-        if si:
-            return {
-                'type': 'ir.actions.client',
-                'tag': 'display_notification',
-                'params': {
-                    'title': _('Connection Test'),
-                    'message': _('Connection to Core was successful!'),
-                    'type': 'success',
-                    'next': {'type': 'ir.actions.client', 'tag': 'reload'},
-                }
-            }
-        # If the connection fails, we still reload to show the 'down' state.
-        return {'type': 'ir.actions.client', 'tag': 'reload'}

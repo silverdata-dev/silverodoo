@@ -109,11 +109,35 @@
                                   <field name="node_ids" widget="many2many_tags" invisible="1"/>
                             </group>
                             <group name="core_conexion" string="Datos Conexion">
-
                                 <field name="ip"  required="1"/>
-                                <field name="port" />
+<field name="port" />
                                   <field name="radius_id" options="{'no_create_edit': False, 'no_quick_create': True}"/>
-                                <field name="radius_admin_id" options="{'no_create_edit': False, 'no_quick_create': True}"/>
+
+
+<div class="o_row" colspan="2" name="radius_id">
+    <label for="radius_id"/>
+                                <field name="radius_id"
+
+                                       options="{'no_create_edit': False, 'no_quick_create': True}"/>
+
+                                    <button name="button_test_connection" type="object" string="Probar "
+                                        class="oe_highlight" />
+</div>
+
+<div class="o_row" colspan="2" name="radius_admin_id">
+    <label for="radius_admin_id"/>
+                                <field name="radius_admin_id"
+
+                                       options="{'no_create_edit': False, 'no_quick_create': True}"/>
+
+                                    <button name="button_test_connection" type="object" string="Probar "
+                                             decoration-success="state in ['active', 'connected']"
+                           decoration-warning="state in ('suspended', 'disabled')"
+                           decoration-danger="state in ['removed', 'down']"
+                                        class="oe_highlight" />
+</div>
+
+
                                  <field name="state" widget="badge"
                            decoration-success="state in ['active', 'connected']"
                            decoration-warning="state in ('suspended', 'disabled')"
@@ -131,13 +155,13 @@
                                 <!--field name="type_connection" invisible="brand_description != 'hua'"/-->
                                 <!--field name="kex_algorithms_ids" invisible="brand_description != 'hua'" widget="many2many_tags"/-->
 <br/>
-                                <field name="username" invisible="askuser==233"/>
-                                <field name="password" password="True" invisible="askuser==433"/>
+                                <field name="username" invisible="askuser==False"/>
+                                <field name="password" password="True" invisible="askuser==False"/>
 
 
                                 <!--button class="oe_inline oe_link " name="action_send_password" string=" →Enviar Contraseña" type="object"/-->
-                                <button name="button_test_connectionu" type="object" string="Conectar"
-                                        class="oe_highlight" invisible="askuser==243"/><br/>
+                                <button name="button_test_connection" type="object" string="Conectar" context="{'u':1}"
+                                        class="oe_highlight" invisible="askuser==False"/><br/>
 
                             </group>
                         </group>
