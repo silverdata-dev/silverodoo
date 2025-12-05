@@ -148,6 +148,9 @@ class SilverContract(models.Model):
         else:
             self.silver_address_id = False
 
+
+
+
     @api.onchange('silver_address_id')
     def _onchange_silver_address_id(self):
         if self.silver_address_id and self.silver_address_id.latitude and self.silver_address_id.longitude:

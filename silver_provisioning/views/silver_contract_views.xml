@@ -57,7 +57,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                                domain="[('olt_id', '=', olt_id), '|', ('contract_id', '=', False), ('contract_id', '=', id)]"
                                                invisible="(not olt_id) or (state_service == 'active')" nolabel="1" />
                         <field name="olt_port_id" domain="[('olt_id', '=', olt_id)]"  readonly="state_service == 'active'"/>
-                        <!--field name="onu_pon_id"  readonly="state_service == 'active'"/-->
+                        <field name="onu_pon_id"  readonly="state_service == 'active'"/>
                                     <field name="changed_onu" invisible="1"/>
    <field name="vlan_id"  readonly="state_service == 'active'" domain="['|', ('olt_port_ids', 'in', olt_port_id), ('core_ids', 'in', core_id)]"/>
                                     <field name="old_onu_pon_id" invisible="1"/>
@@ -65,7 +65,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                     <field name="state_service"/>
                                     <field name="olt_state"/-->
 
-  <div class="o_row" colspan="2" name="onu_pon_id" >
+  <!--div class="o_row" colspan="2" name="onu_pon_id" >
     <label for="onu_pon_id" decoration-bf="1"/>
                                 <field name="onu_pon_id" readonly="state_service == 'active'"
                                      />
@@ -77,7 +77,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                     <button name="action_check_olt_state" type="object" string="Activo" invisible="olt_state!='active' and olt_state!='connected'"
                                         class="oe_highlight status-active" />
       <field name="olt_state" invisible="1"/>
-</div>
+</div-->
 
 
 
@@ -89,7 +89,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                                 class="oe_highlight  oe200"
                                                 invisible="(not olt_id) or(state not in ['open', 'active']) or (state_service != 'inactive') "/>
 
-                                    <!--button name="action_check_olt_state"
+                                    <button name="action_check_olt_state"
                                                 type="object"
                                                 string="Comprobar conexión"
                                                 class="oe_highlight  oe200"
@@ -98,7 +98,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                                widget="badge"  invisible="(state not in ['open', 'active']) or (state_service != 'active')"
                            decoration-success="olt_state in ['active', 'connected']"
                            decoration-warning="olt_state in ('suspended', 'disabled', 'waiting')"
-                           decoration-danger="olt_state in ['removed', 'down']"/-->
+                           decoration-danger="olt_state in ['removed', 'down']"/>
 
 
                                                         <button name="action_suspend_service" string="Suspender Servicio" type="object" class="oe_highlight  oe200" invisible="(state not in ['open', 'active']) or (state_service != 'active')"/>
@@ -186,10 +186,10 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                             />
 
                                         <field name="pppoe_user"/>
-                                        <!--field name="pppoe_password" password="True"/-->
+                                        <field name="pppoe_password" password="True"/>
 
 
-      <div class="o_row" colspan="2" name="pppoe_password" >
+      <!--div class="o_row" colspan="2" name="pppoe_password" >
     <label for="pppoe_password" decoration-bf="1"/>
                                 <field name="pppoe_password" password="True"
                                      />
@@ -201,13 +201,13 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                     <button name="action_add_radius_access" type="object" string="Activo" invisible="radius_state!='active' and radius_state!='connected'"
                                         class="oe_highlight status-active" />
       <field name="radius_state" invisible="1"/>
-</div>
+</div-->
 
 </group>
                                         <group colspan="4">
                                             <group class="col-lg-9">
 
-                                            <!--button name="action_add_radius_access"
+                                            <button name="action_add_radius_access"
                                                 type="object"
                                                 string="Establecer usuario"
                                                 class="oe_highlight  oe200"
@@ -217,7 +217,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
    <field name="radius_state" widget="badge"
                            decoration-success="radius_state in ['active', 'connected']"
                            decoration-warning="radius_state in ('suspended', 'disabled')"
-                           decoration-danger="radius_state in ['removed', 'down']"  nolabel="1" /-->
+                           decoration-danger="radius_state in ['removed', 'down']"  nolabel="1" />
 
                                  <!--button name="action_check_radius_connection"
                                                 type="object"
@@ -234,7 +234,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                         <group>
                                     <button name="get_radius_user_info"
                                             type="object"
-                                            string=" Info"
+                                            string="Obtener Información"
                                             icon="fa-anchor"
                                             class="btn-secondary  oe200"
                                             invisible="(pppoe_user == None)"/>
