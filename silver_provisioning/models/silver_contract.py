@@ -492,7 +492,7 @@ class IspContract(models.Model):
             
             # 2. Si la base fue exitosa, activar el servicio en Odoo.
             self.write({
-                'olt_state': 'waiting',
+             #   'olt_state': 'waiting',
                 'state_service': 'active',
                 'date_active': fields.Date.context_today(self)
             })
