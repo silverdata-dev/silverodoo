@@ -271,8 +271,8 @@ class SilverRouterPppActiveWizardLine(models.Model):
             print(f"Failed to get API connection:{e}")
             return {'upload': 0, 'download': 0}
 
-        #try:
-        if 1:
+        try:
+        #if 1:
             # The PPP username (e.g., '4064')
             ppp_user_name = line.name
 
@@ -292,13 +292,13 @@ class SilverRouterPppActiveWizardLine(models.Model):
             traffic_generator = interface_path('monitor-traffic', interface=interface_name_to_find, once=True)
             print(("traffic_generator", traffic_generator))
 
-            #try:
-            if 1:
+            try:
+            #if 1:
                 traffic = next(traffic_generator, None)
 
                 print(f"Traffic result for '{interface_name_to_find}': {traffic}")
-            #except:
-            #   traffic = None
+            except:
+               traffic = None
 
             if traffic:
                 tx_speed = traffic.get('tx-bits-per-second', 0)
@@ -309,13 +309,13 @@ class SilverRouterPppActiveWizardLine(models.Model):
                 print(f"monitor-traffic returned no data for interface '{interface_name_to_find}'.")
                 return {'upload': 0, 'download': 0}
 
-       # except Exception as e:
-       #     # The most likely error here is TrapError if the interface name is still not found.
-       #     print(f"An exception occurred in get_interface_speed: {e}")
-       #     import traceback
-       #     traceback.print_exc()
-       #     return {'upload': 0, 'download': 0}
-       # finally:
+        except Exception as e:
+            # The most likely error here is TrapError if the interface name is still not found.
+            print(f"An exception occurred in get_interface_speed: {e}")
+            import traceback
+            traceback.print_exc()
+            return {'upload': 0, 'download': 0}
+        finally:
             if api:
                 api.close()
                 print("API connection closed.")
@@ -442,13 +442,13 @@ class SilverRouterQueueWizardLine(models.Model):
             # Now, monitor traffic using the constructed interface name
             traffic_generator = interface_path('monitor-traffic', interface=interface_name_to_find, once=True)
 
-            #try:
-            if 1:
+            try:
+            #if 1:
                 traffic = next(traffic_generator, None)
 
                 print(f"Traffic result for '{interface_name_to_find}': {traffic}")
-            #except:
-            #    traffic = None
+            except:
+                traffic = None
 
             if traffic:
                 tx_speed = traffic.get('tx-bits-per-second', 0)

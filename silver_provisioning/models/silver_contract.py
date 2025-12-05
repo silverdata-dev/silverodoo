@@ -963,8 +963,8 @@ class IspContract(models.Model):
             raise UserError(_("Este contrato no tiene una dirección IP asignada para buscar la sesión."))
 
         api = None
-        if 1:
-       # try:
+        #if 1:
+        try:
             netdev = self.core_id#.netdev_id
             if not netdev:
                 raise UserError(_("El Core Router no tiene un dispositivo de red configurado para la conexión."))
@@ -1037,11 +1037,11 @@ class IspContract(models.Model):
                 'target': 'new',
             }
 
-        #except Exception as e:
-        #    raise UserError(_("Se produjo un error: %s") % e)
-        #finally:
-         #   if api:
-         #       api.close()
+        except Exception as e:
+            raise UserError(_("Se produjo un error: %s") % e)
+        finally:
+            if api:
+                api.close()
 
     @api.onchange('onu_pon_id')
     def _onchange_onu_pon_id(self):
@@ -1426,8 +1426,8 @@ class IspContract(models.Model):
         session_info_html = "<h3>No hay sesiones activas</h3>"
         api = None
 
-       # try:
-        if 1:
+        try:
+       # if 1:
             api,e = netdev._get_api_connection()
             if not api:
                 raise UserError(_("Could not connect to the MikroTik router: %s")%e)
@@ -1470,9 +1470,9 @@ class IspContract(models.Model):
                 for session in session_data:
                     session_info_html += self._format_dict_to_html(session) + "<hr/>"
 
-        #except Exception as e:
-        #    raise UserError(_("Error al consultar el User Manager: %s") % e)
-        #finally:
+        except Exception as e:
+            raise UserError(_("Error al consultar el User Manager: %s") % e)
+        finally:
             if api:
                 api.close()
                 
