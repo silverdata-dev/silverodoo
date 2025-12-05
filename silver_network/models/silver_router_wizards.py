@@ -433,7 +433,7 @@ class SilverRouterQueueWizardLine(models.Model):
             ppp_user_name = line.name
 
             # Construct the dynamic interface name based on the pattern provided by the user
-            interface_name_to_find = ppp_user_name # f"<pppoe-{ppp_user_name}>"
+            interface_name_to_find =  f"<pppoe-{ppp_user_name}>"
 
             print(f"Constructed interface name to monitor: {interface_name_to_find}")
 
