@@ -142,7 +142,8 @@ class SilverOlt(models.Model):
                 vals['olt_id'] = self.id
                 onus_to_create.append(vals)
 
-        self.last_discovered_date = fields.Date.today()
+        self.last_discovered_date = datetime.now()
+        print(("last_discovered_date", self.last_discovered_date))
 
         if onus_to_create:
             DiscoveredOnu.create(onus_to_create)
@@ -390,6 +391,8 @@ class SilverOlt(models.Model):
         hace_cinco_minutos = datetime.now() - timedelta(minutes=5)
 
         for record in self:
+            print(("old_discovered", record.last_discovered_date, record.old_discovered, hace_cinco_minutos, record.last_discovered_date < hace_cinco_minutos))
+
             if record.last_discovered_date:
                 # 2. La condición es: La fecha de la BD (UTC) es menor que el límite (UTC)
                 #    Es decir, la fecha es MÁS ANTIGUA que hace 5 minutos.

@@ -71,17 +71,14 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                                 string="Descubrir ONUS"
                                                 class="oe_highlight oe200"
                                                 invisible="(not olt_id) or (state_service == 'active')"/>
-                                    <field name="old_discovered" invisible="1"/>
+                                    <field name="old_discovered" invisible="1" />
                                         <field name="discovered_onu_id" colspan="1"
-
+                                                    readonly="state_service == 'active'"
                                                domain="[('olt_id', '=', olt_id), '|', ('contract_id', '=', False), ('contract_id', '=', id)]"
-                                               invisible="(not old_discovered) or (not olt_id) or (state_service == 'active')" nolabel="1" />
+                                               invisible="(old_discovered and (discovered_onu_id==False)) or (not olt_id) or (state_service == 'active')" nolabel="1" />
 
                                     <!--br invisible="(not ((not olt_id) or (state_service == 'active')))"/-->
-                                    <br invisible="[
-    '|',
-        '|',
-            ('olt_id', '=', False),                 ('state_service', '=', 'active'),       ('old_discovered', '!=', False)            ]"/>
+                                    <br invisible="(not ((old_discovered and (discovered_onu_id==False)) or (not olt_id) or (state_service == 'active'))) and ((not olt_id) or (state_service == 'active'))"/>
 
                         <field name="olt_port_id" domain="[('olt_id', '=', olt_id)]"  readonly="state_service == 'active'"/>
                         <field name="onu_pon_id"  readonly="state_service == 'active'"/>
@@ -275,8 +272,11 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                                      icon="fa-area-chart"
                                                      string="PPP"
                                                      invisible="(state_service != 'active') "/>
-                                        </group>
 
+
+<button name="action_terminate_service" string="Dar de Baja" type="object" class="oe_highlight  oe200" invisible="(has_olt) or (state not in ['open', 'active']) or (state_service not in ['suspended', 'active'])"/>
+
+                                        </group>
 
                                     </group>
      <group invisible="manual != True">

@@ -195,6 +195,10 @@ class SilverOlt(models.Model):
     port_ids = fields.One2many('silver.olt.card.port', 'olt_id', string='Puertos')
     card_ids = fields.One2many('silver.olt.card', 'olt_id', string='Tarjetas')
 
+
+
+    silver_address_id = fields.Many2one('silver.address', string='Dirección')
+
     def _compute_olt_card_port_count(self):
         for record in self:
             record.olt_card_port_count = self.env['silver.olt.card.port'].search_count([('olt_id', '=', record.id)])

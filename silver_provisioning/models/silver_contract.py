@@ -894,6 +894,7 @@ class IspContract(models.Model):
             contract.write({
                 'wifi_config_successful': False,
                 'wan_config_successful': False,
+                'discovered_onu_id':None,
                 #'onu_pon_id': None,
                 'olt_state' : 'down',
                 'core_state': 'down',
@@ -1176,8 +1177,14 @@ class IspContract(models.Model):
 
          #   current_ips1 = available_ips[0]
 
+        if available_ips and len(available_ips):
+            self.ip_address_id = (available_ips[0])
+        else:
+            if public_ips and len(public_ips):
+                self.ip_address_id = public_ips[0]
+            else:
+                self.ip_address_id = None
 
-        self.ip_address_id = (available_ips[0] if (available_ips and len(available_ips)) else public_ips[0])
 
 
         #print(("ip3", current_ips.filtered(filterip) , current_ips1, current_ips2,  self.ip_address_id))
