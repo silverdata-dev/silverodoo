@@ -10,7 +10,7 @@
                     <field name="name"/>
                     <field name="hostname_ap"/>
                     <!--field name="brand_id"/-->
-                    <field name="model"/>
+                    <!--field name="model"/-->
                     <field name="node_id"/>
                     <field name="capacity_usage_ap"/>
                     <field name="core_id"/>
@@ -77,16 +77,10 @@
                              <page string="Configuración general" name="config">
 
                         <group>
-                            <group name="ip_address" string="Direccionamiento IP">
-                                <field name="type_access_net" required="1"/>
-                                <field name="dhcp_custom_server" invisible="type_access_net != 'dhcp_leases'"/>
-                                <field name="interface" invisible="type_access_net != 'dhcp_leases'"/>
-                                <field name="is_dhcp_static" invisible="type_access_net != 'ip_fija'"
-                                       widget="boolean_toggle"/>
-                            </group>
+
                             <group name="capacity" string="Capacidad Usada AP">
                                 <field name="capacity_usage_ap" readonly="1"/>
-                                <field name="is_mgn_mac_onu" widget="boolean_toggle"/>
+                                <!--field name="is_mgn_mac_onu" widget="boolean_toggle"/-->
                             </group>
                         </group>
  <!--group string="Datos Ubicacion">

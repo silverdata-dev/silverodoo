@@ -52,7 +52,20 @@
 
         <!-- Configuration Menu -->
         <!-- Inherit from helpdesk_mgmt configuration menu -->
-        <menuitem id="menu_silver_ticket_type" name="Tipos de Proceso" parent="helpdesk_mgmt.menu_helpdesk_configuration" action="action_silver_ticket_type" sequence="10"/>
+        <menuitem id="menu_silver_ticket_type" name="Tipos de Proceso" parent="helpdesk_mgmt.helpdesk_ticket_config_main_menu" action="action_silver_ticket_type" sequence="10"/>
+
+
+        <!--record id="stock.menu_stock_root" model="ir.ui.menu">
+    <field name="name">Inventario</field>
+
+    <field name="web_icon">tu_modulo,static/description/nuevo_icono_stock.png</field>
+</record-->
+
+
+
+        <!-- Menu -->
+        <!--menuitem id="silver_ticket_main_menu" name="Tickets" sequence="10"/>
+        <menuitem id="silver_ticket_submenu" name="Todos los Tickets" parent="silver_ticket_main_menu" action="silver_ticket_action" sequence="10"/-->
 
     </data>
 </odoo>

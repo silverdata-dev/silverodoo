@@ -18,8 +18,7 @@
                     <field name="code"/>
                     <field name="name"/>
                     <field name="zone_id"/>
-                    <field name="silver_address_id"/>
-
+                    <field name="silver_address_id"  context="{'show_coordinates': True}"/>
 
                 </tree>
             </field>
@@ -61,6 +60,7 @@
                         <group><group>
                         <field name="code" placeholder="Codigo del Nodo"/>
                         <field name="silver_address_id"  context="{'show_coordinates': True}"/>
+                            <field name="zone_id"/>
                         </group></group>
 
                              <!--group string="Datos Ubicacion">

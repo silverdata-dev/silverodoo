@@ -24,3 +24,15 @@ class SilverVlan(models.Model):
             if (not s.name) or (s.name.isdigit()):
                 s.name = f"{ s.vlanid}"
 
+
+
+    @api.model
+    def name_create(self, name):
+
+
+        print(("create slot", name, self.env.context))
+
+        vals = {'name':name, 'vlanid':int(name)}
+
+
+        return self.create(vals).name_get()[0]

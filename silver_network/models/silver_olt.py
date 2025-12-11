@@ -1,6 +1,9 @@
+import ipaddress
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
-import logging
+import logging, re
+from ..models.olt_connection import OLTConnection
+
 
 _logger = logging.getLogger(__name__)
 
@@ -13,22 +16,17 @@ class SilverOlt(models.Model):
     _name_sequence = 'silver.olt.sequence'
     #_table = 'isp_olt'
 
-    _inherits = {'silver.asset': 'asset_id',
-                 'silver.netdev':'netdev_id'}
-
-    asset_id = fields.Many2one('silver.asset', required=True, ondelete="cascade")
-    netdev_id = fields.Many2one('silver.netdev', required=True, ondelete="cascade")
 
 
 
     hostname_olt = fields.Char(string='Hostname')
-    name = fields.Char('Nombre',  compute='_compute_hostname', store=False)
+    name = fields.Char('Nombre')
 
 
 
     core_ids = fields.Many2many('silver.core', string='Equipos Core')
-    core_id = fields.Many2one('silver.core', string='Equipo Core')
-    node_id = fields.Many2one('silver.node', string='Nodo')
+    core_id = fields.Many2one('silver.core', string='Equipo Core', required=1)
+    node_id = fields.Many2one('silver.node', string='Nodo', required=1)
     num_slot_olt = fields.Integer(string='Numero de Slots', default=1)
     num_ports1 = fields.Selection([
         ('1', '1 Puerto'),
@@ -168,12 +166,20 @@ class SilverOlt(models.Model):
 #    ip_address_pool_tr69_ids = fields.One2many('silver.ip.address.pool', 'olt_id', string='Direcciones IP', domain=[('is_tr_069', '=', True)])
 #    ip_address_tr69_ids = fields.One2many('silver.ip.address', 'olt_id', string='Direcciones IP', domain=[('is_tr_069', '=', True)])
     #state = fields.Selection([('down', 'Down'), ('active', 'Active')], string='Estado', default='down')
-    state = fields.Selection([('down', 'Down'), ('active', 'Active'), ('connected', 'Connected'),
-                      ('connecting', 'Connecting'),
-                      ('disconnected', 'Disconnected'),
-                      ('error', 'Error')],
-                             related='netdev_id.state',
-                             string='Estado', default='down')
+    state = fields.Selection([('down', 'Down'), ('active', 'Active'), ('pending', 'Probar'),
+],
+
+                             string='Estado', default='pending')
+
+
+    ip = fields.Char(string='IP de Conexion')
+    port = fields.Integer(string='Puerto de Conexion')
+    username = fields.Char(string='Usuario')
+    password = fields.Char(string='Password')
+    type_connection = fields.Selection([("ssh","SSH"), ("telnet", "Telnet")], string='Tipo de Conexión')
+    port_telnet = fields.Char(string='Puerto telnet', default=23)
+    port_ssh = fields.Char(string='Puerto ssh', default=22)
+
     olt_card_count = fields.Integer(string='Conteo Slot OLT', compute='_compute_olt_card_count')
     #contracts_olt_count = fields.Integer(string='Conteo Olts', compute='_compute_contracts_olt_count')
     ip_range_count = fields.Integer(string='IP Ranges', compute='_compute_ip_range_count')
@@ -197,30 +203,6 @@ class SilverOlt(models.Model):
 
     ip_address_pool_ids = fields.One2many('silver.ip.address.pool', 'olt_id', string='Pools de direcciones IP')
     ip_address_ids = fields.One2many('silver.ip.address', related='ip_address_pool_ids.address_ids', string='Direcciones IP')
-
-
-    asset_type = fields.Selection(
-        related='asset_id.asset_type',
-        default='olt',
-        store=True,
-        readonly=False
-    )
-
-    netdev_type = fields.Selection(
-        related='netdev_id.netdev_type',
-        default='olt',
-        store=True,
-        readonly=False
-    )
-
-
-    #type_access_net = fields.Selection(
-       
-    #    [('inactive', 'Inactivo'), ('dhcp', 'DHCP Leases'), ('manual', 'IP Asignada manualmente'),
-    #     ('system', 'IP Asignada por el sistema')],
-    #      related='netdev_id.type_access_net',
-    #     default='inactive', string='Tipo Acceso', required=True)
-
 
 
     @api.constrains('ip')
@@ -262,13 +244,13 @@ class SilverOlt(models.Model):
     @api.model
     def create(self, vals):
         print(("createee", vals))
-        if vals.get('core_id'):
-            core = self.env['silver.core'].browse(vals['core_id'])
-            print(("createee0", core, core.name, core.asset_id, core.asset_id.name))
-            if core.exists() and core.name and  not vals.get("name"):
-                olt_count = self.search_count([('core_id', '=', core.id)])
-                vals['name'] = f"{core.name}/OLT{olt_count + 1}"
-                print(("createe2e", vals))
+       # if vals.get('core_id'):
+       #     core = self.env['silver.core'].browse(vals['core_id'])
+          #  print(("createee0", core, core.name, core.asset_id, core.asset_id.name))
+       #     if core.exists() and core.name and  not vals.get("name"):
+       #         olt_count = self.search_count([('core_id', '=', core.id)])
+       #         vals['name'] = f"{core.name}/OLT{olt_count + 1}"
+       #         print(("createe2e", vals))
         print(("createee3", vals))
         return super(SilverOlt, self).create(vals)
 
@@ -276,15 +258,15 @@ class SilverOlt(models.Model):
     def write(self, vals):
         print(("apwrite", vals))
 
-        for i, record in enumerate(self):
-            if vals.get('coreid'):
-                core = self.env['silver.core'].browse(vals['core_id'])
-            else:
-                core = record.core_id
+        #for i, record in enumerate(self):
+        #    if vals.get('coreid'):
+        #        core = self.env['silver.core'].browse(vals['core_id'])
+        #    else:
+        #        core = record.core_id
 
-            if core.exists() and core.name:
-                olt_count = self.search_count([('core_id', '=', core.id)])
-                record.asset_id.name = f"{core.name}/OLT{olt_count + 1}"
+        #    if core.exists() and core.name:
+        #        olt_count = self.search_count([('core_id', '=', core.id)])
+        #        vals['name'] = f"{core.name}/OLT{olt_count + 1}"
 
 
             # If node_id is set to False, the name is not changed.
@@ -398,22 +380,51 @@ class SilverOlt(models.Model):
         }, reload_action]
 
 
-    @api.depends('node_id')
+    def _get_olt_connection(self):
+        self.ensure_one()
+        return OLTConnection(
+            host=self.ip,
+            port=(self.port_ssh if self.type_connection=='ssh'  else self.port_telnet),
+            username=self.username,
+            password=self.password,
+            connection_type=self.type_connection,
+        )
+
+    @api.onchange('node_id')
+    def changenode(self):
+        self.core_id = None
+
+   # @api.onchange('node_id')
+    @api.onchange('core_id')
     def _compute_hostname(self):
         print(('h1', self))
-        for olt in self:
-            print(("h2", olt))
-            if olt.node_id:
-                # Contamos los OLTs existentes para este nodo
-                # Esto es la clave para el incremental por nodo
-                olt_count = self.env['silver.olt'].search_count([('node_id', '=', olt.node_id.id)])
 
-                # Construimos el código.
-                # Si el campo 'code' del nodo es 'u', y ya tiene 2 OLTs, el nuevo será 'u/2'
-                olt.name = f"{olt.node_id.code}/OLT{olt_count}"
-                print(("h3", olt.name))
-            else:
-                olt.name = False
+        olt = self
+
+        if not olt.core_id:
+            olt.name = ''
+            return
+
+        olts = self.env['silver.olt'].search([('core_id', '=', olt.core_id.id)])
+        i = 1
+        for o in olts:
+            if o.name:
+                patron = r'(\d+)$'
+                match = re.search(patron, o.name)
+                print(("re", match, i, o))
+                if not match: continue
+                if (olt.id == o.id): continue
+                on = int(match.group(1))
+                print(("on", on, o.id, olt.id, o.id==olt.id, olt.id==o.id))
+                if on >= i: i = on+1
+
+
+        name = f"{olt.core_id.name}/OLT{i}"
+
+        # Construimos el código.
+        # Si el campo 'code' del nodo es 'u', y ya tiene 2 OLTs, el nuevo será 'u/2'
+        olt.name = name
+        print(("h3", olt.name))
 
     def _compute_olt_card_count(self):
         for record in self:
@@ -440,9 +451,7 @@ class SilverOlt(models.Model):
 
     def action_connect_olt(self):
         self.ensure_one()
-        netdev = self.netdev_id
-        if not netdev:
-            raise UserError("No network device configured for this OLT.")
+
         reload_action = {
             'type': 'ir.actions.client',
             'tag': 'reload',
@@ -452,7 +461,7 @@ class SilverOlt(models.Model):
         ohostname = self.hostname_olt
 
         try:
-            with netdev._get_olt_connection() as conn:
+            with self._get_olt_connection() as conn:
                 # GEMINI: La conexión real y el login ocurren dentro del __enter__ de OLTConnection.
                 # Si el 'with' se ejecuta sin errores, la conexión fue exitosa.
                 # Ahora podemos obtener el hostname capturado.
@@ -484,14 +493,15 @@ class SilverOlt(models.Model):
                 }
             },  reload_action]
         except (ConnectionError, UserError) as e:
-            print(("noe",e))
+            print(("noe",e, ostate))
             # GEMINI: Actualizar el estado a 'error' en caso de fallo.
             #with self.env.registry.cursor() as cr:
             #    self.netdev_id.write({'state': 'down'})
             #    cr.commit()
-            self.state = 'down'
             if (ostate != 'down'):
+                self.state = 'down'
                 return True
+            print(("noo"))
             return [{
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
@@ -585,13 +595,11 @@ class SilverOlt(models.Model):
             "write",
         ]
 
-        netdev = self.netdev_id
-        if not netdev:
-            raise UserError("No hay dispositivo de red configurado para esta OLT.")
+
 
         output_log = ""
         try:
-            with netdev._get_olt_connection() as conn:
+            with self._get_olt_connection() as conn:
                 for command in commands:
                     success, response, output = conn.execute_command(command)
                     output_log += f"$ {command}\n{output}\n"
@@ -632,13 +640,10 @@ class SilverOlt(models.Model):
             "write",
         ]
 
-        netdev = self.netdev_id
-        if not netdev:
-            raise UserError("No hay dispositivo de red configurado para esta OLT.")
 
         output_log = ""
         try:
-            with netdev._get_olt_connection() as conn:
+            with self._get_olt_connection() as conn:
                 for command in commands:
                     success, response, output = conn.execute_command(command)
                     output_log += f"$ {command}\n{output}\n"

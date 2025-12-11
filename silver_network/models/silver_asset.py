@@ -33,17 +33,7 @@ class SilverAsset(models.Model):
     zone_id = fields.Many2one('silver.zone', string='Zona', related='silver_address_id.zone_id')
 
 
-    #parent_id = fields.Many2one('silver.asset', string='Parent')
-    #root_id = fields.Many2one('silver.asset', string='Root')
 
-    #street = fields.Char(string='Calle')
-    #street2 = fields.Char(string='Calle 2')
-    #zip = fields.Char(string='Codigo Postal')
-    #state_id = fields.Many2one('res.country.state', string='Estado')
-    #country_id = fields.Many2one('res.country', string='País', default=lambda self: self._get_default_country())
-    #place = fields.Char(string='Edificio/Zona')
-    gps_lat = fields.Float(string="Latitud", digits=(16, 7), readonly=False)
-    gps_lon = fields.Float(string="Longitud", digits=(16, 7), readonly=False)
 
     latitude = fields.Float(
         string="Latitud Final",

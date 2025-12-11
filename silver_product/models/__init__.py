@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from . import product_template
 from . import product_brand
-from . import silver_netdev
 from . import silver_core
 from . import silver_olt
 #from . import silver_olt_card_port

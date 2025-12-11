@@ -7,9 +7,6 @@ class SilverSplitter(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
 
-    _inherits = {'silver.asset': 'asset_id'}
-
-    asset_id = fields.Many2one('silver.asset', required=True, ondelete="cascade")
 
     name = fields.Char(string='Nombre', readonly=True, copy=False, default='New')
     capacity_splitter = fields.Selection([("1:1","1:1"), ("1:2","1:2"), ("1:4","1:4"), ("1:8", "1:8"), ("1:16","1:16")], string='Capacidad')
@@ -19,20 +16,13 @@ class SilverSplitter(models.Model):
     olt_card_port_id = fields.Many2one('silver.olt.card.port', string='Puerto Tarjeta OLT', required=True, ondelete='cascade')
 
 
-    silver_address_id = fields.Many2one('silver.address', string='Dirección', related="asset_id.silver_address_id")
+    silver_address_id = fields.Many2one('silver.address', string='Dirección')
 
 
     box_count = fields.Integer(string='Conteo Cajas', compute='_compute_box_count')
 #    contracts_count = fields.Integer(string='Conteo Cajas', compute='_compute_contracts_count')
 
 
-
-    asset_type = fields.Selection(
-        related='asset_id.asset_type',
-        default='splitter',
-        store=True,
-        readonly=False
-    )
 
     @api.model
     def create(self, vals):

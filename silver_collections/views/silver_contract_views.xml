@@ -4,7 +4,7 @@
         <field name="name">silver.contract.form.collections</field>
         <field name="model">silver.contract</field>
         <!-- Reemplaza 'silver_contract.view_silver_contract_form' con el ID de tu vista -->
-        <field name="inherit_id" ref="silver_contract.view_silver_contract_form"/>
+        <field name="inherit_id" ref="silver_contract.silver_contract_view_form"/>
         <field name="arch" type="xml">
             <header>
                 <button name="action_initiate_payment"

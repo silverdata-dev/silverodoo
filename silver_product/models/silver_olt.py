@@ -5,13 +5,16 @@ from odoo.exceptions import UserError
 class SilverOlt(models.Model):
     _inherit = 'silver.olt'
 
+    product_id = fields.Many2one('product.product', string='Producto')
+
     stock_lot_id = fields.Many2one(
         'stock.lot',
         string='Equipo (Serie/Lote)',
-        related='netdev_id.stock_lot_id',
-        readonly=False,
-        store=True,
+        domain="[('product_id', '=', product_id)]",
     )
+
+#    brand_name = fields.Char('Nombre Marca')
+
    # brand_name = fields.Char(string='Marca', related='stock_lot_id.brand_name', readonly=True, store=True)
    # model_name = fields.Char(string='Modelo', related='stock_lot_id.model_name', readonly=True, store=True)
     brand_id = fields.Many2one('product.brand', string="Marca", related='stock_lot_id.brand_id', readonly=True, store=True)
@@ -71,7 +74,7 @@ class SilverOlt(models.Model):
 
         try:
 
-            with self.netdev_id._get_olt_connection() as conn:
+            with self._get_olt_connection() as conn:
 
                 output_log= self.check_and_create_onu_profile(conn, profile, "")
 
@@ -99,12 +102,12 @@ class SilverOlt(models.Model):
     def execute_olt_commands(self,  commands):
         """Helper function to connect to an OLT and execute a list of commands."""
         for olt in self:
-            print(("olt", olt, olt.netdev_id))
+            print(("olt", olt, ))
           #  self.ensure_one()
             output_log = ""
             try:
 
-                with olt.netdev_id._get_olt_connection() as conn:
+                with olt._get_olt_connection() as conn:
                     for command in commands:
                         success, response, output = conn.execute_command(command)
                         output_log += f"$ {command}\n{output}\n"

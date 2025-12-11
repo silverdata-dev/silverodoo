@@ -7,24 +7,13 @@ class SilverPost(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
 
-    _inherits = {'silver.asset': 'asset_id'}
 
-    asset_id = fields.Many2one('silver.asset', required=True, ondelete="cascade")
-
-    name = fields.Char(string='Nombre', related='asset_id.name', readonly=False, copy=False)
+    name = fields.Char(string='Nombre', )
     port_post = fields.Char(string='Puerto Post Primario')
     type_post = fields.Selection([('P', 'Poste')], string='Tipo', required=False, default="P")
+    zone_id = fields.Many2one('silver.zone', string="Zona", )
+    silver_address_id = fields.Many2one('silver.address', string='Dirección')
 
-    latitude = fields.Float(string="Latitud", digits=(16, 7), related='asset_id.latitude', readonly=False, required=True)
-    longitude = fields.Float(string="Longitud", digits=(16, 7), related='asset_id.longitude', readonly=False, required=True)
-
-
-    asset_type = fields.Selection(
-        related='asset_id.asset_type',
-        default='post',
-        store=True,
-        readonly=False
-    )
 
     @api.model
     def create(self, vals):

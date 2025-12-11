@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_silver_asset,access.silver.asset,model_silver_asset,base.group_user,1,1,1,1
+
 access_silver_node,access.silver.node,model_silver_node,base.group_user,1,1,1,1
 access_silver_core,access.silver.core,model_silver_core,base.group_user,1,1,1,1
 
@@ -47,7 +47,6 @@ access_silver_netdev_queue_wizard,access.silver.netdev.queue.wizard,model_silver
 access_silver_netdev_queue_wizard_line,access.silver.netdev.queue.wizard.line,model_silver_netdev_queue_wizard_line,base.group_user,1,1,1,1
 access_silver_splice_closure,silver.splice.closure,model_silver_splice_closure,base.group_user,1,1,1,1
 access_silver_cable,silver.cable,model_silver_cable,base.group_user,1,1,1,1
-access_silver_netdev,access.silver.netdev,model_silver_netdev,base.group_user,1,1,1,1
 access_silver_radius_table,access.silver.radius.table,model_silver_radius_table,base.group_user,1,1,1,1
 access_silver_radius_column,access.silver.radius.column,model_silver_radius_column,base.group_user,1,1,1,1
 access_silver_radius_attributes,access.silver.radius.attributes,model_silver_radius_attributes,base.group_user,1,1,1,1

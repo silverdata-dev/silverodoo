@@ -14,7 +14,10 @@
                 </xpath-->
                 <xpath expr="//group[@name='olt']/group[1]" position="inside">
                     <separator string="Equipo"/>
-                    <field name="stock_lot_id" context="{'default_etype':'olt'}" domain="[('etype','=','olt')]" options="{'no_create_edit': False, 'no_quick_create': True}"/>
+                     <field name="product_id"  context="{'default_etype':'olt'}"  domain="[('etype','=','olt')]"/>
+                    <field name="stock_lot_id"
+                           context="{'default_etype':'olt','default_product_id':product_id}"
+                           domain="[('product_id','=',product_id)]"  options="{'no_create_edit': False, 'no_quick_create': True}"/>
 
                                         <label for="brand_id" />
                     <div class="o_row d-flex align-items-center">

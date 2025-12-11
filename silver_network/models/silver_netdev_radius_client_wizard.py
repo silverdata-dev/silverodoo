@@ -8,14 +8,14 @@ class SilverNetdevRadiusClientWizard(models.TransientModel):
     _name = 'silver.netdev.radius.client.wizard'
     _description = 'Manage MikroTik Radius Client Configuration'
 
-    netdev_id = fields.Many2one('silver.netdev', string='Network Device', required=True)
+    netdev_id = fields.Many2one('silver.core', string='Network Device', required=True)
     radius_client_ip = fields.Char(string='Radius Server IP', required=True)
     radius_client_secret = fields.Char(string='Radius Shared Secret', required=True)
     radius_client_services = fields.Many2many('silver.radius.service', string='Radius Services', default=lambda self: self.env['silver.radius.service'].search([('name', 'in', ['ppp', 'hotspot'])]))
 
     def action_add_update_radius_client(self):
         self.ensure_one()
-        netdev = self#.netdev_id
+        netdev = self.netdev_id
         if not netdev:
             raise UserError(_("Network Device not linked."))
 
@@ -64,7 +64,7 @@ class SilverNetdevRadiusClientWizard(models.TransientModel):
 
     def action_remove_radius_client(self):
         self.ensure_one()
-        netdev = self#.netdev_id
+        netdev = self.netdev_id
         if not netdev:
             raise UserError(_("Network Device not linked."))
 
@@ -98,7 +98,7 @@ class SilverNetdevRadiusClientWizard(models.TransientModel):
 
     def action_view_radius_clients(self):
         self.ensure_one()
-        netdev = self#.netdev_id
+        netdev = self.netdev_id
         if not netdev:
             raise UserError(_("Network Device not linked."))
 

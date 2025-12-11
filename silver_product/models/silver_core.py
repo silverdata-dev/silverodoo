@@ -3,12 +3,12 @@ from odoo import models, fields
 class SilverCore(models.Model):
     _inherit = 'silver.core'
 
+    product_id = fields.Many2one('product.product', string='Producto')
+
     stock_lot_id = fields.Many2one(
         'stock.lot',
         string='Equipo (Serie/Lote)',
-        related='netdev_id.stock_lot_id',
-        readonly=False,
-        store=True,
+        domain="[('product_id', '=', product_id)]",
     )
 #    brand_name = fields.Char(string='Marca', related='stock_lot_id.brand_name', readonly=True, store=True)
 #    model_name = fields.Char(string='Modelo', related='stock_lot_id.model_name', readonly=True, store=True)

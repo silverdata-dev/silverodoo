@@ -43,7 +43,7 @@ class ProductTemplate(models.Model):
     burst_time_download = fields.Integer(string="Burst Time Download", default='0')
     queue_priority = fields.Integer(string="Prioridad", default='8')
 
-
+    #tracking = fields.Selection(related='product_id.tracking'
     is_custom_traffic_table = fields.Boolean(string="Custom Traffic Table")
     name_custom_traffic_table = fields.Char(string="Name Custom Traffic Table")
     is_custom_address_list = fields.Boolean(string="Custom AddresList")
@@ -73,6 +73,25 @@ class ProductTemplate(models.Model):
     # IPTV Data
     is_iptv = fields.Boolean(string="IPTV")
     code_ott = fields.Char(string="Codigo OTT")
+
+
+
+    @api.model
+    def default_get(self, fields):
+        # 1. Obtener los valores por defecto actuales
+        res = super(ProductTemplate, self).default_get(fields)
+
+        # 2. Reemplazar el valor de 'detailed_type' si está en los campos solicitados
+        if 'detailed_type' in fields:
+            # Puedes poner aquí la lógica condicional que necesites
+            res['detailed_type'] = 'product'
+
+        return res
+
+    @api.onchange("type")
+    def _onchange_type(self):
+        if self.type == 'product' and self.tracking == 'none':
+            self.tracking = 'lot'
 
     def _compute_is_internet(self):
         for a in self:

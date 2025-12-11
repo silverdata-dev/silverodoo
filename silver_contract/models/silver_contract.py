@@ -81,6 +81,11 @@ class SilverContract(models.Model):
     is_extra_value = fields.Boolean(string="¿Ya facturo valores extra?")
     is_extra_value_active = fields.Boolean(string="¿Esta activo facturar valores extra?")
     payment_type_code = fields.Char(related='payment_type_id.code')
+
+    line_id = fields.Many2one('silver.contract.line',compute="computeline", # Si viene de un O2M
+        store=True,
+        readonly=True
+    )
     
     # --- Pestaña: Descuentos/Promociones ---
     discount_plan_id = fields.Many2one('silver.discount.plan', string="Plan de Descuento")
@@ -126,6 +131,10 @@ class SilverContract(models.Model):
     is_portal_user = fields.Boolean(string="Es Usuario del Portal", compute="_compute_is_portal_user")
     dont_send_notification_wp = fields.Boolean(string="No Enviar Notificaciones por WhatsApp")
     links_payment = fields.Char(string="Enlaces de Pago", compute="_compute_links_payment", readonly=True)
+
+    @api.depends('line_ids')
+    def computeline(self):
+        self.line_id = self.line_ids[0] if self.line_ids else None
 
     @api.onchange('partner_id')
     def _onchange_partner_id_silver(self):

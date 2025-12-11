@@ -4,13 +4,19 @@
         <record id="view_silver_contract_form_helpdesk" model="ir.ui.view">
             <field name="name">silver.contract.form.helpdesk</field>
             <field name="model">silver.contract</field>
-            <field name="inherit_id" ref="silver_contract.view_silver_contract_form"/>
+            <field name="inherit_id" ref="silver_contract.silver_contract_view_form"/>
             <field name="arch" type="xml">
-                <div name="button_box" position="inside">
+                <notebook position="inside">
+                    <page string="Tickets">
+                        <field name="ticket_ids"/>
+                    </page>
+                </notebook>
+
+                <!--div name="button_box" position="inside">
                     <button name="action_open_helpdesk_tickets" class="oe_stat_button" type="object" icon="fa-ticket">
                         <field string="Tickets" name="helpdesk_ticket_count" widget="statinfo"/>
                     </button>
-                </div>
+                </div-->
             </field>
         </record>
     </data>

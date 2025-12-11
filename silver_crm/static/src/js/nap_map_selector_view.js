@@ -1,7 +1,8 @@
 /** @odoo-module **/
 
 import { registry } from "@web/core/registry";
-import { AssetMapView } from "@silver_geo/js/map_view"; // Importar la clase base
+import { AssetMapView } from "@silver_geo/js/map_view";
+import { onMounted } from "@odoo/owl";
 
 export class NapMapSelectorView extends AssetMapView {
     static template = "NapMapSelectorView";
@@ -15,6 +16,11 @@ export class NapMapSelectorView extends AssetMapView {
         this.customerLat = context.customer_lat;
         this.customerLon = context.customer_lon;
         this.leadId = context.lead_id;
+
+        onMounted(() => {
+            this._initMap();
+            this._loadAssets();
+        });
     }
 
     // Sobrescribir _loadAssets para usar el nodeId del contexto
@@ -40,7 +46,7 @@ export class NapMapSelectorView extends AssetMapView {
         this._renderFeatures();
     }
 
-    // Sobrescribir _initMap para añadir el marcador del cliente
+    // Sobrescribir _initMap para añadir el marcador del cliente y manejar la selección
     _initMap() {
         super._initMap(); // Ejecutar la inicialización del mapa base
 
@@ -63,17 +69,13 @@ export class NapMapSelectorView extends AssetMapView {
             }));
             this.vectorSource.addFeature(customerMarker);
         }
-    }
 
-    // Sobrescribir el manejador de clics para la selección
-    _initMap() {
-        // ... (código de inicialización del mapa base de la clase padre) ...
-
+        // Configurar el manejador de clics para la selección de cajas NAP
         this.map.on("singleclick", (evt) => {
             const feature = this.map.forEachFeatureAtPixel(evt.pixel, (f) => f);
             if (feature) {
                 const asset = feature.get("asset");
-                if (asset && asset.model === 'nap') { // Solo reaccionar a clics en cajas NAP
+                if (asset && asset.model === 'silver.box') { // Solo reaccionar a clics en cajas NAP
                     const coordinates = feature.getGeometry().getCoordinates();
                     
                     // Crear el contenido del popup con el botón "Seleccionar"

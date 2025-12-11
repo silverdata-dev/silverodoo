@@ -7,9 +7,9 @@
             <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_form"/>
             <field name="arch" type="xml">
                 
-                <button name="assign_to_me" position="after">
+                <!--button name="assign_to_me" position="after">
                     <button name="action_invoice_ticket_service" string="Facturar Servicios" type="object" invisible="is_invoice_service or code_category_id == 'CPr'"/>
-                </button>
+                </button-->
                 
                 <field name="number" position="before">
                     <field name="state_service" invisible="1"/>
@@ -29,6 +29,10 @@
                     <field name="address_ref_contract"/>
                     <field name="phone_contract"/>
                     <field name="code_category_id" invisible="1"/>
+                </xpath>
+
+                                <xpath expr="//field[@name='address_ref_contract']" position="attributes">
+                    <attribute name="invisible">1</attribute>
                 </xpath>
 
                 <page name="description" position="after">

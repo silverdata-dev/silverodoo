@@ -7,4 +7,4 @@ access_silver_contract_select_onu_wizard,access.silver.contract.select.onu.wizar
 access_silver_display_info_wizard,access.silver.display.info.wizard,model_silver_display_info_wizard,base.group_user,1,1,1,1
 access_silver_contract_wan_mode_user,access.silver.contract.wan.mode.user,model_silver_contract_wan_mode,base.group_user,1,1,1,1
 access_silver_contract_traffic_wizard,access.silver.contract.traffic.wizard,model_silver_contract_traffic_wizard,base.group_user,1,1,1,1
-
+access_silver_linktype_user,silver.linktype.user,model_silver_linktype,base.group_user,1,1,1,1

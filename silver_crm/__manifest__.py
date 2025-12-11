@@ -20,6 +20,7 @@
     'assets': {
         'web.assets_backend': [
             'silver_crm/static/src/js/nap_map_selector_view.js',
+            'silver_crm/static/src/xml/nap_map_selector_templates.xml',
         ],
     },
     'installable': True,

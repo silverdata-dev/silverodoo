@@ -16,8 +16,7 @@
                     <field name="name"/>
 
                     <field name="type_post"/>
-                    <field name="gps_lon"/>
-                    <field name="gps_lat"/>
+                    <field name="silver_address_id"/>
                 </tree>
             </field>
         </record>
@@ -38,8 +37,8 @@
                             <group>
                                 <field name="zone_id"/>
                                 <field name="type_post"/>
-                                <field name="gps_lon"/>
-                                <field name="gps_lat"/>
+                                <field name="silver_address_id"/>
+
                             </group>
                         </group>
                     </sheet>

@@ -8,6 +8,7 @@ class SilverContractLine(models.Model):
 
     product_id = fields.Many2one('product.product', string='Producto/Servicio', required=True)
 
+    linktype_id = fields.Many2one('silver.linktype', string="Tipo de Conexión",)
 
 
     @api.onchange('product_id')
@@ -17,3 +18,13 @@ class SilverContractLine(models.Model):
             self.price_unit = self.product_id.list_price
 
 
+    @api.model
+    def default_get(self, fields):
+        # 1. Llamar al método base para obtener los defaults estándar
+        res = super(SilverContractLine, self).default_get(fields)
+
+
+
+        print(("defline", self.env.context, res, fields))
+
+        return res

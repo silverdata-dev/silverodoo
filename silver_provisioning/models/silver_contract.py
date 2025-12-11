@@ -30,12 +30,6 @@ def haversine(lat1, lon1, lat2, lon2):
 class IspContract(models.Model):
     _inherit = 'silver.contract'
 
-
-    _inherits = {
-                 'silver.netdev':'netdev_id'}
-
-    netdev_id = fields.Many2one('silver.netdev', required=True, ondelete="cascade")
-
    # @api.constrains('ip_address_id')
     def _check_conditional_logic(self):
         for record in self:
@@ -52,11 +46,11 @@ class IspContract(models.Model):
         ('ip_address_id_unique',
          'UNIQUE (ip_address_id)',
          'Esta ip está siendo utilizada.'),
-            (
-            "pononu_unique",
-            "unique (onupon)",
-            "ONU ocupada",
-        )
+         #   (
+         #   "pononu_unique",
+         #   "unique (onupon)",
+         #   "ONU ocupada",
+        #)
     ]
 
 
@@ -70,10 +64,11 @@ class IspContract(models.Model):
     active = fields.Boolean(default=True)
 
     # --- Pestaña: Servicio Internet ---
-    link_type = fields.Selection([
-        ('fiber', 'Fibra Óptica'), ('wifi', 'Inalámbrico'),
-        ('lan', 'LAN'), ('fttb', 'FTTB'),
-    ], string="Tipo de Conexión", default='fiber', required=True)
+    linktype_id = fields.Many2one('silver.linktype', string="Tipo de Conexión",
+                                  default=lambda self: self._get_default_linktype_id())
+
+    has_olt = fields.Boolean('tiene olt', related='linktype_id.has_olt')
+
     node_id = fields.Many2one('silver.node', string="Nodo")
     core_id = fields.Many2one('silver.core', string="Core Router")
     ap_id = fields.Many2one('silver.ap', string="Access Point")
@@ -83,7 +78,7 @@ class IspContract(models.Model):
     onu_pon_id = fields.Integer(string="ID de ONU en PON")
     box_id = fields.Many2one('silver.box', string="Caja NAP")
     #port_nap = fields.Char(string="Puerto en CTO")
-    onu_id = fields.Many2one('silver.netdev', string="ONU/CPE")
+    #onu_id = fields.Many2one('silver.netdev', string="ONU/CPE")
 #    serial_onu = fields.Char(string="Serial ONU", related="serial_number")
 #    model_onu = fields.Char(string="Modelo ONU", related="serial_number"))
     is_bridge = fields.Boolean(string="ONU en modo Bridge")
@@ -115,7 +110,7 @@ class IspContract(models.Model):
     consumption_ids = fields.One2many('silver.contract.consumption', 'contract_id', string="Registros de Consumo")
     radius_entry_ids = fields.One2many('silver.contract.radius.entry', 'contract_id', string="Entradas de RADIUS")
     olt_state = fields.Selection([('down', 'Down'), ('active', 'Activo'),
-                                  ('pending', 'Prueba'),],
+                                  ('pending', 'Comprobar'),],
                              string='Estado OLT', default='pending')
     radius_state = fields.Selection([('down', 'Down'), ('active', 'Activo'),
                               ('disconnected', 'Disconnected')],
@@ -124,10 +119,26 @@ class IspContract(models.Model):
                               ('disconnected', 'Disconnected')],
                              string='Estado Core', default='down')
 
-    wan_state = fields.Selection([('connected', 'Conectado'), ('disconnected', 'Desconectado'), ('none', '')], string="Estado WAN", default='none')
+    wan_state = fields.Selection([('connected', 'Conectado'), ('disconnected', 'Desconectado'), ('none', 'Comprobar')], string="Estado WAN", default='none')
 
     changed_onu = fields.Boolean(string="ONU Cambiada", default=False)
     old_onu_pon_id = fields.Integer(string="ONU id vieja", default=0)
+
+    contract_status_widget = fields.Boolean(string="Status Widget", default=False)
+
+    old_discovered = fields.Boolean(string='Old discovered', related='olt_id.old_discovered', store=False)
+
+    def action_check_olt_state_for_js(self):
+        self.ensure_one()
+        try:
+            self.action_check_olt_state()
+        except UserError:
+            # Absorb user errors, as we can't show them from a background poll
+            pass
+        return {
+            'olt_state': self.olt_state,
+            'wan_state': self.wan_state,
+        }
 
     discovered_onu_id = fields.Many2one(
         'silver.olt.discovered.onu',
@@ -136,6 +147,11 @@ class IspContract(models.Model):
     )
 
     temp_onu_serial_display = fields.Char(string="Serial ONU Seleccionado", readonly=True)
+
+
+    def _get_default_linktype_id(self):
+        return self.env['silver.linktype'].search([('code', '=', 'fiber')], limit=1)
+
 
     @api.onchange('ip_address_id')
     def _onchange_ip_address_id(self):
@@ -349,9 +365,6 @@ class IspContract(models.Model):
     stock_lot_id = fields.Many2one(
         'stock.lot',
         string='Equipo (Serie/Lote)',
-        related='netdev_id.stock_lot_id',
-        readonly=False,
-        store=False,
     )
     #brand_name = fields.Char(string='Marca ONU', related='stock_lot_id.brand_name', readonly=True, store=False)
     #model_name = fields.Char(string='Modelo ONU', related='stock_lot_id.model_name', readonly=True, store=False)
@@ -359,7 +372,7 @@ class IspContract(models.Model):
     brand_logo = fields.Binary(related='brand_id.logo', string='Logo de la Marca', readonly=True, store=False)
     hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo', related='stock_lot_id.hardware_model_id', readonly=True, store=False)
 
-    profile_id = fields.Many2one('silver.onu.profile', string='Perfil ONU', related='stock_lot_id.hardware_model_id.onu_profile_id', readonly=True, store=False)
+    profile_id = fields.Many2one('silver.onu.profile', string='Perfil ONU', related='stock_lot_id.hardware_model_id.onu_profile_id', readonly=False, store=True)
     software_version = fields.Char(string='Versión de Software ONU', related='stock_lot_id.software_version', readonly=True, store=False)
 
     firmware_version = fields.Char(string='Firmware Version ONU', related='stock_lot_id.firmware_version', readonly=True, store=False)
@@ -371,6 +384,10 @@ class IspContract(models.Model):
     # --- Campos de Estado de Aprovisionamiento ---
     wan_config_successful = fields.Boolean(string="Configuración WAN Exitosa", default=False, readonly=True, copy=False)
     wifi_config_successful = fields.Boolean(string="Configuración WiFi Exitosa", default=False, readonly=True, copy=False)
+
+    @api.onchange('profile_id')
+    def onchange_profile_id(self):
+        self.hardware_model_id.onu_profile_id = self.profile_id
 
     def action_add_radius_access(self):
         def tom(p):
@@ -384,10 +401,13 @@ class IspContract(models.Model):
         incluyendo la IP asignada y el perfil de velocidad detallado.
         """
         self.ensure_one()
-        
+
         if not self.core_id:
             raise UserError(_("No tiene un core configurado."))
-        
+
+        if ((not self.has_olt) and (not self.ap_id)):
+            raise UserError(_("No tiene un equipo AP configurado"))
+
         radius_id = self.core_id.radius_id or self.core_id
         if not radius_id:
             raise UserError(_("Este contrato no tiene un servidor RADIUS asociado."))
@@ -421,9 +441,15 @@ class IspContract(models.Model):
         )
 
         if result.get('success'):
+            cambio = self.radius_state != 'active'
+            if (not self.has_olt):
+                if (self.state_service != 'active'): cambio = True
+                self.state_service = 'active'
+
             if self.radius_state != 'active':
                 self.radius_state = 'active'
                 # No retornar notificación si solo fue un cambio de estado para no ser muy verboso
+            if cambio:
                 return True
             
             return {
@@ -482,11 +508,14 @@ class IspContract(models.Model):
             raise UserError(_("Debe seleccionar un Core Router antes de aprovisionar el servicio."))
         #self.name = self.env['ir.sequence'].next_by_code('silver.contract.sequence')
 
-        if self.link_type == 'fiber' and self.olt_id:
-            try:
-                self.olt_id.terminate_onu(self)
-            except:
-                pass
+
+        self.old_onu_pon_id = None
+
+        if self.linktype_id.has_olt and self.olt_id:
+            #try:
+            #    self.olt_id.terminate_onu(self)
+            #except:
+            #    pass
             # 1. Ejecutar el aprovisionamiento base. Este paso es crítico.
             self.olt_id.provision_onu_base(self)
             
@@ -525,7 +554,7 @@ class IspContract(models.Model):
     def action_provision_wan(self):
         """Acción para ejecutar la configuración WAN avanzada."""
         self.ensure_one()
-        if self.link_type == 'fiber' and self.olt_id:
+        if self.linktype_id.has_olt and self.olt_id:
             self.olt_id.provision_onu_wan(self)
             ya = self.wan_config_successful
             self.write({'wan_config_successful': True})
@@ -548,7 +577,7 @@ class IspContract(models.Model):
     def action_provision_wifi(self):
         """Acción para ejecutar la configuración WiFi."""
         self.ensure_one()
-        if self.link_type == 'fiber' and self.olt_id:
+        if self.linktype_id.has_olt and self.olt_id:
             r = self.olt_id.provision_onu_wifi(self)
             print((" wifi", r))
             ya = self.wifi_config_successful
@@ -617,7 +646,7 @@ class IspContract(models.Model):
         
         # Proceder solo si se ha modificado al menos un campo relevante
         if any(field in vals for field in updatable_fields):
-            for contract in self.filtered(lambda c: c.state_service == 'active' and c.link_type == 'fiber' and c.olt_id and c.olt_port_id and c.onu_pon_id):
+            for contract in self.filtered(lambda c: c.state_service == 'active' and c.linktype_id.has_olt and c.olt_id and c.olt_port_id and c.onu_pon_id):
                 
                 olt = contract.olt_id
                 commands = []
@@ -670,21 +699,10 @@ class IspContract(models.Model):
                     if olt.is_write_olt:
                         full_sequence.append("write")
 
-                    netdev = olt.netdev_id
-                    if not netdev:
-                        return {
-                            'type': 'ir.actions.client',
-                            'tag': 'display_notification',
-                            'params': {
-                                'title': _('Advertencia'),
-                                'message': f"La OLT {olt.name} no tiene un dispositivo de red configurado.",
-                                'type': 'warning',
-                            }
-                        }
-                        continue
+
 
                     try:
-                        with netdev._get_olt_connection() as conn:
+                        with olt._get_olt_connection() as conn:
                             for command in full_sequence:
                                 success, response, output = conn.execute_command(command)
                                 if not success:
@@ -712,7 +730,7 @@ class IspContract(models.Model):
 
     def action_activate_service(self):
         self.ensure_one()
-        if self.link_type == 'fiber' and self.olt_id:
+        if self.linktype_id.has_olt and self.olt_id:
             # Llamada directa al método de aprovisionamiento de la OLT
             self.olt_id.action_provision_onu(self)
             
@@ -737,7 +755,7 @@ class IspContract(models.Model):
 
     def action_cutoff_service(self):
         self.ensure_one()
-        if self.link_type == 'fiber' and self.olt_id:
+        if self.linktype_id.has_olt and self.olt_id:
             self.olt_id.disable_onu(self)
             self.write({
                 'state_service': 'suspended',
@@ -751,16 +769,16 @@ class IspContract(models.Model):
         if not self.core_id:
             raise UserError(_("Debe seleccionar un Core Router antes de aprovisionar el servicio."))
 
-        if self.link_type == 'fiber' and self.olt_id:
+        if self.linktype_id.has_olt and self.olt_id:
             print(("aa", self.state_service, self.changed_onu))
             if (self.state_service != 'suspended' ) or (self.changed_onu) :
                 self.changed_onu = False
                 print(("bb", self.state_service, self.old_onu_pon_id))
                 #if (self.old_onu_pon_id and (self.old_onu_pon_id != self.onu_pon_id)):
-                try:
-                    self.olt_id.terminate_onu(self)
-                except:
-                    pass
+               # try:
+               #     self.olt_id.terminate_onu(self)
+               # except:
+               #     pass
                 self.olt_id.provision_onu_base(self)
             else:
                 self.olt_id.enable_onu(self)
@@ -786,7 +804,7 @@ class IspContract(models.Model):
         if self.ip_address_id:
             self.ip_address_id.write({"contract_id":  None} )
 
-        if self.link_type == 'fiber' and self.olt_id:
+        if self.linktype_id.has_olt and self.olt_id:
             self.olt_id.disable_onu(self)
         self.write({
             'wifi_config_successful': False,
@@ -827,7 +845,7 @@ class IspContract(models.Model):
                     api.close()
 
             # --- Lógica de Suspensión para OLT (Fibra Óptica) ---
-            elif contract.link_type == 'fiber':
+            elif contract.linktype_id.has_olt:
                 # LÓGICA OLT: Algunas OLTs permiten cambiar el perfil de servicio de la ONU a uno de "corte" o "suspensión".
                 # Ejemplo conceptual: service-port <vlan> ... inbound <perfil_suspendido> outbound <perfil_suspendido>
                 pass
@@ -868,8 +886,9 @@ class IspContract(models.Model):
             #            api.close()
 
             # --- Lógica de Terminación para OLT (Fibra Óptica) ---
-            if contract.link_type == 'fiber':
-                self.olt_id.terminate_onu(self)
+            pon_port = f"{self.olt_card_id.num_card or self.olt_port_id.olt_card_id.num_card}/{self.olt_port_id.num_port}"
+            if contract.linktype_id.has_olt:
+                self.olt_id.terminate_onu(self, pon_port)
 
 
             contract.write({
@@ -929,14 +948,14 @@ class IspContract(models.Model):
 
     def action_contract_reset_onu(self):
         self.ensure_one()
-        if self.link_type == 'fiber' and self.olt_id:
+        if self.linktype_id.has_olt and self.olt_id:
             self.olt_id.reset_onu(self)
             return True
         raise UserError("Función no implementada para este tipo de conexión.")
 
     def action_contract_reboot_onu(self):
         self.ensure_one()
-        if self.link_type == 'fiber' and self.olt_id:
+        if self.linktype_id.has_olt and self.olt_id:
             self.olt_id.reboot_onu(self)
             return True
         raise UserError("Función no implementada para este tipo de conexión.")
@@ -965,11 +984,11 @@ class IspContract(models.Model):
         api = None
         #if 1:
         try:
-            netdev = self.core_id#.netdev_id
-            if not netdev:
+            core = self.core_id
+            if not core:
                 raise UserError(_("El Core Router no tiene un dispositivo de red configurado para la conexión."))
             
-            api, e = netdev._get_api_connection()
+            api, e = core._get_api_connection()
             if not api:
                 raise UserError(_("Could not connect to the MikroTik router: %s")%e)
 
@@ -1013,7 +1032,7 @@ class IspContract(models.Model):
                     'res_id': wizard.id,
                     'target': 'new',
                     'context': {
-                        'default_netdev_id': self.core_id.netdev_id.id,
+                        'default_netdev_id': self.core_id.id,
                     }
                 }
 
@@ -1101,9 +1120,9 @@ class IspContract(models.Model):
         except Exception as e:
             print(("error en pon", card_index, port_index))
 
-        if self.link_type=='wifi':
+        if self.linktype_id.has_olt:
             self.changed_onu = True
-            self.vlan_id = self.env['silver.vlan'].search([(self.olt_id, 'in', 'olt_ids')], limit=1)
+            self.vlan_id = self.env['silver.vlan'].search([( 'olt_ids', 'in',self.olt_id.id)], limit=1)
 
 
         # Asignación de IP
@@ -1203,8 +1222,8 @@ class IspContract(models.Model):
             closest_node = None
             min_dist_node = float('inf')
             for node in nodes:
-                if node.asset_id.latitude and node.asset_id.longitude:
-                    dist = haversine(lat, lon, node.asset_id.latitude, node.asset_id.longitude)
+                if node.silver_address_id.latitude and node.silver_address_id.longitude:
+                    dist = haversine(lat, lon, node.silver_address_id.latitude, node.silver_address_id.longitude)
                     if dist < min_dist_node:
                         min_dist_node = dist
                         closest_node = node
@@ -1215,8 +1234,8 @@ class IspContract(models.Model):
             closest_box = None
             min_dist_box = float('inf')
             for box in boxes:
-                if box.asset_id.latitude and box.asset_id.longitude:
-                    dist = haversine(lat, lon, box.asset_id.latitude, box.asset_id.longitude)
+                if box.silver_address_id.latitude and box.silver_address_id.longitude:
+                    dist = haversine(lat, lon, box.silver_address_id.latitude, box.silver_address_id.longitude)
                     if dist < min_dist_box:
                         min_dist_box = dist
                         closest_box = box
@@ -1254,8 +1273,8 @@ class IspContract(models.Model):
             'tag': 'reload',
         }
         ostate = self.olt_state
-        netdev = self.olt_id.netdev_id
-        if not netdev:
+        olt = self.olt_id
+        if not olt:
             self.olt_state = 'down'
             raise UserError(_("La OLT no tiene un dispositivo de red configurado."))
 
@@ -1273,7 +1292,7 @@ class IspContract(models.Model):
         #if 1:
             old1 = self.olt_state
             old2 = self.wan_state
-            with netdev._get_olt_connection() as conn:
+            with olt._get_olt_connection() as conn:
                 full_output = ""
                 for command in commands:
                     success, response, output = conn.execute_command(command)
@@ -1418,17 +1437,13 @@ class IspContract(models.Model):
         if not self.pppoe_user:
             raise UserError(_("No hay un usuario PPPoE definido en el contrato."))
 
-        netdev = radius_server#.netdev_id
-        if not netdev:
-            raise UserError(_("El servidor RADIUS no tiene un dispositivo de red (netdev) configurado para la conexión."))
-
         user_info_html = "<h3>Usuario no encontrado</h3>"
         session_info_html = "<h3>No hay sesiones activas</h3>"
         api = None
 
         try:
        # if 1:
-            api,e = netdev._get_api_connection()
+            api,e = radius_server._get_api_connection()
             if not api:
                 raise UserError(_("Could not connect to the MikroTik router: %s")%e)
 
@@ -1498,8 +1513,8 @@ class IspContract(models.Model):
         if not self.olt_id or not self.onu_pon_id:
             raise UserError(_("Por favor, asegúrese de que la OLT y el ID de ONU en PON estén configurados."))
 
-        netdev = self.olt_id.netdev_id
-        if not netdev:
+        olt = self.olt_id
+        if not olt:
             raise UserError(_("La OLT no tiene un dispositivo de red configurado."))
         pon_port = f"{self.olt_card_id.num_card or self.olt_port_id.olt_card_id.num_card}/{self.olt_port_id.num_port}"
 
@@ -1510,7 +1525,7 @@ class IspContract(models.Model):
         ]
 
         try:
-            with netdev._get_olt_connection() as conn:
+            with olt._get_olt_connection() as conn:
                 # No es necesario entrar en 'configure terminal' o 'interface gpon' para este comando
                 # ya que 'show onu X pri wan_adv' es un comando de nivel superior en algunas OLTs.
                 # Si la OLT requiere un contexto específico, se debería ajustar aquí.
@@ -1573,8 +1588,8 @@ class IspContract(models.Model):
         if not self.olt_id or not self.onu_pon_id:
             raise UserError(_("Por favor, asegúrese de que la OLT y el ID de ONU en PON estén configurados."))
 
-        netdev = self.olt_id.netdev_id
-        if not netdev:
+        olt = self.olt_id
+        if not olt:
             raise UserError(_("La OLT no tiene un dispositivo de red configurado."))
 
         pon_port = f"{self.olt_card_id.num_card or self.olt_port_id.olt_card_id.num_card}/{self.olt_port_id.num_port}"
@@ -1590,7 +1605,7 @@ class IspContract(models.Model):
         info_str = ''
 
         try:
-            with netdev._get_olt_connection() as conn:
+            with olt._get_olt_connection() as conn:
                 #success, full_output, clean_response = conn.execute_command(f"show onu {self.onu_pon_id} pri wifi_ssid 1")
                 full_output = ""
 

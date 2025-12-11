@@ -5,4 +5,4 @@ class SilverNetdevSystemInfoWizard(models.TransientModel):
     _description = 'System Info Viewer'
 
     info = fields.Text(string='System Information', readonly=True)
-    netdev_id = fields.Many2one('silver.netdev', string='Network Device', readonly=True)
+    netdev_id = fields.Many2one('silver.core', string='Network Device', readonly=True)

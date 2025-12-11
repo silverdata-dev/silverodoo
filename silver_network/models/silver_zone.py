@@ -5,7 +5,6 @@ class SilverZone(models.Model):
     _inherit = 'silver.zone'
 
 
-    assets = fields.One2many('silver.asset', 'zone_id', string='Elementos')
 
     node_ids = fields.One2many('silver.node', 'zone_id', string='Nodos')
     node_count = fields.Integer(string='Nodos', compute='_compute_counts')
@@ -16,15 +15,15 @@ class SilverZone(models.Model):
     gps_right = fields.Float("GPS Este", compute='_compute_gps', readonly=True)
     gps_bottom = fields.Float("GPS Sur", compute='_compute_gps', readonly=True)
 
-
+    @api.depends('node_ids')
     def _compute_counts(self):
         for record in self:
-            record.node_count = self.env['silver.asset'].search_count([('zone_id', '=', record.id), ('asset_type', '=', 'node')])
+            record.node_count = len(record.node_ids)
 
     def _compute_gps(self):
         for record in self:
-            lats = [asset.latitude for asset in record.assets if asset.latitude]
-            lons = [asset.longitude for asset in record.assets if asset.longitude]
+            lats = [asset.silver_address_id.latitude for asset in record.node_ids if asset.silver_address_id.latitude]
+            lons = [asset.silver_address_id.longitude for asset in record.node_ids if asset.silver_address_id.longitude]
 
             if lats:
                 record.gps_top = min(lats)

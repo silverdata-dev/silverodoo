@@ -3,7 +3,9 @@
         <!-- Top Level Menu -->
         <menuitem id="menu_silver_unms_root"
                   name="Calendario"
-                  sequence="20"/>
+                  sequence="20"
+         web_icon="silver_unms,static/description/icon.png"
+        />
 
 
         <!-- Sub Menu -->

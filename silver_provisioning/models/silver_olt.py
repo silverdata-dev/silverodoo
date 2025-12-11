@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 import re
 import logging
-from odoo import models, fields, _
+from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 from odoo.addons.base.models.ir_qweb_fields import Markup, escape, nl2br
 
 import html
+from datetime import datetime, timedelta
 
 _logger = logging.getLogger(__name__)
 
@@ -32,12 +33,16 @@ class SilverOlt(models.Model):
         'olt_id', 
         string='ONUs Descubiertas'
     )
+    last_discovered_date = fields.Datetime("Last Discovered Date")
+
+    old_discovered = fields.Boolean(
+        string="Old discovered",
+        compute='_compute_old_discovered',
+        store=False,  # No es necesario almacenarlo
+    )
 
     def action_discover_onus(self):
         self.ensure_one()
-        netdev = self.netdev_id
-        if not netdev:
-            raise UserError(_("La OLT no tiene un dispositivo de red configurado."))
 
 
        # command = "show onu auto-find detail-info"
@@ -53,7 +58,7 @@ class SilverOlt(models.Model):
         output_log = ""
         last_command_output = ""
         try:
-            with netdev._get_olt_connection() as conn:
+            with self._get_olt_connection() as conn:
                 onu_created_on_olt = False
                 for command in base_commands:
                     success, clean_response, cmd_output = conn.execute_command(command)
@@ -136,7 +141,9 @@ class SilverOlt(models.Model):
             if vals['olt_index'] not in assigned_indexes:
                 vals['olt_id'] = self.id
                 onus_to_create.append(vals)
-        
+
+        self.last_discovered_date = fields.Date.today()
+
         if onus_to_create:
             DiscoveredOnu.create(onus_to_create)
 
@@ -191,7 +198,7 @@ class SilverOlt(models.Model):
         affected_contracts = self.env['silver.contract'].search([
             ('olt_id', '=', self.id),
             ('state_service', '=', 'active'),
-            ('link_type', '=', 'fiber')
+            ('linktype.has_olt', '!=', False)
         ])
 
         if not affected_contracts:
@@ -237,13 +244,10 @@ class SilverOlt(models.Model):
             commands.append("write")
 
         # --- Ejecución en una Sola Sesión ---
-        netdev = self.netdev_id
-        if not netdev:
-            raise UserError(_("La OLT no tiene un dispositivo de red configurado."))
 
         log_messages = []
         try:
-            with netdev._get_olt_connection() as conn:
+            with self._get_olt_connection() as conn:
                 for command in commands:
                     success, response, output = conn.execute_command(command)
                     if not success:
@@ -335,7 +339,7 @@ class SilverOlt(models.Model):
         ]
         try:
 
-            with self.netdev_id._get_olt_connection() as conn:
+            with self._get_olt_connection() as conn:
                 for command in commands:
                     success, response, output = conn.execute_command(command)
                     output_log += f"$ {command}\n{output}\n"
@@ -381,6 +385,18 @@ class SilverOlt(models.Model):
 
         return output_log
 
+    @api.depends('last_discovered_date')
+    def _compute_old_discovered(self):
+        hace_cinco_minutos = datetime.now() - timedelta(minutes=5)
+
+        for record in self:
+            if record.last_discovered_date:
+                # 2. La condición es: La fecha de la BD (UTC) es menor que el límite (UTC)
+                #    Es decir, la fecha es MÁS ANTIGUA que hace 5 minutos.
+                record.old_discovered = record.last_discovered_date < hace_cinco_minutos
+            else:
+                record.old_discovered = False
+
     def _provision_onu_base(self, contract, conn, output_log):
         """Ejecuta los comandos base de aprovisionamiento de la ONU. Asume que ya se está en el modo de configuración de la interfaz GPON."""
         # --- Recopilación y Validación de Parámetros ---
@@ -396,6 +412,7 @@ class SilverOlt(models.Model):
         service_name = contract.service_type_id.name
         description = f"{contract.name}-{contract.partner_id.vat}-{contract.partner_id.name}".replace(" ", "_")
 
+
         required_params = {
             "Puerto PON": pon_port, "ID de ONU en PON": onu_id, "Serial ONU": serial_number,
             "Modelo de ONU (Profile)": profile_name, "Tcont": tcont, "DBA Profile": dba_profile,
@@ -405,8 +422,20 @@ class SilverOlt(models.Model):
         if missing_params:
             raise UserError(f"Faltan parámetros requeridos: {', '.join(missing_params)}")
 
-        base_commands = [
-            f"onu add {onu_id} profile {profile_name} sn {serial_number}",
+        success, clean_response, full_output = conn.execute_command("show onu info")
+        (onu_id2, s) = self.get_free_onuid(full_output, serial_number, onu_id)
+        print(("free onu ", onu_id, onu_id2, serial_number, full_output))
+        if onu_id != onu_id2:
+            onu_id = onu_id2
+            contract.onu_pon_id = onu_id
+
+
+       # return
+
+        base_commands = []
+        if not s:
+            base_commands.extend([            f"onu add {onu_id} profile {profile_name} sn {serial_number}"  ])
+        base_commands.extend([
             f"onu {onu_id} tcont {tcont} dba {dba_profile}",
             f"onu {onu_id} gemport {gemport} tcont {tcont}",
             f"onu {onu_id} service {service_name or 'Internet'} gemport {gemport} vlan {vlanid}",
@@ -415,7 +444,7 @@ class SilverOlt(models.Model):
             f"onu {onu_id} desc {description}",
             f"onu {onu_id} pri wan_adv commit",
             f"exit", "exit", "exit"
-        ]
+        ])
 
 
         onu_created_on_olt = False
@@ -500,9 +529,25 @@ class SilverOlt(models.Model):
 
         return output_log
 
-    def _provision_onu_wan(self, contract, conn, output_log, vlanid):
+    def _provision_onu_wan(self, contract, conn, output_log, vlanid, pon_port):
         """Provisiona la configuración WAN avanzada en la ONU. Asume que ya se está en el modo de configuración de la interfaz GPON."""
         onu_id = contract.onu_pon_id
+
+
+        required_params = {
+            "Puerto PON": pon_port, "ID de ONU en PON": onu_id, "PPPoe User": contract.pppoe_user,
+            "PPPoe Password": contract.pppoe_password, "MTU": self.mtu,
+             "VLAN": vlanid,
+        }
+        if (self.is_control_admin) :
+            required_params['Usuario Admin'] = self.admin_user
+            required_params['Password Admin'] = self.admin_passwd
+
+
+        missing_params = [key for key, value in required_params.items() if not value]
+        if missing_params:
+            raise UserError(f"Faltan parámetros requeridos: {', '.join(missing_params)}")
+
         if 1:
        # if self.is_gestion_pppoe and not contract.is_bridge:
             wan_index = None
@@ -609,9 +654,6 @@ class SilverOlt(models.Model):
         Acepta una lista de pasos ('base', 'wifi', 'wan') o una lista de comandos directos.
         """
         self.ensure_one()
-        netdev = self.netdev_id
-        if not netdev:
-            raise UserError("No hay dispositivo de red configurado para esta OLT.")
 
         output_log = ""
         conn = None
@@ -622,7 +664,7 @@ class SilverOlt(models.Model):
         print(("e1", steps_or_commands))
         #if 1:
         try:
-            conn = netdev._get_olt_connection()
+            conn = self._get_olt_connection()
             success, message = conn.connect()
             if not success:
                 raise ConnectionError(message)
@@ -679,7 +721,7 @@ class SilverOlt(models.Model):
                             raise UserError("No se pudo determinar la VLAN para la configuración WAN.")
 
                         print(("towan", conn))
-                        output_log += self._provision_onu_wan(contract, conn, "", vlanid)
+                        output_log += self._provision_onu_wan(contract, conn, "", vlanid, pon_port_val)
                 else: # Es una lista de comandos directos
                     for command in steps_or_commands:
                         success, clean_response, full_output = conn.execute_command(command)
@@ -778,16 +820,91 @@ class SilverOlt(models.Model):
         commands = [f"onu {contract.onu_pon_id} pri factory_reset"]
         return self._execute_with_logging(contract, commands, "Registro de Reinicio de ONU")
 
-    def terminate_onu(self, contract):
+    def terminate_onu(self, contract, pon_port_name):
         """Termina la ONU."""
-        commands = [f"no onu {contract.onu_pon_id}"]
-        if (contract.old_onu_pon_id and contract.old_onu_pon_id != contract.onu_pon_id):
-            commands.append(f"no onu {contract.old_onu_pon_id}")
-            print(("terminating", commands))
-        r = self._execute_with_logging(contract, commands, "Terminación ONU")
+
+        try:
+            with self._get_olt_connection() as conn:
+                # 1. Entrar en modo configuración
+
+                success, output_log, full_output = conn.execute_command("configure terminal")
+
+                # 2. Entrar a la interfaz GPON
+                # Asumimos que pon_port_name viene limpio, ej: "0/1"
+                cmd_interface = f"interface gpon {pon_port_name}"
+                success, clean_response, full_output = conn.execute_command(cmd_interface)
+                output_log += f"\n{clean_response}\n"
+
+                if not success:
+                    raise UserError(f"Error al entrar a la interfaz {pon_port_name}:\n{full_output}")
+
+                # 3. Obtener información de ONUs
+                cmd_show = "show onu info"
+                success, clean_response, full_output = conn.execute_command(cmd_show)
+                output_log += f"{clean_response}\n"
+
+                (onuid, s) = self.get_free_onuid(full_output, serial=contract.stock_lot_id.name,  onu_id=contract.onu_pon_id, )
+
+                print(("free onu s", onuid, s, contract.onu_pon_id))
+
+                if s:
+                    success, clean_response, full_output = conn.execute_command(f"no onu {onuid}")
+                    output_log += f"{clean_response}\n"
+
+                # 4. Salir limpiamente (opcional pero recomendado)
+                conn.execute_command("exit")
+                conn.execute_command("exit")
+
+                o = html.escape(output_log).replace("\n", '<br/>')
+
+                contract.message_post(body=f"{Markup('<strong>')}{o}{Markup('</strong>')}", subject="Terminacion de onu",
+                                                 body_is_html=True,
+                                                 # message_type='comment',
+                                                 subtype_xmlid='mail.mt_comment')
+
+                return onuid
+
+        except Exception as e:
+            raise UserError(_("Fallo al borrar onu: %s") % e)
+
+
 
         print(("terminated", r))
         return True
+
+
+    def get_free_onuid(self, full_output, serial = None, onu_id=None):
+
+        used_ids = dict()
+        if "Onuindex" in full_output:
+            for line in full_output.split("\n"):
+                line = line.strip()
+
+                print(("line", line))
+
+                if not line or 'GPON' not in line:
+                    continue
+
+                parts = line.split()
+                if parts and ':' in parts[0]:
+                    try:
+                        sn = parts[-1]
+                        onu_id_str = parts[0].split(':')[-1]
+                        used_ids[(int(onu_id_str))] = sn
+                        if serial and (serial in sn): return (int(onu_id_str), True)
+                    except ValueError:
+                        # Ignore lines where the last part after ':' is not a valid integer
+                        pass
+
+        if (onu_id and (not used_ids.get(int(onu_id)))):
+            return (onu_id, False)
+
+        print(("used ids", used_ids))
+        # Buscar el primer ID libre en el rango estándar GPON (1-128)
+        for i in range(1, 129):
+            if  not  used_ids.get(i, False):
+                print(("i", i))
+                return (i, False)
 
     def get_next_free_onu_id(self, pon_port_name):
         """
@@ -796,14 +913,10 @@ class SilverOlt(models.Model):
         :param pon_port_name: Nombre del puerto, ej: "0/1" o el formato que espere la OLT
         """
         self.ensure_one()
-        netdev = self.netdev_id
-        if not netdev:
-            raise UserError(_("La OLT no tiene un dispositivo de red configurado."))
 
-        used_ids = set()
 
         try:
-            with netdev._get_olt_connection() as conn:
+            with self._get_olt_connection() as conn:
                 # 1. Entrar en modo configuración
                 conn.execute_command("configure terminal")
 
@@ -819,41 +932,16 @@ class SilverOlt(models.Model):
                 cmd_show = "show onu info"
                 success, clean_response, full_output = conn.execute_command(cmd_show)
 
-                if "Onuindex" in full_output:
-                #if success:
-                    # Parsear salida. Buscamos líneas que contengan 'GPON' y un ID.
-                    # Ejemplo: GPON0/4:1  VA64 ...
-                    # Extraemos '1'
-                    for line in full_output.split("\n"):
-                        line = line.strip()
-
-                        print(("line", line))
-
-                        if not line or 'GPON' not in line: 
-                            continue
-
-                        parts = line.split()
-                        if parts and ':' in parts[0]:
-                            try:
-                                onu_id_str = parts[0].split(':')[-1]
-                                used_ids.add(int(onu_id_str))
-                            except ValueError:
-                                # Ignore lines where the last part after ':' is not a valid integer
-                                pass
+                (onuid, s) = self.get_free_onuid(full_output)
 
                 # 4. Salir limpiamente (opcional pero recomendado)
                 conn.execute_command("exit")
                 conn.execute_command("exit")
 
+                return onuid
+
         except Exception as e:
             raise UserError(_("Fallo al obtener ID libre en OLT: %s") % e)
-
-        print(("used ids", used_ids))
-        # Buscar el primer ID libre en el rango estándar GPON (1-128)
-        for i in range(1, 129):
-            if i not in used_ids:
-                print(("i", i))
-                return i
 
         raise UserError(_("No hay IDs de ONU libres en el puerto %s (Lleno).") % pon_port_name)
 

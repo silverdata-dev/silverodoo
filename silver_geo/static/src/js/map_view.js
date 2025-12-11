@@ -73,6 +73,8 @@ export class AssetMapView extends Component {
         const content = this.popupContentRef.el;
         const closer = this.popupCloserRef.el;
 
+        console.log(["clcoser", closer]);
+
         this.overlay = new ol.Overlay({
             element: container,
             autoPan: {
@@ -82,11 +84,13 @@ export class AssetMapView extends Component {
             },
         });
 
-        closer.onclick = () => {
-            this.overlay.setPosition(undefined);
-            closer.blur();
-            return false;
-        };
+        if (closer) {
+            closer.onclick = () => {
+                this.overlay.setPosition(undefined);
+                closer.blur();
+                return false;
+            };
+        }
 
         this.map = new ol.Map({
             target: this.mapRef.el,

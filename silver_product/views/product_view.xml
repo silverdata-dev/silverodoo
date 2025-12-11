@@ -25,8 +25,10 @@
                     <page string="Resumen">
                         <group>
                               <group>
+                                  <!--field name="tracking"/>
+                                  <field name="type"/-->
                     <field name="detailed_type"/>
-                                <field name="uom_id"/>
+                                <field name="uom_id"  invisible="detailed_type=='service'"/>
                                 <field name="etype" invisible="detailed_type=='service'"/>
                                   <label for="product_brand_id" invisible="detailed_type=='service'"/>
                     <div class="o_row d-flex align-items-center" invisible="detailed_type=='service'">
@@ -37,7 +39,8 @@
                                        context="{'default_etype':etype, 'default_brand_id':product_brand_id}"
                                        domain="[('etype','=',etype),('brand_id','=',product_brand_id)]"
                                        invisible="detailed_type=='service'" options="{'no_create_edit': False, 'no_quick_create': True}"/>
-<field name="service_type_id" invisible="detailed_type!='service'" />
+<!--field name="service_type_id" invisible="detailed_type!='service'" /-->
+
                             </group>
 
 
@@ -51,7 +54,9 @@
                 </xpath>
                                 <xpath expr="//field[@name='detailed_type']" position="after">
                                     <field name="is_internet" invisible="1"/>
-                    <field name="service_type_id" invisible="detailed_type!='service'" required="detailed_type=='service'"/>
+                    <field name="service_type_id"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"
+                           invisible="detailed_type!='service'" required="detailed_type=='service'"/>
                 </xpath>
 
 
@@ -74,8 +79,10 @@
                     <page string="Resumen">
                         <group>
                             <group>
+                                                                  <!--field name="tracking"/>
+                                  <field name="type"/-->
                     <field name="detailed_type"/>
-                                <field name="uom_id"/>
+                                <field name="uom_id"  invisible="detailed_type=='service'"/>
                                 <field name="etype" invisible="detailed_type=='service'"/>
                                   <label for="product_brand_id" invisible="detailed_type=='service'"/>
                     <div class="o_row d-flex align-items-center" invisible="detailed_type=='service'">
@@ -86,7 +93,7 @@
                                        context="{'default_etype':etype}"
                                        domain="[('etype','=',etype)]"
                                        invisible="detailed_type=='service'" options="{'no_create_edit': False, 'no_quick_create': True}"/>
-<field name="service_type_id" invisible="detailed_type!='service'" />
+
                             </group>
 
                             <group>
@@ -109,7 +116,9 @@
 
                                 <xpath expr="//field[@name='detailed_type']" position="after">
                                     <field name="is_internet" invisible="1"/>
-                    <field name="service_type_id" invisible="detailed_type!='service'" required="detailed_type=='service'"/>
+                    <field name="service_type_id"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"
+                           invisible="detailed_type!='service'" required="detailed_type=='service'"/>
                 </xpath>
 
                 <!-- 2. Replace the Stat Button Box -->

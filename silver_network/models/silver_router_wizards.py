@@ -4,7 +4,7 @@ class IspRouterInterfaceWizard(models.TransientModel):
     _name = 'silver.netdev.interface.wizard'
     _description = 'Wizard to display router interfaces'
 
-    netdev_id = fields.Many2one('silver.core', string='Router', required=True)
+   # netdev_id = fields.Many2one('silver.core', string='Router', required=True)
     
     line_ids = fields.One2many('silver.netdev.interface.wizard.line', 'wizard_id', string='Interfaces')
     ethernet_line_ids = fields.One2many('silver.netdev.interface.ethernet.line', 'wizard_id', string='Ethernet')

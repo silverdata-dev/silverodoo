@@ -47,6 +47,7 @@
 
                 <!-- Añadir campo de Prioridad VLAN (PCP) a la configuración WAN existente -->
                 <xpath expr="//group[@name='pppoe_1']" position="inside">
+                    <label for="vlan_priority"/>
                     <field name="vlan_priority"/>
                 </xpath>
             </field>

@@ -8,11 +8,11 @@ class SilverNode(models.Model):
     #_table = 'isp_node'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    _inherits = {'silver.asset': 'asset_id'}
 
-    asset_id = fields.Many2one('silver.asset', required=True, ondelete="cascade")
+    name = fields.Char(string="Nombre")
 
-    code = fields.Char(string="Codigo interno", related='asset_id.code', required=True, readonly=False)
+
+    code = fields.Char(string="Codigo interno")
 
 #    _sql_constraints = [
 #        ('unique_code', 'unique (code)', 'This value must be unique!')
@@ -35,36 +35,12 @@ class SilverNode(models.Model):
     olt_ids = fields.One2many('silver.olt', 'node_id', string='OLTs')
     box_ids = fields.One2many('silver.box', 'node_id', string='Boxes')
     #splice_closure_ids = fields.One2many('silver.splice_closure', 'node_id', string='Splice Closures')
-    zone_id = fields.Many2one('silver.zone', string="Zona", related="asset_id.zone_id", store=False)
+    zone_id = fields.Many2one('silver.zone', string="Zona", related='silver_address_id.zone_id' )
 
     #silver_address_id = fields.Many2one('silver.address', string='Dirección', related="asset_id.silver_address_id", store=False)
 
 
-
-    asset_type = fields.Selection(
-        related='asset_id.asset_type',
-        default='node',
-        store=True,
-        readonly=False
-    )
-
-
-   # @api.model
-   # def create(self, vals):
-   #     if vals.get('gps_lon') and vals.get('gps_lat'):
-   #         vals['date_localization'] =  datetime.now()
-   #     return super(SilverNode, self).create(vals)
-
-   # @api.model
-   # def write(self, vals):
-   #     if vals.get('gps_lon') and vals.get('gps_lat'):
-   #         vals['date_localization'] = datetime.now()
-
-   #     for record in self:
-   #         if (vals.get('gps_lon') or vals.get('gps_lat')):
-   #             record.date_localization =  datetime.now()
-   #             print(("record", record, record.date_localization))
-   #     return super(SilverNode, self).write(vals)
+    silver_address_id = fields.Many2one('silver.address', string='Dirección')
 
 
     def _compute_counts(self):

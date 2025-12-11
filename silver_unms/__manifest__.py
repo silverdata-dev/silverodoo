@@ -1,6 +1,7 @@
 {
     'name': 'Silver UNMS Calendar',
     'version': '17.0.1.0.0',
+'icon': 'static/description/icon.png',
     'category': 'Productivity',
     'summary': 'Calendario tipo UNMS para agendamiento de oportunidades',
     'description': """

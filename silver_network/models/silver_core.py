@@ -6,9 +6,23 @@ import logging, string, secrets
 import re
 import librouteros
 from librouteros.query import Key
-from odoo.addons.silver_network.models.silver_netdev import _format_speed
+
 
 _logger = logging.getLogger(__name__)
+
+
+
+def _format_speed(bits_per_second):
+    bits_per_second = int(bits_per_second)
+    if bits_per_second < 1000:
+        return f"{bits_per_second} B/s"
+    elif bits_per_second < 1000000:
+        return f"{bits_per_second / 1000:.2f} KB/s"
+    elif bits_per_second < 1000000000:
+        return f"{bits_per_second / 1000000:.2f} MB/s"
+    else:
+        return f"{bits_per_second / 1000000000:.2f} GB/s"
+
 
 class SilverCore(models.Model):
     _name = 'silver.core'
@@ -17,11 +31,6 @@ class SilverCore(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
 
-    _inherits = {'silver.asset': 'asset_id',
-                 'silver.netdev':'netdev_id'}
-
-    asset_id = fields.Many2one('silver.asset', required=True, ondelete="cascade")
-    netdev_id = fields.Many2one('silver.netdev', required=True, ondelete="cascade")
 
     askuser = fields.Boolean(string='Pedir usuario')
 
@@ -72,6 +81,11 @@ class SilverCore(models.Model):
     pooOnlyCore = fields.Boolean(string='Pool de IPs Único')
 
 
+    silver_address_id = fields.Many2one('silver.address', string='Dirección')
+
+    radius_client_ip = fields.Char(string='Radius Server IP')
+    radius_client_secret = fields.Char(string='Radius Shared Secret')
+    radius_client_services = fields.Many2many('silver.radius.service', string='Radius Services') # Assuming a model silver.radius.service exists or will be created
 
 
     type_access_net = fields.Selection(
@@ -93,15 +107,15 @@ class SilverCore(models.Model):
 
     # --- Campos de Conectividad y Acceso ---
     user = fields.Char(string='Usuario')
-    username = fields.Char(string='Usuario Core', related="netdev_id.username", readonly=False)
+    username = fields.Char(string='Usuario Core', )
     user_nass = fields.Char(string='Usuario Nass')
-    password = fields.Char(string='Password', related="netdev_id.password", readonly=False)
+    password = fields.Char(string='Password', )
     password_nass = fields.Char(string='Password Nass')
     key_pppoe = fields.Char(string='Password PPPoE')
 
-    port = fields.Integer(string='Puerto Mikrotik', related="netdev_id.port", readonly=False, default=21000)
+    port = fields.Integer(string='Puerto Mikrotik', readonly=False, default=21000)
     port_coa = fields.Char(string='Puerto COA')
-    ip = fields.Char(string='IP de Conexión', related="netdev_id.ip", readonly=False)
+    ip = fields.Char(string='IP de Conexión', readonly=False)
 
 
     interface = fields.Char(string='Interface')
@@ -193,20 +207,6 @@ class SilverCore(models.Model):
 
     retries = fields.Integer(string="Reintentos")
 
-
-    # --- Relacionado al mixin de asset ---
-    asset_type = fields.Selection(
-        related='asset_id.asset_type',
-        default='core',
-        store=True,
-        readonly=False
-    )
-    netdev_type = fields.Selection(
-        related='netdev_id.netdev_type',
-        default='core',
-        store=True,
-        readonly=False
-    )
 
     @api.constrains('ip')
     def _check_valid_ip(self):
@@ -324,8 +324,8 @@ class SilverCore(models.Model):
                #     record.asset_id.parent_id = node.asset_id.id
 
 
-                record.asset_id.name = f"{node.code}/CR{base_count + i + 1}"
-            print(("cocrewr2", record.asset_id.name))
+                vals['name'] = f"{node.code}/CR{base_count + i + 1}"
+            print(("cocrewr2", record.name))
         return super(SilverCore, self).write(vals)
 
     #@api.depends('olt', 'radius', 'ap_count', 'cor')
@@ -546,12 +546,12 @@ class SilverCore(models.Model):
         if not radius_id or not radius_id.ip:
             raise UserError(_("RADIUS Server is not assigned or does not have an IP address."))
 
-        if self.netdev_id.radius_client_secret:
-            secret = self.netdev_id.radius_client_secret
+        if self.radius_client_secret:
+            secret = self.radius_client_secret
         else:
             alphabet = string.ascii_letters + string.digits
             secret = ''.join(secrets.choice(alphabet) for _ in range(22))
-            self.netdev_id.radius_client_secret = secret
+            self.radius_client_secret = secret
 
 
         # 1. Get or create the NAS secret and Odoo record
@@ -588,7 +588,7 @@ class SilverCore(models.Model):
                 'secret': secret,
                 'service': 'login',
                 'address': radius_id.ip,
-                'src-address': self.netdev_id.ip,
+                'src-address': self.ip,
             }
             print(("existing", existing_server))
 
@@ -678,36 +678,20 @@ class SilverCore(models.Model):
 
     def button_test_connection(self):
         self.ensure_one()
-        netdev = self #.netdev_id
-        print(("test connection", self.env.context))
-        if not netdev:
-            return {
-                'type': 'ir.actions.client',
-                'tag': 'display_notification',
-                'params': {
-                    'title': 'Error',
-                    'sticky': False,
-                    'message': f'This core has no network device associated ',
-                    'type': 'danger',
-                }
-            }
-            #raise UserError(_("This core has no network device associated."))
 
-        reload_action = {
-            'type': 'ir.actions.client',
-            'tag': 'reload',
-        }
+        print(("test connection", self.env.context))
+
         
         api = None
-        ostate = netdev.state
+        ostate = self.state
         try:
 
             # Connection test now requires local credentials to perform configuration
             _logger.info(f"Core {self.name}: Trying local credentials for connection and configuration.")
             if self.env.context.get('u'):
-                api,e = netdev._get_api_connection(username=self.username, password=self.password)
+                api,e = self._get_api_connection(username=self.username, password=self.password)
             else:
-                api,e = netdev._get_api_connection()
+                api,e = self._get_api_connection()
 
             print(("noapi", self.state, ostate, api, e))
             cambia = False

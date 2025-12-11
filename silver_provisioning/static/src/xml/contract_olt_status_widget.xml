@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="silver_provisioning.FContractOltStatus" owl="1">
+        <div class="d-flex gap-3">
+            <div class="d-flex align-items-center gap-1">
+                <strong>OLT:</strong>
+                <span t-if="state.olt_state === 'active'" class="badge text-bg-success">Activo</span>
+                <span t-if="state.olt_state === 'down'" class="badge text-bg-danger">Down</span>
+                <span t-if="state.olt_state === 'pending'" class="badge text-bg-warning">Prueba</span>
+            </div>
+            <div class="d-flex align-items-center gap-1">
+                <strong>WAN:</strong>
+                <span t-if="state.wan_state === 'connected'" class="badge text-bg-success">Conectado</span>
+                <span t-if="state.wan_state === 'disconnected'" class="badge text-bg-danger">Desconectado</span>
+                <span t-if="state.wan_state === 'none'" class="badge text-bg-secondary">None</span>
+            </div>
+        </div>
+    </t>
+</templates>

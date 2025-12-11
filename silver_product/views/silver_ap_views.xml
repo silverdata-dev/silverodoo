@@ -7,7 +7,9 @@
             <field name="inherit_id" ref="silver_network.view_silver_ap_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='node_ids']"  position="after">
-                    <field name="stock_lot_id" context="{'default_etype':'ap'}" domain="[('etype','=','ap')]" options="{'no_create_edit': False, 'no_quick_create': True}"/>
+
+                    <field name="product_id"  context="{'default_etype':'ap'}"  domain="[('etype','=','ap')]"/>
+                    <field name="stock_lot_id" context="{'default_etype':'ap', 'default_product_id':product_id}" domain="[('product_id','=',product_id)]" options="{'no_create_edit': False, 'no_quick_create': True}"/>
 
                     <label for="brand_id" />
                     <div class="o_row d-flex align-items-center">

@@ -13,14 +13,31 @@
 
                 </xpath>
 
+
+                <xpath expr="//field[@name='line_ids']" position="attributes">
+                    <attribute name="context">{'default_linktype_id':linktype_id, 'default_line_type': 'recurring'}</attribute>
+                </xpath>
+
                 <xpath expr="//field[@name='line_ids']/tree/field[@name='name']" position="before">
+                       <field name="linktype_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                       column_invisible="1"
+                       />
                                                             <field name="product_id"
-                                               domain="[('type', '=', line_type == 'recurring' and 'service' or 'product')]"/>
+                                                                   options="{'no_create_edit': True, 'no_quick_create': True}"
+                                               domain="[('type', '=',  'service' ),('linktype_id','=',linktype_id)]"/>
                 </xpath>
 
 
                 <xpath expr="//field[@name='discount_line_ids']/tree/field[@name='description']" position="before">
-                    <field name="product_id"/>
+
+                    <field name="product_id" options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='service_type_id']" position="after">
+
+                    <field name="linktype_id"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"
+                           readonly="state != 'draft'" domain="[('service_type_id', '=', service_type_id)]"/>
                 </xpath>
 
 
@@ -33,33 +50,45 @@
                         <field name="wifi_config_successful" invisible="1"/>
                         <field name="state_service" invisible="1"/>
                         <field name="state"  invisible="1"/>
-                             <field name="link_type" readonly="state_service == 'active'"/>
+                             <!--field name="linktype_id" readonly="state_service == 'active'"/-->
                           <field name="node_id" readonly="state_service == 'active'"/>
-                                        <field name="box_id" readonly="state_service == 'active'" invisible="link_type not in ['fiber', 'fttb']" domain="[('node_id', '=', node_id)]"/>
+                                        <field name="box_id" readonly="state_service == 'active'" invisible="(not has_olt)" domain="[('node_id', '=', node_id)]"/>
 
                         </group>
    <group>
-                                <group name="ips_networks_2" string="Datos de Acceso" invisible="link_type != 'fiber'">
+                                <group name="ips_networks_2" string="Datos de Acceso" invisible="(not has_olt)">
 
 
                                         <field name="core_id" readonly="(state_service == 'active')  " options="{'no_create': True}"
                                         domain="[('node_id', '=', node_id)]"
                                         />
+                                    <field name="has_olt" invisible="1"/>
                                         <field name="olt_id" readonly="state_service == 'active'"
 domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
-                                               invisible="(link_type not in ['fiber', 'fttb']) " options="{'no_create': True}"/>
+                                              options="{'no_create': True}"/>
                                         <button name="action_open_onu_selector_wizard"
                                                 type="object"
                                                 string="Descubrir ONUS"
                                                 class="oe_highlight oe200"
                                                 invisible="(not olt_id) or (state_service == 'active')"/>
+                                    <field name="old_discovered" invisible="1"/>
                                         <field name="discovered_onu_id" colspan="1"
+
                                                domain="[('olt_id', '=', olt_id), '|', ('contract_id', '=', False), ('contract_id', '=', id)]"
-                                               invisible="(not olt_id) or (state_service == 'active')" nolabel="1" />
+                                               invisible="(not old_discovered) or (not olt_id) or (state_service == 'active')" nolabel="1" />
+
+                                    <!--br invisible="(not ((not olt_id) or (state_service == 'active')))"/-->
+                                    <br invisible="[
+    '|',
+        '|',
+            ('olt_id', '=', False),                 ('state_service', '=', 'active'),       ('old_discovered', '!=', False)            ]"/>
+
                         <field name="olt_port_id" domain="[('olt_id', '=', olt_id)]"  readonly="state_service == 'active'"/>
                         <field name="onu_pon_id"  readonly="state_service == 'active'"/>
                                     <field name="changed_onu" invisible="1"/>
-   <field name="vlan_id"  readonly="state_service == 'active'" domain="['|', ('olt_port_ids', 'in', olt_port_id), ('core_ids', 'in', core_id)]"/>
+   <field name="vlan_id"  readonly="state_service == 'active'"
+          context="{'default_core_id':core_id}"
+          domain="['|', ('olt_port_ids', 'in', olt_port_id), ('core_ids', 'in', core_id)]"/>
                                     <field name="old_onu_pon_id" invisible="1"/>
                                     <!--ield name="state"/>
                                     <field name="state_service"/>
@@ -109,10 +138,11 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                                widget="badge"  invisible="(state not in ['open', 'active']) or (state_service != 'active')"
                            decoration-success="wan_state in ['active', 'connected']"
                            decoration-danger="wan_state in ['disconnected']"/>
+                                    <!--field name="contract_status_widget" nolabel="1" widget="contract_olt_status" invisible="state_service != 'active'"/-->
 
                                     </group>
 
-         <group string="Equipo del Cliente" invisible="link_type != 'fiber'">
+         <group string="Equipo del Cliente" invisible="(not has_olt)">
                                 <group class="col-lg-9">
 
                                         <field name="stock_lot_id" readonly="state_service == 'active'" context="{'default_etype':'onu'}" domain="[('etype','=','onu')]" options="{'no_create_edit': False, 'no_quick_create': True}"/>
@@ -126,7 +156,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
 
 
                     <field name="hardware_model_id"/>
-             <field name="profile_id"/>
+             <field name="profile_id"  readonly="state_service == 'active'"/>
                     <!--field name="software_version"/>
                     <field name="firmware_version"/-->
                 <field name="mac_address_onu"/>
@@ -154,8 +184,8 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
 <group colspan="4">
 
                                         <field name="core_id" readonly="(state_service == 'active') and (radius_state == 'active') and (core_state == 'active') " options="{'no_create': True}"
-                                        domain="[('node_id', '=', node_id)]"  invisible="link_type == 'fiber'"/>
-                                        <field name="ap_id" readonly="state_service == 'active'" invisible="link_type != 'wifi'" domain="[('core_id', '=', core_id)]"/>
+                                        domain="[('node_id', '=', node_id)]"  invisible="(has_olt)"/>
+                                        <field name="ap_id" readonly="state_service == 'active'" invisible="has_olt" domain="[('core_id', '=', core_id)]"/>
 
         <!--field name="ip_address_ids"
     order="public asc,  ip_int asc" widget="many2many_tags"
@@ -177,7 +207,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                               '&amp;',
                                              ('public', '=', False),
                                              '|',  ('olt_port_id', '=', olt_port_id),
-                                  '|', ('olt_id', '=', olt_id),('core_id', '=', core_id),
+                                  '|', '&amp;', ('olt_port_id','=',False), ('olt_id', '=', olt_id),('core_id', '=', core_id),
 
                                        '&amp;',  ('public', '=', True), '|', ('node_ids', 'in', node_id), ('core_ids', 'in', core_id)
                                        ]"
@@ -234,7 +264,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                         <group>
                                     <button name="get_radius_user_info"
                                             type="object"
-                                            string="Obtener Información"
+                                            string="Detalles"
                                             icon="fa-anchor"
                                             class="btn-secondary  oe200"
                                             invisible="(pppoe_user == None)"/>
@@ -253,7 +283,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
 <field name="manual" />
          </group>
 
-                                     <group string="Configuración WAN" invisible="(link_type != 'fiber') or (manual == True)">
+                                     <group string="Configuración WAN" invisible="(not has_olt) or (manual == True)">
 
                                 <field name="sssid" invisible="1"/>
                                 <field name="password" invisible="1" password="True"/>
@@ -292,7 +322,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                             </group>
 
 
-                            <group string="Equipo del Cliente" invisible="link_type == 'fiber'">
+                            <group string="Equipo del Cliente" invisible="has_olt">
                                 <group class="col-lg-9">
 
                                         <field name="stock_lot_id" readonly="state_service == 'active'" context="{'default_etype':'onu'}" domain="[('etype','=','onu')]" options="{'no_create_edit': False, 'no_quick_create': True}"/>
@@ -306,7 +336,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
 
 
                     <field name="hardware_model_id"/>
-         <field name="profile_id"/>
+         <field name="profile_id"  readonly="state_service == 'active'"/>
                     <!--field name="software_version"/>
                     <field name="firmware_version"/-->
                 <field name="mac_address_onu"/>
@@ -340,4 +370,6 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
             </field>
         </record>
     </data>
+
+
 </odoo>

@@ -10,8 +10,8 @@ class HelpdeskTicket(models.Model):
     # Current/New Technical Data
     node_id = fields.Many2one('silver.node', string="Nodo")
     box_id = fields.Many2one('silver.box', string="Caja NAP")
-    port_nap_id = fields.Many2one('silver.nap.port', string="Puerto NAP") # Verify model name
-    port_nap = fields.Many2one('silver.nap.port', string="Puerto NAP (Alt)") # In snippet
+    #port_nap_id = fields.Many2one('silver.nap.port', string="Puerto NAP") # Verify model name
+    #port_nap = fields.Many2one('silver.nap.port', string="Puerto NAP (Alt)") # In snippet
     ap_id = fields.Many2one('silver.ap', string="AP")
     core_id = fields.Many2one('silver.core', string="Equipo Core")
     
@@ -36,7 +36,7 @@ class HelpdeskTicket(models.Model):
     
     node_id_old = fields.Many2one('silver.node', string="Nodo Anterior")
     box_id_old = fields.Many2one('silver.box', string="Caja NAP Anterior")
-    port_nap_old = fields.Many2one('silver.nap.port', string="Puerto NAP Anterior")
+    #port_nap_old = fields.Many2one('silver.nap.port', string="Puerto NAP Anterior")
     ap_id_old = fields.Many2one('silver.ap', string="AP Anterior")
     core_id_old = fields.Many2one('silver.core', string="Equipo Core Anterior")
     
@@ -85,6 +85,11 @@ class HelpdeskTicket(models.Model):
     
     is_change_bridge = fields.Boolean()
     is_device_extra = fields.Boolean()
+    is_add_ip_contract = fields.Boolean()
+    is_mgn_service_port = fields.Boolean()
+    is_change_device = fields.Boolean()
+    is_change_mac = fields.Boolean()
+    is_change_antena_mac = fields.Boolean()
     
     # WiFi
     is_change_antena = fields.Boolean()
@@ -112,3 +117,11 @@ class HelpdeskTicket(models.Model):
 
     # Integration
     is_password_odoo = fields.Boolean()
+
+    linktype_id = fields.Many2one('silver.linktype', string="Tipo de Conexión",
+                                related="contract_id.linktype_id")
+
+
+    def action_change_device(self):
+        pass
+

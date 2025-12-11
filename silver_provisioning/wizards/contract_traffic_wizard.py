@@ -25,7 +25,7 @@ class ContractTrafficWizard(models.TransientModel):
     @api.model
     def get_interface_speed(self, wizard_id):
         wizard = self.browse(wizard_id)
-        if not wizard or not wizard.core_id.netdev_id:
+        if not wizard or not wizard.core_id:
             return {'upload': 0, 'download': 0}
 
         api = None

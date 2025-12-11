@@ -13,8 +13,8 @@
                             <field name="radius_client_secret" password="True"/>
                             <field name="radius_client_services" widget="many2many_tags"/>
                         </group>
-                    </sheet>
-                    <footer>
+                    </sheet><![CDATA[
+                    ]]><footer>
                         <button string="Add/Update Radius Client" name="action_add_update_radius_client" type="object" class="oe_highlight"/>
                         <button string="Remove Radius Client" name="action_remove_radius_client" type="object" class="oe_highlight"/>
                         <button string="View All Radius Clients" name="action_view_radius_clients" type="object" class="oe_highlight"/>
@@ -29,6 +29,6 @@
             res_model="silver.netdev.radius.client.wizard"
             view_mode="form"
             target="new"
-            binding_model="silver.netdev"/>
+            binding_model="silver.core"/>
     </data>
 </odoo>

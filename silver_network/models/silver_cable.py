@@ -6,10 +6,9 @@ class SilverCable(models.Model):
     _description = 'Network Cable'
     #_table = 'isp_cable'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _inherits = {'silver.asset': 'asset_id'}
 
-    asset_id = fields.Many2one('silver.asset', string='Asset', required=True, ondelete="cascade")
-
+    name = fields.Char(string="Nombre")
+    code = fields.Char(string="Código")
     cable_type = fields.Selection([
         ('fiber', 'Fiber Optic'),
         ('coaxial', 'Coaxial'),
@@ -17,13 +16,9 @@ class SilverCable(models.Model):
         ('other', 'Other')
     ], string='Cable Type', default='fiber')
 
-    line_string_wkt = fields.Char(string='Cable', related='asset_id.line_string_wkt', readonly=False)
+    line_string_wkt = fields.Char(string='Cable',  readonly=False)
 
-    color = fields.Char(string="Color", related='asset_id.color',  readonly=False)
+    color = fields.Char(string="Color")
+    notes = fields.Text(string="Notas")
 
-    asset_type = fields.Selection(
-        related='asset_id.asset_type',
-        default='cable',
-        store=True,
-        readonly=False
-    )
+    #silver_address_ids = fields.Many2many(comodel_name='silver.address', string='Dirección')

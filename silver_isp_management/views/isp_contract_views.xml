@@ -6,7 +6,7 @@
         <record id="view_silver_contract_form_isp_inherit" model="ir.ui.view">
             <field name="name">silver.contract.form.isp.inherit</field>
             <field name="model">silver.contract</field>
-            <field name="inherit_id" ref="silver_contract.view_silver_contract_form"/>
+            <field name="inherit_id" ref="silver_contract.silver_contract_view_form"/>
             <field name="arch" type="xml">
                 <!-- Añadir campos en el formulario existente -->
                 <xpath expr="//group[@name='main_group']" position="inside">

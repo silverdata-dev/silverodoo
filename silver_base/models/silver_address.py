@@ -629,6 +629,7 @@ class SilverAddress(models.Model):
         match = re.match(coord_pattern, name)
         if match:
             lat, lon = float(match.group(1)), float(match.group(2))
+            if lat<lon: lat, lon = lon, lat
             print(("lat,long", lat, lon))
             nearby_addresses = self.search([('latitude', '!=', 0), ('longitude', '!=', 0)])
             closest_address = None
@@ -651,6 +652,11 @@ class SilverAddress(models.Model):
                     'country_id': closest_address.country_id.id,
                     'parent_id': closest_address.id,
                 })
+
+                r = self.get_address_from_coords(lat, lon)
+                if r:
+                    print(("sir", r))
+                    vals.update(r)
             new_address = self.create(vals)
         else:
             # Comportamiento original si no son coordenadas

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="linktype_fiber" model="silver.linktype">
+            <field name="code">fiber</field>
+            <field name="description">Fiber</field>
+            <field name="has_olt">True</field>
+            <field name="name">Fibra</field>
+            <field name="service_type_id" ref="silver_contract.service_type_internet"/>
+        </record>
+
+        <record id="linktype_wifi" model="silver.linktype">
+            <field name="code">wifi</field>
+            <field name="description">Wifi</field>
+            <field name="has_olt">False</field>
+            <field name="name">Inalámbrico</field>
+            <field name="service_type_id" ref="silver_contract.service_type_internet"/>
+        </record>
+
+    </data>
+</odoo>

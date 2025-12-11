@@ -5,12 +5,10 @@ class SilverBox(models.Model):
     _description = 'Caja de Conexion'
     #_table = 'isp_box'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _inherits = {'silver.asset': 'asset_id'}
-
-    asset_id = fields.Many2one('silver.asset', required=True, ondelete="cascade")
 
 
-    name = fields.Char(string="Nombre", related="asset_id.name", readonly=False)
+
+    name = fields.Char(string="Nombre")
 
 
     port_splitter_secondary = fields.Integer(string='Puerto Splitter Secundario')
@@ -31,6 +29,9 @@ class SilverBox(models.Model):
     is_line_nap = fields.Boolean(string='Gestion Vlan NAP')
 
 
+    silver_address_id = fields.Many2one('silver.address', string='Dirección')
+
+
     ntrunk = fields.Integer(string='N de trunk')
     cabletype = fields.Selection([("adss", "Adss"), ("0","0"),("na","N/A")], string='Tipo de cable')
     cnstrands = fields.Selection([("0", "0"), ("12","12"), ("24","24"), ("96","96"), ("na","N/A")], "Cantidad de hilos")
@@ -43,18 +44,14 @@ class SilverBox(models.Model):
 #    odf = fields.Char(string='Odf')
     note = fields.Char(string='Notas')
 
+    latitude = fields.Float('Latitud', related='silver_address_id.latitude', store=False)
+    longitude = fields.Float('Latitud', related='silver_address_id.longitude', store=False)
 
 
     pri_onu_standar = fields.Char(string='PRI ONU Standar:')
     pri_onu_bridge = fields.Char(string='PRI ONU Bridge:')
     onu_ids_silver = fields.One2many('silver.onu.line', 'box_id', string='One serie')
 
-    asset_type = fields.Selection(
-        related='asset_id.asset_type',
-        default='nap',
-        store=True,
-        readonly=False
-    )
 
     #contract_count = fields.Integer(string="Contratos", compute='_compute_contract_count')
  

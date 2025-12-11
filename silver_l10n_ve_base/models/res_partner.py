@@ -1,7 +1,40 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields, api
+
+from odoo.exceptions import UserError
+from odoo import models, fields, api, _
+
+import re
+
+# Definición de los patrones
+PATRON_VZ = r'^(\+58)?\s?\(?0?\d{3}\)?[\s\-\.]?\d{3}[\s\-\.]?\d{4}$'
+PATRON_GENERICO = r'^\+\d{1,3}[\s\-\.]?\(?\d{1,4}\)?[\s\-\.]?\d{4,10}$'
 
 
+def validar_telefono(numero):
+    """
+    Valida un número de teléfono: estrictamente si es venezolano,
+    o de forma genérica si es internacional.
+
+    Retorna True si es válido, False en caso contrario.
+    Retorna 'VZ' si es un match venezolano, 'INT' si es genérico.
+    """
+    if not isinstance(numero, str):
+        return False, 'ERROR'
+
+    # Limpiar el número de caracteres no numéricos o '+' para una verificación inicial (opcional)
+    # numero_limpio = re.sub(r'[^\d\+]', '', numero)
+
+    # 1. PRUEBA VENEZOLANA (Estricta)
+    if re.fullmatch(PATRON_VZ, numero):
+        return True, 'VZ'
+
+    # 2. PRUEBA GENÉRICA (Si no es VZ, debe ser internacional)
+    # Si la cadena empieza con '+' se asume que intenta ser un formato internacional
+    if numero.startswith('+') and re.fullmatch(PATRON_GENERICO, numero):
+        return True, 'INT'
+
+    # 3. Si no cumple ninguno de los dos
+    return False, 'NONE'
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
@@ -58,5 +91,16 @@ class ResPartner(models.Model):
         print(("vat test2", vat_number))
         return True
 
+    @api.constrains('phone')
+    def check_phone(self):
+
+        v, s = validar_telefono(self.phone)
+        if not v:
+            raise UserError(_("Número de teléfono no válido"))
+
+        print(("validar", v, s))
+
+
+        return not v
 
 

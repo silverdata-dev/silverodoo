@@ -1,7 +1,20 @@
 from odoo import http
 from odoo.http import request
 import json
-from odoo.addons.silver_network.models.silver_netdev import _format_speed
+
+
+
+def _format_speed(bits_per_second):
+    bits_per_second = int(bits_per_second)
+    if bits_per_second < 1000:
+        return f"{bits_per_second} B/s"
+    elif bits_per_second < 1000000:
+        return f"{bits_per_second / 1000:.2f} KB/s"
+    elif bits_per_second < 1000000000:
+        return f"{bits_per_second / 1000000:.2f} MB/s"
+    else:
+        return f"{bits_per_second / 1000000000:.2f} GB/s"
+
 
 
 class SystemStatsController(http.Controller):
@@ -10,8 +23,8 @@ class SystemStatsController(http.Controller):
     def get_system_stats(self, netdev_id, **kw):
         try:
             print(("netdev", netdev_id))
-            #netdev = request.env['silver.netdev'].browse(int(netdev_id))
-            netdev = request.env['silver.core'].search([("id",'=', netdev_id)]) #int(netdev_id))
+            netdev = request.env['silver.core'].browse(int(netdev_id))
+            #netdev = request.env['silver.core'].search([("id",'=', netdev_id)]) #int(netdev_id))
             if not netdev.exists():
                 return {'error': 'Device not found'}
 
@@ -47,9 +60,9 @@ class SystemStatsController(http.Controller):
 
     @http.route('/silver_network/get_interface_stats', type='json', auth='user')
     def get_interface_stats(self, netdev_id, interface_names, **kw):
-        netdev = request.env['silver.netdev'].browse(int(netdev_id))
+        netdev = request.env['silver.core'].browse(int(netdev_id))
         print(("netdev", netdev_id))
-        netdev = request.env['silver.core'].search([("id", '=', netdev_id)] ) # int(netdev_id))
+        #netdev = request.env['silver.core'].search([("id", '=', netdev_id)] ) # int(netdev_id))
         if not netdev.exists():
             return {'error': 'Device not found'}
 

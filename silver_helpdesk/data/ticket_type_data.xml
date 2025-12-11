@@ -35,7 +35,7 @@
         <!-- Acción 1: Calcular Prorrateo y Pagos -->
         <record id="action_script_cp_billing" model="ir.actions.server">
             <field name="name">Script: Calcular Prorrateo Cambio Plan</field>
-            <field name="model_id" ref="model_silver_ticket"/>
+            <field name="model_id" ref="model_helpdesk_ticket"/>
             <field name="state">code</field>
             <field name="code">
 # Contexto: record = silver.ticket
@@ -70,7 +70,7 @@ ticket.message_post(body=msg)
         <!-- Acción 2: Aplicar Cambio en Contrato -->
         <record id="action_script_cp_apply" model="ir.actions.server">
             <field name="name">Script: Aplicar Cambio de Plan en Contrato</field>
-            <field name="model_id" ref="model_silver_ticket"/>
+            <field name="model_id" ref="model_helpdesk_ticket"/>
             <field name="state">code</field>
             <field name="code">
 # Contexto: record = silver.ticket

@@ -6,6 +6,7 @@
     'depends': [
         'silver_helpdesk_contract',
         'silver_network',
+        'silver_provisioning',
     ],
     'data': [
         'views/helpdesk_ticket_views.xml',

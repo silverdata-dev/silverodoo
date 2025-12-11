@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="NapMapSelectorView" owl="1">
+        <div class="nap-map-selector-container" style="height: 100%; width: 100%;">
+            <div id="map" style="height: 100%; width: 100%;"></div>
+        </div>
+    </t>
+</templates>

@@ -11,9 +11,11 @@ class HelpdeskTicket(models.Model):
         ('billing', 'Facturación'),
         ('installation', 'Instalación'),
         ('other', 'Otro'),
-    ], string='Tipo de Ticket (Legacy)', default='failure')
+    ], string='Tipo de Ticket', default='failure')
 
     ticket_type_id = fields.Many2one('silver.ticket.type', string="Categoría/Proceso", help="Define el flujo de trabajo automatizado")
+
+
 
     def write(self, vals):
         # 1. Verificación de Permisos (Antes de guardar)

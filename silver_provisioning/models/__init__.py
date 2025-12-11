@@ -18,3 +18,4 @@ from . import silver_contract_wan_mode
 from . import silver_display_info_wizard
 from . import silver_vlan
 from . import silver_ip
+from . import silver_linktype

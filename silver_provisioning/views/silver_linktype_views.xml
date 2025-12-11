@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="silver_linktype_view_tree" model="ir.ui.view">
+            <field name="name">silver.linktype.view.tree</field>
+            <field name="model">silver.linktype</field>
+            <field name="arch" type="xml">
+                <tree string="Link Types">
+                    <field name="code"/>
+                    <field name="description"/>
+                    <field name="has_olt"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="silver_linktype_view_form" model="ir.ui.view">
+            <field name="name">silver.linktype.view.form</field>
+            <field name="model">silver.linktype</field>
+            <field name="arch" type="xml">
+                <form string="Link Type">
+                    <sheet>
+                        <group>
+                            <field name="code"/>
+                            <field name="description"/>
+                            <field name="has_olt"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="silver_linktype_action" model="ir.actions.act_window">
+            <field name="name">Link Types</field>
+            <field name="res_model">silver.linktype</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_silver_linktype"
+                  name="Link Types"
+                  parent="silver_network.menu_isp_config"
+                  action="silver_linktype_action"
+                  sequence="10"/>
+
+    </data>
+</odoo>

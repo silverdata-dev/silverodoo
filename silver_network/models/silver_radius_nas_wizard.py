@@ -18,7 +18,7 @@ class SilverRadiusNasWizard(models.TransientModel):
     def action_add_nas_client(self):
         self.ensure_one()
         radius_server = self.radius_id
-        if not radius_server.netdev_id:
+        if not radius_server:
             raise UserError(_("The selected Radius server is not linked to a Network Device."))
 
         api,e = radius_server._get_api_connection()
@@ -37,7 +37,7 @@ class SilverRadiusNasWizard(models.TransientModel):
                     authentication='yes',
                     accounting='yes'
                 )
-                radius_server.netdev_id.write({'state': 'connected'})
+                radius_server.write({'state': 'connected'})
                 return {
                     'type': 'ir.actions.client',
                     'tag': 'display_notification',
@@ -48,7 +48,7 @@ class SilverRadiusNasWizard(models.TransientModel):
                     }
                 }
             except Exception as e:
-                radius_server.netdev_id.write({'state': 'error'})
+                radius_server.write({'state': 'error'})
                 raise UserError(_("Failed to add NAS client: %s") % e)
             finally:
                 api.close()
@@ -58,7 +58,7 @@ class SilverRadiusNasWizard(models.TransientModel):
     def action_remove_nas_client(self):
         self.ensure_one()
         radius_server = self.radius_id
-        if not radius_server.netdev_id:
+        if not radius_server:
             raise UserError(_("The selected Radius server is not linked to a Network Device."))
 
         api,e = radius_server._get_api_connection()
@@ -69,7 +69,7 @@ class SilverRadiusNasWizard(models.TransientModel):
                     raise UserError(_("NAS client with this address not found on the MikroTik router."))
 
                 api.path('/radius').remove(id=existing_nas[0]['.id'])
-                radius_server.netdev_id.write({'state': 'connected'})
+                radius_server.write({'state': 'connected'})
                 return {
                     'type': 'ir.actions.client',
                     'tag': 'display_notification',
@@ -80,7 +80,7 @@ class SilverRadiusNasWizard(models.TransientModel):
                     }
                 }
             except Exception as e:
-                radius_server.netdev_id.write({'state': 'error'})
+                radius_server.write({'state': 'error'})
                 raise UserError(_("Failed to remove NAS client: %s") % e)
             finally:
                 api.close()
@@ -90,7 +90,7 @@ class SilverRadiusNasWizard(models.TransientModel):
     def action_view_nas_clients(self):
         self.ensure_one()
         radius_server = self.radius_id
-        if not radius_server.netdev_id:
+        if not radius_server:
             raise UserError(_("The selected Radius server is not linked to a Network Device."))
 
         api,e = radius_server._get_api_connection()
@@ -111,7 +111,7 @@ class SilverRadiusNasWizard(models.TransientModel):
                     }
                 }
             except Exception as e:
-                radius_server.netdev_id.write({'state': 'error'})
+                radius_server.write({'state': 'error'})
                 raise UserError(_("Failed to retrieve NAS clients: %s") % e)
             finally:
                 api.close()
