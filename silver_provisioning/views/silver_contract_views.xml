@@ -66,6 +66,7 @@
                                         <field name="olt_id" readonly="state_service == 'active'"
 domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                               options="{'no_create': True}"/>
+
                                         <button name="action_open_onu_selector_wizard"
                                                 type="object"
                                                 string="Descubrir ONUS"
@@ -76,7 +77,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                                     readonly="state_service == 'active'"
                                                domain="[('olt_id', '=', olt_id), '|', ('contract_id', '=', False), ('contract_id', '=', id)]"
                                                invisible="(old_discovered and (discovered_onu_id==False)) or (not olt_id) or (state_service == 'active')" nolabel="1" />
-<br invisible="(olt_id==False) or (state_service == 'active') or(  (old_discovered == False) and (discovered_onu_id != False))" />
+<br invisible="(olt_id==False) or (state_service == 'active') or(  (old_discovered == False) or (discovered_onu_id != False))" />
                                     <!--br invisible="(not ((not olt_id) or (state_service == 'active')))"/-->
 
                         <field name="olt_port_id" domain="[('olt_id', '=', olt_id)]"  readonly="state_service == 'active'"/>
