@@ -78,7 +78,9 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                                invisible="(old_discovered and (discovered_onu_id==False)) or (not olt_id) or (state_service == 'active')" nolabel="1" />
 
                                     <!--br invisible="(not ((not olt_id) or (state_service == 'active')))"/-->
-                                    <br invisible="(not ((old_discovered and (discovered_onu_id==False)) or (not olt_id) or (state_service == 'active'))) and ((not olt_id) or (state_service == 'active'))"/>
+                                    <br invisible="[
+           '|', '|', '|',
+           ('olt_id', '=', False),               ('state_service', '=', 'active'),     ('old_discovered', '=', False),       ('discovered_onu_id', '!=', False)    ]" />
 
                         <field name="olt_port_id" domain="[('olt_id', '=', olt_id)]"  readonly="state_service == 'active'"/>
                         <field name="onu_pon_id"  readonly="state_service == 'active'"/>
