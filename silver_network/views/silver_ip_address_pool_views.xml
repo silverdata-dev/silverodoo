@@ -19,6 +19,12 @@
 
 
                     <field name="public"/>
+                       <field name="core_id" invisible="public"/>
+                                <field name="olt_id"  invisible="public"/>
+                                <field name="olt_port_id" domain="[('olt_id', '=', olt_id)]"  invisible="public"/>
+                                <field name="zone_ids" invisible="not public"  widget="many2many_tags"/>
+                                <field name="node_ids" invisible="not public"  widget="many2many_tags"/>
+                                <field name="core_ids" invisible="not public"  widget="many2many_tags"/>
 
                      <field name="total_ips"/>
                             <field name="used_ips"/>

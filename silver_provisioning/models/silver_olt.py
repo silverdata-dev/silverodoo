@@ -417,7 +417,7 @@ class SilverOlt(models.Model):
 
 
         required_params = {
-            "Puerto PON": pon_port, "ID de ONU en PON": onu_id, "Serial ONU": serial_number,
+            "Puerto PON": pon_port,  "Serial ONU": serial_number, #"ID de ONU en PON": onu_id,
             "Modelo de ONU (Profile)": profile_name, "Tcont": tcont, "DBA Profile": dba_profile,
             "Gemport": gemport, "VLAN": vlanid, "Service Port": service_port
         }

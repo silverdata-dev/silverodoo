@@ -17,7 +17,17 @@
    <xpath expr="//page[1]" position="before">
 
                       <page string="Contratos">
-                   <field name="contract_ids"/>
+
+                        <field name="contract_ids">
+                            <tree create="false">
+                                <field name="name"/>
+                                <field name="partner_id"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                         <div class="o_action_manager">
+                              <button name="action_create_contract" type="object" string="Crear" class="btn-link nobold"/>
+                                        </div>
                       </page>
 
                 </xpath>

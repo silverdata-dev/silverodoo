@@ -49,6 +49,14 @@ class SilverAp(models.Model):
 
                      string='Estado', default='down')
 
+    def action_unlink_from_core(self):
+        self.ensure_one()
+        self.write({'core_id': False})
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+
     @api.model
     def create(self, vals):
         print(("createee", vals))
@@ -59,7 +67,7 @@ class SilverAp(models.Model):
 
             #    vals['parent_id'] = core.asset_id.id
 
-                vals['name'] = f"{core.name}/{vals.get('hostname_ap', '')}"
+            #    vals['name'] = f"{core.name}/{vals.get('hostname_ap', '')}"
                 print(("createe2e", vals))
         print(("createee3", vals))
         return super(SilverAp, self).create(vals)
@@ -68,23 +76,65 @@ class SilverAp(models.Model):
     def write(self, vals):
         print(("apwrite", vals))
 
-        for record in self:
-            if vals.get('core_id'):
-                core = self.env['silver.core'].browse(vals['core_id'])
-            else:
-                core = record.core_id
+        #for record in self:
+        #    if vals.get('core_id'):
+        #        core = self.env['silver.core'].browse(vals['core_id'])
+        #    else:
+        #        core = record.core_id
 
-            if core.exists() and core.name and 'parent_id' not in vals:
-                hostname = vals.get('hostname_ap', record.hostname_ap)
-                record.name = f"{core.name}/{hostname}"
+        #    if core.exists() and core.name and 'parent_id' not in vals:
+        #        hostname = vals.get('hostname_ap', record.hostname_ap)
+        #        record.name = f"{core.name}/{hostname}"
              #   record.parent_id = core.asset_id.id
-                print(("cocrewr2", hostname))
+        #        print(("cocrewr2", hostname))
 
             # If node_id is set to False, the name is not changed.
         return super(SilverAp, self).write(vals)
 
 
 
+    def get_name(self):
+        if self.env.context.get('checkboxes'):
+            # Sin paréntesis, como solicitaste.
+            names = []
+            if self.name: names.append(self.name)
+            if self.hostname_ap: names.append(self.hostname_ap)
+            if self.core_id: names.append(f"{self.core_id}")
+            name = " - ".join(names)
+        else:
+            name = self.name
+        return name
+
+    def name_get(self):
+        """
+        Método estándar de Odoo para obtener el nombre a mostrar.
+        Aquí manejamos el contexto para mostrar las coordenadas.
+        """
+        result = []
+        for rec in self:
+
+            name = self.get_name()
+
+
+            # Si no hay datos de dirección legible, usamos el display_name
+            if not name:
+                name = rec.display_name
+            result.append((rec.id, name))
+        return result
+
+
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        """
+        Permite buscar direcciones por calle, edificio o nombre de la zona.
+        """
+
+        args = args or []
+        domain = []
+
+        records = self.search(domain + args, limit=limit)
+
+        return [(r.id, r.get_name()) for r in records]
 
 
     @api.onchange('node_id')
@@ -110,3 +160,29 @@ class SilverAp(models.Model):
 
         # Asignar la lista final de IDs al campo many2many usando el comando (6,0,...)
         self.node_ids = [(6, 0, current_nodes_ids)]
+
+
+
+        if not self.node_id:
+            self.name = ''
+            return
+
+        aps = self.env['silver.ap'].search([('node_id', '=', self.node_id.id)])
+        i = 1
+        for o in aps:
+            if o.name:
+                patron = r'(\d+)$'
+                match = re.search(patron, o.name)
+                print(("re", match, i, o))
+                if not match: continue
+                if (self._origin.id == o.id): continue
+                on = int(match.group(1))
+                print(("on", on, o.id, self.id, o.id == self.id, self._origin.id == o.id))
+                if on >= i: i = on + 1
+
+        name = f"{self.node_id.code}/AP{i}"
+
+        # Construimos el código.
+        # Si el campo 'code' del nodo es 'u', y ya tiene 2 cores, el nuevo será 'u/2'
+        self.name = name
+        print(("h3", self.name))

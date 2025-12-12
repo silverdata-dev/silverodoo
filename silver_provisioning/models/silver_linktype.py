@@ -5,10 +5,10 @@ from odoo import api, fields, models, _
 
 class SilverLinkType(models.Model):
     _name = 'silver.linktype'
-    _description = 'Silver Link Type'
+    _description = 'Tipo de enlace'
 
     code = fields.Char(string='Code', required=True)
-    description = fields.Char(string='Description', required=True)
+    description = fields.Char(string='Descripción', required=True)
     has_olt = fields.Boolean('Usa OLT', default=False)
     name = fields.Char(string="Nombre")
     service_type_id = fields.Many2one('silver.service.type', string="Tipo de Servicio", required=True, default=lambda self: self._get_default_service_type_id())

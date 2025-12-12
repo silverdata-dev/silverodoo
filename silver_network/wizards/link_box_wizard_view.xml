@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_link_box_wizard_form" model="ir.ui.view">
+            <field name="name">silver.node.link.box.wizard.form</field>
+            <field name="model">silver.node.link.box.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Agregar NAPs">
+                    <p>Selecciona las NAPs a agregar para este nodo.</p>
+                    <field name="node_id" invisible="1"/>
+                    <field name="box_ids" nolabel="1" widget="many2many_checkboxes" domain="[('node_id', '=', False)]" context="{'checkboxes':1}"/>
+                    <footer>
+                        <button name="action_link_boxes" string="Agregar" type="object" class="btn-primary"/>
+                        <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

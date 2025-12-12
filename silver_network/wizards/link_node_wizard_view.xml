@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_link_node_wizard_form" model="ir.ui.view">
+            <field name="name">silver.zone.link.node.wizard.form</field>
+            <field name="model">silver.zone.link.node.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Agregar Nodos">
+                    <p>Selecciona los Nodos a agregar para esta zone.</p>
+                    <field name="zone_id" invisible="1"/>
+                    <field name="node_ids" nolabel="1" widget="many2many_checkboxes" domain="[('zone_id', '=', False)]" context="{'checkboxes':1}"/>
+                    <footer>
+                        <button name="action_link_nodes" string="Agregar" type="object" class="btn-primary"/>
+                        <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

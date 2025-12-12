@@ -384,6 +384,35 @@ class SilverOlt(models.Model):
         }, reload_action]
 
 
+    def action_unlink_from_node(self):
+        self.ensure_one()
+        self.write({'node_id': False})
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+
+    def action_unlink_from_core(self):
+        self.ensure_one()
+        self.write({'core_id': False})
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+
+    def action_create_contract(self):
+        self.ensure_one()
+        return {
+            'name': _('Create New Contract'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.contract',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_olt_id': self.id,
+            }
+        }
+
     def _get_olt_connection(self):
         self.ensure_one()
         return OLTConnection(

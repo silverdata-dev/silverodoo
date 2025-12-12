@@ -9,7 +9,19 @@
                 <xpath expr="//sheet" position="inside">
                     <notebook>
                         <page string="Nodos">
-                            <field name="node_ids"/>
+
+                            <field name="node_ids">
+                                <tree string="Nodos" default_order="name desc" create="false" delete="false">
+                                    <field name="name"/>
+                                    <field name="code"/>
+                                    <field name="silver_address_id"/>
+                                    <button name="action_unlink_from_zone" type="object" string="" icon="fa-chain-broken"/>
+                                </tree>
+                            </field>
+                              <div class="o_action_manager">
+                                            <button name="action_open_nodes_to_link" type="object" string="Agregar..." class="btn-link nobold"/>
+                                            <button name="action_create_and_link_node" type="object" string="Crear" class="btn-link nobold"/>
+                                        </div>
                         </page>
                     </notebook>
 

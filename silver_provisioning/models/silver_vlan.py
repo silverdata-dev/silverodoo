@@ -26,3 +26,16 @@ class SilverVlan(models.Model):
                 res['node_id'] = core.node_id.id
 
         return res
+
+    def action_create_contract(self):
+        self.ensure_one()
+        return {
+            'name': _('Create New Contract'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.contract',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_vlan_id': self.id,
+            }
+        }

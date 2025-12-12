@@ -46,14 +46,15 @@
                         <field name="state" invisible="1"/>
                         <div class="oe_title">
                             <h1>
-                                <field name="name"/>
+                                <field name="name" required="1" readonly="node_id==False"/>
+
                             </h1>
                         </div>
                         <group name="ap">
                             <group>
                                 <field name="hostname_ap"/>
- <field name="node_id"/>
-                                <field name="core_id"/>
+ <field name="node_id" required="1"/>
+                                <field name="core_id" required="1"/>
                                 <field name="node_ids" widget="many2many_tags" invisible="1" can_create="true"
                                        can_write="true" readonly="1"/>
 

@@ -1,6 +1,7 @@
 
 from datetime import datetime
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 class SilverNode(models.Model):
     _name = 'silver.node'
@@ -35,7 +36,7 @@ class SilverNode(models.Model):
     olt_ids = fields.One2many('silver.olt', 'node_id', string='OLTs')
     box_ids = fields.One2many('silver.box', 'node_id', string='Boxes')
     #splice_closure_ids = fields.One2many('silver.splice_closure', 'node_id', string='Splice Closures')
-    zone_id = fields.Many2one('silver.zone', string="Zona", related='silver_address_id.zone_id' )
+    zone_id = fields.Many2one('silver.zone', string="Zona")
 
     #silver_address_id = fields.Many2one('silver.address', string='Dirección', related="asset_id.silver_address_id", store=False)
 
@@ -154,4 +155,94 @@ class SilverNode(models.Model):
             domain = ['|', ('code', operator, name), ('name', operator, name)]
         nodes = self.search(domain + args, limit=limit)
         return nodes.name_get()
+
+    def action_create_and_link_core(self):
+        self.ensure_one()
+        return {
+            'name': _('Create New Core'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.core',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_node_id': self.id,
+            }
+        }
+
+    def action_open_cores_to_link(self):
+        self.ensure_one()
+        unassigned_cores_count = self.env['silver.core'].search_count([('node_id', '=', False)])
+        if unassigned_cores_count == 0:
+
+            raise UserError(_('No hay cores sin asignar.'))
+
+        return {
+            'name': 'Agregar Core',
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.node.link.core.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+        }
+
+    def action_unlink_from_zone(self):
+        self.ensure_one()
+        self.write({'zone_id': False})
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+
+    def action_create_and_link_olt(self):
+        self.ensure_one()
+        return {
+            'name': _('Crear OLT'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.olt',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_node_id': self.id,
+            }
+        }
+
+    def action_open_olts_to_link(self):
+        self.ensure_one()
+        unassigned_olts_count = self.env['silver.olt'].search_count([('node_id', '=', False)])
+        if unassigned_olts_count == 0:
+            raise UserError(_('No hay OLTs sin asignar.'))
+
+        return {
+            'name': 'Agregar OLT',
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.node.link.olt.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+        }
+
+    def action_create_and_link_box(self):
+        self.ensure_one()
+        return {
+            'name': _('Crear NAP'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.box',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_node_id': self.id,
+            }
+        }
+
+    def action_open_boxes_to_link(self):
+        self.ensure_one()
+        unassigned_boxes_count = self.env['silver.box'].search_count([('node_id', '=', False)])
+        if unassigned_boxes_count == 0:
+            raise UserError(_('No hay NAPs sin asignar.'))
+
+        return {
+            'name': 'Agregar Box',
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.node.link.box.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+        }
 

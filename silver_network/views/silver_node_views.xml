@@ -30,6 +30,7 @@
             <field name="arch" type="xml">
                 <form string="Nodo ISP">
                     <header>
+
                         <!--button name="create_core" string="Crear Equipo Core" type="object" /-->
                         <!--button name="action_create_ticket_node" string="Crear Ticket" icon="fa-ticket" type="object" class="oe_highlight"/-->
                         <!--button name="create_olt" string="Crear Equipo Olt" type="object"/-->
@@ -39,6 +40,7 @@
                     </header>
                     <sheet string="Nodo ISP">
                                                 <div class="botones-rightt" name="button_box">
+
                             <!--button class="oe_stat_button" type="object" name="action_view_cores" icon="fa-arrows-v">
                                 <field string="Equipos Core" name="core_count" widget="statinfo"/>
                             </button-->
@@ -93,33 +95,74 @@
                         <notebook name="related">
 
                             <page name="Equipos Core" >
+
                                 <field name="core_ids" >
-                                     <tree string="Equipos Core" default_order="name desc" >
-                    <field name="name" />
+                                     <tree string="Equipos Core" default_order="name desc" create="false" delete="false" decoration-bf="1">
 
-                    <field name="hostname_core" />
+<field name="id" column_invisible="1"/>
 
+<field name="name" column_invisible="1"/>
 
+<field name="open_form_link" widget="html" string="Referencia"/>
 
-                    <!--field name="brand_id"/-->
-                    <field name="model"/>
-                    <field name="ip"/>
+                                <field name="name"
+               string="Línea"
+               widget="url_link"
+               options="{
+                   'url': '/web#id={id}&amp;model=silver.core&amp;view_type=form&amp;',
 
-                    <!--field name="port"/>
-                    <field name="username"/-->
-                 <field name="state" widget="badge"
-                           decoration-success="state in ['active', 'connected']"
-                           decoration-warning="state in ('suspended', 'disabled')"
-                           decoration-danger="state in ['removed', 'down']"/>
-
-                </tree>
+                   'target': 'current'
+               }"/>
+                                        <field name="hostname_core" />
+                                        <field name="model"/>
+                                        <field name="ip"/>
+                                        <field name="state" widget="badge"
+                                               decoration-success="state in ['active', 'connected']"
+                                               decoration-warning="state in ('suspended', 'disabled')"
+                                               decoration-danger="state in ['removed', 'down']"/>
+                                        <button name="action_unlink_from_node" type="object" string="" icon="fa-chain-broken"/>
+                                    </tree>
                                 </field>
+                                 <div class="o_action_manager">
+                                            <button name="action_open_cores_to_link" type="object" string="Agregar..." class="btn-link nobold"/>
+                                            <button name="action_create_and_link_core" type="object" string="Crear" class="btn-link nobold"/>
+                                        </div>
                             </page>
                             <page name="Equipos OLT" >
-                                <field name="olt_ids"/>
+
+                                <field name="olt_ids">
+                                    <tree string="Equipos OLT" default_order="name desc" create="false" delete="false">
+                                        <field name="name"/>
+                                        <field name="hostname_olt"/>
+                                        <field name="ip"/>
+                                        <field name="state" widget="badge"
+                                               decoration-success="state in ['active', 'connected']"
+                                               decoration-warning="state in ('pending', 'disabled')"
+                                               decoration-danger="state in ['removed', 'down']"/>
+                                        <button name="action_unlink_from_node" type="object" string="" icon="fa-chain-broken"/>
+                                    </tree>
+                                </field>
+                                <div class="o_action_manager">
+                                            <button name="action_open_olts_to_link" type="object" string="Agregar..." class="btn-link nobold"/>
+                                            <button name="action_create_and_link_olt" type="object" string="Crear" class="btn-link nobold"/>
+                                        </div>
                             </page>
                             <page name="Cajas NAP" >
-                                <field name="box_ids"/>
+
+                                <field name="box_ids">
+                                    <tree string="Cajas NAP" default_order="name desc" create="false" delete="false">
+                                        <field name="name"/>
+                                        <field name="capacity_nap"/>
+                                        <field name="capacity_usage_nap"/>
+                                        <field name="s_vlan"/>
+                                        <field name="c_vlan"/>
+                                        <button name="action_unlink_from_node" type="object" string="" icon="fa-chain-broken"/>
+                                    </tree>
+                                </field>
+                                 <div class="o_action_manager">
+                                            <button name="action_open_boxes_to_link" type="object" string="Agregar..." class="btn-link nobold"/>
+                                            <button name="action_create_and_link_box" type="object" string="Crear" class="btn-link nobold"/>
+                                        </div>
                             </page>
                             <page name="map_view" string="Mapa">
                                 <field name="id"/>

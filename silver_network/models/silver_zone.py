@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 class SilverZone(models.Model):
     _inherit = 'silver.zone'
@@ -10,10 +11,10 @@ class SilverZone(models.Model):
     node_count = fields.Integer(string='Nodos', compute='_compute_counts')
 
     #node_count = fields.Integer(string='Conteo de Nodos', compute='_compute_node_count')
-    gps_top = fields.Float("GPS Norte", compute='_compute_gps', readonly=True)
-    gps_left = fields.Float("GPS Oeste", compute='_compute_gps', readonly=True)
-    gps_right = fields.Float("GPS Este", compute='_compute_gps', readonly=True)
-    gps_bottom = fields.Float("GPS Sur", compute='_compute_gps', readonly=True)
+    gps_top = fields.Float("GPS Norte", compute='_compute_gps', readonly=True, digits=(10, 7))
+    gps_left = fields.Float("GPS Oeste", compute='_compute_gps', readonly=True, digits=(10, 7))
+    gps_right = fields.Float("GPS Este", compute='_compute_gps', readonly=True, digits=(10, 7))
+    gps_bottom = fields.Float("GPS Sur", compute='_compute_gps', readonly=True, digits=(10, 7))
 
     @api.depends('node_ids')
     def _compute_counts(self):
@@ -52,4 +53,32 @@ class SilverZone(models.Model):
             'view_mode': 'form',
             'res_id': new_node.id,
             'target': 'current',
+        }
+
+    def action_create_and_link_node(self):
+        self.ensure_one()
+        return {
+            'name': _('Crear Nodo'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.node',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_zone_id': self.id,
+            }
+        }
+
+    def action_open_nodes_to_link(self):
+        self.ensure_one()
+        unassigned_nodes_count = self.env['silver.node'].search_count([('zone_id', '=', False)])
+        if unassigned_nodes_count == 0:
+
+            raise UserError(_('No hay Nodes sin asignar.'))
+
+        return {
+            'name': 'Agregar Nodo',
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.zone.link.node.wizard',
+            'view_mode': 'form',
+            'target': 'new',
         }

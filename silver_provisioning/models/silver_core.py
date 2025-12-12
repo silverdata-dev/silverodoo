@@ -21,3 +21,17 @@ class SilverCore(models.Model):
 
     def action_view_contracts(self):
         return self.access_point_id.action_view_contracts()
+
+
+    def action_create_contract(self):
+        self.ensure_one()
+        return {
+            'name': _('Create New Contract'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.contract',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_core_id': self.id,
+            }
+        }

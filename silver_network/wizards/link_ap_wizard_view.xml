@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_link_ap_wizard_form" model="ir.ui.view">
+            <field name="name">silver.core.link.ap.wizard.form</field>
+            <field name="model">silver.core.link.ap.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Agregar APs">
+                    <p>Selecciona las APs para este core.</p>
+                    <field name="core_id" invisible="1"/>
+                    <field name="ap_ids" nolabel="1" widget="many2many_checkboxes" domain="[('core_id', '=', False)]" context="{'checkboxes':1}"/>
+                    <footer>
+                        <button name="action_link_aps" string="Agregar" type="object" class="btn-primary"/>
+                        <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

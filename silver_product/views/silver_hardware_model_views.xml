@@ -5,7 +5,7 @@
             <field name="name">silver.hardware.model.tree</field>
             <field name="model">silver.hardware.model</field>
             <field name="arch" type="xml">
-                <tree string="Hardware Models">
+                <tree string="Modelos">
                     <field name="name"/>
                     <field name="brand_id"/>
                                                 <field name="etype"/>
@@ -17,7 +17,7 @@
             <field name="name">silver.hardware.model.form</field>
             <field name="model">silver.hardware.model</field>
             <field name="arch" type="xml">
-                <form string="Hardware Model">
+                <form string="Modelo">
                     <sheet>
                         <group>
                             <field name="name"/>
@@ -28,6 +28,9 @@
                             <field name="active"/>
                         </group>
                         <notebook>
+                            <page string="Productos">
+                                <field name="product_ids"/>
+                            </page>
                             <page string="Notes">
                                 <field name="notes"/>
                             </page>
@@ -38,7 +41,7 @@
         </record>
 
         <record id="action_silver_hardware_model" model="ir.actions.act_window">
-            <field name="name">Hardware Models</field>
+            <field name="name">Modelos</field>
             <field name="res_model">silver.hardware.model</field>
             <field name="view_mode">tree,form</field>
         </record>

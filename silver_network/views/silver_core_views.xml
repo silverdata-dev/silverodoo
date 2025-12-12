@@ -7,10 +7,10 @@
             <field name="model">silver.core</field>
             <field name="arch" type="xml">
                 <tree string="Equipos Core" default_order="name desc" expand="1">
-                    <field name="name"/>
-                    <field name="hostname_core"/>
-                    <field name="node_id"/>
-                    <!--field name="brand_id"/-->
+                                        <field name="name"/>
+                                        <field name="hostname_core"/>
+                                        <field name="node_id"/>
+                                        <!--field name="brand_id"/-->
                     <field name="model"/>
                     <field name="ip"/>
 
@@ -29,14 +29,14 @@
         <field name="name">silver.core.search.view</field>
         <field name="model">silver.core</field>
         <field name="arch" type="xml">
-            <search string="Equipos Core">
-                <field name="name"/>
-                <field name="hostname_core"/>
-                <field name="node_id" />
-                <group expand="1" string="Group By">
-                    <filter name="group_by_node_id" string="Nodo" domain="[]"  context="{'group_by':'node_id'}"/>
-                </group>
-            </search>
+                        <search string="Equipos Core">
+                            <field name="name"/>
+                            <field name="hostname_core"/>
+                            <field name="node_id" />
+                            <group expand="1" string="Group By">
+                                <filter name="group_by_node_id" string="Nodo" domain="[]"  context="{'group_by':'node_id'}"/>
+                            </group>
+                        </search>
         </field>
     </record>
 
@@ -171,15 +171,38 @@
                         </group>
 
                         <notebook colspan="4">
-                             <page string="Equipos AP" name="aps">
-                                        <field name="ap_ids">
+                             <page string="Equipos OLT" name="olts">
 
-                                        </field>
-                                    </page>
-                                    <page string="Equipos OLT" name="olts">
                                         <field name="olt_ids">
-
+                                            <tree create="false" delete="false">
+                                                <field name="name"/>
+                                                <field name="hostname_olt"/>
+                                                <field name="ip"/>
+                                                <field name="state"/>
+                                                <button name="action_unlink_from_core" type="object" string="" icon="fa-chain-broken"/>
+                                            </tree>
                                         </field>
+                                 <div class="o_action_manager">
+                                            <button name="action_open_olts_to_link" type="object" string="Agregar..." class="btn-link nobold"/>
+                                            <button name="action_create_and_link_olt" type="object" string="Crear" class="btn-link nobold"/>
+                                        </div>
+                                    </page>
+                                    <page string="Equipos AP" name="aps">
+
+                                        <field name="ap_ids">
+                                            <tree create="false" delete="false">
+                                                <field name="name"/>
+                                                <field name="hostname_ap"/>
+                                                <field name="ip"/>
+                                                <field name="state"/>
+                                                <button name="action_unlink_from_core" type="object" string="" icon="fa-chain-broken"/>
+                                            </tree>
+                                        </field>
+                                                                         <div class="o_action_manager">
+                                            <button name="action_open_aps_to_link" type="object" string="Agregar..." class="btn-link nobold"/>
+                                            <button name="action_create_and_link_ap" type="object" string="Crear" class="btn-link nobold"/>
+                                        </div>
+
                                     </page>
                                   <page name="ip_address" string="Direcciones IP">
 

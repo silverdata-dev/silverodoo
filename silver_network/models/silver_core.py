@@ -2,8 +2,9 @@ import ipaddress
 from odoo import models, fields, api, _
 from odoo.http import request
 from odoo.exceptions import UserError
+from odoo.exceptions import UserError
 import logging, string, secrets
-import re
+import re, html
 import librouteros
 from librouteros.query import Key
 
@@ -54,6 +55,9 @@ class SilverCore(models.Model):
         return False
 
     hostname_core = fields.Char(string='Hostname')
+
+
+
 
     node_id = fields.Many2one('silver.node', string='Nodo')
     node_ids = fields.Many2many('silver.node', string='Nodos')
@@ -247,6 +251,9 @@ class SilverCore(models.Model):
 
         # @api.onchange('node_id')
 
+
+
+
     @api.onchange('node_id')
     def _compute_hostname(self):
         print(('h1', self))
@@ -270,7 +277,7 @@ class SilverCore(models.Model):
                 print(("on", on, o.id, core.id, o.id == core.id, core._origin.id == o.id))
                 if on >= i: i = on + 1
 
-        name = f"{core.node_id.name}/CR{i}"
+        name = f"{core.node_id.code}/CR{i}"
 
         # Construimos el código.
         # Si el campo 'code' del nodo es 'u', y ya tiene 2 cores, el nuevo será 'u/2'
@@ -410,6 +417,77 @@ class SilverCore(models.Model):
             'target': 'current',
         }
 
+    def create_ap(self):
+        self.ensure_one()
+        new_ap = self.env['silver.ap'].create({
+           #   'name': f"AP for {self.name}",
+            'core_id': self.id,
+        })
+        return {
+            'name': 'AP Creado',
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.ap',
+            'view_mode': 'form',
+            'res_id': new_ap.id,
+            'target': 'current',
+        }
+
+    def action_create_and_link_ap(self):
+        self.ensure_one()
+        return {
+            'name': _('Crear AP'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.ap',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_core_id': self.id,
+            }
+        }
+
+    def action_open_aps_to_link(self):
+        self.ensure_one()
+        unassigned_aps_count = self.env['silver.ap'].search_count([('core_id', '=', False)])
+        if unassigned_aps_count == 0:
+
+            raise UserError(_('No hay APs sin asignar.'))
+
+        return {
+            'name': 'Agregar AP',
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.core.link.ap.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+        }
+
+    def action_create_and_link_olt(self):
+        self.ensure_one()
+        return {
+            'name': _('Crear OLT'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.olt',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_core_id': self.id,
+            }
+        }
+
+    def action_open_olts_to_link(self):
+        self.ensure_one()
+        unassigned_olts_count = self.env['silver.olt'].search_count([('core_id', '=', False)])
+        if unassigned_olts_count == 0:
+           # return
+            raise UserError(_('No hay OLTs sin asignar.'))
+
+        return {
+            'name': 'Agregar OLT',
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.core.link.olt.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+        }
+
     def create_radius(self):
         self.ensure_one()
         new_radius = self.env['silver.core'].create({
@@ -433,8 +511,8 @@ class SilverCore(models.Model):
             'type': 'ir.actions.client',
             'tag': 'display_notification',
             'params': {
-                'title': 'Create NAS',
-                'message': 'NAS created successfully!',
+                'title': 'Crear NAS',
+                'message': 'NAS creado',
                 'type': 'success',
             }
         }
@@ -446,8 +524,8 @@ class SilverCore(models.Model):
             'type': 'ir.actions.client',
             'tag': 'display_notification',
             'params': {
-                'title': 'Remove NAS',
-                'message': 'NAS removed successfully!',
+                'title': 'Quitar NAS',
+                'message': 'NAS quitado',
                 'type': 'success',
             }
         }
@@ -528,6 +606,17 @@ class SilverCore(models.Model):
         }
 
 
+
+    def action_view_form(self):
+        self.ensure_one()
+        return {
+            'name': _('Core'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.core',
+            'view_mode': 'form',
+            'res_id': self.id,
+            'target': 'current',
+        }
 
     def _get_api_connection(self, username=None, password=None):
         self.ensure_one()
@@ -709,6 +798,14 @@ class SilverCore(models.Model):
 
 
 
+
+    def action_unlink_from_node(self):
+        self.ensure_one()
+        self.write({'node_id': False})
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
 
     def button_test_connection(self):
         self.ensure_one()
@@ -1319,4 +1416,28 @@ class SilverCore(models.Model):
         finally:
             if api:
                 api.close()
+
+
+    def action_open_form(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'silver.core',
+            'res_id': self.id,
+            'view_mode': 'form',
+            'target': 'current',
+        }
+
+    open_form_link = fields.Html(string="Línea", compute="_compute_open_form_link", readonly=True)
+
+    def _compute_open_form_link(self):
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        for line in self:
+            if not line.id:
+                line.open_form_link = ""
+                continue
+            url = f"{base_url}/web#id={line.id}&model={line._name}&view_type=form"
+            # Aquí pones el campo que quieres que sea el texto del enlace
+            text = line.name or line.product_id.display_name or f"Línea {line.sequence}"
+            line.open_form_link = f'''<a href='{url}' target="current" >{html.escape(text)}</a>'''
 

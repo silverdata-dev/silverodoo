@@ -1,0 +1,14 @@
+from odoo import models, fields
+
+class LinkBoxWizard(models.TransientModel):
+    _name = 'silver.node.link.box.wizard'
+    _description = 'Agregar NAPs al Nodo'
+
+    node_id = fields.Many2one('silver.node', string='Node', required=True, readonly=True, default=lambda self: self.env.context.get('active_id'))
+    box_ids = fields.Many2many('silver.box', string='NAPs a agregar')
+
+    def action_link_boxes(self):
+        self.ensure_one()
+        if self.box_ids:
+            self.box_ids.write({'node_id': self.node_id.id})
+        return {'type': 'ir.actions.act_window_close'}
