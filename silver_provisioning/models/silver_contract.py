@@ -1135,20 +1135,20 @@ class IspContract(models.Model):
                                                                   '|', ('contract_id', '=', False), ('contract_id', '=', self.id)
                                                              ], order='ip_int asc')  # Ordenar por IP numericamente
 
-        print(("ips1", available_ips))
-        if (not available_ips) and (not len(available_ips)):
-            available_ips = self.env['silver.ip.address'].search([('olt_id', '=', self.olt_id.id), ('olt_port_id', '=', None),
-                                                                  ('public', '=', False),
-                                                                  '|', ('contract_id', '=', False), ('contract_id', '=', self.id)
-            ], order='ip_int asc') # Ordenar por IP numericamente
+            print(("ips1", available_ips))
+            if (not available_ips) and (not len(available_ips)):
+                available_ips = self.env['silver.ip.address'].search([('olt_id', '=', self.olt_id.id), ('olt_port_id', '=', None),
+                                                                      ('public', '=', False),
+                                                                      '|', ('contract_id', '=', False), ('contract_id', '=', self.id)
+                ], order='ip_int asc') # Ordenar por IP numericamente
 
-        print(("ips2", available_ips))
-        if (not available_ips) and (not len(available_ips)):
-            available_ips = self.env['silver.ip.address'].search([('core_id', '=', self.core_id.id),
-                                                                  ('public', '=', False),
-                                                                  '|', ('contract_id', '=', False),
-                                                                  ('contract_id', '=', self.id)
-            ], order='ip_int asc') # Ordenar por IP numericamente
+            print(("ips2", available_ips))
+            if (not available_ips) and (not len(available_ips)):
+                available_ips = self.env['silver.ip.address'].search([('core_id', '=', self.core_id.id),
+                                                                      ('public', '=', False),
+                                                                      '|', ('contract_id', '=', False),
+                                                                      ('contract_id', '=', self.id)
+                ], order='ip_int asc') # Ordenar por IP numericamente
 
         print(("ips3", available_ips))
 

@@ -93,7 +93,7 @@
                         <div class="oe_title">
                             <h1>
                                 <label for="name"/>
-                                <field name="name"  required="1"/>
+                                <field name="name"  required="1" readonly="node_id==False"/>
                             </h1>
                          </div>
                         <group name="core">

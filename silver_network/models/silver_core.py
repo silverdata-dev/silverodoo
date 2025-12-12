@@ -7,6 +7,8 @@ import re
 import librouteros
 from librouteros.query import Key
 
+from odoo.exceptions import ValidationError
+
 
 _logger = logging.getLogger(__name__)
 
@@ -35,7 +37,7 @@ class SilverCore(models.Model):
     askuser = fields.Boolean(string='Pedir usuario')
 
 
-    name = fields.Char(string='Nombre', required=True, default=lambda self: self._default_name(), readonly=False)
+    name = fields.Char(string='Nombre')
 
     def _default_name(self):
         node_id = self.env.context.get('default_node_id')
@@ -243,6 +245,38 @@ class SilverCore(models.Model):
                     }
                 )
 
+        # @api.onchange('node_id')
+
+    @api.onchange('node_id')
+    def _compute_hostname(self):
+        print(('h1', self))
+
+        core = self
+
+        if not core.node_id:
+            core.name = ''
+            return
+
+        cores = self.env['silver.core'].search([('node_id', '=', core.node_id.id)])
+        i = 1
+        for o in cores:
+            if o.name:
+                patron = r'(\d+)$'
+                match = re.search(patron, o.name)
+                print(("re", match, i, o))
+                if not match: continue
+                if (core._origin.id == o.id): continue
+                on = int(match.group(1))
+                print(("on", on, o.id, core.id, o.id == core.id, core._origin.id == o.id))
+                if on >= i: i = on + 1
+
+        name = f"{core.node_id.name}/CR{i}"
+
+        # Construimos el código.
+        # Si el campo 'code' del nodo es 'u', y ya tiene 2 cores, el nuevo será 'u/2'
+        core.name = name
+        print(("h3", core.name))
+
     def _onchange_node_id(self):
         # --- Actualización del nombre en tiempo real ---
 
@@ -324,7 +358,7 @@ class SilverCore(models.Model):
                #     record.asset_id.parent_id = node.asset_id.id
 
 
-                vals['name'] = f"{node.code}/CR{base_count + i + 1}"
+  #              vals['name'] = f"{node.code}/CR{base_count + i + 1}"
             print(("cocrewr2", record.name))
         return super(SilverCore, self).write(vals)
 

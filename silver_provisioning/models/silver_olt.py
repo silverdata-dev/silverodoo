@@ -404,7 +404,7 @@ class SilverOlt(models.Model):
         """Ejecuta los comandos base de aprovisionamiento de la ONU. Asume que ya se está en el modo de configuración de la interfaz GPON."""
         # --- Recopilación y Validación de Parámetros ---
         pon_port = f"{contract.olt_card_id.num_card or contract.olt_port_id.olt_card_id.num_card}/{contract.olt_port_id.num_port}"
-        onu_id = contract.onu_pon_id
+        onu_id = contract.onu_pon_id or 1
         serial_number = contract.serial_number
         profile_name = contract.profile_id.name
         tcont = self.tcont

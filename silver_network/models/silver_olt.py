@@ -417,9 +417,9 @@ class SilverOlt(models.Model):
                 match = re.search(patron, o.name)
                 print(("re", match, i, o))
                 if not match: continue
-                if (olt.id == o.id): continue
+                if (olt._origin.id == o.id): continue
                 on = int(match.group(1))
-                print(("on", on, o.id, olt.id, o.id==olt.id, olt.id==o.id))
+                print(("on", on, o.id, olt.id, o.id==olt.id, olt._origin.id==o.id))
                 if on >= i: i = on+1
 
 

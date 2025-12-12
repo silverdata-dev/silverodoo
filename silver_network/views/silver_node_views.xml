@@ -57,12 +57,12 @@
                                 <field name="name" placeholder="Nombre del Nodo" />
                             </h1>
                         </div>
-                        <group><group>
+<group>
                         <field name="code" placeholder="Codigo del Nodo"/>
                         <field name="silver_address_id"  context="{'show_coordinates': True}"/>
                             <field name="zone_id"/>
-                        </group></group>
 
+</group>
                              <!--group string="Datos Ubicacion">
                                     <group>
                                         <field name="zone_id" required="True"/>

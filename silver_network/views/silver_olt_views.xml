@@ -68,7 +68,7 @@
                         <div class="oe_title">
                             <h1>
                                 <label for="name" string="Nombre"/>
-                                <field name="name" readonly="core_id == None"/>
+                                <field name="name" readonly="core_id==False"/>
                             </h1>
                         </div>
                         <group name="olt">
