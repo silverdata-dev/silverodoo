@@ -17,8 +17,8 @@
                 <tree string="Nodos ISP" default_order="name asc">
                     <field name="code"/>
                     <field name="name"/>
-                    <field name="zone_id"/>
-                    <field name="silver_address_id"  context="{'show_coordinates': True}"/>
+                    <field name="zone_id" widget="many2one"/>
+                    <field name="silver_address_id"  context="{'show_coordinates': True}" widget="many2one"/>
 
                 </tree>
             </field>
@@ -173,7 +173,7 @@
                                 <field name="id"/>
                                 <field name="id" class="map-field" widget="node_map"/>
                             </page>
-                            <page string="Network Graph" name="network_graph">
+                            <page string="Grafo" name="network_graph">
                                 <field name="id" class="map-field" widget="node_network"/>
                             </page>
                         </notebook>
