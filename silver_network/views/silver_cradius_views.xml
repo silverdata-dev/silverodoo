@@ -54,10 +54,12 @@
                 </xpath>
 
                 <xpath expr="//page[@name='config']" position="before">
-                     <page string="Equipos Core" name="cores"  invisible="is_radius==False" >
+                     <page string="Clientes Radius" name="cores"  invisible="is_radius==False" >
                                 <field name="core_ids" nolabel="1">
                                     <tree>
-                                        <field name="name"/>
+                                                <field name="id" column_invisible="1"/>
+                                                <field name="name" widget="record_link"/>
+
                                         <field name="hostname_core"/>
                                         <field name="ip"/>
                                     </tree>

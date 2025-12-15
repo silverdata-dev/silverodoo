@@ -199,14 +199,29 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                     context="{'order_display': 'public asc,ip_int asc'}"
                                     /-->
   <field name="ip_address_id"
-                                             domain="[('used', '=', False),
-                                             '|',
-                                              '&amp;',
-                                             ('public', '=', False),
-                                             '|',  ('olt_port_id', '=', olt_port_id),
-                                  '|', '&amp;', ('olt_port_id','=',False), ('olt_id', '=', olt_id),('core_id', '=', core_id),
+                                             domain="[
+                                          '&amp;',
+                                             ('used', '=', False),
 
-                                       '&amp;',  ('public', '=', True), '|', ('node_ids', 'in', node_id), ('core_ids', 'in', core_id)
+                                             '|',
+                                                  '&amp;',
+                                                    ('public', '=', False),
+                                                    '|',
+                                                        '|',
+                                                            ('olt_port_id', '=', olt_port_id),
+                                                            '&amp;',
+                                                                ('olt_port_id','=',False),
+                                                                ('olt_id', '=', olt_id),
+                                                        '&amp;',
+                                                            '&amp;',
+                                                                ('olt_port_id','=',False),
+                                                                ('olt_id', '=', False),
+                                                             ('core_id', '=', core_id),
+                                                 '&amp;',
+                                                    ('public', '=', True),
+                                                    '|',
+                                                        ('node_ids', 'in', node_id),
+                                                        ('core_ids', 'in', core_id)
                                        ]"
     context="{'search_default_group_by_pool_id': 1, 'alala': 2, 'order_display': 'public asc, olt_port_id desc, olt_id asc, ip_int asc'}"
 

@@ -124,17 +124,20 @@ class SilverIpAddressLine(models.Model):
 
     @api.onchange('network')
     def _onchange_network(self):
+        print(("onchangenetwork"))
         if self.network and '/' in self.network:
             try:
                 interface = ipaddress.ip_interface(self.network)
                 self.network = str(interface.ip)
                 self.nmask = interface.network.prefixlen
 
+                print(("nmask", self.nmask, interface))
 
                 if (not self.name) or ipaddress.ip_network(self.name, strict=False):
                     self.name = f"{self.network}/{self.nmask}"
 
-            except ValueError:
+            except ValueError as e:
+                print(("error", e))
                 # Fail silently on the onchange, the create/write will catch the error
                 pass
 

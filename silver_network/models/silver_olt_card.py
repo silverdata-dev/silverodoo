@@ -39,16 +39,29 @@ class SilverOltCard(models.Model):
                 vals['name'] = f"{olt.name}/C{card_count}"
         return super(SilverOltCard, self).create(vals)
 
+    #def write(self, vals):
+    #    # If the olt_id is being changed, we need to rename the card
+    #    if 'olt_id' in vals:
+    #        new_olt = self.env['silver.olt'].browse(vals['olt_id'])
+    #        if new_olt.exists():
+    #            for record in self:
+    #                # We need to count the cards in the new OLT to get the next number
+    #                card_count = self.search_count([('olt_id', '=', new_olt.id)])
+    #                record.name = f"{new_olt.name}/C{card_count}"
+    #    return super(SilverOltCard, self).write(vals)
     def write(self, vals):
-        # If the olt_id is being changed, we need to rename the card
-        if 'olt_id' in vals:
-            new_olt = self.env['silver.olt'].browse(vals['olt_id'])
-            if new_olt.exists():
-                for record in self:
-                    # We need to count the cards in the new OLT to get the next number
-                    card_count = self.search_count([('olt_id', '=', new_olt.id)])
-                    record.name = f"{new_olt.name}/C{card_count}"
-        return super(SilverOltCard, self).write(vals)
+        print(("cardwrite"))
+        if ('name' in vals):
+            l = len(self.name) + 1
+            for port in self.port_ids:
+                print(("port", port.name[:l], self.name + "/"))
+                if port.name[:l] == self.name + "/":
+                    print(("wr", ({"name": vals['name'] + "/" + port.name[l:]})))
+                    port.write({"name": vals['name'] + "/" + port.name[l:]})
+
+
+        return super().write(vals)
+
 
     def _compute_olt_card_port_count(self):
         for record in self:

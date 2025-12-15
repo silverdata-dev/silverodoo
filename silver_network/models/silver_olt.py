@@ -259,22 +259,20 @@ class SilverOlt(models.Model):
         return super(SilverOlt, self).create(vals)
 
 
+
+
     def write(self, vals):
-        print(("apwrite", vals))
-
-        #for i, record in enumerate(self):
-        #    if vals.get('coreid'):
-        #        core = self.env['silver.core'].browse(vals['core_id'])
-        #    else:
-        #        core = record.core_id
-
-        #    if core.exists() and core.name:
-        #        olt_count = self.search_count([('core_id', '=', core.id)])
-        #        vals['name'] = f"{core.name}/OLT{olt_count + 1}"
+        print(("oltwrite"))
+        if ('name' in vals):
+            l = len(self.name) + 1
+            for card in self.card_ids:
+                print(("card", card.name[:l], self.name + "/"))
+                if card.name[:l] == self.name + "/":
+                    print(("wr", ({"name": vals['name'] + "/" + card.name[l:]})))
+                    card.write({"name": vals['name'] + "/" + card.name[l:]})
 
 
-            # If node_id is set to False, the name is not changed.
-        return super(SilverOlt, self).write(vals)
+        return super().write(vals)
 
 
 
@@ -403,7 +401,7 @@ class SilverOlt(models.Model):
     def action_create_contract(self):
         self.ensure_one()
         return {
-            'name': _('Create New Contract'),
+            'name': _('Crear Contrato'),
             'type': 'ir.actions.act_window',
             'res_model': 'silver.contract',
             'view_mode': 'form',

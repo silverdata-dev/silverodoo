@@ -6,7 +6,7 @@
             <field name="name">silver.core.tree</field>
             <field name="model">silver.core</field>
             <field name="arch" type="xml">
-                <tree string="Equipos Core" default_order="name desc" expand="1">
+                <tree string="Equipos Core" default_order="name asc" expand="1">
                                         <field name="name"/>
                                         <field name="hostname_core"/>
                                         <field name="node_id"/>
@@ -175,11 +175,12 @@
 
                                         <field name="olt_ids">
                                             <tree create="false" delete="false">
-                                                <field name="name"/>
+                                                <field name="id" column_invisible="1"/>
+                                                <field name="name" widget="record_link"/>
                                                 <field name="hostname_olt"/>
                                                 <field name="ip"/>
                                                 <field name="state"/>
-                                                <button name="action_unlink_from_core" type="object" string="" icon="fa-chain-broken"/>
+                                                <button name="action_unlink_from_core" class="bleft" type="object" string="" icon="fa-chain-broken"/>
                                             </tree>
                                         </field>
                                  <div class="o_action_manager">
@@ -191,11 +192,13 @@
 
                                         <field name="ap_ids">
                                             <tree create="false" delete="false">
-                                                <field name="name"/>
+                                                                                               <field name="id" column_invisible="1"/>
+                                                <field name="name" widget="record_link"/>
+
                                                 <field name="hostname_ap"/>
                                                 <field name="ip"/>
                                                 <field name="state"/>
-                                                <button name="action_unlink_from_core" type="object" string="" icon="fa-chain-broken"/>
+                                                <button name="action_unlink_from_core" class="bleft" type="object" string="" icon="fa-chain-broken"/>
                                             </tree>
                                         </field>
                                                                          <div class="o_action_manager">
@@ -209,7 +212,9 @@
 
                                 <field name="ip_address_pool_ids" nolabel="1" widget="one2many_list">
                                     <tree multi_selectable="1" colspan="2" editable="bottom">
-                                        <field name="name"  readonly="not name"/>
+                                                                                       <field name="id" column_invisible="1"/>
+                                                <field name="name" />
+
                                         <field name="network"/>
                                         <field name="nmask"/>
 

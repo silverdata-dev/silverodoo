@@ -1,5 +1,6 @@
 from . import silver_contract
 from . import silver_access_point
+from . import silver_node
 from . import silver_ap
 from . import silver_box
 from . import silver_splitter

@@ -6,8 +6,8 @@
             <field name="model">silver.contract</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="name"/>
-                    <field name="partner_id"  widget="many2one_avatar_user"/>
+                    <field name="name" widget="record_link"/>
+                    <field name="partner_id"  widget="many2one" context="{'ciname':1}"/>
                     <field name="date_start"/>
                     <field name="date_end"/>
 

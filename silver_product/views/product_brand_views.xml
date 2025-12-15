@@ -31,6 +31,24 @@
                             <field name="partner_ids" widget="many2many_tags"/>
                             <field name="logo" widget="image"/>
                         </group>
+                        <notebook>
+                            <page string="Modelos">
+                                <field name="model_ids">
+                                        <tree string="Modelos">
+                                                <field name="id" column_invisible="1"/>
+                                                <field name="name" widget="record_link"/>
+
+                                                <field name="etype"/>
+                </tree>
+                                </field>
+
+                            </page>
+                            <page string="Productos">
+                                  <field name="product_ids">
+
+                                  </field>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>

@@ -51,3 +51,36 @@ class ResPartner(models.Model):
                 'country_id': addr.country_id.id,
             })
         return super(ResPartner, self).write(vals)
+
+
+
+    def name_get(self):
+        """
+        Método estándar de Odoo para obtener el nombre a mostrar.
+        Aquí manejamos el contexto para mostrar las coordenadas.
+        """
+        result = []
+        for rec in self:
+
+            name = self.get_name()
+
+            print(("ciname", self.env.context))
+            if (self.env.context.get('ciname')):
+                name = rec.vat + " - " + name
+
+            if not name:
+                name = rec.display_name
+            result.append((rec.id, name))
+        return result
+
+
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        args = args or []
+        domain = []
+        if name:
+            domain = [('name', operator, name)]
+
+        print(("partnersearch", domain))
+        nodes = self.search(domain + args, limit=limit)
+        return nodes.name_get()

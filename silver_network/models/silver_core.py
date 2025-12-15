@@ -345,29 +345,25 @@ class SilverCore(models.Model):
     #                record.name = f"{new_core.name}/RADIUS{radius_count + 1}"
     #    return super(SilverRadius, self).write(vals)
 
+
     def write(self, vals):
-        print(("corewrite", vals))
-        for i, record in enumerate(self):
-            if vals.get('node_id'):
-                node = self.env['silver.node'].browse(vals['node_id'])
-            else:
-                node = record.node_id
+        print(("corewrite"))
+        if ('name' in vals):
+            l = len(self.name) + 1
+            for olt in self.olt_ids:
+                print(("olt", olt.name[:l], self.name + "/"))
+                if olt.name[:l] == self.name + "/":
+                    print(("wr", ({"name": vals['name'] + "/" + olt.name[l:]})))
+                    olt.write({"name": vals['name'] + "/" + olt.name[l:]})
 
-            if node.exists() and node.code:
-                # This logic handles single and multiple record updates.
-                # For multiple updates, it iterates and assigns a unique incremental name to each.
-                base_count = self.search_count([('node_id', '=', node.id)])
-
-                #record.node_id = node
-               # print(("cocrewr1", record.asset_id.id, record.asset_id.parent_id, vals))
-
-               # if (not record.asset_id.parent_id ) or (record.asset_id.parent_id.id != node.asset_id.id):
-               #     record.asset_id.parent_id = node.asset_id.id
+            for ap in self.ap_ids:
+                print(("ap", ap.name[:l], self.name + "/"))
+                if ap.name[:l] == self.name + "/":
+                    print(("wr", ({"name": vals['name'] + "/" + ap.name[l:]})))
+                    ap.write({"name": vals['name'] + "/" + ap.name[l:]})
 
 
-  #              vals['name'] = f"{node.code}/CR{base_count + i + 1}"
-            print(("cocrewr2", record.name))
-        return super(SilverCore, self).write(vals)
+        return super().write(vals)
 
     #@api.depends('olt', 'radius', 'ap_count', 'cor')
     def _compute_counts(self):

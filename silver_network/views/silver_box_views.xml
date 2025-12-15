@@ -30,7 +30,11 @@
             <field name="model">silver.box</field>
             <field name="arch" type="xml">
                 <tree string="Cajas NAP" default_order="name desc">
-                    <field name="name"/>
+                    <field name="name" widget="record_link"/>
+                    <field name="node_id" widget="many2one"/>
+                    <field name="core_id" widget="many2one"/>
+                    <field name="olt_id" widget="many2one"/>
+                    <field name="olt_port_id" widget="many2one"/>
                     <field name="capacity_nap"/>
                     <field name="capacity_usage_nap"/>
                     <field name="silver_address_id"/>
@@ -63,9 +67,9 @@
                                     <field name="latitude" class="oe_inline"/>, <field name="longitude" class="oe_inline"/>
                                 </div-->
                                 <field name="node_id"  required="1"/>
-                                <field name="core_id" required="1"/>
-                                <field name="olt_id" required="1"/>
-                                <field name="olt_port_id" required="1"/>
+                                <field name="core_id" required="1" domain="[('node_id', '=', node_id)]"/>
+                                <field name="olt_id" required="1"  domain="[('core_id', '=', core_id)]"/>
+                                <field name="olt_port_id" required="1" domain="[('olt_id', '=', olt_id)]"/>
 
                             </group>
                             <group string="Capacidad NAP">

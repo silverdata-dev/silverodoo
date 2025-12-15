@@ -101,26 +101,20 @@
 
 <field name="id" column_invisible="1"/>
 
-<field name="name" column_invisible="1"/>
 
-<field name="open_form_link" widget="html" string="Referencia"/>
 
                                 <field name="name"
-               string="Línea"
-               widget="url_link"
-               options="{
-                   'url': '/web#id={id}&amp;model=silver.core&amp;view_type=form&amp;',
 
-                   'target': 'current'
-               }"/>
+               widget="record_link"
+/>
                                         <field name="hostname_core" />
-                                        <field name="model"/>
+                                        <field name="model" widget="many2one"/>
                                         <field name="ip"/>
                                         <field name="state" widget="badge"
                                                decoration-success="state in ['active', 'connected']"
                                                decoration-warning="state in ('suspended', 'disabled')"
                                                decoration-danger="state in ['removed', 'down']"/>
-                                        <button name="action_unlink_from_node" type="object" string="" icon="fa-chain-broken"/>
+                                        <button name="action_unlink_from_node" class="bleft" type="object" string="" icon="fa-chain-broken"/>
                                     </tree>
                                 </field>
                                  <div class="o_action_manager">
@@ -132,14 +126,18 @@
 
                                 <field name="olt_ids">
                                     <tree string="Equipos OLT" default_order="name desc" create="false" delete="false">
-                                        <field name="name"/>
+
+<field name="id" column_invisible="1"/>
+                                        <field name="name"
+                                          widget="record_link"
+                                        />
                                         <field name="hostname_olt"/>
                                         <field name="ip"/>
                                         <field name="state" widget="badge"
                                                decoration-success="state in ['active', 'connected']"
                                                decoration-warning="state in ('pending', 'disabled')"
                                                decoration-danger="state in ['removed', 'down']"/>
-                                        <button name="action_unlink_from_node" type="object" string="" icon="fa-chain-broken"/>
+                                        <button name="action_unlink_from_node" class="bleft" type="object" string="" icon="fa-chain-broken"/>
                                     </tree>
                                 </field>
                                 <div class="o_action_manager">
@@ -147,16 +145,23 @@
                                             <button name="action_create_and_link_olt" type="object" string="Crear" class="btn-link nobold"/>
                                         </div>
                             </page>
-                            <page name="Cajas NAP" >
+                            <page name="naps" string="Cajas NAP" >
 
                                 <field name="box_ids">
                                     <tree string="Cajas NAP" default_order="name desc" create="false" delete="false">
-                                        <field name="name"/>
+                                        <field name="id" column_invisible="1"/>
+                                        <field name="name"
+                                          widget="record_link"
+                                        />
+                    <field name="core_id" widget="many2one"/>
+                    <field name="olt_id" widget="many2one"/>
+                    <field name="olt_port_id" widget="many2one"/>
+
                                         <field name="capacity_nap"/>
                                         <field name="capacity_usage_nap"/>
                                         <field name="s_vlan"/>
                                         <field name="c_vlan"/>
-                                        <button name="action_unlink_from_node" type="object" string="" icon="fa-chain-broken"/>
+                                        <button name="action_unlink_from_node" class="bleft" type="object" string="" icon="fa-chain-broken"/>
                                     </tree>
                                 </field>
                                  <div class="o_action_manager">

@@ -7,7 +7,27 @@
             <field name="inherit_id" ref="silver_network.view_silver_node_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='core_ids']/tree/field[@name='ip']" position="after">
-                    <field name="contract_count"/>
+                    <field name="contract_ids" widget="one2many" />
+                </xpath>
+                 <xpath expr="//field[@name='olt_ids']/tree/field[@name='ip']" position="after">
+                    <field name="contract_ids" widget="one2many" />
+                </xpath>
+                <xpath expr="//page[@name='naps']" position="after">
+                    <page name="contracts" string="Contratos">
+ <field name="contract_ids">
+                            <tree create="false">
+                               <field name="id" column_invisible="1"/>
+                                        <field name="name"
+                                          widget="record_link"
+                                        />
+                                <field name="partner_id" widget="many2one"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                         <div class="o_action_manager">
+                              <button name="action_create_contract" type="object" string="Crear" class="btn-link nobold"/>
+                                        </div>
+                    </page>
                 </xpath>
             </field>
         </record>

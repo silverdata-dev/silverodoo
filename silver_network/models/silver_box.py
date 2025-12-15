@@ -69,7 +69,7 @@ class SilverBox(models.Model):
     def action_create_contract(self):
         self.ensure_one()
         return {
-            'name': _('Create New Contract'),
+            'name': _('Crear Contrato'),
             'type': 'ir.actions.act_window',
             'res_model': 'silver.contract',
             'view_mode': 'form',
@@ -96,3 +96,29 @@ class SilverBox(models.Model):
                     box_count = self.search_count([('splitter_id', '=', new_splitter.id)])
                     record.name = f"{new_splitter.name}/BOX{box_count + 1}"
         return super(SilverBox, self).write(vals)
+
+
+
+    def name_get(self):
+        """
+        Método estándar de Odoo para obtener el nombre a mostrar.
+        Aquí manejamos el contexto para mostrar las coordenadas.
+        """
+        result = []
+        for rec in self:
+
+            name = self.get_name()
+
+
+            # Si no hay datos de dirección legible, usamos el display_name
+            if not name:
+                name = rec.display_name
+            result.append((rec.id, name))
+        return result
+
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        args = args or []
+        domain = []
+        nodes = self.search(domain + args, limit=limit)
+        return nodes.name_get()

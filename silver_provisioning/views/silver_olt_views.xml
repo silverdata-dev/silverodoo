@@ -44,8 +44,11 @@
 
                         <field name="contract_ids">
                             <tree create="false">
-                                <field name="name"/>
-                                <field name="partner_id"/>
+                               <field name="id" column_invisible="1"/>
+                                        <field name="name"
+                                          widget="record_link"
+                                        />
+                                <field name="partner_id" widget="many2one"/>
                                 <field name="state"/>
                             </tree>
                         </field>

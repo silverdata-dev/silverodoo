@@ -14,7 +14,7 @@ class SilverRadius(models.Model):
 
     is_radius = fields.Boolean('Es radius')
 
-    core_ids = fields.One2many('silver.core', 'radius_id', string='Equipos Core')
+    core_ids = fields.One2many('silver.core', 'radius_id', string='Clientes Radius')
 
     def _compute_core_ids(self):
         for record in self:

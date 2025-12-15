@@ -103,3 +103,8 @@ div:has(>div[name=discovered_onu_id]) {
 label{
     font-weight: bold !important;
 }
+
+
+.bleft{
+    margin-left:20px;
+}

@@ -12,10 +12,12 @@
 
                             <field name="node_ids">
                                 <tree string="Nodos" default_order="name desc" create="false" delete="false">
-                                    <field name="name"/>
+                                                                <field name="id" column_invisible="1"/>
+                                                <field name="name" widget="record_link"/>
+
                                     <field name="code"/>
-                                    <field name="silver_address_id"/>
-                                    <button name="action_unlink_from_zone" type="object" string="" icon="fa-chain-broken"/>
+                                    <field name="silver_address_id" widget="many2one"/>
+                                    <button name="action_unlink_from_zone" class="bleft" type="object" string="" icon="fa-chain-broken"/>
                                 </tree>
                             </field>
                               <div class="o_action_manager">

@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields
 
-class SilverCore(models.Model):
-    _inherit = 'silver.core'
+class SilverNode(models.Model):
+    _inherit = 'silver.node'
     _inherits = {'silver.access_point': 'access_point_id'}
 
     access_point_id = fields.Many2one(
-        'silver.access_point', 
-        string='Registro de Provisioning', 
-        required=True, 
+        'silver.access_point',
+        string='Registro de Provisioning',
+        required=True,
         ondelete='cascade',
-        help="Registro de provisioning asociado a este Core."
+        help="Registro de provisioning asociado a este Nodo."
     )
 
 
-    contract_ids = fields.One2many('silver.contract', 'core_id', string='Contratos')
+    contract_ids = fields.One2many('silver.contract', 'node_id', string='Contratos')
     contract_count = fields.Integer(related='access_point_id.contract_count', string='Contratos', readonly=True, store=False)
 
 
@@ -32,6 +32,6 @@ class SilverCore(models.Model):
             'view_mode': 'form',
             'target': 'new',
             'context': {
-                'default_core_id': self.id,
+                'default_node_id': self.id,
             }
         }

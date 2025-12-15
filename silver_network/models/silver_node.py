@@ -1,4 +1,4 @@
-
+import re
 from datetime import datetime
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
@@ -42,6 +42,20 @@ class SilverNode(models.Model):
 
 
     silver_address_id = fields.Many2one('silver.address', string='Dirección')
+
+
+    def write(self, vals):
+        print(("nodewrite"))
+        if ('code' in vals):
+            l = len(self.code)+1
+            for core in self.core_ids:
+                print(("core", core.name[:l], self.code+"/"))
+                if core.name[:l] == self.code+"/":
+                    print(("wr", ({"name":vals['code']+"/"+core.name[l:]})))
+                    core.write({"name":vals['code']+"/"+core.name[l:]})
+
+
+        return super().write(vals)
 
 
     def _compute_counts(self):
@@ -159,7 +173,7 @@ class SilverNode(models.Model):
     def action_create_and_link_core(self):
         self.ensure_one()
         return {
-            'name': _('Create New Core'),
+            'name': _('Crear Core'),
             'type': 'ir.actions.act_window',
             'res_model': 'silver.core',
             'view_mode': 'form',

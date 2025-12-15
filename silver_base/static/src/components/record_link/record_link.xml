@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="silver_base.RecordLink" owl="1">
+        <a href="#" t-on-click="onClick" class="fw-bold">
+            <t t-esc="fieldValue"/>
+        </a>
+    </t>
+
+</templates>

@@ -29,6 +29,10 @@
             # Tu Widget
             'silver_base/static/src/components/silver_map_widget/silver_map_widget.xml',
             'silver_base/static/src/components/silver_map_widget/silver_map_widget.js',
+
+            # Record Link Widget
+            'silver_base/static/src/components/record_link/record_link.js',
+            'silver_base/static/src/components/record_link/record_link.xml',
         ],
     },
     'installable': True,

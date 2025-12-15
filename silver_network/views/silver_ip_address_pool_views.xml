@@ -13,7 +13,7 @@
             <field name="model">silver.ip.address.pool</field>
             <field name="arch" type="xml">
                 <tree string="Líneas de Dirección IP ISP">
-                    <field name="name"/>
+                    <field name="name" />
                     <field name="network"/>
                     <field name="nmask"/>
 
@@ -47,7 +47,7 @@
                         <group>
                                  <group string="Información básica">
 
-                            <field name="name"/>
+                            <field name="name" readonly="(network==False) or (nmask==False)"/>
                                                 <field name="network" widget="ip_address"/>
                     <field name="nmask"/>
                                      <field name="mask" readonly="True"/>

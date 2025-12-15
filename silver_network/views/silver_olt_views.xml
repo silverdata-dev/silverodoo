@@ -149,7 +149,9 @@
                             <page string="Puertos">
                                 <field name="port_ids">
                                     <tree string="Puertos OLT ISP" default_order="name desc">
-                                        <field name="name"/>
+                                                <field name="id" column_invisible="1"/>
+                                                <field name="name" widget="record_link"/>
+
                                         <field name="num_port"/>
                                         <field name="olt_card_n"/>
                                         <!--field name="type_access_net"/-->
