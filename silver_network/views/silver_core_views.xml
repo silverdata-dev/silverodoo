@@ -29,7 +29,7 @@
         <field name="name">silver.core.search.view</field>
         <field name="model">silver.core</field>
         <field name="arch" type="xml">
-                        <search string="Equipos Core">
+                        <search >
                             <field name="name"/>
                             <field name="hostname_core"/>
                             <field name="node_id" />
