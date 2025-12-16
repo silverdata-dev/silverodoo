@@ -17,7 +17,7 @@
             <field name="interval_number">1</field>
             <field name="interval_type">days</field> <!-- Ejecución diaria -->
             <!--field name="numbercall">-1</field--> <!-- Ejecutar indefinidamente -->
-            <field name="doall" eval="False"/>
+            <!--field name="doall" eval="False"/-->
         </record>
     </data>
 </odoo>
