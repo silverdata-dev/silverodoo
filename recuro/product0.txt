@@ -2,7 +2,7 @@
                 <header>
                         <button string="Actualizar cantidad " type="object" name="action_update_quantity_on_hand" invisible="type != 'product'"/>
                         <button string="Reabastecer" type="action" name="494" context="{'default_product_tmpl_id': id}" invisible="type not in ['consu', 'product']"/>
-                    <button string="Imprimir etiquetas" type="object" name="action_open_label_layout" invisible="detailed_type not in ['consu', 'product', 'combo']"/>
+                    <button string="Imprimir etiquetas" type="object" name="action_open_label_layout" invisible="type not in ['consu', 'product', 'combo']"/>
                 </header>
                 <sheet name="product_form">
                     <field name="product_variant_count" invisible="1" field_id="product_variant_count_0"/>
@@ -111,7 +111,7 @@
                             <group>
                                 <group name="group_general">
                                     <field name="active" invisible="1" field_id="active_0"/>
-                                    <field name="detailed_type" on_change="1" field_id="detailed_type_0"/>
+                                    <field name="type" on_change="1" field_id="type_0"/>
                 <field name="invoice_policy" required="1" invisible="type == 'service' and sale_ok == True" on_change="1" field_id="invoice_policy_0"/>
                 <field name="service_policy" string="Política de facturación" invisible="type != 'service' or sale_ok == False" required="type == 'service' and sale_ok == True" on_change="1" field_id="service_policy_0"/>
                 <field name="service_tracking" required="1" invisible="type != 'service' or not sale_ok" on_change="1" field_id="service_tracking_0"/>

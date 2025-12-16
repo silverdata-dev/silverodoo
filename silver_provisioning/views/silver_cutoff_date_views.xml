@@ -8,12 +8,12 @@
             <field name="arch" type="xml">
 
                 <xpath expr="//field[@name='apply_reconnection']" position="before">
-                 <field name="product_reconnection_id" required="(apply_reconnection == True) or (is_aditional_preinvoice == True)" invisible="(is_aditional_preinvoice == False) and (apply_reconnection == False)" options="{'no_create': True, 'no_create_edit':True}" domain="[('detailed_type','=','service')]"/>
+                 <field name="product_reconnection_id" required="(apply_reconnection == True) or (is_aditional_preinvoice == True)" invisible="(is_aditional_preinvoice == False) and (apply_reconnection == False)" options="{'no_create': True, 'no_create_edit':True}" domain="[('type','=','service')]"/>
                 </xpath>
 
                 <xpath expr="//group[@name='reconnection_type']" position="after">
                                                     <group>
-                                    <field name="product_remove_reconnection_id" required="apply_reconnection == True" invisible="apply_reconnection == False" options="{'no_create': True, 'no_create_edit':True}" domain="[('detailed_type','=','service')]"/>
+                                    <field name="product_remove_reconnection_id" required="apply_reconnection == True" invisible="apply_reconnection == False" options="{'no_create': True, 'no_create_edit':True}" domain="[('type','=','service')]"/>
                                 </group>
                 </xpath>
             </field>

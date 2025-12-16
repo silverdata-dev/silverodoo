@@ -137,7 +137,7 @@
                                 <group>
                                     <field name="is_aditional_preinvoice" widget="boolean_toggle"/>
                                     <field name="reconnection_policy" required="(apply_reconnection == True) or (is_aditional_preinvoice == True)" invisible="(is_aditional_preinvoice == False) and (apply_reconnection == False)"/>
-                                    <!--field name="product_reconnection_id" required="(apply_reconnection == True) or (is_aditional_preinvoice == True)" invisible="(is_aditional_preinvoice == False) and (apply_reconnection == False)" options="{'no_create': True, 'no_create_edit':True}" domain="[('detailed_type','=','service')]"/-->
+                                    <!--field name="product_reconnection_id" required="(apply_reconnection == True) or (is_aditional_preinvoice == True)" invisible="(is_aditional_preinvoice == False) and (apply_reconnection == False)" options="{'no_create': True, 'no_create_edit':True}" domain="[('type','=','service')]"/-->
                                     <field name="apply_reconnection" widget="boolean_toggle"/>
                                     <field name="is_reconnection_required" widget="boolean_toggle" invisible="apply_reconnection == False"/>
                                     <field name="is_not_apply_cutoff" widget="boolean_toggle" invisible="apply_reconnection == False"/>

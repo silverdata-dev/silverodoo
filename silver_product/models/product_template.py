@@ -81,10 +81,10 @@ class ProductTemplate(models.Model):
         # 1. Obtener los valores por defecto actuales
         res = super(ProductTemplate, self).default_get(fields)
 
-        # 2. Reemplazar el valor de 'detailed_type' si está en los campos solicitados
-        if 'detailed_type' in fields:
+        # 2. Reemplazar el valor de 'type' si está en los campos solicitados
+        if 'type' in fields:
             # Puedes poner aquí la lógica condicional que necesites
-            res['detailed_type'] = 'product'
+            res['type'] = 'consu' #aaa
 
         return res
 

@@ -137,7 +137,7 @@
                             <group>
                                 <group name="group_general">
                                     <field name="active" invisible="1" modifiers="{&quot;invisible&quot;: true}"/>
-                                    <field name="detailed_type" on_change="1" modifiers="{&quot;required&quot;: true}"/>
+                                    <field name="type" on_change="1" modifiers="{&quot;required&quot;: true}"/>
                     <field name="invoice_policy" required="1" modifiers="{&quot;required&quot;: true}"/>
                     <field name="expense_policy" widget="radio" attrs="{'invisible': [('visible_expense_policy', '=', False)]}" on_change="1" modifiers="{&quot;invisible&quot;: [[&quot;visible_expense_policy&quot;, &quot;=&quot;, false]]}"/>
                 

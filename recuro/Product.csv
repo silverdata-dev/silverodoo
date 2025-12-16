@@ -41,7 +41,7 @@
 "description_pickingout","Descripción en los pedidos de Entrega","Plantilla de producto","texto","Campo base","","True","",""
 "description_purchase","Descripción de compra","Plantilla de producto","texto","Campo base","","True","",""
 "description_sale","Descripción de Ventas","Plantilla de producto","texto","Campo base","","True","",""
-"detailed_type","Tipo de producto","Plantilla de producto","Selección","Campo base","","True","",""
+"type","Tipo de producto","Plantilla de producto","Selección","Campo base","","True","",""
 "dhcp_custom_server","DHCP Leases","Plantilla de producto","Carácter","Campo base","","True","",""
 "display_name","Mostrar nombre","Plantilla de producto","Carácter","Campo base","","","True",""
 "download_bandwidth","V. de Descarga","Plantilla de producto","número flotante","Campo base","","True","",""
