@@ -9,7 +9,7 @@
     'author': "Silverdale",
     'website': "https://www.silverdale.com",
     'category': 'Industries',
-    'version': '17.0.2.1',
+    'version': '19.0.2.1',
     'icon': 'static/description/icon.png',
     'depends': ['base', 'mail', 'stock', 'account', 'silver_base'],
     'data': [

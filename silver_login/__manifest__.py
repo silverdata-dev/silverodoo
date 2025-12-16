@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Silver Login - Autenticación RADIUS',
-    'version': '17.0.1.0.0',
+    'version': '19.0.1.0.0',
+    'license': 'LGPL-3',
     'summary': 'Autentica usuarios de Odoo contra un servidor RADIUS.',
     'description': """
 Este módulo permite a Odoo usar un servidor RADIUS para la autenticación de usuarios.

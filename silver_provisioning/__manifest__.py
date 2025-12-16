@@ -1,6 +1,7 @@
 {
     'name': 'Silver Provisioning',
-    'version': '17.0.1.0.0',
+    'version': '19.0.1.0.0',
+    'license': 'LGPL-3',
     'summary': 'Bridge module for ISP and Contract functionalities',
     'description': 'This module contains all the logic that connects silver_contract with silver_isp, allowing for provisioning.',
     'author': 'Gemini',

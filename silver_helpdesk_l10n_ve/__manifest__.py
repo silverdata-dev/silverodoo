@@ -1,6 +1,6 @@
 {
     'name': 'Silver Helpdesk - Venezuela Localization',
-    'version': '17.0.1.0.0',
+    'version': '19.0.1.0.0',
     'summary': 'Venezuela Localization for Helpdesk',
     'category': 'Services/Helpdesk',
     'depends': [

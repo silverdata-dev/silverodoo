@@ -1,6 +1,6 @@
 {
     'name': 'Silver Contract',
-    'version': '17.0.1.0.0',
+    'version': '19.0.1.0.0',
     'icon': 'static/description/icon.png',
     'summary': 'Módulo de Contratos para ISP',
     'description': """

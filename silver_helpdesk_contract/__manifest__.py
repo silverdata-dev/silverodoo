@@ -1,6 +1,6 @@
 {
     'name': 'Silver Helpdesk - Contract Integration',
-    'version': '17.0.1.0.0',
+    'version': '19.0.1.0.0',
     'summary': 'Integration between Helpdesk and Contracts',
     'category': 'Services/Helpdesk',
     'depends': [

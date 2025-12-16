@@ -1,6 +1,6 @@
 {
     'name': 'Silver Email Sender',
-    'version': '17.0.1.0.0',
+    'version': '19.0.1.0.0',
     'summary': 'Agrega una acción para enviar plantillas de email a clientes.',
     'author': 'Gemini',
     'category': 'Customer Relationship Management',

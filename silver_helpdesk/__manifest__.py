@@ -1,6 +1,6 @@
 {
     'name': 'Silver Helpdesk (Base)',
-    'version': '17.0.1.0.0',
+    'version': '19.0.1.0.0',
 'icon': 'static/description/icon.png',
     'summary': 'Módulo Base de Tickets para ISP (Workflow)',
     'description': """

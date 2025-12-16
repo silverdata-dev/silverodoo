@@ -1,6 +1,6 @@
 {
     'name': 'Silver VE - Reportes Contables (Excel)',
-    'version': '17.0.1.0.0',
+    'version': '19.0.1.0.0',
     'summary': 'Personalizaciones de reportes contables y fiscales a formato XLSX.',
     'author': 'Tu Nombre/Empresa',
     'website': 'https://www.silver-data.net',

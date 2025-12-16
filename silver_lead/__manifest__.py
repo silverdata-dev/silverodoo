@@ -1,6 +1,6 @@
 {
     'name': 'Silverlead Customizations',
-    'version': '17.0.1.0.1',
+    'version': '19.0.1.0.1',
     'summary': 'Manejo de leads desde excel, con vendedores, zonas y seguimiento de instalación.',
     'author': 'Gemini & Sergio',
     'license': 'AGPL-3',
