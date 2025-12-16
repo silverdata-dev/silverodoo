@@ -5,12 +5,12 @@
             <field name="name">silver.onu.profile.tree</field>
             <field name="model">silver.onu.profile</field>
             <field name="arch" type="xml">
-                <tree string="ONU Profiles">
+                <list string="ONU Profiles">
                     <field name="name"/>
                     <field name="hardware_model_ids" widget="many2many_tags"/>
                     <field name="firmware_version"/>
                     <field name="provisioning_status"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -48,13 +48,13 @@
 
                         <page string="OLTs">
                             <field name="olt_ids">
-                                <tree>
+                                <list>
                                     <field name="name"/>
                                     <field name="ip"/>
                                     <field name="state" widget="badge" decoration-success="state in ['active', 'connected']" decoration-warning="state in ('suspended', 'disabled')" decoration-danger="state in ['removed', 'down']"/>
                                     <button name="check_profile_on_olt" type="object" string="Check Profile" icon="fa-question-circle"/>
                                     <button name="add_profile_to_olt" type="object" string="Add Profile to OLT" icon="fa-plus-square" class="oe_highlight"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>

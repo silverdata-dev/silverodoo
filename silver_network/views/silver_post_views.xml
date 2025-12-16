@@ -12,12 +12,12 @@
             <field name="name">silver.post.tree</field>
             <field name="model">silver.post</field>
             <field name="arch" type="xml">
-                <tree string="Poste" default_order="name desc">
+                <list string="Poste" default_order="name desc">
                     <field name="name"/>
 
                     <field name="type_post"/>
                     <field name="silver_address_id"/>
-                </tree>
+                </list>
             </field>
         </record>
 

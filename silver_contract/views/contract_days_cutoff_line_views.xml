@@ -5,11 +5,11 @@
             <field name="name">contract.days.cutoff.line.view.tree</field>
             <field name="model">contract.days.cutoff.line</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="day_from"/>
                     <field name="day_to"/>
                     <field name="days_grace"/>
-                </tree>
+                </list>
             </field>
         </record>
     </data>

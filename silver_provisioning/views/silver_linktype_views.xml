@@ -6,11 +6,11 @@
             <field name="name">silver.linktype.view.tree</field>
             <field name="model">silver.linktype</field>
             <field name="arch" type="xml">
-                <tree string="Tipos de enlaces">
+                <list string="Tipos de enlaces">
                     <field name="code"/>
                     <field name="description"/>
                     <field name="has_olt"/>
-                </tree>
+                </list>
             </field>
         </record>
 

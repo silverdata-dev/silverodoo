@@ -9,12 +9,12 @@
                 <xpath expr="//notebook" position="inside">
                     <page string="Tickets">
                         <field name="ticket_ids">
-                            <tree string="Tickets">
+                            <list string="Tickets">
                                 <field name="name"/>
                                 <field name="ticket_type"/>
                                 <field name="stage_id"/>
                                 <field name="create_date"/>
-                            </tree>
+                            </list>
                         </field>
                     </page>
                 </xpath>

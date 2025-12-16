@@ -12,10 +12,10 @@
             <field name="name">olt.line.product.tree</field>
             <field name="model">olt.line.product</field>
             <field name="arch" type="xml">
-                <tree string="Productos de Línea OLT">
+                <list string="Productos de Línea OLT">
                     <field name="name"/>
                     <field name="olt_id"/>
-                </tree>
+                </list>
             </field>
         </record>
 

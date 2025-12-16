@@ -35,11 +35,11 @@
             <field name="name">silver.cable.tree</field>
             <field name="model">silver.cable</field>
             <field name="arch" type="xml">
-                <tree string="Cables">
+                <list string="Cables">
                     <field name="name"/>
                     <field name="cable_type"/>
                     <field name="line_string_wkt"/>
-                </tree>
+                </list>
             </field>
         </record>
 

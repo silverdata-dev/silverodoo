@@ -12,10 +12,10 @@
             <field name="name">product.brand.tree</field>
             <field name="model">product.brand</field>
             <field name="arch" type="xml">
-                <tree string="Marcas de Productos">
+                <list string="Marcas de Productos">
                     <field name="name"/>
                     <field name="description"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -34,12 +34,12 @@
                         <notebook>
                             <page string="Modelos">
                                 <field name="model_ids">
-                                        <tree string="Modelos">
+                                        <list string="Modelos">
                                                 <field name="id" column_invisible="1"/>
                                                 <field name="name" widget="record_link"/>
 
                                                 <field name="etype"/>
-                </tree>
+                </list>
                                 </field>
 
                             </page>

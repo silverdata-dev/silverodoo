@@ -12,9 +12,9 @@
             <field name="name">silver.kex.algorithms.tree</field>
             <field name="model">silver.kex.algorithms</field>
             <field name="arch" type="xml">
-                <tree string="Algoritmos Kex ISP">
+                <list string="Algoritmos Kex ISP">
                     <field name="name"/>
-                </tree>
+                </list>
             </field>
         </record>
 

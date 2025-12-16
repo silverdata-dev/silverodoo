@@ -7,13 +7,13 @@
             <field name="name">isp.equipment.tree</field>
             <field name="model">isp.equipment</field>
             <field name="arch" type="xml">
-                <tree string="Equipos">
+                <list string="Equipos">
                     <field name="name"/>
                     <field name="serial_number"/>
                     <field name="partner_id"/>
                     <field name="contract_id"/>
                     <field name="state"/>
-                </tree>
+                </list>
             </field>
         </record>
 

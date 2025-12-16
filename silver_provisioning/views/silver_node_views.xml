@@ -15,14 +15,14 @@
                 <xpath expr="//page[@name='naps']" position="after">
                     <page name="contracts" string="Contratos">
  <field name="contract_ids">
-                            <tree create="false">
+                            <list create="false">
                                <field name="id" column_invisible="1"/>
                                         <field name="name"
                                           widget="record_link"
                                         />
                                 <field name="partner_id" widget="many2one"/>
                                 <field name="state"/>
-                            </tree>
+                            </list>
                         </field>
                          <div class="o_action_manager">
                               <button name="action_create_contract" type="object" string="Crear" class="btn-link nobold"/>

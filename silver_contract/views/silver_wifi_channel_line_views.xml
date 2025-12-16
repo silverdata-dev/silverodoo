@@ -5,11 +5,11 @@
             <field name="name">silver.wifi.channel.line.view.tree</field>
             <field name="model">silver.wifi.channel.line</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="channel_number"/>
                     <field name="frequency_band"/>
-                </tree>
+                </list>
             </field>
         </record>
 

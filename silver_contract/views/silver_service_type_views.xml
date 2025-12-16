@@ -5,11 +5,11 @@
             <field name="name">silver.service.type.view.tree</field>
             <field name="model">silver.service.type</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="code"/>
                     <field name="description"/>
-                </tree>
+                </list>
             </field>
         </record>
 

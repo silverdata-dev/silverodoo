@@ -12,12 +12,12 @@
             <field name="name">silver.olt.card.tree</field>
             <field name="model">silver.olt.card</field>
             <field name="arch" type="xml">
-                <tree string="Tarjetas OLT ISP" default_order="name desc">
+                <list string="Tarjetas OLT ISP" default_order="name desc">
                     <field name="name"/>
                     <field name="num_card"/>
                     <field name="port_card"/>
                     <field name="olt_id"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -52,12 +52,12 @@
 
                             <page string="Puertos">
                                    <field name="port_ids" >
-                <tree string="Puertos OLT ISP" default_order="name desc">
+                <list string="Puertos OLT ISP" default_order="name desc">
                     <field name="name"/>
                     <field name="num_port"/>
                     <field name="olt_card_n"/>
                     <!--field name="type_access_net"/-->
-                </tree>
+                </list>
             </field>
                             </page>
                         </notebook>

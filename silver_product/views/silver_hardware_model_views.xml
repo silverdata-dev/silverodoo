@@ -5,11 +5,11 @@
             <field name="name">silver.hardware.model.tree</field>
             <field name="model">silver.hardware.model</field>
             <field name="arch" type="xml">
-                <tree string="Modelos">
+                <list string="Modelos">
                     <field name="name"/>
                     <field name="brand_id"/>
                                                 <field name="etype"/>
-                </tree>
+                </list>
             </field>
         </record>
 

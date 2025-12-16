@@ -12,7 +12,7 @@
             <field name="name">silver.vlan.tree</field>
             <field name="model">silver.vlan</field>
             <field name="arch" type="xml">
-                <tree string="VLANs ISP">
+                <list string="VLANs ISP">
                     <field name="name"/>
                     <field name="vlanid"/>
                     <field name="vtype"/>
@@ -20,7 +20,7 @@
                     <field name="core_ids"/>
                     <field name="olt_ids"/>
                     <field name="olt_port_ids"/>
-                </tree>
+                </list>
             </field>
         </record>
 

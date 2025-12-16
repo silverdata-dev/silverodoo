@@ -244,7 +244,7 @@
             <field name="arch" type="xml">
 
                 <xpath expr="//tree" position="replace">
-                    <tree string="Product" multi_edit="1" sample="1">
+                    <list string="Product" multi_edit="1" sample="1">
                         <header>
                             <button string="Print Labels" type="object" name="action_open_label_layout"/>
                         </header>
@@ -266,7 +266,7 @@
                         <field name="uom_id" readonly="1" optional="show" groups="uom.group_uom"/>
                         <field name="active" invisible="1"/>
                         <field name="activity_exception_decoration" widget="activity_exception"/>
-                    </tree>
+                    </list>
                 </xpath>
             </field>
         </record>

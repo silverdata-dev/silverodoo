@@ -4,13 +4,13 @@
             <field name="name">silver.assignment.view.tree</field>
             <field name="model">silver.assignment</field>
             <field name="arch" type="xml">
-                <tree editable="bottom">
+                <list editable="bottom">
                     <field name="name"/>
                     <field name="user_id"/>
                     <field name="zone_ids" widget="many2many_tags"/>
                     <field name="node_ids" widget="many2many_tags"/>
                     <field name="active"/>
-                </tree>
+                </list>
             </field>
         </record>
 

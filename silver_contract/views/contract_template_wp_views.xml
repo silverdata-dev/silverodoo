@@ -5,9 +5,9 @@
             <field name="name">contract.template.wp.view.tree</field>
             <field name="model">contract.template.wp</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
-                </tree>
+                </list>
             </field>
         </record>
 

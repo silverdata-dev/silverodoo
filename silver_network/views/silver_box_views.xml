@@ -29,7 +29,7 @@
             <field name="name">silver.box.tree</field>
             <field name="model">silver.box</field>
             <field name="arch" type="xml">
-                <tree string="Cajas NAP" default_order="name desc">
+                <list string="Cajas NAP" default_order="name desc">
                     <field name="name" widget="record_link"/>
                     <field name="node_id" widget="many2one"/>
                     <field name="core_id" widget="many2one"/>
@@ -38,7 +38,7 @@
                     <field name="capacity_nap"/>
                     <field name="capacity_usage_nap"/>
                     <field name="silver_address_id"/>
-                </tree>
+                </list>
             </field>
         </record>
 

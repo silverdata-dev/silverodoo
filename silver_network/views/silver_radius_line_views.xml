@@ -12,7 +12,7 @@
             <field name="name">silver.radius.line.tree</field>
             <field name="model">silver.radius.line</field>
             <field name="arch" type="xml">
-                <tree string="Líneas de Radius ISP">
+                <list string="Líneas de Radius ISP">
                     <field name="silver_radius_table_id"/>
                     <field name="silver_radius_column_id"/>
                     <field name="value_column"/>
@@ -21,7 +21,7 @@
                     <field name="value"/>
                     <field name="value_text"/>
                     <field name="function_radius"/>
-                </tree>
+                </list>
             </field>
         </record>
 

@@ -6,10 +6,10 @@
             <field name="name">silver.ticket.type.tree</field>
             <field name="model">silver.ticket.type</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="code"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -29,13 +29,13 @@
                         <notebook>
                             <page string="Flujo de Etapas">
                                 <field name="stage_config_ids">
-                                    <tree editable="bottom">
+                                    <list editable="bottom">
                                         <field name="sequence" widget="handle"/>
                                         <field name="name"/>
                                         <field name="helpdesk_stage_id"/>
                                         <field name="group_id"/>
                                         <field name="action_id"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
                         </notebook>

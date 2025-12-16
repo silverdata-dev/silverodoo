@@ -12,10 +12,10 @@
             <field name="name">silver.olt.users.tree</field>
             <field name="model">silver.olt.users</field>
             <field name="arch" type="xml">
-                <tree string="Usuarios de OLT ISP">
+                <list string="Usuarios de OLT ISP">
                     <field name="name"/>
                     <field name="olt_id"/>
-                </tree>
+                </list>
             </field>
         </record>
 

@@ -6,7 +6,7 @@
             <field name="name">silver.olt.discovered.onu.tree</field>
             <field name="model">silver.olt.discovered.onu</field>
             <field name="arch" type="xml">
-                <tree string="ONUs Descubiertas" editable="bottom">
+                <list string="ONUs Descubiertas" editable="bottom">
                     <field name="olt_index"/>
                     <field name="serial_number"/>
                     <!--field name="brand_id"/-->
@@ -15,7 +15,7 @@
                     <field name="loid"/>
                     <field name="version"/>
                     <field name="loid_password"/>
-                </tree>
+                </list>
             </field>
         </record>
     </data>

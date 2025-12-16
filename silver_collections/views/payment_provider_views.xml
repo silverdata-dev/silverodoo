@@ -26,12 +26,12 @@
         <field name="name">payment.provider.tree</field>
         <field name="model">payment.provider</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="code"/>
                 <field name="state"/>
                 <field name="journal_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 

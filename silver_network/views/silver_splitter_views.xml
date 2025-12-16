@@ -12,7 +12,7 @@
             <field name="name">silver.splitter.tree</field>
             <field name="model">silver.splitter</field>
             <field name="arch" type="xml">
-                <tree string="Splitter" default_order="name desc">
+                <list string="Splitter" default_order="name desc">
                     <field name="name"/>
                     <field name="name"/>
                     <field name="capacity_splitter"/>
@@ -20,7 +20,7 @@
                     <field name="type_splitter"/>
                     <field name="splitter_id"/>
                     <field name="olt_card_port_id"/>
-                </tree>
+                </list>
             </field>
         </record>
 

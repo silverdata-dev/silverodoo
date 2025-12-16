@@ -6,7 +6,7 @@
             <field name="name">silver.ap.tree</field>
             <field name="model">silver.ap</field>
             <field name="arch" type="xml">
-                <tree string="Equipos AP" default_order="name desc">
+                <list string="Equipos AP" default_order="name desc">
                     <field name="name"/>
                     <field name="hostname_ap"/>
                     <!--field name="brand_id"/-->
@@ -27,7 +27,7 @@
                     <widget name="web_ribbon" title="Down" bg_color="bg-danger" invisible="state == 'active'"/-->
 
 
-                </tree>
+                </list>
             </field>
         </record>
 

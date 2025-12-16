@@ -7,13 +7,13 @@
             <field name="name">silver.netdev.tree</field>
             <field name="model">silver.netdev</field>
             <field name="arch" type="xml">
-                <tree string="Routers">
+                <list string="Routers">
                     <field name="name"/>
                     <field name="hostname"/>
                     <field name="vendor"/>
                     <field name="is_active"/>
                     <field name="state"/>
-                </tree>
+                </list>
             </field>
         </record>
 

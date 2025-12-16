@@ -7,14 +7,14 @@
             <field name="name">silver.zone.tree</field>
             <field name="model">silver.zone</field>
             <field name="arch" type="xml">
-                <tree string="Zonas" default_order="name desc">
+                <list string="Zonas" default_order="name desc">
 
                     <field name="name"/>
                    <field name="gps_top"/>
                     <field name="gps_left"/>
                     <field name="gps_right"/>
                     <field name="gps_bottom"/>
-                </tree>
+                </list>
             </field>
         </record>
 

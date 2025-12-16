@@ -8,9 +8,9 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Documentación">
                     <field name="doc_module_ids">
-                        <tree>
+                        <list>
                             <field name="name"/>
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>

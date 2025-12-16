@@ -6,10 +6,10 @@
             <field name="name">silver.netdev.interface.wizard.tree</field>
             <field name="model">silver.netdev.interface.wizard</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <!-- This view is not directly used but must be valid. -->
                     <!-- The fields are in the one2many list inside the form view. -->
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -25,7 +25,7 @@
                         <page string="Interface" class="speed-update-tab">
                              <!--widget name="interface_speed_updater" r="line_ids" options="{'r': 'interface'}"/-->
                             <field name="line_ids" nolabel="1"  widget="f" rx_speed="hola" options="{'r': 'interface'}">>
-                                <tree create="false" delete="false">
+                                <list create="false" delete="false">
                                     <field name="name"/>
                                     <field name="type"/>
                                     <field name="mac_address"/>
@@ -34,13 +34,13 @@
                                     <field name="comment"/>
                                     <field name="rx_speed"/>
                                     <field name="tx_speed"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Ethernet" class="speed-update-tab">
                              <!--widget name="interface_speed_updater" r="ethernet_line_ids"/-->
                             <field name="ethernet_line_ids" nolabel="1">
-                                <tree create="false" delete="false">
+                                <list create="false" delete="false">
                                     <field name="name"/>
                                     <field name="mac_address"/>
                                     <field name="mtu"/>
@@ -50,14 +50,14 @@
                                     <field name="comment"/>
                                     <field name="rx_speed"/>
                                     <field name="tx_speed"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="EoIP Tunnel" class="speed-update-tab">
                               <!--widget name="interface_speed_updater" r="eoip_line_ids"/-->
                             <field name="eoip_line_ids" nolabel="1">
 
-                                <tree create="false" delete="false">
+                                <list create="false" delete="false">
                                     <field name="name"/>
                                     <field name="remote_address"/>
                                     <field name="tunnel_id"/>
@@ -67,14 +67,14 @@
                                     <field name="comment"/>
                                     <field name="rx_speed"/>
                                     <field name="tx_speed"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="GRE Tunnel" class="speed-update-tab">
                             <!--widget name="interface_speed_updater" r="gre_line_ids"/-->
                             <field name="gre_line_ids" nolabel="1">
 
-                                <tree create="false" delete="false">
+                                <list create="false" delete="false">
                                     <field name="name"/>
                                     <field name="remote_address"/>
                                     <field name="local_address"/>
@@ -83,13 +83,13 @@
                                     <field name="comment"/>
                                     <field name="rx_speed"/>
                                     <field name="tx_speed"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="VLAN" class="speed-update-tab">
                             <!--widget name="interface_speed_updater" r="vlan_line_ids"/-->
                             <field name="vlan_line_ids" nolabel="1">
-                                <tree create="false" delete="false">
+                                <list create="false" delete="false">
                                     <field name="name"/>
                                     <field name="vlan"/>
                                     <field name="interface"/>
@@ -99,13 +99,13 @@
                                     <field name="comment"/>
                                     <field name="rx_speed"/>
                                     <field name="tx_speed"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="VRRP" class="speed-update-tab">
                             <!--widget name="interface_speed_updater" r="vrrp_line_ids"/-->
                             <field name="vrrp_line_ids" nolabel="1">
-                                <tree create="false" delete="false">
+                                <list create="false" delete="false">
                                     <field name="name"/>
                                     <field name="interface"/>
                                     <field name="vrid"/>
@@ -115,13 +115,13 @@
                                     <field name="comment"/>
                                     <field name="rx_speed"/>
                                     <field name="tx_speed"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Bonding" class="speed-update-tab">
                              <!--widget name="interface_speed_updater" r="bonding_line_ids"/-->
                             <field name="bonding_line_ids" nolabel="1">
-                                <tree create="false" delete="false">
+                                <list create="false" delete="false">
                                     <field name="name"/>
                                     <field name="slaves"/>
                                     <field name="mode"/>
@@ -131,13 +131,13 @@
                                     <field name="comment"/>
                                     <field name="rx_speed"/>
                                     <field name="tx_speed"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="LTE" class="speed-update-tab">
                             <!--widget name="interface_speed_updater" r="lte_line_ids"/-->
                             <field name="lte_line_ids" nolabel="1">
-                                <tree create="false" delete="false">
+                                <list create="false" delete="false">
                                     <field name="name"/>
                                     <field name="mac_address"/>
                                     <field name="mtu"/>
@@ -147,7 +147,7 @@
                                     <field name="comment"/>
                                     <field name="rx_speed"/>
                                     <field name="tx_speed"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -168,9 +168,9 @@
             <field name="name">silver.netdev.route.wizard.tree</field>
             <field name="model">silver.netdev.route.wizard</field>
             <field name="arch" type="xml">
-                <tree string="Router Routes">
+                <list string="Router Routes">
 
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -186,14 +186,14 @@
                         <notebook>
                             <page string="Routes">
                                 <field name="line_ids">
-                                    <tree string="Routes">
+                                    <list string="Routes">
                                         <field name="dst_address"/>
                                         <field name="gateway"/>
                                         <field name="distance"/>
                                         <field name="active"/>
                                         <field name="static"/>
                                         <field name="comment"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
                         </notebook>
@@ -220,9 +220,9 @@
             <field name="name">silver.netdev.ppp.active.wizard.tree</field>
             <field name="model">silver.netdev.ppp.active.wizard</field>
             <field name="arch" type="xml">
-                <tree string="PPP Active Connections">
+                <list string="PPP Active Connections">
 
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -268,13 +268,13 @@
             <field name="name">silver.netdev.ppp.active.wizard.line.tree</field>
             <field name="model">silver.netdev.ppp.active.wizard.line</field>
             <field name="arch" type="xml">
-                <tree string="Active Connections" editable="bottom">
+                <list string="Active Connections" editable="bottom">
                     <field name="name"/>
                     <field name="service"/>
                     <field name="caller_id"/>
                     <field name="address"/>
                     <field name="uptime"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -291,7 +291,7 @@
                             <page string="Active Connections">
                                  <!--field name="line_ids" widget="interface_speed_updater" r="line_ids"  options="{'r': 'interface'}"/-->
                                 <field name="line_ids">
-                                    <tree string="Active Connections" create="false" delete="false" readonly="1">
+                                    <list string="Active Connections" create="false" delete="false" readonly="1">
                                         <field name="name"/>
                                         <field name="service"/>
                                         <field name="uptime"/>
@@ -301,7 +301,7 @@
                                     <!--field name="rx_speed"/>
                                     <field name="tx_speed"/-->
                                         <button name="action_open_speed_chart" type="object" icon="fa-area-chart"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
 
@@ -323,9 +323,9 @@
             <field name="name">silver.netdev.firewall.wizard.tree</field>
             <field name="model">silver.netdev.firewall.wizard</field>
             <field name="arch" type="xml">
-                <tree string="Firewall Rules">
+                <list string="Firewall Rules">
 
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -341,7 +341,7 @@
                         <notebook>
                             <page string="Firewall Rules">
                                 <field name="line_ids">
-                                    <tree string="Firewall Rules">
+                                    <list string="Firewall Rules">
                                         <field name="chain"/>
                                         <field name="action"/>
                                         <field name="src_address"/>
@@ -349,7 +349,7 @@
                                         <field name="protocol"/>
                                         <field name="comment"/>
                                         <field name="disabled"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
                         </notebook>
@@ -370,9 +370,9 @@
             <field name="name">silver.netdev.queue.wizard.tree</field>
             <field name="model">silver.netdev.queue.wizard</field>
             <field name="arch" type="xml">
-                <tree string="Router Queues">
+                <list string="Router Queues">
 
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -389,7 +389,7 @@
                             <page string="Queues">
                                  <!--field name="line_ids" widget="interface_speed_updater" r="line_ids"  options="{'r': 'interface'}"/-->
                                 <field name="line_ids" readonly="1">
-                                    <tree string="Queues">
+                                    <list string="Queues">
                                         <field name="name"/>
                                         <field name="target"/>
                                         <field name="max_limit"/>
@@ -401,7 +401,7 @@
                                     <field name="tx_speed"/-->
 
                                         <button name="action_open_speed_chart" type="object" icon="fa-area-chart"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
                         </notebook>
@@ -456,12 +456,12 @@
             <field name="arch" type="xml">
                 <form>
                     <field name="line_ids" nolabel="1">
-                        <tree create="false" delete="false">
+                        <list create="false" delete="false">
                             <field name="name"/>
                             <field name="address"/>
                             <field name="via"/>
                             <field name="uptime"/>
-                        </tree>
+                        </list>
                     </field>
                 </form>
             </field>

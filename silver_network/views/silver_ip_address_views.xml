@@ -5,7 +5,7 @@
         <field name="name">silver.ip.address.tree</field>
         <field name="model">silver.ip.address</field>
         <field name="arch" type="xml">
-            <tree string="Direcciones IP" default_order="public asc, ip_int asc">
+            <list string="Direcciones IP" default_order="public asc, ip_int asc">
                 <field name="name"/>
                 <field name="cidr"/>
                 <field name="pool_id"/><field name="public"/>
@@ -22,7 +22,7 @@
                                 <field name="core_ids" invisible="not public"  widget="many2many_tags"/>
 
 
-            </tree>
+            </list>
         </field>
     </record>
 

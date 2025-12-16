@@ -12,10 +12,10 @@
             <field name="name">silver.onu.line.tree</field>
             <field name="model">silver.onu.line</field>
             <field name="arch" type="xml">
-                <tree string="Líneas de ONU ISP">
+                <list string="Líneas de ONU ISP">
                     <field name="name"/>
                     <field name="box_id"/>
-                </tree>
+                </list>
             </field>
         </record>
 

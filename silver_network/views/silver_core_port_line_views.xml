@@ -12,10 +12,10 @@
             <field name="name">silver.core.port.line.tree</field>
             <field name="model">silver.core.port.line</field>
             <field name="arch" type="xml">
-                <tree string="Líneas de Puerto de Core">
+                <list string="Líneas de Puerto de Core">
                     <field name="name"/>
                     <field name="core_id"/>
-                </tree>
+                </list>
             </field>
         </record>
 

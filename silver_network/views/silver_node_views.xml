@@ -14,13 +14,13 @@
             <field name="name">silver.node.tree</field>
             <field name="model">silver.node</field>
             <field name="arch" type="xml">
-                <tree string="Nodos ISP" default_order="name asc">
+                <list string="Nodos ISP" default_order="name asc">
                     <field name="code"/>
                     <field name="name"/>
                     <field name="zone_id" widget="many2one"/>
                     <field name="silver_address_id"  context="{'show_coordinates': True}" widget="many2one"/>
 
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -97,7 +97,7 @@
                             <page name="Equipos Core" >
 
                                 <field name="core_ids" >
-                                     <tree string="Equipos Core" default_order="name desc" create="false" delete="false" decoration-bf="1">
+                                     <list string="Equipos Core" default_order="name desc" create="false" delete="false" decoration-bf="1">
 
 <field name="id" column_invisible="1"/>
 
@@ -115,7 +115,7 @@
                                                decoration-warning="state in ('suspended', 'disabled')"
                                                decoration-danger="state in ['removed', 'down']"/>
                                         <button name="action_unlink_from_node" class="bleft" type="object" string="" icon="fa-chain-broken"/>
-                                    </tree>
+                                    </list>
                                 </field>
                                  <div class="o_action_manager">
                                             <button name="action_open_cores_to_link" type="object" string="Agregar..." class="btn-link nobold"/>
@@ -125,7 +125,7 @@
                             <page name="Equipos OLT" >
 
                                 <field name="olt_ids">
-                                    <tree string="Equipos OLT" default_order="name desc" create="false" delete="false">
+                                    <list string="Equipos OLT" default_order="name desc" create="false" delete="false">
 
 <field name="id" column_invisible="1"/>
                                         <field name="name"
@@ -138,7 +138,7 @@
                                                decoration-warning="state in ('pending', 'disabled')"
                                                decoration-danger="state in ['removed', 'down']"/>
                                         <button name="action_unlink_from_node" class="bleft" type="object" string="" icon="fa-chain-broken"/>
-                                    </tree>
+                                    </list>
                                 </field>
                                 <div class="o_action_manager">
                                             <button name="action_open_olts_to_link" type="object" string="Agregar..." class="btn-link nobold"/>
@@ -148,7 +148,7 @@
                             <page name="naps" string="Cajas NAP" >
 
                                 <field name="box_ids">
-                                    <tree string="Cajas NAP" default_order="name desc" create="false" delete="false">
+                                    <list string="Cajas NAP" default_order="name desc" create="false" delete="false">
                                         <field name="id" column_invisible="1"/>
                                         <field name="name"
                                           widget="record_link"
@@ -162,7 +162,7 @@
                                         <field name="s_vlan"/>
                                         <field name="c_vlan"/>
                                         <button name="action_unlink_from_node" class="bleft" type="object" string="" icon="fa-chain-broken"/>
-                                    </tree>
+                                    </list>
                                 </field>
                                  <div class="o_action_manager">
                                             <button name="action_open_boxes_to_link" type="object" string="Agregar..." class="btn-link nobold"/>

@@ -5,11 +5,11 @@
             <field name="name">silver.contract.tag.view.tree</field>
             <field name="model">silver.contract.tag</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="color" widget="color_picker"/>
                     <field name="is_technical"/>
-                </tree>
+                </list>
             </field>
         </record>
 

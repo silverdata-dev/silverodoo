@@ -6,7 +6,7 @@
             <field name="name">silver.core.tree</field>
             <field name="model">silver.core</field>
             <field name="arch" type="xml">
-                <tree string="Equipos Core" default_order="name asc" expand="1">
+                <list string="Equipos Core" default_order="name asc" expand="1">
                                         <field name="name"/>
                                         <field name="hostname_core"/>
                                         <field name="node_id"/>
@@ -20,7 +20,7 @@
                            decoration-success="state in ['active', 'connected']"
                            decoration-warning="state in ('pending', 'disabled')"
                            decoration-danger="state in ['removed', 'down']"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -174,14 +174,14 @@
                              <page string="Equipos OLT" name="olts">
 
                                         <field name="olt_ids">
-                                            <tree create="false" delete="false">
+                                            <list create="false" delete="false">
                                                 <field name="id" column_invisible="1"/>
                                                 <field name="name" widget="record_link"/>
                                                 <field name="hostname_olt"/>
                                                 <field name="ip"/>
                                                 <field name="state"/>
                                                 <button name="action_unlink_from_core" class="bleft" type="object" string="" icon="fa-chain-broken"/>
-                                            </tree>
+                                            </list>
                                         </field>
                                  <div class="o_action_manager">
                                             <button name="action_open_olts_to_link" type="object" string="Agregar..." class="btn-link nobold"/>
@@ -191,7 +191,7 @@
                                     <page string="Equipos AP" name="aps">
 
                                         <field name="ap_ids">
-                                            <tree create="false" delete="false">
+                                            <list create="false" delete="false">
                                                                                                <field name="id" column_invisible="1"/>
                                                 <field name="name" widget="record_link"/>
 
@@ -199,7 +199,7 @@
                                                 <field name="ip"/>
                                                 <field name="state"/>
                                                 <button name="action_unlink_from_core" class="bleft" type="object" string="" icon="fa-chain-broken"/>
-                                            </tree>
+                                            </list>
                                         </field>
                                                                          <div class="o_action_manager">
                                             <button name="action_open_aps_to_link" type="object" string="Agregar..." class="btn-link nobold"/>
@@ -211,7 +211,7 @@
 
 
                                 <field name="ip_address_pool_ids" nolabel="1" widget="one2many_list">
-                                    <tree multi_selectable="1" colspan="2" editable="bottom">
+                                    <list multi_selectable="1" colspan="2" editable="bottom">
                                                                                        <field name="id" column_invisible="1"/>
                                                 <field name="name" />
 
@@ -221,20 +221,20 @@
                                         <field name="total_ips"/>
                                         <field name="used_ips"/>
                                         <field name="usage_percentage" widget="progressbar"/>
-                                    </tree>
+                                    </list>
                                 </field>
 
 
                                 <button name="generar" string="Generar IPs" type="object"/>
 
                                 <field name="ip_address_ids" nolabel="1">
-                                        <tree colspan="2" >
+                                        <list colspan="2" >
                                             <field name="cidr"/>
 
                                             <field name="ip_int" column_invisible="1"/>
 
 
-                                      </tree>
+                                      </list>
                                 </field>
 
 

@@ -11,14 +11,14 @@
                         <page string="Nodos">
 
                             <field name="node_ids">
-                                <tree string="Nodos" default_order="name desc" create="false" delete="false">
+                                <list string="Nodos" default_order="name desc" create="false" delete="false">
                                                                 <field name="id" column_invisible="1"/>
                                                 <field name="name" widget="record_link"/>
 
                                     <field name="code"/>
                                     <field name="silver_address_id" widget="many2one"/>
                                     <button name="action_unlink_from_zone" class="bleft" type="object" string="" icon="fa-chain-broken"/>
-                                </tree>
+                                </list>
                             </field>
                               <div class="o_action_manager">
                                             <button name="action_open_nodes_to_link" type="object" string="Agregar..." class="btn-link nobold"/>

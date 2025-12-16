@@ -15,12 +15,12 @@
             <field name="name">silver.radius.user.tree</field>
                 <field name="model">silver.radius.user</field>
             <field name="arch" type="xml">
-                <tree string="RADIUS Users">
+                <list string="RADIUS Users">
                     <field name="username"/>
                     <field name="profile"/>
                     <field name="disabled"/>
                     <field name="comment"/>
-                </tree>
+                </list>
             </field>
         </record>
 

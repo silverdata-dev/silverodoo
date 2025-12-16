@@ -5,10 +5,10 @@
         <field name="name">silverdoc.document.tree</field>
         <field name="model">silverdoc.document</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="topic_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 

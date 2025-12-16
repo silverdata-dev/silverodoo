@@ -12,11 +12,11 @@
             <field name="name">address.list.channel.line.tree</field>
             <field name="model">address.list.channel.line</field>
             <field name="arch" type="xml">
-                <tree string="Líneas de Canal de Lista de Direcciones">
+                <list string="Líneas de Canal de Lista de Direcciones">
                     <field name="name"/>
                     <field name="core_id"/>
 
-                </tree>
+                </list>
             </field>
         </record>
 

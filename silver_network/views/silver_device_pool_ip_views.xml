@@ -12,10 +12,10 @@
             <field name="name">silver.device.pool.ip.tree</field>
             <field name="model">silver.device.pool.ip</field>
             <field name="arch" type="xml">
-                <tree string="Pools de IP de Dispositivos">
+                <list string="Pools de IP de Dispositivos">
                     <field name="name"/>
                     <field name="ap_id"/>
-                </tree>
+                </list>
             </field>
         </record>
 

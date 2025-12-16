@@ -12,12 +12,12 @@
             <field name="name">silver.olt.card.port.tree</field>
             <field name="model">silver.olt.card.port</field>
             <field name="arch" type="xml">
-                <tree string="Puertos OLT ISP" default_order="name desc">
+                <list string="Puertos OLT ISP" default_order="name desc">
                     <field name="name"/>
                     <field name="num_port"/>
                     <field name="olt_card_n"/>
                     <!--field name="type_access_net"/-->
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -64,27 +64,27 @@
                         <notebook colspan="4">
                             <page name="ip_addresses" string="Direcciones IP">
                                 <field name="ip_address_pool_ids" nolabel="1">
-                                    <tree editable="bottom">
+                                    <list editable="bottom">
                                         <field name="name"  readonly="not name"/>
                                         <field name="network"/>
                                         <field name="nmask"/>
                                         <field name="total_ips"/>
                                         <field name="used_ips"/>
                                         <field name="usage_percentage" widget="progressbar"/>
-                                    </tree>
+                                    </list>
                                 </field>
 
 
                                 <button name="generar" string="Generar IPs" type="object"/>
 
                                 <field name="ip_address_ids" nolabel="1" readonly="1">
-                                      <tree colspan="2" >
+                                      <list colspan="2" >
                                     <field name="cidr"/>
 <field name="pool_id"/>
                                             <field name="ip_int" column_invisible="1"/>
                             <field name="olt_id" column_invisible="1"/>
 
-                                      </tree>
+                                      </list>
                                 </field>
                             </page>
                             <page name="config" string="Configuración">

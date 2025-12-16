@@ -46,7 +46,7 @@
             <field name="name">silver.splice.closure.tree</field>
             <field name="model">silver.splice.closure</field>
             <field name="arch" type="xml">
-                <tree string="Mangas">
+                <list string="Mangas">
                     <field name="name"/>
                     
                                                 <field name="node_id"/>
@@ -55,7 +55,7 @@
                     <field name="closure_type"/>
                     <field name="capacity"/>
 
-                </tree>
+                </list>
             </field>
         </record>
 

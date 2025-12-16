@@ -56,19 +56,19 @@
                 <xpath expr="//page[@name='config']" position="before">
                      <page string="Clientes Radius" name="cores"  invisible="is_radius==False" >
                                 <field name="core_ids" nolabel="1">
-                                    <tree>
+                                    <list>
                                                 <field name="id" column_invisible="1"/>
                                                 <field name="name" widget="record_link"/>
 
                                         <field name="hostname_core"/>
                                         <field name="ip"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
                             <page name="isp_radius_ids" string="Radius Atributos"
                                   invisible="type_radius == 'mk_radius' or is_radius==False" >
                                 <field name="silver_radius_ids" nolabel="1">
-                                    <tree string="Líneas de Radius ISP" editable="bottom" colspan="4">
+                                    <list string="Líneas de Radius ISP" editable="bottom" colspan="4">
                                         <field name="silver_radius_table_id"/>
                                         <field name="silver_radius_column_id"/>
                                         <field name="value_column"/>
@@ -77,7 +77,7 @@
                                         <field name="value"/>
                                         <field name="value_text"/>
                                         <field name="function_radius"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
                             <page name="isp_gestion_radius" string="Gestion Radius"
@@ -165,9 +165,9 @@
             <field name="name">silver.radius.table.tree</field>
             <field name="model">silver.radius.table</field>
             <field name="arch" type="xml">
-                <tree string="Tabla Radius">
+                <list string="Tabla Radius">
                     <field name="name"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -185,9 +185,9 @@
                         <notebook colspan="4">
                             <page name="isp_radius_columns" string="Radius Columnas">
                                 <field name="silver_radius_columns" nolabel="1">
-                                    <tree editable="bottom">
+                                    <list editable="bottom">
                                         <field name="name"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
                         </notebook>
@@ -201,10 +201,10 @@
             <field name="name">silver.radius.column.tree</field>
             <field name="model">silver.radius.column</field>
             <field name="arch" type="xml">
-                <tree string="Radius Column">
+                <list string="Radius Column">
                     <field name="name"/>
                     <field name="radius_table_id"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -234,10 +234,10 @@
             <field name="name">silver.radius.attributes.tree</field>
             <field name="model">silver.radius.attributes</field>
             <field name="arch" type="xml">
-                <tree string="Atributos Radius">
+                <list string="Atributos Radius">
                     <field name="name"/>
                     <field name="description"/>
-                </tree>
+                </list>
             </field>
         </record>
 

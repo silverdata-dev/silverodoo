@@ -12,7 +12,7 @@
             <field name="name">silver.ip.address.pool.tree</field>
             <field name="model">silver.ip.address.pool</field>
             <field name="arch" type="xml">
-                <tree string="Líneas de Dirección IP ISP">
+                <list string="Líneas de Dirección IP ISP">
                     <field name="name" />
                     <field name="network"/>
                     <field name="nmask"/>
@@ -30,7 +30,7 @@
                             <field name="used_ips"/>
                             <field name="usage_percentage" widget="progressbar"/>
 
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -77,13 +77,13 @@
                         <notebook>
                              <page string="IPs">
                                  <field name="address_ids">
-                                      <tree string="IP Ranges">
+                                      <list string="IP Ranges">
                 <field name="name"/>
                 <field name="cidr"/>
                 <field name="used"/>
 
 
-            </tree>
+            </list>
                                  </field>
                              </page>
                         </notebook>

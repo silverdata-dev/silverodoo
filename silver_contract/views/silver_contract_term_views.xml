@@ -5,10 +5,10 @@
             <field name="name">silver.contract.term.view.tree</field>
             <field name="model">silver.contract.term</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="months"/>
-                </tree>
+                </list>
             </field>
         </record>
 

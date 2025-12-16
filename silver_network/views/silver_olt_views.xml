@@ -28,7 +28,7 @@
             <field name="name">silver.olt.tree</field>
             <field name="model">silver.olt</field>
             <field name="arch" type="xml">
-                <tree string="Equipos OLT ISP" default_order="name desc">
+                <list string="Equipos OLT ISP" default_order="name desc">
                     <field name="name"/>
                     <!--field name="brand_id"/-->
                     <!--field name="model"/-->
@@ -39,7 +39,7 @@
                            decoration-success="state in ['active', 'connected']"
                            decoration-warning="state in ('suspended', 'disabled')"
                            decoration-danger="state in ['removed', 'down']"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -148,21 +148,21 @@
 
                             <page string="Puertos">
                                 <field name="port_ids">
-                                    <tree string="Puertos OLT ISP" default_order="name desc">
+                                    <list string="Puertos OLT ISP" default_order="name desc">
                                                 <field name="id" column_invisible="1"/>
                                                 <field name="name" widget="record_link"/>
 
                                         <field name="num_port"/>
                                         <field name="olt_card_n"/>
                                         <!--field name="type_access_net"/-->
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
 
                             <page name="ip_addresses" string="Direcciones IP">
 
                                 <field name="ip_address_pool_ids" nolabel="1" widget="one2many_list">
-                                    <tree multi_selectable="1" colspan="2" editable="bottom">
+                                    <list multi_selectable="1" colspan="2" editable="bottom">
                                         <field name="name"  readonly="not name"/>
                                         <field name="network"/>
                                         <field name="nmask"/>
@@ -172,21 +172,21 @@
                                         <field name="total_ips"/>
                                         <field name="used_ips"/>
                                         <field name="usage_percentage" widget="progressbar"/>
-                                    </tree>
+                                    </list>
                                 </field>
 
 
                                 <button name="generar" string="Generar IPs" type="object"/>
 
                                 <field name="ip_address_ids" nolabel="1">
-                                      <tree colspan="2" >
+                                      <list colspan="2" >
                                     <field name="cidr"/>
                                            <field name="ip_int" column_invisible="1"/>
                             <field name="pool_id"/>
                             <field name="olt_port_id"/>
                             <field name="olt_id" column_invisible="1"/>
 
-                                      </tree>
+                                      </list>
                                 </field>
 
                             </page>

@@ -5,12 +5,12 @@
             <field name="name">silver.discount.plan.view.tree</field>
             <field name="model">silver.discount.plan</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="discount_type"/>
                     <field name="amount"/>
                     <field name="active"/>
-                </tree>
+                </list>
             </field>
         </record>
 

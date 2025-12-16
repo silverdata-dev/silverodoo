@@ -6,9 +6,9 @@
             <field name="name">silverlead.zona.tree</field>
             <field name="model">silverlead.zona</field>
             <field name="arch" type="xml">
-                <tree string="Zonas">
+                <list string="Zonas">
                     <field name="name"/>
-                </tree>
+                </list>
             </field>
         </record>
 

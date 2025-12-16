@@ -5,7 +5,7 @@
             <field name="name">silver.contract.view.tree</field>
             <field name="model">silver.contract</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name" widget="record_link"/>
                     <field name="partner_id"  widget="many2one" context="{'ciname':1}"/>
                     <field name="date_start"/>
@@ -22,7 +22,7 @@
                            decoration-success="state_service in ['active', 'open']"
                            decoration-warning="state_service in ('suspended', 'inactive')"
                            decoration-danger="state_service in ['terminated', 'disabled']"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -114,26 +114,26 @@
 
                                 <field name="line_ids" readonly="state != 'draft'"
                                        context="{'default_line_type': 'recurring'}">
-                                    <tree editable="bottom">
+                                    <list editable="bottom">
 
                                         <field name="name"/>
                                         <field name="quantity"/>
                                         <field name="price_unit"/>
                                         <field name="price_subtotal" sum="Total"/>
                                         <field name="line_type" invisible="1"/>
-                                    </tree>
+                                    </list>
                                 </field>
                                 <!--separator string="Valores Extra (Cargos Únicos)"/>
                                 <field name="line_debit_ids" readonly="state != 'draft'"
                                        context="{'default_line_type': 'one_time'}">
-                                    <tree editable="bottom">
+                                    <list editable="bottom">
                                         <field name="product_id"/>
                                         <field name="name"/>
                                         <field name="quantity"/>
                                         <field name="price_unit"/>
                                         <field name="price_subtotal" sum="Total"/>
                                         <field name="line_type" invisible="1"/>
-                                    </tree>
+                                    </list>
                                 </field-->
                                 <group name="invoice_fields">
                                 <group name="invoice_fields2">
@@ -180,12 +180,12 @@
                             </group>
 
                             <field name="discount_line_ids" modifiers="{}">
-                                <tree editable="bottom">
+                                <list editable="bottom">
 
                                     <field name="description"/>
                                     <field name="amount"/>
                                     <field name="apply_date"/>
-                                </tree>
+                                </list>
                                 </field>
                 <field name="has_promotion_foreign_currency" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
 
@@ -225,13 +225,13 @@
 
                                     <group name="related_records" string="Registros Relacionados">
                                         <field name="referred_line_ids" mode="tree">
-                                            <tree editable="bottom">
+                                            <list editable="bottom">
                                                 <field name="name"/>
                                                 <field name="phone"/>
                                                 <field name="referred_date"/>
                                                 <field name="state"/>
                                                 <field name="converted_contract_id"/>
-                                            </tree>
+                                            </list>
                                         </field>
                                     </group>
 

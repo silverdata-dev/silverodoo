@@ -5,10 +5,10 @@
             <field name="name">silver.cutoff.factor.view.tree</field>
             <field name="model">silver.cutoff.factor</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="description"/>
-                </tree>
+                </list>
             </field>
         </record>
 

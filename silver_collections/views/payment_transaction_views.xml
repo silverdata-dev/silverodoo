@@ -40,14 +40,14 @@
         <field name="name">payment.transaction.tree</field>
         <field name="model">payment.transaction</field>
         <field name="arch" type="xml">
-            <tree create="false">
+            <list create="false">
                 <field name="reference"/>
                 <field name="contract_id"/>
                 <field name="provider_id"/>
                 <field name="amount"/>
                 <field name="state"/>
                 <field name="provider_reference"/>
-            </tree>
+            </list>
         </field>
     </record>
 

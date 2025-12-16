@@ -5,11 +5,11 @@
             <field name="name">silver.address.tree</field>
             <field name="model">silver.address</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="street"/>
                     <field name="house_number"/>
-                </tree>
+                </list>
             </field>
         </record>
 

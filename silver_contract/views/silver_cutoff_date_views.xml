@@ -5,7 +5,7 @@
             <field name="name">silver.cutoff.date.view.tree</field>
             <field name="model">silver.cutoff.date</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="plan_type_id"/>
                     <field name="recurring_invoicing_type"/>
@@ -13,7 +13,7 @@
                     <field name="day_cut"/>
                     <field name="days_grace"/>
                     <field name="active"/>
-                </tree>
+                </list>
             </field>
         </record>
 

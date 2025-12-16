@@ -306,14 +306,14 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                 <!--field name="contract_mode_wan_ids"/-->
 
                                 <field name="wifi_line_ids" nolabel="1"  colspan="2">
-                                    <tree>
+                                    <list>
                                         <field name="ssid_index"/>
                                         <field name="name"/>
                                         <field name="password" />
                                         <!--field name="is_hidden" invisible="1"/>
                                         <field name="auth_mode" invisible="1"/>
                                         <field name="encrypt_type" invisible="1"/-->
-                                    </tree>
+                                    </list>
                                 </field>
 <field name="state_service" invisible="1"/>
                                          <field name="olt_state" invisible="1" />

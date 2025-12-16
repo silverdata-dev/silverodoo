@@ -12,9 +12,9 @@
             <field name="name">silver.device.networks.tree</field>
             <field name="model">silver.device.networks</field>
             <field name="arch" type="xml">
-                <tree string="Redes de Dispositivos">
+                <list string="Redes de Dispositivos">
                     <field name="name"/>
-                </tree>
+                </list>
             </field>
         </record>
 
