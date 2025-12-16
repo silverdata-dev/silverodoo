@@ -33,9 +33,10 @@
                             <field name="name"/>
                             <field name="hostname_core"/>
                             <field name="node_id" />
-                            <group expand="1" string="Group By">
-                                <filter name="group_by_node_id" string="Nodo" domain="[]"  context="{'group_by':'node_id'}"/>
-                            </group>
+                            <filter name="group_by_node_id"
+                    string="Nodo"
+                    context="{'group_by':'node_id'}"
+                    />
                         </search>
         </field>
     </record>
