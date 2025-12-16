@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import paramiko
-import telnetlib
+from telnetlib3 import telnetlib
 import socket
 import logging
 import re
