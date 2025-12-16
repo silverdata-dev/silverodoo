@@ -1,8 +1,8 @@
 <odoo>
     <data>
-        <!-- silver.payment.type tree view -->
+        <!-- silver.payment.type list view -->
         <record id="silver_payment_type_view_tree" model="ir.ui.view">
-            <field name="name">silver.payment.type.view.tree</field>
+            <field name="name">silver.payment.type.view.list</field>
             <field name="model">silver.payment.type</field>
             <field name="arch" type="xml">
                 <list>
@@ -34,7 +34,7 @@
         <record id="silver_payment_type_action" model="ir.actions.act_window">
             <field name="name">Payment Types</field>
             <field name="res_model">silver.payment.type</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
     </data>
 </odoo>

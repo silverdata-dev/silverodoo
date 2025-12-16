@@ -5,11 +5,11 @@
         <record id="action_silver_olt_card" model="ir.actions.act_window">
             <field name="name">Tarjetas OLT</field>
             <field name="res_model">silver.olt.card</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <record id="view_silver_olt_card_tree" model="ir.ui.view">
-            <field name="name">silver.olt.card.tree</field>
+            <field name="name">silver.olt.card.list</field>
             <field name="model">silver.olt.card</field>
             <field name="arch" type="xml">
                 <list string="Tarjetas OLT ISP" default_order="name desc">

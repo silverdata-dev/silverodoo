@@ -88,7 +88,7 @@ class SilverSplitter(models.Model):
             'name': 'Cajas NAP',
             'type': 'ir.actions.act_window',
             'res_model': 'silver.box',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('splitter_id', '=', self.id)],
             'context': {'default_splitter_id': self.id},
             'target': 'current',

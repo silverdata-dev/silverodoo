@@ -5,11 +5,11 @@
         <record id="action_product_brand" model="ir.actions.act_window">
             <field name="name">Marcas de Productos</field>
             <field name="res_model">product.brand</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <record id="view_product_brand_tree" model="ir.ui.view">
-            <field name="name">product.brand.tree</field>
+            <field name="name">product.brand.list</field>
             <field name="model">product.brand</field>
             <field name="arch" type="xml">
                 <list string="Marcas de Productos">

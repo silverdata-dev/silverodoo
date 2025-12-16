@@ -5,11 +5,11 @@
         <record id="action_silver_onu_line" model="ir.actions.act_window">
             <field name="name">Líneas de ONU ISP</field>
             <field name="res_model">silver.onu.line</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <record id="view_silver_onu_line_tree" model="ir.ui.view">
-            <field name="name">silver.onu.line.tree</field>
+            <field name="name">silver.onu.line.list</field>
             <field name="model">silver.onu.line</field>
             <field name="arch" type="xml">
                 <list string="Líneas de ONU ISP">

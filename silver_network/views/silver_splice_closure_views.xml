@@ -43,7 +43,7 @@
 
         <!-- Tree View -->
         <record id="silver_splice_closure_view_tree" model="ir.ui.view">
-            <field name="name">silver.splice.closure.tree</field>
+            <field name="name">silver.splice.closure.list</field>
             <field name="model">silver.splice.closure</field>
             <field name="arch" type="xml">
                 <list string="Mangas">
@@ -63,7 +63,7 @@
         <record id="action_silver_splice_closure" model="ir.actions.act_window">
             <field name="name">Mangas</field>
             <field name="res_model">silver.splice.closure</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
     </data>

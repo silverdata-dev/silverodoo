@@ -1,8 +1,8 @@
 <odoo>
     <data>
-        <!-- contract.days.cutoff.line tree view -->
+        <!-- contract.days.cutoff.line list view -->
         <record id="contract_days_cutoff_line_view_tree" model="ir.ui.view">
-            <field name="name">contract.days.cutoff.line.view.tree</field>
+            <field name="name">contract.days.cutoff.line.view.list</field>
             <field name="model">contract.days.cutoff.line</field>
             <field name="arch" type="xml">
                 <list>

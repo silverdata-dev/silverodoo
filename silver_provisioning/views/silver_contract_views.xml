@@ -18,7 +18,7 @@
                     <attribute name="context">{'default_linktype_id':linktype_id, 'default_line_type': 'recurring'}</attribute>
                 </xpath>
 
-                <xpath expr="//field[@name='line_ids']/tree/field[@name='name']" position="before">
+                <xpath expr="//field[@name='line_ids']/list/field[@name='name']" position="before">
                        <field name="linktype_id" options="{'no_create_edit': True, 'no_quick_create': True}"
                        column_invisible="1"
                        />
@@ -28,7 +28,7 @@
                 </xpath>
 
 
-                <xpath expr="//field[@name='discount_line_ids']/tree/field[@name='description']" position="before">
+                <xpath expr="//field[@name='discount_line_ids']/list/field[@name='description']" position="before">
 
                     <field name="product_id" options="{'no_create_edit': True, 'no_quick_create': True}"/>
                 </xpath>

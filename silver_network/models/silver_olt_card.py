@@ -80,7 +80,7 @@ class SilverOltCard(models.Model):
             'name': 'Puertos de Tarjeta OLT',
             'type': 'ir.actions.act_window',
             'res_model': 'silver.olt.card.port',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('olt_card_id', '=', self.id)],
             'target': 'current',
         }
@@ -91,7 +91,7 @@ class SilverOltCard(models.Model):
             'name': 'Puertos OLT',
             'type': 'ir.actions.act_window',
             'res_model': 'silver.olt.card.port',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('olt_card_id', '=', self.id)],
             'context': {'default_olt_card_id': self.id},
             'target': 'current',

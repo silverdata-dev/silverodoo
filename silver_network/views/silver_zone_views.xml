@@ -32,11 +32,11 @@
         </record>
 
         <record id="view_silver_zone_tree_inherit" model="ir.ui.view">
-            <field name="name">silver.zone.tree.inherit</field>
+            <field name="name">silver.zone.list.inherit</field>
             <field name="model">silver.zone</field>
             <field name="inherit_id" ref="silver_base.view_silver_zone_tree"/>
             <field name="arch" type="xml">
-                <xpath expr="//tree" position="inside">
+                <xpath expr="//list" position="inside">
                     <field name="node_count"/>
                 </xpath>
             </field>

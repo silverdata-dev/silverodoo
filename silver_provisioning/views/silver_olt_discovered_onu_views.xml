@@ -3,7 +3,7 @@
     <data>
         <!-- Vista de Árbol para ONUs Descubiertas -->
         <record id="view_silver_olt_discovered_onu_tree" model="ir.ui.view">
-            <field name="name">silver.olt.discovered.onu.tree</field>
+            <field name="name">silver.olt.discovered.onu.list</field>
             <field name="model">silver.olt.discovered.onu</field>
             <field name="arch" type="xml">
                 <list string="ONUs Descubiertas" editable="bottom">

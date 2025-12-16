@@ -2,7 +2,7 @@
 <odoo>
     <!-- Vista de Árbol -->
     <record id="silverdoc_module_view_tree" model="ir.ui.view">
-        <field name="name">silverdoc.module.tree</field>
+        <field name="name">silverdoc.module.list</field>
         <field name="model">silverdoc.module</field>
         <field name="arch" type="xml">
             <list>
@@ -41,6 +41,6 @@
     <record id="silverdoc_module_action" model="ir.actions.act_window">
         <field name="name">Módulos de Documentación</field>
         <field name="res_model">silverdoc.module</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

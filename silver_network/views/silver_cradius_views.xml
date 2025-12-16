@@ -158,11 +158,11 @@
         <record id="action_silver_radius_table" model="ir.actions.act_window">
             <field name="name">Tablas Radius</field>
             <field name="res_model">silver.radius.table</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <record id="view_silver_radius_table_tree" model="ir.ui.view">
-            <field name="name">silver.radius.table.tree</field>
+            <field name="name">silver.radius.table.list</field>
             <field name="model">silver.radius.table</field>
             <field name="arch" type="xml">
                 <list string="Tabla Radius">
@@ -198,7 +198,7 @@
 
         <!-- isp.radius.column -->
         <record id="view_silver_radius_column_tree" model="ir.ui.view">
-            <field name="name">silver.radius.column.tree</field>
+            <field name="name">silver.radius.column.list</field>
             <field name="model">silver.radius.column</field>
             <field name="arch" type="xml">
                 <list string="Radius Column">
@@ -227,11 +227,11 @@
         <record id="action_silver_radius_attributes" model="ir.actions.act_window">
             <field name="name">Atributos Radius</field>
             <field name="res_model">silver.radius.attributes</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <record id="view_silver_radius_attributes_tree" model="ir.ui.view">
-            <field name="name">silver.radius.attributes.tree</field>
+            <field name="name">silver.radius.attributes.list</field>
             <field name="model">silver.radius.attributes</field>
             <field name="arch" type="xml">
                 <list string="Atributos Radius">

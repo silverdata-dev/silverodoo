@@ -24,7 +24,7 @@ class SilverAccessPoint(models.Model):
             'name': 'Contratos',
             'type': 'ir.actions.act_window',
             'res_model': 'silver.contract',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('ap_id', '=', self.id)],
             'context': {'default_ap_id': self.id},
             'target': 'current',

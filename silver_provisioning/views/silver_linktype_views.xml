@@ -3,7 +3,7 @@
     <data>
 
         <record id="silver_linktype_view_tree" model="ir.ui.view">
-            <field name="name">silver.linktype.view.tree</field>
+            <field name="name">silver.linktype.view.list</field>
             <field name="model">silver.linktype</field>
             <field name="arch" type="xml">
                 <list string="Tipos de enlaces">
@@ -33,7 +33,7 @@
         <record id="silver_linktype_action" model="ir.actions.act_window">
             <field name="name">Tipos de enlaces</field>
             <field name="res_model">silver.linktype</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <menuitem id="menu_silver_linktype"

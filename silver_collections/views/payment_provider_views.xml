@@ -23,7 +23,7 @@
     </record>
 
     <record id="view_payment_provider_tree" model="ir.ui.view">
-        <field name="name">payment.provider.tree</field>
+        <field name="name">payment.provider.list</field>
         <field name="model">payment.provider</field>
         <field name="arch" type="xml">
             <list>
@@ -39,7 +39,7 @@
     <record id="action_payment_provider" model="ir.actions.act_window">
         <field name="name">Proveedores de Pago</field>
         <field name="res_model">payment.provider</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_payment_provider"

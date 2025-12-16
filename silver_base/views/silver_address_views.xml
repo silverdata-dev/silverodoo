@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <record id="view_silver_address_tree" model="ir.ui.view">
-            <field name="name">silver.address.tree</field>
+            <field name="name">silver.address.list</field>
             <field name="model">silver.address</field>
             <field name="arch" type="xml">
                 <list>

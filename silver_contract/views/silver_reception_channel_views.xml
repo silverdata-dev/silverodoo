@@ -1,8 +1,8 @@
 <odoo>
     <data>
-        <!-- silver.reception.channel tree view -->
+        <!-- silver.reception.channel list view -->
         <record id="silver_reception_channel_view_tree" model="ir.ui.view">
-            <field name="name">silver.reception.channel.view.tree</field>
+            <field name="name">silver.reception.channel.view.list</field>
             <field name="model">silver.reception.channel</field>
             <field name="arch" type="xml">
                 <list>
@@ -36,7 +36,7 @@
         <record id="silver_reception_channel_action" model="ir.actions.act_window">
             <field name="name">Reception Channels</field>
             <field name="res_model">silver.reception.channel</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
     </data>
 </odoo>

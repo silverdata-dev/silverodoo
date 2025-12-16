@@ -3,7 +3,7 @@
     <data>
         <!-- IspRouterInterfaceWizard -->
         <record id="view_silver_netdev_interface_wizard_tree" model="ir.ui.view">
-            <field name="name">silver.netdev.interface.wizard.tree</field>
+            <field name="name">silver.netdev.interface.wizard.list</field>
             <field name="model">silver.netdev.interface.wizard</field>
             <field name="arch" type="xml">
                 <list>
@@ -165,7 +165,7 @@
 
         <!-- IspRouterRouteWizard -->
         <record id="view_silver_router_route_wizard_tree" model="ir.ui.view">
-            <field name="name">silver.netdev.route.wizard.tree</field>
+            <field name="name">silver.netdev.route.wizard.list</field>
             <field name="model">silver.netdev.route.wizard</field>
             <field name="arch" type="xml">
                 <list string="Router Routes">
@@ -205,19 +205,19 @@
         <record id="action_silver_router_route_wizard" model="ir.actions.act_window">
             <field name="name">Router Routes</field>
             <field name="res_model">silver.netdev.route.wizard</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
 
             <record id="action_ppp" model="ir.actions.act_window">
             <field name="name">PPP</field>
             <field name="res_model">silver.netdev.ppp.active.wizard</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <!-- IspRouterPppActiveWizard -->
         <record id="view_silver_router_ppp_active_wizard_tree" model="ir.ui.view">
-            <field name="name">silver.netdev.ppp.active.wizard.tree</field>
+            <field name="name">silver.netdev.ppp.active.wizard.list</field>
             <field name="model">silver.netdev.ppp.active.wizard</field>
             <field name="arch" type="xml">
                 <list string="PPP Active Connections">
@@ -265,7 +265,7 @@
         </record>
 
         <record id="view_silver_router_ppp_active_wizard_line_tree" model="ir.ui.view">
-            <field name="name">silver.netdev.ppp.active.wizard.line.tree</field>
+            <field name="name">silver.netdev.ppp.active.wizard.line.list</field>
             <field name="model">silver.netdev.ppp.active.wizard.line</field>
             <field name="arch" type="xml">
                 <list string="Active Connections" editable="bottom">
@@ -314,13 +314,13 @@
         <record id="action_silver_router_ppp_active_wizard" model="ir.actions.act_window">
             <field name="name">PPP Active Connections3</field>
             <field name="res_model">silver.netdev.ppp.active.wizard</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
 
         <!-- IspRouterFirewallWizard -->
         <record id="view_silver_router_firewall_wizard_tree" model="ir.ui.view">
-            <field name="name">silver.netdev.firewall.wizard.tree</field>
+            <field name="name">silver.netdev.firewall.wizard.list</field>
             <field name="model">silver.netdev.firewall.wizard</field>
             <field name="arch" type="xml">
                 <list string="Firewall Rules">
@@ -361,13 +361,13 @@
         <record id="action_silver_router_firewall_wizard" model="ir.actions.act_window">
             <field name="name">Firewall Rules</field>
             <field name="res_model">silver.netdev.firewall.wizard</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
 
         <!-- IspRouterQueueWizard -->
         <record id="view_silver_router_queue_wizard_tree" model="ir.ui.view">
-            <field name="name">silver.netdev.queue.wizard.tree</field>
+            <field name="name">silver.netdev.queue.wizard.list</field>
             <field name="model">silver.netdev.queue.wizard</field>
             <field name="arch" type="xml">
                 <list string="Router Queues">
@@ -413,7 +413,7 @@
         <record id="action_silver_router_queue_wizard" model="ir.actions.act_window">
             <field name="name">Router Queues</field>
             <field name="res_model">silver.netdev.queue.wizard</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
 

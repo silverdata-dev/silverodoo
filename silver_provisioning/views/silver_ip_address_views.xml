@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="silver_ip_address_view_tree_inherit" model="ir.ui.view">
-        <field name="name">silver.ip.address.tree.inherit</field>
+        <field name="name">silver.ip.address.list.inherit</field>
         <field name="model">silver.ip.address</field>
         <field name="inherit_id" ref="silver_network.silver_ip_address_view_tree"/>
         <field name="arch" type="xml">
@@ -30,7 +30,7 @@
                 <xpath expr="//field[@name='address_ids']//field[@name='used']" position="replace">
                     <field name="contract_id" widget="button" action="action_view_contract"/>
                 </xpath>
-                <xpath expr="//field[@name='address_ids']/tree" position="attributes">
+                <xpath expr="//field[@name='address_ids']/list" position="attributes">
                     <attribute name="default_order">contract_id asc, public asc,ip_int asc</attribute>
                 </xpath>
             </field>

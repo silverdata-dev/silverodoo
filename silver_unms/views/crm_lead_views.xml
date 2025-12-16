@@ -72,7 +72,7 @@
         <record id="action_unms_calendar" model="ir.actions.act_window">
             <field name="name">Calendario de Instalaciones</field>
             <field name="res_model">crm.lead</field>
-            <field name="view_mode">timeline,tree,form</field>
+            <field name="view_mode">timeline,list,form</field>
             <field name="view_id" ref="view_crm_lead_timeline_unms"/>
             <field name="domain">[('type', '=', 'opportunity')]</field>
             <field name="context">{'default_type': 'opportunity', 'search_default_groupby_assignment_id': 1}</field>

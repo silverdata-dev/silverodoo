@@ -593,7 +593,7 @@ class SilverOlt(models.Model):
             'name': 'Tarjetas OLT',
             'type': 'ir.actions.act_window',
             'res_model': 'silver.olt.card',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('olt_id', '=', self.id)],
             'context': {'default_olt_id': self.id},
             'target': 'current',

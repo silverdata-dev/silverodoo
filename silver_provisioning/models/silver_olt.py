@@ -158,7 +158,7 @@ class SilverOlt(models.Model):
                 'name': _('ONUs Descubiertas'),
                 'type': 'ir.actions.act_window',
                 'res_model': 'silver.olt.discovered.onu',
-                'view_mode': 'tree,form',
+                'view_mode': 'list,form',
                 'domain': [('olt_id', '=', self.id)],
                 'target': 'new',
             }

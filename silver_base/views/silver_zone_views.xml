@@ -4,7 +4,7 @@
 
         <!-- Vistas para isp.zone -->
         <record id="view_silver_zone_tree" model="ir.ui.view">
-            <field name="name">silver.zone.tree</field>
+            <field name="name">silver.zone.list</field>
             <field name="model">silver.zone</field>
             <field name="arch" type="xml">
                 <list string="Zonas" default_order="name desc">
@@ -58,9 +58,9 @@
         <record id="action_silver_zone" model="ir.actions.act_window">
             <field name="name">Zonas ISP</field>
             <field name="res_model">silver.zone</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="view_ids" eval="[(5, 0, 0),
-                (0, 0, {'view_mode': 'tree', 'view_id': ref('view_silver_zone_tree')}),
+                (0, 0, {'view_mode': 'list', 'view_id': ref('view_silver_zone_tree')}),
                 (0, 0, {'view_mode': 'form', 'view_id': ref('view_silver_zone_form')})]"/>
         </record>
 

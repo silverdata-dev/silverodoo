@@ -3,7 +3,7 @@
     <data>
         <!-- Tree View -->
         <record id="silverlead_zona_view_tree" model="ir.ui.view">
-            <field name="name">silverlead.zona.tree</field>
+            <field name="name">silverlead.zona.list</field>
             <field name="model">silverlead.zona</field>
             <field name="arch" type="xml">
                 <list string="Zonas">
@@ -31,7 +31,7 @@
         <record id="action_silverlead_zona" model="ir.actions.act_window">
             <field name="name">Zonas</field>
             <field name="res_model">silverlead.zona</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <!-- Menu Item -->

@@ -109,7 +109,7 @@ class SilverRadius(models.Model):
             'name': _('RADIUS Users'),
             'type': 'ir.actions.act_window',
             'res_model': 'silver.radius.user',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('radius_id', '=', self.id)],
             'context': {'default_radius_id': self.id},
         }

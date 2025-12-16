@@ -238,12 +238,12 @@
         </record>
 
         <record id="product_template_tree_view_inherit_silver" model="ir.ui.view">
-            <field name="name">product.template.tree.inherit.silver</field>
+            <field name="name">product.template.list.inherit.silver</field>
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_tree_view"/>
             <field name="arch" type="xml">
 
-                <xpath expr="//tree" position="replace">
+                <xpath expr="//list" position="replace">
                     <list string="Product" multi_edit="1" sample="1">
                         <header>
                             <button string="Print Labels" type="object" name="action_open_label_layout"/>

@@ -4,7 +4,7 @@
 
         <!-- Vista de Lista (Tree) para Equipos -->
         <record id="view_isp_equipment_tree" model="ir.ui.view">
-            <field name="name">isp.equipment.tree</field>
+            <field name="name">isp.equipment.list</field>
             <field name="model">isp.equipment</field>
             <field name="arch" type="xml">
                 <list string="Equipos">
@@ -39,7 +39,7 @@
         <record id="action_isp_equipment" model="ir.actions.act_window">
             <field name="name">Equipos de Clientes</field>
             <field name="res_model">isp.equipment</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
     </data>

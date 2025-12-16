@@ -5,11 +5,11 @@
         <record id="action_silver_ip_address_pool" model="ir.actions.act_window">
             <field name="name">Líneas de Dirección IP ISP</field>
             <field name="res_model">silver.ip.address.pool</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <record id="view_silver_ip_address_pool_tree" model="ir.ui.view">
-            <field name="name">silver.ip.address.pool.tree</field>
+            <field name="name">silver.ip.address.pool.list</field>
             <field name="model">silver.ip.address.pool</field>
             <field name="arch" type="xml">
                 <list string="Líneas de Dirección IP ISP">
@@ -97,7 +97,7 @@
     <record id="silver_ip_address_pool_action" model="ir.actions.act_window">
         <field name="name">Pools de IP</field>
         <field name="res_model">silver.ip.address.pool</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
 
