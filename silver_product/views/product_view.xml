@@ -30,15 +30,19 @@
                     <field name="detailed_type"/>
                                 <field name="uom_id"  invisible="detailed_type=='service'"/>
                                 <field name="etype" invisible="detailed_type=='service'"/>
-                                  <label for="product_brand_id" invisible="detailed_type=='service'"/>
+                                  <label for="brand_id" invisible="detailed_type=='service'"/>
                     <div class="o_row d-flex align-items-center" invisible="detailed_type=='service'">
-                        <field name="product_brand_id"  nolabel="1"/>
-                        <field name="product_brand_logo" widget="image" class="ms-2" style="width: 24px; height: 24px;" invisible="not product_brand_id"/>
+                        <field name="brand_id"  nolabel="1"/>
+                        <field name="brand_logo" widget="image" class="ms-2" style="width: 24px; height: 24px;" invisible="not brand_id"/>
                     </div>
-                                <field name="hardware_model_id"
-                                       context="{'default_etype':etype, 'default_brand_id':product_brand_id}"
-                                       domain="[('etype','=',etype),('brand_id','=',product_brand_id)]"
-                                       invisible="detailed_type=='service'" options="{'no_create_edit': False, 'no_quick_create': True}"/>
+                                  <field name="manual" invisible="etype!='onu'"/>
+                                  <field name="onu_profile_id" invisible="etype!='onu'"/>
+
+
+                                <!--field name="hardware_model_id"
+                                       context="{'default_etype':etype, 'default_brand_id':brand_id}"
+                                       domain="[('etype','=',etype),('brand_id','=',brand_id)]"
+                                       invisible="detailed_type=='service'" options="{'no_create_edit': False, 'no_quick_create': True}"/-->
 <!--field name="service_type_id" invisible="detailed_type!='service'" /-->
 
                             </group>
@@ -84,15 +88,18 @@
                     <field name="detailed_type"/>
                                 <field name="uom_id"  invisible="detailed_type=='service'"/>
                                 <field name="etype" invisible="detailed_type=='service'"/>
-                                  <label for="product_brand_id" invisible="detailed_type=='service'"/>
+                                  <label for="brand_id" invisible="detailed_type=='service'"/>
                     <div class="o_row d-flex align-items-center" invisible="detailed_type=='service'">
-                        <field name="product_brand_id"  nolabel="1"/>
-                        <field name="product_brand_logo" widget="image" class="ms-2" style="width: 24px; height: 24px;" invisible="not product_brand_id"/>
+                        <field name="brand_id"  nolabel="1"/>
+                        <field name="brand_logo" widget="image" class="ms-2" style="width: 24px; height: 24px;" invisible="not brand_id"/>
                     </div>
-                                <field name="hardware_model_id"
+                                                                  <field name="manual" invisible="etype!='onu'"/>
+                                  <field name="onu_profile_id" invisible="etype!='onu'"/>
+
+                                <!--field name="hardware_model_id"
                                        context="{'default_etype':etype}"
                                        domain="[('etype','=',etype)]"
-                                       invisible="detailed_type=='service'" options="{'no_create_edit': False, 'no_quick_create': True}"/>
+                                       invisible="detailed_type=='service'" options="{'no_create_edit': False, 'no_quick_create': True}"/-->
 
                             </group>
 
@@ -170,12 +177,12 @@
                 <!-- 6. Add custom fields to Standard Price group -->
 
                  <xpath expr="//page[@name='general_information']//group[@name='group_standard_price']" position="inside">
-                    <label for="product_brand_id" string="Marca"/>
+                    <label for="brand_id" string="Marca"/>
                     <div class="o_row d-flex align-items-center">
-                        <field name="product_brand_id" required="is_required_brand == True" placeholder="Marca" nolabel="1"/>
-                        <field name="product_brand_logo" widget="image" class="ms-2" style="width: 24px; height: 24px;" invisible="not product_brand_id"/>
+                        <field name="brand_id" required="is_required_brand == True" placeholder="Marca" nolabel="1"/>
+                        <field name="brand_logo" widget="image" class="ms-2" style="width: 24px; height: 24px;" invisible="not brand_id"/>
                     </div>
-                     <field name="hardware_model_id"/>
+                     <!--field name="hardware_model_id"/-->
                     <field name="is_required_brand" invisible="1"/>
                     <field name="number_list_partner"/>
                     <field name="allow_negative_stock" invisible="type != 'product'"/>

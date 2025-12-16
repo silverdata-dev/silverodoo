@@ -184,7 +184,8 @@ class IspContract(models.Model):
                 s.update({
                     'temp_onu_serial_display': False,
                     'serial_number': False,
-                    'hardware_model_id': False,
+                    'product_id': False,
+                    #'hardware_model_id': False,
                     #'model_name': False,
                     'stock_lot_id': False,
                     'olt_card_id': False,
@@ -204,7 +205,8 @@ class IspContract(models.Model):
         StockLot = self.env['stock.lot']
         OltCard = self.env['silver.olt.card']
         OltPort = self.env['silver.olt.card.port']
-        Model = self.env['silver.hardware.model']
+        #Model = self.env['silver.hardware.model']
+        Product = self.env['product.product']
 
 
 
@@ -213,19 +215,20 @@ class IspContract(models.Model):
 
         # --- Buscar o crear Lote/Serial ---
         lot = StockLot.search([('name', '=', serial_number)], limit=1)
+        product = Product.search([('name', '=', discovered_onu.model)], limit=1)
         #model = Model.search([('name', '=', discovered_onu.model)], limit=1)
-        #if (not model) or (not len(model)):
-        #    model = Model.create({ 'name': discovered_onu.model})
+        if (not product) or (not len(product)):
+            product = Product.create({ 'name': discovered_onu.model, 'etype':'onu', 'detailed_type':'product'})
 
-        print(("es modelo", discovered_onu.hardware_model_id))
+        print(("es modelo", product))
 
         if not lot:
             lot = StockLot.create({
                 'name': serial_number,
-                'hardware_model_id': discovered_onu.hardware_model_id.id,
-                'brand_id': discovered_onu.hardware_model_id.brand_id.id,
+               # 'hardware_model_id': discovered_onu.hardware_model_id.id,
+                'brand_id': product.brand_id.id,
                # 'model_name': discovered_onu.model_name,
-                'product_id': None,
+                'product_id': product.id,
                 'external_equipment': True,
                 'software_version': discovered_onu.version,
                 'company_id': self.company_id.id or self.env.company.id,
@@ -273,7 +276,8 @@ class IspContract(models.Model):
             'discovered_onu_id' : discovered_onu,
             'temp_onu_serial_display': serial_number,
             'serial_number': serial_number,
-            'hardware_model_id': discovered_onu.hardware_model_id,
+            'product_id': product.id,
+            #'hardware_model_id': discovered_onu.hardware_model_id,
             #'model_name': discovered_onu.model_name,
             'stock_lot_id': lot.id,
             'olt_card_id': card.id if card else False,
@@ -370,9 +374,10 @@ class IspContract(models.Model):
     #model_name = fields.Char(string='Modelo ONU', related='stock_lot_id.model_name', readonly=True, store=False)
     brand_id = fields.Many2one('product.brand', string="Marca", related='stock_lot_id.brand_id', readonly=True, store=False)
     brand_logo = fields.Binary(related='brand_id.logo', string='Logo de la Marca', readonly=True, store=False)
-    hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo', related='stock_lot_id.hardware_model_id', readonly=True, store=False)
+    #hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo', related='stock_lot_id.hardware_model_id', readonly=True, store=False)
+    product_id = fields.Many2one('product.product', string='Producto')
 
-    profile_id = fields.Many2one('silver.onu.profile', string='Perfil ONU', related='stock_lot_id.hardware_model_id.onu_profile_id', readonly=False, store=True)
+    profile_id = fields.Many2one('silver.onu.profile', string='Perfil ONU', related='stock_lot_id.product_id.onu_profile_id', readonly=False, store=True)
     software_version = fields.Char(string='Versión de Software ONU', related='stock_lot_id.software_version', readonly=True, store=False)
 
     firmware_version = fields.Char(string='Firmware Version ONU', related='stock_lot_id.firmware_version', readonly=True, store=False)
@@ -385,9 +390,9 @@ class IspContract(models.Model):
     wan_config_successful = fields.Boolean(string="Configuración WAN Exitosa", default=False, readonly=True, copy=False)
     wifi_config_successful = fields.Boolean(string="Configuración WiFi Exitosa", default=False, readonly=True, copy=False)
 
-    @api.onchange('profile_id')
-    def onchange_profile_id(self):
-        self.hardware_model_id.onu_profile_id = self.profile_id
+    #@api.onchange('profile_id')
+    #def onchange_profile_id(self):
+    #    self.hardware_model_id.onu_profile_id = self.profile_id
 
     def action_add_radius_access(self):
         def tom(p):

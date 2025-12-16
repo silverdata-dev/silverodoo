@@ -171,7 +171,7 @@
                                         </span>
                                     </div>
                                     
-                <field name="product_brand_id" attrs="{'required':[('is_required_brand', '=', True)]}" placeholder="Marca" can_create="true" can_write="true" modifiers="{&quot;required&quot;: [[&quot;is_required_brand&quot;, &quot;=&quot;, true]]}"/>
+                <field name="brand_id" attrs="{'required':[('is_required_brand', '=', True)]}" placeholder="Marca" can_create="true" can_write="true" modifiers="{&quot;required&quot;: [[&quot;is_required_brand&quot;, &quot;=&quot;, true]]}"/>
                 <field name="is_required_brand" invisible="1" modifiers="{&quot;invisible&quot;: true}"/><div/>
             <field name="categ_id" string="Categor&#237;a de producto" on_change="1" can_create="true" can_write="true" modifiers="{&quot;required&quot;: true}"/>
 <field name="number_list_partner" modifiers="{}"/>

@@ -3,7 +3,7 @@
     width: 100% !important;
 }
 
-div[name="product_brand_logo"] img, div[name="brand_logo"] img  {
+div[name="brand_logo"] img, div[name="brand_logo"] img  {
     height: 40px !important;
 }
 

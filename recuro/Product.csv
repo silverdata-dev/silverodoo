@@ -104,7 +104,7 @@
 "pricelist_id","Tarifa","Plantilla de producto","many2one","Campo base","","","","product.pricelist"
 "pricelist_item_count","Número de reglas de precios","Plantilla de producto","entero","Campo base","","","True",""
 "priority","Favorito","Plantilla de producto","Selección","Campo base","","True","",""
-"product_brand_id","Marca","Plantilla de producto","many2one","Campo base","True","True","","product.brand"
+"brand_id","Marca","Plantilla de producto","many2one","Campo base","True","True","","product.brand"
 "product_tooltip","Tooltip del producto","Plantilla de producto","Carácter","Campo base","","","True",""
 "product_upload_download","Producto subida bajada","Plantilla de producto","Carácter","Campo base","","True","",""
 "product_variant_count","# Variantes de producto","Plantilla de producto","entero","Campo base","","","True",""

@@ -36,7 +36,7 @@ class SilverAp(models.Model):
    # port_ssh = fields.Char(string='Puerto ssh', default=22)
 
     # api_hostname = fields.Char(string='Hostname/IP', required=True)
-    api_port = fields.Integer(string='API Port', default=21000, required=True)
+    #api_port = fields.Integer(string='API Port', default=21000, required=True)
 
     silver_address_id = fields.Many2one('silver.address', string='Dirección')
 

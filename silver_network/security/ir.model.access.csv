@@ -57,4 +57,3 @@ access_silver_node_link_olt_wizard,silver.node.link.olt.wizard,model_silver_node
 access_silver_node_link_box_wizard,silver.node.link.box.wizard,model_silver_node_link_box_wizard,base.group_user,1,1,1,1
 access_silver_zone_link_node_wizard,silver.zone.link.node.wizard,model_silver_zone_link_node_wizard,base.group_user,1,1,1,1
 access_silver_core_link_ap_wizard,silver.core.link.ap.wizard,model_silver_core_link_ap_wizard,base.group_user,1,1,1,1
-access_silver_core_link_olt_wizard,silver.core.link.olt.wizard,model_silver_core_link_olt_wizard,base.group_user,1,1,1,1

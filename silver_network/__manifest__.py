@@ -21,7 +21,7 @@
         'views/silver_core_views.xml',
         'views/silver_cradius_views.xml',
         'wizards/silver_netdev_system_info_wizard_view.xml',
-        'wizards/link_olt_core_wizard_view.xml',
+        #'wizards/link_olt_core_wizard_view.xml',
         'wizards/link_core_wizard_view.xml',
         'wizards/link_olt_wizard_view.xml',
         'wizards/link_box_wizard_view.xml',

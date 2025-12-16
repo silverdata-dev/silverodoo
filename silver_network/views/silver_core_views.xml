@@ -180,13 +180,13 @@
                                                 <field name="hostname_olt"/>
                                                 <field name="ip"/>
                                                 <field name="state"/>
-                                                <button name="action_unlink_from_core" class="bleft" type="object" string="" icon="fa-chain-broken"/>
+                                                <!--button name="action_unlink_from_core" class="bleft" type="object" string="" icon="fa-chain-broken"/-->
                                             </tree>
                                         </field>
-                                 <div class="o_action_manager">
+                                 <!--div class="o_action_manager">
                                             <button name="action_open_olts_to_link" type="object" string="Agregar..." class="btn-link nobold"/>
                                             <button name="action_create_and_link_olt" type="object" string="Crear" class="btn-link nobold"/>
-                                        </div>
+                                        </div-->
                                     </page>
                                     <page string="Equipos AP" name="aps">
 

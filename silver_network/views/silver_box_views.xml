@@ -68,7 +68,7 @@
                                 </div-->
                                 <field name="node_id"  required="1"/>
                                 <field name="core_id" required="1" domain="[('node_id', '=', node_id)]"/>
-                                <field name="olt_id" required="1"  domain="[('core_id', '=', core_id)]"/>
+                                <field name="olt_id" required="1"  domain="[('core_ids', 'in', core_id)]"/>
                                 <field name="olt_port_id" required="1" domain="[('olt_id', '=', olt_id)]"/>
 
                             </group>

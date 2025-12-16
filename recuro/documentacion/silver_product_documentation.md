@@ -31,7 +31,7 @@ El módulo añade pestañas y campos específicos para ISP al formulario de prod
 
 *   **Gestión de Hardware:**
     *   `hardware_model_id`: Vincula el producto comercial con una especificación de hardware (ej. "Huawei HG8546M").
-    *   `product_brand_id`: Marca del fabricante.
+    *   `brand_id`: Marca del fabricante.
 
 ### 2.2. Modelos Auxiliares
 

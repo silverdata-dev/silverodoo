@@ -32,7 +32,7 @@
                             <field name="logo" widget="image"/>
                         </group>
                         <notebook>
-                            <page string="Modelos">
+                            <!--page string="Modelos">
                                 <field name="model_ids">
                                         <tree string="Modelos">
                                                 <field name="id" column_invisible="1"/>
@@ -42,7 +42,7 @@
                 </tree>
                                 </field>
 
-                            </page>
+                            </page-->
                             <page string="Productos">
                                   <field name="product_ids">
 

@@ -14,6 +14,6 @@ class ProductBrand(models.Model):
 
 
 
-    product_ids = fields.One2many("product.template", "product_brand_id", string='Productos')
+    product_ids = fields.One2many("product.template", "brand_id", string='Productos')
 
-    model_ids = fields.One2many("silver.hardware.model", "brand_id", string='Modelos')
+   # model_ids = fields.One2many("silver.hardware.model", "brand_id", string='Modelos')

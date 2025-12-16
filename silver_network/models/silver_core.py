@@ -139,7 +139,8 @@ class SilverCore(models.Model):
     radius_count = fields.Integer(string='Conteo Servidor Radius', compute='_compute_counts')
     ap_count = fields.Integer(string='Conteo Equipo AP', compute='_compute_counts')
 
-    olt_ids = fields.One2many('silver.olt', 'core_id', string='OLTs')
+    olt_ids = fields.Many2many('silver.olt', 'silver_core_olt', 'olt_id', 'core_id', string='Equipos OLT')
+    #olt_ids = fields.One2many('silver.olt', 'core_id', string='OLTs')
     ap_ids = fields.One2many('silver.ap', 'core_id', string='APs')
 
     
@@ -350,11 +351,11 @@ class SilverCore(models.Model):
         print(("corewrite"))
         if ('name' in vals):
             l = len(self.name) + 1
-            for olt in self.olt_ids:
-                print(("olt", olt.name[:l], self.name + "/"))
-                if olt.name[:l] == self.name + "/":
-                    print(("wr", ({"name": vals['name'] + "/" + olt.name[l:]})))
-                    olt.write({"name": vals['name'] + "/" + olt.name[l:]})
+          #  for olt in self.olt_ids:
+          #      print(("olt", olt.name[:l], self.name + "/"))
+          #      if olt.name[:l] == self.name + "/":
+          #          print(("wr", ({"name": vals['name'] + "/" + olt.name[l:]})))
+          #          olt.write({"name": vals['name'] + "/" + olt.name[l:]})
 
             for ap in self.ap_ids:
                 print(("ap", ap.name[:l], self.name + "/"))
@@ -616,7 +617,7 @@ class SilverCore(models.Model):
 
     def _get_api_connection(self, username=None, password=None):
         self.ensure_one()
-        p = self.port or self.api_port
+        p = self.port# or self.api_port
 
         # Use provided credentials, fallback to self, then to session
         user_to_try = username or self.username or request.session.get('radius_user')
@@ -868,8 +869,9 @@ class SilverCore(models.Model):
             cambia = (ostate != 'down') or (self.retries == 3)
             if (self.state != 'down'):
                 self.state = 'down'
-            if "auth" in f"{e}":
+            if "auth" in f"{e}" or "username" in f"{e}" or "usuario" in f"{e}":
                 self.askuser = True
+                cambia = True
             self.retries = self.retries + 1
             #new_cr.commit()
 

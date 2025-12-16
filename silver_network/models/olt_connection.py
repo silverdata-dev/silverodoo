@@ -9,6 +9,19 @@ import time
 
 _logger = logging.getLogger(__name__)
 
+class TelnetProxy:
+    def __init__(self, telnet):
+        self.telnet = telnet
+
+    def recv(self, n):
+        return self.telnet.read_some()
+
+    def send(self, d):
+        return self.telnet.write(d.encode('utf-8'))
+
+    def recv_ready(self):
+        return 1
+
 class OLTConnection:
     """
     Clase de conexión mejorada para OLTs que utiliza un shell persistente
@@ -86,7 +99,7 @@ class OLTConnection:
                 print(("shell", self.shell))
             elif self.connection_type == 'telnet':
                 self.client = telnetlib.Telnet(self.host, self.port, timeout=10)
-                self.shell = self.client
+                self.shell = TelnetProxy(self.client)  #self.client
             else:
                 raise ValueError("Tipo de conexión no soportado")
 

@@ -53,7 +53,11 @@ class SilverNode(models.Model):
                 if core.name[:l] == self.code+"/":
                     print(("wr", ({"name":vals['code']+"/"+core.name[l:]})))
                     core.write({"name":vals['code']+"/"+core.name[l:]})
-
+            for olt in self.olt_ids:
+                print(("olt", olt.name[:l], self.olt + "/"))
+                if olt.name[:l] == self.code + "/":
+                    print(("wr", ({"name": vals['code'] + "/" + olt.name[l:]})))
+                    olt.write({"name": vals['code'] + "/" + olt.name[l:]})
 
         return super().write(vals)
 

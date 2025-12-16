@@ -24,8 +24,8 @@ class SilverOlt(models.Model):
 
 
 
-    core_ids = fields.Many2many('silver.core', string='Equipos Core')
-    core_id = fields.Many2one('silver.core', string='Equipo Core', required=1)
+    core_ids = fields.Many2many('silver.core', 'silver_core_olt', 'core_id', 'olt_id',  string='Equipos Core')
+   # core_id = fields.Many2one('silver.core', string='Equipo Core', required=1)
     node_id = fields.Many2one('silver.node', string='Nodo', required=1)
     num_slot_olt = fields.Integer(string='Numero de Slots', default=1)
     num_ports1 = fields.Selection([
@@ -421,22 +421,22 @@ class SilverOlt(models.Model):
             connection_type=self.type_connection,
         )
 
-    @api.onchange('node_id')
-    def changenode(self):
-        self.core_id = None
-
    # @api.onchange('node_id')
-    @api.onchange('core_id')
+   # def changenode(self):
+   #     self.core_id = None
+
+    @api.onchange('node_id')
+   # @api.onchange('core_id')
     def _compute_hostname(self):
         print(('h1', self))
 
         olt = self
 
-        if not olt.core_id:
+        if not olt.node_id:
             olt.name = ''
             return
 
-        olts = self.env['silver.olt'].search([('core_id', '=', olt.core_id.id)])
+        olts = self.env['silver.olt'].search([('node_id', '=', olt.node_id.id)])
         i = 1
         for o in olts:
             if o.name:
@@ -450,7 +450,7 @@ class SilverOlt(models.Model):
                 if on >= i: i = on+1
 
 
-        name = f"{olt.core_id.name}/OLT{i}"
+        name = f"{olt.node_id.code}/OLT{i}"
 
         # Construimos el código.
         # Si el campo 'code' del nodo es 'u', y ya tiene 2 OLTs, el nuevo será 'u/2'

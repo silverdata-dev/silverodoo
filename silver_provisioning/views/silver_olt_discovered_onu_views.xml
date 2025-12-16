@@ -9,8 +9,9 @@
                 <tree string="ONUs Descubiertas" editable="bottom">
                     <field name="olt_index"/>
                     <field name="serial_number"/>
+                    <field name="product_id"/>
                     <!--field name="brand_id"/-->
-                    <field name="hardware_model_id"/>
+                    <!--field name="hardware_model_id"/-->
                     <field name="password"/>
                     <field name="loid"/>
                     <field name="version"/>

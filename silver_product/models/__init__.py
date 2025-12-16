@@ -9,4 +9,4 @@ from . import silver_ap
 from . import stock_lot
 from . import product_product
 from . import silver_onu_profile
-from . import silver_hardware_model
+#from . import silver_hardware_model

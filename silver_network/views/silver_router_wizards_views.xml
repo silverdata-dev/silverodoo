@@ -24,7 +24,7 @@
                     <notebook>
                         <page string="Interface" class="speed-update-tab">
                              <!--widget name="interface_speed_updater" r="line_ids" options="{'r': 'interface'}"/-->
-                            <field name="line_ids" nolabel="1"  widget="f" rx_speed="hola" options="{'r': 'interface'}">>
+                            <field name="line_ids" nolabel="1"  widget="f" rx_speed="hola" options="{'r': 'interface'}" readonly="1">
                                 <tree create="false" delete="false">
                                     <field name="name"/>
                                     <field name="type"/>
@@ -39,7 +39,7 @@
                         </page>
                         <page string="Ethernet" class="speed-update-tab">
                              <!--widget name="interface_speed_updater" r="ethernet_line_ids"/-->
-                            <field name="ethernet_line_ids" nolabel="1">
+                            <field name="ethernet_line_ids" nolabel="1" readonly="1">
                                 <tree create="false" delete="false">
                                     <field name="name"/>
                                     <field name="mac_address"/>
@@ -55,7 +55,7 @@
                         </page>
                         <page string="EoIP Tunnel" class="speed-update-tab">
                               <!--widget name="interface_speed_updater" r="eoip_line_ids"/-->
-                            <field name="eoip_line_ids" nolabel="1">
+                            <field name="eoip_line_ids" nolabel="1" readonly="1">
 
                                 <tree create="false" delete="false">
                                     <field name="name"/>
@@ -72,7 +72,7 @@
                         </page>
                         <page string="GRE Tunnel" class="speed-update-tab">
                             <!--widget name="interface_speed_updater" r="gre_line_ids"/-->
-                            <field name="gre_line_ids" nolabel="1">
+                            <field name="gre_line_ids" nolabel="1" readonly="1">
 
                                 <tree create="false" delete="false">
                                     <field name="name"/>
@@ -88,7 +88,7 @@
                         </page>
                         <page string="VLAN" class="speed-update-tab">
                             <!--widget name="interface_speed_updater" r="vlan_line_ids"/-->
-                            <field name="vlan_line_ids" nolabel="1">
+                            <field name="vlan_line_ids" nolabel="1" readonly="1">
                                 <tree create="false" delete="false">
                                     <field name="name"/>
                                     <field name="vlan"/>
@@ -104,7 +104,7 @@
                         </page>
                         <page string="VRRP" class="speed-update-tab">
                             <!--widget name="interface_speed_updater" r="vrrp_line_ids"/-->
-                            <field name="vrrp_line_ids" nolabel="1">
+                            <field name="vrrp_line_ids" nolabel="1" readonly="1">
                                 <tree create="false" delete="false">
                                     <field name="name"/>
                                     <field name="interface"/>
@@ -120,7 +120,7 @@
                         </page>
                         <page string="Bonding" class="speed-update-tab">
                              <!--widget name="interface_speed_updater" r="bonding_line_ids"/-->
-                            <field name="bonding_line_ids" nolabel="1">
+                            <field name="bonding_line_ids" nolabel="1" readonly="1">
                                 <tree create="false" delete="false">
                                     <field name="name"/>
                                     <field name="slaves"/>
@@ -136,7 +136,7 @@
                         </page>
                         <page string="LTE" class="speed-update-tab">
                             <!--widget name="interface_speed_updater" r="lte_line_ids"/-->
-                            <field name="lte_line_ids" nolabel="1">
+                            <field name="lte_line_ids" nolabel="1" readonly="1">
                                 <tree create="false" delete="false">
                                     <field name="name"/>
                                     <field name="mac_address"/>
@@ -185,7 +185,7 @@
                         </group>
                         <notebook>
                             <page string="Routes">
-                                <field name="line_ids">
+                                <field name="line_ids" readonly="1">
                                     <tree string="Routes">
                                         <field name="dst_address"/>
                                         <field name="gateway"/>
@@ -290,7 +290,7 @@
                         <notebook>
                             <page string="Active Connections">
                                  <!--field name="line_ids" widget="interface_speed_updater" r="line_ids"  options="{'r': 'interface'}"/-->
-                                <field name="line_ids">
+                                <field name="line_ids"  readonly="1">>
                                     <tree string="Active Connections" create="false" delete="false" readonly="1">
                                         <field name="name"/>
                                         <field name="service"/>
@@ -340,7 +340,7 @@
                         </group>
                         <notebook>
                             <page string="Firewall Rules">
-                                <field name="line_ids">
+                                <field name="line_ids"  readonly="1">>
                                     <tree string="Firewall Rules">
                                         <field name="chain"/>
                                         <field name="action"/>
@@ -388,7 +388,7 @@
                         <notebook>
                             <page string="Queues">
                                  <!--field name="line_ids" widget="interface_speed_updater" r="line_ids"  options="{'r': 'interface'}"/-->
-                                <field name="line_ids" readonly="1">
+                                <field name="line_ids" readonly="1" >
                                     <tree string="Queues">
                                         <field name="name"/>
                                         <field name="target"/>
@@ -455,7 +455,7 @@
             <field name="model">silver.netdev.active.users.wizard</field>
             <field name="arch" type="xml">
                 <form>
-                    <field name="line_ids" nolabel="1">
+                    <field name="line_ids" nolabel="1"  readonly="1">>
                         <tree create="false" delete="false">
                             <field name="name"/>
                             <field name="address"/>
