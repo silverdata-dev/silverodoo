@@ -32,7 +32,7 @@ class SilverIpAddress(models.Model):
     node_ids = fields.Many2many("silver.node", string="Nodos", related="pool_id.node_ids")
     core_ids = fields.Many2many("silver.core", string="Cores", related="pool_id.core_ids")
 
-    contract_id = fields.Many2one('silver.contract', string='Contrato')
+
     #assigned_to = fields.Reference(selection=[], string='Assigned To')
     description = fields.Text()
 
@@ -50,11 +50,6 @@ class SilverIpAddress(models.Model):
                 record.ip_int = int(ipaddress.ip_address(record.name))
             except ValueError:
                 record.ip_int = 0
-
-    @api.depends('contract_id')
-    def _compute_used(self):
-        for record in self:
-            record.used = bool(record.contract_id)
 
 
     @api.model

@@ -66,18 +66,6 @@ class SilverBox(models.Model):
             'tag': 'reload',
         }
 
-    def action_create_contract(self):
-        self.ensure_one()
-        return {
-            'name': _('Crear Contrato'),
-            'type': 'ir.actions.act_window',
-            'res_model': 'silver.contract',
-            'view_mode': 'form',
-            'target': 'new',
-            'context': {
-                'default_box_id': self.id,
-            }
-        }
 
     @api.model
     def create(self, vals):

@@ -19,6 +19,11 @@ class SilverIpAddress(models.Model):
             print(("used", s.used, s.contract_id))
             s.used = (s.contract_id != None) and len(s.contract_id)>0
 
+    @api.depends('contract_id')
+    def _compute_used(self):
+        for record in self:
+            record.used = bool(record.contract_id)
+
 
     def action_view_contract(self):
         """
