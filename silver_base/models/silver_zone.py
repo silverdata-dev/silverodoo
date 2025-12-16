@@ -11,11 +11,11 @@ class SilverZone(models.Model):
     name = fields.Char(string='Nombre', required=True)
     code = fields.Char(string='Código', required=True)
     
-    country_id = fields.Many2one('res.country', string='País', required=True)
-    state_id = fields.Many2one('res.country.state', string='Estado', required=True)
-    municipality_id = fields.Many2one('silver.municipality', string='Municipio')
-    city_id = fields.Many2one('silver.city', string='Ciudad')
-    parish_id = fields.Many2one('silver.parish', string='Parroquia')
+#    country_id = fields.Many2one('res.country', string='País', required=True)
+#    state_id = fields.Many2one('res.country.state', string='Estado', required=True)
+#    municipality_id = fields.Many2one('silver.municipality', string='Municipio')
+#    city_id = fields.Many2one('silver.city', string='Ciudad')
+#    parish_id = fields.Many2one('silver.parish', string='Parroquia')
 
     gps_top = fields.Float("GPS Norte", readonly=True)
     gps_left = fields.Float("GPS Oeste",  readonly=True)
