@@ -11,7 +11,7 @@
     'author': 'Gemini',
     'website': 'https://www.google.com',
     'category': 'Sales/CRM',
-    'depends': ['crm', 'silver_contract', 'silver_network', 'silver_geo'],
+    'depends': ['crm', 'silver_contract', 'silver_network', 'silver_geo', 'silver_product'],
     'data': [
         'security/ir.model.access.csv',
         'views/crm_lead_views.xml',
