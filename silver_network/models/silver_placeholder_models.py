@@ -15,14 +15,14 @@ class AddressListChannelLine(models.Model):
     _name = 'address.list.channel.line'
     _description = 'Placeholder for Address List Channel Line'
     name = fields.Char('Name')
-    core_id = fields.Many2one('silver.core', string='Core')
+    core_id = fields.Many2one('silver.core', string='Router')
 
 
 class SilverCorePortLine(models.Model):
     _name = 'silver.core.port.line'
-    _description = 'Placeholder for Silver Core Port Line'
+    _description = 'Placeholder for Port Line'
     name = fields.Char('Name')
-    core_id = fields.Many2one('silver.core', string='Core')
+    core_id = fields.Many2one('silver.core', string='Router')
 
 class OltLineProduct(models.Model):
     _name = 'olt.line.product'
@@ -63,7 +63,7 @@ class SilverDeviceNetworks(models.Model):
     _name = 'silver.device.networks'
     _description = 'Silver Device Networks'
     name = fields.Char('Name')
-    core_id = fields.Many2one('silver.core', string='Core')
+    core_id = fields.Many2one('silver.core', string='Router')
     olt_id = fields.Many2one('silver.olt', string='OLT')
     card_id = fields.Many2one('silver.olt.card', string='Card')
     port_id = fields.Many2one('silver.olt.card.port', string='Port')

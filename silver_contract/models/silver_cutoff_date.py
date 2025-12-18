@@ -59,7 +59,7 @@ class SilverCutoffDate(models.Model):
     date_invoice = fields.Date(string='Fecha de Facturación', readonly=True)
     is_preinvoice = fields.Boolean(string='Generar Avisos de Cobro')
     is_invoice_posted = fields.Boolean(string='Facturas Publicadas')
-    journal_preinvoice_id = fields.Many2one('account.journal', string='Diario')
+    #journal_preinvoice_id = fields.Many2one('account.journal', string='Diario')
     is_preinvoice_active = fields.Boolean(string='Aviso de Cobro Contratos Activos')
     is_preinvoice_removal_list = fields.Boolean(string='Aviso de Cobro Contratos Lista Retiro')
     payment_promise_day_cut = fields.Integer(string='Días Plazo para Promesas de Pago')
@@ -133,7 +133,7 @@ class SilverCutoffDate(models.Model):
     days_cut_benefit = fields.Selection([('1', '1 día'), ('2', '2 días')], string='Dias adicionales')
     additional_users = fields.Boolean(string='Usuarios Adicionales')
     is_accumulate_discounts = fields.Boolean(string='Acumular descuentos')
-    journal_benefits_ids = fields.Many2many('account.journal', string='Diarios beneficiarios')
+    #journal_benefits_ids = fields.Many2many('account.journal', string='Diarios beneficiarios')
     date_cut_with_benefit = fields.Date(string='Fecha de Corte con Beneficios', readonly=True)
 
 

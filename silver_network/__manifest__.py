@@ -3,7 +3,7 @@
     'summary': "Módulo para la gestión de proveedores de servicios de Internet (Silver)",
     'description': """
         Este módulo proporciona las herramientas necesarias para gestionar la infraestructura de red de un Silver,
-        incluyendo nodos, equipos core, OLTs, y más.
+        incluyendo nodos, equipos router, OLTs, y más.
        
     """,
     'author': "Silverdale",

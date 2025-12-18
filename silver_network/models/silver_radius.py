@@ -9,7 +9,7 @@ _logger = logging.getLogger(__name__)
 class SilverRadius(models.Model):
     _inherit = 'silver.core'
     #_table = 'isp_radius'
-    _description = 'Servidor Radius'
+    #_description = 'Servidor Radius'
 
 
     is_radius = fields.Boolean('Es radius')

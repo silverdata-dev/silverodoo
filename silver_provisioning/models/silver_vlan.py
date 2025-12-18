@@ -20,7 +20,7 @@ class SilverVlan(models.Model):
             # Si el M2M está vacío, simplemente lo añade.
 
             # NOTA: Odoo requiere que los IDs estén en una lista.
-            res['core_ids'] = [(6, 0, [id_a_incluir])]
+            res['core_id'] = id_a_incluir
             core = self.env['silver.core'].browse(id_a_incluir)
             if core.node_id:
                 res['node_id'] = core.node_id.id

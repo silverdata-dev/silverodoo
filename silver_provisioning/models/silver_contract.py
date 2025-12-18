@@ -70,7 +70,7 @@ class IspContract(models.Model):
     has_olt = fields.Boolean('tiene olt', related='linktype_id.has_olt')
 
     node_id = fields.Many2one('silver.node', string="Nodo")
-    core_id = fields.Many2one('silver.core', string="Core Router")
+    core_id = fields.Many2one('silver.core', string="Router")
     ap_id = fields.Many2one('silver.ap', string="Access Point")
     splitter_id = fields.Many2one('silver.splitter', string="Splitter")
     olt_id = fields.Many2one('silver.olt', string="OLT")
@@ -117,7 +117,7 @@ class IspContract(models.Model):
                              string='Estado Radius', default='down')
     core_state = fields.Selection([('down', 'Down'), ('active', 'Activo'),
                               ('disconnected', 'Disconnected')],
-                             string='Estado Core', default='down')
+                             string='Estado Router', default='down')
 
     wan_state = fields.Selection([('connected', 'Conectado'), ('disconnected', 'Desconectado'), ('none', 'Comprobar')], string="Estado WAN", default='none')
 
@@ -218,7 +218,7 @@ class IspContract(models.Model):
         product = Product.search([('name', '=', discovered_onu.model)], limit=1)
         #model = Model.search([('name', '=', discovered_onu.model)], limit=1)
         if (not product) or (not len(product)):
-            product = Product.create({ 'name': discovered_onu.model, 'etype':'onu', 'detailed_type':'product'})
+            product = Product.create({ 'name': discovered_onu.model, 'etype':'onu', 'type':'consu'}) #aaa
 
         print(("es modelo", product))
 
@@ -408,7 +408,7 @@ class IspContract(models.Model):
         self.ensure_one()
 
         if not self.core_id:
-            raise UserError(_("No tiene un core configurado."))
+            raise UserError(_("No tiene un Router configurado."))
 
         if ((not self.has_olt) and (not self.ap_id)):
             raise UserError(_("No tiene un equipo AP configurado"))
@@ -483,7 +483,7 @@ class IspContract(models.Model):
         """
         self.ensure_one()
         if not self.core_id:
-            raise UserError(_("Este contrato no tiene un Core Router asociado."))
+            raise UserError(_("Este contrato no tiene un Router asociado."))
 
         # Llama a la función en silver.core y retorna su resultado (una acción de notificación)
         si = self.core_id.check_and_configure_nas(username = self.pppoe_user, password = self.pppoe_password)
@@ -496,11 +496,11 @@ class IspContract(models.Model):
                 'tag': 'display_notification',
                 'params': {
                     'title': _('Éxito'),
-                    'message': f"Conectado al core con usuario {self.pppoe_user}",
+                    'message': f"Conectado al Router con usuario {self.pppoe_user}",
                     'type': 'success',
                 }
             }
-        raise UserError(_("No se puede autenticar con el core."))
+        raise UserError(_("No se puede autenticar con el Router."))
 
 
     def action_provision_base(self):
@@ -510,7 +510,7 @@ class IspContract(models.Model):
         """
         self.ensure_one()
         if not self.core_id:
-            raise UserError(_("Debe seleccionar un Core Router antes de aprovisionar el servicio."))
+            raise UserError(_("Debe seleccionar un Router antes de aprovisionar el servicio."))
         #self.name = self.env['ir.sequence'].next_by_code('silver.contract.sequence')
 
 
@@ -772,7 +772,7 @@ class IspContract(models.Model):
     def action_reconnection_service_button(self):
         self.ensure_one()
         if not self.core_id:
-            raise UserError(_("Debe seleccionar un Core Router antes de aprovisionar el servicio."))
+            raise UserError(_("Debe seleccionar un Router antes de aprovisionar el servicio."))
 
         if self.linktype_id.has_olt and self.olt_id:
             print(("aa", self.state_service, self.changed_onu))
@@ -836,7 +836,7 @@ class IspContract(models.Model):
             if contract.pppoe_user and contract.core_id:
                 api = contract.core_id._get_api_connection()
                 if not api:
-                    raise UserError(_("No se pudo conectar al Core Router Mikrotik."))
+                    raise UserError(_("No se pudo conectar al Router Mikrotik."))
                 try:
                     secrets_path = api.path('/ppp/secret')
                     existing = tuple(secrets_path(name=contract.pppoe_user))
@@ -845,7 +845,7 @@ class IspContract(models.Model):
                         # Este perfil debe existir en el Mikrotik con velocidad limitada o redirección.
                         secrets_path.set(id=existing[0]['.id'], profile='suspendido')
                 except Exception as e:
-                    raise UserError(_("Fallo al suspender el usuario PPPoE en el Core: %s") % e)
+                    raise UserError(_("Fallo al suspender el usuario PPPoE en el Router: %s") % e)
                 finally:
                     api.close()
 
@@ -919,7 +919,7 @@ class IspContract(models.Model):
         if not self.ip_address_id or not self.ip_address_id.name:
             raise UserError(_("No hay ninguna dirección IP asignada a este contrato para hacer ping."))
         if not self.core_id:
-            raise UserError(_("No se ha configurado un router principal (Core) para ejecutar el ping."))
+            raise UserError(_("No se ha configurado un router principal (Router) para ejecutar el ping."))
 
         ping_result_str = ""
         try:
@@ -983,7 +983,7 @@ class IspContract(models.Model):
         self.ensure_one()
 
         if not self.core_id:
-            raise UserError(_("Este contrato no tiene un Core Router asociado."))
+            raise UserError(_("Este contrato no tiene un Router asociado."))
         if not self.ip_address_id or not self.ip_address_id.name:
             raise UserError(_("Este contrato no tiene una dirección IP asignada para buscar la sesión."))
 
@@ -992,7 +992,7 @@ class IspContract(models.Model):
         try:
             core = self.core_id
             if not core:
-                raise UserError(_("El Core Router no tiene un dispositivo de red configurado para la conexión."))
+                raise UserError(_("El Router no tiene un dispositivo de red configurado para la conexión."))
             
             api, e = core._get_api_connection()
             if not api:
@@ -1128,7 +1128,12 @@ class IspContract(models.Model):
 
         if self.linktype_id.has_olt:
             self.changed_onu = True
-            self.vlan_id = self.env['silver.vlan'].search([( 'olt_ids', 'in',self.olt_id.id)], limit=1)
+            #self.vlan_id = self.env['silver.vlan'].search([( 'olt_ids', 'in',self.olt_id.id)], limit=1)
+            self.vlan_id = self.env['silver.vlan'].search([('olt_port_id', '=', self.olt_port_id.id)], limit=1)
+            if not self.vlan_id:
+                self.vlan_id = self.env['silver.vlan'].search([('olt_id', '=', self.olt_id.id)], limit=1)
+            if not self.vlan_id:
+                self.vlan_id = self.env['silver.vlan'].search([('core_id', '=', self.core_id.id)], limit=1)
 
 
         # Asignación de IP
@@ -1440,11 +1445,11 @@ class IspContract(models.Model):
         self.ensure_one()
 
         if not self.core_id:
-            raise UserError(_("No tiene un core configurado para consultar el RADIUS."))
+            raise UserError(_("No tiene un Router configurado para consultar el RADIUS."))
         
         radius_server = self.core_id.radius_id or self.core_id
         if not radius_server:
-            raise UserError(_("El core no tiene un servidor RADIUS (User Manager) asociado."))
+            raise UserError(_("El Router no tiene un servidor RADIUS (User Manager) asociado."))
             
         if not self.pppoe_user:
             raise UserError(_("No hay un usuario PPPoE definido en el contrato."))

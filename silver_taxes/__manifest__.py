@@ -5,7 +5,7 @@
     'author': 'SilverData',
     'website': 'https://www.silverdata.org',
     'category': 'Accounting',
-    'depends': ['product', 'account', 'silver_base'],
+    'depends': ['product', 'account', 'silver_base',        'purchase'],
     'data': [
         'views/product_view.xml',
     ],

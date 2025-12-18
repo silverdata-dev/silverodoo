@@ -14,7 +14,7 @@ class SilverIpAddress(models.Model):
     cidr = fields.Char(string='IP', required=True, help="e.g., 192.168.0.0/24")
 #    gateway = fields.Char(string='Gateway')
 
-    core_id = fields.Many2one('silver.core', related='pool_id.core_id', string='Core', store=True)
+    core_id = fields.Many2one('silver.core', related='pool_id.core_id', string='Router', store=True)
 
     pool_id = fields.Many2one('silver.ip.address.pool',  string='Pool')
 
@@ -32,7 +32,7 @@ class SilverIpAddress(models.Model):
     node_ids = fields.Many2many("silver.node", string="Nodos", related="pool_id.node_ids")
     core_ids = fields.Many2many("silver.core", string="Cores", related="pool_id.core_ids")
 
-    contract_id = fields.Many2one('silver.contract', string='Contrato')
+
     #assigned_to = fields.Reference(selection=[], string='Assigned To')
     description = fields.Text()
 
@@ -51,11 +51,8 @@ class SilverIpAddress(models.Model):
             except ValueError:
                 record.ip_int = 0
 
-    @api.depends('contract_id')
     def _compute_used(self):
-        for record in self:
-            record.used = bool(record.contract_id)
-
+        return 0
 
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
@@ -115,7 +112,7 @@ class SilverIpAddressLine(models.Model):
 
     olt_id = fields.Many2one("silver.olt", string= "OLT")
     olt_port_id = fields.Many2one( "silver.olt.card.port", string= "PON", domain="[('olt_id', '=', olt_id)]")
-    core_id = fields.Many2one("silver.core", string="Equipo Core")
+    core_id = fields.Many2one("silver.core", string="Equipo Router")
 
     zone_ids = fields.Many2many("silver.zone", string="Zonas")
     node_ids = fields.Many2many("silver.node", string="Nodos")

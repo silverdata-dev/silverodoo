@@ -6,7 +6,7 @@
             <field name="name">silver.core.tree</field>
             <field name="model">silver.core</field>
             <field name="arch" type="xml">
-                <tree string="Equipos Core" default_order="name asc" expand="1">
+                <tree string="Equipos Router" default_order="name asc" expand="1">
                                         <field name="name"/>
                                         <field name="hostname_core"/>
                                         <field name="node_id"/>
@@ -29,7 +29,7 @@
         <field name="name">silver.core.search.view</field>
         <field name="model">silver.core</field>
         <field name="arch" type="xml">
-                        <search string="Equipos Core">
+                        <search string="Equipos Router">
                             <field name="name"/>
                             <field name="hostname_core"/>
                             <field name="node_id" />
@@ -44,7 +44,7 @@
 
         <!-- Accion y Menu para silver.core -->
         <record id="action_silver_core" model="ir.actions.act_window">
-            <field name="name">Equipos Core</field>
+            <field name="name">Equipos Router</field>
             <field name="res_model">silver.core</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_silver_core_tree"/>
@@ -58,7 +58,7 @@
             <field name="name">silver.core.form</field>
             <field name="model">silver.core</field>
             <field name="arch" type="xml">
-                <form string="Equipo Core">
+                <form string="Equipo Router">
                     <header>
                         <!--button name="create_ap" string="Crear Equipo AP" type="object"/-->
                         <!--button name="create_radius" string="Crear Radius" type="object" invisible="not is_silver_radius"/-->
@@ -71,7 +71,7 @@
                         <button name="button_view_queues" type="object" string="Queues"/>
                         <!--field name="state" widget="statusbar" statusbar_visible="down,active"/-->
                     </header>
-                    <sheet string="Equipo Core">
+                    <sheet string="Equipo Router">
                         <div class="oe_button_box" name="button_box">
                             <!--button class="oe_stat_button" type="object" name="action_view_olts" icon="fa-arrows-v">
                                 <field string="Equipos OLT" name="olt_count" widget="statinfo"/>

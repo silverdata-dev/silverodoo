@@ -3,7 +3,7 @@
     <data>
         <!-- silver.core.port.line -->
         <record id="action_silver_core_port_line" model="ir.actions.act_window">
-            <field name="name">Líneas de Puerto de Core Silver</field>
+            <field name="name">Líneas de Puerto</field>
             <field name="res_model">silver.core.port.line</field>
             <field name="view_mode">tree,form</field>
         </record>
@@ -12,7 +12,7 @@
             <field name="name">silver.core.port.line.tree</field>
             <field name="model">silver.core.port.line</field>
             <field name="arch" type="xml">
-                <tree string="Líneas de Puerto de Core">
+                <tree string="Líneas de Puerto">
                     <field name="name"/>
                     <field name="core_id"/>
                 </tree>
@@ -23,7 +23,7 @@
             <field name="name">silver.core.port.line.form</field>
             <field name="model">silver.core.port.line</field>
             <field name="arch" type="xml">
-                <form string="Línea de Puerto de Core">
+                <form string="Línea de Puerto">
                     <sheet>
                         <group>
                             <field name="name"/>

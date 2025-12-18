@@ -30,7 +30,7 @@ def _format_speed(bits_per_second):
 class SilverCore(models.Model):
     _name = 'silver.core'
     #_table = 'isp_core'
-    _description = 'Equipo Core ISP'
+    _description = 'Equipo Router'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
 
@@ -80,7 +80,8 @@ class SilverCore(models.Model):
 
     kex_algorithms_ids = fields.Many2many('silver.kex.algorithms', string='Kex Algorithms')
 
-    vlan_ids = fields.Many2many('silver.vlan', 'silver_mvlan_core', 'core_id', 'vlan_id', string='Vlans')
+    #vlan_ids = fields.Many2many('silver.vlan', 'silver_mvlan_core', 'core_id', 'vlan_id', string='Vlans')
+    vlan_ids = fields.One2many('silver.vlan', 'core_id', string='Vlans')
 
 
 
@@ -113,7 +114,7 @@ class SilverCore(models.Model):
 
     # --- Campos de Conectividad y Acceso ---
     user = fields.Char(string='Usuario')
-    username = fields.Char(string='Usuario Core', )
+    username = fields.Char(string='Usuario Router', )
     user_nass = fields.Char(string='Usuario Nass')
     password = fields.Char(string='Password', )
     password_nass = fields.Char(string='Password Nass')
@@ -170,12 +171,12 @@ class SilverCore(models.Model):
 
     is_multiple_vlans = fields.Boolean(string='Habilitar múltiples Vlans')
     is_unique_vlans = fields.Boolean(string='Vlans única')
-    is_active_vlans = fields.Boolean(string='Activar Vlans Core')
+    is_active_vlans = fields.Boolean(string='Activar Vlans Router')
 
     is_type_core_access = fields.Boolean(string='Acceso', default=True)
     is_type_core_bandwidth = fields.Boolean(string='Ancho de banda')
 
-    is_desactive_core = fields.Boolean(string='Desactivar Core')
+    is_desactive_core = fields.Boolean(string='Desactivar Router')
     is_desactive_olt = fields.Boolean(string='Desactivar OLT')
     is_cutoff_reconnection = fields.Boolean(string='Corte/Reconexión Servicio', default=True)
     cutoff_reconnection_ipaddress = fields.Boolean(string='IP Address')
@@ -535,7 +536,7 @@ class SilverCore(models.Model):
             'tag': 'display_notification',
             'params': {
                 'title': 'Connection Test',
-                'message': 'Connection to Core was successful!',
+                'message': 'Connection to Router was successful!',
                 'type': 'success',
             }
         }
@@ -607,7 +608,7 @@ class SilverCore(models.Model):
     def action_view_form(self):
         self.ensure_one()
         return {
-            'name': _('Core'),
+            'name': _('Router'),
             'type': 'ir.actions.act_window',
             'res_model': 'silver.core',
             'view_mode': 'form',
@@ -659,7 +660,7 @@ class SilverCore(models.Model):
         registers the Core as a NAS client on the RADIUS server.
         """
         self.ensure_one()
-        _logger.info(f"Starting full RADIUS configuration for core {self.name}")
+        _logger.info(f"Starting full RADIUS configuration for Router {self.name}")
 
         radius_id = (self if self.is_radius else self.radius_id)
 
@@ -715,13 +716,13 @@ class SilverCore(models.Model):
 
             if existing_server:
                 server_id = existing_server['.id']
-                _logger.info(f"Updating existing RADIUS server entry {server_id} on Core device.")
+                _logger.info(f"Updating existing RADIUS server entry {server_id} on Router device.")
             #    radius_resource.update(numbers=server_id, **params)
             else:
-                _logger.info(f"Adding new RADIUS server entry for {radius_id.ip} on Core device.")
+                _logger.info(f"Adding new RADIUS server entry for {radius_id.ip} on Router device.")
              #   radius_resource.add(**params)
         except Exception as e:
-            raise UserError(_("Failed to configure RADIUS on Core device: %s") % e)
+            raise UserError(_("Failed to configure RADIUS on Router device: %s") % e)
 
         # 3. Configure the RADIUS server to accept the Core as a NAS client
         radius_api = None
@@ -756,7 +757,7 @@ class SilverCore(models.Model):
             if radius_api:
                 radius_api.close()
 
-        _logger.info(f"Successfully configured RADIUS for core {self.name}")
+        _logger.info(f"Successfully configured RADIUS for Router {self.name}")
         return True
 
 
@@ -815,7 +816,7 @@ class SilverCore(models.Model):
         try:
 
             # Connection test now requires local credentials to perform configuration
-            _logger.info(f"Core {self.name}: Trying local credentials for connection and configuration.")
+            _logger.info(f"Router {self.name}: Trying local credentials for connection and configuration.")
             if self.env.context.get('u'):
                 api,e = self._get_api_connection(username=self.username, password=self.password)
             else:
@@ -826,7 +827,7 @@ class SilverCore(models.Model):
 
             if api:
                 # Fetch and set the hostname first
-                _logger.info("Fetching system identity from Core device.")
+                _logger.info("Fetching system identity from Router device.")
                 identity_resource = tuple(api.path('/system/identity'))
                 if identity_resource and self.hostname_core != identity_resource[0].get('name'):
                     cambia = True
@@ -858,7 +859,7 @@ class SilverCore(models.Model):
                     'params': {
                         'title': 'Éxito',
                         'sticky': False,
-                        'message': 'Conexión al core  exitosa!',
+                        'message': 'Conexión al Router  exitosa!',
                         'type': 'success',
            #             'next': reload_action,
                     }
@@ -884,7 +885,7 @@ class SilverCore(models.Model):
                 'params': {
                     'title': 'Error',
                     'sticky': False,
-                    'message': f'Conexión al core fallida: {e}',
+                    'message': f'Conexión al Router fallida: {e}',
                     'type': 'danger',
             #        'next': reload_action,
                 }
@@ -909,7 +910,7 @@ class SilverCore(models.Model):
                 'params': {
                     'title': 'Error',
                     'sticky': False,
-                    'message': f'Exception en core: {e}',
+                    'message': f'Exception en Router: {e}',
                     'type': 'danger',
            #         'next': reload_action,
                 }

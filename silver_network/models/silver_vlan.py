@@ -12,9 +12,14 @@ class SilverVlan(models.Model):
     vlanid = fields.Integer('Vlan ID')
     #olt_ids = fields.One2many('silver.olt', 'vlan_id', string='OLTs')
     node_id = fields.Many2one('silver.node',  string='Node')
-    olt_ids = fields.Many2many('silver.olt', 'silver_mvlan_olt',  'vlan_id', 'olt_id',  string='OLT')
-    olt_port_ids = fields.Many2many('silver.olt.card.port', 'silver_mvlan_olt_port',  'vlan_id', 'olt_port_id', string='PON')
-    core_ids = fields.Many2many('silver.core', 'silver_mvlan_core',  'vlan_id', 'core_id',   string='Core')
+
+    core_id = fields.Many2one('silver.core',   string='Router')
+    olt_id = fields.Many2one('silver.olt',  string='OLT')
+    olt_port_id = fields.Many2one('silver.olt.card.port', string='PON')
+
+    # olt_ids = fields.Many2many('silver.olt', 'silver_mvlan_olt',  'vlan_id', 'olt_id',  string='OLT')
+   # olt_port_ids = fields.Many2many('silver.olt.card.port', 'silver_mvlan_olt_port',  'vlan_id', 'olt_port_id', string='PON')
+   # core_ids = fields.Many2many('silver.core', 'silver_mvlan_core',  'vlan_id', 'core_id',   string='Core')
 
     vtype = fields.Selection([('s-vlan', 'S-vlan'), ('c-vlan', 'C-vlan'), ('management', 'Administración')], string="Tipo")
 

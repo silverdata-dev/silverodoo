@@ -13,7 +13,7 @@ class SilverAp(models.Model):
 
 
     node_id = fields.Many2one('silver.node', string='Nodo')
-    core_id = fields.Many2one('silver.core', 'Equipo Core')
+    core_id = fields.Many2one('silver.core', 'Equipo Router')
     hostname_ap = fields.Char(string='Hostname')
     node_ids = fields.Many2many('silver.node', string='Nodos', readonly=False)
 

@@ -3,3 +3,7 @@ paramiko
 requests
 pandas
 pyrad
+librouteros
+telnetlib3
+google_auth
+google-api-python-client

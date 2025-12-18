@@ -14,7 +14,7 @@ class SilverAsset(models.Model):
         ('olt', 'OLT'),
         ('splitter', 'Splitter'),
         ('nap', 'NAP'),
-        ('core', 'Core'),
+        ('core', 'Router'),
         ('node', 'Nodo'),
         ('onu', 'ONU'),
         ('manga', 'Manga'),

@@ -27,7 +27,8 @@ class SilverOltCardPort(models.Model):
     #mgs_vlan = fields.Integer(string='gs-vlan')
     #mgc_vlan = fields.Integer(string='gc-vlan')
 
-    vlan_ids = fields.Many2many('silver.vlan', 'silver_mvlan_olt_port', 'olt_port_id', 'vlan_id', string='Vlans')
+    #vlan_ids = fields.Many2many('silver.vlan', 'silver_mvlan_olt_port', 'olt_port_id', 'vlan_id', string='Vlans')
+    vlan_ids = fields.One2many('silver.vlan', 'olt_port_id', string='Vlans')
 
     is_srvprofile = fields.Boolean(string='ONT Srvprofile')
     ont_srvprofile = fields.Char(string='ont-srvprofile')
@@ -150,18 +151,6 @@ class SilverOltCardPort(models.Model):
             'target': 'current',
         }
 
-    def action_create_contract(self):
-        self.ensure_one()
-        return {
-            'name': _('Crear Contrato'),
-            'type': 'ir.actions.act_window',
-            'res_model': 'silver.contract',
-            'view_mode': 'form',
-            'target': 'new',
-            'context': {
-                'default_olt_card_port_id': self.id,
-            }
-        }
 
     def generar(self):
         for record in self:

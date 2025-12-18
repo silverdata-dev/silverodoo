@@ -24,7 +24,7 @@ class SilverOlt(models.Model):
 
 
 
-    core_ids = fields.Many2many('silver.core', 'silver_core_olt', 'core_id', 'olt_id',  string='Equipos Core')
+    core_ids = fields.Many2many('silver.core', 'silver_core_olt', 'core_id', 'olt_id',  string='Equipos Router')
    # core_id = fields.Many2one('silver.core', string='Equipo Core', required=1)
     node_id = fields.Many2one('silver.node', string='Nodo', required=1)
     num_slot_olt = fields.Integer(string='Numero de Slots', default=1)
@@ -120,7 +120,7 @@ class SilverOlt(models.Model):
     is_serial_onu_ascii = fields.Boolean(string='Serial Onu ASCII')
     is_virtual = fields.Boolean(string='Virtual')
 
-    silver_core_port_line_id = fields.Many2one('silver.core.port.line', string='Interface Core')
+    silver_core_port_line_id = fields.Many2one('silver.core.port.line', string='Interface Router')
     is_active_tr = fields.Boolean(string='Activar TR-069')
     is_v2_brand_zte = fields.Boolean(string='Es Version 2 Zte?')
     primary_dns = fields.Char(string='DNS Primario')
@@ -139,8 +139,8 @@ class SilverOlt(models.Model):
     #vlan_id = fields.Char(string='VLAN ID', required=True)
     #vlan_id = fields.Many2one('silver.vlan', string='VLAN')
 
-    vlan_ids = fields.Many2many('silver.vlan', 'silver_mvlan_olt', 'olt_id', 'vlan_id', string= 'Vlans')
-
+    #vlan_ids = fields.Many2many('silver.vlan', 'silver_mvlan_olt', 'olt_id', 'vlan_id', string= 'Vlans')
+    vlan_ids = fields.One2many('silver.vlan', 'olt_id', string='Vlans')
 
     mtu = fields.Char(string='MTU')
     is_enable_nat = fields.Boolean(string='Enable NAT')
@@ -183,7 +183,7 @@ class SilverOlt(models.Model):
     olt_card_count = fields.Integer(string='Conteo Slot OLT', compute='_compute_olt_card_count')
     #contracts_olt_count = fields.Integer(string='Conteo Olts', compute='_compute_contracts_olt_count')
     ip_range_count = fields.Integer(string='IP Ranges', compute='_compute_ip_range_count')
-    isp_tr_069_id = fields.Many2one("isp.tr.069", string="Equipo OLT")
+   # isp_tr_069_id = fields.Many2one("isp.tr.069", string="Equipo OLT")
 
 #    "ip_address_line_tr69_ids", "Direcciones IP", "Equipo OLT", "one2many", "Campo base", "", "True", "", "isp.ip.address.line"
 
@@ -396,19 +396,6 @@ class SilverOlt(models.Model):
         return {
             'type': 'ir.actions.client',
             'tag': 'reload',
-        }
-
-    def action_create_contract(self):
-        self.ensure_one()
-        return {
-            'name': _('Crear Contrato'),
-            'type': 'ir.actions.act_window',
-            'res_model': 'silver.contract',
-            'view_mode': 'form',
-            'target': 'new',
-            'context': {
-                'default_olt_id': self.id,
-            }
         }
 
     def _get_olt_connection(self):

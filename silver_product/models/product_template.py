@@ -17,7 +17,7 @@ class ProductTemplate(models.Model):
     brand_logo = fields.Binary(related='brand_id.logo', string='Logo de la Marca')
     #hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo')
     etype = fields.Selection(
-        [('core', 'Core'), ('olt', 'OLT'), ('onu', 'ONU'), ('ap', 'AP'), ('ecp', 'ECP'), ('splitter', 'Splitter'),
+        [('core', 'Router'), ('olt', 'OLT'), ('onu', 'ONU'), ('ap', 'AP'), ('ecp', 'ECP'), ('splitter', 'Splitter'),
          ('box', 'NAP'), ], string='Tipo de equipo')
 
     manual = fields.Boolean(string='Configuración Manual')
@@ -87,9 +87,9 @@ class ProductTemplate(models.Model):
         res = super(ProductTemplate, self).default_get(fields)
 
         # 2. Reemplazar el valor de 'detailed_type' si está en los campos solicitados
-        if 'detailed_type' in fields:
+        if 'type' in fields:
             # Puedes poner aquí la lógica condicional que necesites
-            res['detailed_type'] = 'product'
+            res['type'] = 'consu' #aaa
 
         return res
 

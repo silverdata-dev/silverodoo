@@ -14,7 +14,7 @@ class SilverBox(models.Model):
     port_splitter_secondary = fields.Integer(string='Puerto Splitter Secundario')
     splitter_id = fields.Many2one('silver.splitter', string='Spliter Secundario')
     node_id = fields.Many2one('silver.node', string='Nodo')
-    core_id = fields.Many2one( 'silver.core', string="Equipo Core", domain="[('node_id', '=', node_id)]")
+    core_id = fields.Many2one( 'silver.core', string="Equipo Router", domain="[('node_id', '=', node_id)]")
     olt_id = fields.Many2one( 'silver.olt', string= 'OLT', domain= "[('core_id', '=', core_id)]")
     olt_port_id = fields.Many2one( 'silver.olt.card.port', string= 'PON', domain= "[('olt_id', '=', olt_id)]")
 
@@ -66,18 +66,6 @@ class SilverBox(models.Model):
             'tag': 'reload',
         }
 
-    def action_create_contract(self):
-        self.ensure_one()
-        return {
-            'name': _('Crear Contrato'),
-            'type': 'ir.actions.act_window',
-            'res_model': 'silver.contract',
-            'view_mode': 'form',
-            'target': 'new',
-            'context': {
-                'default_box_id': self.id,
-            }
-        }
 
     @api.model
     def create(self, vals):

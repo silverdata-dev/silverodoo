@@ -85,7 +85,8 @@ domain="[('node_id', '=', node_id), ('core_ids', 'in', core_id)]"
                                     <field name="changed_onu" invisible="1"/>
    <field name="vlan_id"  readonly="state_service == 'active'"
           context="{'default_core_id':core_id}"
-          domain="['|', ('olt_port_ids', 'in', olt_port_id), ('core_ids', 'in', core_id)]"/>
+          domain="['|', '|', ('olt_port_id', '=', olt_port_id), '&amp;', ('olt_id','=',olt_id), ('olt_port_id','=',False),
+                '&amp;', ('core_id', 'in', core_id), ('olt_port_id','=',False)]"/>
                                     <field name="old_onu_pon_id" invisible="1"/>
                                     <!--ield name="state"/>
                                     <field name="state_service"/>

@@ -94,10 +94,10 @@
 
                         <notebook name="related">
 
-                            <page name="Equipos Core" >
+                            <page name="Equipos Router" >
 
                                 <field name="core_ids" >
-                                     <tree string="Equipos Core" default_order="name desc" create="false" delete="false" decoration-bf="1">
+                                     <tree string="Equipos Router" default_order="name desc" create="false" delete="false" decoration-bf="1">
 
 <field name="id" column_invisible="1"/>
 

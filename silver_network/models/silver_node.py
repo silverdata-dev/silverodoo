@@ -27,12 +27,12 @@ class SilverNode(models.Model):
     account_analytic_id = fields.Many2one('account.analytic.account', string='Cuenta Analítica de Ingresos')
     account_cost_analytic_id = fields.Many2one('account.analytic.account', string='Cuenta Analítica de Costos')
 
-    core_count = fields.Integer(string='Equipos Core', compute='_compute_counts')
+    core_count = fields.Integer(string='Equipos Router', compute='_compute_counts')
   #aa  support_ticket_count = fields.Integer(string='Tickets', compute='_compute_counts')
   #aa  stock_picking_count = fields.Integer(string='Movimientos', compute='_compute_counts')
     olt_count = fields.Integer(string='Equipos OLT', compute='_compute_counts')
 
-    core_ids = fields.One2many('silver.core', 'node_id', string='Cores')
+    core_ids = fields.One2many('silver.core', 'node_id', string='Routers')
     olt_ids = fields.One2many('silver.olt', 'node_id', string='OLTs')
     box_ids = fields.One2many('silver.box', 'node_id', string='Boxes')
     #splice_closure_ids = fields.One2many('silver.splice_closure', 'node_id', string='Splice Closures')
@@ -81,7 +81,7 @@ class SilverNode(models.Model):
         })
 
         return {
-            'name': 'Core Creado',
+            'name': 'Router Creado',
             'type': 'ir.actions.act_window',
             'res_model': 'silver.core',
             'view_mode': 'form',
@@ -177,7 +177,7 @@ class SilverNode(models.Model):
     def action_create_and_link_core(self):
         self.ensure_one()
         return {
-            'name': _('Crear Core'),
+            'name': _('Crear Router'),
             'type': 'ir.actions.act_window',
             'res_model': 'silver.core',
             'view_mode': 'form',
@@ -195,7 +195,7 @@ class SilverNode(models.Model):
             raise UserError(_('No hay cores sin asignar.'))
 
         return {
-            'name': 'Agregar Core',
+            'name': 'Agregar Router',
             'type': 'ir.actions.act_window',
             'res_model': 'silver.node.link.core.wizard',
             'view_mode': 'form',

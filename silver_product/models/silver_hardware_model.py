@@ -15,7 +15,7 @@ class SilverHardwareModel(models.Model):
 
     product_ids = fields.One2many("product.template", "hardware_model_id", string='Productos')
 
-    etype = fields.Selection([('core', 'Core'), ('olt', 'OLT'), ('onu', 'ONU'), ('ap', 'AP'), ('ecp', 'ECP'), ('splitter', 'Splitter'), ('box', 'NAP'), ], string='Tipo de equipo')
+    etype = fields.Selection([('core', 'Router'), ('olt', 'OLT'), ('onu', 'ONU'), ('ap', 'AP'), ('ecp', 'ECP'), ('splitter', 'Splitter'), ('box', 'NAP'), ], string='Tipo de equipo')
     manual = fields.Boolean(string='Configuración Manual')
 
     _sql_constraints = [

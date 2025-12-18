@@ -25,6 +25,7 @@ access_silver_onu_line,access.silver.onu.line,model_silver_onu_line,base.group_u
 access_device_pool_ip,access.silver_device.pool.ip,model_silver_device_pool_ip,base.group_user,1,1,1,1
 access_silver_radius_line,access.silver.radius.line,model_silver_radius_line,base.group_user,1,1,1,1
 access_silver_radius_user,access.silver.radius.user,model_silver_radius_user,base.group_user,1,1,1,1
+access_silver_radius_service,access.silver.radius.service,model_silver_radius_service,base.group_user,1,1,1,1
 
 access_silver_netdev_interface_wizard,access.silver.netdev.interface.wizard,model_silver_netdev_interface_wizard,base.group_user,1,1,1,1
 access_silver_netdev_interface_wizard_line,access.silver.netdev.interface.wizard.line,model_silver_netdev_interface_wizard_line,base.group_user,1,1,1,1
