@@ -9,7 +9,7 @@ class AssetMapController(http.Controller):
     def show_map(self, node_id=None, **kw):
         return request.render('silver_geo.map_view_template', {'node_id': node_id})
 
-    @http.route('/silver_geo/get_assets', type='json', auth='user')
+    @http.route('/silver_geo/get_assets', type='jsonrpc', auth='user')
     def get_assets(self, node_id=None, **kw):
         asset_models = {
             'silver.node': [('id', '=', int(node_id))] if node_id else [],

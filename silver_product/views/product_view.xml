@@ -107,11 +107,11 @@
 
 
                 <!-- 1. Replace Header Buttons -->
-                <xpath expr="//header" position="inside">
+                <!--xpath expr="//header" position="inside">
                         <button string="Imprimir etiquetas" type="object" name="action_open_label_layout"/>
                         <button string="Actualizar la cantidad " type="object" name="action_update_quantity_on_hand" invisible="type != 'product'"/>
                         <button string="Reabastecer" type="action" name="355" context="{'default_product_tmpl_id': id}" invisible="type != 'product'"/>
-                </xpath>
+                </xpath-->
 
 
                                 <xpath expr="//field[@name='type']" position="after">
@@ -148,9 +148,9 @@
 
 
                 <!-- 3. Add Priority to Title -->
-                <xpath expr="//field[@name='name']" position="before">
+                <!--xpath expr="//field[@name='name']" position="before">
                     <field name="priority" widget="priority" class="me-3"/>
-                </xpath>
+                </xpath-->
 
 
                 <!-- 4. Add Recurring Invoices checkbox -->
@@ -164,7 +164,7 @@
                 <!-- 5. Add UoM fields to General Information -->
                 <xpath expr="//page[@name='general_information']//group[@name='group_general']" position="inside">
                     <field name="uom_id" options="{'no_create': True}" on_change="1" required="1"/>
-                    <field name="uom_po_id" options="{'no_create': True}" on_change="1" required="1"/>
+                    <!--field name="uom_po_id" options="{'no_create': True}" on_change="1" required="1"/-->
                 </xpath>
 
                 <!-- 6. Add custom fields to Standard Price group -->
@@ -252,7 +252,7 @@
                         <field name="sale_ok" invisible="1"/>
                         <field name="currency_id" invisible="1"/>
                         <field name="cost_currency_id" invisible="1"/>
-                        <field name="priority" widget="priority" optional="show" nolabel="1"/>
+                        <!--field name="priority" widget="priority" optional="show" nolabel="1"/-->
                         <field name="name" string="Product Name"/>
                         <field name="default_code" optional="show"/>
                         <field name="barcode" optional="hide" readonly="product_variant_count > 1"/>

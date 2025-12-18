@@ -9,6 +9,13 @@
           </advancedOptions>
         </fileTransfer>
       </webServer>
+      <webServer id="025c1be2-0b66-47dd-98b4-19f8266c70e7" name="loca l">
+        <fileTransfer rootFolder="/home/odoo/addons19/silverodoo" accessType="SFTP" host="localhost" port="22" sshConfigId="de44702c-bb32-4090-9ba7-dfffdf1b7198" sshConfig="odoo@localhost:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

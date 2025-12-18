@@ -150,8 +150,8 @@ export const silverMapWidget = {
         { name: "zip", type: "char" },
         { name: "state_id", type: "many2one" },
         { name: "country_id", type: "many2one" },
-        { name: "municipality_id", type: "many2one" }, // Added
-        { name: "parish_id", type: "many2one" }, // Added
+//        { name: "municipality_id", type: "many2one" }, // Added
+//        { name: "parish_id", type: "many2one" }, // Added
         { name: "zone_id", type: "many2one" },
     ],
 };

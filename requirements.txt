@@ -4,4 +4,6 @@ requests
 pandas
 pyrad
 librouteros
-telnetlib
+telnetlib3
+google_auth
+google-api-python-client

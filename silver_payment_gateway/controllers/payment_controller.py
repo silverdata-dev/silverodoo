@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 
 class PaymentGatewayController(http.Controller):
 
-    @route('/payment/webhook', type='json', auth='public', methods=['POST'], csrf=False)
+    @route('/payment/webhook', type='jsonrpc', auth='public', methods=['POST'], csrf=False)
     def payment_webhook(self):
         """
         Endpoint para recibir notificaciones de la pasarela de pago.

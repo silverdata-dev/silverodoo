@@ -41,8 +41,8 @@
         <record id="cutoff_date_postpago_residencial" model="silver.cutoff.date">
             <field name="name">Postpago Residencial - Corte el 15</field>
             <field name="plan_type_id" ref="plan_type_residencial"/>
-            <field name="payment_scheme">postpaid</field>
-            <field name="cutoff_factor_id" ref="cutoff_factor_standard"/>
+            <field name="recurring_invoicing_type">postpaid</field>
+            <!--field name="cutoff_factor_id" ref="cutoff_factor_standard"/-->
             <field name="day_invoice">1</field>
             <field name="day_cut">15</field>
             <field name="days_grace">5</field>
@@ -51,8 +51,8 @@
         <record id="cutoff_date_prepago_comercial" model="silver.cutoff.date">
             <field name="name">Prepago Comercial - Corte el 30</field>
             <field name="plan_type_id" ref="plan_type_comercial"/>
-            <field name="payment_scheme">prepaid</field>
-            <field name="cutoff_factor_id" ref="cutoff_factor_standard"/>
+            <field name="recurring_invoicing_type">prepaid</field>
+            <!--field name="cutoff_factor_id" ref="cutoff_factor_standard"/-->
             <field name="day_invoice">25</field>
             <field name="day_cut">30</field>
             <field name="days_grace">0</field>

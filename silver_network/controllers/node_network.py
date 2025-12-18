@@ -4,7 +4,7 @@ import json
 
 class NodeNetwork(http.Controller):
 
-    @http.route('/silver_network/get_node_hierarchy', type='json', auth='user')
+    @http.route('/silver_network/get_node_hierarchy', type='jsonrpc', auth='user')
     def get_node_hierarchy(self, node_id, **kw):
         if not node_id:
             print("not node")

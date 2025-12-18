@@ -8,7 +8,7 @@ class SilverContractAnticipatedPaymentLine(models.Model):
 
 
     contract_id = fields.Many2one('silver.contract', string='Contrato', required=True, ondelete='cascade')
-    payment_id = fields.Many2one('account.payment', string='Pago Asociado')
+    #payment_id = fields.Many2one('account.payment', string='Pago Asociado')
     amount = fields.Monetary(string='Monto Anticipado', currency_field='currency_id')
     currency_id = fields.Many2one('res.currency')
     date = fields.Date(string='Fecha', required=True, default=fields.Date.context_today)

@@ -61,7 +61,7 @@ class SilverContract(models.Model):
 
     # --- Pestaña: Ubicación (NUEVO) ---
     silver_address_id = fields.Many2one('silver.address', string='Dirección de Instalación')
-    box_id = fields.Many2one('silver.box', string='Caja NAP')
+    #box_id = fields.Many2one('silver.box', string='Caja NAP')
 
     # --- Pestaña: Servicios Recurrentes ---
     #recurring_invoice_type = fields.Selection([('post', 'Postpago'), ('pre', 'Prepago')], string="Tipo de Consumo")
@@ -172,12 +172,12 @@ class SilverContract(models.Model):
                 ('longitude', '!=', 0)
             ]).sorted(key=lambda b: (b.latitude - addr_lat)**2 + (b.longitude - addr_lon)**2)
 
-            if closest_box:
-                self.box_id = closest_box[0]
-            else:
-                self.box_id = False
-        else:
-            self.box_id = False
+       #     if closest_box:
+       #         self.box_id = closest_box[0]
+       #     else:
+       #         self.box_id = False
+       ## else:
+        #    self.box_id = False
 
     def _get_default_country(self):
         return self.env['res.country'].search([('code', '=', 'VE')], limit=1)

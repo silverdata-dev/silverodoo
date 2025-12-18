@@ -21,8 +21,8 @@ class SilverAddress(models.Model):
     # El display_name se almacena para búsquedas y ordenamiento.
     # name_get se encargará de la visualización final dependiente del contexto.
     name = fields.Char(string='Dirección', compute='_compute_display_name', store=False)
-    display_name = fields.Char(string="Dirección Completa", compute='_compute_display_name', store=False)
-    
+    display_name = fields.Char(string="Dirección Completa", compute='_compute_display_name', store=True)
+
     parent_id = fields.Many2one('silver.address', string='Dirección Padre')
     
     # Información Geográfica
@@ -183,6 +183,7 @@ class SilverAddress(models.Model):
                 # 3. Lógica L10N VE (Municipios/Parroquias) con Auto-Creación
                 # Verificamos si los modelos existen en el entorno (silver_l10n_ve_base)
                 if 'res.country.municipality' in self.env and vals.get('state_id'):
+                    print(("municipality", self.env))
                     # Mapeo OSM -> Venezuela: 'county' suele ser Municipio, 'municipality' suele ser Parroquia
                     raw_mun = data.get('county')
                     raw_par = data.get('municipality')
@@ -561,6 +562,10 @@ class SilverAddress(models.Model):
         if self.env.context.get('show_coordinates') and self.latitude and self.longitude:
            return f"{self.latitude:.5f}, {self.longitude:.5f}"
         return base_name
+
+    def _search_display_name(self, operator, value):
+        # Si tu nombre se compone de 'street' y 'city', buscas en ellos
+        return self.name_search(value)
 
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):

@@ -19,7 +19,7 @@ def _format_speed(bits_per_second):
 
 class SystemStatsController(http.Controller):
 
-    @http.route('/silver_network/get_system_stats', type='json', auth='user')
+    @http.route('/silver_network/get_system_stats', type='jsonrpc', auth='user')
     def get_system_stats(self, netdev_id, **kw):
         try:
             print(("netdev", netdev_id))
@@ -58,7 +58,7 @@ class SystemStatsController(http.Controller):
         except Exception as e:
             return {'error': str(e)}
 
-    @http.route('/silver_network/get_interface_stats', type='json', auth='user')
+    @http.route('/silver_network/get_interface_stats', type='jsonrpc', auth='user')
     def get_interface_stats(self, netdev_id, interface_names, **kw):
         netdev = request.env['silver.core'].browse(int(netdev_id))
         print(("netdev", netdev_id))

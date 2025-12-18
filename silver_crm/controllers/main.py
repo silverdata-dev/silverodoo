@@ -4,7 +4,7 @@ from odoo.http import request
 
 class SilverCrmMapController(http.Controller):
 
-    @http.route('/silver_crm/get_nap_boxes', type='json', auth='user')
+    @http.route('/silver_crm/get_nap_boxes', type='jsonrpc', auth='user')
     def get_nap_boxes(self, node_id=None, **kwargs):
         if not node_id:
             return {'assets': []}
