@@ -183,6 +183,7 @@ class SilverAddress(models.Model):
                 # 3. Lógica L10N VE (Municipios/Parroquias) con Auto-Creación
                 # Verificamos si los modelos existen en el entorno (silver_l10n_ve_base)
                 if 'res.country.municipality' in self.env and vals.get('state_id'):
+                    print(("municipality", self.env))
                     # Mapeo OSM -> Venezuela: 'county' suele ser Municipio, 'municipality' suele ser Parroquia
                     raw_mun = data.get('county')
                     raw_par = data.get('municipality')

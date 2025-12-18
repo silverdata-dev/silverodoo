@@ -413,7 +413,7 @@ class SilverOlt(models.Model):
         hace_cinco_minutos = datetime.now() - timedelta(minutes=5)
 
         for record in self:
-            print(("old_discovered", record.last_discovered_date, record.old_discovered, hace_cinco_minutos, record.last_discovered_date < hace_cinco_minutos))
+            print(("old_discovered", record.last_discovered_date, record.old_discovered, hace_cinco_minutos ))
 
             if record.last_discovered_date:
                 # 2. La condición es: La fecha de la BD (UTC) es menor que el límite (UTC)

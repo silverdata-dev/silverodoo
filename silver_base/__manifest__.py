@@ -5,7 +5,6 @@
     'summary': 'Silver Base module for SilverOdoo',
     'author': 'SilverData',
     'website': 'https://www.silverdata.org',
-    'license': 'LGPL-3',
     'depends': [
         'base',
         'mail',
