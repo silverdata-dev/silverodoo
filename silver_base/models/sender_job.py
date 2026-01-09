@@ -1,4 +1,5 @@
 from odoo import models, api
+from odoo.tools import config
 
 import requests
 import json
@@ -11,7 +12,14 @@ class SyncSenderJob(models.Model):
 
     @api.model
     def send_to_destination(self, model_name, xml_id, vals):
-        url = "http://localhost/sync/v1/data"
+
+
+        r=config.get('remote')
+        url = f"{r}/sync/v1/data"
+
+
+        print(("destination", r, url))
+
         headers = {
             'X-Sync-Token': 'TU_TOKEN_SECRETO',
             'Content-Type': 'application/json'
@@ -34,13 +42,14 @@ class SyncSenderJob(models.Model):
           #  print(("default", obj))
 
             if isinstance(obj, datetime.datetime):
-                if obj.utcoffset() is not None:
-                    obj = obj - obj.utcoffset()
-                millis = int(
-                    calendar.timegm(obj.timetuple()) * 1000 +
-                    obj.microsecond / 1000
-                )
-                return millis
+                return str(obj)
+#                if obj.utcoffset() is not None:
+#                    obj = obj - obj.utcoffset()
+#                millis = int(
+#                    calendar.timegm(obj.timetuple()) * 1000 +
+#                    obj.microsecond / 1000
+#                )
+#                return millis
             return obj
             # raise TypeError('Not sure how to serialize %s' % (obj,))
 

@@ -62,6 +62,7 @@ class ResPartner(models.Model):
 
         #    print(("defaulttt"))
             default = {}
+        default['name'] = self.name
 
         #default.update({'state': 'draft', 'invoice_lines': []})
 
@@ -72,7 +73,7 @@ class ResPartner(models.Model):
         for a in r:
       #      print(("prop", a.get("properties"), a))
 
-            a['properties'] = 7
+            a['properties'] = []
             d.append(a)
       #  print(("copydata", d))
         return d
