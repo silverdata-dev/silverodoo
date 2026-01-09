@@ -4,7 +4,7 @@ class IspRouterInterfaceWizard(models.TransientModel):
     _name = 'silver.netdev.interface.wizard'
     _description = 'Wizard to display router interfaces'
 
-   # netdev_id = fields.Many2one('silver.core', string='Router', required=True)
+    netdev_id = fields.Many2one('silver.core', string='Router', required=True)
     
     line_ids = fields.One2many('silver.netdev.interface.wizard.line', 'wizard_id', string='Interfaces')
     ethernet_line_ids = fields.One2many('silver.netdev.interface.ethernet.line', 'wizard_id', string='Ethernet')
@@ -433,9 +433,10 @@ class SilverRouterQueueWizardLine(models.Model):
             ppp_user_name = line.name
 
             # Construct the dynamic interface name based on the pattern provided by the user
-            interface_name_to_find =  f"<pppoe-{ppp_user_name}>"
+         #   interface_name_to_find =  f"<pppoe-{ppp_user_name}>"
+            interface_name_to_find = f"{ppp_user_name}" if '<' in ppp_user_name else f"<pppoe-{ppp_user_name}>"
 
-            print(f"Constructed interface name to monitor: {interface_name_to_find}")
+            print(f"wConstructed interface name to monitor: {interface_name_to_find}")
 
             interface_path = api.path('/interface')
 

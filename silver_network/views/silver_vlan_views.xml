@@ -17,9 +17,9 @@
                     <field name="vlanid"/>
                     <field name="vtype"/>
                     <field name="node_id"/>
-                    <field name="core_ids"/>
-                    <field name="olt_ids"/>
-                    <field name="olt_port_ids"/>
+                    <field name="core_id"/>
+                    <field name="olt_id"/>
+                    <field name="olt_port_id"/>
                 </list>
             </field>
         </record>
@@ -42,9 +42,12 @@
                                 </group>
                             <group string="Relación">
                             <field name="node_id"/>
-                            <field name="core_ids"  widget="many2many_tags" domain="[('node_id', '=', node_id)]"/>
+                                <field name="core_id" domain="[('node_id', '=', node_id)]"/>
+                                <field name="olt_id" domain="['|',('core_ids', 'in', core_id),('node_id','=',node_id)]"/>
+                                <field name="olt_port_id" domain="[('olt_id','=',olt_id)]"/>
+                            <!--field name="core_ids"  widget="many2many_tags" domain="[('node_id', '=', node_id)]"/>
                             <field name="olt_ids"  widget="many2many_tags"  domain="[('node_id', '=', node_id)]"/>/>
-                            <field name="olt_port_ids" widget="many2many_tags"  domain="[('olt_id', 'in', olt_ids)]"/>/>
+                            <field name="olt_port_ids" widget="many2many_tags"  domain="[('olt_id', 'in', olt_ids)]"/>/-->
                                 </group>
                         </group>
 <notebook>

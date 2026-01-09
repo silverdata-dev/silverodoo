@@ -2,9 +2,8 @@
     'name': 'Silver Payment Gateway Integration',
     'version': '19.0.1.0.0',
     'summary': 'Integración con pasarelas de pago para la creación automática de pagos.',
-    'author': 'Tu Nombre/Empresa',
+    'author': 'SilverData',
     'website': 'https://www.silver-data.net',
-    'license': 'AGPL-3',
     'category': 'Accounting/Payment',
     'depends': [
         'account',

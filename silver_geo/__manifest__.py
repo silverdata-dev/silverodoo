@@ -1,7 +1,6 @@
 {
     'name': 'Silver GEO',
     'version': '19.0.1.0.0',
-    'license': 'LGPL-3',
     'category': 'Geolocation',
     'summary': 'Geolocation features for Silver Odoo',
     'depends': ['silver_network', 'silver_base'],

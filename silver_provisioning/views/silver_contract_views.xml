@@ -64,7 +64,7 @@
                                         />
                                     <field name="has_olt" invisible="1"/>
                                         <field name="olt_id" readonly="state_service == 'active'"
-domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
+domain="[('node_id', '=', node_id), ('core_ids', 'in', core_id)]"
                                               options="{'no_create': True}"/>
 
                                         <button name="action_open_onu_selector_wizard"
@@ -85,7 +85,8 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
                                     <field name="changed_onu" invisible="1"/>
    <field name="vlan_id"  readonly="state_service == 'active'"
           context="{'default_core_id':core_id}"
-          domain="['|', ('olt_port_ids', 'in', olt_port_id), ('core_ids', 'in', core_id)]"/>
+          domain="['|', '|', ('olt_port_id', '=', olt_port_id), '&amp;', ('olt_id','=',olt_id), ('olt_port_id','=',False),
+                '&amp;', ('core_id', 'in', core_id), ('olt_port_id','=',False)]"/>
                                     <field name="old_onu_pon_id" invisible="1"/>
                                     <!--ield name="state"/>
                                     <field name="state_service"/>
@@ -152,7 +153,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
 
 
 
-                    <field name="hardware_model_id"/>
+                    <!--field name="hardware_model_id"/-->
              <field name="profile_id"  readonly="state_service == 'active'" invisible="(not has_olt)"/>
                     <!--field name="software_version"/>
                     <field name="firmware_version"/-->
@@ -350,7 +351,7 @@ domain="[('node_id', '=', node_id), ('core_id', '=', core_id)]"
 
 
 
-                    <field name="hardware_model_id"/>
+                    <!--field name="hardware_model_id"/-->
          <field name="profile_id"  readonly="state_service == 'active'"/>
                     <!--field name="software_version"/>
                     <field name="firmware_version"/-->

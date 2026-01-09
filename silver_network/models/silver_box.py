@@ -14,7 +14,7 @@ class SilverBox(models.Model):
     port_splitter_secondary = fields.Integer(string='Puerto Splitter Secundario')
     splitter_id = fields.Many2one('silver.splitter', string='Spliter Secundario')
     node_id = fields.Many2one('silver.node', string='Nodo')
-    core_id = fields.Many2one( 'silver.core', string="Equipo Core", domain="[('node_id', '=', node_id)]")
+    core_id = fields.Many2one( 'silver.core', string="Equipo Router", domain="[('node_id', '=', node_id)]")
     olt_id = fields.Many2one( 'silver.olt', string= 'OLT', domain= "[('core_id', '=', core_id)]")
     olt_port_id = fields.Many2one( 'silver.olt.card.port', string= 'PON', domain= "[('olt_id', '=', olt_id)]")
 
@@ -67,14 +67,15 @@ class SilverBox(models.Model):
         }
 
 
-    @api.model
-    def create(self, vals):
-        if vals.get('splitter_id'):
-            splitter = self.env['silver.splitter'].browse(vals['splitter_id'])
-            if splitter.exists():
-                box_count = self.search_count([('splitter_id', '=', splitter.id)])
-                vals['name'] = f"{splitter.name}/BOX{box_count + 1}"
-        return super(SilverBox, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('splitter_id'):
+                splitter = self.env['silver.splitter'].browse(vals['splitter_id'])
+                if splitter.exists():
+                    box_count = self.search_count([('splitter_id', '=', splitter.id)])
+                    vals['name'] = f"{splitter.name}/NAP{box_count + 1}"
+        return super(SilverBox, self).create(vals_list)
 
     def write(self, vals):
         if 'splitter_id' in vals:
@@ -82,7 +83,7 @@ class SilverBox(models.Model):
             if new_splitter.exists():
                 for record in self:
                     box_count = self.search_count([('splitter_id', '=', new_splitter.id)])
-                    record.name = f"{new_splitter.name}/BOX{box_count + 1}"
+                    record.name = f"{new_splitter.name}/NAP{box_count + 1}"
         return super(SilverBox, self).write(vals)
 
 

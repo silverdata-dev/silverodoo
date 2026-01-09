@@ -85,12 +85,12 @@ export class CoordinatePickerMap extends Component {
         };
 
         for (const asset of assets) {
-                 var model = asset.model.replaceAll(".", "_");
-            if (asset.latitude && asset.longitude && ['box', 'node'].includes(model)) {
-                const icon = L.icon({iconUrl:`/silver_geo/static/src/img/map_icons/${model}.png`,  iconSize: [25, 41], iconAnchor: [12, 41] });
+                 var nmodel = asset.nmodel.replaceAll(".", "_");
+            if (asset.latitude && asset.longitude && ['box', 'node'].includes(nmodel)) {
+                const icon = L.icon({iconUrl:`/silver_geo/static/src/img/map_icons/${nmodel}.png`,  iconSize: [25, 41], iconAnchor: [12, 41] });
                 //const icon = icons[asset.model] || icons.default;
                 L.marker([asset.latitude, asset.longitude], { icon: icon, opacity: 0.7 })
-                    .bindPopup(`<b>${asset.model.toUpperCase()}:</b><br/>${asset.name}`)
+                    .bindPopup(`<b>${asset.nmodel.toUpperCase()}:</b><br/>${asset.name}`)
                     .addTo(this.map);
             }
         }

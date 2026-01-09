@@ -9,4 +9,4 @@ class SilverReceptionChannel(models.Model):
     name = fields.Char(string='Nombre del Canal', required=True)
     is_internal_referral = fields.Boolean(string='Es Referido Interno')
     commission_percentage = fields.Float(string='Porcentaje de Comisión')
-    team_id = fields.Many2one('crm.team', string='Equipo de Ventas Asociado')
+

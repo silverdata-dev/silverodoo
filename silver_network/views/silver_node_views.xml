@@ -94,10 +94,10 @@
 
                         <notebook name="related">
 
-                            <page name="Equipos Core" >
+                            <page name="Equipos Router" >
 
                                 <field name="core_ids" >
-                                     <list string="Equipos Core" default_order="name desc" create="false" delete="false" decoration-bf="1">
+                                     <list string="Equipos Router" default_order="name desc" create="false" delete="false" decoration-bf="1">
 
 <field name="id" column_invisible="1"/>
 
@@ -108,7 +108,7 @@
                widget="record_link"
 />
                                         <field name="hostname_core" />
-                                        <field name="model" widget="many2one"/>
+                                        <field name="nmodel"/>
                                         <field name="ip"/>
                                         <field name="state" widget="badge"
                                                decoration-success="state in ['active', 'connected']"
@@ -178,11 +178,7 @@
                             </page>
                         </notebook>
                     </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids"/>
-                        <field name="activity_ids"/>
-                        <field name="message_ids"/>
-                    </div>
+
                 </form>
             </field>
         </record>

@@ -3,7 +3,7 @@
   <component name="SshConfigs">
     <configs>
       <sshConfig host="10.0.0.198" id="5fce3804-0d25-44e7-87e7-20a774b3c0e1" keyPath="$USER_HOME$/odooprueba" port="22" nameFormat="DESCRIPTIVE" username="root" useOpenSSHConfig="true" />
-      <sshConfig authType="PASSWORD" host="localhost" id="de44702c-bb32-4090-9ba7-dfffdf1b7198" port="22" nameFormat="DESCRIPTIVE" username="odoo" useOpenSSHConfig="true" />
+      <sshConfig authType="PASSWORD" host="10.0.0.207" id="de44702c-bb32-4090-9ba7-dfffdf1b7198" port="22" nameFormat="DESCRIPTIVE" username="odoo" useOpenSSHConfig="true" />
     </configs>
   </component>
 </project>

@@ -8,7 +8,6 @@
     'website': "https://www.silverdata.com",
     'category': 'Localization',
     'version': '19.0.1.0.0',
-    'license': 'LGPL-3',
     'depends': [
         'silver_l10n_ve_accounting',
     ],

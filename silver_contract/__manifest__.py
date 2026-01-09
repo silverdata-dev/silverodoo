@@ -29,9 +29,8 @@
         'views/menus.xml',
         'views/contract_template_wp_views.xml',
         'data/contract_cron.xml',
-        'data/silver_contract_cron.xml',
-    #],
-    #'demo': [
+#    ],
+#    'demo': [
         'demo/demo_data.xml',
     ],
     'assets': {

@@ -14,7 +14,7 @@ class SilverAsset(models.Model):
         ('olt', 'OLT'),
         ('splitter', 'Splitter'),
         ('nap', 'NAP'),
-        ('core', 'Core'),
+        ('core', 'Router'),
         ('node', 'Nodo'),
         ('onu', 'ONU'),
         ('manga', 'Manga'),
@@ -55,7 +55,7 @@ class SilverAsset(models.Model):
 
     #brand_id = fields.Many2one('product.brand', string='Marca')
     #brand_description = fields.Text(string='Descripción de Marca', related='brand_id.description')
-    model = fields.Char(string='Modelo')
+    nmodel = fields.Char(string='Modelo')
     #astate = fields.Selection([('new','New'),('deployed','Deployed'),('maintenance','Maintenance'),('retired','Retired')], default='new')
     notes = fields.Text()
 

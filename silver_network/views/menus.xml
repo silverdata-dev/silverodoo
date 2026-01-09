@@ -29,7 +29,7 @@
             <menuitem id="menu_isp_olt" name="Equipos OLT" parent="menu_isp_oltss" action="action_silver_olt" sequence="30"/>
 
         <!--menuitem id="menu_isp_cores" name="Core" parent="menu_isp_infrastructure" sequence="30"/-->
-            <menuitem id="menu_isp_core" name="Equipos Core" parent="menu_isp_oltss" action="action_silver_core" sequence="20"/>
+            <menuitem id="menu_isp_core" name="Equipos Router" parent="menu_isp_oltss" action="action_silver_core" sequence="20"/>
 
 
 

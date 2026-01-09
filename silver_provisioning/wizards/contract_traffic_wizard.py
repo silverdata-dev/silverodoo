@@ -5,7 +5,7 @@ class ContractTrafficWizard(models.TransientModel):
     _name = 'silver.contract.traffic.wizard'
     _description = 'Wizard to display real-time traffic for a contract'
 
-    core_id = fields.Many2one('silver.core', string='Core Router', required=True)
+    core_id = fields.Many2one('silver.core', string='Router', required=True)
     interface = fields.Char(string='Interface', required=True)
     
     # Reusing fields for chart display
@@ -32,7 +32,7 @@ class ContractTrafficWizard(models.TransientModel):
         try:
             api,e = wizard.core_id._get_api_connection()
             if not api:
-                print((f"error core:{e}"))
+                print((f"error Router:{e}"))
                 return {'upload': 0, 'download': 0}
 
             interface_path = api.path('/interface')

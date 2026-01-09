@@ -13,7 +13,7 @@ class HelpdeskTicket(models.Model):
     #port_nap_id = fields.Many2one('silver.nap.port', string="Puerto NAP") # Verify model name
     #port_nap = fields.Many2one('silver.nap.port', string="Puerto NAP (Alt)") # In snippet
     ap_id = fields.Many2one('silver.ap', string="AP")
-    core_id = fields.Many2one('silver.core', string="Equipo Core")
+    core_id = fields.Many2one('silver.core', string="Equipo Router")
     
     olt_id = fields.Many2one('silver.olt', string="Equipo OLT")
     olt_card_id = fields.Many2one('silver.olt.card', string="Tarjeta OLT")
@@ -38,7 +38,7 @@ class HelpdeskTicket(models.Model):
     box_id_old = fields.Many2one('silver.box', string="Caja NAP Anterior")
     #port_nap_old = fields.Many2one('silver.nap.port', string="Puerto NAP Anterior")
     ap_id_old = fields.Many2one('silver.ap', string="AP Anterior")
-    core_id_old = fields.Many2one('silver.core', string="Equipo Core Anterior")
+    core_id_old = fields.Many2one('silver.core', string="Equipo Router Anterior")
     
     olt_id_old = fields.Many2one('silver.olt', string="Equipo OLT Anterior")
     olt_card_id_old = fields.Many2one('silver.olt.card', string="Tarjeta OLT Anterior")

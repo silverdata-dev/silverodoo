@@ -32,9 +32,9 @@ class SilverAssignment(models.Model):
                 rec.name = "Sin Asignar"
                 rec.display_name = "Sin Asignar"
 
-    @api.model
-    def create(self, vals):
-        record = super(SilverAssignment, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        record = super(SilverAssignment, self).create(vals_list)
         
         # --- GHOST MODE (MODO FANTASMA) ---
         # web_timeline ignora 'group_expand', por lo que si un grupo no tiene registros, desaparece.

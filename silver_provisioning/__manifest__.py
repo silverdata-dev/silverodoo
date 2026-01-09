@@ -1,11 +1,10 @@
 {
     'name': 'Silver Provisioning',
     'version': '19.0.1.0.0',
-    'license': 'LGPL-3',
     'summary': 'Bridge module for ISP and Contract functionalities',
     'description': 'This module contains all the logic that connects silver_contract with silver_isp, allowing for provisioning.',
-    'author': 'Gemini',
-    'website': 'https://www.gemini.com',
+    'author': 'SilverData',
+    'website': 'https://www.silver-data.net',
     'category': 'Services/Telecommunications',
     'depends': ['web', 'silver_network', 'silver_contract', 'silver_base', 'silver_product', 'stock'],
     'data': [
@@ -35,7 +34,7 @@
         'views/silver_node_views.xml',
         'views/silver_ip_address_views.xml',
 
-
+        'data/silver_contract_cron.xml',
 
     ],
 

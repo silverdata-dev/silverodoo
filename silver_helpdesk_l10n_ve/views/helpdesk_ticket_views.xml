@@ -4,10 +4,10 @@
         <record id="view_helpdesk_ticket_form_inherit_l10n_ve" model="ir.ui.view">
             <field name="name">helpdesk.ticket.form.inherit.l10n.ve</field>
             <field name="model">helpdesk.ticket</field>
-            <field name="inherit_id" ref="silver_helpdesk_contract.view_helpdesk_ticket_form_inherit_contract"/>
+            <field name="inherit_id" ref="silver_helpdesk_isp.view_helpdesk_ticket_form_inherit_isp"/>
             <field name="arch" type="xml">
                 
-                <xpath expr="//page[@name='change_address']" position="before">
+                <xpath expr="//notebook" position="inside">
                     <page string="Cambio Dirección CT" name="change_direction_CT" invisible="code_category_id != 'CDCT'">
                         <br/>
                         <div class="oe_button_box" name="button_ct_change_address">

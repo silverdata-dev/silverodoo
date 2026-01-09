@@ -8,7 +8,7 @@ class SilverContractLine(models.Model):
 
     contract_id = fields.Many2one('silver.contract', string='Contrato', required=True, ondelete='cascade')
     #product_id = fields.Many2one('product.product', string='Producto/Servicio', required=True)
-    product_id = fields.Many2one('product.product', string='Producto/Servicio') # Added product_id field
+    #product_id = fields.Many2one('product.product', string='Producto/Servicio') # Added product_id field
 
     line_type = fields.Selection([
         ('recurring', 'Recurrente'),

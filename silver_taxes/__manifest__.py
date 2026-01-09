@@ -1,7 +1,6 @@
 {
     'name': 'Silver Taxes',
     'version': '19.0.1.0.0',
-    'license': 'LGPL-3',
     'summary': 'Tax fields for products',
     'author': 'SilverData',
     'website': 'https://www.silverdata.org',

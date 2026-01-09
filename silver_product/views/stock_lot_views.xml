@@ -28,7 +28,7 @@
 
 
 
-                     <field name="hardware_model_id" readonly="product_id!=False" domain="[('brand_id', '=', brand_id)]"/>
+                     <!--field name="hardware_model_id" readonly="product_id!=False" domain="[('brand_id', '=', brand_id)]"/-->
                      <field name="onu_profile_id" invisible="etype != 'onu'"/>
                      <!--field name="software_version" readonly="product_id!=False"/>
                      <field name="firmware_version" readonly="product_id!=False"/-->

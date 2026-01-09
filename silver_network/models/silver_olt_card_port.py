@@ -27,7 +27,8 @@ class SilverOltCardPort(models.Model):
     #mgs_vlan = fields.Integer(string='gs-vlan')
     #mgc_vlan = fields.Integer(string='gc-vlan')
 
-    vlan_ids = fields.Many2many('silver.vlan', 'silver_mvlan_olt_port', 'olt_port_id', 'vlan_id', string='Vlans')
+    #vlan_ids = fields.Many2many('silver.vlan', 'silver_mvlan_olt_port', 'olt_port_id', 'vlan_id', string='Vlans')
+    vlan_ids = fields.One2many('silver.vlan', 'olt_port_id', string='Vlans')
 
     is_srvprofile = fields.Boolean(string='ONT Srvprofile')
     ont_srvprofile = fields.Char(string='ont-srvprofile')

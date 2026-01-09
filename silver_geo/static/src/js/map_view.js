@@ -221,8 +221,8 @@ export class AssetMapView extends Component {
     }
 
     _getFeatureStyle(asset) {
-        var model = asset.model.replaceAll(".", "").replaceAll("silver","");
-        const iconPath = `/silver_geo/static/src/img/map_icons/${model}.png`;
+        var nmodel = asset.nmodel.replaceAll(".", "").replaceAll("silver","");
+        const iconPath = `/silver_geo/static/src/img/map_icons/${nmodel}.png`;
         return new ol.style.Style({
             image: new ol.style.Icon({
                 anchor: [0.5, 1],

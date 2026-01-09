@@ -8,12 +8,12 @@
     'website': "https://www.silverdata.com",
     'category': 'Localization',
     'version': '19.0.1.0.0',
-    'license': 'LGPL-3',
     'depends': [
         'base_vat',
         'silver_base',
         'l10n_ve_base',
         'l10n_ve_location',
+        'l10n_ve_contact'
     ],
     'data': [
         'data/res_country_city_data.xml',

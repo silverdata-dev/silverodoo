@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api
+import  os
 
 class ResPartner(models.Model):
-    _inherit = 'res.partner'
+    _inherit = ['res.partner', 'sync.mixin']
+    _name = 'res.partner'
 
     silver_address_id = fields.Many2one('silver.address', string='Dirección de Servicio Principal')
 
@@ -21,26 +23,29 @@ class ResPartner(models.Model):
             self.country_id = addr.country_id
             self.zip = '' # El modelo silver.address no tiene zip, se puede añadir si es necesario
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         """
         Sobrescrito para asegurar la sincronización de la dirección al crear un nuevo partner.
         """
-        if vals.get('silver_address_id'):
-            addr = self.env['silver.address'].browse(vals['silver_address_id'])
-            vals.update({
-                'street': addr.street,
-                'street2': f"{addr.building}, Piso {addr.floor}, Nro {addr.house_number}",
-                'city': addr.zone_id.name if addr.zone_id else '',
-                'state_id': addr.state_id.id,
-                'country_id': addr.country_id.id,
-            })
-        return super(ResPartner, self).create(vals)
+        for vals in vals_list:
+            if vals.get('silver_address_id'):
+                addr = self.env['silver.address'].browse(vals['silver_address_id'])
+                vals.update({
+                    'street': addr.street,
+                    'street2': f"{addr.building}, Piso {addr.floor}, Nro {addr.house_number}",
+                    'city': addr.zone_id.name if addr.zone_id else '',
+                    'state_id': addr.state_id.id,
+                    'country_id': addr.country_id.id,
+                })
+        return super(ResPartner, self).create(vals_list)
 
     def write(self, vals):
         """
         Sobrescrito para asegurar la sincronización de la dirección al actualizar un partner.
         """
+        print(("respartner write", vals))
+   #     print(("env", os.environ, self.env['ir.config_parameter']))
         if vals.get('silver_address_id'):
             addr = self.env['silver.address'].browse(vals['silver_address_id'])
             vals.update({
@@ -52,7 +57,26 @@ class ResPartner(models.Model):
             })
         return super(ResPartner, self).write(vals)
 
- 
+    def copy_data(self,  default=None, context=None):
+        if default is None:
+
+        #    print(("defaulttt"))
+            default = {}
+
+        #default.update({'state': 'draft', 'invoice_lines': []})
+
+      #  print(("isdefault", default))
+        r = super().copy_data( default=default)
+
+        d=[]
+        for a in r:
+      #      print(("prop", a.get("properties"), a))
+
+            a['properties'] = 7
+            d.append(a)
+      #  print(("copydata", d))
+        return d
+    
 
     def name_get(self):
         if self.env.context.get('ciname'):

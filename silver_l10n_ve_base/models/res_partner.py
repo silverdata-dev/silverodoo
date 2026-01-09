@@ -80,11 +80,14 @@ class ResPartner(models.Model):
         return True
 
     @api.constrains('vat', 'country_id')
-    def check_vat(self):
+    def check_vat(self, validation=None):
 
 
         print(("vat test3", self.vat))
         return True
+
+    def _check_vat(self, validation=None):
+        return super()._check_vat()
 
     @api.model
     def _run_vat_test(self, vat_number, default_country, partner_is_company=True):
@@ -93,6 +96,9 @@ class ResPartner(models.Model):
 
     @api.constrains('phone')
     def check_phone(self):
+
+        if not self.phone:
+            return True
 
         v, s = validar_telefono(self.phone)
         if not v:

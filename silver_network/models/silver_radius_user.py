@@ -17,9 +17,9 @@ class SilverRadiusUser(models.Model):
         ('username_unique', 'unique(radius_id, username)', 'Username must be unique per RADIUS server!')
     ]
 
-    @api.model
-    def create(self, vals):
-        record = super(SilverRadiusUser, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        record = super(SilverRadiusUser, self).create(vals_list)
        # record._sync_to_mikrotik('add')
         return record
 

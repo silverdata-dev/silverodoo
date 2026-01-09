@@ -14,7 +14,7 @@ class SilverIpAddress(models.Model):
     cidr = fields.Char(string='IP', required=True, help="e.g., 192.168.0.0/24")
 #    gateway = fields.Char(string='Gateway')
 
-    core_id = fields.Many2one('silver.core', related='pool_id.core_id', string='Core', store=True)
+    core_id = fields.Many2one('silver.core', related='pool_id.core_id', string='Router', store=True)
 
     pool_id = fields.Many2one('silver.ip.address.pool',  string='Pool')
 
@@ -51,6 +51,8 @@ class SilverIpAddress(models.Model):
             except ValueError:
                 record.ip_int = 0
 
+    def _compute_used(self):
+        return 0
 
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
@@ -110,7 +112,7 @@ class SilverIpAddressLine(models.Model):
 
     olt_id = fields.Many2one("silver.olt", string= "OLT")
     olt_port_id = fields.Many2one( "silver.olt.card.port", string= "PON", domain="[('olt_id', '=', olt_id)]")
-    core_id = fields.Many2one("silver.core", string="Equipo Core")
+    core_id = fields.Many2one("silver.core", string="Equipo Router")
 
     zone_ids = fields.Many2many("silver.zone", string="Zonas")
     node_ids = fields.Many2many("silver.node", string="Nodos")
@@ -222,14 +224,15 @@ class SilverIpAddressLine(models.Model):
 
 
 
-    @api.model
-    def create(self, vals):
-        vals = self._process_network_field(vals)
-        if not vals.get('name'):
-            vals['name'] = f"{vals.get('network')}/{vals.get('nmask')}"
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            self._process_network_field(vals)
+            if not vals.get('name'):
+                vals['name'] = f"{vals.get('network')}/{vals.get('nmask')}"
 
 
-        return super(SilverIpAddressLine, self).create(vals)
+        return super(SilverIpAddressLine, self).create(vals_list)
 
     def write(self, vals):
 

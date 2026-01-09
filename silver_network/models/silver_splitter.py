@@ -24,19 +24,20 @@ class SilverSplitter(models.Model):
 
 
 
-    @api.model
-    def create(self, vals):
-        if vals.get('olt_card_port_id'):
-            port = self.env['silver.olt.card.port'].browse(vals['olt_card_port_id'])
-            if port.exists():
-                splitter_type = vals.get('type_splitter')
-                prefix = 'SPL1' if splitter_type == '1' else 'SPL2'
-                splitter_count = self.search_count([
-                    ('olt_card_port_id', '=', port.id),
-                    ('type_splitter', '=', splitter_type)
-                ])
-                vals['name'] = f"{port.name}/{prefix}{splitter_count + 1}"
-        return super(SilverSplitter, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('olt_card_port_id'):
+                port = self.env['silver.olt.card.port'].browse(vals['olt_card_port_id'])
+                if port.exists():
+                    splitter_type = vals.get('type_splitter')
+                    prefix = 'SPL1' if splitter_type == '1' else 'SPL2'
+                    splitter_count = self.search_count([
+                        ('olt_card_port_id', '=', port.id),
+                        ('type_splitter', '=', splitter_type)
+                    ])
+                    vals['name'] = f"{port.name}/{prefix}{splitter_count + 1}"
+        return super(SilverSplitter, self).create(vals_list)
 
     def write(self, vals):
         # Determine the new name if the parent port or the type changes

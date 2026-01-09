@@ -21,11 +21,11 @@ class SilverAddress(models.Model):
     # El display_name se almacena para búsquedas y ordenamiento.
     # name_get se encargará de la visualización final dependiente del contexto.
     name = fields.Char(string='Dirección', compute='_compute_display_name', store=False)
-    display_name = fields.Char(string="Dirección Completa", compute='_compute_display_name', store=True)
+    display_name = fields.Char(string="Dirección Completa", compute='_compute_display_name', store=False)
 
     parent_id = fields.Many2one('silver.address', string='Dirección Padre')
     
-    # Información Geográfica
+    # Información Geográfica Lq
     country_id = fields.Many2one('res.country', string='País', default=_get_default_country)
     state_id = fields.Many2one('res.country.state', string='Estado')
     zone_id = fields.Many2one('silver.zone', string='Zona')
@@ -558,6 +558,7 @@ class SilverAddress(models.Model):
     def get_name(self):
         parts = [self.street, self.building, self.house_number, self.zone_id.name]
         base_name = ", ".join(filter(None, parts))
+        print(("getname", base_name))
 
         if self.env.context.get('show_coordinates') and self.latitude and self.longitude:
            return f"{self.latitude:.5f}, {self.longitude:.5f}"
@@ -580,6 +581,8 @@ class SilverAddress(models.Model):
                 domain = ['|', '|', ('street', operator, name), ('building', operator, name), ('zone_id.name', operator, name)]
 
         records = self.search(domain + args, limit=limit)
+
+        print(("searchname", records))
 
         return [(r.id, r.get_name()) for r in records]
 
@@ -632,39 +635,51 @@ class SilverAddress(models.Model):
         # Expresión regular para detectar coordenadas (con o sin signo)
         coord_pattern = r"^\s*(-?\d+\.\d+)\s*,\s*(-?\d+\.\d+)\s*$"
         match = re.match(coord_pattern, name)
-        if match:
-            lat, lon = float(match.group(1)), float(match.group(2))
-            if lat<lon: lat, lon = lon, lat
-            print(("lat,long", lat, lon))
-            nearby_addresses = self.search([('latitude', '!=', 0), ('longitude', '!=', 0)])
-            closest_address = None
-            min_distance = float('inf')
-            for address in nearby_addresses:
-                if address.latitude and address.longitude:
-                    distance = self._haversine_distance(lat, lon, address.latitude, address.longitude)
-                    if distance < min_distance:
-                        min_distance = distance
-                        closest_address = address
-            
-            vals = {'latitude': lat, 'longitude': lon}
-            if closest_address and min_distance <= 20:
-                # Si se encuentra una dirección a 20 metros o menos, copiar sus datos
-                vals.update({
-                    'street': closest_address.street,
-                    'building': closest_address.building,
-                    'zone_id': closest_address.zone_id.id,
-                    'state_id': closest_address.state_id.id,
-                    'country_id': closest_address.country_id.id,
-                    'parent_id': closest_address.id,
-                })
+        print(("namecreate", match, self))
+        try:
+            if match:
+                lat, lon = float(match.group(1)), float(match.group(2))
+                if lat<lon: lat, lon = lon, lat
+                print(("lat,long", lat, lon))
+                nearby_addresses = self.search([('latitude', '!=', 0), ('longitude', '!=', 0)])
+                closest_address = None
+                min_distance = float('inf')
+                for address in nearby_addresses:
+                    if address.latitude and address.longitude:
+                        distance = self._haversine_distance(lat, lon, address.latitude, address.longitude)
+                        if distance < min_distance:
+                            min_distance = distance
+                            closest_address = address
 
-                r = self.get_address_from_coords(lat, lon)
-                if r:
-                    print(("sir", r))
-                    vals.update(r)
-            new_address = self.create(vals)
-        else:
-            # Comportamiento original si no son coordenadas
-            new_address = self.create({'street': name})
+                vals = {'latitude': lat, 'longitude': lon}
+                if closest_address and min_distance <= 20:
+                    # Si se encuentra una dirección a 20 metros o menos, copiar sus datos
+                    vals.update({
+                        'street': closest_address.street,
+                        'building': closest_address.building,
+                        'zone_id': closest_address.zone_id.id,
+                        'state_id': closest_address.state_id.id,
+                        'country_id': closest_address.country_id.id,
+                        'parent_id': closest_address.id,
+                    })
+
+                    r = self.get_address_from_coords(lat, lon)
+                    if r:
+                        print(("sir", r))
+                        vals.update(r)
+                new_address = self.create(vals)
+            else:
+                # Comportamiento original si no son coordenadas
+                new_address = self.create({'street': name})
+        except Exception as e:
+            print(("error", e))
+
         # name_create debe devolver el resultado de name_get
-        return new_address.name_get()[0]
+        # 🔥 MEDICINA PARA ODOO 19:
+        # Forzamos que el registro se escriba físicamente en SQL AHORA.
+        self.env.flush_all()
+
+        print(("namecreated", new_address))
+        # En O17/18/19 name_get está deprecado.
+        # Lo correcto es devolver (id, display_name)
+        return new_address.id, new_address.display_name

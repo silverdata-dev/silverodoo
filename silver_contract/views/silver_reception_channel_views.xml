@@ -9,7 +9,7 @@
                     <field name="name"/>
                     <field name="is_internal_referral"/>
                     <field name="commission_percentage"/>
-                    <field name="team_id"/>
+
                 </list>
             </field>
         </record>
@@ -25,7 +25,6 @@
                             <field name="name"/>
                             <field name="is_internal_referral"/>
                             <field name="commission_percentage"/>
-                            <field name="team_id"/>
                         </group>
                     </sheet>
                 </form>

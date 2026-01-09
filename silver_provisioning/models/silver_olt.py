@@ -112,10 +112,14 @@ class SilverOlt(models.Model):
                 if not line.strip() or '------' in line: continue
                 parts = {h: line[start:end].strip() for h, (start, end) in slices.items()}
                 if parts.get('OltIndex') and parts.get('SN'):
-                    Model = self.env['silver.hardware.model'];
+                    Product = self.env['product.product'];
+
+                  #  Model = self.env['silver.hardware.model'];
                     modelname = parts.get('Model', '')
-                    model = Model.search([('name', '=', modelname)], limit=1)
-                    if (not model) or (not len(model)):
+                    product = Product.search([('name', '=', modelname)], limit=1)
+                    #model = Model.search([('name', '=', modelname)], limit=1)
+                    #if (not model) or (not len(model)):
+                    if (not product) or (not len(product)):
                         marcas = self.env['product.brand'].search([])
                         marca_id = None
                         for a in marcas:
@@ -123,12 +127,15 @@ class SilverOlt(models.Model):
                                 marca_id = a
                                 break
                         
-                        model = Model.create({'name': modelname, 'etype':'onu', 'brand_id': marca_id.id if marca_id else False})
+                       # model = Model.create({'name': modelname, 'etype':'onu', 'brand_id': marca_id.id if marca_id else False})
+                        product = Product.create(
+                            {'name': modelname, 'etype': 'onu', 'brand_id': marca_id.id if marca_id else False})
 
                     onu_vals_list.append({
                         'olt_index': parts.get('OltIndex', ''), 'serial_number': parts.get('SN', ''),
                         'password': parts.get('PW', ''), 'loid': parts.get('LOID', ''),
-                        'hardware_model_id': model.id,
+                        'product_id': product.id,
+                        #'hardware_model_id': model.id,
                        # 'model_name': parts.get('Model', ''),
                         'version': parts.get('Ver', ''),
                         'loid_password': parts.get('LOIDPW', ''),
@@ -406,7 +413,7 @@ class SilverOlt(models.Model):
         hace_cinco_minutos = datetime.now() - timedelta(minutes=5)
 
         for record in self:
-            print(("old_discovered", record.last_discovered_date, record.old_discovered, hace_cinco_minutos, record.last_discovered_date < hace_cinco_minutos))
+            #print(("old_discovered", record.last_discovered_date, record.old_discovered, hace_cinco_minutos, record.last_discovered_date  hace_cinco_minutos))
 
             if record.last_discovered_date:
                 # 2. La condición es: La fecha de la BD (UTC) es menor que el límite (UTC)

@@ -13,12 +13,17 @@ class ProductTemplate(models.Model):
 
     # General
     recurring_invoices_ok = fields.Boolean(string="Para facturación recurrente?")
-    product_brand_id = fields.Many2one('product.brand', string='Marca')
-    product_brand_logo = fields.Binary(related='product_brand_id.logo', string='Logo de la Marca')
-    hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo')
+    brand_id = fields.Many2one('product.brand', string='Marca')
+    brand_logo = fields.Binary(related='brand_id.logo', string='Logo de la Marca')
+    #hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo')
     etype = fields.Selection(
-        [('core', 'Core'), ('olt', 'OLT'), ('onu', 'ONU'), ('ap', 'AP'), ('ecp', 'ECP'), ('splitter', 'Splitter'),
+        [('core', 'Router'), ('olt', 'OLT'), ('onu', 'ONU'), ('ap', 'AP'), ('ecp', 'ECP'), ('splitter', 'Splitter'),
          ('box', 'NAP'), ], string='Tipo de equipo')
+
+    manual = fields.Boolean(string='Configuración Manual')
+
+    onu_profile_id = fields.Many2one('silver.onu.profile', string='ONU Profile')
+
 
     service_type_id = fields.Many2one('silver.service.type', string= "Tipo de Servicio", default=lambda self: self._default_service_type())
 

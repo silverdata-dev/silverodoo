@@ -2,3 +2,7 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_silver_zone,access.silver.zone,model_silver_zone,base.group_user,1,1,1,1
 access_silver_address,access.silver.address,model_silver_address,base.group_user,1,1,1,1
 access_res_config_settings,access.res.config.settings,base.model_res_config_settings,base.group_system,1,1,1,1
+
+
+silver_base.access_sync_handler,access_sync_handler,silver_base.model_sync_handler,base.group_user,1,0,0,0
+silver_base.access_sync_sender_job,access_sync_sender_job,silver_base.model_sync_sender_job,base.group_user,1,0,0,0

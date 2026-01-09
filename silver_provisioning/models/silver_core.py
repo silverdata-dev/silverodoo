@@ -10,7 +10,7 @@ class SilverCore(models.Model):
         string='Registro de Provisioning', 
         required=True, 
         ondelete='cascade',
-        help="Registro de provisioning asociado a este Core."
+        help="Registro de provisioning asociado a este Router."
     )
 
 

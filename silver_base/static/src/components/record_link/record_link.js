@@ -20,16 +20,17 @@ export class RecordLink extends Component {
 
     get fieldValue() {
        // console.log(["fieldvalue", this.props.value, this.props, this, this.props.get("name")]);
-        return this.props.record.data[this.props.name]  || "";
+        return this.props.record.data[this.props.name]  ?? "";
     }
 
     onClick(ev) {
         ev.preventDefault();
-        console.log(["ev", ev, this.props]);
-        if (this.props.record.data["id"] && this.props.record.evalContext['active_model']) {
+        ev.stopPropagation();
+        console.log(["ev", ev, this.props, this.props.record.config.resModel]);
+        if (this.props.record.data["id"] && (this.props.record.evalContext['active_model'] ?? this.props.record.config.resModel )) {
             this.action.doAction({
                 type: "ir.actions.act_window",
-                res_model: this.props.record.evalContext['active_model'],
+                res_model: this.props.record.evalContext['active_model'] ?? this.props.record.config.resModel ,
                 res_id: this.props.record.data["id"],
                 views: [[false, "form"]],
                 target: "current",

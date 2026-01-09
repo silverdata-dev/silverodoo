@@ -30,14 +30,16 @@ class SilverOltCard(models.Model):
     olt_card_port_count = fields.Integer(string='Conteo Puertos', compute='_compute_olt_card_port_count')
     
 
-    @api.model
-    def create(self, vals):
-        if vals.get('olt_id'):
-            olt = self.env['silver.olt'].browse(vals['olt_id'])
-            if olt.exists():
-                card_count = self.search_count([('olt_id', '=', olt.id)])
-                vals['name'] = f"{olt.name}/C{card_count}"
-        return super(SilverOltCard, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            print(("createcard", vals))
+            if vals.get('olt_id'):
+                olt = self.env['silver.olt'].browse(vals['olt_id'])
+                if olt.exists():
+                    card_count = self.search_count([('olt_id', '=', olt.id)])
+                    vals['name'] = f"{olt.name}/C{card_count}"
+        return super(SilverOltCard, self).create(vals_list)
 
     #def write(self, vals):
     #    # If the olt_id is being changed, we need to rename the card

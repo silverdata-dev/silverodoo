@@ -70,7 +70,7 @@ class IspContract(models.Model):
     has_olt = fields.Boolean('tiene olt', related='linktype_id.has_olt')
 
     node_id = fields.Many2one('silver.node', string="Nodo")
-    core_id = fields.Many2one('silver.core', string="Core Router")
+    core_id = fields.Many2one('silver.core', string="Router")
     ap_id = fields.Many2one('silver.ap', string="Access Point")
     splitter_id = fields.Many2one('silver.splitter', string="Splitter")
     olt_id = fields.Many2one('silver.olt', string="OLT")
@@ -117,7 +117,7 @@ class IspContract(models.Model):
                              string='Estado Radius', default='down')
     core_state = fields.Selection([('down', 'Down'), ('active', 'Activo'),
                               ('disconnected', 'Disconnected')],
-                             string='Estado Core', default='down')
+                             string='Estado Router', default='down')
 
     wan_state = fields.Selection([('connected', 'Conectado'), ('disconnected', 'Desconectado'), ('none', 'Comprobar')], string="Estado WAN", default='none')
 
@@ -184,7 +184,8 @@ class IspContract(models.Model):
                 s.update({
                     'temp_onu_serial_display': False,
                     'serial_number': False,
-                    'hardware_model_id': False,
+                    'product_id': False,
+                    #'hardware_model_id': False,
                     #'model_name': False,
                     'stock_lot_id': False,
                     'olt_card_id': False,
@@ -204,7 +205,8 @@ class IspContract(models.Model):
         StockLot = self.env['stock.lot']
         OltCard = self.env['silver.olt.card']
         OltPort = self.env['silver.olt.card.port']
-        Model = self.env['silver.hardware.model']
+        #Model = self.env['silver.hardware.model']
+        Product = self.env['product.product']
 
 
 
@@ -213,19 +215,20 @@ class IspContract(models.Model):
 
         # --- Buscar o crear Lote/Serial ---
         lot = StockLot.search([('name', '=', serial_number)], limit=1)
+        product = Product.search([('name', '=', discovered_onu.model)], limit=1)
         #model = Model.search([('name', '=', discovered_onu.model)], limit=1)
-        #if (not model) or (not len(model)):
-        #    model = Model.create({ 'name': discovered_onu.model})
+        if (not product) or (not len(product)):
+            product = Product.create({ 'name': discovered_onu.model, 'etype':'onu', 'type':'consu'}) #aaa
 
-        print(("es modelo", discovered_onu.hardware_model_id))
+        print(("es modelo", product))
 
         if not lot:
             lot = StockLot.create({
                 'name': serial_number,
-                'hardware_model_id': discovered_onu.hardware_model_id.id,
-                'brand_id': discovered_onu.hardware_model_id.brand_id.id,
+               # 'hardware_model_id': discovered_onu.hardware_model_id.id,
+                'brand_id': product.brand_id.id,
                # 'model_name': discovered_onu.model_name,
-                'product_id': None,
+                'product_id': product.id,
                 'external_equipment': True,
                 'software_version': discovered_onu.version,
                 'company_id': self.company_id.id or self.env.company.id,
@@ -273,7 +276,8 @@ class IspContract(models.Model):
             'discovered_onu_id' : discovered_onu,
             'temp_onu_serial_display': serial_number,
             'serial_number': serial_number,
-            'hardware_model_id': discovered_onu.hardware_model_id,
+            'product_id': product.id,
+            #'hardware_model_id': discovered_onu.hardware_model_id,
             #'model_name': discovered_onu.model_name,
             'stock_lot_id': lot.id,
             'olt_card_id': card.id if card else False,
@@ -343,9 +347,9 @@ class IspContract(models.Model):
 
 
 
-
-    def create(self, vals):
-        new_contract = super(IspContract, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        new_contract = super(IspContract, self).create(vals_list)
         if new_contract.discovered_onu_id:
             new_contract.discovered_onu_id.write({'contract_id': new_contract.id})
         if new_contract.ip_address_id:
@@ -370,9 +374,10 @@ class IspContract(models.Model):
     #model_name = fields.Char(string='Modelo ONU', related='stock_lot_id.model_name', readonly=True, store=False)
     brand_id = fields.Many2one('product.brand', string="Marca", related='stock_lot_id.brand_id', readonly=True, store=False)
     brand_logo = fields.Binary(related='brand_id.logo', string='Logo de la Marca', readonly=True, store=False)
-    hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo', related='stock_lot_id.hardware_model_id', readonly=True, store=False)
+    #hardware_model_id = fields.Many2one('silver.hardware.model', string='Modelo', related='stock_lot_id.hardware_model_id', readonly=True, store=False)
+    product_id = fields.Many2one('product.product', string='Producto')
 
-    profile_id = fields.Many2one('silver.onu.profile', string='Perfil ONU', related='stock_lot_id.hardware_model_id.onu_profile_id', readonly=False, store=True)
+    profile_id = fields.Many2one('silver.onu.profile', string='Perfil ONU', related='stock_lot_id.product_id.onu_profile_id', readonly=False, store=True)
     software_version = fields.Char(string='Versión de Software ONU', related='stock_lot_id.software_version', readonly=True, store=False)
 
     firmware_version = fields.Char(string='Firmware Version ONU', related='stock_lot_id.firmware_version', readonly=True, store=False)
@@ -385,9 +390,9 @@ class IspContract(models.Model):
     wan_config_successful = fields.Boolean(string="Configuración WAN Exitosa", default=False, readonly=True, copy=False)
     wifi_config_successful = fields.Boolean(string="Configuración WiFi Exitosa", default=False, readonly=True, copy=False)
 
-    @api.onchange('profile_id')
-    def onchange_profile_id(self):
-        self.hardware_model_id.onu_profile_id = self.profile_id
+    #@api.onchange('profile_id')
+    #def onchange_profile_id(self):
+    #    self.hardware_model_id.onu_profile_id = self.profile_id
 
     def action_add_radius_access(self):
         def tom(p):
@@ -403,7 +408,7 @@ class IspContract(models.Model):
         self.ensure_one()
 
         if not self.core_id:
-            raise UserError(_("No tiene un core configurado."))
+            raise UserError(_("No tiene un Router configurado."))
 
         if ((not self.has_olt) and (not self.ap_id)):
             raise UserError(_("No tiene un equipo AP configurado"))
@@ -478,7 +483,7 @@ class IspContract(models.Model):
         """
         self.ensure_one()
         if not self.core_id:
-            raise UserError(_("Este contrato no tiene un Core Router asociado."))
+            raise UserError(_("Este contrato no tiene un Router asociado."))
 
         # Llama a la función en silver.core y retorna su resultado (una acción de notificación)
         si = self.core_id.check_and_configure_nas(username = self.pppoe_user, password = self.pppoe_password)
@@ -491,11 +496,11 @@ class IspContract(models.Model):
                 'tag': 'display_notification',
                 'params': {
                     'title': _('Éxito'),
-                    'message': f"Conectado al core con usuario {self.pppoe_user}",
+                    'message': f"Conectado al Router con usuario {self.pppoe_user}",
                     'type': 'success',
                 }
             }
-        raise UserError(_("No se puede autenticar con el core."))
+        raise UserError(_("No se puede autenticar con el Router."))
 
 
     def action_provision_base(self):
@@ -505,7 +510,7 @@ class IspContract(models.Model):
         """
         self.ensure_one()
         if not self.core_id:
-            raise UserError(_("Debe seleccionar un Core Router antes de aprovisionar el servicio."))
+            raise UserError(_("Debe seleccionar un Router antes de aprovisionar el servicio."))
         #self.name = self.env['ir.sequence'].next_by_code('silver.contract.sequence')
 
 
@@ -767,7 +772,7 @@ class IspContract(models.Model):
     def action_reconnection_service_button(self):
         self.ensure_one()
         if not self.core_id:
-            raise UserError(_("Debe seleccionar un Core Router antes de aprovisionar el servicio."))
+            raise UserError(_("Debe seleccionar un Router antes de aprovisionar el servicio."))
 
         if self.linktype_id.has_olt and self.olt_id:
             print(("aa", self.state_service, self.changed_onu))
@@ -831,7 +836,7 @@ class IspContract(models.Model):
             if contract.pppoe_user and contract.core_id:
                 api = contract.core_id._get_api_connection()
                 if not api:
-                    raise UserError(_("No se pudo conectar al Core Router Mikrotik."))
+                    raise UserError(_("No se pudo conectar al Router Mikrotik."))
                 try:
                     secrets_path = api.path('/ppp/secret')
                     existing = tuple(secrets_path(name=contract.pppoe_user))
@@ -840,7 +845,7 @@ class IspContract(models.Model):
                         # Este perfil debe existir en el Mikrotik con velocidad limitada o redirección.
                         secrets_path.set(id=existing[0]['.id'], profile='suspendido')
                 except Exception as e:
-                    raise UserError(_("Fallo al suspender el usuario PPPoE en el Core: %s") % e)
+                    raise UserError(_("Fallo al suspender el usuario PPPoE en el Router: %s") % e)
                 finally:
                     api.close()
 
@@ -914,7 +919,7 @@ class IspContract(models.Model):
         if not self.ip_address_id or not self.ip_address_id.name:
             raise UserError(_("No hay ninguna dirección IP asignada a este contrato para hacer ping."))
         if not self.core_id:
-            raise UserError(_("No se ha configurado un router principal (Core) para ejecutar el ping."))
+            raise UserError(_("No se ha configurado un router principal (Router) para ejecutar el ping."))
 
         ping_result_str = ""
         try:
@@ -978,7 +983,7 @@ class IspContract(models.Model):
         self.ensure_one()
 
         if not self.core_id:
-            raise UserError(_("Este contrato no tiene un Core Router asociado."))
+            raise UserError(_("Este contrato no tiene un Router asociado."))
         if not self.ip_address_id or not self.ip_address_id.name:
             raise UserError(_("Este contrato no tiene una dirección IP asignada para buscar la sesión."))
 
@@ -987,7 +992,7 @@ class IspContract(models.Model):
         try:
             core = self.core_id
             if not core:
-                raise UserError(_("El Core Router no tiene un dispositivo de red configurado para la conexión."))
+                raise UserError(_("El Router no tiene un dispositivo de red configurado para la conexión."))
             
             api, e = core._get_api_connection()
             if not api:
@@ -1123,7 +1128,12 @@ class IspContract(models.Model):
 
         if self.linktype_id.has_olt:
             self.changed_onu = True
-            self.vlan_id = self.env['silver.vlan'].search([( 'olt_ids', 'in',self.olt_id.id)], limit=1)
+            #self.vlan_id = self.env['silver.vlan'].search([( 'olt_ids', 'in',self.olt_id.id)], limit=1)
+            self.vlan_id = self.env['silver.vlan'].search([('olt_port_id', '=', self.olt_port_id.id)], limit=1)
+            if not self.vlan_id:
+                self.vlan_id = self.env['silver.vlan'].search([('olt_id', '=', self.olt_id.id)], limit=1)
+            if not self.vlan_id:
+                self.vlan_id = self.env['silver.vlan'].search([('core_id', '=', self.core_id.id)], limit=1)
 
 
         # Asignación de IP
@@ -1435,11 +1445,11 @@ class IspContract(models.Model):
         self.ensure_one()
 
         if not self.core_id:
-            raise UserError(_("No tiene un core configurado para consultar el RADIUS."))
+            raise UserError(_("No tiene un Router configurado para consultar el RADIUS."))
         
         radius_server = self.core_id.radius_id or self.core_id
         if not radius_server:
-            raise UserError(_("El core no tiene un servidor RADIUS (User Manager) asociado."))
+            raise UserError(_("El Router no tiene un servidor RADIUS (User Manager) asociado."))
             
         if not self.pppoe_user:
             raise UserError(_("No hay un usuario PPPoE definido en el contrato."))
@@ -1648,3 +1658,176 @@ class IspContract(models.Model):
             'res_id': wizard.id,
             'target': 'new',
         }
+
+    def _calculate_first_invoice_date_and_proration(self):
+        """
+        Calcula la fecha de la primera factura y el prorrateo si aplica.
+        Esta función se llama desde start_contract.
+        """
+        self.ensure_one()
+        policy = self.cutoff_date_id
+        if not policy:
+            return
+
+        activation_date = self.date_start
+        next_invoice_date = False
+
+        # --- 1. Calcular la fecha de la próxima factura ---
+        # Reutilizamos la lógica de _calculate_next_recurring_invoice_date
+        # pero con la consideración de que es la primera vez.
+        # La primera fecha de facturación es la primera fecha de corte *después* de la activación.
+
+        # Calcular la primera fecha de corte posible
+        if policy.type_cut == 'days':
+            cutoff_day = policy.day_cut
+            try:
+                first_possible_cutoff = activation_date.replace(day=cutoff_day)
+            except ValueError:
+                last_day_of_month = calendar.monthrange(activation_date.year, activation_date.month)[1]
+                first_possible_cutoff = activation_date.replace(day=last_day_of_month)
+
+            if first_possible_cutoff < activation_date:
+                # Si el día de corte ya pasó en el mes de activación, la primera factura es el próximo mes
+                first_possible_cutoff += relativedelta(months=1)
+                try:
+                    first_possible_cutoff = first_possible_cutoff.replace(day=cutoff_day)
+                except ValueError:
+                    last_day_of_month = calendar.monthrange(first_possible_cutoff.year, first_possible_cutoff.month)[1]
+                    first_possible_cutoff = first_possible_cutoff.replace(day=last_day_of_month)
+            next_invoice_date = first_possible_cutoff
+
+        elif policy.type_cut == 'date':
+            # El corte es basado en el día de inicio del contrato
+            # La primera factura será un mes después de la activación, manteniendo el día de activación
+            next_invoice_date = activation_date + relativedelta(months=1)
+            # Asegurarse de que el día del mes sea el mismo que el de inicio del contrato
+            try:
+                next_invoice_date = next_invoice_date.replace(day=activation_date.day)
+            except ValueError:
+                last_day_of_month = calendar.monthrange(next_invoice_date.year, next_invoice_date.month)[1]
+                next_invoice_date = next_invoice_date.replace(day=last_day_of_month)
+
+        if not next_invoice_date:
+            _logger.warning(f"No se pudo calcular la próxima fecha de factura para el contrato {self.name}")
+            return
+
+        self.recurring_next_date = next_invoice_date
+
+        # --- 2. Calcular y crear el cargo de prorrateo ---
+        # Solo prorratear si la política lo permite y si la activación no es en el día de corte
+        if policy.is_apportion and activation_date != next_invoice_date:
+            total_monthly_price = sum(self.line_ids.mapped('price_unit'))
+            if total_monthly_price <= 0:
+                return
+
+            # Días en el mes de activación (o el mes que abarca el prorrateo)
+            # Consideramos el periodo desde la activación hasta la primera fecha de factura
+            delta_days = (next_invoice_date - activation_date).days
+
+            if delta_days <= 0:  # No hay días para prorratear o ya se facturó
+                return
+
+            # Calcular la tarifa diaria basada en el mes de activación
+            days_in_month_of_activation = calendar.monthrange(activation_date.year, activation_date.month)[1]
+            daily_rate = total_monthly_price / days_in_month_of_activation
+
+            proration_amount = daily_rate * delta_days
+
+            if proration_amount > 0:
+                # Buscar un producto genérico para prorrateo o usar el del primer servicio
+                product_proration = self.env['product.product'].search([('name', '=', 'Prorrateo Servicio')], limit=1)
+                if not product_proration and self.line_ids:
+                    product_proration = self.line_ids[0].product_id
+
+                if product_proration:
+                    self.env['silver.contract.line'].create({
+                        'contract_id': self.id,
+                        'name': _('Prorrateo por activación (%s días)') % delta_days,
+                        'price_unit': proration_amount,
+                        'line_type': 'one_time',
+                        'product_id': product_proration.id,
+                        'invoiced': False,  # Asegurarse de que no esté facturado aún
+                    })
+                else:
+                    _logger.warning(f"No se encontró producto para prorrateo en contrato {self.name}")
+
+
+
+    def start_contract(self):
+        p = super().start_contract()
+        for a in self:
+            a._calculate_first_invoice_date_and_proration()
+
+
+
+    @api.model
+    def _cron_generate_invoices(self):
+        """
+        Cron Job para generar facturas recurrentes de contratos activos.
+        """
+        _logger.info("Iniciando Cron Job: Generación de Facturas Recurrentes")
+        today = fields.Date.today()
+
+        contracts_to_invoice = self.search([
+            ('state', '=', 'active'),
+            ('recurring_next_date', '<=', today),
+            ('cutoff_date_id', '!=', False), # Asegurarse de que tenga una política de corte
+        ])
+
+        print(("cron inv", contracts_to_invoice))
+
+        for contract in contracts_to_invoice:
+            _logger.info(f"Generando factura para contrato {contract.name} (ID: {contract.id})...")
+            invoice_lines_vals = []
+            lines_to_mark_invoiced = self.env['silver.contract.line'] # Para marcar como facturadas
+
+            # 1. Añadir líneas de servicio recurrentes
+            for line in contract.line_ids.filtered(lambda l: l.line_type == 'recurring'):
+                invoice_lines_vals.append((0, 0, {
+                    'product_id': line.product_id.id,
+                    'name': line.name,
+                    'quantity': line.quantity,
+                    'price_unit': line.price_unit,
+                    'currency_id': line.currency_id.id,
+                }))
+
+            # 2. Añadir líneas de cargo único (incluyendo prorrateos) que no han sido facturadas
+            for line in contract.line_debit_ids.filtered(lambda l: not l.invoiced):
+                invoice_lines_vals.append((0, 0, {
+                    'product_id': line.product_id.id,
+                    'name': line.name,
+                    'quantity': line.quantity,
+                    'price_unit': line.price_unit,
+                    'currency_id': line.currency_id.id,
+                }))
+                lines_to_mark_invoiced += line # Añadir a la lista para marcar después
+
+            if not invoice_lines_vals:
+                _logger.warning(f"Contrato {contract.name} (ID: {contract.id}) no tiene líneas para facturar. Saltando.")
+                continue
+
+            try:
+                # Crear la factura
+                invoice = self.env['account.move'].create({
+                    'partner_id': contract.partner_id.id,
+                    'move_type': 'out_invoice',
+                    'contract_id': contract.id, # Enlazar la factura al contrato
+                    'invoice_date': today,
+                    'invoice_line_ids': invoice_lines_vals,
+                })
+                invoice.action_post() # Validar la factura
+
+                # Marcar las líneas de cargo único como facturadas
+                lines_to_mark_invoiced.write({'invoiced': True})
+
+                # Actualizar la próxima fecha de facturación del contrato
+                new_next_invoice_date = contract._calculate_next_recurring_invoice_date(contract.recurring_next_date)
+                contract.write({'recurring_next_date': new_next_invoice_date})
+                _logger.info(f"Factura {invoice.name} generada y validada para contrato {contract.name}. Próxima fecha: {new_next_invoice_date}")
+
+            except Exception as e:
+                _logger.error(f"Error al generar factura para contrato {contract.name} (ID: {contract.id}): {e}")
+                self.env.cr.rollback() # Revertir la transacción para este contrato en caso de error
+                continue # Continuar con el siguiente contrato
+
+        _logger.info("Cron Job: Generación de Facturas Recurrentes finalizado.")

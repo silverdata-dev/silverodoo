@@ -15,18 +15,19 @@ class SilverPost(models.Model):
     silver_address_id = fields.Many2one('silver.address', string='Dirección')
 
 
-    @api.model
-    def create(self, vals):
-        if vals.get('olt_card_port_id'):
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('olt_card_port_id'):
 
 
-            post_type = vals.get('type_post', 'P')
+                post_type = vals.get('type_post', 'P')
 
-            post_count = self.search_count([
-                ('type_post', '=', post_type)
-            ])
-            vals['name'] = f"P{post_count + 1}"
-        return super(SilverPost, self).create(vals)
+                post_count = self.search_count([
+                    ('type_post', '=', post_type)
+                ])
+                vals['name'] = f"P{post_count + 1}"
+        return super(SilverPost, self).create(vals_list)
 
     def write(self, vals):
         # Determine the new name if the parent port or the type changes

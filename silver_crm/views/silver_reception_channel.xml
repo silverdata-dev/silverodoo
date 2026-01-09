@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+        <!-- silver.reception.channel list view -->
+
+        <record id="silver_reception_channel_view_tree_inherit" model="ir.ui.view">
+            <field name="name">silver.reception.channel.view.list.inherit</field>
+            <field name="model">silver.reception.channel</field>
+            <field name="inherit_id" ref="silver_contract.silver_reception_channel_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='commission_percentage']" position="after">
+                    <field name="team_id"/>
+                </xpath>
+            </field>
+        </record>
+
+           <record id="silver_reception_channel_view_form_inherit" model="ir.ui.view">
+            <field name="name">silver.reception.channel.view.form.inherit</field>
+            <field name="model">silver.reception.channel</field>
+            <field name="inherit_id" ref="silver_contract.silver_reception_channel_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='commission_percentage']" position="after">
+                    <field name="team_id"/>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

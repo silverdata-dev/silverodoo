@@ -9,11 +9,11 @@
                   action="action_product_brand"
                   sequence="13"/>
 
-        <menuitem id="menu_silver_hardware_model"
+        <!--menuitem id="menu_silver_hardware_model"
                   name="Modelos"
                   parent="silver_network.menu_isp_config"
                   action="action_silver_hardware_model"
-                  sequence="14"/>
+                  sequence="14"/-->
 
 
         <menuitem id="silver_onu_profile_menu"

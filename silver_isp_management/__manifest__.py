@@ -2,7 +2,7 @@
     'name': 'Silver ISP Management',
     'version': '19.0.1.0.0',
     'summary': 'Módulo para la gestión de contratos, clientes y equipos para un ISP.',
-    'author': 'Tu Nombre/Empresa',
+    'author': 'SilverData',
     'website': 'https://www.silver-data.net',
     'license': 'AGPL-3',
     'category': 'Services/Telecommunications',

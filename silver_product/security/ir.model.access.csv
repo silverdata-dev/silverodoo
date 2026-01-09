@@ -4,4 +4,3 @@ access_product_ip_address_user,product.ip.address.user,model_product_ip_address,
 access_product_brand_user,product.brand.user,model_product_brand,base.group_user,1,1,1,1
 
 access_silver_onu_profile_networks,access.silver.onu.profile,model_silver_onu_profile,base.group_user,1,1,1,1
-access_silver_hardware_model,access.silver.hardware.model,model_silver_hardware_model,base.group_user,1,1,1,1

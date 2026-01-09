@@ -1,11 +1,10 @@
 {
     'name': 'Silver Ticket',
     'version': '19.0.1.0.0',
-    'license': 'LGPL-3',
     'summary': 'Módulo de Tickets para ISP',
     'description': 'Gestión de tickets de soporte para clientes de un ISP, integrado con contratos y red. Incluye motor de flujos de trabajo (Workflows).',
-    'author': 'Tu Nombre',
-    'website': 'https://www.tuempresa.com',
+    'author': 'SilverData',
+    'website': 'https://www.silver-data.net',
     'category': 'Services/Helpdesk',
     'depends': [
         'silver_provisioning',

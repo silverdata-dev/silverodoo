@@ -1,21 +1,21 @@
 {
     'name': 'Silver CRM',
     'version': '19.0.1.0.0',
-    'license': 'LGPL-3',
     'summary': 'Adaptaciones de CRM para Silver ISP',
     'description': """
         - Añade campos y lógica para la gestión de contratos de ISP desde las oportunidades.
         - Integra un asistente para la búsqueda de nodos de red cercanos.
         - Añade un mapa interactivo para la selección de cajas NAP.
     """,
-    'author': 'Gemini',
-    'website': 'https://www.google.com',
+    'author': 'SilverData',
+    'website': 'https://silver-data.net',
     'category': 'Sales/CRM',
     'depends': ['crm', 'silver_contract', 'silver_network', 'silver_geo', 'silver_product'],
     'data': [
         'security/ir.model.access.csv',
         'views/crm_lead_views.xml',
         'views/nap_map_selector_views.xml',
+        'views/silver_reception_channel.xml',
         'wizard/find_node_wizard_views.xml',
     ],
     'assets': {

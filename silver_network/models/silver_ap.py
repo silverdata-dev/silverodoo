@@ -13,7 +13,7 @@ class SilverAp(models.Model):
 
 
     node_id = fields.Many2one('silver.node', string='Nodo')
-    core_id = fields.Many2one('silver.core', 'Equipo Core')
+    core_id = fields.Many2one('silver.core', 'Equipo Router')
     hostname_ap = fields.Char(string='Hostname')
     node_ids = fields.Many2many('silver.node', string='Nodos', readonly=False)
 
@@ -36,7 +36,7 @@ class SilverAp(models.Model):
    # port_ssh = fields.Char(string='Puerto ssh', default=22)
 
     # api_hostname = fields.Char(string='Hostname/IP', required=True)
-    api_port = fields.Integer(string='API Port', default=21000, required=True)
+    #api_port = fields.Integer(string='API Port', default=21000, required=True)
 
     silver_address_id = fields.Many2one('silver.address', string='Dirección')
 
@@ -57,20 +57,21 @@ class SilverAp(models.Model):
             'tag': 'reload',
         }
 
-    @api.model
-    def create(self, vals):
-        print(("createee", vals))
-        if vals.get('core_id'):
-            core = self.env['silver.core'].browse(vals['core_id'])
-         #   print(("createee0", core, core.name, core.asset_id, core.asset_id.name))
-            if core.exists() and core.name:
+    @api.model_create_multi
+    def create(self, vals_list):
+        print(("createee", vals_list))
+        for vals in vals_list:
+            if vals.get('core_id'):
+                core = self.env['silver.core'].browse(vals['core_id'])
+             #   print(("createee0", core, core.name, core.asset_id, core.asset_id.name))
+                if core.exists() and core.name:
 
-            #    vals['parent_id'] = core.asset_id.id
+                #    vals['parent_id'] = core.asset_id.id
 
-            #    vals['name'] = f"{core.name}/{vals.get('hostname_ap', '')}"
-                print(("createe2e", vals))
-        print(("createee3", vals))
-        return super(SilverAp, self).create(vals)
+                #    vals['name'] = f"{core.name}/{vals.get('hostname_ap', '')}"
+                    print(("createe2e", vals))
+            print(("createee3", vals))
+        return super(SilverAp, self).create(vals_list)
 
 
     def write(self, vals):

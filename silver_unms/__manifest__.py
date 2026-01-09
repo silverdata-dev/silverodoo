@@ -1,7 +1,6 @@
 {
     'name': 'Silver UNMS Calendar',
     'version': '19.0.1.0.0',
-    'license': 'LGPL-3',
 'icon': 'static/description/icon.png',
     'category': 'Productivity',
     'summary': 'Calendario tipo UNMS para agendamiento de oportunidades',

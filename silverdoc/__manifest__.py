@@ -2,8 +2,8 @@
     'name': 'SilverDoc - Documentación de Proyectos',
     'version': '19.0.1.0.0',
     'summary': 'Módulo para la gestión jerárquica de documentación de proyectos.',
-    'author': 'Gemini',
-    'website': 'https://github.com/gemini',
+    'author': 'SilverData',
+    'website': 'https://silver-data.net',
     'category': 'Project',
     'depends': [
         'base',
