@@ -27,7 +27,7 @@ class AssetMapController(http.Controller):
                 continue
             
             # Asegurarse de que solo se buscan registros con una dirección y coordenadas válidas
-            full_domain = domain + [('silver_address_id', '!=', False), ('silver_address_id.latitude', '!=', 0), ('silver_address_id.longitude', '!=', 0)]
+            full_domain = domain + [('latitude', '!=', 0), ('longitude', '!=', 0)]
             
             records = request.env[model_name].search(full_domain)
             print((" records" , records, model_name, full_domain))
@@ -37,18 +37,18 @@ class AssetMapController(http.Controller):
                     'id': record.id,
                     'name': record.name,
                     'model': model_name,
-                    'latitude': record.silver_address_id.latitude,
-                    'longitude': record.silver_address_id.longitude,
+                    'latitude': record.latitude,
+                    'longitude': record.longitude,
                 })
 
         # Centrar el mapa en el nodo principal si se proporciona
         if node_id:
             try:
                 node = request.env['silver.node'].browse(int(node_id))
-                if node.exists() and node.silver_address_id:
+                if node.exists() :
                     center_coords = {
-                        'lat': node.silver_address_id.latitude,
-                        'lon': node.silver_address_id.longitude
+                        'lat': node.latitude,
+                        'lon': node.longitude
                     }
             except (ValueError, TypeError):
                 pass  # Ignorar si el node_id no es válido

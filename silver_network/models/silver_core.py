@@ -90,6 +90,10 @@ class SilverCore(models.Model):
 
     silver_address_id = fields.Many2one('silver.address', string='Dirección')
 
+
+    latitude = fields.Float(string='Latitud', digits=(10, 7), related='silver_address_id.latitude')
+    longitude = fields.Float(string='Longitud', digits=(10, 7), related='silver_address_id.longitude')
+
     radius_client_ip = fields.Char(string='Radius Server IP')
     radius_client_secret = fields.Char(string='Radius Shared Secret')
     radius_client_services = fields.Many2many('silver.radius.service', string='Radius Services') # Assuming a model silver.radius.service exists or will be created
@@ -203,7 +207,7 @@ class SilverCore(models.Model):
 
     poolip = fields.Char(string='Poolip')
     user_profile_radius = fields.Char(string='User PROFILE')
-    nmodel = fields.Char(string='Modelo')
+    model = fields.Char(string='Modelo')
 
     slot = fields.Integer(string='Tarjeta Slot')
     port_card = fields.Integer(string='Puerto por Tarjeta')
@@ -1144,7 +1148,7 @@ class SilverCore(models.Model):
 
             # Helper function to create records to avoid repetition
             def create_lines(model_name, data, mapping, traffic_map):
-                nmodel = self.env[model_name]
+                model = self.env[model_name]
                 for item in data:
                     vals = {'wizard_id': wizard.id}
                     for odoo_field, mikrotik_field in mapping.items():
@@ -1157,7 +1161,7 @@ class SilverCore(models.Model):
                         vals['rx_speed'] = _format_speed(traffic.get('rx-bits-per-second', 0))
                         vals['tx_speed'] = _format_speed(traffic.get('tx-bits-per-second', 0))
 
-                    nmodel.create(vals)
+                    model.create(vals)
 
             # 1. General Interfaces (Main Tab)
             interfaces = tuple(api.path('/interface'))

@@ -100,7 +100,8 @@ class ProductTemplate(models.Model):
 
     def _compute_is_internet(self):
         for a in self:
-            a.is_internet = (a.service_type_id and a.service_type_id.code == 'internet')
+            a.is_internet = (a.type=='service' and  a.service_type_id and a.service_type_id.code == 'internet')
+            print(("isinternet", a.is_internet))
 
     def _default_service_type(self):
 

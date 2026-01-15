@@ -44,9 +44,10 @@ class SilverBox(models.Model):
 #    odf = fields.Char(string='Odf')
     note = fields.Char(string='Notas')
 
-    latitude = fields.Float('Latitud', related='silver_address_id.latitude', store=False)
-    longitude = fields.Float('Latitud', related='silver_address_id.longitude', store=False)
-
+    #latitude = fields.Float('Latitud', related='silver_address_id.latitude', store=False)
+    #longitude = fields.Float('Latitud', related='silver_address_id.longitude', store=False)
+    latitude = fields.Float(string='Latitud', digits=(10, 7))
+    longitude = fields.Float(string='Longitud', digits=(10, 7))
 
     pri_onu_standar = fields.Char(string='PRI ONU Standar:')
     pri_onu_bridge = fields.Char(string='PRI ONU Bridge:')
@@ -70,11 +71,19 @@ class SilverBox(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
+            if (vals.get('olt_port_id') and (not vals.get('olt_id'))):
+                pon = self.env['silver.olt.card.port'].browse(vals.get('olt_port_id'))
+                vals['olt_id'] = pon.olt_id.id
+                vals['core_id'] = pon.olt_id.core_ids[0].id if len(pon.olt_id.core_ids) else None
+
             if vals.get('splitter_id'):
                 splitter = self.env['silver.splitter'].browse(vals['splitter_id'])
                 if splitter.exists():
                     box_count = self.search_count([('splitter_id', '=', splitter.id)])
                     vals['name'] = f"{splitter.name}/NAP{box_count + 1}"
+
+            print(("createbox", vals))
+
         return super(SilverBox, self).create(vals_list)
 
     def write(self, vals):
@@ -96,7 +105,7 @@ class SilverBox(models.Model):
         result = []
         for rec in self:
 
-            name = self.get_name()
+            name = rec.name
 
 
             # Si no hay datos de dirección legible, usamos el display_name

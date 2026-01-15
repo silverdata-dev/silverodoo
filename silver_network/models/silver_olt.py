@@ -1,4 +1,4 @@
-import ipaddress
+import ipaddress, traceback, sys
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 import logging, re
@@ -207,6 +207,36 @@ class SilverOlt(models.Model):
 
     ip_address_pool_ids = fields.One2many('silver.ip.address.pool', 'olt_id', string='Pools de direcciones IP')
     ip_address_ids = fields.One2many('silver.ip.address', related='ip_address_pool_ids.address_ids', string='Direcciones IP')
+
+    @api.model
+    def name_create(self, name):
+
+        try:
+            # if 1:
+            vals = {'name': name}
+
+            node = self.env['silver.node'].search([('code','=',name.rsplit("/", 1)[0])], limit=1)
+
+            if node and len(node):
+                vals['node_id'] = node[0].id
+            else:
+                node = self.env['silver.node'].create({'code':name.rsplit("/", 1)[0], 'name':name.rsplit('/',1)[0]})
+                vals['node_id'] = node.id
+
+            print("createolt", vals, node, len(node))
+            r = self.create(vals)
+            print("created ", r)
+
+            self.env.flush_all()
+
+            return r.id, r.name
+
+        #    return r.name_get()[0]
+        except Exception as e:
+            print(("perror", e))
+            traceback.print_exc(file=sys.stdout)
+
+        #        print(("create slot", name, self.env.context, r))
 
 
     @api.constrains('ip')

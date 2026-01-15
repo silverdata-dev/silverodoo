@@ -7,21 +7,11 @@
             <field name="model">crm.lead</field>
             <field name="inherit_id" ref="crm.crm_lead_view_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//group[@name='opportunity_partner']/field[@name='partner_id']" position="after">
+                <!--xpath expr="//group[@name='opportunity_partner']/field[@name='partner_id']" position="after">
                     <field name="zone_id" readonly="1"/>
-                </xpath>
-                <xpath expr="//page[@name='internal_notes']" position="before">
-                     <page string="Agendamiento" name="schedule_page">
-                        <group>
-                            <group>
-                                <field name="schedule_start"/>
-                                <field name="schedule_stop"/>
-                            </group>
-                            <group>
-                                <field name="assignment_id" string="Asignación" domain="['|', '|', ('node_ids', 'in', node_id), ('zone_ids', 'in', zone_id), '&amp;', ('node_ids', '=', False), ('zone_ids', '=', False)]"/>
-                            </group>
-                        </group>
-                     </page>
+                </xpath-->
+                <xpath expr="//div[@name='button_box']" position="inside">
+                      <button name="%(silver_contract.silver_contract_action)d" string="⇒ Ver Contrato" type="action" class="oe_link" invisible="not contract_id"/>
                 </xpath>
             </field>
         </record>

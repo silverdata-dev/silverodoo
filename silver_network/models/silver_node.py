@@ -43,6 +43,9 @@ class SilverNode(models.Model):
 
     silver_address_id = fields.Many2one('silver.address', string='Dirección')
 
+    latitude = fields.Float(string='Latitud', digits=(10, 7), related='silver_address_id.latitude')
+    longitude = fields.Float(string='Longitud', digits=(10, 7), related='silver_address_id.longitude')
+
 
     def write(self, vals):
         print(("nodewrite"))

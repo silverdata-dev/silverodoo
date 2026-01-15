@@ -19,6 +19,10 @@
 
 }
 
+.o_cell_custom.null:has(div[name="vat_vies_container"]){
+    display:none !important;
+}
+
 .o_form_button_save {
     font-size: 15px;
     background-color: rgb(93, 141, 168);
@@ -107,4 +111,8 @@ label{
 
 .bleft{
     margin-left:20px;
+}
+
+main.modal-body >.asset-map-view-container{
+    height: 70vh !important;
 }

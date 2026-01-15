@@ -48,7 +48,7 @@
                                  <group string="Información básica">
 
                             <field name="name" readonly="(network==False) or (nmask==False)"/>
-                                                <field name="network" widget="ip_address"/>
+                                                <!--field name="network" widget="ip_address"/-->
                     <field name="nmask"/>
                                      <field name="mask" readonly="True"/>
 

@@ -27,6 +27,7 @@
           <excludedPaths>
             <excludedPath local="true" path="$PROJECT_DIR$/odoo19" />
             <excludedPath local="true" path="$PROJECT_DIR$/recuro" />
+            <excludedPath local="true" path="$PROJECT_DIR$/queue" />
           </excludedPaths>
         </serverdata>
       </paths>

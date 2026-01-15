@@ -2,13 +2,16 @@
 
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
+
+import { rpc } from "@web/core/network/rpc";
+
 const { Component, onWillStart, onMounted, useRef } = owl;
 
 export class NodeMapWidget extends Component {
     static template = "silver_geo.NodeMap";
 
     setup() {
-        this.rpc = useService("rpc");
+     //   this.rpc = useService("rpc");
         this.mapRef = useRef("map");
 
         onWillStart(async () => {
@@ -38,7 +41,7 @@ export class NodeMapWidget extends Component {
     }
 
     async render_map() {
-        const data = await this.rpc('/silver_geo/get_assets', {
+        const data = await rpc('/silver_geo/get_assets', {
             node_id: this.props.record.resId,
         });
         console.log((" getassets", this.props.record));

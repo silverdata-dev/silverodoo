@@ -25,7 +25,13 @@
                                 <field name="type_service_id" options="{'no_create': True}"/>
                                 <field name="product_id" options="{'no_create': True}"/>
                             </group>
-                            <group string="Datos de Red y Factibilidad">
+
+                            <group string="Datos de Instalación">
+                                <field name="silver_address_id" placeholder="Buscar o crear dirección..." context="{'show_address': 1}" options='{"always_reload": True}'/>
+                                <field name="zone_id"/>
+                                <!--button name="action_copy_address" string="Crear Sub-Dirección (ej. Otro Apto)" type="object" class="oe_link" invisible="not silver_address_id"/-->
+                            </group>
+                             <group string="Datos de Red y Factibilidad">
 
                                     <button  class="oe_highlight" name="action_open_find_node_wizard"
                                              string="Nodo" type="object" invisible="not silver_address_id"/>
@@ -35,10 +41,6 @@
 
                                     <field name="box_id" nolabel="1"/>
 
-                            </group>
-                            <group string="Datos de Instalación">
-                                <field name="silver_address_id" placeholder="Buscar o crear dirección..." context="{'show_address': 1}" options='{"always_reload": True}'/>
-                                <button name="action_copy_address" string="Crear Sub-Dirección (ej. Otro Apto)" type="object" class="oe_link" invisible="not silver_address_id"/>
                             </group>
                             <group string="Contrato Asociado">
                                 <field name="contract_id" readonly="1" options="{'no_create': True}"/>
@@ -52,18 +54,31 @@
         </record>
 
         <!-- Herencia para la vista Kanban (botón en la tarjeta) -->
-        <!--record id="crm_lead_view_kanban_inherit_silver" model="ir.ui.view">
+        <record id="crm_lead_view_kanban_inherit_silver" model="ir.ui.view">
             <field name="name">crm.lead.kanban.inherit.silver</field>
             <field name="model">crm.lead</field>
             <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
             <field name="arch" type="xml">
-                <xpath expr="//div[@class='o_kanban_record_subtitle']/following-sibling::div[1]" position="replace">
-                    <div>
-                        <span class="o_text_overflow" t-if="record.partner_id.value" t-esc="record.partner_id.value"/>
-                        <span class="o_text_overflow" t-if="record.partner_id.value" t-esc="record.partner_id.vat"/>
-                    </div>
+                <xpath expr="//field[@name='partner_id'][1]" position="attributes">
+                    <attribute name="options">{'no_create': True}</attribute>
                 </xpath>
             </field>
-        </record-->
+        </record>
+
+
+        <record id="silver_quick_create_opportunity_form" model="ir.ui.view">
+            <field name="name">crm.lead.form.quick_create.silver</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.quick_create_opportunity_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//group[@class='crm_quick_create_opportunity_form_group']/div[1]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <!--xpath expr="//field[@name='commercial_partner_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath-->
+            </field>
+        </record>
     </data>
 </odoo>

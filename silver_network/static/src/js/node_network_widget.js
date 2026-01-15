@@ -2,13 +2,16 @@
 
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
+
+import { rpc } from "@web/core/network/rpc";
+
 const { Component, onWillStart, onMounted, useRef } = owl;
 
 export class NodeNetworkWidget extends Component {
     static template = "silver_network.NodeNetwork";
 
     setup() {
-        this.rpc = useService("rpc");
+        //this.rpc = useService("rpc");
         this.action = useService("action");
         this.graphRef = useRef("graph");
 
@@ -34,7 +37,7 @@ export class NodeNetworkWidget extends Component {
     }
 
     async render_network() {
-        const data = await this.rpc('/silver_network/get_node_hierarchy', {
+        const data = await rpc('/silver_network/get_node_hierarchy', {
             node_id: this.props.record.resId,
         });
 

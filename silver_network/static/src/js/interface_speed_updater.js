@@ -4,12 +4,13 @@ import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { Component, onMounted, onWillUnmount } from "@odoo/owl";
 import { standardFieldProps } from "@web/views/fields/standard_field_props";
+import { rpc } from "@web/core/network/rpc";
 
 // This component is a "trigger". It has no template and renders nothing.
 // Its only job is to start and stop the polling logic for the entire wizard.
 export class InterfaceSpeedUpdater extends Component {
     setup() {
-        this.rpc = useService("rpc");
+        //this.rpc = useService("rpc");
         this.updateInterval = null;
 
         this.rx_speed = this.props.rx_speed;
@@ -64,7 +65,7 @@ export class InterfaceSpeedUpdater extends Component {
             }
 
             // 2. Call the existing RPC endpoint to get fresh data
-            const trafficData = await this.rpc("/silver_network/get_interface_stats", {
+            const trafficData = await rpc("/silver_network/get_interface_stats", {
                 netdev_id: netdevId,
                 interface_names: names,
             });

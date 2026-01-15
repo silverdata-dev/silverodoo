@@ -26,13 +26,18 @@ class CrmLead(models.Model):
 
     # --- Campos para la integración con ISP ---
     silver_address_id = fields.Many2one('silver.address', string='Dirección de Instalación', tracking=True)
+
+
+    latitude = fields.Float(string='Latitud', digits=(10, 7), related='silver_address_id.latitude')
+    longitude = fields.Float(string='Longitud', digits=(10, 7), related='silver_address_id.longitude')
+
     contract_id = fields.Many2one('silver.contract', string='Contrato', tracking=True)
     plan_type_id = fields.Many2one('silver.plan.type', string='Tipo de Plan', tracking=True)
     type_service_id = fields.Many2one('silver.service.type', string='Tipo de Servicio', tracking=True)
-    product_id = fields.Many2one('product.product', string='Servicio', domain="[('service_type_id', '=', type_service_id)]", tracking=True)
+    product_id = fields.Many2one('product.product', string='Servicio', domain="[('type','=','service'),('service_type_id', '=', type_service_id)]", tracking=True)
     node_id = fields.Many2one('silver.node', string='Nodo', tracking=True)
     box_id = fields.Many2one('silver.box', string='Caja NAP', tracking=True)
-    zone_id = fields.Many2one('silver.zone', string='Zona', related="node_id.zone_id")
+    zone_id = fields.Many2one('silver.zone', string='Zona', related="silver_address_id.zone_id")
 
     def action_open_find_node_wizard(self):
         """
@@ -92,13 +97,17 @@ class CrmLead(models.Model):
         # Devolvemos una acción de cliente, pasando los datos necesarios en el contexto
         return {
             'type': 'ir.actions.client',
-            'tag': 'silver_crm.nap_map_selector', # CORREGIDO: Usar el tag correcto
+            'tag': 'silver_crm.nap_map_selector',
             'name': _('Seleccionar Caja NAP'),
+            'target': 'new',
             'context': {
                 'node_id': self.node_id.id,
-                'customer_lat': self.silver_address_id.latitude,
-                'customer_lon': self.silver_address_id.longitude,
-                'lead_id': self.id, # Para saber a qué oportunidad asignar la caja
+                'customer_lat': self.latitude,
+                'customer_lon': self.longitude,
+                'lead_id': self.id,
+                'address_lat': self.silver_address_id.latitude,
+                'address_lon': self.silver_address_id.longitude,
+                'lead_name': self.name,
             },
         }
 

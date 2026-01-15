@@ -9,18 +9,93 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+
+def haversine_distance( lat1, lon1, lat2, lon2):
+    R = 6371000  # Radio de la Tierra en metros
+    lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+    a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+    distance = R * c
+    return distance
+
+
+def parse_address_heuristics(raw_text):
+    """
+    Extrae componentes específicos (Edificio, Casa, Apto, Cruce) del texto usando RegEx.
+    Retorna: (vals, clean_text)
+    vals: diccionario con los campos extraídos para Odoo.
+    clean_text: texto limpio para enviar al geocodificador.
+    """
+    vals = {}
+    clean_text = raw_text
+
+    print(("cleantext", clean_text))
+
+    # Definición de Patrones (Regex)
+    # IMPORTANTE: El orden importa.
+    # Extraemos primero lo más específico (Piso, Apto) para evitar que 'Edificio' se lo trague.
+    patterns = {
+        'floor': [
+            r"(?:Piso|P\.?\s*B\.?|P-)\s*([0-9A-Za-z]+)(?=,|$)",  # P-1, PB, Piso 5
+            r"Piso\s*([0-9]+)",
+            r"piso\s*([0-9]+)",
+        ],
+        'house_number': [
+            r"(?:Casa|Nro\.?|No\.?|#)\s*([a-zA-Z0-9\s-]+)(?=,|$)",
+            r"(?:Apto\.?|Apartamento|Oficina|Local)\s+([a-zA-Z0-9\s\.-]+?)(?=,|$)"
+        ],
+        'building': [
+            r"(?:Edificio|Edif\.?|Residencia|Res\.?|Torre|Conjunto|C\.C\.|Centro Comercial)\s+([a-zA-Z0-9\s\.-]+?)(?=,|$)",
+        ],
+        'street2': [
+            r"(?:Cruce con|Esquina|Esq\.?|Transversal)\s+([a-zA-Z0-9\s\.-]+?)(?=,|$)",
+            r"\b(?:con|y)\s+(?:Calle|Avda\.?|Avenida)?\s*([a-zA-Z0-9\s\.-]+?)(?=,|$)",
+            r"\/\s*(?:Calle|Avda\.?|Avenida)?\s*([a-zA-Z0-9\s\.-]+?)(?=,|$)",
+            r"\b(?:c\s|c\.)\s*(?:Calle|Avda\.?|Avenida)?\s*([a-zA-Z0-9\s\.-]+?)(?=,|$)"
+        ]
+    }
+
+    # Iterar y extraer
+    for field, regex_list in patterns.items():
+        for pattern in regex_list:
+            match = re.search(pattern, clean_text, re.IGNORECASE)
+            if match:
+                value = match.group(1).strip()
+                # Si ya extrajimos algo para este campo, concatenar (ej: Casa 4, Apto 2)
+                if vals.get(field):
+                    vals[field] += f", {value}"
+                else:
+                    vals[field] = value
+
+                # Remover del texto para limpiar la búsqueda
+                # Reemplazamos por una coma para mantener la estructura si estaba en medio
+                clean_text = re.sub(pattern, ",", clean_text, flags=re.IGNORECASE)
+
+    # Limpieza final del texto de búsqueda
+    # Eliminar comas dobles, espacios extra, y conectores colgantes al final
+    clean_text = re.sub(r",\s*,", ",", clean_text)
+    clean_text = re.sub(r"\s+", " ", clean_text).strip(" ,.-")
+
+    # Quitar " y " o " con " si quedaron al final por haber extraído lo que seguía
+    clean_text = re.sub(r"\s+(y|con|c\.)$", "", clean_text, flags=re.IGNORECASE)
+
+    return vals, clean_text
+
 class SilverAddress(models.Model):
     _name = 'silver.address'
     _description = 'Dirección Silver'
-    _order = 'display_name'
-    _rec_name = 'display_name' # Para que este sea el campo que se muestra en los Many2one
+    _order = 'name'
+    _rec_name = 'name' # Para que este sea el campo que se muestra en los Many2one
 
     def _get_default_country(self):
         return self.env['res.country'].search([('code', '=', 'VE')], limit=1)
 
     # El display_name se almacena para búsquedas y ordenamiento.
     # name_get se encargará de la visualización final dependiente del contexto.
-    name = fields.Char(string='Dirección', compute='_compute_display_name', store=False)
+    name = fields.Char(string='Dirección', compute='_compute_display_name', store=True)
     display_name = fields.Char(string="Dirección Completa", compute='_compute_display_name', store=False)
 
     parent_id = fields.Many2one('silver.address', string='Dirección Padre')
@@ -205,7 +280,8 @@ class SilverAddress(models.Model):
                             mun_rec = Mun.create({
                                 'name': clean_mun, 
                                 'code': clean_mun.upper().replace(' ', '_'),
-                                'state_id': vals['state_id']
+                                'state_id': vals['state_id'],
+                                'country_id': vals.get('country_id')
                             })
 
                         vals['municipality_id'] = mun_rec.id
@@ -241,67 +317,9 @@ class SilverAddress(models.Model):
         
         return vals
 
-    def _parse_address_heuristics(self, raw_text):
-        """
-        Extrae componentes específicos (Edificio, Casa, Apto, Cruce) del texto usando RegEx.
-        Retorna: (vals, clean_text)
-        vals: diccionario con los campos extraídos para Odoo.
-        clean_text: texto limpio para enviar al geocodificador.
-        """
-        vals = {}
-        clean_text = raw_text
 
-        # Definición de Patrones (Regex)
-        # IMPORTANTE: El orden importa. 
-        # Extraemos primero lo más específico (Piso, Apto) para evitar que 'Edificio' se lo trague.
-        patterns = {
-            'floor': [
-                r"(?:Piso|P\.?\s*B\.?|P-)\s*([0-9A-Za-z]+)(?=,|$)", # P-1, PB, Piso 5
-                r"Piso\s*([0-9]+)",
-                r"piso\s*([0-9]+)",
-            ],
-            'house_number': [
-                r"(?:Casa|Nro\.?|No\.?|#)\s*([a-zA-Z0-9\s-]+)(?=,|$)",
-                r"(?:Apto\.?|Apartamento|Oficina|Local)\s+([a-zA-Z0-9\s\.-]+?)(?=,|$)"
-            ],
-            'building': [
-                r"(?:Edificio|Edif\.?|Residencia|Res\.?|Torre|Conjunto|C\.C\.|Centro Comercial)\s+([a-zA-Z0-9\s\.-]+?)(?=,|$)",
-            ],
-            'street2': [
-                r"(?:Cruce con|Esquina|Esq\.?|Transversal)\s+([a-zA-Z0-9\s\.-]+?)(?=,|$)",
-                r"\b(?:con|y)\s+(?:Calle|Avda\.?|Avenida)?\s*([a-zA-Z0-9\s\.-]+?)(?=,|$)",
-                r"\/\s*(?:Calle|Avda\.?|Avenida)?\s*([a-zA-Z0-9\s\.-]+?)(?=,|$)",
-                r"\b(?:c\s|c\.)\s*(?:Calle|Avda\.?|Avenida)?\s*([a-zA-Z0-9\s\.-]+?)(?=,|$)"
-            ]
-        }
 
-        # Iterar y extraer
-        for field, regex_list in patterns.items():
-            for pattern in regex_list:
-                match = re.search(pattern, clean_text, re.IGNORECASE)
-                if match:
-                    value = match.group(1).strip()
-                    # Si ya extrajimos algo para este campo, concatenar (ej: Casa 4, Apto 2)
-                    if vals.get(field):
-                        vals[field] += f", {value}"
-                    else:
-                        vals[field] = value
-                    
-                    # Remover del texto para limpiar la búsqueda
-                    # Reemplazamos por una coma para mantener la estructura si estaba en medio
-                    clean_text = re.sub(pattern, ",", clean_text, flags=re.IGNORECASE)
-
-        # Limpieza final del texto de búsqueda
-        # Eliminar comas dobles, espacios extra, y conectores colgantes al final
-        clean_text = re.sub(r",\s*,", ",", clean_text)
-        clean_text = re.sub(r"\s+", " ", clean_text).strip(" ,.-")
-        
-        # Quitar " y " o " con " si quedaron al final por haber extraído lo que seguía
-        clean_text = re.sub(r"\s+(y|con|c\.)$", "", clean_text, flags=re.IGNORECASE)
-
-        return vals, clean_text
-
-    def action_parse_and_geolocate(self):
+    def action_parse_and_geolocate(self, raw_address_search = None):
         """
         Toma el texto de raw_address_search:
         1. Extrae heurísticamente componentes (Edificio, Casa)
@@ -309,14 +327,16 @@ class SilverAddress(models.Model):
         3. Consulta OSM con el texto limpio
         4. Rellena los campos
         """
-        self.ensure_one()
-        if not self.raw_address_search:
+        #self.ensure_one()
+        if not raw_address_search: raw_address_search = self.raw_address_search
+        if not raw_address_search:
+            print("noraw")
             return
 
         # 1. Parsing Heurístico
-        extracted_vals, clean_search_query = self._parse_address_heuristics(self.raw_address_search)
+        extracted_vals, clean_search_query = parse_address_heuristics(raw_address_search)
         
-        _logger.info(f"Geolocalizando. Original: '{self.raw_address_search}' -> Limpio:'{clean_search_query}'")
+        _logger.info(f"Geolocalizando. Original: '{raw_address_search}' -> Limpio:'{clean_search_query}'")
 
         # 2. Configurar Geocodificador
         geolocator = Nominatim(user_agent="silver_odoo_migration_v1")
@@ -461,10 +481,12 @@ class SilverAddress(models.Model):
             if zone:
                 vals['zone_id'] = zone.id
 
+        print(("write", vals, self))
+
         # 7. Guardar
         self.write(vals)
 
-        return True
+        return vals
         return {
             'type': 'ir.actions.client',
             'tag': 'display_notification',
@@ -542,7 +564,8 @@ class SilverAddress(models.Model):
             lng_min, lng_max = self.longitude - 0.0002, self.longitude + 0.0002
 
             # El ID del registro actual, si existe
-            current_id = self._origin.id if isinstance(self.id, models.NewId) else self.id
+            #current_id = self._origin.id if isinstance(self.id, models.NewId) else self.id
+            current_id = self._origin.id if (self._origin.id) else self.id
 
             # Buscar una dirección cercana que no sea la misma
             domain = [
@@ -554,6 +577,7 @@ class SilverAddress(models.Model):
             potential_parent = self.search(domain, limit=1)
             if potential_parent:
                 self.parent_id = potential_parent
+
 
     def get_name(self):
         parts = [self.street, self.building, self.house_number, self.zone_id.name]
@@ -576,13 +600,33 @@ class SilverAddress(models.Model):
 
         args = args or []
         domain = []
+        lat,lon=None,None
+        match = None
         if name:
 
+            coord_pattern = r"^\s*(-?\d+\.\d+)\s*,\s*(-?\d+\.\d+)\s*$"
+            match = re.match(coord_pattern, name)
+            print(("namesearch", match, self))
+
+            if match:
+                lat, lon = float(match.group(1)), float(match.group(2))
+
+
+            else:
                 domain = ['|', '|', ('street', operator, name), ('building', operator, name), ('zone_id.name', operator, name)]
 
         records = self.search(domain + args, limit=limit)
 
-        print(("searchname", records))
+        if match:
+            for address in records:
+                if address.latitude and address.longitude:
+                    distance = haversine_distance(lat, lon, address.latitude, address.longitude)
+                    print(("distance", distance))
+                    if distance < 1000:
+                        return [(address.id, address.get_name())]
+            return []
+
+        print(("asearchname", match, name, records))
 
         return [(r.id, r.get_name()) for r in records]
 
@@ -596,12 +640,14 @@ class SilverAddress(models.Model):
         res = super(SilverAddress, self).default_get(fields_list)
         search_string = self.env.context.get('default_name')
         if search_string:
+
             # Busca la dirección que mejor coincida para usarla como padre
             parent_candidate = self.search([
                 '|', '|',
                 ('street', 'ilike', search_string),
                 ('building', 'ilike', search_string),
-                ('zone_id.name', 'ilike', search_string)
+                ('zone_id.name', 'ilike', search_string),
+                ('parent_id','=',None)
             ], limit=1)
             if parent_candidate:
                 res.update({
@@ -616,19 +662,22 @@ class SilverAddress(models.Model):
                 })
             else:
                 # Si no se encuentra un candidato padre, usa el search_string como la calle
-                res['street'] = search_string
+                #res['street'] = search_string
+                res['raw_address_search'] = search_string
+                v = self.action_parse_and_geolocate(search_string)
+                if v and v.get('country_id'):
+                    res.update(v)
         return res
 
-    def _haversine_distance(self, lat1, lon1, lat2, lon2):
-        R = 6371000  # Radio de la Tierra en metros
-        lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
-        dlon = lon2 - lon1
-        dlat = lat2 - lat1
-        a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
-        c = 2 * atan2(sqrt(a), sqrt(1 - a))
 
-        distance = R * c
-        return distance
+    @api.model
+    def create(self, vals):
+
+        print(("create", vals))
+       # r=3/0
+
+        return super().create(vals)
+
 
     @api.model
     def name_create(self, name):
@@ -636,6 +685,7 @@ class SilverAddress(models.Model):
         coord_pattern = r"^\s*(-?\d+\.\d+)\s*,\s*(-?\d+\.\d+)\s*$"
         match = re.match(coord_pattern, name)
         print(("namecreate", match, self))
+        defcountry_id = self.env['res.country'].search([('code','=','VE')], limit=1)
         try:
             if match:
                 lat, lon = float(match.group(1)), float(match.group(2))
@@ -646,7 +696,7 @@ class SilverAddress(models.Model):
                 min_distance = float('inf')
                 for address in nearby_addresses:
                     if address.latitude and address.longitude:
-                        distance = self._haversine_distance(lat, lon, address.latitude, address.longitude)
+                        distance = haversine_distance(lat, lon, address.latitude, address.longitude)
                         if distance < min_distance:
                             min_distance = distance
                             closest_address = address
@@ -670,7 +720,9 @@ class SilverAddress(models.Model):
                 new_address = self.create(vals)
             else:
                 # Comportamiento original si no son coordenadas
-                new_address = self.create({'street': name})
+                new_address = self.create({'raw_address_search': name, 'country_id':defcountry_id})
+                print(("new new", new_address))
+                new_address.action_parse_and_geolocate()
         except Exception as e:
             print(("error", e))
 

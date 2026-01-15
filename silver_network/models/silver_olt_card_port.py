@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+import traceback, sys
 
 class SilverOltCardPort(models.Model):
     _name = 'silver.olt.card.port'
@@ -7,6 +8,7 @@ class SilverOltCardPort(models.Model):
     _inherit = [ 'mail.thread', 'mail.activity.mixin']
 
     #_inherits = { 'silver.netdev': 'netdev_id'}
+    _rec_name = 'name'
 
 
     name = fields.Char(string='Nombre')
@@ -107,6 +109,99 @@ class SilverOltCardPort(models.Model):
             'res_id': new_splitter.id,
             'target': 'current',
         }
+
+    def get_name(self):
+
+        return self.name
+
+    @api.model
+    def name_create(self, name):
+
+
+        try:
+        #if 1:
+            vals = {'name':name}
+
+
+            card = self.env['silver.olt.card'].search ([('name','=',name.rsplit("/", 1)[0])], limit=1)
+            if card and len(card):
+                vals['olt_card_id'] = card[0].id
+                vals['olt_id'] = card[0].olt_id.id
+            else:
+                olt = self.env['silver.olt'].search([('name','=',name.rsplit("/", 2)[0])], limit=1)
+                if (not olt) or not(len(olt)):
+                    oltid,oltname = self.env['silver.olt'].name_create(name.rsplit("/", 2)[0])
+                    print(("oltid", oltid, oltname))
+                else: oltid = olt[0].id
+
+                vals['olt_id'] = oltid
+            if (not card) or (not len(card)):
+                cardid,cardname = self.env['silver.olt.card'].name_create(name.rsplit("/", 1)[0])
+                card = self.env['silver.olt.card'].browse(cardid)
+                print(("cardid", cardid, cardname, card))
+                vals['olt_card_id'] = card.id
+                vals['olt_id'] = card.olt_id.id
+
+            print("createport",vals, card, len(card))
+            r= self.create(vals)
+            print("created ", r)
+
+
+            self.env.flush_all()
+
+
+        #    return r.name_get()[0]
+        except Exception as e:
+            print(("perror", e))
+            traceback.print_exc(file=sys.stdout)
+
+#        print(("create slot", name, self.env.context, r))
+
+        return r.id, r.name
+
+
+    def name_get(self):
+        """
+        Método estándar de Odoo para obtener el nombre a mostrar.
+        Aquí manejamos el contexto para mostrar las coordenadas.
+        """
+        result = []
+        for rec in self:
+
+            name = self.get_name()
+
+
+            # Si no hay datos de dirección legible, usamos el display_name
+            if not name:
+                name = rec.display_name
+            result.append((rec.id, name))
+        return result
+
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        """
+        Permite buscar direcciones por calle, edificio o nombre de la zona.
+        """
+
+        args = args or []
+        domain = []
+        try:
+            if name:
+
+                    domain = [('name', operator, name)]
+
+            records = self.search(domain + args, limit=limit)
+            #ps = self.search([], limit=1)
+            #nps = [p.name for p in ps]
+
+            if len(records)!=1:
+                print(("psearchname", records, name, args, operator))
+
+            return [(r.id, r.get_name()) for r in records]
+        except Exception as e:
+            print(("peerroorr",e))
+            return []
+
 
     def create_splitter_secondary(self):
         self.ensure_one()

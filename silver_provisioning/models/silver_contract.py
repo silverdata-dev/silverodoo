@@ -1239,8 +1239,8 @@ class IspContract(models.Model):
             closest_node = None
             min_dist_node = float('inf')
             for node in nodes:
-                if node.silver_address_id.latitude and node.silver_address_id.longitude:
-                    dist = haversine(lat, lon, node.silver_address_id.latitude, node.silver_address_id.longitude)
+                if node.latitude and node.longitude:
+                    dist = haversine(lat, lon, node.latitude, node.longitude)
                     if dist < min_dist_node:
                         min_dist_node = dist
                         closest_node = node
@@ -1251,8 +1251,8 @@ class IspContract(models.Model):
             closest_box = None
             min_dist_box = float('inf')
             for box in boxes:
-                if box.silver_address_id.latitude and box.silver_address_id.longitude:
-                    dist = haversine(lat, lon, box.silver_address_id.latitude, box.silver_address_id.longitude)
+                if box.latitude and box.longitude:
+                    dist = haversine(lat, lon, box.latitude, box.longitude)
                     if dist < min_dist_box:
                         min_dist_box = dist
                         closest_box = box

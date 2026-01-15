@@ -19,6 +19,9 @@ class SilverSplitter(models.Model):
     silver_address_id = fields.Many2one('silver.address', string='Dirección')
 
 
+    latitude = fields.Float(string='Latitud', digits=(10, 7), related='silver_address_id.latitude')
+    longitude = fields.Float(string='Longitud', digits=(10, 7), related='silver_address_id.longitude')
+
     box_count = fields.Integer(string='Conteo Cajas', compute='_compute_box_count')
 #    contracts_count = fields.Integer(string='Conteo Cajas', compute='_compute_contracts_count')
 

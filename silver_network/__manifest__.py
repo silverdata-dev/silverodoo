@@ -65,7 +65,7 @@
 'silver_network/static/src/js/queue_speed_chart.js',
 'silver_network/static/src/js/queue_line_speed_chart.js',
 
-            'silver_network/static/src/js/ip_widget.js',
+#            'silver_network/static/src/js/ip_widget.js',
             'silver_network/static/src/js/node_map_widget.js',
             'silver_network/static/src/js/node_network_widget.js',
             'silver_network/static/src/js/system_info_chart_widget.js',

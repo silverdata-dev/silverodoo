@@ -15,6 +15,11 @@ class SilverSpliceClosure(models.Model):
     zone_id = fields.Many2one('silver.zone', string="Zona")
 
     silver_address_id = fields.Many2one('silver.address', string='Dirección')
+
+
+    latitude = fields.Float(string='Latitud', digits=(10, 7), related='silver_address_id.latitude')
+    longitude = fields.Float(string='Longitud', digits=(10, 7), related='silver_address_id.longitude')
+
     notes = fields.Text(string="Notas")
 
 

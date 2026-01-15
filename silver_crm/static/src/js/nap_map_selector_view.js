@@ -3,14 +3,13 @@
 import { registry } from "@web/core/registry";
 import { AssetMapView } from "@silver_geo/js/map_view";
 import { onMounted } from "@odoo/owl";
+import { rpc } from "@web/core/network/rpc";
 
 export class NapMapSelectorView extends AssetMapView {
     static template = "NapMapSelectorView";
 
     setup() {
-        super.setup(); // Llamar al setup de la clase padre
-
-        // Leer los parámetros del contexto de la acción
+        super.setup();
         const context = this.props.action.context;
         this.nodeId = context.node_id;
         this.customerLat = context.customer_lat;
@@ -18,24 +17,17 @@ export class NapMapSelectorView extends AssetMapView {
         this.leadId = context.lead_id;
 
         onMounted(() => {
-            this._initMap();
+            // _initMap is called by parent, but we might need to adjust view after assets are loaded.
             this._loadAssets();
         });
     }
 
-    // Sobrescribir _loadAssets para usar el nodeId del contexto
     async _loadAssets() {
-        // Llamar al nuevo controlador que filtra por nodo
-        const response = await this.rpc(
-            "/silver_crm/get_nap_boxes",
-            { node_id: this.nodeId }
-        );
-        
+        const response = await rpc("/silver_crm/get_nap_boxes", { node_id: this.nodeId });
         let rawAssets = response.assets || [];
-        const assets = rawAssets.filter(asset => 
+        const assets = rawAssets.filter(asset =>
             asset && typeof asset === 'object' && asset.model && asset.name
         );
-
         this.state.allAssets = assets;
         this.state.filteredAssets = [...assets];
         const models = [...new Set(assets.map(asset => asset.model))];
@@ -44,73 +36,82 @@ export class NapMapSelectorView extends AssetMapView {
             this.state.selectedModels[model] = true;
         });
         this._renderFeatures();
+
+        // Center map on customer after assets are loaded and rendered
+        if (this.customerLat && this.customerLon) {
+            this.map.setView([this.customerLat, this.customerLon], 18);
+        }
     }
 
-    // Sobrescribir _initMap para añadir el marcador del cliente y manejar la selección
     _initMap() {
-        super._initMap(); // Ejecutar la inicialización del mapa base
-
-        // Centrar el mapa en la ubicación del cliente
+        super._initMap();
+        // The map is now initialized in the parent class using Leaflet.
+        // We can add customer-specific markers or layers here.
         if (this.customerLat && this.customerLon) {
-            const customerCoords = ol.proj.fromLonLat([this.customerLon, this.customerLat]);
-            this.map.getView().setCenter(customerCoords);
-            this.map.getView().setZoom(18); // Un zoom más cercano
-
-            // Añadir un marcador para el cliente
-            const customerMarker = new ol.Feature({
-                geometry: new ol.geom.Point(customerCoords),
-            });
-            customerMarker.setStyle(new ol.style.Style({
-                image: new ol.style.Icon({
-                    anchor: [0.5, 1],
-                    src: '/silver_crm/static/src/img/customer_marker.png', // Un ícono distintivo
-                    scale: 0.5,
-                }),
-            }));
-            this.vectorSource.addFeature(customerMarker);
+            L.marker([this.customerLat, this.customerLon], {
+                icon: L.icon({
+                    iconUrl: '/silver_crm/static/src/img/map_icons/marker-shadow.png',
+                    iconSize: [41, 41],
+                    iconAnchor: [12, 41],
+                })
+            }).addTo(this.map).bindPopup("Customer Location");
         }
 
-        // Configurar el manejador de clics para la selección de cajas NAP
-        this.map.on("singleclick", (evt) => {
-            const feature = this.map.forEachFeatureAtPixel(evt.pixel, (f) => f);
-            if (feature) {
-                const asset = feature.get("asset");
-                if (asset && asset.model === 'silver.box') { // Solo reaccionar a clics en cajas NAP
-                    const coordinates = feature.getGeometry().getCoordinates();
-                    
-                    // Crear el contenido del popup con el botón "Seleccionar"
-                    const popupContent = `
-                        <b>${asset.name}</b><br>
-                        <button class="btn btn-primary btn-sm mt-2" id="select-nap-button">
-                            Seleccionar esta Caja
-                        </button>
-                    `;
-                    this.popupContentRef.el.innerHTML = popupContent;
-                    this.overlay.setPosition(coordinates);
+        const context = this.props.action.context;
+        const addressLat = context.address_lat;
+        const addressLon = context.address_lon;
+     const leadName = context.lead_name;
 
-                    // Añadir el listener al botón recién creado
-                    document.getElementById('select-nap-button').addEventListener('click', () => {
-                        this._selectNapBox(asset.id);
-                    });
-                }
-            } else {
-                this.overlay.setPosition(undefined); // Ocultar popup si se hace clic fuera
+        if (addressLat && addressLon) {
+            const circle = L.circle([addressLat, addressLon], {
+                color: 'blue',
+                fillColor: '#0000ff',
+                fillOpacity: 0.2,
+                radius: 100
+            }).addTo(this.map);
+            circle.bindPopup(`<b>${leadName}</b>`).openPopup();
+        }
+    }
+
+    _renderFeatures() {
+        super._renderFeatures(); // This will clear layers and render assets from filteredAssets
+
+        // Now, add specific popups for NAP boxes
+        this.featureGroup.eachLayer(layer => {
+            const asset = layer.asset;
+            if (asset && asset.model === 'box') {
+                const popupContent = this._createPopupContent(asset);
+                layer.bindPopup(popupContent);
+
+                layer.on('popupopen', () => {
+                    const button = document.getElementById(`select-nap-button-${asset.id}`);
+                    if (button) {
+                        button.onclick = () => {
+                            this._selectNapBox(asset.id);
+                        };
+                    }
+                });
             }
         });
     }
 
-    async _selectNapBox(boxId) {
-        // Llamar al método de Python en silver.box para asignar la caja al lead
-        await this.rpc({
-            model: 'silver.box',
-            method: 'action_select_nap_and_assign_to_lead',
-            args: [boxId, this.leadId],
-        });
+    _createPopupContent(asset) {
+        // Note: We need a unique ID for the button to avoid conflicts
+        return `
+            <b>${asset.name}</b><br>
+            <button class="btn btn-primary btn-sm mt-2" id="select-nap-button-${asset.id}">
+                Seleccionar esta Caja
+            </button>
+        `;
+    }
 
-        // Cerrar la vista de mapa y volver a la oportunidad
+    async _selectNapBox(boxId) {
+        await rpc('/silver_crm/select_nap_box', {
+            box_id: boxId,
+            lead_id: this.leadId,
+        });
         this.actionService.doAction({ type: 'ir.actions.act_window_close' });
     }
 }
 
-// Registrar la nueva acción de cliente
 registry.category("actions").add("silver_crm.nap_map_selector", NapMapSelectorView);

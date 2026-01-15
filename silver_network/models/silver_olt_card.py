@@ -1,11 +1,12 @@
 from odoo import models, fields, api
+import traceback, sys
 
 class SilverOltCard(models.Model):
     _name = 'silver.olt.card'
     _description = 'Tarjeta de Equipo OLT'
     _inherit = [ 'mail.thread', 'mail.activity.mixin']
     #_table = 'isp_olt_card'
-
+    _rec_name = 'name'
 
     olt_id = fields.Many2one('silver.olt', string='OLT', required=True)
 
@@ -64,6 +65,59 @@ class SilverOltCard(models.Model):
 
         return super().write(vals)
 
+
+    @api.model
+    def name_create(self, name):
+
+
+        try:
+        #if 1:
+            vals = {'name':name}
+
+
+            olt = self.env['silver.olt'].search([('name','=', name.rsplit("/", 1)[0])], limit=1)
+            if olt and len(olt):
+                vals['olt_id'] = olt[0].id
+
+            print("createcard", vals, name)
+            r = self.create(vals)
+            print("created ", r)
+
+            self.env.flush_all()
+
+
+            return r.id, r.name
+        except Exception as e:
+            print(("error", e))
+            traceback.print_exc(file=sys.stdout)
+
+        #print(("create slot", name, self.env.context, r))
+
+
+
+
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        """
+        Permite buscar direcciones por calle, edificio o nombre de la zona.
+        """
+
+        args = args or []
+        domain = []
+        if name:
+
+                domain = [('name', operator, name)]
+
+        records = self.search(domain + args, limit=limit)
+
+        print(("searchname", records, name))
+
+        return [(r.id, r.get_name()) for r in records]
+
+
+    def get_name(self):
+
+        return self.name
 
     def _compute_olt_card_port_count(self):
         for record in self:

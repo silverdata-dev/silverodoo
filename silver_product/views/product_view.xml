@@ -68,6 +68,49 @@
                     <attribute name="string">Información</attribute>
                 </xpath>
 
+                <xpath expr="//page[@name='general_information']//group[@name='group_general']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='general_information']//group[@name='group_standard_price']" position="attributes">
+    <attribute name="colspan">8</attribute>
+</xpath>
+
+
+                   <xpath expr="//notebook" position="inside">
+                    <page name="fields_isp" string="Datos ISP" invisible="(not is_internet) or (type != 'service')">
+
+
+                            <group string="Ancho de Banda Descarga/Subida">
+                                <label for="burst_limit_upload" string="Límite" />
+                                <div>
+                                    <field name="download_bandwidth" class="oe_inline"/>-<field name="upload_bandwidth" class="oe_inline"/>&amp;nbsp;Mbits/s
+                                </div>
+                                <label for="burst_limit_upload" string="Mínimos" />
+                                <div>
+                                    <field name="min_download_bandwidth" class="oe_inline"/>-<field name="min_upload_bandwidth" class="oe_inline"/>&amp;nbsp;Mbits/s
+                                </div>
+
+                                <label for="burst_limit_upload" string="Ráfaga" />
+                                <div>
+                                    <field name="burst_limit_download" class="oe_inline" placeholder="unlimited"/>-<field name="burst_limit_upload" placeholder="unlimited" class="oe_inline"/>&amp;nbsp;Mbits/s
+                                </div>
+                                <label for="burst_threshold_upload" string="Umbral de Ráfaga" />
+                                <div >
+                                    <field name="burst_threshold_download" class="oe_inline" placeholder="unlimited"/>-<field name="burst_threshold_upload" class="oe_inline" placeholder="unlimited"/> Mbits/s
+                                </div>
+                                <label for="burst_time_upload" string="Tiempo de Ráfaga" />
+                                <div >
+                                    <field name="burst_time_download" class="oe_inline" placeholder="0"/>-<field name="burst_time_upload" class="oe_inline" placeholder="0"/> s
+                                </div>
+                                    <field name="queue_priority" placeholder="8" class="oe_inline"/>
+
+                            </group>
+
+                    </page>
+
+                </xpath>
+
+
             </field>
 
         </record>
@@ -175,7 +218,9 @@
                 </xpath>
 
                 <!-- 6. Add custom fields to Standard Price group -->
-
+<xpath expr="//page[@name='general_information']//group[@name='group_standard_price']" position="attributes">
+    <attribute name="colspan">4</attribute>
+</xpath>
                  <xpath expr="//page[@name='general_information']//group[@name='group_standard_price']" position="inside">
                     <label for="brand_id" string="Marca"/>
                     <div class="o_row d-flex align-items-center">
@@ -198,6 +243,9 @@
                      <field name="weight"/>
                 </xpath>
 
+                <xpath expr="//page[@name='general_information']//group[@name='group_general']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
 
                 <!-- 8. Add new Notebook Pages -->
                 <xpath expr="//notebook" position="inside">
@@ -231,15 +279,7 @@
                             </group>
 
                     </page>
-                    <!--page name="fields_iptv" string="Datos IPTV">
-                        <group>
-                            <group>
-                                <field name="is_iptv"/>
-                                <field name="code_ott"/>
-                            </group>
-                            <group/>
-                        </group>
-                    </page-->
+
                 </xpath>
             </field>
         </record>

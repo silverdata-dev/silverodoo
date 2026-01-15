@@ -11,7 +11,7 @@
                                         <field name="hostname_core"/>
                                         <field name="node_id"/>
                                         <!--field name="brand_id"/-->
-                    <field name="nmodel"/>
+                    <field name="model"/>
                     <field name="ip"/>
 
                     <!--field name="port"/>

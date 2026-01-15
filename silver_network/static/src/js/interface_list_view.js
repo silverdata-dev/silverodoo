@@ -5,6 +5,7 @@ import { listView } from "@web/views/list/list_view";
 import { ListController } from "@web/views/list/list_controller";
 import { useService } from "@web/core/utils/hooks";
 import { onWillStart, onMounted, onWillUnmount } from "@odoo/owl";
+import { rpc } from "@web/core/network/rpc";
 
 console.log("Realtime Interface JS File Loaded");
 
@@ -13,7 +14,7 @@ class RealtimeInterfaceListController extends ListController {
         super.setup();
         console.log("RealtimeInterfaceListController setup initiated.");
 
-        this.rpc = useService("rpc");
+        //this.rpc = useService("rpc");
         this.updateInterval = null;
 
         // Get netdev_id from the form's record data
@@ -49,7 +50,7 @@ class RealtimeInterfaceListController extends ListController {
             }
 
             try {
-                const trafficData = await this.rpc("/silver_network/get_interface_stats", {
+                const trafficData = await rpc("/silver_network/get_interface_stats", {
                     netdev_id: this.netdevId,
                     interface_names: interfaceNames,
                 });

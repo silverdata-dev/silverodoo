@@ -61,6 +61,10 @@ class SilverContract(models.Model):
 
     # --- Pestaña: Ubicación (NUEVO) ---
     silver_address_id = fields.Many2one('silver.address', string='Dirección de Instalación')
+
+
+    latitude = fields.Float(string='Latitud', digits=(10, 7), related='silver_address_id.latitude')
+    longitude = fields.Float(string='Longitud', digits=(10, 7), related='silver_address_id.longitude')
     #box_id = fields.Many2one('silver.box', string='Caja NAP')
 
     # --- Pestaña: Servicios Recurrentes ---
@@ -162,9 +166,9 @@ class SilverContract(models.Model):
 
     @api.onchange('silver_address_id')
     def _onchange_silver_address_id(self):
-        if self.silver_address_id and self.silver_address_id.latitude and self.silver_address_id.longitude:
-            addr_lat = self.silver_address_id.latitude
-            addr_lon = self.silver_address_id.longitude
+        if self.latitude and self.longitude:
+            addr_lat = self.latitude
+            addr_lon = self.longitude
 
             closest_box = self.env['silver.box'].search([
                 ('asset_type', '=', 'nap'),

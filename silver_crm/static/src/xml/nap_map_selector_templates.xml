@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="NapMapSelectorView" owl="1">
-        <div class="nap-map-selector-container" style="height: 100%; width: 100%;">
-            <div id="map" style="height: 100%; width: 100%;"></div>
+    <div class="asset-map-view-container" style="height: 100%; width: 100%;">
+        <div t-ref="asset_map" class="map-container" style="height: 100%; width: 100%;"></div>
+        <div t-ref="popup" class="ol-popup">
+            <a href="#" t-ref="popup_closer" class="ol-popup-closer"></a>
+            <div t-ref="popup_content"></div>
         </div>
-    </t>
+    </div>
+</t>
 </templates>

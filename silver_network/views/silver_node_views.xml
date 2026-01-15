@@ -108,7 +108,7 @@
                widget="record_link"
 />
                                         <field name="hostname_core" />
-                                        <field name="nmodel"/>
+                                        <field name="model"/>
                                         <field name="ip"/>
                                         <field name="state" widget="badge"
                                                decoration-success="state in ['active', 'connected']"

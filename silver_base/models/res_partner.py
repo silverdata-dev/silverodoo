@@ -8,6 +8,10 @@ class ResPartner(models.Model):
 
     silver_address_id = fields.Many2one('silver.address', string='Dirección de Servicio Principal')
 
+
+    latitude = fields.Float(string='Latitud', digits=(10, 7), related='silver_address_id.latitude')
+    longitude = fields.Float(string='Longitud', digits=(10, 7), related='silver_address_id.longitude')
+
     @api.onchange('silver_address_id')
     def _onchange_silver_address_id(self):
         """
@@ -29,6 +33,7 @@ class ResPartner(models.Model):
         Sobrescrito para asegurar la sincronización de la dirección al crear un nuevo partner.
         """
         for vals in vals_list:
+            vals['company_type'] = 'person'
             if vals.get('silver_address_id'):
                 addr = self.env['silver.address'].browse(vals['silver_address_id'])
                 vals.update({
@@ -38,6 +43,8 @@ class ResPartner(models.Model):
                     'state_id': addr.state_id.id,
                     'country_id': addr.country_id.id,
                 })
+
+        print(("creating", vals_list))
         return super(ResPartner, self).create(vals_list)
 
     def write(self, vals):

@@ -3,6 +3,7 @@
 import { registry } from "@web/core/registry";
 import { useRecordObserver } from "@web/model/relational_model/utils";
 import { useService } from "@web/core/utils/hooks";
+import { rpc } from "@web/core/network/rpc";
 
 const { Component, onMounted, onWillUnmount, useRef } = owl;
 
@@ -11,7 +12,7 @@ export class CoordinatePickerMap extends Component {
         this.map = null;
         this.marker = null;
         this.mapContainer = useRef("mapContainer");
-        this.rpc = useService("rpc"); // RPC service for calling the controller
+        //this.rpc = useService("rpc"); // RPC service for calling the controller
 
         this.latField = this.props.latitude_field;
         this.lngField = this.props.longitude_field;
@@ -74,7 +75,7 @@ export class CoordinatePickerMap extends Component {
     }
 
     async loadAssetsOnMap() {
-        const response = await this.rpc('/silver_geo/get_assets', {});
+        const response = await rpc('/silver_geo/get_assets', {});
         const assets = response.assets || [];
         
         // Optional: Define different icons for different asset types
@@ -85,12 +86,13 @@ export class CoordinatePickerMap extends Component {
         };
 
         for (const asset of assets) {
-                 var nmodel = asset.nmodel.replaceAll(".", "_");
-            if (asset.latitude && asset.longitude && ['box', 'node'].includes(nmodel)) {
-                const icon = L.icon({iconUrl:`/silver_geo/static/src/img/map_icons/${nmodel}.png`,  iconSize: [25, 41], iconAnchor: [12, 41] });
+                 var model = asset.model.replaceAll(".", "_");
+                 console.log(["as", model, asset.name]);
+            if (asset.latitude && asset.longitude && ['box', 'node'].includes(model)) {
+                const icon = L.icon({iconUrl:`/silver_geo/static/src/img/map_icons/${model}.png`,  iconSize: [25, 41], iconAnchor: [12, 41] });
                 //const icon = icons[asset.model] || icons.default;
                 L.marker([asset.latitude, asset.longitude], { icon: icon, opacity: 0.7 })
-                    .bindPopup(`<b>${asset.nmodel.toUpperCase()}:</b><br/>${asset.name}`)
+                    .bindPopup(`<b>${asset.model.toUpperCase()}:</b><br/>${asset.name}`)
                     .addTo(this.map);
             }
         }
